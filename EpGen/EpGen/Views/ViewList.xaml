@@ -1,0 +1,214 @@
+﻿<Window x:Class="MVVMApp.Views.ViewList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:c="clr-namespace:MVVMApp.Commands"
+        xmlns:views="clr-namespace:MVVMApp.Views"
+        Title="Ep Gen" Height="800" Width="1400" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="690"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="10">
+
+            
+            <Border BorderBrush="Blue" BorderThickness="2" Margin="3">
+                <StackPanel Margin="10">
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <TextBlock Text="Файл"/>
+                        <TextBox Text="{Binding ScenarioFileName, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,10" Width="500"/>
+                        <Button Content="Load" Command="{Binding LoadFileCommand}" Margin="5,0" />
+                        <Button Content="Save" Command="{Binding SaveFileCommand}" Margin="5,0" />
+                       
+                    </StackPanel>
+                    <StackPanel Margin="1" Orientation="Horizontal">
+                        <TextBlock Text="PicTemplate"/>
+                        <TextBox Text="{Binding PicTemplate, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="525"/>
+                    </StackPanel>
+                    <StackPanel Margin="1" Orientation="Horizontal">
+                        <TextBlock Text="SoundTemplate"/>
+                        <TextBox Text="{Binding SoundTemplate, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="525"/>
+                    </StackPanel>
+                    <StackPanel Margin="1" Orientation="Horizontal">
+                        <TextBlock Text="TextTemplate"/>
+                        <TextBox Text="{Binding TextTemplate, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="525"/>
+                    </StackPanel>
+                    <StackPanel Margin="1" Orientation="Horizontal">
+                        <TextBlock Text="AddNewSetTemplate"/>
+                        <TextBox Text="{Binding AddNewSetTemplate, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" Margin="1,0,0,1" Width="525"/>                       
+                    </StackPanel>
+                    <StackPanel Margin="1" Orientation="Horizontal">
+                        <TextBlock Text="AddNewSet"/>
+                        <TextBox Text="{Binding AddNewSet, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" Margin="1,0,0,1" Width="525"/>
+                    </StackPanel>
+                    <StackPanel Margin="1" Orientation="Horizontal">
+                        <TextBlock Text="Link for pics"/>
+                        <TextBox Text="{Binding LinkForPicsTemplate, UpdateSourceTrigger=PropertyChanged}"  Margin="1,0,0,1" Width="525"/>
+                    </StackPanel>
+                    <StackPanel Margin="1" Orientation="Horizontal">
+                        <TextBlock Text="Save pics to dir"/>
+                        <TextBox Text="{Binding SavePicToDir, UpdateSourceTrigger=PropertyChanged}"  Margin="1,0,0,1" Width="500"/>
+                    </StackPanel>
+                    <StackPanel Margin="1" Orientation="Horizontal">
+                        <TextBlock Text="Company Num"/>
+                        <TextBox Text="{Binding CompanyNum, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="40"/>
+                        <TextBlock Text="Serie Prefix"/>
+                        <TextBox Text="{Binding SeriePrefix, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="50"/>
+                        <TextBlock Text="Start Id"/>
+                        <TextBox Text="{Binding StartId, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="40"/>
+                        <TextBlock Text="End Id"/>
+                        <TextBox Text="{Binding EndId, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="40"/>
+                        <TextBlock Text="Current Id"/>
+                        <TextBox Text="{Binding CurrentId, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="40"/>
+                        <TextBlock Text="Digits"/>
+                        <TextBox Text="{Binding TemplateDigits, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="40"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Удалить" Command="{Binding DeleteCadreCommand}" Margin="10,0" />
+                <Button Content="Добавить" Command="{Binding AddCadreCommand}" Margin="10,0" />
+                <Button Content="Create Filmografy" Command="{Binding CreateFilmografyCommand}" Margin="20,0,0,0" />
+                <Button Content="Copy sets" Command="{Binding CopySetsCommand}" Margin="20,0,0,0" />
+                <Button Content="Copy pos str" Command="{Binding CopyPosStrCommand}" Margin="20,0,0,0" />
+                <Button Content="Get Serie Pics" Command="{Binding GetSeriePicsCommand}" Margin="20,0,0,0" />
+
+            </StackPanel>
+            <ContentControl Grid.Column="1" Content="{Binding ECadres}" FontSize="18.667">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="GreenYellow" BorderThickness="3" Margin="10">
+                            <StackPanel Margin="10">
+                                <StackPanel Margin="0" Orientation="Horizontal">
+                                    <TextBlock Text="№"/>
+                                    <TextBox Text="{Binding Mark, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,10" Width="100" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="StartPos:"/>
+                                    <TextBox Text="{Binding StartPos, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,10" Width="100" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="EndPos:"/>
+                                    <TextBox Text="{Binding EndPos, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,10" Width="100" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="Length:"/>
+                                    <TextBox Text="{Binding Length, Mode =OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"  Margin="5,0,0,10" Width="100" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                                <StackPanel Margin="0" Orientation="Horizontal">
+
+
+                                </StackPanel>
+                                <StackPanel Margin="0" Orientation="Horizontal">
+                                    <TextBlock Text="START H:" Width="80"/>
+                                    <TextBox Text="{Binding StartPos_H, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,10" Width="30" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="M:" Margin="15,0,0,10" />
+                                    <TextBox Text="{Binding StartPos_M, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,10" Width="30" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="S:" Margin="15,0,0,10"/>
+                                    <TextBox Text="{Binding StartPos_S, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,10" Width="30" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                                <StackPanel Margin="0" Orientation="Horizontal">
+                                    <TextBlock Text="END H:"  Width="80"/>
+                                    <TextBox Text="{Binding EndPos_H, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,10" Width="30" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="M:" Margin="15,0,0,10"/>
+                                    <TextBox Text="{Binding EndPos_M, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,10" Width="30" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="S:" Margin="15,0,0,10"/>
+                                    <TextBox Text="{Binding EndPos_S, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,10" Width="30" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                                <TextBlock Text="Text:"/>
+                                <TextBox Text="{Binding TextSplitted, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,10"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+            
+            <ScrollViewer VerticalScrollBarVisibility ="Visible"  CanContentScroll="True">
+            <ListView ItemsSource="{Binding ECadres}" IsSynchronizedWithCurrentItem="True" Height="300">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="GreenYellow" BorderThickness="1" Margin="3">
+                            <StackPanel Margin="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="№:" />
+                                    <TextBlock Text="{Binding Mark}" FontWeight="Bold"/>
+                                    <TextBlock Text="Len:" Margin="20,0"/>
+                                    <TextBlock Text="{Binding Length}" FontWeight="Bold" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Text}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="10">
+            <StackPanel>
+                <MediaElement x:Name="minionPlayer" Margin="5"                         
+                            ScrubbingEnabled="True"
+                             LoadedBehavior="Manual" Source="minions.mp4"/>
+
+                <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarPosition"
+                            VerticalAlignment="Center" Scroll="sbarPosition_Scroll"
+                             PreviewMouseDown="sbarPosition_PreviewMouseDown" Margin="0,5"/>
+
+                <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarSeek"
+                            VerticalAlignment="Center"  Scroll="sbarSeek_Scroll"
+                             PreviewMouseUp="sbarSeek_PreviewMouseUp"
+                             PreviewMouseDown="sbarSeek_PreviewMouseDown" Margin="0,5"/>
+
+                <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarScale"
+                            VerticalAlignment="Center"  Scroll="sbarScale_Scroll"
+                             PreviewMouseUp="sbarScale_PreviewMouseUp"
+                             PreviewMouseDown="sbarScale_PreviewMouseDown" Margin="0,5"/>
+
+
+                <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Margin" Value="2"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <Button x:Name="btnPlay" Click="btnPlay_Click" Opacity ="0.5">
+                        <Image Source="/EpGen;component/play.png"/>
+                    </Button>
+                    
+                    <Label Content="Factor1:" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding ScrollFactor1}" Width="50" Height="24" 
+                             HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                    
+                    <Label Content="Factor2:" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding ScrollFactor2}" Width="50" Height="24" 
+                             HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                    
+                    <Label Content="Position:" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Name="txtPosition" Width="65" Height="24" Text="0.0"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                    <Button Margin="5,0,0,0" Content="Set Position" Height="30"
+                                  Name="btnSetPosition" Click="btnSetPosition_Click"/>
+                </StackPanel>
+                <TextBlock Text="File"/>
+                <TextBox Text="{Binding ClipToProcess, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" TextWrapping="Wrap"/>
+
+                <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Margin="0,0,50,0" Content="Save Start" Height="30" Width="100"
+                                  Name="btnSaveStart" Click="btnSaveStart_Click"/>
+                    <Button Margin="5,0,0,0" Content="Load" Height="30" Width="100"
+                                  Name="btnLoad" Click="btnLoad_Click"/>
+                    <Button Margin="50,0,0,0" Content="Save End" Height="30" Width="100"
+                                  Name="btnSaveEnd" Click="btnSaveEnd_Click"/>
+                    <Button Margin="10,0,0,0" Content="Save End + Add" Height="30" Width="100"
+                                  Name="btnSaveEndAndAdd" Click="btnSaveEndAndAdd_Click"/>
+                </StackPanel>
+
+            </StackPanel>
+
+
+
+        </StackPanel>
+    </Grid>
+</Window>

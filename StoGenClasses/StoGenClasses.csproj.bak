@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{16832A49-6465-4C63-8C20-F7DE36ADF10C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StoGen.Classes</RootNamespace>
+    <AssemblyName>StoGenClasses</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraLayout.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="LingvoNET">
+      <HintPath>..\StoGen\packages\LingvoNET.1.1.0\lib\LingvoNET.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Morpher.API">
+      <HintPath>..\StoGen\packages\Morpher.API.1.0.7\lib\net40\Morpher.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Morpher.AppConfigFactory">
+      <HintPath>..\StoGen\packages\Morpher.API.1.0.7\lib\net40\Morpher.AppConfigFactory.dll</HintPath>
+    </Reference>
+    <Reference Include="Morpher.Dynamic">
+      <HintPath>..\StoGen\packages\Morpher.API.1.0.7\lib\net40\Morpher.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Morpher.Generic">
+      <HintPath>..\StoGen\packages\Morpher.API.1.0.7\lib\net40\Morpher.Generic.dll</HintPath>
+    </Reference>
+    <Reference Include="Morpher.WebService.V2">
+      <HintPath>..\StoGen\packages\Morpher.API.1.0.7\lib\net40\Morpher.WebService.V2.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BackgroundHelper.cs" />
+    <Compile Include="Cadre.cs" />
+    <Compile Include="CadreData.cs" />
+    <Compile Include="CadreMaker.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="Db.cs" />
+    <Compile Include="frmClipEdit.cs" />
+    <Compile Include="frmClipEdit.Designer.cs">
+      <DependentUpon>frmClipEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFrameChoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFrameChoice.Designer.cs">
+      <DependentUpon>frmFrameChoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmActorEdit.cs" />
+    <Compile Include="frmActorEdit.Designer.cs">
+      <DependentUpon>frmActorEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInputBox.Designer.cs">
+      <DependentUpon>frmInputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLoadClipsFromDirectory.cs" />
+    <Compile Include="frmLoadClipsFromDirectory.Designer.cs">
+      <DependentUpon>frmLoadClipsFromDirectory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMovieEdit.cs" />
+    <Compile Include="frmMovieEdit.Designer.cs">
+      <DependentUpon>frmMovieEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmActorList.cs" />
+    <Compile Include="frmActorList.Designer.cs">
+      <DependentUpon>frmActorList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmClipList.cs" />
+    <Compile Include="frmClipList.Designer.cs">
+      <DependentUpon>frmClipList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMovieList.cs" />
+    <Compile Include="frmMovieList.Designer.cs">
+      <DependentUpon>frmMovieList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTextEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTextEdit.Designer.cs">
+      <DependentUpon>frmTextEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frame.cs" />
+    <Compile Include="FrameImage.cs" />
+    <Compile Include="FrameProc.cs" />
+    <Compile Include="FrameSound.cs" />
+    <Compile Include="FrameText.cs" />
+    <Compile Include="gifPictureEdit.cs" />
+    <Compile Include="LocationView.cs" />
+    <Compile Include="Occupation.cs" />
+    <Compile Include="PerPixelAlpha.cs" />
+    <Compile Include="PersonName.cs" />
+    <Compile Include="PicPropsEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PicPropsEdit.Designer.cs">
+      <DependentUpon>PicPropsEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PictureClasses.cs" />
+    <Compile Include="ProcedureBase.cs" />
+    <Compile Include="ProcVariant.cs" />
+    <Compile Include="Projector.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectorBase.cs" />
+    <Compile Include="SelectorConstants.cs" />
+    <Compile Include="SelectorData.cs" />
+    <Compile Include="SelectorStringGroup.cs" />
+    <Compile Include="SgActor.cs" />
+    <Compile Include="SgEnums.cs" />
+    <Compile Include="SgClip.cs" />
+    <Compile Include="SgMovie.cs" />
+    <Compile Include="SoundHelper.cs" />
+    <Compile Include="TextProcessor.cs" />
+    <Compile Include="ucActorEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucActorEdit.Designer.cs">
+      <DependentUpon>ucActorEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucClipEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucClipEdit.Designer.cs">
+      <DependentUpon>ucClipEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucMovieEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucMovieEdit.Designer.cs">
+      <DependentUpon>ucMovieEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucClipList.cs" />
+    <Compile Include="ucClipList.Designer.cs">
+      <DependentUpon>ucClipList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucMovieList.cs" />
+    <Compile Include="ucMovieList.Designer.cs">
+      <DependentUpon>ucMovieList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucActorList.cs" />
+    <Compile Include="ucActorList.Designer.cs">
+      <DependentUpon>ucActorList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Universe.cs" />
+    <Compile Include="ViewHum.cs" />
+    <Compile Include="ViewSet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="MediaPlayer">
+      <Guid>{22D6F304-B0F6-11D0-94AB-0080C74C7E95}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WMPDXMLib">
+      <Guid>{73F0DD5C-D071-46B6-A8BF-897C84EAAC49}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmClipEdit.resx">
+      <DependentUpon>frmClipEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFrameChoice.resx">
+      <DependentUpon>frmFrameChoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmActorEdit.resx">
+      <DependentUpon>frmActorEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInputBox.resx">
+      <DependentUpon>frmInputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLoadClipsFromDirectory.resx">
+      <DependentUpon>frmLoadClipsFromDirectory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMovieEdit.resx">
+      <DependentUpon>frmMovieEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmActorList.resx">
+      <DependentUpon>frmActorList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClipList.resx">
+      <DependentUpon>frmClipList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMovieList.resx">
+      <DependentUpon>frmMovieList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTextEdit.resx">
+      <DependentUpon>frmTextEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PicPropsEdit.resx">
+      <DependentUpon>PicPropsEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="ucActorEdit.resx">
+      <DependentUpon>ucActorEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucClipEdit.resx">
+      <DependentUpon>ucClipEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucMovieEdit.resx">
+      <DependentUpon>ucMovieEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucClipList.resx">
+      <DependentUpon>ucClipList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucMovieList.resx">
+      <DependentUpon>ucMovieList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucActorList.resx">
+      <DependentUpon>ucActorList.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Creation.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\SgActor.datasource" />
+    <None Include="Properties\DataSources\SgClip.datasource" />
+    <None Include="Properties\DataSources\SgPicture.datasource" />
+    <None Include="Properties\DataSources\StoGen.Classes.SgMovie.datasource" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

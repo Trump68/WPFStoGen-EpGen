@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoGenWPF", "StoGenWPF\StoGenWPF.csproj", "{AD6DB9A5-7A96-4A41-BDA0-72D01E6E86AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoGenClasses", "..\StoGenClasses\StoGenClasses.csproj", "{16832A49-6465-4C63-8C20-F7DE36ADF10C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD6DB9A5-7A96-4A41-BDA0-72D01E6E86AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD6DB9A5-7A96-4A41-BDA0-72D01E6E86AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD6DB9A5-7A96-4A41-BDA0-72D01E6E86AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD6DB9A5-7A96-4A41-BDA0-72D01E6E86AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16832A49-6465-4C63-8C20-F7DE36ADF10C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16832A49-6465-4C63-8C20-F7DE36ADF10C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16832A49-6465-4C63-8C20-F7DE36ADF10C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16832A49-6465-4C63-8C20-F7DE36ADF10C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
