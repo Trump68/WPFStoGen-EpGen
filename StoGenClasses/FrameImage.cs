@@ -592,12 +592,12 @@ namespace StoGen.Classes
                 Projector.ImageCadre.PropIndex = 1;
                 increase = false;
             }
-            else if (e == Key.NumPad8)
+            else if (e == Key.NumPad2)
             {
                 Projector.ImageCadre.PropIndex = 2;
                 increase = true;
             }
-            else if (e == Key.NumPad2)
+            else if (e == Key.NumPad8)
             {
                 Projector.ImageCadre.PropIndex = 2;
                 increase = false;
@@ -642,7 +642,7 @@ namespace StoGen.Classes
                 else
                     nt.Top -= Projector.ImageCadre.PropStep;
                 Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Margin = nt;
-                pi.Props.X = (int)nt.Top;
+                pi.Props.Y = (int)nt.Top;
             }
             else if (Projector.ImageCadre.PropIndex == 3)
             {
