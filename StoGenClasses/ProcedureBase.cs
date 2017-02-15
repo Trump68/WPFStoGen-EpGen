@@ -6,6 +6,7 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace StoGen.Classes
 {
@@ -214,16 +215,16 @@ namespace StoGen.Classes
                 OnKeyData(v, null);
             }
         }
-        public void ProcessKey(KeyEventArgs e)
+        public void ProcessKey(Key e)
         {
             ProcessKey(e, null);
         }
-        public void ProcessKey(KeyEventArgs e, ProcedureBase parent)
+        public void ProcessKey(Key e, ProcedureBase parent)
         {
             if (this.InnerProc != null) this.InnerProc.ProcessKey(e, this);
             else
             {
-                if (e.KeyCode == Keys.Back)
+                if (e == Key.Back)
                 {
                     if (parent != null)
                     {

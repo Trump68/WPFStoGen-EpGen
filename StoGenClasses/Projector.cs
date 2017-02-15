@@ -15,6 +15,7 @@ using System.Drawing;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media;
+using StoGenWPF;
 
 namespace StoGen.ModelClasses
 {
@@ -71,7 +72,17 @@ namespace StoGen.ModelClasses
 
         public static bool TimerEnabled { get; set; } = true;
         public static bool EndlessVideo { get; set; } = false;
-
+        public static bool EditorMode { get; set; } = false;
+        private static ImageCadreViewModel imageCadre;
+        public static ImageCadreViewModel ImageCadre
+        {
+            get
+            {
+                if (imageCadre == null)
+                    imageCadre = new ImageCadreViewModel();
+                return imageCadre;
+            }
+        }
         public static void Clear()
         {
             //Projector.PicContainer.Lci.Parent.Visibility = LayoutVisibility.Never;

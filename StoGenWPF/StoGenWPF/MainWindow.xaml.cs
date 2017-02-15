@@ -68,6 +68,10 @@ namespace StoGenWPF
             if (args.Length > 1) startfile = args[1];
 
             SGManager.StartMainProc(startfile);
+
+
+            PictureCadreDS.Visibility = Visibility.Hidden;
+            PictureCadreDS.DataContext = Projector.ImageCadre;
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -97,6 +101,11 @@ namespace StoGenWPF
                 Projector.EndlessVideo = !Projector.EndlessVideo;
                 LmpEndless.Visibility = Projector.EndlessVideo ? Visibility.Visible : Visibility.Hidden;
             }
+            else if (e.Key == Key.F8)
+            {
+                Projector.EditorMode = !Projector.EditorMode;
+                PictureCadreDS.Visibility = Projector.EditorMode ? Visibility.Visible : Visibility.Hidden;
+            }
             else if (e.Key == Key.Q)
             {
                 
@@ -117,6 +126,11 @@ namespace StoGenWPF
             else if (e.Key == Key.Escape)
             {
                 this.Close();
+            }
+            else if (e.Key == Key.NumPad1 || e.Key == Key.NumPad2 || e.Key == Key.NumPad3 || e.Key == Key.NumPad4 || e.Key == Key.NumPad5 || e.Key == Key.NumPad6 || e.Key == Key.NumPad7 || e.Key == Key.NumPad8 || e.Key == Key.NumPad9) 
+            {
+                SGManager.ProcessKey(e.Key);
+                e.Handled = true;
             }
             else
             {

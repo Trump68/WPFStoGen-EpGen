@@ -27,6 +27,21 @@
         <MediaElement x:Name="Clip1"  ScrubbingEnabled="True" HorizontalAlignment="Left" Height="505" Margin="90,47,0,0" VerticalAlignment="Top" Width="853" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>
         <Rectangle x:Name="LmpAuto" Fill="#FF06069B" HorizontalAlignment="Left" Height="10" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>
         <Rectangle x:Name="LmpEndless" Fill="#FFB60B49" HorizontalAlignment="Left" Height="10" Margin="10,0,0,0" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>
+        <GroupBox x:Name="PictureCadreDS" Header="Set Image" HorizontalAlignment="Left" Height="45" Width="581" Background="#FFF9F9F9" BorderBrush="#FFF9FCFD" VerticalAlignment="Bottom">
+            <StackPanel Margin="1" Orientation="Horizontal">
+                <StackPanel Margin="1" Orientation="Horizontal">
+                    <TextBlock Text="LayerIndex"/>
+                    <TextBox Text="{Binding LayerIndex, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="20" IsTabStop="False"/>
+                </StackPanel>
+                <StackPanel Margin="1" Orientation="Horizontal">
+                    <TextBlock Text="PropStep"/>
+                    <TextBox Text="{Binding PropStep, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="20" IsTabStop="False"/>
+                </StackPanel>
+                <StackPanel Margin="1" Orientation="Horizontal">
+                    <TextBox Text="{Binding ResultString, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,1" Width="400" IsTabStop="False"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
 
     </Grid>
 </Window>

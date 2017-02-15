@@ -10,6 +10,7 @@ using DevExpress.XtraRichEdit.API.Native;
 using System.Windows.Media;
 using System.Windows.Documents;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace StoGen.Classes
 {
@@ -138,7 +139,7 @@ namespace StoGen.Classes
 
 
         }
-        internal void ProcessKey(KeyEventArgs e)
+        internal void ProcessKey(Key e)
         {
             /*
             if (e.KeyCode == Keys.F12)

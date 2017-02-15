@@ -6,6 +6,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace StoGenWPF
 {
@@ -126,7 +127,7 @@ namespace StoGenWPF
             if (cadre == null) return false;
             return true;
         }
-        internal static void ProcessKey(KeyEventArgs keys)
+        internal static void ProcessKey(Key keys)
         {
             if (CurrProc != null) CurrProc.ProcessKey(keys);
         }
@@ -138,9 +139,10 @@ namespace StoGenWPF
         {
             if (CurrProc != null) CurrProc.ApplyContextMenu();
         }
-    
+
         #endregion
 
+    
     }
 
     #region Testing

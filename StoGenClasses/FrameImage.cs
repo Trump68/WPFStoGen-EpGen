@@ -15,7 +15,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WMPLib;
@@ -349,7 +351,7 @@ namespace StoGen.Classes
                     }
                     if (Pics[i].Props.SizeX > 0 && Pics[i].Props.SizeY > 0)
                     {
-                        Size NewSize = new Size(Pics[i].Props.SizeX, Pics[i].Props.SizeY);
+                        System.Drawing.Size NewSize = new System.Drawing.Size(Pics[i].Props.SizeX, Pics[i].Props.SizeY);
                         Projector.PicContainer.Clip.Height = NewSize.Height;
                         Projector.PicContainer.Clip.Width = NewSize.Width;
                     }
@@ -575,78 +577,121 @@ namespace StoGen.Classes
         private static int IsLoop = 0;
         private static bool NowReverse = false;
 
-        internal void ProcessKey(KeyEventArgs e)
+        internal void ProcessKey(Key e)
         {
-            int i = 300;
-            if (e.Control) i = 1;
-            if (e.Alt) i = 10;
-            PictureItem im = TopImage;
-            CadreShifted = this.Pics.Count - 1;
-            bool isRepaintNeed = false;
-            if (e.Shift)
+            if (!Projector.EditorMode) return;
+            bool increase = false;
+
+            if (e == Key.NumPad6)
             {
-                CadreShifted = 0;
-                im = this.Pics[0];
+                Projector.ImageCadre.PropIndex = 1;
+                increase = true;
             }
-            if (e.KeyCode == Keys.Right || e.KeyValue == 102)
+            else if (e == Key.NumPad4)
             {
-                im.Props.X = im.Props.X + i;
-                isRepaintNeed = true;
+                Projector.ImageCadre.PropIndex = 1;
+                increase = false;
             }
-            else if (e.KeyCode == Keys.Left || e.KeyValue == 100)
+            else if (e == Key.NumPad8)
             {
-                im.Props.X = im.Props.X - i;
-                isRepaintNeed = true;
+                Projector.ImageCadre.PropIndex = 2;
+                increase = true;
             }
-            else if (e.KeyCode == Keys.Up || e.KeyValue == 98)
+            else if (e == Key.NumPad2)
             {
-                im.Props.Y = im.Props.Y - i;
-                isRepaintNeed = true;
+                Projector.ImageCadre.PropIndex = 2;
+                increase = false;
             }
-            else if (e.KeyCode == Keys.Down || e.KeyValue == 104)
+            else if (e == Key.NumPad7)
             {
-                im.Props.Y = im.Props.Y + i;
-                isRepaintNeed = true;
+                Projector.ImageCadre.PropIndex = 3;
+                increase = true;
             }
-            else if (e.KeyCode == Keys.Subtract)
+            else if (e == Key.NumPad8)
             {
-                im.Props.Zoom = im.Props.Zoom - i;
-                isRepaintNeed = true;
+                Projector.ImageCadre.PropIndex = 3;
+                increase = false;
             }
-            else if (e.KeyCode == Keys.Add)
+            else if (e == Key.NumPad1)
             {
-                im.Props.Zoom = im.Props.Zoom + i;
-                isRepaintNeed = true;
+                Projector.ImageCadre.PropIndex = 4;
+                increase = true;
             }
-            else if (e.KeyCode == Keys.Oem4)
+            else if (e == Key.NumPad3)
             {
-                im.Props.Rotate = im.Props.Rotate - i;
-                isRepaintNeed = true;
+                Projector.ImageCadre.PropIndex = 4;
+                increase = false;
             }
-            else if (e.KeyCode == Keys.Oem6)
+            PictureItem pi = Pics[Projector.ImageCadre.LayerIndex - 1];
+            
+            if (Projector.ImageCadre.PropIndex == 1)
             {
-                im.Props.Rotate = im.Props.Rotate + i;
-                isRepaintNeed = true;
+                Thickness nt = new System.Windows.Thickness(Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Margin.Left, Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Margin.Top, 0, 0);
+                if (increase)
+                    nt.Left += Projector.ImageCadre.PropStep;
+                else
+                    nt.Left -= Projector.ImageCadre.PropStep;
+                Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Margin = nt;
+                pi.Props.X = (int)nt.Left;
             }
-            else if (e.KeyCode == Keys.F5)
+            else if (Projector.ImageCadre.PropIndex == 2)
             {
-                string data = string.Empty;
-                for (int ii = 0; ii < Pics.Count; i++)
+                Thickness nt = new System.Windows.Thickness(Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Margin.Left, Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Margin.Top, 0, 0);
+                if (increase)
+                    nt.Top += Projector.ImageCadre.PropStep;
+                else
+                    nt.Top -= Projector.ImageCadre.PropStep;
+                Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Margin = nt;
+                pi.Props.X = (int)nt.Top;
+            }
+            else if (Projector.ImageCadre.PropIndex == 3)
+            {
+                double newSizeX = Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Height;
+                if (increase)
+                    newSizeX += Projector.ImageCadre.PropStep;
+                else
+                    newSizeX -= Projector.ImageCadre.PropStep;
+                Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Width = newSizeX;
+                Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Height = newSizeX;
+                pi.Props.SizeX = (int)newSizeX;
+                pi.Props.SizeY = (int)newSizeX;
+            }
+            else if (Projector.ImageCadre.PropIndex == 4)
+            {
+                Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].RenderTransform = null;
+                var transformGroup = new TransformGroup();               
+                Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].RenderTransformOrigin = new System.Windows.Point(0.5, 0.5);
+
+
+                if (increase)
+                    pi.Props.Rotate += Projector.ImageCadre.PropStep;
+                else
+                    pi.Props.Rotate -= Projector.ImageCadre.PropStep;
+
+
+                if ((int)pi.Props.Flip == 1)
                 {
-                    if (Pics[ii].Props.isMain)
-                    {
-                        data = $"MainPics={Pics[ii].Props.FileName};SizeX={Pics[ii].Props.SizeX};SizeY={Pics[ii].Props.SizeY};X={Pics[ii].Props.X};Y={Pics[ii].Props.Y}";
-                        string ext = Path.GetExtension(Pics[ii].Props.FileName);
-                        if (Pics[ii].Props.isVideo || ext == ".mp4" || ext == ".mpg" || ext == ".avi" || ext == ".wmv" || ext == ".gif")
-                            data = $"{data};R={Pics[ii].Props.R}";
-                        break;
-                    }
+                    ScaleTransform flipTrans = new ScaleTransform();
+                    flipTrans.ScaleX = -1;
+                    transformGroup.Children.Add(flipTrans);
                 }
-                if (string.IsNullOrEmpty(data)) { }
-                Clipboard.SetText(data);
-                isRepaintNeed = false;
+                else if ((int)pi.Props.Flip == 2)
+                {
+
+                    ScaleTransform flipTrans = new ScaleTransform();
+                    flipTrans.ScaleY = -1;
+                    transformGroup.Children.Add(flipTrans);
+                }
+
+                if (pi.Props.Rotate > 0)
+                {
+                    var roateTransform = new RotateTransform(pi.Props.Rotate);
+                    transformGroup.Children.Add(roateTransform);
+                }
+                Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].RenderTransform = transformGroup;
             }
-            if (isRepaintNeed) Repaint();
+            Projector.ImageCadre.ResultString = $";X={pi.Props.X};Y={pi.Props.Y};SizeX={pi.Props.SizeX};SizeY={pi.Props.SizeY};Rotate={pi.Props.Rotate}";
+
         }
         private PictureItem TopImage
         {

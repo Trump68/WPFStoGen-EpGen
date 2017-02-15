@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Windows.Input;
 
 namespace StoGen.Classes
 {
@@ -190,7 +190,7 @@ namespace StoGen.Classes
         {
            
         }
-        internal void ProcessKey(KeyEventArgs keys)
+        internal void ProcessKey(Key keys)
         {
             for (int i = 0; i < Frames.Count; i++)
             {
