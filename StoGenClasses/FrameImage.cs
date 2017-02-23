@@ -662,7 +662,10 @@ namespace StoGen.Classes
                 Projector.ImageCadre.PropIndex = 8;
                 increase = false;
             }
-            PictureItem pi = Pics[Projector.ImageCadre.LayerIndex - 1];
+
+            int lev = Projector.ImageCadre.LayerIndex;
+            PictureItem pi = Pics.First(p=>(int)p.Props.Level == lev);
+            if (pi == null) return;
             
             if (Projector.ImageCadre.PropIndex == 1)
             {
