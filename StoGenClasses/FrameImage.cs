@@ -622,45 +622,81 @@ namespace StoGen.Classes
                 Projector.ImageCadre.PropIndex = 4;
                 increase = false;
             }
+            else if (e == Key.A)
+            {
+                Projector.ImageCadre.PropIndex = 5;
+                increase = true;
+            }
+            else if (e == Key.S)
+            {
+                Projector.ImageCadre.PropIndex = 5;
+                increase = false;
+            }
+            else if (e == Key.D)
+            {
+                Projector.ImageCadre.PropIndex = 6;
+                increase = true;
+            }
+            else if (e == Key.F)
+            {
+                Projector.ImageCadre.PropIndex = 6;
+                increase = false;
+            }
+            else if (e == Key.G)
+            {
+                Projector.ImageCadre.PropIndex = 7;
+                increase = true;
+            }
+            else if (e == Key.H)
+            {
+                Projector.ImageCadre.PropIndex = 7;
+                increase = false;
+            }
+            else if (e == Key.J)
+            {
+                Projector.ImageCadre.PropIndex = 8;
+                increase = true;
+            }
+            else if (e == Key.K)
+            {
+                Projector.ImageCadre.PropIndex = 8;
+                increase = false;
+            }
             PictureItem pi = Pics[Projector.ImageCadre.LayerIndex - 1];
             
             if (Projector.ImageCadre.PropIndex == 1)
             {
-                Thickness nt = new System.Windows.Thickness(Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Margin.Left, Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Margin.Top, 0, 0);
                 if (increase)
-                    nt.Left += Projector.ImageCadre.PropStep;
+                    pi.Props.X += Projector.ImageCadre.PropStep;
                 else
-                    nt.Left -= Projector.ImageCadre.PropStep;
-                Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Margin = nt;
-                pi.Props.X = (int)nt.Left;
+                    pi.Props.X -= Projector.ImageCadre.PropStep;
+                Projector.PicContainer.PicList[(int)pi.Props.Level].Margin = new System.Windows.Thickness(pi.Props.X, pi.Props.Y, 0, 0);
             }
             else if (Projector.ImageCadre.PropIndex == 2)
             {
-                Thickness nt = new System.Windows.Thickness(Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Margin.Left, Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Margin.Top, 0, 0);
                 if (increase)
-                    nt.Top += Projector.ImageCadre.PropStep;
+                    pi.Props.Y += Projector.ImageCadre.PropStep;
                 else
-                    nt.Top -= Projector.ImageCadre.PropStep;
-                Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Margin = nt;
-                pi.Props.Y = (int)nt.Top;
+                    pi.Props.Y -= Projector.ImageCadre.PropStep;
+                Projector.PicContainer.PicList[(int)pi.Props.Level].Margin = new System.Windows.Thickness(pi.Props.X, pi.Props.Y, 0, 0);
             }
             else if (Projector.ImageCadre.PropIndex == 3)
             {
-                double newSizeX = Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Height;
                 if (increase)
-                    newSizeX += Projector.ImageCadre.PropStep;
+                    pi.Props.SizeX += Projector.ImageCadre.PropStep;
                 else
-                    newSizeX -= Projector.ImageCadre.PropStep;
-                Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Width = newSizeX;
-                Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].Height = newSizeX;
-                pi.Props.SizeX = (int)newSizeX;
-                pi.Props.SizeY = (int)newSizeX;
+                    pi.Props.SizeX -= Projector.ImageCadre.PropStep;
+
+                pi.Props.SizeY = pi.Props.SizeX;
+                Projector.PicContainer.PicList[(int)pi.Props.Level].Width = pi.Props.SizeX;
+                Projector.PicContainer.PicList[(int)pi.Props.Level].Height = pi.Props.SizeY;
+
             }
             else if (Projector.ImageCadre.PropIndex == 4)
             {
-                Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].RenderTransform = null;
+                Projector.PicContainer.PicList[(int)pi.Props.Level].RenderTransform = null;
                 var transformGroup = new TransformGroup();               
-                Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].RenderTransformOrigin = new System.Windows.Point(0.5, 0.5);
+                Projector.PicContainer.PicList[(int)pi.Props.Level].RenderTransformOrigin = new System.Windows.Point(0.5, 0.5);
 
 
                 if (increase)
@@ -688,9 +724,63 @@ namespace StoGen.Classes
                     var roateTransform = new RotateTransform(pi.Props.Rotate);
                     transformGroup.Children.Add(roateTransform);
                 }
-                Projector.PicContainer.PicList[Projector.ImageCadre.LayerIndex].RenderTransform = transformGroup;
+                Projector.PicContainer.PicList[(int)pi.Props.Level].RenderTransform = transformGroup;
             }
-            Projector.ImageCadre.ResultString = $";X={pi.Props.X};Y={pi.Props.Y};SizeX={pi.Props.SizeX};SizeY={pi.Props.SizeY};Rotate={pi.Props.Rotate}";
+            else if (Projector.ImageCadre.PropIndex == 5)
+            {
+                if (increase)
+                    pi.Props.ClipX += Projector.ImageCadre.PropStep;
+                else
+                    pi.Props.ClipX -= Projector.ImageCadre.PropStep;
+            }
+            else if (Projector.ImageCadre.PropIndex == 6)
+            {
+                if (increase)
+                    pi.Props.ClipW += Projector.ImageCadre.PropStep;
+                else
+                    pi.Props.ClipW -= Projector.ImageCadre.PropStep;
+                if (pi.Props.ClipW < 0)
+                    pi.Props.ClipW = 0;
+            }
+            else if (Projector.ImageCadre.PropIndex == 7)
+            {
+                if (increase)
+                    pi.Props.ClipY += Projector.ImageCadre.PropStep;
+                else
+                    pi.Props.ClipY -= Projector.ImageCadre.PropStep;
+            }
+            else if (Projector.ImageCadre.PropIndex == 8)
+            {
+                if (increase)
+                    pi.Props.ClipH += Projector.ImageCadre.PropStep;
+                else
+                    pi.Props.ClipH -= Projector.ImageCadre.PropStep;
+                if (pi.Props.ClipH < 0)
+                    pi.Props.ClipH = 0;
+            }
+            
+            if (pi.Props.ClipX > 0 || pi.Props.ClipY > 0 || pi.Props.ClipW > 0 || pi.Props.ClipH > 0)
+            {
+                double clipW = pi.Props.ClipW;
+                double clipH = pi.Props.ClipH;
+                if (clipW == -1) { clipW = pi.Props.SizeX - pi.Props.ClipX; }
+                else if (clipW == 0)
+                {
+                    clipW = pi.Props.SizeX;
+                }
+                if (clipH == -1) { clipH = pi.Props.SizeY - pi.Props.ClipY; }
+                else if (clipH == 0)
+                {
+                    clipH = pi.Props.SizeY;
+                }
+                Projector.PicContainer.PicList[(int)pi.Props.Level].Clip = new RectangleGeometry(new System.Windows.Rect(pi.Props.ClipX, pi.Props.ClipY, clipW, clipH));
+            }
+            else
+            {
+                Projector.PicContainer.PicList[(int)pi.Props.Level].Clip = null;
+            }
+            
+            Projector.ImageCadre.ResultString = $";ClipX={pi.Props.ClipX};ClipW={pi.Props.ClipW};ClipY={pi.Props.ClipY};ClipH={pi.Props.ClipH};X={pi.Props.X};Y={pi.Props.Y};SizeX={pi.Props.SizeX};SizeY={pi.Props.SizeY};Rotate={pi.Props.Rotate}";
 
         }
         private PictureItem TopImage
