@@ -784,7 +784,7 @@ namespace StoGen.Classes
             }
             
             Projector.ImageCadre.ResultString = $";ClipX={pi.Props.ClipX};ClipW={pi.Props.ClipW};ClipY={pi.Props.ClipY};ClipH={pi.Props.ClipH};X={pi.Props.X};Y={pi.Props.Y};SizeX={pi.Props.SizeX};SizeY={pi.Props.SizeY};Rotate={pi.Props.Rotate}";
-
+            System.Windows.Clipboard.SetText(Projector.ImageCadre.ResultString);
         }
         private PictureItem TopImage
         {

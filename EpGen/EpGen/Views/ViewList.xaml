@@ -203,6 +203,8 @@
                                   Name="btnSaveEnd" Click="btnSaveEnd_Click"/>
                     <Button Margin="10,0,0,0" Content="Save End + Add" Height="30" Width="100"
                                   Name="btnSaveEndAndAdd" Click="btnSaveEndAndAdd_Click"/>
+                    <Button Margin="10,0,0,0" Content="Screenshot" Height="30" Width="100"
+                                  Name="btnScreenshot" Click="btnScreenshot_Click"/>
                 </StackPanel>
 
             </StackPanel>

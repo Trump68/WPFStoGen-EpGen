@@ -9,7 +9,7 @@ namespace StoGenWPF
 {
     public class ImageCadreViewModel: ViewModelBase
     {
-        private int layerIndex = 1;
+        private int layerIndex = 0;
         public int LayerIndex
         {
             get { return layerIndex; }
@@ -29,7 +29,7 @@ namespace StoGenWPF
                 OnPropertyChanged("PropIndex");
             }
         }
-        private int propStep =1;
+        private int propStep =5;
         public int PropStep
         {
             get { return propStep; }

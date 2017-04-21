@@ -1,6 +1,7 @@
 ﻿using MVVMApp.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,12 +46,18 @@ namespace MVVMApp.Views
         {
             if ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem != null)
             {
-                if (minionPlayer.Source.LocalPath != ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).MainFileName)
+                string fp = System.IO.Path.GetDirectoryName(minionPlayer.Source.LocalPath);
+                string nfp = System.IO.Path.GetDirectoryName(((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).MainFileName);
+                if (string.IsNullOrEmpty(nfp))
                 {
-                    if (!string.IsNullOrEmpty(((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).MainFileName))
+                    nfp = fp + System.IO.Path.DirectorySeparatorChar + ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).MainFileName;
+                }
+                if (minionPlayer.Source.LocalPath != nfp)
+                {
+                    if (!string.IsNullOrEmpty(nfp))
                     {
-                        (this.DataContext as ECadreListViewModel).ClipToProcess = ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).MainFileName;
-                        minionPlayer.Source = new Uri((this.DataContext as ECadreListViewModel).ClipToProcess);
+                        (this.DataContext as ECadreListViewModel).ClipToProcess = nfp;
+                        minionPlayer.Source = new Uri(nfp);
                         minionPlayer.Play();
                     }
                 }
@@ -222,8 +229,48 @@ namespace MVVMApp.Views
                 (this.DataContext as ECadreListViewModel).AddCadre();
             }
         }
-        
+        private void btnScreenshot_Click(object sender, RoutedEventArgs e)
+        {
+            if ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem != null)
+            {
+                string path = System.IO.Path.GetDirectoryName(this.minionPlayer.Source.LocalPath);
+                path = path + System.IO.Path.DirectorySeparatorChar + ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).Mark+".jpg";
+                ImportMedia(path);
+                //((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).EndPos = sbarPosition.Value;
+                //((this.DataContext as ECadreListViewModel)).CopyPosStr();
+                //(this.DataContext as ECadreListViewModel).AddCadre();
+            }
+        }
+        void ImportMedia(string path)
+        {
+            /*
+            RenderTargetBitmap rtb = new RenderTargetBitmap(320, 240, 96, 96, PixelFormats.Pbgra32);
+            DrawingVisual dv = new DrawingVisual();
+            DrawingContext dc = dv.RenderOpen();
+            dc.DrawVideo(this.minionPlayer, new Rect(0, 0, 320, 240));
+            dc.Close();
+            rtb.Render(dv);
+            Image img = new Image();
+            img.Source = BitmapFrame.Create(rtb);
+            */
+           
+            RenderTargetBitmap rtb = new RenderTargetBitmap(Convert.ToInt32(this.minionPlayer.RenderSize.Width), Convert.ToInt32(this.minionPlayer.RenderSize.Height), 96, 96, PixelFormats.Pbgra32);
+            rtb.Render(this.minionPlayer);
+            //Image img = new Image();
+            //img.Source = BitmapFrame.Create(rtb);
 
+
+            using (FileStream stream = new FileStream(path, FileMode.Create))
+            {
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                //encoder.FlipHorizontal = true;
+                //encoder.FlipVertical = false;
+                encoder.QualityLevel = 100;
+                // encoder.Rotation = Rotation.Rotate90;
+                encoder.Frames.Add(BitmapFrame.Create(rtb));
+                encoder.Save(stream);
+            }
+        }
 
     }
 }
