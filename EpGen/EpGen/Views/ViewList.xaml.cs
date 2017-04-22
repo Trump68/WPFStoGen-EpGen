@@ -50,7 +50,8 @@ namespace MVVMApp.Views
                 string nfp = System.IO.Path.GetDirectoryName(((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).MainFileName);
                 if (string.IsNullOrEmpty(nfp))
                 {
-                    nfp = fp + System.IO.Path.DirectorySeparatorChar + ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).MainFileName;
+                    nfp = minionPlayer.Source.LocalPath;
+                    ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).MainFileName = System.IO.Path.GetFileName(nfp);
                 }
                 if (minionPlayer.Source.LocalPath != nfp)
                 {
@@ -234,11 +235,20 @@ namespace MVVMApp.Views
             if ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem != null)
             {
                 string path = System.IO.Path.GetDirectoryName(this.minionPlayer.Source.LocalPath);
-                path = path + System.IO.Path.DirectorySeparatorChar + ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).Mark+".jpg";
-                ImportMedia(path);
-                //((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).EndPos = sbarPosition.Value;
-                //((this.DataContext as ECadreListViewModel)).CopyPosStr();
-                //(this.DataContext as ECadreListViewModel).AddCadre();
+                path = path + System.IO.Path.DirectorySeparatorChar + ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).Mark;
+
+                int i = 0;
+                string istr = i.ToString("D2");
+                string fpath = $"{path}-{istr}.jpg";
+                while (File.Exists(fpath))
+                {
+                    ++i;
+                    istr = i.ToString("D2");
+                    fpath = $"{path}-{istr}.jpg";
+                }
+
+
+                ImportMedia(fpath);
             }
         }
         void ImportMedia(string path)
