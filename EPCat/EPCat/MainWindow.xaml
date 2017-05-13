@@ -1,0 +1,44 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EPCat"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:Serialization="clr-namespace:DevExpress.Xpf.LayoutControl.Serialization;assembly=DevExpress.Xpf.LayoutControl.v16.1" x:Class="EPCat.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="426" Width="1019" Closing="Window_Closing" Loaded="Window_Loaded">
+    <Window.DataContext>
+        <local:EpCatViewModel/>
+    </Window.DataContext>
+    <Grid>
+
+        <dxlc:LayoutControl>
+            <dxlc:LayoutGroup dx:ScrollViewerTouchBehavior.IsEnabled="True" Orientation="Vertical" Serialization:SerializableItem.TypeName="LayoutGroup">
+                <dxlc:LayoutItem Label="" HorizontalAlignment="Left">
+                    <dx:SimpleButton x:Name="simpleButton" Content="Load" Width="50" HorizontalAlignment="Left" Click="simpleButton_Click"/>
+                </dxlc:LayoutItem>
+                <dxg:GridControl x:Name="GV" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" ItemsSource="{Binding FolderListView}" SelectedItem="{Binding CurrentFolder}" SelectionMode="Row">
+                    <dxg:GridControl.View>
+                        <dxg:TableView AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True"/>
+                    </dxg:GridControl.View>
+                    <dxg:GridColumn FieldName="Name" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="AltTitle" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="Country" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="Year" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="Rated" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="Star" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="MyDescr" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="Director" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="Studio" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="IMDB" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="ItemPath" IsSmart="True"/>
+                    <dxg:GridControl.TotalSummary>
+                        <dxg:GridSummaryItem FieldName="Name" SummaryType="Count"/>
+                        <dxg:GridSummaryItem SummaryType="Count" Alignment="Right"/>
+                    </dxg:GridControl.TotalSummary>
+                </dxg:GridControl>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+
+    </Grid>
+</Window>
