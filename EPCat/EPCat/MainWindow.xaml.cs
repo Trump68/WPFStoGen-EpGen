@@ -47,7 +47,14 @@ namespace EPCat
         }
         void RestoreLayout()
         {
-            this.GV.RestoreLayoutFromXml("GridLayout.xml");
+            try
+            {
+                this.GV.RestoreLayoutFromXml("GridLayout.xml");
+            }
+            catch (Exception)
+            {               
+            }
+            
         }
         private void MainWindow_CellValueChanged(object sender, CellValueChangedEventArgs e)
         {

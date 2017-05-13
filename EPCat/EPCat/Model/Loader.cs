@@ -77,15 +77,21 @@ namespace EPCat.Model
         }
         private void CreatePassportTo(string ToPath)
         {
+            if (!Directory.Exists(ToPath)) return;
+            
+
             List<string> files = Directory.GetFiles(ToPath, EpItem.p_PassportName, SearchOption.TopDirectoryOnly).ToList();
 
             if (!files.Any())
             {
-                EpItem item = new EpItem(0);
-                item.Name = Path.GetFileName(ToPath);
-                List<string> lines = EpItem.SetToPassport(item);
-                File.WriteAllLines(Path.Combine(ToPath, EpItem.p_PassportName), lines);
-
+                List<string> movies = Directory.GetFiles(ToPath, "*.m4v", SearchOption.TopDirectoryOnly).ToList();
+                if (movies.Any())
+                {
+                    EpItem item = new EpItem(0);
+                    item.Name = Path.GetFileName(ToPath);
+                    List<string> lines = EpItem.SetToPassport(item);
+                    File.WriteAllLines(Path.Combine(ToPath, EpItem.p_PassportName), lines);
+                }
             }
 
             List<string> dirs = Directory.GetDirectories(ToPath).ToList();
@@ -197,10 +203,11 @@ namespace EPCat.Model
 
         private void LoadCatalog(string parameters)
         {
+            List<EpItem> list = new List<EpItem>();
             string itemPath = parameters.ToLower();
             if (File.Exists(itemPath))
             {
-                List<EpItem> list = new List<EpItem>();
+                
                 System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<EpItem>));
                 try
                 {
@@ -209,10 +216,11 @@ namespace EPCat.Model
                         list = serializer.Deserialize(sr) as List<EpItem>;
                     }
                 }
-                catch { }
-                CurrentCatalog = itemPath;
-                Source = list;
+                catch { }               
+                
             }
+            Source = list;
+            CurrentCatalog = itemPath;
         }
         private void UpdateFolder(string parameters)
         {
