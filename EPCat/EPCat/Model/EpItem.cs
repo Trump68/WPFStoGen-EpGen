@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace EPCat.Model
 {
@@ -14,7 +17,21 @@ namespace EPCat.Model
         public readonly int _itemType;//0-Folder
         public int ItemType { get { return _itemType; } }
         public int ParentID { get; set; }
-
+        public string PosterPath
+        {
+            get
+            {
+                return Path.Combine(Path.GetDirectoryName(ItemPath), "POSTER.JPG");
+            }
+        }
+        public ImageSource Poster
+        {
+            get
+            {
+                return new BitmapImage(new Uri(PosterPath, UriKind.Absolute));
+            }
+        }
+       
 
         public string Name { get; set; }
         public string AltTitle { get; set; }
