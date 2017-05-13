@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:c="clr-namespace:MVVMApp.Commands"
         xmlns:views="clr-namespace:MVVMApp.Views"
-        Title="Ep Gen" Height="800" Width="1400" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Title="Ep Gen" Height="800" Width="1400" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="690"/>

@@ -1,14 +1,7 @@
 ﻿using MVVMApp.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -232,55 +225,122 @@ namespace MVVMApp.Views
         }
         private void btnScreenshot_Click(object sender, RoutedEventArgs e)
         {
-            if ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem != null)
-            {
-                string path = System.IO.Path.GetDirectoryName(this.minionPlayer.Source.LocalPath);
-                path = path + System.IO.Path.DirectorySeparatorChar + ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).Mark;
+            this.MadeShot();
 
-                int i = 0;
-                string istr = i.ToString("D2");
-                string fpath = $"{path}-{istr}.jpg";
-                while (File.Exists(fpath))
-                {
-                    ++i;
-                    istr = i.ToString("D2");
-                    fpath = $"{path}-{istr}.jpg";
-                }
-
-
-                ImportMedia(fpath);
-            }
         }
-        void ImportMedia(string path)
+        private void MadeShot()
         {
-            /*
-            RenderTargetBitmap rtb = new RenderTargetBitmap(320, 240, 96, 96, PixelFormats.Pbgra32);
-            DrawingVisual dv = new DrawingVisual();
-            DrawingContext dc = dv.RenderOpen();
-            dc.DrawVideo(this.minionPlayer, new Rect(0, 0, 320, 240));
-            dc.Close();
-            rtb.Render(dv);
-            Image img = new Image();
-            img.Source = BitmapFrame.Create(rtb);
-            */
-           
-            RenderTargetBitmap rtb = new RenderTargetBitmap(Convert.ToInt32(this.minionPlayer.RenderSize.Width), Convert.ToInt32(this.minionPlayer.RenderSize.Height), 96, 96, PixelFormats.Pbgra32);
-            rtb.Render(this.minionPlayer);
-            //Image img = new Image();
-            //img.Source = BitmapFrame.Create(rtb);
+            string path = System.IO.Path.GetDirectoryName(this.minionPlayer.Source.LocalPath) + System.IO.Path.DirectorySeparatorChar.ToString() + "CAPS";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            if ((base.DataContext as ECadreListViewModel).ECadres.CurrentItem != null)
+            {
+                path = path + System.IO.Path.DirectorySeparatorChar.ToString() + ((base.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).Mark;
+            }
+            else
+            {
+                path = path + System.IO.Path.DirectorySeparatorChar.ToString() + "SC";
+            }
+            int num = 0;
+            string str2 = num.ToString("D4");
+            string str3 = $"{path}-{str2}.jpg";
+            while (File.Exists(str3))
+            {
+                num++;
+                str2 = num.ToString("D4");
+                str3 = $"{path}-{str2}.jpg";
+            }
+            this.ImportMedia(str3);
+        }
 
 
+
+        private void ImportMedia(string path)
+        {
+            RenderTargetBitmap source = new RenderTargetBitmap(Convert.ToInt32(this.minionPlayer.RenderSize.Width), Convert.ToInt32(this.minionPlayer.RenderSize.Height), 96.0, 96.0, PixelFormats.Pbgra32);
+            source.Render(this.minionPlayer);
             using (FileStream stream = new FileStream(path, FileMode.Create))
             {
-                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-                //encoder.FlipHorizontal = true;
-                //encoder.FlipVertical = false;
-                encoder.QualityLevel = 100;
-                // encoder.Rotation = Rotation.Rotate90;
-                encoder.Frames.Add(BitmapFrame.Create(rtb));
-                encoder.Save(stream);
+                new JpegBitmapEncoder
+                {
+                    QualityLevel = 100,
+                    Frames = { BitmapFrame.Create(source) }
+                }.Save(stream);
             }
         }
+        private bool isNavigationByKey = true;
 
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (this.isNavigationByKey)
+            {
+                TimeSpan ts = new TimeSpan(0, 0, 0, 0, 0);
+                if (e.Key == Key.Q)
+                {
+                    ts = new TimeSpan(0, 0, 0, 0, 0x3e8);
+                    TimeSpan span2 = this.minionPlayer.Position.Add(-ts);
+                    if (span2 >= TimeSpan.MinValue)
+                    {
+                        this.minionPlayer.Position = span2;
+                    }
+                    else
+                    {
+                        this.minionPlayer.Position = new TimeSpan(0L);
+                    }
+                }
+                else if (e.Key == Key.W)
+                {
+                    ts = new TimeSpan(0, 0, 0, 0, 0x3e8);
+                    TimeSpan span4 = this.minionPlayer.Position.Add(ts);
+                    if (span4 < this.minionPlayer.NaturalDuration)
+                    {
+                        this.minionPlayer.Position = span4;
+                    }
+                    else
+                    {
+                        this.minionPlayer.Position = this.minionPlayer.NaturalDuration.TimeSpan;
+                    }
+                }
+                else if (e.Key == Key.A)
+                {
+                    ts = new TimeSpan(0, 0, 0, 0, 50);
+                    TimeSpan span5 = this.minionPlayer.Position.Add(-ts);
+                    if (span5 >= TimeSpan.MinValue)
+                    {
+                        this.minionPlayer.Position = span5;
+                    }
+                    else
+                    {
+                        this.minionPlayer.Position = new TimeSpan(0L);
+                    }
+                }
+                else if (e.Key == Key.S)
+                {
+                    ts = new TimeSpan(0, 0, 0, 0, 50);
+                    TimeSpan span6 = this.minionPlayer.Position.Add(ts);
+                    if (span6 < this.minionPlayer.NaturalDuration)
+                    {
+                        this.minionPlayer.Position = span6;
+                    }
+                    else
+                    {
+                        this.minionPlayer.Position = this.minionPlayer.NaturalDuration.TimeSpan;
+                    }
+                }
+                else if (e.Key == Key.M)
+                {
+                    this.MadeShot();
+                }
+                else
+                {
+                    return;
+                }
+                e.Handled = true;
+                this.ShowPosition();
+            }
+
+        }
     }
 }
