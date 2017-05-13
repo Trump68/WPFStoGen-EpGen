@@ -77,5 +77,13 @@ namespace EPCat
         {
 
         }
+
+        private void Collapse_Click(object sender, RoutedEventArgs e)
+        {
+            if (DetailView.Visibility == Visibility.Collapsed)
+                DetailView.Visibility = Visibility.Visible;
+            else
+                DetailView.Visibility = Visibility.Collapsed;
+        }
     }
 }
