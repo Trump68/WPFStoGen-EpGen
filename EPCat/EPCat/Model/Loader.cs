@@ -254,6 +254,10 @@ namespace EPCat.Model
                 var existingItem = Source.Where(x => x.GID == item.GID).FirstOrDefault();
                 if (existingItem == null)
                 {
+                    if (string.IsNullOrEmpty(item.Name))
+                    {
+                        item.Name = Path.GetFileName(Path.GetDirectoryName(passportPath));
+                    }
                     Source.Add(item);
                     UpdateItem(item);
                 }

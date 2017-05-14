@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EPCat"
-        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:Serialization="clr-namespace:DevExpress.Xpf.LayoutControl.Serialization;assembly=DevExpress.Xpf.LayoutControl.v16.1" x:Class="EPCat.MainWindow"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:Serialization="clr-namespace:DevExpress.Xpf.LayoutControl.Serialization;assembly=DevExpress.Xpf.LayoutControl.v16.1" xmlns:dxca="http://schemas.devexpress.com/winfx/2008/xaml/carousel" x:Class="EPCat.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="426" Width="1019" Closing="Window_Closing" Loaded="Window_Loaded">
 
@@ -32,12 +32,16 @@
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutItem Label="" Margin="20,0,0,0">
-                    <dxe:CheckEdit Name="EditAllowed"  Content ="Edit"/>
+                    <dxe:CheckEdit x:Name="EditAllowed"  Content ="Edit"/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
             <dxg:GridControl x:Name="GV" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" ItemsSource="{Binding FolderListView}" SelectedItem="{Binding CurrentFolder}" SelectionMode="Row">
                 <dxg:GridControl.View>
-                    <dxg:TableView AllowEditing="{Binding ElementName=EditAllowed,Path=IsChecked}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True"/>
+                    <dxg:TableView AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="False">
+                        <dxg:TableView.FormatConditions>
+                            <dxg:ColorScaleFormatCondition Expression="[VideoPresent] = True" FieldName="ItemPath" PredefinedFormatName="YellowGreenColorScale"/>
+                        </dxg:TableView.FormatConditions>
+                    </dxg:TableView>
                 </dxg:GridControl.View>
                 <dxg:GridControl.TotalSummary>
                     <dxg:GridSummaryItem FieldName="Name" SummaryType="Count"/>
@@ -54,8 +58,10 @@
                 <dxg:GridColumn FieldName="Studio" IsSmart="True"/>
                 <dxg:GridColumn FieldName="IMDB" IsSmart="True"/>
                 <dxg:GridColumn FieldName="ItemPath" IsSmart="True"/>
+                <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" Width="20" Header="."/>
             </dxg:GridControl>
         </dxlc:LayoutControl>
-        <ContentPresenter Name ="DetailView" Grid.Row="0" Grid.Column="1" Visibility="Collapsed" Content="{Binding Path=SelectedItem, ElementName=GV}" ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch"/>
+        <ContentPresenter x:Name ="DetailView" Grid.Row="0" Grid.Column="1" Visibility="Collapsed" Content="{Binding SelectedItem, ElementName=GV}" ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch"/>
+        
     </Grid>
 </Window>

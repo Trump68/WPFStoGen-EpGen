@@ -31,7 +31,27 @@ namespace EPCat.Model
                 return new BitmapImage(new Uri(PosterPath, UriKind.Absolute));
             }
         }
-       
+        public string ItemDirectory
+        {
+            get
+            {
+                return Path.GetDirectoryName(ItemPath);
+            }
+        }
+        public List<string> Videos
+        {
+            get
+            {
+                return Directory.GetFiles(ItemDirectory, "*.m4v").ToList();
+            }
+        }
+        public bool VideoPresent
+        {
+            get
+            {
+                return Videos.Any();
+            }
+        }
 
         public string Name { get; set; }
         public string AltTitle { get; set; }
