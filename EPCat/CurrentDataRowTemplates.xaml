@@ -1,0 +1,183 @@
+﻿<ResourceDictionary     
+    x:Class="EPCat.ViewModel.CustomResources"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol">
+    
+    <dx:FormatStringConverter x:Key="FormatStringConverter" FormatString="D" />
+    <dx:ImageDataConverter x:Key="ImageDataConverter" />
+
+    <DataTemplate x:Key="rowDetailTemplate" DataType="">
+
+        <dxlc:LayoutControl ItemSpace="0">
+
+            <dxlc:LayoutGroup View="Group" Header="Props" Orientation="Vertical" IsEnabled="{Binding GroupsEnabled}">
+                
+
+                <dxlc:LayoutGroup View="Group" Header="Content" Orientation="Horizontal" >
+                    <dxlc:LayoutGroup View="Group" Header="Props" Orientation="Vertical">
+
+                    <dxlc:LayoutItem Label="{Binding DicData.Dict_Name[0] }" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[0]}" EditValue="{Binding DicOneVal[0]}" ValueMember="Val" DisplayMember="Description" ShowBorder="False" SelectedIndexChanged="UpdateEpItem">                                      
+                            <dxe:ListBoxEdit.StyleSettings><dxe:RadioListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="{Binding DicData.Dict_Name[1] }" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[1]}" EditValue="{Binding DicOneVal[1]}" ValueMember="Val" DisplayMember="Description" ShowBorder="False" EditValueChanged="UpdateEpItem">                                      
+                            <dxe:ListBoxEdit.StyleSettings><dxe:RadioListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="{Binding DicData.Dict_Name[2] }" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[2]}" EditValue="{Binding DicOneVal[2]}" ValueMember="Val" DisplayMember="Description" ShowBorder="False" EditValueChanged="UpdateEpItem">                                      
+                            <dxe:ListBoxEdit.StyleSettings><dxe:RadioListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="{Binding DicData.Dict_Name[3] }" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[3]}" EditValue="{Binding DicOneVal[3]}" ValueMember="Val" DisplayMember="Description" ShowBorder="False" EditValueChanged="UpdateEpItem">                                      
+                            <dxe:ListBoxEdit.StyleSettings><dxe:RadioListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="{Binding DicData.Dict_Name[4] }" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[4]}" EditValue="{Binding DicOneVal[4]}" ValueMember="Val" DisplayMember="Description" ShowBorder="False" EditValueChanged="UpdateEpItem">                                      
+                            <dxe:ListBoxEdit.StyleSettings><dxe:RadioListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>
+
+                      <dxlc:LayoutItem Label="{Binding DicData.Dict_Name[10] }" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[10]}" EditValue="{Binding DicOneVal[10]}" ValueMember="Val" DisplayMember="Description" ShowBorder="False" EditValueChanged="UpdateEpItem">                                      
+                            <dxe:ListBoxEdit.StyleSettings><dxe:RadioListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>
+                        
+                       <dxlc:LayoutItem Label="{Binding DicData.Dict_Name[11] }" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[11]}" EditValue="{Binding DicOneVal[11]}" ValueMember="Val" DisplayMember="Description" ShowBorder="False" EditValueChanged="UpdateEpItem">                                      
+                            <dxe:ListBoxEdit.StyleSettings><dxe:RadioListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>                       
+                        
+                        <dxlc:LayoutItem Label="{Binding DicData.Dict_Name[12] }" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[12]}" EditValue="{Binding DicOneVal[12]}" ValueMember="Val" DisplayMember="Description" ShowBorder="False" EditValueChanged="UpdateEpItem">                                      
+                            <dxe:ListBoxEdit.StyleSettings><dxe:RadioListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>                         
+                        
+                        <dxlc:LayoutItem Label="{Binding DicData.Dict_Name[13] }" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[13]}" EditValue="{Binding DicOneVal[13]}" ValueMember="Val" DisplayMember="Description" ShowBorder="False" EditValueChanged="UpdateEpItem">                                      
+                            <dxe:ListBoxEdit.StyleSettings><dxe:RadioListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>                               
+  
+                        <dxlc:LayoutItem Label="{Binding DicData.Dict_Name[14] }" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[14]}" EditValue="{Binding DicOneVal[14]}" ValueMember="Val" DisplayMember="Description" ShowBorder="False" EditValueChanged="UpdateEpItem">                                      
+                            <dxe:ListBoxEdit.StyleSettings><dxe:RadioListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>                          
+                        
+
+                        <dxlc:LayoutItem Label="{Binding DicData.Dict_Name[15] }" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[15]}" EditValue="{Binding DicOneVal[15]}" ValueMember="Val" DisplayMember="Description" ShowBorder="False" EditValueChanged="UpdateEpItem">                                      
+                            <dxe:ListBoxEdit.StyleSettings><dxe:RadioListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings>
+                            <dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>                           
+                        
+                        
+                        
+                        
+                </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup View="Group" Header="Props" Orientation="Vertical">
+                    
+
+                    <dxlc:LayoutItem Label="{Binding  DicData.Dict_Name[5]}" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[5]}" EditValue="{Binding DicMulVal[5]}" SelectionMode="Multiple" EditValueChanging ="UpdateEpItem" ValueMember="Val" DisplayMember="Description" ShowBorder="False" ShowCustomItems="False">
+                            <dxe:ListBoxEdit.StyleSettings><dxe:CheckedListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings><dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="{Binding  DicData.Dict_Name[6]}" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[6]}" EditValue="{Binding DicMulVal[6]}" SelectionMode="Multiple" EditValueChanging ="UpdateEpItem" ValueMember="Val" DisplayMember="Description" ShowBorder="False" ShowCustomItems="False">
+                            <dxe:ListBoxEdit.StyleSettings><dxe:CheckedListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings><dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="{Binding  DicData.Dict_Name[7]}" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[7]}" EditValue="{Binding DicMulVal[7]}" SelectionMode="Multiple" EditValueChanging ="UpdateEpItem" ValueMember="Val" DisplayMember="Description" ShowBorder="False" ShowCustomItems="False">
+                            <dxe:ListBoxEdit.StyleSettings><dxe:CheckedListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings><dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="{Binding  DicData.Dict_Name[8]}" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[8]}" EditValue="{Binding DicMulVal[8]}" SelectionMode="Multiple" EditValueChanging ="UpdateEpItem" ValueMember="Val" DisplayMember="Description" ShowBorder="False" ShowCustomItems="False">
+                            <dxe:ListBoxEdit.StyleSettings><dxe:CheckedListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings><dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="{Binding  DicData.Dict_Name[9]}" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[9]}" EditValue="{Binding DicMulVal[9]}" SelectionMode="Multiple" EditValueChanging ="UpdateEpItem" ValueMember="Val" DisplayMember="Description" ShowBorder="False" ShowCustomItems="False">
+                            <dxe:ListBoxEdit.StyleSettings><dxe:CheckedListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings><dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>
+   
+                     <dxlc:LayoutItem Label="{Binding  DicData.Dict_Name[50]}" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[50]}" EditValue="{Binding DicMulVal[50]}" SelectionMode="Multiple" EditValueChanging ="UpdateEpItem" ValueMember="Val" DisplayMember="Description" ShowBorder="False" ShowCustomItems="False">
+                            <dxe:ListBoxEdit.StyleSettings><dxe:CheckedListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings><dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>                       
+                        
+                     <dxlc:LayoutItem Label="{Binding  DicData.Dict_Name[51]}" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[51]}" EditValue="{Binding DicMulVal[51]}" SelectionMode="Multiple" EditValueChanging ="UpdateEpItem" ValueMember="Val" DisplayMember="Description" ShowBorder="False" ShowCustomItems="False">
+                            <dxe:ListBoxEdit.StyleSettings><dxe:CheckedListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings><dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>       
+                        
+                      <dxlc:LayoutItem Label="{Binding  DicData.Dict_Name[52]}" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[52]}" EditValue="{Binding DicMulVal[52]}" SelectionMode="Multiple" EditValueChanging ="UpdateEpItem" ValueMember="Val" DisplayMember="Description" ShowBorder="False" ShowCustomItems="False">
+                            <dxe:ListBoxEdit.StyleSettings><dxe:CheckedListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings><dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>                         
+                        
+                      <dxlc:LayoutItem Label="{Binding  DicData.Dict_Name[53]}" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[53]}" EditValue="{Binding DicMulVal[53]}" SelectionMode="Multiple" EditValueChanging ="UpdateEpItem" ValueMember="Val" DisplayMember="Description" ShowBorder="False" ShowCustomItems="False">
+                            <dxe:ListBoxEdit.StyleSettings><dxe:CheckedListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings><dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>       
+                        
+                      <dxlc:LayoutItem Label="{Binding  DicData.Dict_Name[54]}" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[54]}" EditValue="{Binding DicMulVal[54]}" SelectionMode="Multiple" EditValueChanging ="UpdateEpItem" ValueMember="Val" DisplayMember="Description" ShowBorder="False" ShowCustomItems="False">
+                            <dxe:ListBoxEdit.StyleSettings><dxe:CheckedListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings><dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>     
+ 
+                       <dxlc:LayoutItem Label="{Binding  DicData.Dict_Name[55]}" LabelPosition="Top">
+                        <dxe:ListBoxEdit ItemsSource="{Binding DicData.Dict_Class[55]}" EditValue="{Binding DicMulVal[55]}" SelectionMode="Multiple" EditValueChanging ="UpdateEpItem" ValueMember="Val" DisplayMember="Description" ShowBorder="False" ShowCustomItems="False">
+                            <dxe:ListBoxEdit.StyleSettings><dxe:CheckedListBoxEditStyleSettings /></dxe:ListBoxEdit.StyleSettings><dxe:ListBoxEdit.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Vertical" /></ItemsPanelTemplate></dxe:ListBoxEdit.ItemsPanel>
+                        </dxe:ListBoxEdit>
+                    </dxlc:LayoutItem>                            
+                        
+                        
+                </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </DataTemplate>
+
+
+
+</ResourceDictionary>
