@@ -29,6 +29,7 @@ namespace EPCat
 
        
         internal List<EpItem> _FolderList = new List<EpItem>();
+        internal List<CapsItem> _CapsList = new List<CapsItem>();
 
 
         //bool updateenabled = false;
@@ -52,7 +53,21 @@ namespace EPCat
                 _FolderListView = value;
             }
         }
-        
+
+
+        private ObservableCollection<CapsItem> _CapsListView = new ObservableCollection<CapsItem>();
+        public ObservableCollection<CapsItem> CapsListView
+        {
+            get
+            {
+                return _CapsListView;
+
+            }
+            set
+            {
+                _CapsListView = value;
+            }
+        }
 
         EpItem _CurrentFolder;
         public EpItem CurrentFolder
@@ -67,9 +82,36 @@ namespace EPCat
             }
         }
 
+        CapsItem _CurrentCapsGroup;
+        public CapsItem CurrentCapsGroup
+        {
+            get
+            {
+                return _CurrentCapsGroup;
+            }
+            set
+            {
+                _CurrentCapsGroup = value;
+                RaisePropertyChanged(() => this.CurrentCapsForGroup);
+            }
+        }
 
-        
-       
+
+        public List<CapsItem> CurrentCapsForGroup
+        {
+            get
+            {
+                List<CapsItem> result = null;
+                if (_CurrentCapsGroup != null)
+                {
+                    result = new List<CapsItem>();
+                    result.Add(_CurrentCapsGroup);
+                    result.AddRange(_CurrentCapsGroup.ChildList);
+                }
+                return result;
+            }
+        }
+
         public string PosterPath
         {
             set { }
@@ -83,7 +125,7 @@ namespace EPCat
             get
             {
 
-                if (CapsViewMode == 1) return _CurrentFolder?.Caps.Where(x => x.ParentId == 0).ToList();
+                if (CapsViewMode == 1) return _CurrentFolder?.Caps.Where(x => string.IsNullOrEmpty(x.ParentId)).ToList();
                 return _CurrentFolder?.Caps;
             }
         }
@@ -92,10 +134,12 @@ namespace EPCat
 
         public void ProcessScriptFile()
         {
-            this._FolderList = _Loader.ProcessScriptFile(this._FolderList);
+            this._FolderList = _Loader.ProcessScriptFile(this._FolderList, this._CapsList);
             this.FolderListView = new ObservableCollection<EpItem>(this._FolderList);
+            this.CapsListView = new ObservableCollection<CapsItem>(this._CapsList.Where(x=>string.IsNullOrEmpty(x.ParentId)));
             RaisePropertyChanged(() => this.FolderListView);
-            
+            RaisePropertyChanged(() => this.CapsListView);
+
         }
 
         public void UpdateCurrentItem()

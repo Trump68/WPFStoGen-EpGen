@@ -102,11 +102,23 @@ namespace EPCat.Model
 
             if (Directory.Exists(capspath))
             {
-                string[] files = Directory.GetFiles(capspath, "*.jpg");
+                List<string> files = Directory.GetFiles(capspath, "*.jpg").ToList();
+                files.AddRange(Directory.GetFiles(capspath, "*.png"));
+
+                int pos = 0;
+                List<string> newfiles = new List<string>();
                 foreach (var f in files)
                 {
-                    string fn = Path.GetFileName(f);
-                    CapsItem existItem = itemList.Where(x => x.FileName == fn).FirstOrDefault();
+                    pos++;
+                    string fn = CapsItem.ConvertRenameFilename(f, pos);
+                    newfiles.Add(fn);
+                }
+
+                foreach (var f in newfiles)
+                {
+                    
+                    string fn = Path.GetFileName(f);                
+                    CapsItem existItem = itemList.Where(x => x.Id == fn).FirstOrDefault();
                     if (existItem != null)
                     {
                         existItem.ItemPath = f;
@@ -114,11 +126,7 @@ namespace EPCat.Model
                     }
                     else
                     {
-                        CapsItem newitem = new CapsItem() { ItemPath = f, FileName = fn, Owner = _Caps };
-                        if (_Caps.Any())
-                            newitem.Id = _Caps.Max(x => x.Id) + 1;
-                        else
-                            newitem.Id = 1;
+                        CapsItem newitem = new CapsItem() { ItemPath = f, Id = fn, Owner = _Caps };
                         _Caps.Add(newitem);
                     }
                 }
@@ -129,14 +137,17 @@ namespace EPCat.Model
 
         public void SaveImagePassport()
         {
-            List<string> lines = new List<string>();
-            foreach (var cap in _Caps)
+            if (_Caps != null)
             {
-                string s = CapsItem.SetToPassport(cap);
-                if (!string.IsNullOrEmpty(s)) lines.Add(s);
+                List<string> lines = new List<string>();
+                foreach (var cap in _Caps)
+                {
+                    string s = CapsItem.SetToPassport(cap);
+                    if (!string.IsNullOrEmpty(s)) lines.Add(s);
+                }
+                if (lines.Any())
+                    File.WriteAllLines(Path.Combine(this.ItemDirectory, CurrentPassportImage), lines);
             }
-            if (lines.Any())
-            File.WriteAllLines(Path.Combine(this.ItemDirectory, CurrentPassportImage), lines);
         }
 
         public List<CapsItem> CapsPassportData = new List<CapsItem>();
@@ -149,7 +160,30 @@ namespace EPCat.Model
                 return Videos.Any();
             }
         }
+        //private string _CodesA = null;
+        public string CodesA
+        {
+            get
+            {
+                //if (_CodesA == null)
+                //{
+                    string result = string.Empty;
 
+                    if (this.DicOneVal.ContainsKey(0) && this.DicOneVal[0] > 0)
+                        result = result + "A" + this.DicOneVal[0].ToString();
+                    if (this.DicOneVal.ContainsKey(1) && this.DicOneVal[1] > 0)
+                        result = result + "B" + this.DicOneVal[1].ToString();
+                    if (this.DicOneVal.ContainsKey(2) && this.DicOneVal[2] > 0)
+                        result = result + "C" + this.DicOneVal[2].ToString();
+                    if (this.DicOneVal.ContainsKey(3) && this.DicOneVal[3] > 0)
+                        result = result + "D" + this.DicOneVal[3].ToString();
+                    if (this.DicOneVal.ContainsKey(4) && this.DicOneVal[4] > 0)
+                        result = result + "E" + this.DicOneVal[4].ToString();
+                    //_CodesA = result;
+                //}
+                return result;
+            }
+        }
         public string Name { get; set; }
         public string AltTitle { get; set; }
         public string Country { get; set; }
@@ -564,7 +598,7 @@ namespace EPCat.Model
         [XmlIgnore]
         public DictionaryData DicData { get { return CapsItem.DictionaryData; } }
 
-        public static string p_FN = "FN=";
+        //public static string p_FN = "FN=";
         public static string p_Parent = "Parent=";
         public static string p_Id = "Id=";
         
@@ -575,17 +609,26 @@ namespace EPCat.Model
         public static string p_DV = "DV_";
 
         public string ItemPath { set; get; }
-        public int Id { set; get; }
-        public bool GroupsEnabled { get { return this.ParentId == 0; } }
-        public string FileName { set; get; }
+        public string GroupName { set; get; }
+        public string Id { set; get; }
 
-        private int _ParentId;
+        public string ShortId
+        {
+            get
+            {
+                return Id.Substring(0, 4);
+            }
+        }
+        public bool GroupsEnabled { get { return string.IsNullOrEmpty(this.ParentId); } }
+       // public string FileName { set; get; }
+
+        private string _ParentId;
         internal List<CapsItem> Owner;
-        public int ParentId
+        public string ParentId
         {
             set
             {
-                if (value == 0)
+                if (string.IsNullOrEmpty(value))
                 {
                     Parent = null;
                 }
@@ -704,6 +747,10 @@ namespace EPCat.Model
         }
 
         CapsItem _Parent;
+
+        [XmlIgnore]
+        public List<CapsItem> ChildList { set; get; } = new List<CapsItem>();
+
         public CapsItem Parent
         {
             set { _Parent = value; }
@@ -714,15 +761,15 @@ namespace EPCat.Model
         {
             if (!item.IsNotEmpty()) return null;
             List<string> result = new List<string>();
-            result.Add(p_Id + item.Id.ToString());
-            result.Add(p_FN + item.FileName.ToString());
-            if (item.ParentId>0) result.Add(p_Parent + item.ParentId.ToString());
+            result.Add(p_Id + item.Id);
+            
+            if (!string.IsNullOrEmpty(item.ParentId)) result.Add(p_Parent + item.ParentId);
 
             if (!string.IsNullOrEmpty(item._Name)) result.Add(p_Name + item._Name);
             if (!string.IsNullOrEmpty(item._Description)) result.Add(p_Descr + item._Description);
             if (!string.IsNullOrEmpty(item._Star)) result.Add(p_Star + item._Star);
 
-            if (item.ParentId == 0)
+            if (string.IsNullOrEmpty(item.ParentId))
             {
                 foreach (var it in item.DicOneVal)
                 {
@@ -745,7 +792,7 @@ namespace EPCat.Model
         private bool IsNotEmpty()
         {
             return (
-                this.ParentId!=0 
+                (!string.IsNullOrEmpty(this.ParentId)) 
                 || !string.IsNullOrEmpty(this.Description)
                 || !string.IsNullOrEmpty(this.Name)
                 || !string.IsNullOrEmpty(this.Star)
@@ -763,40 +810,36 @@ namespace EPCat.Model
                 string mark = terms[0] + "=";
                 if (mark == p_Id)
                 {
-                    result.Id = Convert.ToInt32(terms[1]);
-                }
-                else if (mark == p_FN)
-                {
-                    result.FileName = terms[1];
+                    result.Id = terms[1];
                 }
                 else if (mark == p_Parent)
                 {
-                    result.ParentId = Convert.ToInt32(terms[1]);
+                    result.ParentId = terms[1];
                 }
                 else if (mark == p_Name)
                 {
-                    if (result.ParentId == 0)
+                    if (string.IsNullOrEmpty(result.ParentId))
                     {
                         result.Name = terms[1];
                     }
                 }
                 else if (mark == p_Descr)
                 {
-                    if (result.ParentId == 0)
+                    if (string.IsNullOrEmpty(result.ParentId))
                     {
                         result.Description = terms[1];
                     }
                 }
                 else if (mark == p_Star)
                 {
-                    if (result.ParentId == 0)
+                    if (string.IsNullOrEmpty(result.ParentId))
                     {
                         result.Star = terms[1];
                     }
                 }
                 else if (terms[0].StartsWith(p_DV))
                 {
-                    if (result.ParentId == 0)
+                    if (string.IsNullOrEmpty(result.ParentId))
                     {
                         var s = mark.Replace(p_DV, string.Empty).Replace("=", string.Empty);
                         int si = Convert.ToInt32(s);
@@ -828,6 +871,20 @@ namespace EPCat.Model
                 if (item != null) result.Add(item);
             }
             return result;
+        }
+
+        internal static string ConvertRenameFilename(string f, int pos)
+        {
+            //"0001.AD33A40B681D4A70846CE20EC7F16EEE"
+            string fn = Path.GetFileNameWithoutExtension(f);
+            if (fn.Length != 37 || fn.Substring(4,1) != ".")
+            {
+                string path = Path.GetDirectoryName(f);
+                string newf = Path.Combine(path, $"{pos.ToString("D4")}.{Guid.NewGuid().ToString("N")}{Path.GetExtension(f)}");
+                File.Move(f, newf);
+                f = newf;
+            }
+            return f;
         }
     }
 
