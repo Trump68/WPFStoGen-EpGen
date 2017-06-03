@@ -1,7 +1,10 @@
-﻿using System;
+﻿using DevExpress.Mvvm;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
@@ -47,6 +50,16 @@ namespace EPCat.Model
             {
                 Uri path = new Uri(PosterPath, UriKind.Absolute);
                 if (File.Exists(path.LocalPath)) return new BitmapImage(path);
+                List<string> files = Directory.GetFiles(Path.GetDirectoryName(ItemPath), "*.jpg").ToList();
+                if (files.Any())
+                {
+                    string fn = files.Where(x => !x.ToUpper().StartsWith("CAP") && !x.ToUpper().StartsWith("SCREEN")).FirstOrDefault();
+                    if (!string.IsNullOrEmpty(fn))
+                    {
+                        File.Move(fn, Path.Combine(Path.GetDirectoryName(ItemPath), "POSTER.JPG"));
+                        if (File.Exists(path.LocalPath)) return new BitmapImage(path);
+                    }
+                }
                 return null;
             }
         }
@@ -588,8 +601,15 @@ namespace EPCat.Model
 
     
 
-    public class CapsItem
+    public class CapsItem: INotifyPropertyChanged
     {
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
 
         [XmlIgnore]
         public static DictionaryData DictionaryData = new DictionaryData();
@@ -627,19 +647,9 @@ namespace EPCat.Model
         public string ParentId
         {
             set
-            {
-                if (string.IsNullOrEmpty(value))
-                {
-                    Parent = null;
-                }
-                else
-                {
-                    if (this.Owner != null)
-                    {
-                        Parent = this.Owner.Where(x => x.Id == value).FirstOrDefault();
-                    }
-                }                  
+            {                
                 _ParentId = value;
+                OnPropertyChanged("ParentId");
             }
             get { return _ParentId; }
         }
@@ -648,14 +658,16 @@ namespace EPCat.Model
             set { }
             get
             {
+                if (string.IsNullOrEmpty(ItemPath)) return null;
                 Uri path = new Uri(ItemPath, UriKind.Absolute);
                 if (File.Exists(path.LocalPath))
                 {
 
                     BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
+                    bitmap.BeginInit();                    
                     bitmap.UriSource = path;
-                    bitmap.DecodePixelHeight = 150;
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.DecodePixelHeight = 150;                    
                     bitmap.EndInit();                  
                     return bitmap;
 
@@ -669,7 +681,17 @@ namespace EPCat.Model
             get
             {
                 Uri path = new Uri(ItemPath, UriKind.Absolute);
-                if (File.Exists(path.LocalPath)) return new BitmapImage(path);
+                if (File.Exists(path.LocalPath))
+                {
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = path;
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.EndInit();
+                    return bitmap;
+                }
+                    
                 return null;
             }
         }
@@ -682,6 +704,7 @@ namespace EPCat.Model
                 {
                     _Description = value;
                 }
+                OnPropertyChanged("Description");
             }
             get
             {                
@@ -698,6 +721,7 @@ namespace EPCat.Model
                 {
                     _Name = value;
                 }
+                OnPropertyChanged("Name");
             }
             get
             {
@@ -714,6 +738,7 @@ namespace EPCat.Model
                 {
                     _Star = value;
                 }
+                OnPropertyChanged("Star");
             }
             get
             {
@@ -751,11 +776,36 @@ namespace EPCat.Model
         [XmlIgnore]
         public List<CapsItem> ChildList { set; get; } = new List<CapsItem>();
 
+
+        public int ChildCount { set; get; } = 0;
+        public string ShortIdChildCount
+        {
+            get { return $"{ShortId} / {ChildCount}"; }
+        }
         public CapsItem Parent
         {
-            set { _Parent = value; }
+            set
+            {                
+                _Parent = value;
+                /*
+                if (_Parent == null)
+                {
+                    if (!string.IsNullOrEmpty(this._ParentId))
+                    {
+                        this._ParentId = null;
+                    }
+                }                    
+                else if (this._ParentId != value.ParentId)
+                {
+                    this._ParentId = value.ParentId;
+                    if (!value.ChildList.Contains(this)) value.ChildList.Add(this);
+                }
+                */
+            }
             get { return _Parent; }
         }
+
+        public string PassportPath { get; set; }
 
         internal static string SetToPassport(CapsItem item)
         {

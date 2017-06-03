@@ -95,8 +95,6 @@ namespace EPCat
                 RaisePropertyChanged(() => this.CurrentCapsForGroup);
             }
         }
-
-
         public List<CapsItem> CurrentCapsForGroup
         {
             get
@@ -111,25 +109,27 @@ namespace EPCat
                 return result;
             }
         }
-
         public string PosterPath
         {
             set { }
             get { return CurrentFolder?.PosterPath; }
         }
-
-
-
-        public List<CapsItem> CurrentCaps
+        public ObservableCollection<CapsItem> CurrentCaps
         {
             get
             {
-
-                if (CapsViewMode == 1) return _CurrentFolder?.Caps.Where(x => string.IsNullOrEmpty(x.ParentId)).ToList();
-                return _CurrentFolder?.Caps;
+                if (_CurrentFolder != null)
+                {
+                    //if (CapsViewMode == 1) return _CurrentFolder?.Caps.Where(x => string.IsNullOrEmpty(x.ParentId)).ToList();
+                    return new ObservableCollection<CapsItem>(_CurrentFolder?.Caps);
+                }
+                return null;
             }
         }
-        private int CapsViewMode = 0;
+
+        public bool IsDeletingAllowed { get; set; } = false;
+
+        public int CapsViewMode = 0;
 
 
         public void ProcessScriptFile()
@@ -161,17 +161,52 @@ namespace EPCat
         public void UpdateCapsFile()
         {
             _CurrentFolder?.SaveImagePassport();
-        }
 
+            if (this.CurrentCapsGroup != null)
+            {
+                string pass = this.CurrentCapsGroup.PassportPath;
+
+                List<string> lines = new List<string>();
+                foreach (var cap in this._CapsList.Where(x => x.PassportPath == pass))
+                {
+                    string s = CapsItem.SetToPassport(cap);
+                    if (!string.IsNullOrEmpty(s)) lines.Add(s);
+                }
+                if (lines.Any())
+                {
+                    File.WriteAllLines(pass, lines);
+                }
+            }
+        }
+        public void UpdateGroup()
+        {
+            if (this.CurrentCapsGroup != null)
+            {
+                string pass = this.CurrentCapsGroup.PassportPath;
+
+                List<string> lines = new List<string>();
+                foreach (var cap in this._CapsList.Where(x => x.PassportPath == pass))
+                {
+                    string s = CapsItem.SetToPassport(cap);
+                    if (!string.IsNullOrEmpty(s)) lines.Add(s);
+                }
+                if (lines.Any())
+                {
+                    File.WriteAllLines(pass, lines);
+                }
+            }
+        }
         internal void SetCapsViewMode(int newValue)
         {
             CapsViewMode = newValue;
+            RefreshCaps();
         }
 
         internal void SetCurrentImagePassort(int selectedIndex)
         {
             EpItem.SetCurrentImagePassort(selectedIndex);
         }
+       
     }
 
 }

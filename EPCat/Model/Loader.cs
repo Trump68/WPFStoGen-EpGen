@@ -11,6 +11,8 @@ namespace EPCat.Model
 {
     public class Loader
     {
+        static string c_PrepareFolder = "PREPARE FOLDER ";
+
         static string c_UpdateFolder = "UPDATE FOLDER ";
         static string c_UpdateCapsFolder = "UPDATE CAPS FOLDER ";
 
@@ -32,8 +34,14 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
+            //DoTempWork1();
+            EpItem.DictionaryData.Dict_Class.Clear();
+            EpItem.DictionaryData.Dict_Name.Clear();
+            CapsItem.DictionaryData.Dict_Class.Clear();
+            CapsItem.DictionaryData.Dict_Name.Clear();
             Source = sourceList;
             CaspSource = capsList;
+            CaspSource.Clear();
             string commandf = "commandscript.txt";
             string[] cla = Environment.GetCommandLineArgs();
             if (cla.Length > 1)                commandf = cla[1];
@@ -77,26 +85,80 @@ namespace EPCat.Model
                 if (files.Any()) Directory.Delete(item);
             }
         }
+
         private void DoTempWork1()
+        {
+            DoTempWork1_OneCountry("JAP");
+            DoTempWork1_OneCountry("FRA");
+            DoTempWork1_OneCountry("GBR");
+            DoTempWork1_OneCountry("TWN");
+            DoTempWork1_OneCountry("KOR");
+            DoTempWork1_OneCountry("ITA");
+            DoTempWork1_OneCountry("USA");
+            DoTempWork1_OneCountry("HKG");
+            DoTempWork1_OneCountry("SWZ");
+        }
+        private void DoTempWork1_OneCountry(string Country)
         {
             string fromPath = @"d:\Process2\!!Data\EroFilms\converted\";
             string toPath = @"d:\Process2\!!Data\EroFilms\";
             var files = Directory.GetFiles(fromPath, "*.m4v", SearchOption.TopDirectoryOnly).ToList();
             foreach (var fn in files)
             {
-                string Country = "JAP";
                 string fnwe = Path.GetFileName(fn);
                 if (fnwe.ToUpper().StartsWith($"{Country} "))
                 {
                     string nfm = fnwe.Remove(0, 4);
+                    nfm = nfm.Replace(".m4v", string.Empty);
+
+                    nfm = nfm.Trim();
+                    while (Char.IsDigit(nfm.Last()))
+                    {
+                        nfm = nfm.Remove(nfm.Length - 1);
+                    }
+                    if (nfm.Last() == '-') nfm = nfm.Remove(nfm.Length - 1);
+                    nfm = nfm.Trim();
+
                     string yearstr = nfm.Substring(0, 4);
                     int Year;
+                    bool ok = false;
                     if (int.TryParse(yearstr, out Year))
                     {
-                        if (Year < 1950 || Year > 2017) continue;
-                        nfm = nfm.Remove(0, 4);
-                        nfm = nfm.Replace(".m4v", string.Empty);
+                        if (Year > 1949 && Year < 2018)
+                        {
+                            nfm = nfm.Remove(0, 4);
+                            ok = true;
+                        }
+                    }
+
+                    if (!ok)
+                    {
+                        yearstr = nfm.Substring(nfm.Length - 4, 4);
+                        if (int.TryParse(yearstr, out Year))
+                        {
+                            if (Year > 1949 && Year < 2018)
+                            {
+                                nfm = nfm.Replace(yearstr, string.Empty);
+                                ok = true;
+                            }
+                        }
+                    }
+
+                    if (ok)
+                    {
                         string Name = nfm.Trim();
+
+                        if (Name.Contains("-"))
+                        {
+                            while (Char.IsDigit(Name.Last()))
+                            {
+                                Name = Name.Remove(Name.Length - 1);
+                            }
+                            if (Name.Last() == '-') Name = Name.Remove(Name.Length - 1);
+                            Name = Name.Trim();
+                        }
+
+
 
                         string newPath = Path.Combine(@"d:\Process2\!!Data\EroFilms\", Year.ToString());
                         if (Directory.Exists(newPath))
@@ -133,7 +195,11 @@ namespace EPCat.Model
         internal void ParseLine(string line)
         {
             line = line.Trim();
-            if (line.StartsWith(c_UpdateFolder))
+            if (line.StartsWith(c_PrepareFolder))
+            {
+                PrepareFolder(line.Replace(c_PrepareFolder, string.Empty),0,2);
+            }
+            else if (line.StartsWith(c_UpdateFolder))
             {
                 UpdateFolder(line.Replace(c_UpdateFolder, string.Empty));
             }
@@ -176,6 +242,29 @@ namespace EPCat.Model
             else if (line.StartsWith(c_NameCapsDict))
             {
                 NameCapsDict(line.Replace(c_NameCapsDict, string.Empty));
+            }
+        }
+        private void PrepareFolder(string parameters,int CurrentLevel, int ProcessLevel)
+        {
+            string itemPath = parameters.ToLower();
+            if (CurrentLevel == ProcessLevel)
+            {
+                List<string> files = Directory.GetFiles(itemPath, EpItem.p_PassportName, SearchOption.TopDirectoryOnly).ToList();
+                if (files.Any()) return;
+                //List<string> lines = EpItem.SetToPassport(item);
+                List<string> lines = new List<string>();
+                File.WriteAllLines(Path.Combine(itemPath, EpItem.p_PassportName), lines);
+                if (!Directory.Exists(Path.Combine(itemPath, "EVENTS")))
+                {
+                    Directory.CreateDirectory(Path.Combine(itemPath, "EVENTS"));
+                }
+
+                return;
+            }
+            List<string> dirList = Directory.GetDirectories(itemPath).ToList();
+            foreach (var dir in dirList)
+            {
+                PrepareFolder(dir, (CurrentLevel+1), ProcessLevel);
             }
         }
 
@@ -447,6 +536,7 @@ namespace EPCat.Model
                     {
                         string foldername = Path.GetFileNameWithoutExtension(passportPath).Split('_')[1];
                         item.GroupName = foldername;
+                        item.PassportPath = passportPath;
                         item.ItemPath = Path.Combine(Path.GetDirectoryName(passportPath), foldername, item.Id);
                         result.Add(item);
                     }
@@ -454,7 +544,10 @@ namespace EPCat.Model
                 result.ForEach(x => 
                   {
                     x.Parent = result.Where(p => p.Id == x.ParentId).FirstOrDefault();
-                      if (x.Parent != null) x.Parent.ChildList.Add(x);
+                      if (x.Parent != null)
+                      {
+                          x.Parent.ChildList.Add(x);
+                      }
                   }  
                 );
                 CaspSource.AddRange(result);
