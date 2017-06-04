@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -173,7 +174,7 @@ namespace EPCat.Model
                 return Videos.Any();
             }
         }
-        //private string _CodesA = null;
+        [XmlIgnore]
         public string CodesA
         {
             get
@@ -195,6 +196,21 @@ namespace EPCat.Model
                     //_CodesA = result;
                 //}
                 return result;
+            }
+            set
+            {
+                string val = value;
+                var array = Regex.Matches(val, @"\D+|\d+")
+                 .Cast<Match>()
+                 .Select(m => m.Value)
+                 .ToArray();                
+                for (int i = 0; i < (array.Length/2); i++)
+                {
+                    if (!this.DicOneVal.ContainsKey(i))
+                        this.DicOneVal.Add(i, Convert.ToInt32(array[i*2 + 1]));
+                    else
+                        this.DicOneVal[i] = Convert.ToInt32(array[i*2 + 1]);
+                }
             }
         }
         public string Name { get; set; }

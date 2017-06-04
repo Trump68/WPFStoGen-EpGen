@@ -162,7 +162,7 @@
                             <dxg:GridColumn FieldName="Studio" IsSmart="True"/>
                             <dxg:GridColumn FieldName="IMDB" IsSmart="True"/>
                             <dxg:GridColumn FieldName="ItemPath" IsSmart="True"/>
-                            <dxg:GridColumn FieldName="CodesA"  ReadOnly="True"/>
+                            <dxg:GridColumn FieldName="CodesA"  IsSmart="True"/>
                             <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" Width="20" Header="."/>
                         </dxg:GridControl>
                         <dxlc:LayoutGroup  Name ="MainDetail" View="Group"  Orientation="Horizontal">

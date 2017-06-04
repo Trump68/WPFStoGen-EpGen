@@ -63,18 +63,23 @@ namespace EPCat.Model
             rootdir.AddRange(Directory.GetDirectories(fromPath, "ITA *", SearchOption.TopDirectoryOnly).ToList());
             rootdir.AddRange(Directory.GetDirectories(fromPath, "FRA *", SearchOption.TopDirectoryOnly).ToList());
             rootdir.AddRange(Directory.GetDirectories(fromPath, "USA *", SearchOption.TopDirectoryOnly).ToList());
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "UK *", SearchOption.TopDirectoryOnly).ToList());
+            rootdir.AddRange(Directory.GetDirectories(fromPath, "GBR *", SearchOption.TopDirectoryOnly).ToList());
             rootdir.AddRange(Directory.GetDirectories(fromPath, "TWN *", SearchOption.TopDirectoryOnly).ToList());
             rootdir.AddRange(Directory.GetDirectories(fromPath, "SWZ *", SearchOption.TopDirectoryOnly).ToList());
             rootdir.AddRange(Directory.GetDirectories(fromPath, "KOR *", SearchOption.TopDirectoryOnly).ToList());
             rootdir.AddRange(Directory.GetDirectories(fromPath, "DEN *", SearchOption.TopDirectoryOnly).ToList());
             rootdir.AddRange(Directory.GetDirectories(fromPath, "HKG *", SearchOption.TopDirectoryOnly).ToList());
+            rootdir.AddRange(Directory.GetDirectories(fromPath, "NLD *", SearchOption.TopDirectoryOnly).ToList());
+            rootdir.AddRange(Directory.GetDirectories(fromPath, "CAN *", SearchOption.TopDirectoryOnly).ToList());
             //var rootdir = Directory.GetDirectories(fromPath, "JAP *|BRA *|ITA *|FRA *|USA *|UK *|TWN *|SWZ *|KOR *", SearchOption.TopDirectoryOnly).ToList();
             foreach (var item in rootdir)
             {
                 var files = Directory.GetFiles(item, "*.mkv", SearchOption.TopDirectoryOnly).ToList();
                 files.AddRange(Directory.GetFiles(item, "*.avi", SearchOption.TopDirectoryOnly).ToList());
                 files.AddRange(Directory.GetFiles(item, "*.mp4", SearchOption.TopDirectoryOnly).ToList());
+                files.AddRange(Directory.GetFiles(item, "*.wmv", SearchOption.TopDirectoryOnly).ToList());
+
+                
                 foreach (var fn in files)
                 {
                     string newname = Path.GetFileName(item);
@@ -97,6 +102,8 @@ namespace EPCat.Model
             DoTempWork1_OneCountry("USA");
             DoTempWork1_OneCountry("HKG");
             DoTempWork1_OneCountry("SWZ");
+            DoTempWork1_OneCountry("CAN");
+            DoTempWork1_OneCountry("NLD");
         }
         private void DoTempWork1_OneCountry(string Country)
         {
