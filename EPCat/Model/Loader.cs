@@ -359,7 +359,20 @@ namespace EPCat.Model
                 SychFileFromTo(mask, pathFrom, pathTo, false, true);
             }
         }
-        
+        private void MoveFiles(string parameters)
+        {
+            string str = parameters.ToLower();
+            string[] pars = str.Split(';');
+            if (pars.Length == 3)
+            {
+                string mask = pars[0];
+                string pathFrom = pars[1];
+                string pathTo = pars[2];
+                if (!Directory.Exists(Path.GetPathRoot(pathTo))) return;
+                if (!Directory.Exists(pathFrom)) return;
+                SychFileFromTo(mask, pathFrom, pathTo, true, false);
+            }
+        }
 
 
         private void SychFileFromTo(string mask, string fromPath, string ToPath, bool isMove, bool isSynch)
@@ -376,7 +389,8 @@ namespace EPCat.Model
                 }
                 foreach (var item in files)
                 {
-                    string newFilePath = Path.Combine(ToPath, Path.GetFileName(item));
+                    string fn = Path.GetFileName(item);
+                    string newFilePath = Path.Combine(ToPath, fn);
                     bool fileExists = false;
                     if (existingCheck)
                     {
@@ -389,7 +403,7 @@ namespace EPCat.Model
                         }
                     }
                     File.Copy(item, newFilePath, true);
-                    if (isMove)
+                    if (isMove && fn != EpItem.p_PassportName)
                     {
                         File.Delete(item);
                     }
@@ -427,20 +441,7 @@ namespace EPCat.Model
             }
         }
 
-        private void MoveFiles(string parameters)
-        {
-            string str = parameters.ToLower();
-            string[] pars = str.Split(';');
-            if (pars.Length == 3)
-            {
-                string mask = pars[0];
-                string pathFrom = pars[1];
-                string pathTo = pars[2];
-                if (!Directory.Exists(Path.GetPathRoot(pathTo))) return;
-                if (!Directory.Exists(pathFrom)) return;
-                SychFileFromTo(mask, pathFrom, pathTo, true, false);
-            }
-        }
+       
 
 
         private void LoadCatalog(string parameters)
