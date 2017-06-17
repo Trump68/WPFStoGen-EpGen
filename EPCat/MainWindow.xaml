@@ -23,13 +23,11 @@
     </Window.DataContext>
     <!--<local:MaximizedElementConverter x:Key="con"/>-->
 
-
     <Window.Resources>
         <local:QuickIconSetFormatExExtension x:Key="{local:FormatThemeKeyEx ResourceKey=Arrows3ColoredIconSet2}" 
                                          Path="pack://application:,,,/Images/" 
-                                             NameEx="Arrows3_" ElementCount="5" XlIconSetType="Arrows3" />
+                                             NameEx="Arrows3_" ElementCount="3" XlIconSetType="Arrows3" />
     </Window.Resources>
-
     <Grid>
 
 
@@ -107,7 +105,7 @@
                             <dxg:GridControl.View>
 
 
-                                <dxg:TableView AllowConditionalFormattingMenu="True" AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="False">
+                                <dxg:TableView AllowConditionalFormattingMenu="True" AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow">
 
 
                                     <dxg:TableView.PredefinedIconSetFormats>
@@ -149,15 +147,11 @@
                                     </dxg:TableView.FormatConditions>
                                 </dxg:TableView>
                             </dxg:GridControl.View>
-                            <dxg:GridControl.TotalSummary>
+                            <!--<dxg:GridControl.TotalSummary>
                                 <dxg:GridSummaryItem FieldName="Name" SummaryType="Count"/>
                                 <dxg:GridSummaryItem SummaryType="Count" Alignment="Right"/>
-                            </dxg:GridControl.TotalSummary>
+                            </dxg:GridControl.TotalSummary>-->
                             <dxg:GridColumn FieldName="Name" IsSmart="True"/>
-                            <dxg:GridColumn FieldName="Icon1" Width="24" FixedWidth="True"/>
-                            <dxg:GridColumn FieldName="Icon2" Width="24" FixedWidth="True"/>
-                            <dxg:GridColumn FieldName="Icon3" Width="24" FixedWidth="True"/>
-                            <dxg:GridColumn FieldName="Icon4" Width="24" FixedWidth="True"/>
                             <dxg:GridColumn FieldName="AltTitle" IsSmart="True"/>
                             <dxg:GridColumn FieldName="Country" IsSmart="True"/>
                             <dxg:GridColumn FieldName="Year" IsSmart="True"/>

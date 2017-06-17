@@ -244,6 +244,17 @@ namespace EPCat.Model
         public string Studio { get; set; }
         public string IMDB { get; set; }
         public List<string> Comments { get; set; } = new List<string>();
+        public string CommentsAsString
+        {
+            get
+            {
+                return string.Join(Environment.NewLine, this.Comments.ToArray());
+            }
+            set
+            {
+                this.Comments = value.Split(new string[] { Environment.NewLine },StringSplitOptions.None).ToList();
+            }
+        }
 
         public List<string> Undefined { get; set; } = new List<string>();
         [XmlIgnore]
