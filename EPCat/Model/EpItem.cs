@@ -629,13 +629,19 @@ namespace EPCat.Model
             if (item.DicMulVal.ContainsKey(8) && item.DicMulVal[8].Any()) result.Add(p_Type08 + string.Join(";", item.DicMulVal[8].Select(x => x.ToString()).ToArray()));
             if (item.DicMulVal.ContainsKey(9) && item.DicMulVal[9].Any()) result.Add(p_Type09 + string.Join(";", item.DicMulVal[9].Select(x => x.ToString()).ToArray()));
 
-            for (int i = 0; i < item.Comments.Count; i++)
+            if (item.Comments.Count == 1)
             {
-                if (item.Comments.Count == 1) result.Add(p_COMMENTS_BEGIN + item.Comments[i] + p_COMMENTS_END);
-                else if (i == 0) result.Add(p_COMMENTS_BEGIN + item.Comments[i]);
-                else if (i == (item.Comments.Count - 1)) result.Add(item.Comments[i] + p_COMMENTS_END);
-                else result.Add(item.Comments[i]);
+                result.Add(p_COMMENTS_BEGIN + item.Comments.First() + p_COMMENTS_END);
             }
+            else if (item.Comments.Count > 0)
+            {
+                List<string> ttt = new List<string>();
+                ttt.AddRange(item.Comments);
+                ttt[0] = p_COMMENTS_BEGIN + item.Comments.First();
+                ttt[ttt.Count-1] = item.Comments.Last() + p_COMMENTS_END;
+                result.AddRange(ttt);               
+            }
+
 
             foreach (var s in item.Undefined)
             {

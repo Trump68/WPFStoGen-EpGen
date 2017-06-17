@@ -165,6 +165,7 @@
                             <dxg:GridColumn FieldName="CodesA"  IsSmart="True"/>
                             <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" Width="20" Header="."/>
                         </dxg:GridControl>
+                        <dxlc:LayoutGroup  View="Group"  Orientation="Vertical">
                         <dxlc:LayoutGroup  Name ="MainDetail" View="Group"  Orientation="Horizontal">
                             <dxlc:LayoutItem Margin="0" Padding="0" ElementSpace="0" MinHeight="100" MaxHeight="900" MaxWidth="200">
                                 <Image Source="{Binding SelectedItem.Poster, ElementName=GV  }" Stretch="Uniform" />
@@ -172,6 +173,15 @@
                             <dxlc:LayoutItem  Margin="0" Padding="0" ElementSpace="0">
                                 <ContentPresenter x:Name ="DetailView" Grid.Row="0" Grid.Column="1" Content="{Binding SelectedItem, ElementName=GV}" ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch"/>
                             </dxlc:LayoutItem>
+                            
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="Comments" LabelPosition="Top">
+                                <dxe:TextEdit Text="{Binding SelectedItem.CommentsAsString, ElementName=GV }" 
+                                            TextWrapping="WrapWithOverflow"
+                                            AcceptsReturn="True"
+                                            VerticalContentAlignment="Top" 
+                                            MaxHeight="300"/>
+                        </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutControl>

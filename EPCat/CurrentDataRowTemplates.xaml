@@ -330,16 +330,12 @@
                                 </dxe:ListBoxEdit.ItemsPanel>
                             </dxe:ListBoxEdit>
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="Comments" LabelPosition="Left">
-                            <dxe:TextEdit Text="{Binding CommentsAsString}" TextWrapping="Wrap"
-                                            AcceptsReturn="True"
-                                            VerticalContentAlignment="Top" 
-                                            MaxHeight="300"/>
-                        </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
+
             </dxlc:LayoutGroup>
+            
         </dxlc:LayoutControl>
     </DataTemplate>
 
