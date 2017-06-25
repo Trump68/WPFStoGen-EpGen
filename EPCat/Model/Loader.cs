@@ -34,7 +34,8 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            //DoTempWork1();
+            //DoTempWork();
+            //return null;
             EpItem.DictionaryData.Dict_Class.Clear();
             EpItem.DictionaryData.Dict_Name.Clear();
             CapsItem.DictionaryData.Dict_Class.Clear();
@@ -71,6 +72,7 @@ namespace EPCat.Model
             rootdir.AddRange(Directory.GetDirectories(fromPath, "HKG *", SearchOption.TopDirectoryOnly).ToList());
             rootdir.AddRange(Directory.GetDirectories(fromPath, "NLD *", SearchOption.TopDirectoryOnly).ToList());
             rootdir.AddRange(Directory.GetDirectories(fromPath, "CAN *", SearchOption.TopDirectoryOnly).ToList());
+            rootdir.AddRange(Directory.GetDirectories(fromPath, "HSP *", SearchOption.TopDirectoryOnly).ToList());
             //var rootdir = Directory.GetDirectories(fromPath, "JAP *|BRA *|ITA *|FRA *|USA *|UK *|TWN *|SWZ *|KOR *", SearchOption.TopDirectoryOnly).ToList();
             foreach (var item in rootdir)
             {
@@ -485,6 +487,7 @@ namespace EPCat.Model
             passportList.AddRange(Directory.GetFiles(itemPath, EpItem.p_PassportFiguresName));
             passportList.AddRange(Directory.GetFiles(itemPath, EpItem.p_PassportBackgroundName));
             passportList.AddRange(Directory.GetFiles(itemPath, EpItem.p_PassportCompositionName));
+            passportList.AddRange(Directory.GetFiles(itemPath, EpItem.p_PassportPartsName));
             foreach (var passport in passportList)
             {
                 CreateUpdateCapsFromPassort(passport);

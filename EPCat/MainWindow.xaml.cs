@@ -253,7 +253,15 @@ namespace EPCat
             {
                 if (gb.DataContext != null)
                 {
-                    gb.TitleBackground = new SolidColorBrush(Colors.White);
+                    if (string.IsNullOrEmpty(item.Name))                    
+                    {
+                        gb.TitleBackground = new SolidColorBrush(Colors.White);
+                    }
+                    else
+                    {
+                        gb.TitleBackground = new SolidColorBrush(Colors.OrangeRed);
+                    }
+                    
                     if (isHidingAvalible) gb.Visibility = Visibility.Visible;
                 }
             }

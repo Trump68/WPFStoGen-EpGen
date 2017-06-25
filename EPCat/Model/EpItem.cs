@@ -51,18 +51,39 @@ namespace EPCat.Model
             {
                 Uri path = new Uri(PosterPath, UriKind.Absolute);
                 if (File.Exists(path.LocalPath)) return new BitmapImage(path);
-                List<string> files = Directory.GetFiles(Path.GetDirectoryName(ItemPath), "*.jpg").ToList();
-                if (files.Any())
-                {
-                    string fn = files.Where(x => !x.ToUpper().StartsWith("CAP") && !x.ToUpper().StartsWith("SCREEN")).FirstOrDefault();
-                    if (!string.IsNullOrEmpty(fn))
-                    {
-                        File.Move(fn, Path.Combine(Path.GetDirectoryName(ItemPath), "POSTER.JPG"));
-                        if (File.Exists(path.LocalPath)) return new BitmapImage(path);
-                    }
-                }
+                GetLeastNumImage(Path.GetDirectoryName(ItemPath), PosterPath);
+                if (File.Exists(path.LocalPath)) return new BitmapImage(path);
+                GetLeastNumImage(Path.GetDirectoryName(ItemPath) + @"\EVENTS\", PosterPath);
+                if (File.Exists(path.LocalPath)) return new BitmapImage(path);
                 return null;
             }
+        }
+        private bool GetLeastNumImage(string ItemPath, string PosterPath)
+        {
+            bool ok = false;
+            List<string> files = Directory.GetFiles(Path.GetDirectoryName(ItemPath), "*.jpg").ToList();
+            if (files.Any())
+            {
+                var filenames = files.Where(x => !x.ToUpper().StartsWith("CAP") && !x.ToUpper().StartsWith("SCREEN")).ToList();
+                string fn = filenames.Where(x =>
+                {
+                   string fnn = Path.GetFileNameWithoutExtension(x);
+                   int rez;
+                   if (Int32.TryParse(fnn, out rez))
+                   {
+                      return true;
+                   }
+                   return false;
+                }).OrderBy(z=>Convert.ToInt32(Path.GetFileNameWithoutExtension(z))).FirstOrDefault();
+
+                if (!string.IsNullOrEmpty(fn))
+                {
+                    File.Copy(fn, PosterPath);
+                    //if (File.Exists(path.LocalPath)) return new BitmapImage(path);
+                    ok = true;
+                }
+            }
+            return ok;
         }
         public string ItemDirectory
         {
@@ -237,6 +258,8 @@ namespace EPCat.Model
         public string AltTitle { get; set; }
         public string Country { get; set; }
         public int Year { get; set; }
+        public int Month { get; set; }
+        public int Day { get; set; }
         public string Rated { get; set; }
         public string Star { get; set; }
         public string MyDescr { get; set; }
@@ -285,6 +308,8 @@ namespace EPCat.Model
             this.Name = item.Name;
             this.Country = item.Country;
             this.Year = item.Year;
+            this.Month = item.Month;
+            this.Day = item.Day;
             this.AltTitle = item.AltTitle;
             this.Rated = item.Rated;
             this.Star = item.Star;
@@ -293,12 +318,12 @@ namespace EPCat.Model
             this.Studio = item.Studio;
             this.IMDB = item.IMDB;
 
-
+            this.DicOneVal.Clear();
             foreach (var v in item.DicOneVal)
             {
                 this.DicOneVal.Add(v.Key, v.Value);
             }
-
+            this.DicMulVal.Clear();
             foreach (var v in item.DicMulVal)
             {
                 this.DicMulVal.Add(v.Key, v.Value);
@@ -317,6 +342,8 @@ namespace EPCat.Model
         static string p_AltTitle = "ALTTITLE:";
         static string p_Country = "COUNTRY:";
         static string p_Year = "YEAR:";
+        static string p_Month = "MONTH:";
+        static string p_Day = "Day:";
         static string p_Rated = "RATED:";
         static string p_Star = "STAR:";
         static string p_MyDescr = "MYCOMMENTS:";
@@ -439,6 +466,24 @@ namespace EPCat.Model
                     {
                         if (term.Length > 4) term = term.Substring(0, 4);
                         result.Year = Convert.ToInt32(term);
+                    }
+                }
+                else if (term.StartsWith(p_Month))
+                {
+                    term = term.Replace(p_Month, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        if (term.Length > 2) term = term.Substring(0, 2);
+                        result.Month = Convert.ToInt32(term);
+                    }
+                }
+                else if (term.StartsWith(p_Day))
+                {
+                    term = term.Replace(p_Day, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        if (term.Length > 2) term = term.Substring(0, 2);
+                        result.Day = Convert.ToInt32(term);
                     }
                 }
                 else if (term.StartsWith(p_Rated))
@@ -609,6 +654,8 @@ namespace EPCat.Model
             result.Add(p_AltTitle + item.AltTitle);
             result.Add(p_Country + item.Country);
             result.Add(p_Year + (item.Year > 0 ? item.Year.ToString() : string.Empty));
+            result.Add(p_Month + (item.Month > 0 ? item.Month.ToString() : string.Empty));
+            result.Add(p_Day + (item.Day > 0 ? item.Day.ToString() : string.Empty));
             result.Add(p_Rated + item.Rated);
             result.Add(p_Star + item.Star);
             result.Add(p_MyDescr + item.MyDescr);

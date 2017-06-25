@@ -155,6 +155,8 @@
                             <dxg:GridColumn FieldName="AltTitle" IsSmart="True"/>
                             <dxg:GridColumn FieldName="Country" IsSmart="True"/>
                             <dxg:GridColumn FieldName="Year" IsSmart="True"/>
+                            <dxg:GridColumn FieldName="Month" IsSmart="True"/>
+                            <dxg:GridColumn FieldName="Day" IsSmart="True"/>
                             <dxg:GridColumn FieldName="Rated" IsSmart="True"/>
                             <dxg:GridColumn FieldName="Star" IsSmart="True"/>
                             <dxg:GridColumn FieldName="MyDescr" IsSmart="True"/>
@@ -229,34 +231,42 @@
                                 <dxlc:GroupBox.MaximizedContentTemplate>
                                     <DataTemplate>
 
-                                        <dxlc:LayoutControl ItemSpace="0" Margin="0,0,0,0" Padding="0,0,0,0">
+                                        <dxlc:LayoutControl ItemSpace="0" Margin="0,0,0,0" Padding="0,0,0,0" >
 
-                                            <dxlc:LayoutGroup Background="White" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin ="0,0,0,0" Padding="0,0,0,0">
-                                                <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Horizontal">
+                                            <dxlc:LayoutGroup Background="White" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin ="0,0,0,0" Padding="0,0,0,0" MaxWidth="600">
+                                                <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Vertical" MaxWidth="600">
 
-                                                    <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Vertical">
-
+                                                    <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Horizontal"   HorizontalAlignment="Left">
+                                                        
+                                                        <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Vertical"   HorizontalAlignment="Left">
                                                         <dxlc:LayoutItem Label="Id" LabelPosition="Top">
-                                                            <dxe:TextEdit Text="{Binding Id}" Width="250" IsReadOnly="True"/>
+                                                            <dxe:TextEdit Text="{Binding Id}"  IsReadOnly="True"/>
                                                         </dxlc:LayoutItem>
-
                                                         <dxlc:LayoutItem Label="Parent:" LabelPosition="Top">
-                                                            <dxe:TextEdit Text="{Binding ParentId}" Width="250"/>
+                                                            <dxe:TextEdit Text="{Binding ParentId}" />
                                                         </dxlc:LayoutItem>
                                                         <dxlc:LayoutItem Label="Name" LabelPosition="Top">
-                                                            <dxe:TextEdit Text="{Binding Name}" Width="250" TextWrapping="Wrap"/>
+                                                            <dxe:TextEdit Text="{Binding Name}" TextWrapping="Wrap"/>
                                                         </dxlc:LayoutItem>
-                                                        <dxlc:LayoutItem Label="Description" LabelPosition="Top">
-                                                            <dxe:TextEdit Text="{Binding Description}" Width="250" TextWrapping="Wrap"/>
+                                                        </dxlc:LayoutGroup>
+
+                                                        <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Vertical"   HorizontalAlignment="Left">
+                                                            <dxlc:LayoutItem Label="Description" LabelPosition="Top">
+                                                            <dxe:TextEdit Text="{Binding Description}" TextWrapping="Wrap"/>
                                                         </dxlc:LayoutItem>
                                                         <dxlc:LayoutItem Label="Star" LabelPosition="Top">
-                                                            <dxe:TextEdit Text="{Binding Star}" Width="250" TextWrapping="Wrap"/>
+                                                            <dxe:TextEdit Text="{Binding Star}"  TextWrapping="Wrap"/>
+                                                        </dxlc:LayoutItem>
+                                                        </dxlc:LayoutGroup>
+                                                        
+                                                    </dxlc:LayoutGroup>
+                                                    
+                                                    <dxlc:LayoutGroup View="Group" Header="Source2" Orientation="Vertical" HorizontalAlignment="Stretch">
+                                                        <dxlc:LayoutItem Margin="0" Padding="0" VerticalAlignment="Stretch"  ElementSpace="0"  HorizontalAlignment="Stretch">
+                                                            <ContentPresenter x:Name ="DetailView" Content="{Binding}"  ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch" />                                                    
                                                         </dxlc:LayoutItem>
                                                     </dxlc:LayoutGroup>
-
-                                                    <dxlc:LayoutItem Margin="0" Padding="0" VerticalAlignment="Stretch" ElementSpace="0">
-                                                        <ContentPresenter x:Name ="DetailView" Grid.Row="0" Grid.Column="1" Content="{Binding}" ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch"/>
-                                                    </dxlc:LayoutItem>
+                                                    
                                                 </dxlc:LayoutGroup>
                                             </dxlc:LayoutGroup>
 
