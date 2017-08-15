@@ -18,6 +18,7 @@ namespace StoGenWPF
 
 
         #region Runtime compile
+        
         // start
         internal static void StartMainProc(string startfile)
         {
