@@ -2,7 +2,6 @@
 using DevExpress.XtraLayout;
 using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraRichEdit;
-using StoGen.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;

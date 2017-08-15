@@ -22,89 +22,15 @@ namespace StoGenWPF
         // start
         internal static void StartMainProc(string startfile)
         {
-
             if (!string.IsNullOrWhiteSpace(startfile)) _MainProcname = startfile;
-            Assembly MainAssembly;
-            if (Compile(out MainAssembly))
-            {
-                //Projector.Text.Parent.Visible = false;
-                SetMainProcedure(MainAssembly);
-            }
+            SetMainProcedure();
         }
-        public static void SetMainProcedure(Assembly assembly)
+        public static void SetMainProcedure()
         {
-            Projector.Clear();
+            CurrProc = new ProcedureBase(null,0);
 
-            Type type = assembly.GetType("Work.ProcFactory");
-            MethodInfo method = type.GetMethod("GetNewProc");
-            object[] parameters = null;
-            // run
-            CurrProc = (ProcedureBase)method.Invoke(null, parameters);
-            // run
         }
-        // compile
-        internal static bool Compile(out Assembly assembly)
-        {
-            string _mainProcname = _MainProcname + ".cs";
-            assembly = null;
-            // Настройки компиляции
-            Dictionary<string, string> providerOptions = new Dictionary<string, string>
-            {
-                {"CompilerVersion", "v3.5"}
-            };
-            CSharpCodeProvider provider = new CSharpCodeProvider(providerOptions);
-            string outputAssembly = _MainProcname + ".dll";
-            CompilerParameters compilerParams = new CompilerParameters();
-            compilerParams.OutputAssembly = outputAssembly;
-            compilerParams.GenerateExecutable = false;
-            compilerParams.GenerateInMemory = true;
-            // ссылки на сборки!!!
-            compilerParams.ReferencedAssemblies.Add("System.Core.Dll");
-            compilerParams.ReferencedAssemblies.Add("System.Dll");
-            compilerParams.ReferencedAssemblies.Add("System.Drawing.Dll");
-            compilerParams.ReferencedAssemblies.Add("System.Windows.Forms.dll");
-            compilerParams.ReferencedAssemblies.Add("StoGenClasses.dll");
-            compilerParams.ReferencedAssemblies.Add("DevExpress.XtraEditors.v15.2.dll");
-            compilerParams.ReferencedAssemblies.Add("mscorlib.dll");
-            compilerParams.IncludeDebugInformation = true;
-            // выбираем все файлы для сборки
-            List<string> sourcefiles = new List<string>();
-            sourcefiles.Add(_mainProcname);
-            GetIncludeFiles(_mainProcname, sourcefiles);
-            // Компиляция
-            CompilerResults results = provider.CompileAssemblyFromFile(compilerParams, sourcefiles.ToArray());
-            List<string> errors = new List<string>();
-            foreach (CompilerError err in results.Errors)
-            {
-                errors.Add(err.FileName + " : " + err.Line + "," + err.Column + ": " + err.ErrorText);
-            }
-            if (errors.Count > 0)  frmCompileErrors.ShowError(errors);
-            assembly = results.CompiledAssembly;
-            return results.Errors.Count == 0;
-        }
-        public static bool GetIncludeFiles(string filename, List<string> FileList)
-        {
-            string _markInclude = "//SgInclude";
-            string _markUsing = "using ";
-            List<string> ff = Universe.LoadFileToStringList(filename);
-            foreach (string item in ff)
-            {
-                if (item.Contains(_markInclude))
-                {
-                    string fn = item.Replace(_markInclude, string.Empty).Trim();
-                    if (!FileList.Contains(fn))
-                    {
-                        FileList.Add(fn);
-                        GetIncludeFiles(fn, FileList);
-                    }
-                }
-                else if (item.Contains(_markUsing))
-                {
-                    return true;
-                }
-            }
-            return true;
-        }
+       
 
         internal static void ProcessKeyData(int v)
         {
@@ -146,18 +72,5 @@ namespace StoGenWPF
     
     }
 
-    #region Testing
-
-
-    [Serializable]
-    public class SaveContainer
-    {
-        public SaveContainer()
-        {
-
-        }
-
-    }
-
-    #endregion
+   
 }

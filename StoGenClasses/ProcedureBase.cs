@@ -12,7 +12,7 @@ namespace StoGen.Classes
 {
     public class ProcedureBase
     {
-        public List<IDescptible> ObjectNames = new List<IDescptible>();
+        
         public MenuCreatorDelegate MenuCreator;
         public List<Cadre> Cadres { get; set; }
         //public List<ProcVariant> Variants = new List<ProcVariant>();
@@ -270,11 +270,7 @@ namespace StoGen.Classes
                 if (data != null)
                 {
                     FrameText ft = cadre.GetTextFrame();
-                    if (this.ObjectNames.Count > 0)
-                    {
-                        ft.TextList.AddRange(StoGen.Classes.TextProcessor2.ProcessText(data.TextList, this.ObjectNames));
-                    }
-                    else ft.TextList.AddRange(data.TextList);
+                    ft.TextList.AddRange(data.TextList);
 
                     ft.BackColor = data.BackColor;
                     ft.FontName = data.FontName;
@@ -353,21 +349,7 @@ namespace StoGen.Classes
                 else return this.InnerProc.AllowedBackward;
             }
         }
-        public void ShowMovieList()
-        {
-            SgMovie a;
-            frmMovieList.Showlist(out a);
-        }
-        public void ShowActorList()
-        {
-            SgActor a;
-            frmActorList.Showlist(0,out a);
-        }
-        public void ShowClipList()
-        {
-            SgClip a;
-            frmClipList.Showlist(out a);
-        }
+       
     }
     public delegate bool MenuCreatorDelegate(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist);
 }

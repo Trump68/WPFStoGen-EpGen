@@ -3,7 +3,6 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraRichEdit.Utils;
 using PerPixelAlphaBlend;
-using StoGen.Extension;
 using StoGen.ModelClasses;
 using System;
 using System.Collections.Generic;
