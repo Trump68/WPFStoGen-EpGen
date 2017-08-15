@@ -188,15 +188,8 @@ namespace StoGen.Classes
                 fn = ScenarioFile;
                 DefaultPath = fn.Replace(Path.GetFileName(fn), string.Empty);
             }
-            else
-            {
-                fn = String.Format("{0}FileList.txt", DefaultPath);
-            }
+           
 
-            if (!File.Exists(fn))
-            {
-               // CreateFileList();
-            }
             if (File.Exists(fn))
             {
                 ProcessFileLists(cadre, fn, part);
@@ -213,7 +206,13 @@ namespace StoGen.Classes
         public virtual bool ProcessFileLists(Cadre cadre, string fn, string part)
         {
             List<string> header;
-            List<StringDataContainer> datalist = StoGenParser.GetProcessedFile(fn,part,this.KeyVarContainer,null, out header);
+            List<StringDataContainer> datalist = new List<StringDataContainer>();
+            string commonFile = $"{ this.DefaultPath}{"Common.stogen"}";
+            if (File.Exists(commonFile))
+            {
+                datalist.AddRange(StoGenParser.GetProcessedFile(commonFile, part, this.KeyVarContainer, null, out header));
+            }            
+            datalist.AddRange(StoGenParser.GetProcessedFile(fn,part,this.KeyVarContainer,null, out header));
             Cadre LastCadre = null;
             string key = null;
             //string laskey = string.Empty;
@@ -940,6 +939,16 @@ namespace StoGen.Classes
         {
             this.CurrentContext = new Context();
             this.MenuCreator = CreateMenu;
+        }
+        public CycleProc(string fn)
+           : base(null, 0)
+        {
+            this.CurrentContext = new Context();
+            this.MenuCreator = CreateMenu;
+            AddNewSet("DUMMY", "DUMMY", fn, null, null, null, null);
+            ProcedureBase innerproc = this.setsA.First().sets.First().InsertAsProcedureTo(this, true);
+            //innerproc.MenuCreator = ((Set_View)data).CreateMenu;
+            this.GetNextCadre();
         }
         ProcedureBase ParentProc = null;
         public ProcedureBase InsertAsProcedureTo(ProcedureBase ownerproc)

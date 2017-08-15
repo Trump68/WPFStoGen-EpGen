@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace MVVMApp.ViewModels
 {
@@ -322,57 +323,60 @@ namespace MVVMApp.ViewModels
         {
             VMBusinessLogic.CreateFimmografy();
         }
-
+        public static void DoEvents()//Реализация DoEvents в WPF
+        {
+            if (Application.Current != null)
+                Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new ThreadStart(delegate { }));
+        }
+        bool doGetPic = false;
         internal void GetSeriePics()
         {
-
-            if (!string.IsNullOrEmpty(this.CompanyNum)) AddUpdateAppSettings("CompanyNum", this.CompanyNum);
+            doGetPic = !doGetPic;
+            if (!doGetPic) return;
+            if (this.CompanyNum == null)
+                this.CompanyNum = string.Empty;
+            AddUpdateAppSettings("CompanyNum", this.CompanyNum);
             AddUpdateAppSettings("SeriePrefix", this.SeriePrefix);
             if (!string.IsNullOrEmpty(this.StartId)) AddUpdateAppSettings("StartId", this.StartId);
             if (!string.IsNullOrEmpty(this.EndId)) AddUpdateAppSettings("EndId", this.EndId);
             if (!string.IsNullOrEmpty(this.LinkForPicsTemplate)) AddUpdateAppSettings("LinkForPicsTemplate", this.LinkForPicsTemplate);
             if (!string.IsNullOrEmpty(this.SavePicToDir)) AddUpdateAppSettings("SavePicToDir", this.SavePicToDir);
+            if (!string.IsNullOrEmpty(this.TemplateDigits)) AddUpdateAppSettings("TemplateDigits", this.TemplateDigits);
 
 
             int CurrId = Convert.ToInt32(StartId);
             int LastId = Convert.ToInt32(EndId);
 
+            int td = int.Parse(this.TemplateDigits);
+
             while (CurrId <= LastId)
             {
-                string CurrentFileId = CurrId.ToString("000");
-                CurrentId = CurrId.ToString("000");
-                string CurrentId2 = CurrId.ToString("00");
-                string localFilename = $@"d:\temp\5\{SeriePrefix.ToUpper()}-{CurrentFileId}.jpg";
+                DoEvents();
+                if (!doGetPic) return;
 
+                string tds = string.Empty;
 
-
-
-                string address = LinkForPicsTemplate.Replace("$FN0", CompanyNum).Replace("$FN1", SeriePrefix.ToLower()).Replace("$FN2", CurrentId);
-                if (!File.Exists(localFilename))
+                for (int i = 0; i < td; i++)
                 {
-                    bool ok = false;
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(address);
-                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    tds = tds + "0";
+                }
+                
+                string CurrentFileId = CurrId.ToString(tds);
+                CurrentId = CurrId.ToString(tds);
+                //string CurrentId2 = CurrId.ToString("00");
+                string localFilename = $@"d:\temp\5\{SeriePrefix.ToUpper()}-{CurrentFileId}.jpg";
+                string address = LinkForPicsTemplate.Replace("$FN0", CompanyNum).Replace("$FN1", SeriePrefix.ToLower()).Replace("$FN2", CurrentId);
+                try
+                {
+                    doGet(localFilename, address);
+                }
+                catch
+                {
+                    if (File.Exists(localFilename))
                     {
-                        if ((response.ContentLength > 10000))
-                        {
-                            SaveFileToD(response, localFilename);
-                            ok = true;
-                        }
-
-                    }
-                    if (!ok)
-                    {
-                        address = LinkForPicsTemplate.Replace("$FN0", CompanyNum).Replace("$FN1", SeriePrefix.ToLower()).Replace("$FN2", CurrentId2);
-                        request = (HttpWebRequest)WebRequest.Create(address);
-                        using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                        {
-                            if ((response.ContentLength > 10000))
-                            {
-                                SaveFileToD(response, localFilename);
-                            }
-                        }
-                    }
+                        File.Delete(localFilename);
+                        doGet(localFilename, address);
+                    }                        
                 }
                 CurrId++;
             }
@@ -380,6 +384,23 @@ namespace MVVMApp.ViewModels
 
         }
 
+        private void doGet(string localFilename, string address)
+        {
+            if (!File.Exists(localFilename))
+            {
+                bool ok = false;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(address);
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                {
+                    if ((response.ContentLength > 10000))
+                    {
+                        SaveFileToD(response, localFilename);
+                        ok = true;
+                    }
+
+                }
+            }
+        }
 
         private void SaveFileToD(HttpWebResponse response, string localFilename)
         {

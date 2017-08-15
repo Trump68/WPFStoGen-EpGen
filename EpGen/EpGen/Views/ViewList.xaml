@@ -73,7 +73,7 @@
                 <Button Content="Create Filmografy" Command="{Binding CreateFilmografyCommand}" Margin="20,0,0,0" />
                 <Button Content="Copy sets" Command="{Binding CopySetsCommand}" Margin="20,0,0,0" />
                 <Button Content="Copy pos str" Command="{Binding CopyPosStrCommand}" Margin="20,0,0,0" />
-                <Button Content="Get Serie Pics" Command="{Binding GetSeriePicsCommand}" Margin="20,0,0,0" />
+                <Button Content="Get Serie Pics" Command="{Binding GetSeriePicsCommand}" Margin="20,0,0,0"  />
 
             </StackPanel>
             <ContentControl Grid.Column="1" Content="{Binding ECadres}" FontSize="18.667">

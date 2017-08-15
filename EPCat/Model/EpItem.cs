@@ -61,7 +61,7 @@ namespace EPCat.Model
         private bool GetLeastNumImage(string ItemPath, string PosterPath)
         {
             bool ok = false;
-            List<string> files = Directory.GetFiles(Path.GetDirectoryName(ItemPath), "*.jpg").ToList();
+            List<string> files = Directory.GetFiles(ItemPath, "*.jpg").ToList();
             if (files.Any())
             {
                 var filenames = files.Where(x => !x.ToUpper().StartsWith("CAP") && !x.ToUpper().StartsWith("SCREEN")).ToList();
@@ -75,7 +75,10 @@ namespace EPCat.Model
                    }
                    return false;
                 }).OrderBy(z=>Convert.ToInt32(Path.GetFileNameWithoutExtension(z))).FirstOrDefault();
-
+                if (string.IsNullOrEmpty(fn))
+                {
+                    fn = filenames.FirstOrDefault();
+                }
                 if (!string.IsNullOrEmpty(fn))
                 {
                     File.Copy(fn, PosterPath);
