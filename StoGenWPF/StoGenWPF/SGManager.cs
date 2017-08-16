@@ -56,6 +56,11 @@ namespace StoGenWPF
         }
         internal static void ProcessKey(Key keys)
         {
+            if (keys == Key.F5)
+            {
+                CurrProc = new CycleProc(_MainProcname);
+                return;
+            }
             if (CurrProc != null) CurrProc.ProcessKey(keys);
         }
         internal static void ChangeVisibleChoiceMenu()

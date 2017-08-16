@@ -275,7 +275,10 @@ namespace StoGen.Classes
                         LastCadre = FillMainPicsFromString(item);
                         LastCadre.Name = item.Mark;
                     }
-                    else if (item.Complete.StartsWith(@"CadreText=")) StoGenParser.FillCadreText(item.Complete, LastCadre.TextFrameData, null, null, fn,this.DefaultPath);
+                    else if (item.Complete.StartsWith(@"CadreText="))
+                    {
+                        StoGenParser.FillCadreText(item.Complete, LastCadre.TextFrameData, null, null, fn, this.DefaultPath);
+                    }
                     else if (item.Complete.StartsWith(@"CadreSound="))
                     {
                         FillCadreSound(item.Complete, LastCadre.SoundFrameData);
@@ -1058,6 +1061,7 @@ namespace StoGen.Classes
             bool checkpart = !string.IsNullOrEmpty(part);
             bool checkpartOk = false;
             string currentmark = null;
+            string path = Path.GetDirectoryName(fn);
             foreach (string item in datalist)
             {
                 if (item.Trim().StartsWith(@"PartSta#"))
@@ -1094,7 +1098,7 @@ namespace StoGen.Classes
                 else if (item.StartsWith(@"Inline#")) AddInline(item, KeyVarContainer);
                 else if (item.StartsWith(@"File#"))
                 {
-                    var pf = ApplayFile(item, KeyVarContainer, originalitem);
+                    var pf = ApplayFile(item, KeyVarContainer, originalitem,path);
                     listtoprocess.AddRange(pf);
                 }
                 else if (item.StartsWith(@"#"))
@@ -1120,7 +1124,7 @@ namespace StoGen.Classes
             }
             return listtoprocess;
         }
-        private static List<StringDataContainer> ApplayFile(string item, KeyVarDataContainer KeyVarContainer, string original)
+        private static List<StringDataContainer> ApplayFile(string item, KeyVarDataContainer KeyVarContainer, string original,string path)
         {
             List<StringDataContainer> result = new List<StringDataContainer>();
             string[] vals = item.Split('#');
@@ -1132,7 +1136,12 @@ namespace StoGen.Classes
                 string part = null;
                 if (vals.Length == 3) part = vals[2];
                 List<string> header;
-                result = GetProcessedFile(vals[1], part, KeyVarContainer, originalitem, out header);
+                string fn = vals[1];
+                if (!Path.IsPathRooted(fn))
+                {
+                    fn = Path.Combine(path, fn);
+                }
+                result = GetProcessedFile(fn, part, KeyVarContainer, originalitem, out header);
             }
             return result;
         }
