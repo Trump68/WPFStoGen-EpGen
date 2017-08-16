@@ -265,14 +265,14 @@ namespace StoGen.Classes
 
                     else if (item.Complete.StartsWith(@"Scenario#")) FillStoryFromString(item.Complete);
                     else if (item.Complete.StartsWith(@"ScenarioParam#")) FillStoryParamFromString(item.Complete);
-                    else if (item.Complete.StartsWith(@"CommonPics=")) FillPicsFromString(item.Complete, CommonPics);
+                    else if (item.Complete.StartsWith(@"CommonPics=")) FillPicsFromString(item, CommonPics);
                     else if (item.Complete.StartsWith(@"MainProps="))
                     {
                         FillMainPropsFromString(item.Complete);
                     }
                     else if (item.Complete.StartsWith(@"MainPics="))
                     {
-                        LastCadre = FillMainPicsFromString(item.Complete);
+                        LastCadre = FillMainPicsFromString(item);
                         LastCadre.Name = item.Mark;
                     }
                     else if (item.Complete.StartsWith(@"CadreText=")) StoGenParser.FillCadreText(item.Complete, LastCadre.TextFrameData, null, null, fn,this.DefaultPath);
@@ -283,7 +283,7 @@ namespace StoGen.Classes
                     else if (item.Complete.StartsWith(@"CadreName=")) FillCadreName(item.Complete, LastCadre);
                     else if (item.Complete.StartsWith(@"DetailPics=") && LastCadre != null)
                     {
-                        FillPicsFromString(item.Complete, LastCadre.PicFrameData.PictureDataList);
+                        FillPicsFromString(item, LastCadre.PicFrameData.PictureDataList);
                     }
                     else if (item.Complete.StartsWith(@"RemoveCommon=") && LastCadre != null) RemovePicFromCommon(item.Complete);
                     //else if (item.StartsWith(@"Variant=")) SetVariant(item);
@@ -316,7 +316,7 @@ namespace StoGen.Classes
             if (!found)
                 this.KeyVarContainer.keyVarList.Add(codevar);
             if (item.StartsWith(@"CadreSound=")) StoGenParser.FillCadreSound(item, this.KeyVarContainer.SoundVariableList, codevar.Key.ToString(),this.DefaultPath);
-            else if (item.StartsWith(@"DetailPics=")) FillPicsFromString(item, this.CommonPics, codevar.Key.ToString());
+            else if (item.StartsWith(@"DetailPics=")) FillPicsFromString(new StringDataContainer(item,item), this.CommonPics, codevar.Key.ToString());
             else if (item.StartsWith(@"CadreText=")) StoGenParser.FillCadreText(item, this.KeyVarContainer.TextVariableList, datalist.Select(x=>x.Complete).ToList(), codevar.Key.ToString(), null, this.DefaultPath);
         }
         private void FillStoryFromString(string item)
@@ -375,11 +375,19 @@ namespace StoGen.Classes
             }
         }
       
-        private Cadre FillMainPicsFromString(string item)
+        private Cadre FillMainPicsFromString(StringDataContainer itemCont)
         {
             Cadre cadre = null;
             int order = int.MaxValue;
-            PictureSourceDataProps psp = StoGenParser.GetPSPFromString(item,this.DefaultPath, ref order);
+            string item = itemCont.Complete;
+
+            string path = this.DefaultPath;
+            if (itemCont.Original.StartsWith(@"File#"))
+            {
+                path = Path.GetDirectoryName(itemCont.Original.Replace(@"File#", string.Empty));
+            }
+
+            PictureSourceDataProps psp = StoGenParser.GetPSPFromString(item,path, ref order);
 
             if (psp != null)
             {
@@ -397,14 +405,22 @@ namespace StoGen.Classes
             }
             return cadre;
         }
-        private void FillPicsFromString(string item, List<PictureSourceDataProps> list)
+        private void FillPicsFromString(StringDataContainer itemCont, List<PictureSourceDataProps> list)
         {
-            FillPicsFromString(item, list, null);
+            FillPicsFromString(itemCont, list, null);
         }
-        private void FillPicsFromString(string item, List<PictureSourceDataProps> list, string name)
+        private void FillPicsFromString(StringDataContainer itemCont, List<PictureSourceDataProps> list, string name)
         {
+            string item = itemCont.Complete;
+
+            string path = this.DefaultPath;
+            if (itemCont.Original.StartsWith(@"File#"))
+            {
+                path = Path.GetDirectoryName(itemCont.Original.Replace(@"File#", string.Empty));
+            }
+
             int order = int.MaxValue;
-            PictureSourceDataProps psp = StoGenParser.GetPSPFromString(item,this.DefaultPath, ref order);
+            PictureSourceDataProps psp = StoGenParser.GetPSPFromString(item, path, ref order);
             if (name != null) psp.Name = name;
             if (psp != null)
             {
@@ -1078,7 +1094,8 @@ namespace StoGen.Classes
                 else if (item.StartsWith(@"Inline#")) AddInline(item, KeyVarContainer);
                 else if (item.StartsWith(@"File#"))
                 {
-                    listtoprocess.AddRange(ApplayFile(item, KeyVarContainer, originalitem));
+                    var pf = ApplayFile(item, KeyVarContainer, originalitem);
+                    listtoprocess.AddRange(pf);
                 }
                 else if (item.StartsWith(@"#"))
                 {

@@ -1,0 +1,78 @@
+=========================== Picture ===========================
+X:int
+Y:int
+
+SizeX:int (Video: Spec val -2,-1 - natural size) (Picture: Spec val -1 - natural size; Spec val -2 - 1600*900)
+SizeY:int (Video: Spec val -2,-1 - natural size) (Picture: Spec val -1 - natural size; Spec val -2 - 1600*900)
+
+ClipH:int if (clipH == -1) { clipH = pi.Props.SizeY - pi.Props.ClipY; } else if (clipH == 0) clipH = pi.Props.SizeY;
+ClipW:int if (clipW == -1) { clipW = pi.Props.SizeX - pi.Props.ClipX; } else if (clipW == 0) clipW = pi.Props.SizeX;
+ClipX:int
+ClipY:int
+	 Projector.PicContainer.Clip.Clip = new RectangleGeometry(new System.Windows.Rect(pi.Props.ClipX, pi.Props.ClipY, clipW, clipH));
+
+Rotate:int
+
+Flip:int (If ==1 then flip by X, if ==2 then flip by Y)
+	RotateNoneFlipNone = 0,
+        Rotate90FlipNone = 1,
+        Rotate180FlipNone = 2,
+        RotateNoneFlipX = 4,
+        Rotate90FlipX = 5,
+        Rotate180FlipX = 6,
+        Rotate270FlipX = 7,
+
+Blur:int
+
+Level:int
+
+R:int For video (rate) (if Rate>0)
+
+Rate:int 
+	Random = -1,
+        Default = 0,
+        VeryFast = 1,
+        Fast1 = 2,
+        Fast2 = 3,
+        Fast3 = 4,
+        Medium1 = 5,
+        Medium2 = 6,
+        Medium3 = 7,
+        Slow1 = 8,
+        Slow2 = 9,
+        Slow3 = 10,
+        VerySlow = 11
+
+Opacity:int
+
+Flash:int
+
+Timer:int (Set timer to next show cadre,msec)
+
+Timer2:int
+
+SizeMode:int (If 0, then picture will be streched to fill)
+	Clip = 0,
+        Stretch = 1,
+        Zoom = 2,
+        StretchHorizontal = 3,
+        StretchVertical = 4,
+        Squeeze = 5
+
+Active:0;1
+
+IsLoop:int (After end of animation : 4-next cadre, 3 - backward animate, 2 - stop, 1 - begin from start
+
+PP:
+
+PP1:// pause period, ms  - Time to pause before reverse back video animation
+
+PP2:// pause period, ms  - Time to pause before reverse forward video animation
+
+StartPos:
+
+EndPos:
+
+NextCadre:
+
+Order:

@@ -1,0 +1,4 @@
+MainPics=Capture01.JPG;SizeX=-2;SizeY=-2;Timer=1000
+
+MainPics=Capture02.JPG;SizeX=-2;SizeY=-2
+DetailPics=Capture03.JPG;SizeX=-2;SizeY=-2;Opacity=0;Level=1;Flash=3

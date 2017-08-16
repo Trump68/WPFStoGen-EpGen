@@ -45,7 +45,7 @@ namespace StoGen.Classes
         public static string GetFullPath(string fn, string defaultpath)
         {
             if (Path.IsPathRooted(fn)) return fn;
-            return defaultpath + fn;
+            return Path.Combine(defaultpath, fn);
         }
     }
     public enum DayTime: int

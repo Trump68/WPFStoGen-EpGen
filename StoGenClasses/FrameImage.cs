@@ -25,11 +25,26 @@ namespace StoGen.Classes
 {
     public class FlashData
     {
-        internal Form FlashForm = null;
+        internal int Level = 0;
         internal List<FlashItem> Flashes = new List<FlashItem>();
         //internal double Started = 0;
         internal double Counter = 0;
         internal double Started = 0;
+
+        internal static void SetFlash(int v, int level)
+        {
+            //Inline#SYS_FLASH_ORG1#		DetailPics=d:\Process2\!!Data\! CommonData\SYS\White.jpg;SizeX=-1;SizeY=-1;Level=4;Flash=0-1*0-5
+            //Inline#SYS_FLASH_ORG2#		DetailPics=d:\Process2\!!Data\! CommonData\SYS\White.jpg;SizeX=-1;SizeY=-1;Level=4;Flash=0-1*0-5*0-30                                   
+            FrameImage.CurrentFlash = new FlashData();
+            FrameImage.CurrentFlash.Level = level;
+            
+            if (v > 0)
+                FrameImage.CurrentFlash.Flashes.Add(new FlashItem() { Wait = 0, Period = 1000 });
+            if (v > 1)
+                FrameImage.CurrentFlash.Flashes.Add(new FlashItem() { Wait = 0, Period = 5000 });
+            if (v > 2)
+                FrameImage.CurrentFlash.Flashes.Add(new FlashItem() { Wait = 0, Period = 30000 });
+        }
     }
     public class FlashItem
     {
@@ -40,11 +55,10 @@ namespace StoGen.Classes
     public class FrameImage : Frame, IDisposable
     {
 
-
         private int CanvasShiftY = 0;//25;
         private int CanvasShiftX = 0;//10;
         public static System.Threading.Timer timer;
-        public static FlashData CurrentFlash = null;
+        public static FlashData CurrentFlash = null;        
         public static ProcedureBase CurrentProc;
         public static volatile bool LoopProcessed = false;
         public static int debugcount = 0;
@@ -71,6 +85,54 @@ namespace StoGen.Classes
         public static int WaitEnd = -1;
         public static void ProcessLoopDelegate()
         {
+            // Flash
+            if (CurrentFlash != null)
+            {
+                if (CurrentFlash.Flashes.Count == 0)
+                {
+                    CurrentFlash = null;
+                }
+                else
+                {
+                    double Passed = DateTime.Now.TimeOfDay.TotalMilliseconds - CurrentFlash.Started;
+                    FlashItem fi = CurrentFlash.Flashes.First();
+                    if (fi.Wait > 0)
+                    {
+                        fi.Wait = fi.Wait - Passed;
+                    }
+                    else
+                    {
+                        if (CurrentFlash.Counter == 0)
+                        {                            
+                            CurrentFlash.Started = DateTime.Now.TimeOfDay.TotalMilliseconds;
+                            CurrentFlash.Counter = fi.Period;
+                        }
+                        else
+                        {
+                            if (CurrentFlash.Counter <= 0)
+                            {
+                                Projector.PicContainer.PicList[CurrentFlash.Level].Opacity = 0;
+                                CurrentFlash.Flashes.Remove(fi);
+                                CurrentFlash.Counter = 0;
+                            }
+                            else
+                            {
+                                CurrentFlash.Counter = CurrentFlash.Counter - (DateTime.Now.TimeOfDay.TotalMilliseconds - CurrentFlash.Started);
+                                if (CurrentFlash.Counter > 0)
+                                {
+                                    double a = CurrentFlash.Counter;
+                                    double b = fi.Period;
+                                    double op = (a / b);
+                                    Projector.PicContainer.PicList[CurrentFlash.Level].Opacity = op;
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+            }
+
             if (Projector.TimerEnabled && (FrameImage.TimeToNext > 0))
             {
                 if (FrameImage.TimeStarted.AddMilliseconds(FrameImage.TimeToNext) <= DateTime.Now)
@@ -168,77 +230,11 @@ namespace StoGen.Classes
             timer.Change(Timeout.Infinite, Timeout.Infinite);
 
             RunNext op1 = new RunNext(FrameImage.ProcessLoopDelegate);
-            Projector.PicContainer.Clip.Dispatcher.Invoke(op1);
-
-            /*
-            if (CurrentFlash != null)
-            {
-                if (CurrentFlash.Flashes.Count == 0)
-                {
-                    CurrentFlash = null;
-                }
-                else
-                {
-                    double Passed = DateTime.Now.TimeOfDay.TotalMilliseconds - CurrentFlash.Started;
-                    FlashItem fi = CurrentFlash.Flashes.First();
-                    if (fi.Wait > 0)
-                    {
-                        fi.Wait = fi.Wait - Passed;
-                    }
-                    else
-                    {
-                        if (CurrentFlash.Counter == 0)
-                        {
-                            //SetFormOpacity(CurrentFlash.FlashForm, 1);
-                            CurrentFlash.Started = DateTime.Now.TimeOfDay.TotalMilliseconds;
-                            CurrentFlash.Counter = fi.Period;
-                        }
-                        else
-                        {
-                            if (CurrentFlash.Counter <= 0)
-                            {
-                                SetFormOpacity(CurrentFlash.FlashForm, 0);
-                                CurrentFlash.Flashes.Remove(fi);
-                                CurrentFlash.Counter = 0;
-                            }
-                            else
-                            {
-                                CurrentFlash.Counter = CurrentFlash.Counter - (DateTime.Now.TimeOfDay.TotalMilliseconds - CurrentFlash.Started);
-                                if (CurrentFlash.Counter > 0)
-                                {
-                                    double a = CurrentFlash.Counter;
-                                    double b = fi.Period;
-                                    double op = (a / b);
-                                    SetFormOpacity(CurrentFlash.FlashForm, op);
-                                }
-                            }
-                        }
-
-                    }
-
-                }
-            }
-            */
+            Projector.PicContainer.Clip.Dispatcher.Invoke(op1);                       
+            
             if (timer != null) timer.Change(TimerPeriod, TimerPeriod);
         }
 
-        private void SetFormOpacity(Form frm, double op)
-        {
-            // ТУ БЫ НАДО ЛОЧИТЬ А НЕ ДАВИТЬ ЭКСЕПШЕН
-            try
-            {
-
-                if (!frm.IsDisposed && !frm.Disposing)
-                {
-                    frm.Invoke(new Action(
-                          () =>
-                          {
-                              if (!frm.IsDisposed && !frm.Disposing) frm.Opacity = op;
-                          }));
-                }
-            }
-            catch { }
-        }
         PicLevelComparer sorter = new PicLevelComparer();
         public List<PictureBaseProp> PostProcessingData { get; set; }
         public List<PictureItem> Pics { get; set; }
@@ -421,6 +417,13 @@ namespace StoGen.Classes
                 {
                     if (pi.Props.SizeMode == PictureSizeMode.Clip) gf.Stretch = Stretch.Fill;
                 }
+
+                FrameImage.CurrentFlash = null;
+                if (!string.IsNullOrEmpty(pi.Props.Flash))
+                {
+                    FlashData.SetFlash(int.Parse(pi.Props.Flash), (int)pi.Props.Level);
+                }
+
                 gf.Source = imageSource;
 
                 gf.Width = pi.Props.SizeX;
