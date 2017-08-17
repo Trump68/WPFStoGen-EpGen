@@ -23,34 +23,95 @@ using WMPLib;
 
 namespace StoGen.Classes
 {
-    public class FlashData
-    {
-        internal int Level = 0;
-        internal List<FlashItem> Flashes = new List<FlashItem>();
-        //internal double Started = 0;
-        internal double Counter = 0;
-        internal double Started = 0;
 
-        internal static void SetFlash(int v, int level)
+    public class TransitionData
+    {      
+        public void Parse(string strdata)
         {
-            //Inline#SYS_FLASH_ORG1#		DetailPics=d:\Process2\!!Data\! CommonData\SYS\White.jpg;SizeX=-1;SizeY=-1;Level=4;Flash=0-1*0-5
-            //Inline#SYS_FLASH_ORG2#		DetailPics=d:\Process2\!!Data\! CommonData\SYS\White.jpg;SizeX=-1;SizeY=-1;Level=4;Flash=0-1*0-5*0-30                                   
-            FrameImage.CurrentFlash = new FlashData();
-            FrameImage.CurrentFlash.Level = level;
-            
-            if (v > 0)
-                FrameImage.CurrentFlash.Flashes.Add(new FlashItem() { Wait = 0, Period = 1000 });
-            if (v > 1)
-                FrameImage.CurrentFlash.Flashes.Add(new FlashItem() { Wait = 0, Period = 5000 });
-            if (v > 2)
-                FrameImage.CurrentFlash.Flashes.Add(new FlashItem() { Wait = 0, Period = 30000 });
+            List<string> series = strdata.Split('*').ToList();
+            this.Transitions = new List<List<TransitionItem>>();
+            foreach (var serie in series)
+            {
+                List<string> elements = serie.Split('-').ToList();
+                List<TransitionItem> elementList = new List<TransitionItem>();
+                foreach (var element in elements)
+                {
+                    TransitionItem res = CreateTransitionItem(element);
+                    elementList.Add(res);
+                }
+                Transitions.Add(elementList);
+            }
         }
+        private static TransitionItem CreateTransitionItem(string data)
+        {
+            string[] vals = data.Split('.');
+            if (vals[0] == "0" || string.IsNullOrEmpty(vals[0]))
+            {
+                return new TransitionOpacity(vals);
+            }
+            return null;
+        }
+        public class TransitionItem
+        {
+            internal double Counter = 0;
+            internal double Started = 0;
+            public long Wait;
+            public long Span;
+            public long Begin;
+            public long End;
+            public long Option;
+            public bool Active = true;            
+            public virtual bool Execute(int level)
+            {
+                return true;
+            }
+            public void Close()
+            {
+               Counter = 0;
+               Started = 0;
+               this.Active = false;
+            }
+        }
+        public class TransitionOpacity: TransitionItem
+        {
+            public TransitionOpacity(string[] vals)
+            {
+                if (vals.Length > 1 && !string.IsNullOrEmpty(vals[1])) this.Wait   = long.Parse(vals[1]);
+                if (vals.Length > 2 && !string.IsNullOrEmpty(vals[2])) this.Span   = long.Parse(vals[2]);
+                if (vals.Length > 3 && !string.IsNullOrEmpty(vals[3])) this.Begin  = long.Parse(vals[3]);
+                if (vals.Length > 4 && !string.IsNullOrEmpty(vals[4])) this.End    = long.Parse(vals[4]);
+                if (vals.Length > 5 && !string.IsNullOrEmpty(vals[5])) this.Option = long.Parse(vals[5]);
+            }
+            public override bool Execute(int level)
+            {
+                double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
+                if (this.Started == 0)
+                {
+                    this.Started = now;                    
+                }
+                if (now < (this.Started + this.Wait)) return false;
+                this.Counter = this.Started + this.Span  - now;
+                if (this.Counter <= 0)
+                {
+                    Projector.PicContainer.PicList[level].Opacity = (this.End / 100.1);
+                    return true;
+                }
+                else
+                {
+                    double delta = this.End - this.Begin;                    
+                    double timedelta = ((this.Span - this.Counter )/ this.Span);
+                    double op = delta * timedelta;
+                    Projector.PicContainer.PicList[level].Opacity = ((this.Begin + op) /100.1);
+                }
+                return false;
+            }
+        }
+
+        public List<List<TransitionItem>> Transitions;
+        internal int Level = 0;
     }
-    public class FlashItem
-    {
-        internal double Wait = 0;
-        internal double Period = 1000;
-    }
+
+
     public delegate void RunNext();
     public class FrameImage : Frame, IDisposable
     {
@@ -58,7 +119,8 @@ namespace StoGen.Classes
         private int CanvasShiftY = 0;//25;
         private int CanvasShiftX = 0;//10;
         public static System.Threading.Timer timer;
-        public static FlashData CurrentFlash = null;        
+
+        public static List<TransitionData> CurrentTransitionList = new List<TransitionData>();    
         public static ProcedureBase CurrentProc;
         public static volatile bool LoopProcessed = false;
         public static int debugcount = 0;
@@ -67,15 +129,7 @@ namespace StoGen.Classes
         {
             FrameImage.CurrentProc.GetNextCadre();
         }
-        /*
-        public static void FreezeDelegate()
-        {
-            Projector.PicContainer.Clip.Ctlcontrols.pause();
-        }
-        public static void SetPositionDelegate()
-        {
-            Projector.PicContainer.Clip.Ctlcontrols.currentPosition = FrameImage.ClipStartPos;
-        }*/
+     
         static DateTime lastupdated;
         public static int TimerPeriod = 40;
         public static int PausePeriod1 = 200;
@@ -85,53 +139,25 @@ namespace StoGen.Classes
         public static int WaitEnd = -1;
         public static void ProcessLoopDelegate()
         {
-            // Flash
-            if (CurrentFlash != null)
+            //Transition
+            if (CurrentTransitionList != null)
             {
-                if (CurrentFlash.Flashes.Count == 0)
+                foreach (var TranSeriesForImage in CurrentTransitionList)
                 {
-                    CurrentFlash = null;
-                }
-                else
-                {
-                    double Passed = DateTime.Now.TimeOfDay.TotalMilliseconds - CurrentFlash.Started;
-                    FlashItem fi = CurrentFlash.Flashes.First();
-                    if (fi.Wait > 0)
+                    foreach (var TranSeries in TranSeriesForImage.Transitions)
                     {
-                        fi.Wait = fi.Wait - Passed;
-                    }
-                    else
-                    {
-                        if (CurrentFlash.Counter == 0)
-                        {                            
-                            CurrentFlash.Started = DateTime.Now.TimeOfDay.TotalMilliseconds;
-                            CurrentFlash.Counter = fi.Period;
-                        }
-                        else
+                        var tran = TranSeries.Where(x => x.Active).FirstOrDefault();
+                        if (tran != null)
                         {
-                            if (CurrentFlash.Counter <= 0)
-                            {
-                                Projector.PicContainer.PicList[CurrentFlash.Level].Opacity = 0;
-                                CurrentFlash.Flashes.Remove(fi);
-                                CurrentFlash.Counter = 0;
-                            }
-                            else
-                            {
-                                CurrentFlash.Counter = CurrentFlash.Counter - (DateTime.Now.TimeOfDay.TotalMilliseconds - CurrentFlash.Started);
-                                if (CurrentFlash.Counter > 0)
-                                {
-                                    double a = CurrentFlash.Counter;
-                                    double b = fi.Period;
-                                    double op = (a / b);
-                                    Projector.PicContainer.PicList[CurrentFlash.Level].Opacity = op;
-                                }
-                            }
+                           if (tran.Execute(TranSeriesForImage.Level))
+                           {
+                                tran.Close();
+                           }
                         }
-
                     }
-
                 }
             }
+          
 
             if (Projector.TimerEnabled && (FrameImage.TimeToNext > 0))
             {
@@ -262,7 +288,7 @@ namespace StoGen.Classes
 
 
 
-            CurrentFlash = null;
+            CurrentTransitionList.Clear();
             base.Repaint();
             Pics.Sort(sorter);
 
@@ -418,10 +444,13 @@ namespace StoGen.Classes
                     if (pi.Props.SizeMode == PictureSizeMode.Clip) gf.Stretch = Stretch.Fill;
                 }
 
-                FrameImage.CurrentFlash = null;
-                if (!string.IsNullOrEmpty(pi.Props.Flash))
+                
+                if (!string.IsNullOrEmpty(pi.Props.Transition))
                 {
-                    FlashData.SetFlash(int.Parse(pi.Props.Flash), (int)pi.Props.Level);
+                    TransitionData trandata = new TransitionData();
+                    trandata.Level = (int)pi.Props.Level;
+                    trandata.Parse(pi.Props.Transition);
+                    FrameImage.CurrentTransitionList.Add(trandata);
                 }
 
                 gf.Source = imageSource;
@@ -540,35 +569,20 @@ namespace StoGen.Classes
         {
             TimerPeriods.Clear();
             timer.Change(Timeout.Infinite, Timeout.Infinite);
-            //if (Pics.Count == 0) Projector.PicContainer.Lci.Parent.Visibility = LayoutVisibility.Never;
-            //Projector.PicContainer.Clip.URL = null;
+
             Projector.PicContainer.Clip.Visibility = System.Windows.Visibility.Hidden;
-            /*
-            foreach (gifPictureEdit item in Projector.PicContainer.PicList)
-            {
-               if (!item.CadreLoaded) item.Image = null;
-            }
-            
-            foreach (PerPixelAlphaForm perPixelAlphaForm in Projector.PicContainer.FormList)
-            {
-                perPixelAlphaForm.Visible = false;
-            }
-            */
+           
         }
         public override void BeforeLeave()
         {
-
-            CurrentFlash = null;
+            CurrentTransitionList.Clear();
             PostProcessingData.Clear();
             TimerPeriods.Clear();
         }
         public override void SetVisible(bool show)
         {
 
-            //if (show) Projector.PicContainer.Lci.Parent.Visibility = LayoutVisibility.Always;
-            //else Projector.PicContainer.Lci.Parent.Visibility = LayoutVisibility.Never;
-
-            //base.SetVisible(show);
+         
         }
 
         int CadreShifted = -1;

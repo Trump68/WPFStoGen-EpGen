@@ -1391,6 +1391,7 @@ namespace StoGen.Classes
                 {
                     p.NextCadre = Convert.ToDouble(val);
                 }
+                else if (mark == "TRN") p.Transition = val;
                 else if (mark == "Order") CadreOrder = Convert.ToInt32(val);
 
             }
