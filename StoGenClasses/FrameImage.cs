@@ -32,7 +32,7 @@ namespace StoGen.Classes
             this.Transitions = new List<List<TransitionItem>>();
             foreach (var serie in series)
             {
-                List<string> elements = serie.Split('-').ToList();
+                List<string> elements = serie.Split('>').ToList();
                 List<TransitionItem> elementList = new List<TransitionItem>();
                 foreach (var element in elements)
                 {

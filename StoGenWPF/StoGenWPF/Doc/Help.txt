@@ -78,7 +78,7 @@ NextCadre:
 Order:
 
 TRN: 
-       [T.W.S.B.E.O]-[T.W.S.B.E.O]*[T.W.S.B.E.O]-[T.W.S.B.E.O]
+       [T.W.S.B.E.O]>[T.W.S.B.E.O]*[T.W.S.B.E.O]>[T.W.S.B.E.O]
 	T- type of transition
 	W- wait time in ms
 	S- time of transition
@@ -86,4 +86,4 @@ TRN:
 	E- End value     (optional)
 	O- Options value (optional)
 
-	TRN=..500.100-..1000.90-..1000.75   {Flash x 3}
+	TRN=..500.100>..1000.90>..1000.75   {Flash x 3}
