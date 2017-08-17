@@ -385,7 +385,7 @@ namespace StoGen.Classes
             string item = itemCont.Complete;
 
             string path = this.DefaultPath;
-            if (itemCont.Original.StartsWith(@"File#"))
+            if (itemCont.Original.StartsWith(@"File#") || Path.IsPathRooted(itemCont.Original))
             {
                 path = Path.GetDirectoryName(itemCont.Original.Replace(@"File#", string.Empty));
             }
@@ -1103,13 +1103,13 @@ namespace StoGen.Classes
                 }
                 else if (item.StartsWith(@"#"))
                 {
-                    var it = new StringDataContainer(originalitem, ApplayInline(item, KeyVarContainer));
+                    var it = new StringDataContainer(fn, ApplayInline(item, KeyVarContainer));
                     it.Mark = currentmark;
                     listtoprocess.Add(it);
                 }
                 else
                 {
-                    var it = new StringDataContainer(originalitem, item);
+                    var it = new StringDataContainer(fn, item);
                     it.Mark = currentmark;
                     listtoprocess.Add(it);
                 };
@@ -1139,7 +1139,7 @@ namespace StoGen.Classes
                 string fn = vals[1];
                 if (!Path.IsPathRooted(fn))
                 {
-                    fn = Path.Combine(path, fn);
+                    fn = Path.GetFullPath(Path.Combine(path, fn));
                 }
                 result = GetProcessedFile(fn, part, KeyVarContainer, originalitem, out header);
             }
