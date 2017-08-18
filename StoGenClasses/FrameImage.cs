@@ -25,7 +25,8 @@ namespace StoGen.Classes
 {
 
     public class TransitionData
-    {      
+    {
+       
         public void Parse(string strdata)
         {
             List<string> series = strdata.Split('*').ToList();
@@ -49,10 +50,22 @@ namespace StoGen.Classes
             {
                 return new TransitionOpacity(vals);
             }
+            else if (vals[0] == "1" || string.IsNullOrEmpty(vals[0]))
+            {
+                return new TransitionX(vals);
+            }
             return null;
         }
         public class TransitionItem
         {
+            public TransitionItem(string[] vals)
+            {
+                if (vals.Length > 1 && !string.IsNullOrEmpty(vals[1])) this.Wait = long.Parse(vals[1]);
+                if (vals.Length > 2 && !string.IsNullOrEmpty(vals[2])) this.Span = long.Parse(vals[2]);
+                if (vals.Length > 3 && !string.IsNullOrEmpty(vals[3])) this.Begin = long.Parse(vals[3]);
+                if (vals.Length > 4 && !string.IsNullOrEmpty(vals[4])) this.End = long.Parse(vals[4]);
+                if (vals.Length > 5 && !string.IsNullOrEmpty(vals[5])) this.Option = long.Parse(vals[5]);
+            }
             internal double Counter = 0;
             internal double Started = 0;
             public long Wait;
@@ -74,14 +87,8 @@ namespace StoGen.Classes
         }
         public class TransitionOpacity: TransitionItem
         {
-            public TransitionOpacity(string[] vals)
-            {
-                if (vals.Length > 1 && !string.IsNullOrEmpty(vals[1])) this.Wait   = long.Parse(vals[1]);
-                if (vals.Length > 2 && !string.IsNullOrEmpty(vals[2])) this.Span   = long.Parse(vals[2]);
-                if (vals.Length > 3 && !string.IsNullOrEmpty(vals[3])) this.Begin  = long.Parse(vals[3]);
-                if (vals.Length > 4 && !string.IsNullOrEmpty(vals[4])) this.End    = long.Parse(vals[4]);
-                if (vals.Length > 5 && !string.IsNullOrEmpty(vals[5])) this.Option = long.Parse(vals[5]);
-            }
+            public TransitionOpacity(string[] vals) : base(vals) { }
+
             public override bool Execute(int level)
             {
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
@@ -98,15 +105,47 @@ namespace StoGen.Classes
                 }
                 else
                 {
-                    double delta = this.End - this.Begin;                    
-                    double timedelta = ((this.Span - this.Counter )/ this.Span);
-                    double op = delta * timedelta;
+                    double delta = this.End - this.Begin;
+                    double pass = this.Span - this.Counter; //сколько прошло
+                    double timedelta = (pass / this.Span); // доля приращения, в конце должна быть 1 (pass = span * timedelta)
+                    timedelta = Math.Pow(timedelta,2);  //квадратичная
+                    double op = delta * timedelta; //  приращение                    
                     Projector.PicContainer.PicList[level].Opacity = ((this.Begin + op) /100.1);
                 }
                 return false;
             }
         }
-
+        public class TransitionX : TransitionItem
+        {
+            public TransitionX(string[] vals) : base(vals) { }
+            public override bool Execute(int level)
+            {
+                double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
+                if (this.Started == 0)
+                {
+                    this.Started = now;
+                }
+                if (now < (this.Started + this.Wait)) return false;
+                this.Counter = this.Started + this.Span - now;
+                if (this.Counter <= 0)
+                {
+                    Projector.PicContainer.PicList[level].Margin = new System.Windows.Thickness(this.End, Projector.PicContainer.PicList[level].Margin.Top, 0, 0);                    
+                    return true;
+                }
+                else
+                {
+                    double delta = this.End - this.Begin;
+                    double pass = this.Span - this.Counter; //сколько прошло
+                    double timedelta = (pass / this.Span); // доля приращения, в конце должна быть 1 (pass = span * timedelta)
+                    timedelta = Math.Pow(timedelta, 0.2);  //квадратичная
+                    
+                    //timedelta = (Math.Sqrt(Math.Sqrt(timedelta)));  //квадратичная
+                    double op = delta * timedelta; //  приращение         
+                    Projector.PicContainer.PicList[level].Margin = new System.Windows.Thickness(this.Begin + op, Projector.PicContainer.PicList[level].Margin.Top, 0, 0);
+                }
+                return false;
+            }
+        }
         public List<List<TransitionItem>> Transitions;
         internal int Level = 0;
     }
