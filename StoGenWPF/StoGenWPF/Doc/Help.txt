@@ -78,16 +78,15 @@ NextCadre:
 Order:
 
 TRN: 
-       [T.O.S.B.E]>[T.O.S.B.E]*[T.O.S.B.E]~
+       [T.O.S.B]>[T.O.S.B]*[T.O.S.B]~
 	T- type of transition
 	O- Options value
 	S- time of transition
 	B- Begin value   (optional)
-	E- End value     (optional)
 
 		T: O - opacity
-		   X- coord X transition
-		   Y- coord Y transition
+		   X- coord X transition (relative)
+		   Y- coord Y transition (relative)
 		   W- Wait (example W..3000)
 		   S- scaleX (if relative - %)
 		   C- scaleY (if relative - %)
@@ -96,10 +95,10 @@ TRN:
 
 		o: A-триггер
 		   B-линейная	
-		   С-степенная (замедл)  Cn1n2e (n1 - отсечка остановки, если 1 - нет отсечки, в конце замедл до 0, n2 - степень [1-9], e- контроль по конечному значению (может не быть))
-                          пример: X.C32e.3000.0.300
-		   D-степенная (ускор)   Dn1n2e (n1 - отсечка остановки, если 1 - нет отсечки, n2 - степень [1-99], e- контроль по конечному значению (может не быть))
-                          пример: X.D15.500.0.10000
+		   С-степенная (замедл)
+            		   Cn1n2e (n1 - степень, из двух знаков, <10 замедление, > 10 ускорение , остальные цифры - отсечка
+                          пример: X.C032.3000.300
+
 
 	~ если группа заканчивается с этим знаком, то после завершения ее вся последовательность повторяется
 
