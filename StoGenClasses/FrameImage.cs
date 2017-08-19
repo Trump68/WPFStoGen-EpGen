@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,47 +34,92 @@ namespace StoGen.Classes
             this.Transitions = new List<List<TransitionItem>>();
             foreach (var serie in series)
             {
-                List<string> elements = serie.Split('>').ToList();
+                bool isEndless = false;
+                string s = serie;
+                if (serie.EndsWith("~"))
+                {
+                    s = serie.Replace("~", string.Empty);
+                    isEndless = true;
+                }
+                List<string> elements = s.Split('>').ToList();
                 List<TransitionItem> elementList = new List<TransitionItem>();
                 foreach (var element in elements)
                 {
-                    TransitionItem res = CreateTransitionItem(element);
-                    elementList.Add(res);
+                    //TransitionItem res = CreateTransitionItem(element);
+                    elementList.AddRange(CreateTransitionItem(element));
                 }
+                elementList.Last().IsEndless = isEndless;
                 Transitions.Add(elementList);
             }
         }
-        private static TransitionItem CreateTransitionItem(string data)
+        private static List<TransitionItem> CreateTransitionItem(string data)
         {
+            List<TransitionItem> result = new List<TransitionItem>();
+
             string[] vals = data.Split('.');
-            if (vals[0] == "0" || string.IsNullOrEmpty(vals[0]))
-            {
-                return new TransitionOpacity(vals);
+            if (vals[0].StartsWith("O"))
+            {                
+                result.Add(new TransitionOpacity(vals));
             }
-            else if (vals[0] == "1" || string.IsNullOrEmpty(vals[0]))
+            else if (vals[0].StartsWith("X"))
             {
-                return new TransitionX(vals);
+                result.Add(new TransitionXY(vals) { isYcoord = false });
             }
-            return null;
+            else if (vals[0].StartsWith("Y"))
+            {
+                result.Add(new TransitionXY(vals) { isYcoord = true });
+            }
+            else if (vals[0].StartsWith("W"))
+            {
+                result.Add(new TransitionWait(vals));
+            }
+            else if (vals[0].StartsWith("A"))
+            {
+                result.Add(new TransitionScaleXY(vals) { isYCoord = false });
+                result.Add(new TransitionScaleXY(vals) { isYCoord = true });
+            }
+            else if (vals[0].StartsWith("S"))
+            {
+                result.Add(new TransitionScaleXY(vals) { isYCoord = false });
+            }
+            else if (vals[0].StartsWith("C"))
+            {
+                result.Add(new TransitionScaleXY(vals) { isYCoord = true });
+            }
+            else if (vals[0].StartsWith("R"))
+            {
+                result.Add(new TransitionRotate(vals));
+            }
+            return result;
         }
         public class TransitionItem
         {
             public TransitionItem(string[] vals)
             {
-                if (vals.Length > 1 && !string.IsNullOrEmpty(vals[1])) this.Wait = long.Parse(vals[1]);
+                if (vals[0].EndsWith("r")) this.IsRelative = true;
+                if (vals.Length > 1 && !string.IsNullOrEmpty(vals[1]))
+                {
+                    this.Option = vals[1];
+                    this.CheckEnd = this.Option.EndsWith("e");
+                }
                 if (vals.Length > 2 && !string.IsNullOrEmpty(vals[2])) this.Span = long.Parse(vals[2]);
-                if (vals.Length > 3 && !string.IsNullOrEmpty(vals[3])) this.Begin = long.Parse(vals[3]);
-                if (vals.Length > 4 && !string.IsNullOrEmpty(vals[4])) this.End = long.Parse(vals[4]);
-                if (vals.Length > 5 && !string.IsNullOrEmpty(vals[5])) this.Option = long.Parse(vals[5]);
+                if (vals.Length > 3 && !string.IsNullOrEmpty(vals[3])) this.Begin = this.BeginR = long.Parse(vals[3]);
+                if (vals.Length > 4 && !string.IsNullOrEmpty(vals[4])) this.End = this.EndR = long.Parse(vals[4]);                
             }
             internal double Counter = 0;
             internal double Started = 0;
-            public long Wait;
             public long Span;
-            public long Begin;
-            public long End;
-            public long Option;
-            public bool Active = true;            
+            public double Begin;
+            public double End;
+            public double BeginR;
+            public double EndR;
+            public string Option;
+            public bool Active = true;
+            public bool CheckEnd = false;
+
+            public bool IsEndless = false;
+            public bool IsRelative = false;
+
             public virtual bool Execute(int level)
             {
                 return true;
@@ -84,40 +130,245 @@ namespace StoGen.Classes
                Started = 0;
                this.Active = false;
             }
+            public double CalcTran(string TranType)
+            {
+                double result = 0;
+                double delta = this.End - this.Begin;
+                double pass = this.Span - this.Counter; //сколько прошло
+                double timedelta = (pass / this.Span); // доля приращения, в конце должна быть 1 (pass = span * timedelta)
+                if (TranType.StartsWith("C"))//замедл
+                {
+                    int otsechka = Int32.Parse(TranType.Substring(1, 1));
+                    timedelta = timedelta * otsechka; //отсечка
+                    float stepen = float.Parse(TranType.Substring(2, 1)) / 10;
+                    timedelta = Math.Pow(timedelta, stepen);
+                }
+                else if (TranType.StartsWith("D"))
+                {
+                    int otsechka = Int32.Parse(TranType.Substring(1, 1));
+                    timedelta = timedelta * otsechka; //отсечка
+                    float stepen = float.Parse(TranType.Substring(2, 1));
+                    timedelta = Math.Pow(timedelta, stepen);  //Ускор
+                }
+                
+                result = delta * timedelta; //  приращение     
+                if (this.CheckEnd)
+                {
+                    if ((this.Begin + result) > this.End)
+                    {
+                        result = this.End;
+                    }
+                }
+                return result;
+            }
         }
         public class TransitionOpacity: TransitionItem
         {
             public TransitionOpacity(string[] vals) : base(vals) { }
 
             public override bool Execute(int level)
-            {
+            {                
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
                 if (this.Started == 0)
                 {
-                    this.Started = now;                    
+                    this.Started = now;
+                    if (IsRelative)
+                    {
+                        this.Begin = Projector.PicContainer.PicList[level].Opacity + this.Begin;
+                        this.End = Projector.PicContainer.PicList[level].Opacity + this.End;
+                    }                    
                 }
-                if (now < (this.Started + this.Wait)) return false;
+                if (now < (this.Started)) return false;
                 this.Counter = this.Started + this.Span  - now;
                 if (this.Counter <= 0)
                 {
-                    Projector.PicContainer.PicList[level].Opacity = (this.End / 100.1);
+                    if (this.CheckEnd)
+                        Projector.PicContainer.PicList[level].Opacity = (this.End / 100.1);
                     return true;
                 }
                 else
                 {
-                    double delta = this.End - this.Begin;
-                    double pass = this.Span - this.Counter; //сколько прошло
-                    double timedelta = (pass / this.Span); // доля приращения, в конце должна быть 1 (pass = span * timedelta)
-                    timedelta = Math.Pow(timedelta,2);  //квадратичная
-                    double op = delta * timedelta; //  приращение                    
-                    Projector.PicContainer.PicList[level].Opacity = ((this.Begin + op) /100.1);
+                    double delta = this.CalcTran(this.Option);
+                    
+                    Projector.PicContainer.PicList[level].Opacity = ((this.Begin + delta) /100.1);
                 }
                 return false;
             }
         }
-        public class TransitionX : TransitionItem
+
+        public class TransitionXY : TransitionItem
         {
-            public TransitionX(string[] vals) : base(vals) { }
+            public TransitionXY(string[] vals) : base(vals) { }
+            public bool isYcoord = false;
+            
+
+            public override bool Execute(int level)
+            {
+                
+                double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
+                if (this.Started == 0)
+                {
+                    this.Started = now;
+                    if (IsRelative)
+                    {
+                        if (!isYcoord)
+                        {
+                            this.Begin = Projector.PicContainer.PicList[level].Margin.Left + this.BeginR;
+                            this.End   = Projector.PicContainer.PicList[level].Margin.Left + this.EndR;
+                        }
+                        else
+                        {
+                            this.Begin = Projector.PicContainer.PicList[level].Margin.Top + this.BeginR;
+                            this.End   = Projector.PicContainer.PicList[level].Margin.Top + this.EndR;
+                        }
+                    }
+                }
+                //if (now < (this.Started)) return false;
+                this.Counter = this.Started + this.Span - now;
+                if (this.Counter <= 0)
+                {
+                    if (this.CheckEnd || this.Option.StartsWith("A"))
+                    {
+                        if (!isYcoord)
+                            Projector.PicContainer.PicList[level].Margin = new System.Windows.Thickness(this.End, Projector.PicContainer.PicList[level].Margin.Top, 0, 0);
+                        else
+                            Projector.PicContainer.PicList[level].Margin = new System.Windows.Thickness(Projector.PicContainer.PicList[level].Margin.Left, this.End, 0, 0);
+                    }
+                    return true;
+                }
+                else
+                {
+                    if (!this.Option.StartsWith("A"))
+                    {
+                        double delta = this.CalcTran(this.Option);
+                        if (!isYcoord)
+                            Projector.PicContainer.PicList[level].Margin = new System.Windows.Thickness(this.Begin + delta, Projector.PicContainer.PicList[level].Margin.Top, 0, 0);
+                        else
+                            Projector.PicContainer.PicList[level].Margin = new System.Windows.Thickness(Projector.PicContainer.PicList[level].Margin.Left, this.Begin + delta, 0, 0);
+                    }
+                }
+                return false;
+            }
+        }
+
+        public class TransitionScaleXY : TransitionItem
+        {
+            public bool isYCoord = false;
+            public TransitionScaleXY(string[] vals) : base(vals) {  }
+            public override bool Execute(int level)
+            {
+                this.BeginR = 100;                
+                double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
+                if (this.Started == 0)
+                {
+                    Projector.PicContainer.PicList[level].Stretch = Stretch.Fill;
+                    this.Started = now;
+                    if (IsRelative)
+                    {
+                        if (!isYCoord)
+                        {
+                            this.Begin = Projector.PicContainer.PicList[level].Width;
+                        }
+                        else
+                        {
+                            this.Begin = Projector.PicContainer.PicList[level].Height;
+                        }
+                        this.End = this.Begin * (this.EndR / 100);
+                    }
+                }
+                //if (now < (this.Started)) return false;
+                this.Counter = this.Started + this.Span - now;
+                if (this.Counter <= 0)
+                {
+                    if (this.CheckEnd || this.Option.StartsWith("A"))
+                    {
+                        if (!isYCoord)
+                        {
+                            if (this.End == -1)
+                                Projector.PicContainer.PicList[level].Width = Projector.PicContainer.PicList[level].Source.Width;
+                            else
+                                Projector.PicContainer.PicList[level].Width = this.End;
+                        }
+                        else
+                        {
+                            if (this.End == -1)
+                                Projector.PicContainer.PicList[level].Height = Projector.PicContainer.PicList[level].Source.Height;
+                            else
+                                Projector.PicContainer.PicList[level].Height = this.End;
+                        }                               
+                    }
+                    return true;
+                }
+                else if (this.Counter != this.Span)
+                {
+                    if (!this.Option.StartsWith("A"))
+                    {
+                        double delta = this.CalcTran(this.Option);
+                        if (!isYCoord)
+                        {
+                            Projector.PicContainer.PicList[level].Width = (this.Begin + delta);
+                       }
+                        else
+                        {
+                            Projector.PicContainer.PicList[level].Height = (this.Begin + delta);
+                        }
+                        //SystemSounds.Beep.Play();
+                    }
+                }
+                return false;
+            }
+        }
+        public class TransitionRotate : TransitionItem
+        {
+            
+            public TransitionRotate(string[] vals) : base(vals) { }
+            public override bool Execute(int level)
+            {
+                this.BeginR = 0;
+                double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
+                if (this.Started == 0)
+                {
+                    this.Started = now;
+                    if (IsRelative)
+                    {
+                        this.Begin = this.BeginR;
+                        this.End = this.EndR;
+                    }
+                }
+                //if (now < (this.Started)) return false;
+                this.Counter = this.Started + this.Span - now;
+                if (this.Counter <= 0)
+                {
+                    if (this.CheckEnd || this.Option.StartsWith("A"))
+                    {
+                        var transformGroup = new TransformGroup();
+                        double delta = this.CalcTran(this.Option);
+                        var roateTransform = new RotateTransform(this.End);
+                        transformGroup.Children.Add(roateTransform);
+                        Projector.PicContainer.PicList[level].RenderTransform = transformGroup;
+                    }
+                    return true;
+                }
+                else if (this.Counter != this.Span)
+                {
+                    if (!this.Option.StartsWith("A"))
+                    {
+                        var transformGroup = new TransformGroup();
+                        double delta = this.CalcTran(this.Option);
+                        var roateTransform = new RotateTransform(this.Begin + delta);
+                        transformGroup.Children.Add(roateTransform);
+                        Projector.PicContainer.PicList[level].RenderTransform = transformGroup;                   
+                    }
+                }
+                return false;
+            }
+        }
+
+
+        public class TransitionWait : TransitionItem
+        {
+            public TransitionWait(string[] vals) : base(vals) { }
+
             public override bool Execute(int level)
             {
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
@@ -125,27 +376,16 @@ namespace StoGen.Classes
                 {
                     this.Started = now;
                 }
-                if (now < (this.Started + this.Wait)) return false;
+                if (now < (this.Started)) return false;
                 this.Counter = this.Started + this.Span - now;
                 if (this.Counter <= 0)
                 {
-                    Projector.PicContainer.PicList[level].Margin = new System.Windows.Thickness(this.End, Projector.PicContainer.PicList[level].Margin.Top, 0, 0);                    
                     return true;
-                }
-                else
-                {
-                    double delta = this.End - this.Begin;
-                    double pass = this.Span - this.Counter; //сколько прошло
-                    double timedelta = (pass / this.Span); // доля приращения, в конце должна быть 1 (pass = span * timedelta)
-                    timedelta = Math.Pow(timedelta, 0.2);  //квадратичная
-                    
-                    //timedelta = (Math.Sqrt(Math.Sqrt(timedelta)));  //квадратичная
-                    double op = delta * timedelta; //  приращение         
-                    Projector.PicContainer.PicList[level].Margin = new System.Windows.Thickness(this.Begin + op, Projector.PicContainer.PicList[level].Margin.Top, 0, 0);
                 }
                 return false;
             }
         }
+
         public List<List<TransitionItem>> Transitions;
         internal int Level = 0;
     }
@@ -170,7 +410,7 @@ namespace StoGen.Classes
         }
      
         static DateTime lastupdated;
-        public static int TimerPeriod = 40;
+        public static int TimerPeriod = 20;
         public static int PausePeriod1 = 200;
         public static int PausePeriod2 = 200;
         public static int TimeToNext = -1;
@@ -191,9 +431,14 @@ namespace StoGen.Classes
                            if (tran.Execute(TranSeriesForImage.Level))
                            {
                                 tran.Close();
+                                if (tran.IsEndless)
+                                {
+                                    TranSeries.ForEach(x => x.Active = true);
+                                }
                            }
                         }
                     }
+
                 }
             }
           
@@ -295,7 +540,7 @@ namespace StoGen.Classes
             timer.Change(Timeout.Infinite, Timeout.Infinite);
 
             RunNext op1 = new RunNext(FrameImage.ProcessLoopDelegate);
-            Projector.PicContainer.Clip.Dispatcher.Invoke(op1);                       
+            Projector.PicContainer.Clip.Dispatcher.Invoke(op1,System.Windows.Threading.DispatcherPriority.Render);                       
             
             if (timer != null) timer.Change(TimerPeriod, TimerPeriod);
         }
@@ -353,10 +598,10 @@ namespace StoGen.Classes
                 PictureItem pi = Pics[i];
                 string fn = pi.Props.FileName;
 
-                System.Windows.Controls.Image gf = Projector.PicContainer.PicList[(int)pi.Props.Level];
-                if (gf.Tag != null && (string)gf.Tag == fn && !pi.Props.Reload)
+                //System.Windows.Controls.Image gf = Projector.PicContainer.PicList[(int)pi.Props.Level];
+                if (Projector.PicContainer.PicList[(int)pi.Props.Level].Tag != null && (string)Projector.PicContainer.PicList[(int)pi.Props.Level].Tag == fn && !pi.Props.Reload)
                 {
-                    gf.Tag = fn;
+                    Projector.PicContainer.PicList[(int)pi.Props.Level].Tag = fn;
                     continue;
                 }
 
@@ -468,7 +713,7 @@ namespace StoGen.Classes
                 {
                     if (pi.Props.SizeX == -1) pi.Props.SizeX = imageSource.PixelWidth;
                     if (pi.Props.SizeY == -1) pi.Props.SizeY = imageSource.PixelHeight;
-                    gf.Stretch = Stretch.Uniform;
+                    Projector.PicContainer.PicList[(int)pi.Props.Level].Stretch = Stretch.Uniform;
                 }
                 else if (pi.Props.SizeX == -2 || pi.Props.SizeY == -2)
                 {
@@ -476,11 +721,11 @@ namespace StoGen.Classes
                     pi.Props.SizeX = 1600;
                     //if (image.Size.Height > 900)
                     pi.Props.SizeY = 900;
-                    gf.Stretch = Stretch.Uniform;
+                    Projector.PicContainer.PicList[(int)pi.Props.Level].Stretch = Stretch.Uniform;
                 }
                 else
                 {
-                    if (pi.Props.SizeMode == PictureSizeMode.Clip) gf.Stretch = Stretch.Fill;
+                    if (pi.Props.SizeMode == PictureSizeMode.Clip) Projector.PicContainer.PicList[(int)pi.Props.Level].Stretch = Stretch.Fill;
                 }
 
                 
@@ -492,10 +737,10 @@ namespace StoGen.Classes
                     FrameImage.CurrentTransitionList.Add(trandata);
                 }
 
-                gf.Source = imageSource;
+                Projector.PicContainer.PicList[(int)pi.Props.Level].Source = imageSource;
 
-                gf.Width = pi.Props.SizeX;
-                gf.Height = pi.Props.SizeY;
+                Projector.PicContainer.PicList[(int)pi.Props.Level].Width = pi.Props.SizeX;
+                Projector.PicContainer.PicList[(int)pi.Props.Level].Height = pi.Props.SizeY;
 
 
 

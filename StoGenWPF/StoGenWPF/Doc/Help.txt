@@ -78,12 +78,31 @@ NextCadre:
 Order:
 
 TRN: 
-       [T.W.S.B.E.O]>[T.W.S.B.E.O]*[T.W.S.B.E.O]>[T.W.S.B.E.O]
+       [T.O.S.B.E]>[T.O.S.B.E]*[T.O.S.B.E]~
 	T- type of transition
-	W- wait time in ms
+	O- Options value
 	S- time of transition
 	B- Begin value   (optional)
 	E- End value     (optional)
-	O- Options value (optional)
 
-	TRN=..500.100>..1000.90>..1000.75   {Flash x 3}
+		T: O - opacity
+		   X- coord X transition
+		   Y- coord Y transition
+		   W- Wait (example W..3000)
+		   S- scaleX (if relative - %)
+		   C- scaleY (if relative - %)
+		   A - scaleXY (if relative - %)
+		   R - rotate (in degrees)
+
+		o: A-триггер
+		   B-линейная	
+		   С-степенная (замедл)  Cn1n2e (n1 - отсечка остановки, если 1 - нет отсечки, в конце замедл до 0, n2 - степень [1-9], e- контроль по конечному значению (может не быть))
+                          пример: X.C32e.3000.0.300
+		   D-степенная (ускор)   Dn1n2e (n1 - отсечка остановки, если 1 - нет отсечки, n2 - степень [1-99], e- контроль по конечному значению (может не быть))
+                          пример: X.D15.500.0.10000
+
+	~ если группа заканчивается с этим знаком, то после завершения ее вся последовательность повторяется
+
+
+
+TRN=Y.C32.1000.0.300*X.C32.1000.0.300
