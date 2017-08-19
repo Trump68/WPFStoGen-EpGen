@@ -46,56 +46,57 @@ namespace StoGen.Classes
                 foreach (var element in elements)
                 {
                     //TransitionItem res = CreateTransitionItem(element);
-                    elementList.AddRange(CreateTransitionItem(element));
+                    elementList.AddRange(CreateTransitionItem(element, this.Level));
                 }
                 elementList.Last().IsEndless = isEndless;
                 Transitions.Add(elementList);
             }
         }
-        private static List<TransitionItem> CreateTransitionItem(string data)
+        private static List<TransitionItem> CreateTransitionItem(string data, int level)
         {
             List<TransitionItem> result = new List<TransitionItem>();
 
             string[] vals = data.Split('.');
             if (vals[0].StartsWith("O"))
             {                
-                result.Add(new TransitionOpacity(vals));
+                result.Add(new TransitionOpacity(vals,level));
             }
             else if (vals[0].StartsWith("X"))
             {
-                result.Add(new TransitionXY(vals) { isYcoord = false });
+                result.Add(new TransitionXY(vals, level) { isYcoord = false });
             }
             else if (vals[0].StartsWith("Y"))
             {
-                result.Add(new TransitionXY(vals) { isYcoord = true });
+                result.Add(new TransitionXY(vals, level) { isYcoord = true });
             }
             else if (vals[0].StartsWith("W"))
             {
-                result.Add(new TransitionWait(vals));
+                result.Add(new TransitionWait(vals, level));
             }
             else if (vals[0].StartsWith("A"))
             {
-                result.Add(new TransitionScaleXY(vals) { isYCoord = false });
-                result.Add(new TransitionScaleXY(vals) { isYCoord = true });
+                result.Add(new TransitionScaleXY(vals, level) { isYCoord = false });
+                result.Add(new TransitionScaleXY(vals, level) { isYCoord = true });
             }
             else if (vals[0].StartsWith("S"))
             {
-                result.Add(new TransitionScaleXY(vals) { isYCoord = false });
+                result.Add(new TransitionScaleXY(vals, level) { isYCoord = false });
             }
             else if (vals[0].StartsWith("C"))
             {
-                result.Add(new TransitionScaleXY(vals) { isYCoord = true });
+                result.Add(new TransitionScaleXY(vals, level) { isYCoord = true });
             }
             else if (vals[0].StartsWith("R"))
             {
-                result.Add(new TransitionRotate(vals));
+                result.Add(new TransitionRotate(vals, level));
             }
             return result;
         }
         public class TransitionItem
         {
-            public TransitionItem(string[] vals)
+            public TransitionItem(string[] vals, int level)
             {
+                this.Level = level;
                 if (vals[0].EndsWith("r")) this.IsRelative = true;
                 if (vals.Length > 1 && !string.IsNullOrEmpty(vals[1]))
                 {
@@ -104,7 +105,7 @@ namespace StoGen.Classes
                 }
                 if (vals.Length > 2 && !string.IsNullOrEmpty(vals[2])) this.Span = long.Parse(vals[2]);
                 if (vals.Length > 3 && !string.IsNullOrEmpty(vals[3])) this.Begin = this.BeginR = long.Parse(vals[3]);
-                if (vals.Length > 4 && !string.IsNullOrEmpty(vals[4])) this.End = this.EndR = long.Parse(vals[4]);                
+                if (vals.Length > 4 && !string.IsNullOrEmpty(vals[4])) this.End = this.EndR = long.Parse(vals[4]);
             }
             internal double Counter = 0;
             internal double Started = 0;
@@ -116,19 +117,25 @@ namespace StoGen.Classes
             public string Option;
             public bool Active = true;
             public bool CheckEnd = false;
-
+            public int Level;
             public bool IsEndless = false;
             public bool IsRelative = false;
 
-            public virtual bool Execute(int level)
+            public virtual bool Execute()
             {
                 return true;
             }
             public void Close()
             {
-               Counter = 0;
-               Started = 0;
-               this.Active = false;
+                Counter = 0;
+                Started = 0;
+                this.Active = false;
+            }
+            public virtual double CurrentVal
+            {   get
+                { return 0; }
+                set
+                { }
             }
             public double CalcTran(string TranType)
             {
@@ -136,6 +143,7 @@ namespace StoGen.Classes
                 double delta = this.End - this.Begin;
                 double pass = this.Span - this.Counter; //сколько прошло
                 double timedelta = (pass / this.Span); // доля приращения, в конце должна быть 1 (pass = span * timedelta)
+
                 if (TranType.StartsWith("C"))//замедл
                 {
                     int otsechka = Int32.Parse(TranType.Substring(1, 1));
@@ -156,7 +164,7 @@ namespace StoGen.Classes
                 {
                     if ((this.Begin + result) > this.End)
                     {
-                        result = this.End;
+                            result = this.End;
                     }
                 }
                 return result;
@@ -164,9 +172,19 @@ namespace StoGen.Classes
         }
         public class TransitionOpacity: TransitionItem
         {
-            public TransitionOpacity(string[] vals) : base(vals) { }
-
-            public override bool Execute(int level)
+            public TransitionOpacity(string[] vals, int level) : base(vals, level) { }
+            public override double CurrentVal
+            {
+                get
+                {
+                    return Projector.PicContainer.PicList[this.Level].Opacity;
+                }
+                set
+                {
+                    Projector.PicContainer.PicList[this.Level].Opacity = value;                   
+                }
+            }
+            public override bool Execute()
             {                
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
                 if (this.Started == 0)
@@ -174,8 +192,8 @@ namespace StoGen.Classes
                     this.Started = now;
                     if (IsRelative)
                     {
-                        this.Begin = Projector.PicContainer.PicList[level].Opacity + this.Begin;
-                        this.End = Projector.PicContainer.PicList[level].Opacity + this.End;
+                        this.Begin = CurrentVal + this.Begin;
+                        this.End = CurrentVal + this.End;
                     }                    
                 }
                 if (now < (this.Started)) return false;
@@ -183,14 +201,14 @@ namespace StoGen.Classes
                 if (this.Counter <= 0)
                 {
                     if (this.CheckEnd)
-                        Projector.PicContainer.PicList[level].Opacity = (this.End / 100.1);
+                        CurrentVal = (this.End / 100.1);
                     return true;
                 }
                 else
                 {
                     double delta = this.CalcTran(this.Option);
-                    
-                    Projector.PicContainer.PicList[level].Opacity = ((this.Begin + delta) /100.1);
+
+                    CurrentVal = ((this.Begin + delta) /100.1);
                 }
                 return false;
             }
@@ -198,11 +216,28 @@ namespace StoGen.Classes
 
         public class TransitionXY : TransitionItem
         {
-            public TransitionXY(string[] vals) : base(vals) { }
+            public TransitionXY(string[] vals, int level) : base(vals, level) { }
             public bool isYcoord = false;
-            
 
-            public override bool Execute(int level)
+
+            public override double CurrentVal
+            {
+                get
+                {
+                    if (!isYcoord)
+                       return  Projector.PicContainer.PicList[this.Level].Margin.Left;
+                    else
+                        return Projector.PicContainer.PicList[this.Level].Margin.Top;
+                }
+                set
+                {
+                    if (!isYcoord)
+                         Projector.PicContainer.PicList[this.Level].Margin = new System.Windows.Thickness(value, Projector.PicContainer.PicList[this.Level].Margin.Top, 0, 0);
+                    else
+                         Projector.PicContainer.PicList[this.Level].Margin = new System.Windows.Thickness(Projector.PicContainer.PicList[this.Level].Margin.Left, value, 0, 0);
+                }
+            }
+            public override bool Execute()
             {
                 
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
@@ -211,28 +246,19 @@ namespace StoGen.Classes
                     this.Started = now;
                     if (IsRelative)
                     {
-                        if (!isYcoord)
-                        {
-                            this.Begin = Projector.PicContainer.PicList[level].Margin.Left + this.BeginR;
-                            this.End   = Projector.PicContainer.PicList[level].Margin.Left + this.EndR;
-                        }
-                        else
-                        {
-                            this.Begin = Projector.PicContainer.PicList[level].Margin.Top + this.BeginR;
-                            this.End   = Projector.PicContainer.PicList[level].Margin.Top + this.EndR;
-                        }
+                        this.Begin = CurrentVal + this.BeginR;
+                        this.End = CurrentVal + this.EndR;                       
                     }
                 }
-                //if (now < (this.Started)) return false;
                 this.Counter = this.Started + this.Span - now;
                 if (this.Counter <= 0)
                 {
-                    if (this.CheckEnd || this.Option.StartsWith("A"))
+                    if (!this.IsRelative)
                     {
-                        if (!isYcoord)
-                            Projector.PicContainer.PicList[level].Margin = new System.Windows.Thickness(this.End, Projector.PicContainer.PicList[level].Margin.Top, 0, 0);
-                        else
-                            Projector.PicContainer.PicList[level].Margin = new System.Windows.Thickness(Projector.PicContainer.PicList[level].Margin.Left, this.End, 0, 0);
+                        if (this.CheckEnd || this.Option.StartsWith("A"))
+                        {
+                            CurrentVal = this.End;
+                        }
                     }
                     return true;
                 }
@@ -241,10 +267,10 @@ namespace StoGen.Classes
                     if (!this.Option.StartsWith("A"))
                     {
                         double delta = this.CalcTran(this.Option);
-                        if (!isYcoord)
-                            Projector.PicContainer.PicList[level].Margin = new System.Windows.Thickness(this.Begin + delta, Projector.PicContainer.PicList[level].Margin.Top, 0, 0);
-                        else
-                            Projector.PicContainer.PicList[level].Margin = new System.Windows.Thickness(Projector.PicContainer.PicList[level].Margin.Left, this.Begin + delta, 0, 0);
+                        if (delta != 0)
+                        {
+                            CurrentVal = this.Begin + delta;
+                        }
                     }
                 }
                 return false;
@@ -254,25 +280,35 @@ namespace StoGen.Classes
         public class TransitionScaleXY : TransitionItem
         {
             public bool isYCoord = false;
-            public TransitionScaleXY(string[] vals) : base(vals) {  }
-            public override bool Execute(int level)
+            public TransitionScaleXY(string[] vals, int level) : base(vals, level) {  }
+            public override double CurrentVal
+            {
+                get
+                {
+                    if (!isYCoord)
+                        return Projector.PicContainer.PicList[this.Level].Width;
+                    else
+                        return Projector.PicContainer.PicList[this.Level].Height;
+                }
+                set
+                {
+                    if (!isYCoord)
+                         Projector.PicContainer.PicList[this.Level].Width = value;
+                    else
+                        Projector.PicContainer.PicList[this.Level].Height = value;
+                }
+            }
+            public override bool Execute()
             {
                 this.BeginR = 100;                
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
                 if (this.Started == 0)
                 {
-                    Projector.PicContainer.PicList[level].Stretch = Stretch.Fill;
+                    Projector.PicContainer.PicList[this.Level].Stretch = Stretch.Fill;
                     this.Started = now;
                     if (IsRelative)
                     {
-                        if (!isYCoord)
-                        {
-                            this.Begin = Projector.PicContainer.PicList[level].Width;
-                        }
-                        else
-                        {
-                            this.Begin = Projector.PicContainer.PicList[level].Height;
-                        }
+                        this.Begin = CurrentVal;
                         this.End = this.Begin * (this.EndR / 100);
                     }
                 }
@@ -282,20 +318,15 @@ namespace StoGen.Classes
                 {
                     if (this.CheckEnd || this.Option.StartsWith("A"))
                     {
-                        if (!isYCoord)
+                        if (this.End == -1)
                         {
-                            if (this.End == -1)
-                                Projector.PicContainer.PicList[level].Width = Projector.PicContainer.PicList[level].Source.Width;
+                            if (!isYCoord)
+                                    CurrentVal = Projector.PicContainer.PicList[this.Level].Source.Width;
                             else
-                                Projector.PicContainer.PicList[level].Width = this.End;
+                                    CurrentVal = Projector.PicContainer.PicList[this.Level].Source.Height;
                         }
                         else
-                        {
-                            if (this.End == -1)
-                                Projector.PicContainer.PicList[level].Height = Projector.PicContainer.PicList[level].Source.Height;
-                            else
-                                Projector.PicContainer.PicList[level].Height = this.End;
-                        }                               
+                           CurrentVal = this.End;                             
                     }
                     return true;
                 }
@@ -304,15 +335,7 @@ namespace StoGen.Classes
                     if (!this.Option.StartsWith("A"))
                     {
                         double delta = this.CalcTran(this.Option);
-                        if (!isYCoord)
-                        {
-                            Projector.PicContainer.PicList[level].Width = (this.Begin + delta);
-                       }
-                        else
-                        {
-                            Projector.PicContainer.PicList[level].Height = (this.Begin + delta);
-                        }
-                        //SystemSounds.Beep.Play();
+                        CurrentVal = this.Begin + delta;
                     }
                 }
                 return false;
@@ -321,8 +344,25 @@ namespace StoGen.Classes
         public class TransitionRotate : TransitionItem
         {
             
-            public TransitionRotate(string[] vals) : base(vals) { }
-            public override bool Execute(int level)
+            public TransitionRotate(string[] vals, int level) : base(vals, level) { }
+            public override double CurrentVal
+            {
+                get
+                {
+                    var trn = (Projector.PicContainer.PicList[this.Level].RenderTransform as TransformGroup);
+                    if (trn == null) return 0;
+                    return (trn.Children.First() as RotateTransform).Angle;
+                }
+                set
+                {
+                    var transformGroup = new TransformGroup();
+                    double delta = this.CalcTran(this.Option);
+                    var roateTransform = new RotateTransform(this.End);
+                    transformGroup.Children.Add(roateTransform);
+                    Projector.PicContainer.PicList[this.Level].RenderTransform = transformGroup;
+                }
+            }
+            public override bool Execute()
             {
                 this.BeginR = 0;
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
@@ -341,11 +381,7 @@ namespace StoGen.Classes
                 {
                     if (this.CheckEnd || this.Option.StartsWith("A"))
                     {
-                        var transformGroup = new TransformGroup();
-                        double delta = this.CalcTran(this.Option);
-                        var roateTransform = new RotateTransform(this.End);
-                        transformGroup.Children.Add(roateTransform);
-                        Projector.PicContainer.PicList[level].RenderTransform = transformGroup;
+                        CurrentVal = this.End;
                     }
                     return true;
                 }
@@ -353,11 +389,9 @@ namespace StoGen.Classes
                 {
                     if (!this.Option.StartsWith("A"))
                     {
-                        var transformGroup = new TransformGroup();
                         double delta = this.CalcTran(this.Option);
-                        var roateTransform = new RotateTransform(this.Begin + delta);
-                        transformGroup.Children.Add(roateTransform);
-                        Projector.PicContainer.PicList[level].RenderTransform = transformGroup;                   
+                        CurrentVal = this.Begin + delta;
+                        var transformGroup = new TransformGroup();                 
                     }
                 }
                 return false;
@@ -367,9 +401,9 @@ namespace StoGen.Classes
 
         public class TransitionWait : TransitionItem
         {
-            public TransitionWait(string[] vals) : base(vals) { }
+            public TransitionWait(string[] vals, int level) : base(vals, level) { }
 
-            public override bool Execute(int level)
+            public override bool Execute()
             {
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
                 if (this.Started == 0)
@@ -428,7 +462,7 @@ namespace StoGen.Classes
                         var tran = TranSeries.Where(x => x.Active).FirstOrDefault();
                         if (tran != null)
                         {
-                           if (tran.Execute(TranSeriesForImage.Level))
+                           if (tran.Execute())
                            {
                                 tran.Close();
                                 if (tran.IsEndless)
