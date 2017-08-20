@@ -1404,6 +1404,10 @@ namespace StoGen.Classes
                 if (vals[0] == "V" || vals[0] == "v")
                 {
                     si.Volume = Convert.ToInt32(vals[1]);
+                }                
+                else if (vals[0] == "TRN")
+                {
+                    si.Transition = vals[1];
                 }
                 else if (vals[0] == "Name")
                 {
@@ -1412,6 +1416,10 @@ namespace StoGen.Classes
                 else if (vals[0] == "Position")
                 {
                     si.Position = Convert.ToInt32(vals[1]);
+                }
+                else if (vals[0] == "Start")
+                {
+                       si.Start = !(Convert.ToInt32(vals[1]) == 0);
                 }
                 else if (vals[0] == "IsLoop")
                 {

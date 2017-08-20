@@ -14,12 +14,7 @@ namespace StoGen.Classes
         public List<SoundItem> SoundList { get; set; }
         public Timer timer;
         public static TransitionManager tranManager = new TransitionManager();
-        //private int Silent0 = 0;
-        //private int Silent1 = 0;
-        //private int Silent2 = 0;
-        //private int Silent3 = 0;
-        //private int Silent4 = 0;
-        //private bool[] ChangeList = new[] { false, false, false, false, false };
+
         public static void ProcessLoopDelegate()
         {
             //Transition
@@ -52,7 +47,7 @@ namespace StoGen.Classes
             SoundList = new List<SoundItem>();
             timer = new Timer(new TimerCallback(TimerProc), null, 100, 100);
         }
-        //bool[] loadingPlayer = new bool[] { false, false, false, false, false };
+
         private void StopPlayer(int Position, bool force)
         {
             
@@ -70,28 +65,11 @@ namespace StoGen.Classes
         public override Cadre Repaint()
         {
 
-            int i = 0;
-            List<int> startedPlayers = new List<int>();
             foreach (SoundItem item in this.SoundList)
             {
-                
-                if (item.List == null || item.List.Count == 0)
-                {
-                    SetSoundOneItem(item.Position, item);
-                    startedPlayers.Add(item.Position);
-                }
-                else
-                {
-                    item.CurrentIndex = Universe.Rnd.Next(item.List.Count);
-                    SetSoundOneItem(item.Position, item.List[item.CurrentIndex]);
-                }
-                i++;
+                    SetSoundOneItem(item.Position, item);                    
             }
-            if (!startedPlayers.Contains(0)) StopPlayer(0,false);
-            if (!startedPlayers.Contains(1)) StopPlayer(1, false);
-            if (!startedPlayers.Contains(2)) StopPlayer(2, false);
-            if (!startedPlayers.Contains(3)) StopPlayer(3, false);
-            if (!startedPlayers.Contains(4)) StopPlayer(4, false);
+
             return Owner;
         }
 
@@ -111,6 +89,7 @@ namespace StoGen.Classes
                 Projector.Sound[N].Volume = (double)item.Volume / 100;
                 Projector.Sound[N].Open(new Uri(soundfile));
                 Projector.Sound[N].MediaEnded += FrameSound_MediaEnded;
+                if (item.Start)
                 Projector.Sound[N].Play();
             }));          
         }
@@ -119,10 +98,17 @@ namespace StoGen.Classes
             Projector.Sound[position].Volume = (double)item.Volume / 100;
             Projector.Sound[position].IsMuted = item.isMute;
             PlayingItems[position] = item;
+            if (!string.IsNullOrEmpty(item.Transition))
+            {
+                TransitionData trandata = new TransitionData();
+                trandata.Level = item.Position;
+                trandata.Parse(item.Transition);
+                FrameImage.tranManager.Add(trandata);
+            }
             if (item.FileName == "STOP")
             {
                 StopPlayer(position,true);
-            }
+            }          
             else if (!string.IsNullOrWhiteSpace(item.FileName))
             {
                 if ((Projector.Sound[position].Source == null || (Projector.Sound[position].Source.LocalPath != item.FileName) || !item.isLoop))
@@ -162,6 +148,9 @@ namespace StoGen.Classes
 
         public List<SoundItem> List = null;
         public int CurrentIndex;
+        internal string Transition { get; set; }
+
+        internal bool Start { get; set; } = true;
     }
 
   
