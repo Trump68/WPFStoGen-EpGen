@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:StoGenWPF"
         mc:Ignorable="d"
         Title="MainWindow" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black" Left="0" Top="0" KeyDown="Window_KeyDown" d:DesignHeight="869" Width="992">
-    <Grid Margin="0,0,-266,0">
+    <Grid Margin="0,0,0,0">
         <Image x:Name="Picture1" HorizontalAlignment="Left" Height="561" Margin="10,10,0,0" VerticalAlignment="Top" Width="933"/>
         <Image x:Name="Picture2" HorizontalAlignment="Left" Height="552" VerticalAlignment="Top" Width="1030"/>
         <Image x:Name="Picture3" HorizontalAlignment="Left" Height="552" VerticalAlignment="Top" Width="968"/>
@@ -23,7 +23,8 @@
         <Image x:Name="Picture14" HorizontalAlignment="Left" Height="552" VerticalAlignment="Top" Width="1030"/>
         <Image x:Name="Picture15" HorizontalAlignment="Left" Height="552" VerticalAlignment="Top" Width="1030"/>
         <Image x:Name="Picture16" HorizontalAlignment="Left" Height="552" VerticalAlignment="Top" Width="1030"/>
-        <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="169" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="909" Opacity="0.8" Background="Blue" BorderThickness="0"  AcceptsReturn="True" Margin="172,0,0,0"/>
+        <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="111" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="627" Opacity="0.8" Background="Blue" BorderThickness="0"  AcceptsReturn="True" Margin="139,0,0,65"/>
+        <TextBox x:Name="NumberBox" HorizontalAlignment="Right" Height="20" VerticalAlignment="Bottom" Width="50" Opacity="0.5" Background="White" BorderThickness="0"  AcceptsReturn="True" Margin="0,-3,0,0"/>
         <MediaElement x:Name="Clip1"  ScrubbingEnabled="True" HorizontalAlignment="Left" Height="505" Margin="90,47,0,0" VerticalAlignment="Top" Width="853" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>
         <Rectangle x:Name="LmpAuto" Fill="#FF06069B" HorizontalAlignment="Left" Height="10" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>
         <Rectangle x:Name="LmpEndless" Fill="#FFB60B49" HorizontalAlignment="Left" Height="10" Margin="10,0,0,0" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>

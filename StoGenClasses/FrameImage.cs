@@ -312,6 +312,49 @@ namespace StoGen.Classes
                 return false;
             }
         }
+        public class TransitionOpacity : TransitionItem
+        {
+            public TransitionOpacity(string[] vals, int level) : base(vals, level) { }
+            public override double CurrentVal
+            {
+                get
+                {
+                    return Projector.PicContainer.PicList[this.Level].Opacity*100;
+                }
+                set
+                {
+                    Projector.PicContainer.PicList[this.Level].Opacity = value / 100;
+                }
+            }
+            public override bool Execute()
+            {
+                double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
+                double cr = CurrentVal;
+
+                if (this.Started == 0)
+                {
+                    this.Started = now;
+                    this.Begin = cr;
+                    this.End = this.Begin + this.REnd;
+                    this.isReverse = this.Begin > this.End;
+                    return false;
+                }
+                if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
+                {
+                    CurrentVal = this.End;
+                    this.Close();
+                    return true;
+                }
+
+                this.Counter = now - this.Started;
+                double delta = this.CalcTran();
+                if (delta != 0)
+                {
+                    CurrentVal = this.Begin + delta;
+                }
+                return false;
+            }
+        }
         public class TransitionScaleXY : TransitionItem
         {
             public bool isYCoord = false;
@@ -362,48 +405,7 @@ namespace StoGen.Classes
                 return false;
             }
         }
-        public class TransitionOpacity : TransitionItem
-        {
-            public TransitionOpacity(string[] vals, int level) : base(vals, level) { }
-            public override double CurrentVal
-            {
-                get
-                {
-                    return Projector.PicContainer.PicList[this.Level].Opacity;
-                }
-                set
-                {
-                    Projector.PicContainer.PicList[this.Level].Opacity = value;
-                }
-            }
-            public override bool Execute()
-            {
-                double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
-                if (this.Started == 0)
-                {
-                    this.Started = now;
-                    if (IsRelative)
-                    {
-                        this.Begin = CurrentVal + this.Begin;
-                        this.End = CurrentVal + this.End;
-                    }
-                }
-                if (now < (this.Started)) return false;
-                this.Counter = this.Started + this.Span - now;
-                if (this.Counter <= 0)
-                {
-                    CurrentVal = (this.End / 100.1);
-                    return true;
-                }
-                else
-                {
-                    double delta = this.CalcTran();
-
-                    CurrentVal = ((this.Begin + delta) / 100.1);
-                }
-                return false;
-            }
-        }
+       
  
         public class TransitionRotate : TransitionItem
         {
@@ -634,9 +636,12 @@ namespace StoGen.Classes
 
         public override Cadre Repaint()
         {
-            timer.Change(Timeout.Infinite, Timeout.Infinite);
-            FrameImage.LoopProcessed = false;
 
+            timer.Change(Timeout.Infinite, Timeout.Infinite);
+            Projector.NumberText.Text = $"{this.Owner.Owner.Cadres.IndexOf(this.Owner)+1}/{this.Owner.Owner.Cadres.Count}";
+            
+
+            FrameImage.LoopProcessed = false;
             FrameImage.CurrentProc = this.Proc;
             FrameImage.NextCadre = 0;
 
@@ -767,7 +772,7 @@ namespace StoGen.Classes
 
                 BitmapImage imageSource = new BitmapImage(new Uri(fn));
 
-                if (pi.Props.Opacity > 0) Projector.PicContainer.PicList[(int)pi.Props.Level].Opacity = (pi.Props.Opacity / 100.0);
+                if (pi.Props.Opacity > -1) Projector.PicContainer.PicList[(int)pi.Props.Level].Opacity = (pi.Props.Opacity / 100.0);
                 if (pi.Props.Blur > 0)
                 {
                     System.Windows.Media.Effects.BlurEffect be = new System.Windows.Media.Effects.BlurEffect();

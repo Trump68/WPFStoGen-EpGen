@@ -299,7 +299,7 @@ namespace StoGen.Classes
         public string FileName { get; set; }
         public int Volume { get; set; }
         public bool isLoop { get; set; }
-        public int Position { get; set; }
+        public int Position { get; set; } = -1;
         public bool isMute { get; set; }
         public int Silence { get; set; }
         public string RawData { get; set; }

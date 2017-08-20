@@ -156,7 +156,7 @@ namespace StoGen.Classes
         public int Rmin { get; set; }
         public int SizeX { get; set; }
         public int SizeY { get; set; }
-        public int Opacity { get; set; }
+        public int Opacity { get; set; } = 100;
         public double StartPos { get; set; }
         public double EndPos { get; set; }
         public double NextCadre { get; set; }
@@ -250,7 +250,7 @@ namespace StoGen.Classes
         public int X { get; set; }
         public int Y { get; set; }
         public int Z { get; set; }
-        public PicLevel Level { get; set; }
+        public PicLevel Level { get; set; } = PicLevel.None;
         public bool Merge = false;
         public int Timer = 0;
         public int Timer2 = 0;
@@ -262,6 +262,7 @@ namespace StoGen.Classes
 
     public enum PicLevel : int
     {
+        None = -1,
         Background = 0,
         OnBackground = 1,
         UnderActor0 = 2,

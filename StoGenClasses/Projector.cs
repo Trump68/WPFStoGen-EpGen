@@ -34,6 +34,7 @@ namespace StoGen.ModelClasses
         public static List<System.Windows.Media.MediaPlayer> Sound = new List<System.Windows.Media.MediaPlayer>();
         //public static Tuple<RadioGroup, LayoutControlItem> Choice;
         public static System.Windows.Controls.TextBox Text;
+        public static System.Windows.Controls.TextBox NumberText;
 
         private static bool textVisibleEnabled = true;
         public static bool TextVisibleEnabled

@@ -37,6 +37,7 @@ namespace StoGenWPF
 
             Projector.PicContainer.Clip = this.Clip1;
             Projector.Text = this.TextBox;
+            Projector.NumberText = this.NumberBox;
 
             Projector.Sound.Add(this.Sound01);
             Projector.Sound.Add(this.Sound02);

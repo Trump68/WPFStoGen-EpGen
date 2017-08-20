@@ -275,6 +275,18 @@ namespace StoGen.Classes
                         LastCadre = FillMainPicsFromString(item);
                         LastCadre.Name = item.Mark;
                     }
+                    else if (item.Complete.StartsWith(@"AutoPics="))
+                    {
+                        if (LastCadre == null || LastCadre.Name != item.Mark)
+                        {
+                            LastCadre = FillMainPicsFromString(item);
+                            LastCadre.Name = item.Mark;
+                        }
+                        else
+                        {
+                            FillPicsFromString(item, LastCadre.PicFrameData.PictureDataList);
+                        }
+                    }
                     else if (item.Complete.StartsWith(@"CadreText="))
                     {
                         StoGenParser.FillCadreText(item.Complete, LastCadre.TextFrameData, null, null, fn, this.DefaultPath);
@@ -293,9 +305,9 @@ namespace StoGen.Classes
 
                     else { };
                 }
-                catch
+                catch (Exception ex)
                 {
-                    XtraMessageBox.Show(item.Complete, "!!!!!!", System.Windows.Forms.MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show(item.Complete, "!!!!!!" + ex.Message, System.Windows.Forms.MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             // SortCadres();
@@ -395,6 +407,10 @@ namespace StoGen.Classes
             if (psp != null)
             {
                 psp.isMain = true;
+                if (psp.Level == PicLevel.None)
+                {
+                    psp.Level = (PicLevel)0;
+                }
                 //create main picture data
                 PictureSourceDataProps mainPsp = new PictureSourceDataProps();
                 // apply common main data
@@ -402,9 +418,9 @@ namespace StoGen.Classes
                 // apply spec main data
                 mainPsp.Assign(psp);
                 // add main pic
-                cadre = this.GetMainCadre(mainPsp);
+                cadre = this.GetMainCadre(mainPsp);                
                 if (order < int.MaxValue) cadre.SortOrder = order;
-
+                
             }
             return cadre;
         }
@@ -427,10 +443,19 @@ namespace StoGen.Classes
             if (name != null) psp.Name = name;
             if (psp != null)
             {
+                if (psp.Level == PicLevel.None)
+                {
+                    psp.Level = (PicLevel)list.Count();
+                }
                 PictureSourceDataProps existing = null;
                 if (list.Count > 0 && !string.IsNullOrEmpty(psp.Name)) existing = list.FirstOrDefault(data => data.Name == psp.Name);
                 if (existing == null) list.Add(psp);
-                else existing.Assign(psp);
+                else
+                {
+                    list.Add(psp);
+                    // было сделано чтобы не загружать заново то же самое а просто добавить свойства
+                    //existing.Assign(psp);
+                }
             }
         }
 
@@ -979,11 +1004,15 @@ namespace StoGen.Classes
             bool checkpartOk = false;
             string currentmark = null;
             string path = Path.GetDirectoryName(fn);
+            int AutoMark = 0;
             foreach (string item in datalist)
             {
+               
                 if (item.Trim().StartsWith(@"PartSta#"))
                 {
                     currentmark = item.Trim().Replace(@"PartSta#", string.Empty);
+                    if (string.IsNullOrEmpty(currentmark))
+                        currentmark = $"{AutoMark++}";
                 }
                 else if (item.Trim().StartsWith(@"PartEnd#"))
                 {
@@ -1215,15 +1244,20 @@ namespace StoGen.Classes
                 {
                     if (val == "SKIP") return new PictureSourceDataProps(val);
                     p = new PictureSourceDataProps(Universe.GetFullPath(val, DefaultPath));
+                }               
+                else if (mark == "MainProps")
+                {
+                    p = new PictureSourceDataProps(string.Empty);
                 }
                 else if (mark == "CommonPics" || mark == "DetailPics")
                 {
                     p = new PictureSourceDataProps(Universe.GetFullPath(val, DefaultPath));
                     p.Active = true;
                 }
-                else if (mark == "MainProps")
+                else if (mark == "AutoPics")
                 {
-                    p = new PictureSourceDataProps(string.Empty);
+                    p = new PictureSourceDataProps(Universe.GetFullPath(val, DefaultPath));
+                    p.Active = true;
                 }
                 else if (mark == "ClipH") p.ClipH = Convert.ToDouble(val);
                 else if (mark == "ClipW") p.ClipW = Convert.ToDouble(val);
@@ -1352,7 +1386,14 @@ namespace StoGen.Classes
                 }
             }
 
-            if (si != null) soundlist.Add(si);
+            if (si != null)
+            {
+                if (si.Position < 0)
+                {
+                    si.Position = soundlist.Count;
+                }
+                soundlist.Add(si);
+            }
         }
         private static void ParseSountTerm(string term, SoundItem si)
         {
