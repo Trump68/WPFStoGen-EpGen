@@ -495,6 +495,7 @@ namespace StoGen.Classes
         public class TransitionPlaySound : TransitionItem
         {
             public TransitionPlaySound(string[] vals, int level) : base(vals, level) { }
+            private bool Playng = false;
             public override double CurrentVal
             {
                 get
@@ -505,15 +506,23 @@ namespace StoGen.Classes
                 }
                 set
                 {
-                    
+
+                   
                     Projector.Sound[Level].Dispatcher.Invoke(new Action(
                      () =>
                      {
-                         if (value > 0)
-                             Projector.Sound[Level].Play();   
-                         else
+                         if (value > 0 && !Playng)
+                         {                                                          
+                             Projector.Sound[Level].Play();
+                             Playng = true;
+                         }
+                         else if (value ==0 && Playng)
+                         {
                              Projector.Sound[Level].Stop();
+                             Playng = false;
+                         }
                      }));
+
                 }
             }
             public override bool Execute()
