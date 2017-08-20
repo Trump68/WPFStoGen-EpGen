@@ -55,8 +55,6 @@ namespace StoGen.Classes
             //Transition
             FrameImage.tranManager.Process();
 
-            
-
 
             if (Projector.TimerEnabled && (FrameImage.TimeToNext > 0))
             {
