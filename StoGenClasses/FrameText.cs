@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Threading;
 
 namespace StoGen.Classes
 {
@@ -32,45 +33,38 @@ namespace StoGen.Classes
         public int Size { get; set; }
         public int Width { get; set; }
         public int Bottom { get; set; }
+        public string Transition { get; set; }
+        public int Opacity { get; set; }
         public int Shift { get; set; }
         public int Aligh { get; set; }
         public bool ClearBack { get; set; } = false;
+        public System.Threading.Timer timer;
+        public static TransitionManager tranManager = new TransitionManager();
         public FrameText() : base()
         {
             TextList = new List<string>();
-            //BackColor = Color.PaleGoldenrod;
+            timer = new System.Threading.Timer(new TimerCallback(TimerProc), null, 500, 500);
+        }
+        private void TimerProc(object state)
+        {
+            timer.Change(Timeout.Infinite, Timeout.Infinite);
+
+            RunNext op1 = new RunNext(FrameText.ProcessLoopDelegate);
+            Projector.PicContainer.Clip.Dispatcher.Invoke(op1, System.Windows.Threading.DispatcherPriority.Render);
+
+            if (timer != null) timer.Change(500, 500);
+        }
+        public static void ProcessLoopDelegate()
+        {
+            //Transition
+            FrameText.tranManager.Process();
         }
         public override Cadre Repaint()
         {
             
             base.Repaint();
-            if (Rtf)
-            {
-                //Projector.Text.RtfText = string.Join(Environment.NewLine, TextList.ToArray());
-            }
-            else
-            {
-               
-                /*if (TextList.Count == 1)
-                {
-                    Projector.Text.Appearance.Text.Options.UseFont = false;
-                    Projector.Text.Appearance.Text.Options.UseForeColor = false;
-                    Projector.Text.Appearance.Text.Options.UseTextOptions = false;
-                    Projector.Text.HtmlText = TextList[0];
-                }
-                else*/
-                {
-                   // Projector.Text.Appearance.Text.Options.UseFont = true;
-                   // Projector.Text.Appearance.Text.Options.UseForeColor = true;
-                   // Projector.Text.Appearance.Text.Options.UseTextOptions = true;
+            FrameText.tranManager.Clear();
 
-                    //Projector.Text.Text = string.Join(Environment.NewLine, TextList.ToArray());
-
-                  
-                }
-              
-
-            }
             if (Size > 0)
             {
                 Projector.Text.Height = Size;
@@ -80,12 +74,12 @@ namespace StoGen.Classes
                 double tm = Projector.Text.Margin.Top;
                 Projector.Text.Margin  = new System.Windows.Thickness(Shift, tm, Projector.Text.Margin.Right, bm);
             }
-
-
-
-
-
-
+            if (!string.IsNullOrEmpty(Transition))
+            {
+                TransitionData trandata = new TransitionData();
+                trandata.Parse(Transition);
+                FrameImage.tranManager.Add(trandata);
+            }
             if (!ClearBack)
                 Projector.Text.Background = new SolidColorBrush(this.BackColor);
             else
@@ -127,7 +121,7 @@ namespace StoGen.Classes
                     Projector.Text.Foreground = Brushes.Yellow;
             }
 
-
+            Projector.Text.Opacity = this.Opacity / 100;
             Projector.TextVisible = true;
             return this.Owner;
         }
@@ -139,21 +133,7 @@ namespace StoGen.Classes
 
 
         }
-        internal void ProcessKey(Key e)
-        {
-            /*
-            if (e.KeyCode == Keys.F12)
-            {
-                this.FontName = FontHelper.GetNextFont(this.FontName);
-            }
-            else if (e.KeyCode == Keys.F11)
-            {
-                this.BackColor = FontHelper.GetNextColor(this.BackColor);
-            }
-            else { return; }
-            Repaint();
-            */
-        }
+      
         public bool Html { get; set; }
         public bool Rtf { get; set; }
     }
@@ -172,6 +152,8 @@ namespace StoGen.Classes
         internal string Name;
 
         public string FontName { get; set; }
+        public string Transition { get; set; }
+        public int Opacity { get; set; }
         public int FontSize { get; set; }
         public Color BackColor { get; set; }
         public int Size { get; set; }
@@ -269,18 +251,7 @@ namespace StoGen.Classes
             return _fonts[pos];
         }
 
-        public static Color GetNextColor(Color current)
-        {
-            return current;
-            /*
-            List<string> fontnames = new List<string>();
-            fontnames.AddRange(Enum.GetNames(typeof(KnownColor)));
-            int pos = fontnames.IndexOf(current.Name);
-            if (pos == (fontnames.Count - 1)) pos = 0;
-            else pos++;
-            return Color.FromName(fontnames[pos]);
-            */
-        }
+      
 
     }
 

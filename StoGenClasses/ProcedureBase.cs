@@ -284,6 +284,8 @@ namespace StoGen.Classes
                     ft.AutoShow = data.AutoShow;
                     ft.Rtf = data.Rtf;
                     ft.Aligh = data.Align;
+                    ft.Opacity = data.Opacity;
+                    ft.Transition = data.Transition;
                 }
             }
         }

@@ -196,9 +196,7 @@ namespace StoGen.Classes
             {
                 if (Frames[i] is FrameImage)
                     (Frames[i] as FrameImage).ProcessKey(keys);
-                else
-                    if (Frames[i] is FrameText)
-                        (Frames[i] as FrameText).ProcessKey(keys);
+
             }            
         }
 

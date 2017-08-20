@@ -1173,6 +1173,14 @@ namespace StoGen.Classes
                 {
                     data.FontSize = Convert.ToInt32(vals[1]);
                 }
+                else if (vals[0] == "Opacity")
+                {
+                    data.Opacity = Convert.ToInt32(vals[1]);
+                }
+                else if (vals[0] == "TRN")
+                {
+                    data.Transition = vals[1];
+                }
                 else if (vals[0] == "Width")
                 {
                     data.Width = Convert.ToInt32(vals[1]);

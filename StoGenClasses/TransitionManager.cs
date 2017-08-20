@@ -46,7 +46,8 @@ namespace StoGen.Classes
     }
     public class TransitionData
     {
-
+        public List<List<TransitionItem>> Transitions;
+        internal int Level = 0;
         public void Parse(string strdata)
         {
             List<string> series = strdata.Split('*').ToList();
@@ -115,6 +116,10 @@ namespace StoGen.Classes
             else if (vals[0].StartsWith("v"))
             {
                 result.Add(new TransitionVolume(vals, level));
+            }
+            else if (vals[0].StartsWith("t"))
+            {
+                result.Add(new TransitionTextOpacity(vals, level));
             }
             return result;
         }
@@ -591,7 +596,49 @@ namespace StoGen.Classes
                 return false;
             }
         }
-        public List<List<TransitionItem>> Transitions;
-        internal int Level = 0;
+        // Text transitions
+        public class TransitionTextOpacity : TransitionItem
+        {
+            public TransitionTextOpacity(string[] vals, int level) : base(vals, level) { }
+            public override double CurrentVal
+            {
+                get
+                {
+                    return Projector.Text.Opacity * 100;
+                }
+                set
+                {
+                    Projector.Text.Opacity = value / 100;
+                }
+            }
+            public override bool Execute()
+            {
+                double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
+                double cr = CurrentVal;
+
+                if (this.Started == 0)
+                {
+                    this.Started = now;
+                    this.Begin = cr;
+                    this.End = this.Begin + this.REnd;
+                    this.isReverse = this.Begin > this.End;
+                    return false;
+                }
+                if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
+                {
+                    CurrentVal = this.End;
+                    this.Close();
+                    return true;
+                }
+
+                this.Counter = now - this.Started;
+                double delta = this.CalcTran();
+                if (delta != 0)
+                {
+                    CurrentVal = this.Begin + delta;
+                }
+                return false;
+            }
+        }
     }
 }

@@ -45,7 +45,7 @@ namespace StoGen.Classes
             : base()
         {
             SoundList = new List<SoundItem>();
-            timer = new Timer(new TimerCallback(TimerProc), null, 100, 100);
+            timer = new Timer(new TimerCallback(TimerProc), null, 500, 500);
         }
 
         private void StopPlayer(int Position, bool force)
@@ -64,7 +64,7 @@ namespace StoGen.Classes
         }
         public override Cadre Repaint()
         {
-
+            FrameSound.tranManager.Clear();
             foreach (SoundItem item in this.SoundList)
             {
                     SetSoundOneItem(item.Position, item);                    
