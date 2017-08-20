@@ -104,6 +104,7 @@ namespace StoGen.Classes
             this.ClipX = sourceApperance.ClipX;
             this.ClipY = sourceApperance.ClipY;
             this.Transition = sourceApperance.Transition;
+            this.Mute = sourceApperance.Mute;
         }
         public void Assign(PictureSourceProps sourceApperance)
         {
@@ -182,6 +183,7 @@ namespace StoGen.Classes
             get { return Z; }
             set { Z = value; }
         }
+        public bool Mute { get; internal set; } = true;
         public ContentAlignment Align { get; set; }
         public PictureSizeMode SizeMode { get; set; }
         public int isLoop { get; set; }
@@ -542,153 +544,6 @@ namespace StoGen.Classes
             
         }
         
-        // gif resizing
-        //public static Image ResizeGifPicture(System.IO.Stream stream, int ResizeToWidth, int ResizeToHeight)
-        //{
-
-        //    // First, make sure it's a valid GIF. 
-        //    GifDecoder gif = new GifDecoder();
-        //    int count = gif.GetFrameCount(stream);
-
-        //    // Get the animation size. 
-        //    int width = 0;
-        //    int height = 0;
-        //    foreach (GifFrame f in gif.Frames)
-        //    {
-        //        if (f.Image.Width + f.Location.X > width)
-        //            width = f.Image.Width + f.Location.X;
-        //        if (f.Image.Height + f.Location.Y > height)
-        //            height = f.Image.Height + f.Location.Y;
-        //    }
-
-        //    int newWidth = ResizeToWidth;
-        //    int newHeight = ResizeToHeight;
-
-        //    float ratio = 0;
-        //    if (width > height)
-        //        ratio = (float)newWidth / (float)width;
-        //    else
-        //        ratio = (float)newHeight / (float)height;
-
-
-
-        //    // Perpare the GifFrameCollection. 
-        //    GifFrameCollection gifCol = new GifFrameCollection();
-        //    gifCol.Height = (int)(height * ratio);
-        //    gifCol.Width = (int)(width * ratio);
-
-        //    // Loop through each frame and resize the image. 
-        //    for (int i = 0; i < count; i++)
-        //    {
-        //        // You don't need to seek to the beginning because 
-        //        // the frames have already been read by calling 
-        //        // GetFrameCount. Just be sure to send the same stream. 
-        //        GifFrame frame = gif.Frames[i];
-
-        //        // the resulting image
-        //        AtalaImage img;
-        //        // the new offset for this frame
-        //        System.Drawing.Point loc = new System.Drawing.Point((int)(frame.Location.X * ratio), (int)(frame.Location.Y * ratio));
-
-        //        if (frame.TransparentIndex > 255 || frame.TransparentIndex < 0)
-        //        { // resample without mask
-        //            if (((int)(frame.Location.X * ratio) == (float)(frame.Location.X * ratio)) &&
-        //                ((int)(frame.Location.Y * ratio) == (float)(frame.Location.Y * ratio)))
-        //            {  // simply calculate new offset
-        //                ResampleCommand noMaskResample = new ResampleCommand(new Rectangle(System.Drawing.Point.Empty, frame.Image.Size),
-        //                    new System.Drawing.Size((int)(frame.Image.Width * ratio), (int)(frame.Image.Height * ratio)), ResampleMethod.NearestNeighbor);
-        //                img = noMaskResample.Apply(frame.Image).Image;
-        //            }
-        //            else // offset does not line up on whole pixel, resize hard way.
-        //            {
-        //                stream.Position = 0;
-        //                ImageInfo info = RegisteredDecoders.GetImageInfo(stream);
-        //                // place this frame onto blank cavas
-        //                AtalaImage background = GetPreviousFrame(gif.Frames, i, info.Size);
-        //                ImageCommand overlay = new OverlayCommand(frame.Image, frame.Location);
-        //                background = overlay.Apply(background).Image;
-        //                //background.Save("afteroverlay.gif", ImageType.Gif, null);
-        //                // resize this canvas, then crop to an even pixel.
-        //                // this should give the effect of locating this frame 'in-between' pixels.
-        //                ResampleCommand noMaskResample = new ResampleCommand(new Rectangle(System.Drawing.Point.Empty, background.Size),
-        //                    new System.Drawing.Size((int)(background.Width * ratio), (int)(background.Height * ratio)), ResampleMethod.NearestNeighbor);
-        //                img = noMaskResample.Apply(background).Image;
-        //                //img.Save("Afternomaskresample.gif", ImageType.Gif, null);
-        //                CropCommand crop = new CropCommand(new Rectangle(loc, new System.Drawing.Size((int)(frame.Image.Width * ratio), (int)(frame.Image.Height * ratio))));
-        //                img = crop.Apply(img).Image;
-        //                //img.Save("aftercrop.gif", ImageType.Gif, null);
-
-        //            }
-
-        //        }
-        //        else // resample with mask
-        //        {
-        //            if ((loc.X == (float)(frame.Location.X * ratio)) &&
-        //                (loc.Y == (float)(frame.Location.Y * ratio)))
-        //            {
-        //                ResampleMaskedCommand resample = new ResampleMaskedCommand(new Rectangle(System.Drawing.Point.Empty, frame.Image.Size),
-        //                    new System.Drawing.Size((int)(frame.Image.Width * ratio), (int)(frame.Image.Height * ratio)), frame.TransparentIndex);
-        //                img = resample.Apply(frame.Image).Image;
-        //            }
-        //            else // offset does not line up on whole pixel, resize hard way.
-        //            {
-        //                stream.Position = 0;
-        //                ImageInfo info = RegisteredDecoders.GetImageInfo(stream);
-        //                // place this frame onto blank cavas
-        //                AtalaImage background = GetPreviousFrame(gif.Frames, i, info.Size);
-        //                ImageCommand overlay = new OverlayCommand(frame.Image, frame.Location);
-        //                background = overlay.Apply(background).Image;
-        //                //background.Save("afteroverlay.gif", ImageType.Gif, null);
-        //                // resize this canvas, then crop to an even pixel.
-        //                // this should give the effect of locating this frame 'in-between' pixels.
-        //                ResampleMaskedCommand maskResample = new ResampleMaskedCommand(new Rectangle(System.Drawing.Point.Empty, background.Size),
-        //                    new System.Drawing.Size((int)(background.Width * ratio), (int)(background.Height * ratio)), frame.TransparentIndex);
-        //                img = maskResample.Apply(background).Image;
-        //                //img.Save("Afternomaskresample.gif", ImageType.Gif, null);
-        //                CropCommand crop = new CropCommand(new Rectangle(loc, new System.Drawing.Size((int)(frame.Image.Width * ratio), (int)(frame.Image.Height * ratio))));
-        //                img = crop.Apply(img).Image;
-        //                //img.Save("aftercrop.gif", ImageType.Gif, null);
-        //            }
-        //        }
-
-        //        // Add the new image back to the collection. 
-        //        gifCol.Add(new GifFrame(img, loc, frame.DelayTime, frame.Interlaced, frame.FrameDisposal, frame.TransparentIndex, true));//frame.UseLocalPalette)); 
-
-        //    }
-
-        //    //FileStream saveStream = new FileStream("resized.gif", FileMode.Create, FileAccess.Write, FileShare.Write);
-        //    GifEncoder gifSave = new GifEncoder();
-        //    MemoryStream saveStream = new MemoryStream();            
-        //    gifSave.Save(saveStream, gifCol, null);
-        //    saveStream.Position = 0;
-        //    Image rez = Image.FromStream(saveStream);
-        //    //saveStream.Close();
-        //    return rez;
-        //}
-        //private static AtalaImage GetPreviousFrame(GifFrameCollection frames, int currentIndex, System.Drawing.Size imageSize)
-        //{  // find the frame that comes *before* the current one, which extends beyond the current frame in x and y directions
-        //    int w = frames[currentIndex].Image.Width;
-        //    int h = frames[currentIndex].Image.Height;
-        //    System.Drawing.Point curloc = frames[currentIndex].Location;
-        //    for (int i = currentIndex - 1; i >= 0; i--)
-        //    {
-        //        AtalaImage img = frames[i].Image;
-        //        if ((frames[i].Location.X < curloc.X) && (frames[i].Location.Y < curloc.Y) && (img.Width > w) && (img.Height > h))
-        //        {
-        //            if (frames[i].Location == System.Drawing.Point.Empty) // no offset
-        //                return img;
-        //            else
-        //            {  // overlay this frame at the right offset
-        //                AtalaImage newimg = new AtalaImage(imageSize.Width, imageSize.Height, img.PixelFormat, System.Drawing.Color.Transparent);
-        //                OverlayCommand cmd = new OverlayCommand(img, frames[i].Location);
-        //                newimg = cmd.Apply(newimg).Image;
-        //                return newimg;
-        //            }
-        //        }
-        //    }
-        //    // if no frame exists, or all frames are the same size, lets assume the first image will suffice.
-        //    return frames[0].Image;
-        //}
 
     }
     public enum AnimationRate : int

@@ -350,7 +350,7 @@ namespace StoGen.Classes
                 {
                     CurrentVal = this.End;
                     this.Close();
-                    return true
+                    return true;
                 }
 
                 this.Counter = now - this.Started;
@@ -703,6 +703,7 @@ namespace StoGen.Classes
                         Projector.PicContainer.Clip.MediaOpened -= Clip_MediaOpened;
                         Projector.PicContainer.Clip.MediaOpened += Clip_MediaOpened;
                         Projector.PicContainer.Clip.Play();
+
                         //if (FrameImage.IsLoop==4)  Projector.PicContainer.Clip.Stop();
                     }
                     else
@@ -710,7 +711,7 @@ namespace StoGen.Classes
                         SetClip();
                     }
 
-                    Projector.PicContainer.Clip.IsMuted = true;
+                    Projector.PicContainer.Clip.IsMuted = Pics[i].Props.Mute;
                     if (Pics[i].Props.Rate > 0)
                     {
                         float rate = ((float)Pics[i].Props.R / 100);

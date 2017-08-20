@@ -525,97 +525,14 @@ namespace StoGen.Classes
             }
             return true;
         }
-        private static List<SoundItem> GetSoundlist()
-        {
-            List<SoundItem> soundlist = new List<SoundItem>();
-            soundlist.Add(new SoundItem { Name = "Action-001", Description = "Action fast,v=30", FileName = @"d:\Process2\!Sound\Action\Action-001.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Action-002", Description = "Action slow,v=30", FileName = @"d:\Process2\!Sound\Action\Action-002.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Action-003", Description = "Action slow,v=30", FileName = @"d:\Process2\!Sound\Action\Action-003.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Sadness-01", Description = "Sadness romantic,v=30", FileName = @"d:\Process2\!Sound\Sadness\Sadness-01.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Sadness-02", Description = "Sadness classic,v=30", FileName = @"d:\Process2\!Sound\Sadness\Sadness-02.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Candid 01", Description = "Candid moan, with slaps,v=100", FileName = @"d:\Process2\!Sound\Candid\03 Action.mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Candid 02", Description = "Candid moan, with slaps,v=100", FileName = @"d:\Process2\!Sound\Candid\04 Action.mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Candid 03", Description = "Candid moan,v=100", FileName = @"d:\Process2\!Sound\Candid\09 Action.mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Candid 04", Description = "Candid moan,v=100", FileName = @"d:\Process2\!Sound\Candid\Moaning in Barcelona.mp3", Volume = 100 });
 
-            soundlist.Add(new SoundItem { Name = "Skrip 01", Description = "Candid slow scrip,v=100", FileName = @"d:\Process2\!Sound\Candid\Skrip 01.mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Skrip 02", Description = "Candid fast scrip,v=100", FileName = @"d:\Process2\!Sound\Candid\Skrip 02.mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Skrip 03", Description = "Scrip slow,v=100", FileName = @"d:\Process2\!Sound\Skrip\Skrip01.mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Skrip 04", Description = "Scrip fast,v=100", FileName = @"d:\Process2\!Sound\Skrip\Skrip02.mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Skrip 05", Description = "Scrip slow,v=100", FileName = @"d:\Process2\!Sound\Skrip\Skrip04.mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Skrip 06", Description = "Scrip slow,v=100", FileName = @"d:\Process2\!Sound\Skrip\Skrip05.mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Skrip 07", Description = "Scrip fast,v=100", FileName = @"d:\Process2\!Sound\Skrip\Skrip06.mp3", Volume = 100 });
-
-            soundlist.Add(new SoundItem { Name = "Skrip with moans 01", Description = "Scrip with moans,v=100", FileName = @"d:\Process2\!Sound\Skrip\Skrip01a.mp3", Volume = 100 });
-
-            soundlist.Add(new SoundItem { Name = "Classic music 01", Description = "Tatyana aria,v=30", FileName = @"d:\Process2\!Sound\Classic\Classic-01.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Club music 01", Description = "Club (moy body,my pussy),v=30", FileName = @"d:\Process2\!Sound\Club\Club01.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Club music 02", Description = "Club,v=30", FileName = @"d:\Process2\!Sound\Club\Club02.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Club music 03", Description = "Club,v=30", FileName = @"d:\Process2\!Sound\Club\Club03.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Club music 04", Description = "Club,v=30", FileName = @"d:\Process2\!Sound\Club\Club04.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Club music 05", Description = "Club,v=30", FileName = @"d:\Process2\!Sound\Club\Club05.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Fuck 01", Description = "TOT (Pelmen,Alena),v=100", FileName = @"d:\Process2\!Sound\FuckAction\[TOT]-Alena (HI).mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Moan 01", Description = "Fem moaning,v=30", FileName = @"d:\Process2\!Sound\Moans\Moan 001.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Moan 02", Description = "Fem moaning,v=30", FileName = @"d:\Process2\!Sound\Moans\Moan 002.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Moan 03", Description = "Fem moaning,v=30", FileName = @"d:\Process2\!Sound\Moans\Moan 003.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Moan 04", Description = "Fem moaning,v=30", FileName = @"d:\Process2\!Sound\Moans\Moan 004.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Moan 05", Description = "Fem moaning,v=30", FileName = @"d:\Process2\!Sound\Moans\Moan 005.mp3", Volume = 30 });
-
-            soundlist.Add(new SoundItem { Name = "Romantic 01", Description = "Romantic music,v=30", FileName = @"d:\Process2\!Sound\Romantic\Romantic-01.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Romantic 02", Description = "Romantic, uneasy music,v=30", FileName = @"d:\Process2\!Sound\Romantic\Romantic-02.mp3", Volume = 30 });
-            soundlist.Add(new SoundItem { Name = "Romantic 03", Description = "Romantic (saksofon) ,v=30", FileName = @"d:\Process2\!Sound\Romantic\Romantic-03.mp3", Volume = 30 });
-
-            soundlist.Add(new SoundItem { Name = "Wisper 01", Description = "Wisper and kissing ,v=100", FileName = @"d:\Process2\!Sound\Wisper\Close Up- kisses and whispering.mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Wispering talk 01", Description = "Wispering talk russian ,v=100", FileName = @"d:\Process2\!Sound\Wisper\RusWisper01long.mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Wispering talk 02", Description = "Wispering talk russian ,v=100", FileName = @"d:\Process2\!Sound\Wisper\АСМР на русском Шепот Болтовня-2.mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Wispering talk 03", Description = "Wispering talk russian ,v=100", FileName = @"d:\Process2\!Sound\Wisper\АСМР на русском Шепот Болтовня-3.mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Wispering talk kisses", Description = "Wispering talk kisses russian ,v=100", FileName = @"d:\Process2\!Sound\Wisper\АСМР на русском kisses 03.mp3", Volume = 100 });
-            soundlist.Add(new SoundItem { Name = "Wispering role play medical exam", Description = "Wispering talk kisses russian ,v=100", FileName = @"d:\Process2\!Sound\Wisper\Role play for Sleep Medical exam.mp3", Volume = 100 });
-            return soundlist;
-        }
-        private static List<List<SoundItem>> GetSoundCombinationlist()
-        {
-            List<List<SoundItem>> soundcombinationlist = new List<List<SoundItem>>();
-            List<SoundItem> soundlist = null;
-
-            soundcombinationlist.Add(new List<SoundItem> {
-            new SoundItem { Name = "Action 01 & Moan 01", Description = "Action-01 (v10) and Moan-01 (v100)", FileName = @"d:\Process2\!Sound\Action\Action-001.mp3", Volume = 10 },
-            new SoundItem { Name = "Moan 01", Description = "Fem moaning,v=30", FileName = @"d:\Process2\!Sound\Moans\Moan 001.mp3", Volume = 100 }});
-            soundcombinationlist.Add(new List<SoundItem> {
-            new SoundItem { Name = "Action 02 & Moan 01", Description = "Action-02 (v10) and Moan-01 (v100)", FileName = @"d:\Process2\!Sound\Action\Action-002.mp3", Volume = 10 },
-            new SoundItem { Name = "Moan 01", Description = "Fem moaning,v=30", FileName = @"d:\Process2\!Sound\Moans\Moan 001.mp3", Volume = 100 }});
-            soundcombinationlist.Add(new List<SoundItem> {
-            new SoundItem { Name = "Action 03 & Moan 01", Description = "Action-03 (v10) and Moan-01 (v100)", FileName = @"d:\Process2\!Sound\Action\Action-003.mp3", Volume = 10 },
-            new SoundItem { Name = "Moan 01", Description = "Fem moaning,v=30", FileName = @"d:\Process2\!Sound\Moans\Moan 001.mp3", Volume = 100 }});
-
-            soundcombinationlist.Add(new List<SoundItem> {
-            new SoundItem { Name = "Club-01 & Moan-01", Description = "Club-01 (v10) and Moan-01 (v100)", FileName = @"d:\Process2\!Sound\Club\Club01.mp3", Volume = 10 },
-            new SoundItem { Name = "Moan 01", Description = "Fem moaning,v=30", FileName = @"d:\Process2\!Sound\Moans\Moan 001.mp3", Volume = 100 }});
-            soundcombinationlist.Add(new List<SoundItem> {
-            new SoundItem { Name = "Club-01 & Moan-02", Description = "Club-01 (v10) and Moan-02 (v100)", FileName = @"d:\Process2\!Sound\Club\Club01.mp3", Volume = 10 },
-            new SoundItem { Name = "Moan 02", Description = "Fem moaning,v=30", FileName = @"d:\Process2\!Sound\Moans\Moan 002.mp3", Volume = 100 }});
-            soundcombinationlist.Add(new List<SoundItem> {
-            new SoundItem { Name = "Club-01 & Moan-03", Description = "Club-01 (v10) and Moan-03 (v100)", FileName = @"d:\Process2\!Sound\Club\Club01.mp3", Volume = 10 },
-            new SoundItem { Name = "Moan 03", Description = "Fem moaning,v=30", FileName = @"d:\Process2\!Sound\Moans\Moan 003.mp3", Volume = 100 }});
-            soundcombinationlist.Add(new List<SoundItem> {
-            new SoundItem { Name = "Club-01 & Moan-04", Description = "Club-01 (v10) and Moan-04 (v100)", FileName = @"d:\Process2\!Sound\Club\Club01.mp3", Volume = 10 },
-            new SoundItem { Name = "Moan 04", Description = "Fem moaning,v=30", FileName = @"d:\Process2\!Sound\Moans\Moan 004.mp3", Volume = 100 }});
-            soundcombinationlist.Add(new List<SoundItem> {
-            new SoundItem { Name = "Club-01 & Moan-05", Description = "Club-01 (v10) and Moan-05 (v100)", FileName = @"d:\Process2\!Sound\Club\Club01.mp3", Volume = 10 },
-            new SoundItem { Name = "Moan 05", Description = "Fem moaning,v=30", FileName = @"d:\Process2\!Sound\Moans\Moan 005.mp3", Volume = 100 }});
-
-
-
-
-            return soundcombinationlist;
-        }
 
         private bool CreateMenuSound(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
             ChoiceMenuItem item = null;
 
-            List<SoundItem> soundlist = GetSoundlist();
+            List<SoundItem> soundlist = new List<SoundItem>();
             foreach (SoundItem si in soundlist)
             {
                 item = new ChoiceMenuItem();
@@ -1345,6 +1262,11 @@ namespace StoGen.Classes
                 {
                     if (val.Trim() == "0") p.Active = false;
                     else p.Active = true;
+                }
+                else if (mark.Trim() == "Mute")
+                {
+                    if (val.Trim() == "0") p.Mute = false;
+                    else p.Mute = true;
                 }
                 else if (mark.Trim() == "Reload")
                 {
