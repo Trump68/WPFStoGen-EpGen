@@ -111,6 +111,7 @@
     <Compile Include="SelectorStringGroup.cs" />
     <Compile Include="SgEnums.cs" />
     <Compile Include="SoundHelper.cs" />
+    <Compile Include="TransitionManager.cs" />
     <Compile Include="Universe.cs" />
     <Compile Include="ViewModelBase.cs" />
     <Compile Include="ViewSet.cs" />

@@ -254,7 +254,7 @@ namespace StoGen.Classes
         internal void ApplyPicPostProcesssing(List<PictureBaseProp> list)
         {           
             FrameImage Fi = this.GetImageFrame();
-            Fi.PostProcessingData.AddRange(list);
+
         }
         public void InsertPicPostProcesssing(PictureBaseProp p)
         {
