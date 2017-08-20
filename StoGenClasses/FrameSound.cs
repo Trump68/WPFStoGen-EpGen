@@ -85,12 +85,15 @@ namespace StoGen.Classes
             Projector.Sound[N].Dispatcher.Invoke(new Action(
             () =>
             {
+                
                 Projector.Sound[N].MediaEnded -= FrameSound_MediaEnded;
                 Projector.Sound[N].Volume = (double)item.Volume / 100;
                 Projector.Sound[N].Open(new Uri(soundfile));
                 Projector.Sound[N].MediaEnded += FrameSound_MediaEnded;
                 if (item.Start)
-                Projector.Sound[N].Play();
+                {
+                    Projector.Sound[N].Play();                    
+                }
             }));          
         }
         private void SetSoundOneItem(int position, SoundItem item)

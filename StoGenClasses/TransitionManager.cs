@@ -108,6 +108,14 @@ namespace StoGen.Classes
             {
                 result.Add(new TransitionRotate(vals, level));
             }
+            else if (vals[0].StartsWith("p"))
+            {
+                result.Add(new TransitionPlaySound(vals, level));
+            }
+            else if (vals[0].StartsWith("v"))
+            {
+                result.Add(new TransitionVolume(vals, level));
+            }
             return result;
         }
         public class TransitionItem
@@ -257,6 +265,7 @@ namespace StoGen.Classes
                 return result;
             }
         }
+        //Common transitions
         public class TransitionWait : TransitionItem
         {
             public TransitionWait(string[] vals, int level) : base(vals, level) { }
@@ -278,6 +287,7 @@ namespace StoGen.Classes
                 return false;
             }
         }
+        // Image transitions
         public class TransitionXY : TransitionItem
         {
             public TransitionXY(string[] vals, int level) : base(vals, level) { }
@@ -424,8 +434,6 @@ namespace StoGen.Classes
                 return false;
             }
         }
-
-
         public class TransitionRotate : TransitionItem
         {
 
@@ -478,8 +486,111 @@ namespace StoGen.Classes
                 return false;
             }
         }
+        // Sound transitions
+        public class TransitionPlaySound : TransitionItem
+        {
+            public TransitionPlaySound(string[] vals, int level) : base(vals, level) { }
+            public override double CurrentVal
+            {
+                get
+                {
+                    double val = Projector.Sound[Level].Position.TotalMilliseconds;
+                    if (val > 0) return 1;
+                    return 0;
+                }
+                set
+                {
+                    
+                    Projector.Sound[Level].Dispatcher.Invoke(new Action(
+                     () =>
+                     {
+                         if (value > 0)
+                             Projector.Sound[Level].Play();   
+                         else
+                             Projector.Sound[Level].Stop();
+                     }));
+                }
+            }
+            public override bool Execute()
+            {
+                double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
+                double cr = CurrentVal;
+                
+
+                if (this.Started == 0)
+                {
+                    this.Started = now;
+                    this.Begin = cr;
+                    this.End = this.Begin + this.REnd;
+                    this.isReverse = this.Begin > this.End;
+                    return false;
+                }
+                if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
+                {                    
+                    this.Close();
+                    return true;
+                }
+
+                this.Counter = now - this.Started;
+                double delta = this.CalcTran();
+                if (delta != 0)
+                {
+                    if (cr == 0)
+                        CurrentVal = 1;
+                    else
+                        CurrentVal = 0;
+                }
+                return false;
+            }
+        }
+        public class TransitionVolume : TransitionItem
+        {
+            public TransitionVolume(string[] vals, int level) : base(vals, level) { }
+            public override double CurrentVal
+            {
+                get
+                {
+                    return Projector.Sound[Level].Volume * 100;
+                }
+                set
+                {
+
+                    Projector.Sound[Level].Dispatcher.Invoke(new Action(
+                     () =>
+                     {
+                         Projector.Sound[Level].Volume = (value / 100.1);
+                     }));
+                }
+            }
+            public override bool Execute()
+            {
+                double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
+                double cr = CurrentVal;
 
 
+                if (this.Started == 0)
+                {
+                    this.Started = now;
+                    this.Begin = cr;
+                    this.End = this.Begin + this.REnd;
+                    this.isReverse = this.Begin > this.End;
+                    return false;
+                }
+                if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
+                {
+                    this.Close();
+                    return true;
+                }
+
+                this.Counter = now - this.Started;
+                double delta = this.CalcTran();
+                if (delta != 0)
+                {
+                    CurrentVal = this.Begin + delta;
+                }
+                return false;
+            }
+        }
         public List<List<TransitionItem>> Transitions;
         internal int Level = 0;
     }
