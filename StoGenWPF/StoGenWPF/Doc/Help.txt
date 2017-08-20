@@ -77,6 +77,8 @@ NextCadre:
 
 Order:
 
+Mute: move is muted or not (true by default)
+
 TRN: 
        [T.O.S.B]>[T.O.S.B]*[T.O.S.B]~
 	T- type of transition
