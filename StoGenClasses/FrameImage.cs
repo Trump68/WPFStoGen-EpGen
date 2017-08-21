@@ -350,7 +350,7 @@ namespace StoGen.Classes
                 {
                     TransitionData trandata = new TransitionData();
                     trandata.Level = (int)pi.Props.Level;
-                    trandata.Parse(pi.Props.Transition);
+                    trandata.Parse(pi.Props.Transition,0);
                     FrameImage.tranManager.Add(trandata);
                 }
 

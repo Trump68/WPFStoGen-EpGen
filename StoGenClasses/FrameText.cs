@@ -77,7 +77,7 @@ namespace StoGen.Classes
             if (!string.IsNullOrEmpty(Transition))
             {
                 TransitionData trandata = new TransitionData();
-                trandata.Parse(Transition);
+                trandata.Parse(Transition,2);
                 FrameImage.tranManager.Add(trandata);
             }
             if (!ClearBack)

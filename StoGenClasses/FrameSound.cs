@@ -105,7 +105,7 @@ namespace StoGen.Classes
             {
                 TransitionData trandata = new TransitionData();
                 trandata.Level = item.Position;
-                trandata.Parse(item.Transition);
+                trandata.Parse(item.Transition,1);
                 FrameSound.tranManager.Add(trandata);
             }
             if (item.FileName == "STOP")
