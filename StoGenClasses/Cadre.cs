@@ -48,11 +48,14 @@ namespace StoGen.Classes
             : this()
         {
             this.Owner = owner;
-            if (isAdd) this.Owner.Cadres.Add(this);
-            else
+            if (this.Owner != null)
             {
-                if (this.Owner.NestedCadreId == this.Owner.Cadres.Count) this.Owner.Cadres.Insert(this.Owner.NestedCadreId, this);
-                else this.Owner.Cadres.Insert(this.Owner.NestedCadreId + 1, this);
+                if (isAdd) this.Owner.Cadres.Add(this);
+                else
+                {
+                    if (this.Owner.NestedCadreId == this.Owner.Cadres.Count) this.Owner.Cadres.Insert(this.Owner.NestedCadreId, this);
+                    else this.Owner.Cadres.Insert(this.Owner.NestedCadreId + 1, this);
+                }
             }
         }
 
