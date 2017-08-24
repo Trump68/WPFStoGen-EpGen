@@ -28,7 +28,7 @@ namespace StoGenMake
         StoGenMaker Maker;
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Maker = new StoGenMaker();
+            Maker = new StoGenMaker(System.Environment.GetCommandLineArgs());            
             Maker.Start();
         }
     }
