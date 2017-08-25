@@ -1,0 +1,49 @@
+﻿// ------------ TEXT ----------------------
+Inline#T#						CadreText=;Size=150;FontSize=18;Shift=250;FontName=Arial;~=
+Inline#T1-0#					CadreText=;Size=300;FontSize=25;Shift=250;FontName=Arial;~=
+Inline#T1#						CadreText=;Size=250;FontSize=25;Shift=400;FontName=Arial;ClearBack=1;FontColor=Yellow;~=
+Inline#T1_Size200#				CadreText=;Size=200;FontSize=25;Shift=400;FontName=Arial;ClearBack=1;FontColor=Yellow;Opacity=100;~=
+Inline#T1-1#					CadreText=;Size=250;FontSize=25;Shift=400;FontName=Arial;ClearBack=1;FontColor=Red;Align=1;~=
+
+Inline#T2#						CadreText=;Size=150;FontSize=25;Align=1;Shift=250;FontName=Arial;~=
+
+Inline#T3#						CadreText=;Size=400;FontSize=18;Align=0;Shift=250;FontName=Arial;~=
+Inline#T4#						CadreText=;Size=600;Width=600;Shift=400;Bottom=200;FontSize=30;Align=2;ClearBack=1;FontColor=Yellow;FontName=Annabelle;~=
+
+Inline#T6#						CadreText=;Size=400;Width=1450;FontSize=50;Shift=100;ClearBack=1;FontColor=Yellow;FontName=Annabelle;~=
+Inline#T6-1#					CadreText=;Size=800;Width=1450;FontSize=50;Shift=100;ClearBack=1;FontColor=Yellow;FontName=Annabelle;Opacity=100;
+Inline#T6-4#					CadreText=;Size=250;Width=1450;FontSize=50;Shift=100;ClearBack=1;FontColor=Yellow;FontName=Annabelle;~=
+Inline#T6-2#					CadreText=;Size=400;Width=1000;FontSize=50;Shift=600;ClearBack=1;FontColor=Yellow;FontName=Annabelle;Align=1;~=
+Inline#T6-3#					CadreText=;Size=400;Width=1000;FontSize=50;Shift=600;ClearBack=1;FontColor=Yellow;FontName=Annabelle;Align=1;~=
+
+Inline#T6B#						CadreText=;Size=400;Width=1450;FontSize=50;Shift=100;ClearBack=1;FontColor=Blue;FontName=Annabelle;~=
+Inline#T6B-1#					CadreText=;Size=600;Width=1450;FontSize=50;Shift=100;ClearBack=1;FontColor=Blue;FontName=Annabelle;~=
+
+Inline#T6R#						CadreText=;Size=400;Width=1450;FontSize=50;Shift=100;ClearBack=1;FontColor=Red;Align=1;FontName=Annabelle;~=
+Inline#T6R-1#					CadreText=;Size=800;Width=1450;FontSize=50;Shift=100;ClearBack=1;FontColor=Red;Align=1;FontName=Annabelle;~=
+
+Inline#T7-1#					CadreText=;Size=800;Width=1450;FontSize=80;Shift=100;ClearBack=1;FontColor=White;Align=2;FontName=Cassandra;~=
+Inline#T7-2#					CadreText=;Size=400;Width=1450;FontSize=50;Shift=100;ClearBack=1;FontColor=White;Align=2;FontName=Cassandra;~=
+
+
+Inline#T5#						CadreText=;Size=400;Width=1450;FontSize=50;Shift=100;ClearBack=1;FontColor=Yellow;FontName=Cassandra;~=
+
+
+Inline#TB00-50-B-EpsilonCTT#		CadreText=;Size=300;Width=900;FontSize=40;Shift=20;ClearBack=1;FontColor=Yellow;FontName=Arial;~=
+
+
+//Andantino script
+//Annabelle
+//Cassandra
+//EpsilonCTT
+// ------------ SYS ----------------------
+Inline#SYS_BLACK#				AutoPics=d:\Process2\!!Data\! CommonData\SYS\Black.jpg;SizeX=-1;SizeY=-1
+Inline#SYS_WHITE#				AutoPics=d:\Process2\!!Data\! CommonData\SYS\White.jpg;SizeX=-1;SizeY=-1
+
+
+
+
+
+// ------------ MAN ----------------------
+Inline#MAN_001_001#		DetailPics=d:\Process2\!!Data\! CommonData\Man\À La Feuille De Rose, Maison Turque.m4v_snapshot_02.04_[2017.02.02_07.01.29].jpg;Level=3;SizeMode=1;SizeX=800;SizeY=300;X=100;Y=20;ClipW=180;ClipX=130;ClipH=200
+Inline#MAN_002_001#		DetailPics=d:\Process2\!!Data\! CommonData\Man\À La Feuille De Rose, Maison Turque.m4v_snapshot_05.40_[2017.02.02_07.24.39].jpg;Level=3;SizeMode=1;SizeX=800;SizeY=300;X=100;Y=20;ClipW=180;ClipX=130;ClipH=200

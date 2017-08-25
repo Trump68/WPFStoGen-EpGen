@@ -1,0 +1,175 @@
+﻿//  ======================================================== Clearing =======================================================================
+Inline#BG_SoundClear#			CadreSound=STOP;v=1;IsLoop=1
+Inline#BG_SoundClear0#			CadreSound=STOP;v=1;IsLoop=1;Position=0
+Inline#BG_SoundClear1#			CadreSound=STOP;v=1;IsLoop=1;Position=1
+Inline#BG_SoundClear2#			CadreSound=STOP;v=1;IsLoop=1;Position=2
+Inline#BG_SoundClear3#			CadreSound=STOP;v=1;IsLoop=1;Position=3
+Inline#BG_SoundClear4#			CadreSound=STOP;v=1;IsLoop=1;Position=4
+
+//  ======================================================== Effects =======================================================================
+Inline#BG_SoundClock#			CadreSound=d:\Process2\!!Data\! CommonData\Sound\File0061-Clock.mp3;v=5;IsLoop=1
+
+//  ======================================================== BGM =======================================================================
+Inline#BG_MusicRomantic_File0002#		CadreSound=d:\Process2\!!Data\! CommonData\BGM\File0002.mp3;v=10;IsLoop=1
+Inline#BG_MusicShame_File0004#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\File0004.mp3;v=5;IsLoop=1
+Inline#BG_MusicMast_File0005#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\File0005.mp3;v=10;IsLoop=1
+Inline#BG_MusicSorrow_File0003#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\File0003.mp3;v=10;IsLoop=1
+Inline#BG_MusicFuck_File0006#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\File0006.mp3;v=10;IsLoop=1
+Inline#BG_MusicFuck_File0001#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\File0001.mp3;v=10;IsLoop=1
+
+Inline#BG_MusicAction_File0001#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Action-001.mp3;v=10;IsLoop=1
+Inline#BG_MusicAction_File0002#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Action-002.mp3;v=10;IsLoop=1
+Inline#BG_MusicAction_File0003#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Action-003.mp3;v=10;IsLoop=1
+
+Inline#BG_MusicClassic_File0001#		CadreSound=d:\Process2\!!Data\! CommonData\BGM\Classic-01.mp3;v=10;IsLoop=1
+
+Inline#BG_MusicClub_File0001#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Club01.mp3;v=10;IsLoop=1
+Inline#BG_MusicClub_File0002#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Club02.mp3;v=10;IsLoop=1
+Inline#BG_MusicClub_File0003#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Club03.mp3;v=10;IsLoop=1
+Inline#BG_MusicClub_File0004#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Club04.mp3;v=10;IsLoop=1
+Inline#BG_MusicClub_File0005#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Club05.mp3;v=10;IsLoop=1
+Inline#BG_MusicClub_File0006#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Club06.mp3;v=10;IsLoop=1
+
+Inline#BG_MusicRomant_File0001#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Romantic-01.mp3;v=10;IsLoop=1
+Inline#BG_MusicRomant_File0002#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Romantic-02.mp3;v=10;IsLoop=1
+Inline#BG_MusicRomant_File0003#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Romantic-03.mp3;v=10;IsLoop=1
+
+Inline#BG_MusicSadness_File0001#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Sadness-01.mp3;v=10;IsLoop=1
+Inline#BG_MusicSadness_File0002#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Sadness-02.mp3;v=10;IsLoop=1
+Inline#BG_MusicSadness_File0003#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Sadness-03.mp3;v=10;IsLoop=1
+
+Inline#BG_MusicDirty_File0001#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Ленинград — Сладкий сон  (echo).mp3;v=10;IsLoop=1
+Inline#BG_MusicDirty_File0002#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Матерные частушки Джигурда (echo).mp3;v=10;IsLoop=1
+Inline#BG_MusicDirty_File0003#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Матерные частушки Сектор Газа (echo).mp3;v=10;IsLoop=1
+
+Inline#BG_MusicТревожная_File0001#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\И в тот момент - Тревожная музыка.mp3;v=10;IsLoop=1
+Inline#BG_MusicТревожная_File0002#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Красивая Музыка - Капли Любви.mp3;v=10;IsLoop=1
+Inline#BG_MusicТревожная_File0003#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Нэнси Дрю - Тревожная музыка.mp3;v=10;IsLoop=1
+Inline#BG_MusicТревожная_File0004#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Очень жуткая музыка - Тревожная (фортеп, скрипка).mp3;v=10;IsLoop=1
+Inline#BG_MusicТревожная_File0005#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Святослав Курашов - Очень пронзительная тревожная музыка.mp3;v=10;IsLoop=1
+Inline#BG_MusicТревожная_File0006#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Хор - Тревожная музыка.mp3;v=10;IsLoop=1
+Inline#BG_MusicТревожная_File0007#			CadreSound=d:\Process2\!!Data\! CommonData\BGM\Чернобыль - Музыка опасности радиации.mp3;v=10;IsLoop=1
+
+
+
+
+Inline#BG_Стоп#  						CadreSound=STOP;v=1;IsLoop=0
+
+
+//  ======================================================== Body Fucking =======================================================================
+//-Трах - шлепки тел
+Inline#Sound_BodyFucking_File0080#   	CadreSound=d:\Process2\!!Data\! CommonData\Voice\BodyFucking\File0080.mp3;Position=1;IsLoop=1;v=30
+Inline#Sound_BodyFucking_Стоп#  		CadreSound=STOP;v=1;IsLoop=0;Position=1
+//  ======================================================== BedSqueaking =======================================================================
+Inline#Sound_СкрипКровати_File0077#   	CadreSound=d:\Process2\!!Data\! CommonData\Voice\BedSqueaking\File0077.mp3;Position=1;IsLoop=1;v=30
+Inline#Sound_СкрипКровати_File0078#   	CadreSound=d:\Process2\!!Data\! CommonData\Voice\BedSqueaking\File0078.mp3;Position=1;IsLoop=1;v=30
+Inline#Sound_СкрипКровати_File0079#   	CadreSound=d:\Process2\!!Data\! CommonData\Voice\BedSqueaking\File0079.mp3;Position=1;IsLoop=1;v=30
+
+Inline#Sound_СкрипКровати_File0001#   	CadreSound=d:\Process2\!!Data\! CommonData\Voice\BedSqueaking\Skrip01.mp3;Position=1;IsLoop=1;v=30
+Inline#Sound_СкрипКровати_File0002#   	CadreSound=d:\Process2\!!Data\! CommonData\Voice\BedSqueaking\Skrip02.mp3;Position=1;IsLoop=1;v=30
+Inline#Sound_СкрипКровати_File0003#   	CadreSound=d:\Process2\!!Data\! CommonData\Voice\BedSqueaking\Skrip03.mp3;Position=1;IsLoop=1;v=30
+Inline#Sound_СкрипКровати_File0004#   	CadreSound=d:\Process2\!!Data\! CommonData\Voice\BedSqueaking\Skrip04.mp3;Position=1;IsLoop=1;v=30
+
+
+Inline#Sound_СкрипКровати_Стоп#  		CadreSound=STOP;v=1;IsLoop=0;Position=1
+
+//  ======================================================== Orgasming =======================================================================
+//#T#*А-Аа...*
+Inline#Sound_Orgasm_File0279#  				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Orgasm\File0279.mp3;v=80;IsLoop=0;Position=3
+
+//  ======================================================== A-ahhhh =======================================================================
+Inline#Sound_Ах_File0153#  			CadreSound=d:\Process2\!!Data\! CommonData\Voice\Ah\File0153.mp3;v=50;IsLoop=0;Position=3
+Inline#Sound_Ах_File0207#  			CadreSound=d:\Process2\!!Data\! CommonData\Voice\Ah\File0207.mp3;v=50;IsLoop=0;Position=3
+Inline#Sound_Ах_File0233#  			CadreSound=d:\Process2\!!Data\! CommonData\Voice\Ah\File0233.mp3;v=50;IsLoop=0;Position=3
+Inline#Sound_Ах_File0247#  			CadreSound=d:\Process2\!!Data\! CommonData\Voice\Ah\File0247.mp3;v=50;IsLoop=0;Position=3
+Inline#Sound_Ах_File0371#  			CadreSound=d:\Process2\!!Data\! CommonData\Voice\Ah\File0371.mp3;v=50;IsLoop=0;Position=3
+//от испуга, не страстно
+Inline#Sound_Ах_File0415#  			CadreSound=d:\Process2\!!Data\! CommonData\Voice\Ah\File0415.mp3;v=50;IsLoop=0;Position=3
+// увидев член и испугавшись
+Inline#Sound_Ах_File0417#  			CadreSound=d:\Process2\!!Data\! CommonData\Voice\Ah\File0417.mp3;v=50;IsLoop=0;Position=3
+// ой!
+Inline#Sound_Ах_File0425#  			CadreSound=d:\Process2\!!Data\! CommonData\Voice\Ah\File0425.mp3;v=50;IsLoop=0;Position=3
+// ммм....а-а-а-а-а!
+Inline#Sound_Ах_File0427#  			CadreSound=d:\Process2\!!Data\! CommonData\Voice\Ah\File0427.mp3;v=50;IsLoop=0;Position=3
+// ааа...аааа....а-а-а-а-а!
+Inline#Sound_Ах_File0435#  			CadreSound=d:\Process2\!!Data\! CommonData\Voice\Ah\File0435.mp3;v=50;IsLoop=0;Position=3
+// ииии...аааа....а-а-а-а-а! (вставляют ей хуй до конца)
+Inline#Sound_Ах_File0447#  			CadreSound=d:\Process2\!!Data\! CommonData\Voice\Ah\File0447.mp3;v=50;IsLoop=0;Position=3
+// ииии...аааа....а-а-а-а-а! (после того как ей вставили хуй до конца)
+Inline#Sound_Ах_File0449#  			CadreSound=d:\Process2\!!Data\! CommonData\Voice\Ah\File0449.mp3;v=50;IsLoop=0;Position=3
+//  ======================================================== Dreaming =======================================================================
+//#T#(Гадкий садовник...Ненавижу его всем сердцем...)
+Inline#Sound_Мысли_File0213# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0213.mp3;v=50;IsLoop=0;Position=3
+//#T#(Только не воображай себя принцем, гадкий извращенец...)
+Inline#Sound_Мысли_File0215# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0215.mp3;v=50;IsLoop=0;Position=3
+Inline#Sound_Мысли_File0219# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0219.mp3;v=50;IsLoop=0;Position=3
+//#T#(...О боже!... я схожу с ума!...)
+Inline#Sound_Мысли_File0221# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0221.mp3;v=50;IsLoop=0;Position=3
+Inline#Sound_Мысли_File0223# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0223.mp3;v=50;IsLoop=0;Position=3
+Inline#Sound_Мысли_File0225# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0225.mp3;v=50;IsLoop=0;Position=3
+//#T#(А ты - просто грязный старикашка, с большим и толстым пенисом...)
+Inline#Sound_Мысли_File0227# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0227.mp3;v=50;IsLoop=0;Position=3
+Inline#Sound_Мысли_File0229# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0229.mp3;v=50;IsLoop=0;Position=3
+Inline#Sound_Мысли_File0237# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0237.mp3;v=50;IsLoop=0;Position=3
+Inline#Sound_Мысли_File0241# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0241.mp3;v=50;IsLoop=0;Position=3
+//#T#(И теперь этого... нельзя избежать...)
+Inline#Sound_Мысли_File0407# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0407.mp3;v=50;IsLoop=0;Position=3
+//#T#(Я была счастлива... но зачем-то хотела большего...)
+Inline#Sound_Мысли_File0409# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0409.mp3;v=50;IsLoop=0;Position=3
+//#T#(За это я теперь наказана...)
+Inline#Sound_Мысли_File0411# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0411.mp3;v=50;IsLoop=0;Position=3
+//#T#(Э-Это... не могу поверить... это, и то, что у Андре - как совершенно разные веши...)
+Inline#Sound_Мысли_File0419# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0419.mp3;v=50;IsLoop=0;Position=3
+//#T#(Он же еще ребенок... боже!...)
+Inline#Sound_Мысли_File0421# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0421.mp3;v=50;IsLoop=0;Position=3
+//#T#(Невозможно поверить что он такого же возраста как Лу...)
+Inline#Sound_Мысли_File0423# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0423.mp3;v=50;IsLoop=0;Position=3
+//#T#(ах... большой... намного больше, чем выглядит... я чувствую...)
+Inline#Sound_Мысли_File0429# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0429.mp3;v=50;IsLoop=0;Position=3
+//#T#(Если в меня вставят такою штуку...как это будет?)
+Inline#Sound_Мысли_File0431# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0431.mp3;v=50;IsLoop=0;Position=3
+//#T#(о нет.. мне страшно.. я боюсь..)
+Inline#Sound_Мысли_File0433# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0433.mp3;v=50;IsLoop=0;Position=3
+//#T#(я уже полностью заполнена!)
+Inline#Sound_Мысли_File0441# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0441.mp3;v=50;IsLoop=0;Position=3
+//#T#(мы теперь соединились по настоящему, до конца!) (ей вставили хуй до конца)
+Inline#Sound_Мысли_File0451# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0451.mp3;v=50;IsLoop=0;Position=3
+//#T#(что это? он полностью внутри, а мне уже не больно...) (ее ебут)
+Inline#Sound_Мысли_File0457# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Dreaming\File0457.mp3;v=50;IsLoop=0;Position=3
+//  ======================================================== Moaning =======================================================================
+Inline#Sound_Стоны_File0001#		CadreSound=d:\Process2\!!Data\! CommonData\Voice\Moaning\File0001.mp3;v=10;IsLoop=1;Position=2
+Inline#Sound_Стоны_File0002#		CadreSound=d:\Process2\!!Data\! CommonData\Voice\Moaning\File0002.mp3;v=10;IsLoop=1;Position=2
+
+Inline#Sound_LongСтоны_File0001#	CadreSound=d:\Process2\!!Data\! CommonData\Voice\Moaning\Moan 001.mp3;v=10;IsLoop=1;Position=2
+Inline#Sound_LongСтоны_File0002#	CadreSound=d:\Process2\!!Data\! CommonData\Voice\Moaning\Moan 002.mp3;v=10;IsLoop=1;Position=2
+Inline#Sound_LongСтоны_File0003#	CadreSound=d:\Process2\!!Data\! CommonData\Voice\Moaning\Moan 003.mp3;v=10;IsLoop=1;Position=2
+Inline#Sound_LongСтоны_File0004#	CadreSound=d:\Process2\!!Data\! CommonData\Voice\Moaning\Moan 004.mp3;v=10;IsLoop=1;Position=2
+Inline#Sound_LongСтоны_File0005#	CadreSound=d:\Process2\!!Data\! CommonData\Voice\Moaning\Moan 005.mp3;v=10;IsLoop=1;Position=2
+
+
+Inline#Sound_LongСтоны_File0006#	CadreSound=d:\Process2\!!Data\! CommonData\Voice\Moaning\LongMoan 001.mp3;v=10;IsLoop=1;Position=2
+Inline#Sound_LongСтоныPhone_File0006#	CadreSound=d:\Process2\!!Data\! CommonData\Voice\Moaning\LongMoanPhone 001.mp3;v=10;IsLoop=1;Position=2
+Inline#Sound_LongСтоны_File0007#	CadreSound=d:\Process2\!!Data\! CommonData\Voice\Moaning\LongMoan 002.mp3;v=10;IsLoop=1;Position=2
+
+
+Inline#Sound_Стоны_Стоп#			CadreSound=STOP;v=1;IsLoop=0;Position=2
+
+
+
+
+
+//  ======================================================== Talking =======================================================================
+//#T#Э-Это гадко... я согласна..
+Inline#Sound_Речь_File0413# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Talk\File0413.mp3;v=50;IsLoop=0;Position=3
+//#T#Подождите, подождите не вводите...хотя нет, лучше вводите... дальше давайте...
+Inline#Sound_Речь_File0437# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Talk\File0437.mp3;v=50;IsLoop=0;Position=3
+//#T#А-Ах...такой...
+Inline#Sound_Речь_File0439# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Talk\File0439.mp3;v=50;IsLoop=0;Position=3
+//#T#Боже...вытащи,больно!
+Inline#Sound_Речь_File0445# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Talk\File0445.mp3;v=50;IsLoop=0;Position=3
+//#T#ииии...аааа....подожди..! (когда ей засунули до конца и сейчас будут ебать)
+Inline#Sound_Речь_File0453# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Talk\File0453.mp3;v=50;IsLoop=0;Position=3
+//#T#~ииии...аааа....мне больно.. (когда ее стали ебать)
+Inline#Sound_Речь_File0455# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Talk\File0455.mp3;v=50;IsLoop=0;Position=3
+//#T#~...аааа....я чувствую.... там.. (когда ее стали ебать)
+Inline#Sound_Речь_File0459# 				CadreSound=d:\Process2\!!Data\! CommonData\Voice\Talk\File0459.mp3;v=50;IsLoop=0;Position=3	
