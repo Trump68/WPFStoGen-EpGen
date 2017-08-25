@@ -99,6 +99,7 @@
     <AppDesigner Include="Properties\" />
     <None Include="Scenes\Data\01.stogen" />
     <None Include="Scenes\Data\Common.stogen" />
+    <None Include="Scenes\Data\Scene01.tmpl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
