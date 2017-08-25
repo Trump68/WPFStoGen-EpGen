@@ -30,6 +30,7 @@ namespace StoGenMake
         {
             Maker = new StoGenMaker(System.Environment.GetCommandLineArgs());            
             Maker.Start();
+            this.Close();
         }
     }
 }
