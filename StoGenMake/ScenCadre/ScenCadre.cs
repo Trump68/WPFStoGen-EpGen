@@ -11,6 +11,8 @@ namespace StoGenMake.Elements
     {
         public string Name { set; get; }
         public string Description { set; get; }
+        public virtual bool IsActivated { get { return this.VisionList.First().IsActivated; } }
+
         public int Timer = -1;
         public List<ScenElement> VisionList = new List<ScenElement>();
         public List<ScenElement> SoundList = new List<ScenElement>();
@@ -49,18 +51,25 @@ namespace StoGenMake.Elements
             result.Add($"PartSta# {this.Name.PadRight(100)}");
 
             if (this.Timer > 0)
-                (this.VisionList.First() as ScenElementImage).Timer = this.Timer;
+            {
+                this.VisionList.ForEach(x => (x as ScenElementImage).Timer = this.Timer);
+                //(this.VisionList.First() as ScenElementImage).Timer = this.Timer;
+            }
+               
             foreach (var item in this.VisionList)
             {
+                if (item.IsActivated)
                 result.Add(" " + item.GetElementData());
             }
             foreach (var item in this.SoundList)
             {
-                result.Add(" " + item.GetElementData());
+                if (item.IsActivated)
+                    result.Add(" " + item.GetElementData());
             }
             foreach (var item in this.TextList)
             {
-                result.Add(" " + item.GetElementData());
+                if (item.IsActivated)
+                    result.Add(" " + item.GetElementData());
             }
             result.Add($"PartEnd#");
             return result;

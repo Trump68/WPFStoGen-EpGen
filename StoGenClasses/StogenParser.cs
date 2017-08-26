@@ -293,6 +293,7 @@ namespace StoGen.Classes
                 if (mark == "MainPics")
                 {
                     if (val == "SKIP") return new PictureSourceDataProps(val);
+                    else if (val == "PREVIOUS") return new PictureSourceDataProps(val);
                     p = new PictureSourceDataProps(Universe.GetFullPath(val, DefaultPath));
                 }
                 else if (mark == "MainProps")
@@ -306,6 +307,8 @@ namespace StoGen.Classes
                 }
                 else if (mark == "AutoPics")
                 {
+                    if (val == "SKIP") return new PictureSourceDataProps(val);
+                    else if (val == "PREVIOUS") return new PictureSourceDataProps(val);
                     p = new PictureSourceDataProps(Universe.GetFullPath(val, DefaultPath));
                     p.Active = true;
                 }

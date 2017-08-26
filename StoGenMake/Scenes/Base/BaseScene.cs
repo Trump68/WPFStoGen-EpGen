@@ -72,20 +72,25 @@ namespace StoGenMake.Scenes.Base
         }
 
         public virtual List<string> GetSceneData(List<string> scendata)
-        {           
-            SetSceneCommonDats(scendata);
+        {
             List<string> result = new List<string>();
-            foreach (var item in scendata)
+            if (scendata != null)
             {
-                string[] vals = item.Split(';');
-                var val = this.Variables.Where(x => x.Type == vals[0].Trim() && x.Name == vals[1].Trim()).FirstOrDefault();
-                if (val != null) val.Value = vals[2].Trim();
+                SetSceneCommonDats(scendata);
+                
+                foreach (var item in scendata)
+                {
+                    string[] vals = item.Split(';');
+                    var val = this.Variables.Where(x => x.Type == vals[0].Trim() && x.Name == vals[1].Trim()).FirstOrDefault();
+                    if (val != null) val.Value = vals[2].Trim();
+                }
             }
 
             foreach (var item in this.Cadres)
             {
                 item.InitValuesFromScene();
-                result.AddRange(item.GetCadreData());
+                if (item.IsActivated)
+                    result.AddRange(item.GetCadreData());
             }
             return result;
         }

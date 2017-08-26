@@ -14,6 +14,8 @@ namespace StoGenMake.Elements
         public bool IsOptional { get; internal set; }
         public string File { get; internal set; }
         public string Transition { get; internal set; }
+        public virtual bool IsActivated { get; } = true;
+
         //internal virtual string GetTemplate()
         //{
         //    return null;
@@ -36,6 +38,7 @@ namespace StoGenMake.Elements
     }
     public class ScenElementImage : ScenElement
     {
+        public static ScenElementImage Previous = new ScenElementImage() {};
         public int SizeX = 900;
         public int SizeY = 600;
         public int SizeMode = 1;
@@ -43,24 +46,30 @@ namespace StoGenMake.Elements
         public int Y = 0;
         public int Opacity = 100;
         public int Timer = -1;
-        
+        public override bool IsActivated { get { return (this == Previous) || (!string.IsNullOrEmpty(this.File)); } }
         internal override void ApplyData(string[] vals)
         {
             this.File = vals[1].Trim();
         }
         internal override string GetElementData()
-        {
-            //#014 #;SizeX=800;SizeY=600;SizeMode=1;X=300;Timer=16000;Opacity=0;TRN=O.B.5000.100
+        {           
             List<string> result = new List<string>();
-            result.Add($"{this.File.PadRight(20)}");
-            result.Add($"SizeX={this.SizeX.ToString().PadRight(4)}");
-            result.Add($"SizeY={this.SizeY.ToString().PadRight(4)}");
-            result.Add($"SizeMode={this.SizeMode}");
-            result.Add($"X={this.X.ToString().PadRight(4)}");
-            result.Add($"Y={this.Y.ToString().PadRight(4)}");
-            result.Add($"Opacity={this.Opacity.ToString().PadRight(3)}");
-            if (this.Timer > 0) result.Add($"Timer={this.Timer.ToString().PadRight(7)}");
-            if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");
+            if (this == Previous)
+            {
+                result.Add($"AutoPics=PREVIOUS");
+            }
+            else
+            {
+                result.Add($"{this.File.PadRight(20)}");
+                result.Add($"SizeX={this.SizeX.ToString().PadRight(4)}");
+                result.Add($"SizeY={this.SizeY.ToString().PadRight(4)}");
+                result.Add($"SizeMode={this.SizeMode}");
+                result.Add($"X={this.X.ToString().PadRight(4)}");
+                result.Add($"Y={this.Y.ToString().PadRight(4)}");
+                result.Add($"Opacity={this.Opacity.ToString().PadRight(3)}");
+                if (this.Timer > 0) result.Add($"Timer={this.Timer.ToString().PadRight(7)}");
+                if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");               
+            }
             return string.Join(";", result.ToArray());
         }
 
@@ -78,7 +87,7 @@ namespace StoGenMake.Elements
        
         public int V = 100;
         public int StartPlay = -1;
-
+        public override bool IsActivated { get { return !string.IsNullOrEmpty(this.File); } }
         internal override void ApplyData(string[] vals)
         {
             this.File = vals[1].Trim();
@@ -97,6 +106,8 @@ namespace StoGenMake.Elements
 
     public class ScenElementText : ScenElement
     {
+        public string Text;
+        public override bool IsActivated { get { return !string.IsNullOrEmpty(this.Text); } }
     }
 }
 

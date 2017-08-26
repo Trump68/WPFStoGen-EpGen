@@ -184,25 +184,37 @@ namespace StoGen.Classes
             FrameImage.CurrentProc = this.Proc;
             FrameImage.NextCadre = 0;
 
+            bool isPrevious = false;
             if (Pics[0].Props.FileName == "SKIP") return this.Owner;
-
+           
 
 
             FrameImage.tranManager.Clear();
             base.Repaint();
-            Pics.Sort(sorter);
+            //Pics.Sort(sorter);
 
-            foreach (System.Windows.Controls.Image item in Projector.PicContainer.PicList)
+            if (Pics[0].Props.FileName == "PREVIOUS")
             {
-                item.Tag = null;
+                Pics.RemoveAt(0);
+                isPrevious = true;
+                int indexEmpty = Projector.PicContainer.PicList.IndexOf(Projector.PicContainer.PicList.First(x => x.Tag == null));
+                Pics.ForEach(x => x.Props.Level = (PicLevel)(indexEmpty++));
             }
+            else
+            {
+                foreach (System.Windows.Controls.Image item in Projector.PicContainer.PicList)
+                {
+                    item.Tag = null;
+                }
+            }
+
             bool runClip = false;
             bool videoactive = false;
             FrameImage.TimeToNext = -1;
             FrameImage.WaitStart = -1;
             FrameImage.WaitEnd = -1;
             for (int i = 0; i < Pics.Count; i++)
-            {
+            {               
                 if (Pics[i].Props.NextCadre > 0) FrameImage.NextCadre = Pics[i].Props.NextCadre;
                 if (!Pics[i].Props.Active)
                 {
@@ -419,14 +431,13 @@ namespace StoGen.Classes
             SetVisible(this.isVisible);
 
             if (!videoactive) Projector.PicContainer.Clip.Visibility = System.Windows.Visibility.Hidden;
+
             for (int j = 1; j < Projector.PicContainer.PicList.Count; j++)
             {
-
-                if (Projector.PicContainer.PicList[j].Tag == null)
+                if (!isPrevious && Projector.PicContainer.PicList[j].Tag == null)
                 {
                     Projector.PicContainer.PicList[j].Source = null;
                     Projector.PicContainer.PicList[j].Visibility = System.Windows.Visibility.Hidden;
-
                 }
                 else
                 {
