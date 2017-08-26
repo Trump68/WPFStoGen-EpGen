@@ -86,11 +86,11 @@
     <Compile Include="frmTextEdit.Designer.cs">
       <DependentUpon>frmTextEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frame.cs" />
-    <Compile Include="FrameImage.cs" />
+    <Compile Include="Frames\Frame.cs" />
+    <Compile Include="Frames\FrameImage.cs" />
     <Compile Include="FrameProc.cs" />
-    <Compile Include="FrameSound.cs" />
-    <Compile Include="FrameText.cs" />
+    <Compile Include="Frames\FrameSound.cs" />
+    <Compile Include="Frames\FrameText.cs" />
     <Compile Include="ImageCadreViewModel.cs" />
     <Compile Include="LocationView.cs" />
     <Compile Include="PerPixelAlpha.cs" />

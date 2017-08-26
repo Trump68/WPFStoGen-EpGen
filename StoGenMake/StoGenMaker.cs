@@ -42,9 +42,7 @@ namespace StoGenMake
             if (!string.IsNullOrEmpty(fileToProcess))
             {
                 List<string> header;
-                //StoGenParser.GetProcessedFile(fileToProcess, null, KeyVarContainer, null, out header);
 
-                
                 // найти сценарий и ему передать
                 datalist = Universe.LoadFileToStringList(fileToProcess);
                 datalist.ForEach(x => x.Trim());
@@ -58,7 +56,9 @@ namespace StoGenMake
             }
             if (scene != null)
             {
-                scene.Generate(datalist, fileToProcess);
+                string fn = scene.Generate(datalist, fileToProcess);
+                System.Diagnostics.Process.Start(fn);
+
             }
             else
             {

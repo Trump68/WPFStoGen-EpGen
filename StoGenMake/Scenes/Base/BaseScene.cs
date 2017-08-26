@@ -53,7 +53,7 @@ namespace StoGenMake.Scenes.Base
         }
 
 
-        internal void Generate(List<string> datalist, string fileToProcess)
+        internal string Generate(List<string> datalist, string fileToProcess)
         {
             List<string> scendata = GetSceneData(datalist);
 
@@ -68,6 +68,7 @@ namespace StoGenMake.Scenes.Base
             }
 
             File.WriteAllText(fn, string.Join(Environment.NewLine, scendata.ToArray()));
+            return fn;
         }
 
         public virtual List<string> GetSceneData(List<string> scendata)

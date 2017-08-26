@@ -45,23 +45,6 @@ namespace StoGenMake.Elements
         public virtual List<string> GetCadreData()
         {
 
-            //if (scendata != null)
-            //{
-            //    //Apply data
-            //    int index = scendata.FindIndex(x => x.StartsWith($"CADRE {this.Name}"));
-            //    int startindex = index;
-            //    if (index > -1)
-            //    {
-            //        index++;
-            //        while (index <= (scendata.Count() - 1) && !scendata[index].StartsWith("CADRE "))
-            //        {
-            //            this.ParseLine(scendata[index]);
-            //            index++;
-            //        }
-            //        scendata.RemoveRange(startindex, index - startindex);
-            //    }
-            //}
-            //Get srting data
             List<string> result = new List<string>();
             result.Add($"PartSta# {this.Name.PadRight(100)}");
 
@@ -71,7 +54,14 @@ namespace StoGenMake.Elements
             {
                 result.Add(" " + item.GetElementData());
             }
-
+            foreach (var item in this.SoundList)
+            {
+                result.Add(" " + item.GetElementData());
+            }
+            foreach (var item in this.TextList)
+            {
+                result.Add(" " + item.GetElementData());
+            }
             result.Add($"PartEnd#");
             return result;
 

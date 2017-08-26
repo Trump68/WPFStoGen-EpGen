@@ -8,7 +8,7 @@ using StoGenMake.Scenes.Base;
 namespace StoGenMake.Elements
 {
     public class ScenElement
-    {        
+    {
 
         public string Name { set; get; }
         public bool IsOptional { get; internal set; }
@@ -34,57 +34,69 @@ namespace StoGenMake.Elements
             if (val != null) this.File = val.Value;
         }
     }
-        public class ScenElementImage : ScenElement
+    public class ScenElementImage : ScenElement
+    {
+        public int SizeX = 900;
+        public int SizeY = 600;
+        public int SizeMode = 1;
+        public int X = 0;
+        public int Y = 0;
+        public int Opacity = 100;
+        public int Timer = -1;
+        
+        internal override void ApplyData(string[] vals)
         {
-            public int SizeX = 900;
-            public int SizeY = 600;
-            public int SizeMode = 1;
-            public int X = 0;
-            public int Y = 0;
-            public int Opacity = 100;
-            public int Timer = -1;
-            //internal override string GetTemplate()
-            //{
-            //    string strpart = this.Name + ";";
-            //    string strpart1 = this.File;
-            //    if (this.IsOptional) strpart1 = strpart1 + "; optional";
-            //    return $"    IMAGE {strpart.PadRight(50)}{strpart1}";
-            //}
-            internal override void ApplyData(string[] vals)
-            {
-                this.File = vals[1].Trim();
-            }
-            internal override string GetElementData()
-            {
-                //#014 #;SizeX=800;SizeY=600;SizeMode=1;X=300;Timer=16000;Opacity=0;TRN=O.B.5000.100
-                List<string> result = new List<string>();
-                result.Add($"{this.File.PadRight(20)}");
-                result.Add($"SizeX={this.SizeX.ToString().PadRight(4)}");
-                result.Add($"SizeY={this.SizeY.ToString().PadRight(4)}");
-                result.Add($"SizeMode={this.SizeMode}");
-                result.Add($"X={this.X.ToString().PadRight(4)}");
-                result.Add($"Y={this.Y.ToString().PadRight(4)}");
-                result.Add($"Opacity={this.Opacity.ToString().PadRight(3)}");
-                if (this.Timer > 0) result.Add($"Timer={this.Timer.ToString().PadRight(7)}");
-                if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");
-                return string.Join(";", result.ToArray());
-            }
-
-            internal void SetParamsFromScene(BaseScene scene)
-            {
-                this.SizeX = scene.SizeX;
-                this.SizeY = scene.SizeY;
-                this.X = scene.X;
-                this.Y = scene.Y;
-            }
+            this.File = vals[1].Trim();
+        }
+        internal override string GetElementData()
+        {
+            //#014 #;SizeX=800;SizeY=600;SizeMode=1;X=300;Timer=16000;Opacity=0;TRN=O.B.5000.100
+            List<string> result = new List<string>();
+            result.Add($"{this.File.PadRight(20)}");
+            result.Add($"SizeX={this.SizeX.ToString().PadRight(4)}");
+            result.Add($"SizeY={this.SizeY.ToString().PadRight(4)}");
+            result.Add($"SizeMode={this.SizeMode}");
+            result.Add($"X={this.X.ToString().PadRight(4)}");
+            result.Add($"Y={this.Y.ToString().PadRight(4)}");
+            result.Add($"Opacity={this.Opacity.ToString().PadRight(3)}");
+            if (this.Timer > 0) result.Add($"Timer={this.Timer.ToString().PadRight(7)}");
+            if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");
+            return string.Join(";", result.ToArray());
         }
 
-        public class ScenElementSound : ScenElement
+        internal void SetParamsFromScene(BaseScene scene)
         {
-        }
-
-        public class ScenElementText : ScenElement
-        {
+            this.SizeX = scene.SizeX;
+            this.SizeY = scene.SizeY;
+            this.X = scene.X;
+            this.Y = scene.Y;
         }
     }
-    
+
+    public class ScenElementSound : ScenElement
+    {
+       
+        public int V = 100;
+        public int StartPlay = -1;
+
+        internal override void ApplyData(string[] vals)
+        {
+            this.File = vals[1].Trim();
+        }
+        internal override string GetElementData()
+        {
+            //#014 #;SizeX=800;SizeY=600;SizeMode=1;X=300;Timer=16000;Opacity=0;TRN=O.B.5000.100
+            List<string> result = new List<string>();
+            result.Add($"{this.File.PadRight(20)}");
+            result.Add($"v={this.V.ToString().PadRight(4)}");
+            if (StartPlay > -1) result.Add($"Start={this.StartPlay.ToString().PadRight(4)}");
+            if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");
+            return string.Join(";", result.ToArray());
+        }       
+    }
+
+    public class ScenElementText : ScenElement
+    {
+    }
+}
+
