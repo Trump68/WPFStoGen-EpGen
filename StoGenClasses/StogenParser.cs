@@ -319,19 +319,22 @@ namespace StoGen.Classes
                 {
                     p.ClipY = Convert.ToDouble(val);
                 }
-                else if (mark == "X") p.X = Convert.ToInt32(val);
-                else if (mark == "Y") p.Y = Convert.ToInt32(val);
-                else if (mark == "SizeX") p.SizeX = Convert.ToInt32(val);
-                else if (mark == "SizeY") p.SizeY = Convert.ToInt32(val);
-                else if (mark == "Rotate") p.Rotate = Convert.ToInt32(val);
-                else if (mark == "Flip") p.Flip = (RotateFlipType)Convert.ToInt32(val);
-                else if (mark == "R") p.R = Convert.ToInt32(val);
-                else if (mark == "Blur") p.Blur = Convert.ToInt32(val);
+                else if (mark == "X") p.X = Convert.ToInt32(val.Trim());
+                else if (mark == "Y") p.Y = Convert.ToInt32(val.Trim());
+                else if (mark == "SizeX") p.SizeX = Convert.ToInt32(val.Trim());
+                else if (mark == "SizeY") p.SizeY = Convert.ToInt32(val.Trim());
+                else if (mark == "Rotate") p.Rotate = Convert.ToInt32(val.Trim());
+                else if (mark == "Flip") p.Flip = (RotateFlipType)Convert.ToInt32(val.Trim());
+                else if (mark == "R") p.R = Convert.ToInt32(val.Trim());
+                else if (mark == "Blur") p.Blur = Convert.ToInt32(val.Trim());
                 else if (mark == "Level")
                 {
-                    p.Level = (PicLevel)(Convert.ToInt32(val));
+                    p.Level = (PicLevel)(Convert.ToInt32(val.Trim()));
                 }
-                else if (mark == "Opacity") p.Opacity = Convert.ToInt32(val);
+                else if (mark == "Opacity")
+                {
+                    p.Opacity = Convert.ToInt32(val.Trim());
+                }
                 else if (mark == "Flash") p.Flash = val;
                 else if (mark == "Name") p.Name = val;
                 else if (mark == "Desc") p.Description = val;
@@ -339,9 +342,9 @@ namespace StoGen.Classes
                 {
                     p.SetName = val;
                 }
-                else if (mark == "Timer") p.Timer = Convert.ToInt32(val);
-                else if (mark == "Timer2") p.Timer2 = Convert.ToInt32(val);
-                else if (mark == "SizeMode") p.SizeMode = (PictureSizeMode)Convert.ToInt32(val);
+                else if (mark == "Timer") p.Timer = Convert.ToInt32(val.Trim());
+                else if (mark == "Timer2") p.Timer2 = Convert.ToInt32(val.Trim());
+                else if (mark == "SizeMode") p.SizeMode = (PictureSizeMode)Convert.ToInt32(val.Trim());
                 else if (mark.Trim() == "Active")
                 {
                     if (val.Trim() == "0") p.Active = false;
@@ -359,24 +362,24 @@ namespace StoGen.Classes
                 }
                 else if (mark.Trim() == "IsLoop")
                 {
-                    p.isLoop = Convert.ToInt32(val);
+                    p.isLoop = Convert.ToInt32(val.Trim());
                 }
                 else if (mark.Trim() == "PP")
                 {
-                    p.PP1 = Convert.ToInt32(val);
+                    p.PP1 = Convert.ToInt32(val.Trim());
                     p.PP2 = p.PP1;
                 }
                 else if (mark.Trim() == "PP1")
                 {
-                    p.PP1 = Convert.ToInt32(val);
+                    p.PP1 = Convert.ToInt32(val.Trim());
                 }
                 else if (mark.Trim() == "PP2")
                 {
-                    p.PP2 = Convert.ToInt32(val);
+                    p.PP2 = Convert.ToInt32(val.Trim());
                 }
                 else if (mark.Trim() == "Rate")
                 {
-                    p.Rate = (AnimationRate)Convert.ToInt32(val);
+                    p.Rate = (AnimationRate)Convert.ToInt32(val.Trim());
                 }
                 else if (mark.Trim() == "Core")
                 {
@@ -386,19 +389,19 @@ namespace StoGen.Classes
                 else if (mark.Trim() == "StartPos")
                 {
                     if (!string.IsNullOrEmpty(val))
-                        p.StartPos = Convert.ToDouble(val);
+                        p.StartPos = Convert.ToDouble(val.Trim());
                 }
                 else if (mark.Trim() == "EndPos")
                 {
                     if (!string.IsNullOrEmpty(val))
-                        p.EndPos = Convert.ToDouble(val);
+                        p.EndPos = Convert.ToDouble(val.Trim());
                 }
                 else if (mark.Trim() == "NextCadre")
                 {
                     p.NextCadre = Convert.ToDouble(val);
                 }
-                else if (mark == "TRN") p.Transition = val;
-                else if (mark == "Order") CadreOrder = Convert.ToInt32(val);
+                else if (mark == "TRN") p.Transition = val.Trim();
+                else if (mark == "Order") CadreOrder = Convert.ToInt32(val.Trim());
 
             }
             return p;

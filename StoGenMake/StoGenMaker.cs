@@ -10,16 +10,18 @@ using System.Threading.Tasks;
 
 namespace StoGenMake
 {
-    public class StoGenMaker
+    public static class StoGenMaker
     {
-        string ExecDir;
-        string TemplateDirName = "Templates";
-        KeyVarDataContainer KeyVarContainer = new KeyVarDataContainer();
-        List<BaseScene> SceneList = new List<BaseScene>();
-        string FileToProcess = null;
-        string TemplateDirPath { get { return Path.Combine(ExecDir, TemplateDirName); } }
+        static string ExecDir;
+        static string TemplateDirName = "Templates";
+        static KeyVarDataContainer KeyVarContainer = new KeyVarDataContainer();
 
-        public StoGenMaker(string[] args)
+        static List<BaseScene> SceneList = new List<BaseScene>();
+        static string FileToProcess = null;
+        static string TemplateDirPath { get { return Path.Combine(ExecDir, TemplateDirName); } }
+
+       
+        public static void Start(string[] args)
         {
             ExecDir = Path.GetDirectoryName(args[0]);
             if (!Directory.Exists(TemplateDirPath)) Directory.CreateDirectory(TemplateDirPath);
@@ -27,25 +29,48 @@ namespace StoGenMake
             {
                 FileToProcess = args[1];
             }
-        }
 
-        public void Start()
-        {
             FillScenes();
             SaveTemplates();            
             GenerateScen(FileToProcess);          
         }
 
-        private void GenerateScen(string fileToProcess)
+        private static void GenerateScen(string fileToProcess)
         {
-            SceneList.ForEach(x => x.Generate(fileToProcess));
-        }
+            BaseScene scene = null;
+            List<string> datalist = new List<string>();
+            if (!string.IsNullOrEmpty(fileToProcess))
+            {
+                List<string> header;
+                //StoGenParser.GetProcessedFile(fileToProcess, null, KeyVarContainer, null, out header);
 
-        void FillScenes()
+                
+                // найти сценарий и ему передать
+                datalist = Universe.LoadFileToStringList(fileToProcess);
+                datalist.ForEach(x => x.Trim());
+                datalist.RemoveAll(x => x.StartsWith(@"//"));
+                string scenName = datalist.FirstOrDefault(x => x.StartsWith(@"SCEN "));
+                if (!string.IsNullOrEmpty(scenName))
+                {
+                    scenName = scenName.Replace(@"SCEN ", string.Empty);
+                    scene = SceneList.FirstOrDefault(x => x.Name == scenName);
+                }
+            }
+            if (scene != null)
+            {
+                scene.Generate(datalist, fileToProcess);
+            }
+            else
+            {
+                SceneList.ForEach(x => x.Generate(null,null));
+            }
+        }
+        
+        static void FillScenes()
         {
             SceneList.Add(new Scene01());
         }
-        void SaveTemplates()
+        static void  SaveTemplates()
         {
             SceneList.ForEach(x => x.SaveTemplate(TemplateDirPath));
         }

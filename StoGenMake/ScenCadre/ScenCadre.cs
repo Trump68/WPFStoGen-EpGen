@@ -11,9 +11,10 @@ namespace StoGenMake.Elements
     {
         public string Name { set; get; }
         public string Description { set; get; }
-        public List<ScenElementImage> VisionList = new List<ScenElementImage>();
-        public List<ScenElementSound> SoundList = new List<ScenElementSound>();
-        public List<ScenElementText> TextList = new List<ScenElementText>();
+        public int Timer = -1;
+        public List<ScenElement> VisionList = new List<ScenElement>();
+        public List<ScenElement> SoundList = new List<ScenElement>();
+        public List<ScenElement> TextList = new List<ScenElement>();
         protected BaseScene Owner;
 
         public ScenCadre(BaseScene owner)
@@ -21,14 +22,83 @@ namespace StoGenMake.Elements
             this.Owner = owner;
         }
 
-        internal virtual IEnumerable<string> GetTemplate()
+        //internal virtual IEnumerable<string> GetTemplate()
+        //{
+        //    List<string> result = new List<string>();
+
+        //    result.Add($"CADRE {this.Name}");
+
+        //    foreach (var item in this.VisionList)
+        //    {
+        //        result.Add(item.GetTemplate());
+        //    }
+        //    return result;
+        //}
+
+        internal void InitValuesFromScene()
         {
-            List<string> result = new List<string>();
-            return result;
+            VisionList.ForEach(x => x.InitValues(this.Owner.Variables));
+            SoundList.ForEach(x => x.InitValues(this.Owner.Variables));
+            TextList.ForEach(x => x.InitValues(this.Owner.Variables));
         }
+
         public virtual List<string> GetCadreData()
         {
-            return new List<string>();
+
+            //if (scendata != null)
+            //{
+            //    //Apply data
+            //    int index = scendata.FindIndex(x => x.StartsWith($"CADRE {this.Name}"));
+            //    int startindex = index;
+            //    if (index > -1)
+            //    {
+            //        index++;
+            //        while (index <= (scendata.Count() - 1) && !scendata[index].StartsWith("CADRE "))
+            //        {
+            //            this.ParseLine(scendata[index]);
+            //            index++;
+            //        }
+            //        scendata.RemoveRange(startindex, index - startindex);
+            //    }
+            //}
+            //Get srting data
+            List<string> result = new List<string>();
+            result.Add($"PartSta# {this.Name.PadRight(100)}");
+
+            if (this.Timer > 0)
+                (this.VisionList.First() as ScenElementImage).Timer = this.Timer;
+            foreach (var item in this.VisionList)
+            {
+                result.Add(" " + item.GetElementData());
+            }
+
+            result.Add($"PartEnd#");
+            return result;
+
+            return result;
+        }
+        private void ParseLine(string line)
+        {
+            string mark = "IMAGE ";
+            if (doElementLis(line, mark, this.VisionList)) return;
+            mark = "SOUND ";
+            if (doElementLis(line, mark, this.VisionList)) return;
+            mark = "TEXT ";
+            if (doElementLis(line, mark, this.TextList)) return;
+        }
+        private bool doElementLis(string line, string mark, List<ScenElement> list)
+        {
+            if (line.StartsWith(mark))
+            {
+                line = line.Replace(mark, string.Empty);
+                string[] vals = line.Split(';');
+                ScenElement element = list.Where(x => x.Name == vals[0]).FirstOrDefault();
+                element?.ApplyData(vals);
+                return true;
+            }
+            return false;
         }
     }
+
+
 }
