@@ -38,6 +38,7 @@ namespace StoGenLife.Specie
             return val;
         }
         #endregion
+
         #region Private
         /// <summary>
         /// 1st level Energy storage (natural)
