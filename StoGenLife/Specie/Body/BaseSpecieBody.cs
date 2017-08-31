@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StoGenLife
+namespace StoGenLife.Specie
 {
-    public class BaseSpecie
+    public class BaseSpecieBody
     {
         // Public
-        public int EnergyStored { set; get; }
+       
         public int EnergyConsumption { set; get; }
 
-        public BaseSpecie()
+        public BaseSpecieBody()
         {
             this.IsLive = true;
         }
@@ -20,14 +20,7 @@ namespace StoGenLife
         public bool Kill()
         {
            return this.Die();
-        }
-        public void Exists(int timeUnits)
-        {
-            this.EnergyStored = this.EnergyStored - (this.EnergyConsumption * timeUnits);
-            if (this.EnergyStored <= 0)
-                this.Die();
-        }
-
+        }        
         // Privates
         private bool IsLive { set; get; }
         private bool Die()
