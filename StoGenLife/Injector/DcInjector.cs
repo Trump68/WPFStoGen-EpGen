@@ -31,6 +31,8 @@ namespace StoGenLife.Injector
         {
             Kernel.Bind<IBaseSpecieEnergyStorage>().To<DefaultBaseSpecieEnergyStorage>();
             Kernel.Bind<IBaseSpecieEnergySystem>().To<DefaultBaseSpecieEnergySystem>();
+            Kernel.Bind<IBaseFoodProcessingSystem>().To<DefaultBaseSpecieEnergySystem>();
+            
         }
     }
 }

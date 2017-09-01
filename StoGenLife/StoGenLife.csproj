@@ -47,8 +47,10 @@
     <Compile Include="Injector\DcInjector.cs" />
     <Compile Include="Specie\Body\BaseSpecieBody.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Specie\EnergySystem\BaseFoodDigestionSystem.cs" />
     <Compile Include="Specie\EnergySystem\BaseSpecieEnergyStorage.cs" />
     <Compile Include="Specie\EnergySystem\BaseSpecieEnergySystem.cs" />
+    <Compile Include="World\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
