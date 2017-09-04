@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using StoGenMake.Elements;
 using System.IO;
+using StoGenLife.NPC;
 
 namespace StoGenMake.Scenes.Base
 {
@@ -46,6 +47,8 @@ namespace StoGenMake.Scenes.Base
         public string Description { get; set; }
         public string Name { get; set; }
         protected List<ScenCadre> Cadres { get; set; } = new List<ScenCadre>();
+        public List<NPC> NPCList { get; private set; } = new List<NPC>();
+
         public string FileToProcess = null;
         public virtual void InitCadres()
         {
@@ -102,16 +105,44 @@ namespace StoGenMake.Scenes.Base
             if (datastr != null)
             {
                 scendata.RemoveAll(x => x.StartsWith(@"SCENDATA "));
-                string[] vals = datastr.First().Split(';');
-                vals = vals[1].Split('=');
-                if (vals[0].Trim() == "Location")
+                List<string> vals = datastr.First().Split(';').ToList();
+                foreach (var item in vals)
                 {
-                    string[] items = vals[1].Split(',');
-                    this.X = int.Parse(items[0]);
-                    this.Y = int.Parse(items[1]);
-                    this.SizeX = int.Parse(items[2]);
-                    this.SizeY = int.Parse(items[3]);
+                    if (item.Trim().StartsWith("Location"))
+                    {
+                        var vals2 = item.Split('=');
+                        string[] items = vals2[1].Split(',');
+                        this.X = int.Parse(items[0]);
+                        this.Y = int.Parse(items[1]);
+                        this.SizeX = int.Parse(items[2]);
+                        this.SizeY = int.Parse(items[3]);
+                    }                    
                 }
+            }
+
+            datastr = scendata.Where(x => x.StartsWith(@"SCENPERS ")).ToList();
+            if (datastr != null)
+            {
+                scendata.RemoveAll(x => x.StartsWith(@"SCENPERS "));
+                List<string> vals = datastr.First().Split(';').ToList();
+                foreach (var item in vals)
+                {
+                    if (item.Trim().StartsWith("NPC"))
+                    {
+                        var vals2 = item.Split('=');
+                        string[] items = vals2[1].Split(',');
+                        foreach (var pers in vals2)
+                        {
+                            Guid gid = Guid.Parse(pers);
+                            var persona = StoGenMaker.NPCList.Where(x => x.GID.Equals(gid)).FirstOrDefault();
+                            if (persona != null)
+                            {
+                                this.NPCList.Add(persona);
+                            }
+                        }
+                    }
+                }
+
             }
         }
     }

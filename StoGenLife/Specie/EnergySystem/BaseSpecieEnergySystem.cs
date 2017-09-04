@@ -17,7 +17,7 @@ namespace StoGenLife.Specie
         /// </summary>                
         int TryFeed(int food);
         void InitDefault();
-        bool IsEmpty();
+        bool IsEmpty { get; set; }
     }
 
     public class DefaultBaseSpecieEnergySystem: IBaseSpecieEnergySystem
@@ -64,13 +64,15 @@ namespace StoGenLife.Specie
             {
                 int val2 = ProcessInternal(energy - val);
                 val = val + val2;
-            }            
+            }
+            this.IsEmpty = (val == 0);
             return val;
         }
         public int TryFeed(int food)
         {
            return this.Digestion.TryAdd(food);
         }
+        public bool IsEmpty { get; set; }
         #endregion
 
         #region Private
@@ -86,11 +88,15 @@ namespace StoGenLife.Specie
         /// Digestion emalation
         /// </summary>
         private IBaseFoodDigestionSystem Digestion { get; }
-        private void ProcessInternal(int val)
+        private int ProcessInternal(int val)
         {                                   
-                int result = this.StorageStrategic.TryGet(StrategicEnergyConvertionRate);
-                if (val>0)
-                    this.StorageOperative.TryAdd(val);            
+            int result = this.StorageStrategic.TryGet(StrategicEnergyConvertionRate);
+            if (result > 0)
+            {
+                this.StorageOperative.TryAdd(result);
+                result = this.StorageOperative.TryGet(val);
+            }
+            return result;
         }
         #endregion
 

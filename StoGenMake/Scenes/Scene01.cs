@@ -97,6 +97,10 @@ namespace StoGenMake.Scenes
             sound.StartPlay = 0;
             sound.Transition = "W..2000>p.A.20.1";
             this.SoundList.Add(sound);
+
+            ScenElementText text = new ScenElementText();
+            text.Text = "sample text";
+            this.TextList.Add(text);
         }
     }
     public class ScenCadre_KissStartAppears : ScenCadre

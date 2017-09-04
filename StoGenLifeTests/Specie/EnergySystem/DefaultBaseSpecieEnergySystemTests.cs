@@ -28,7 +28,7 @@ namespace StoGenLife.Specie.Tests
 
             DateTime startT = World.GameTime;
             int i = 0;
-            while (!system.IsEmpty())
+            while (!system.IsEmpty)
             {
                 i++;
                 system.TryGet(5);

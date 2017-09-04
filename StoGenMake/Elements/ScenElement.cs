@@ -16,11 +16,6 @@ namespace StoGenMake.Elements
         public string Transition { get; internal set; }
         public virtual bool IsActivated { get; } = true;
 
-        //internal virtual string GetTemplate()
-        //{
-        //    return null;
-        //}
-
         internal virtual void ApplyData(string[] vals)
         {
 
@@ -108,6 +103,13 @@ namespace StoGenMake.Elements
     {
         public string Text;
         public override bool IsActivated { get { return !string.IsNullOrEmpty(this.Text); } }
+        internal override string GetElementData()
+        {            
+            List<string> result = new List<string>();
+            result.Add($"{this.Text}");            
+            if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");
+            return string.Join(";", result.ToArray());
+        }
     }
 }
 

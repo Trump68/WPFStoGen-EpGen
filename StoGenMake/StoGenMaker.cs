@@ -1,10 +1,12 @@
 ﻿using StoGen.Classes;
+using StoGenLife.NPC;
 using StoGenMake.Scenes;
 using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +21,7 @@ namespace StoGenMake
         static List<BaseScene> SceneList = new List<BaseScene>();
         static string FileToProcess = null;
         static string TemplateDirPath { get { return Path.Combine(ExecDir, TemplateDirName); } }
-
+        public static List<NPC> NPCList = new List<NPC>();
        
         public static void Start(string[] args)
         {
@@ -29,12 +31,45 @@ namespace StoGenMake
             {
                 FileToProcess = args[1];
             }
-
+            LoadNPCList();
             FillScenes();
             SaveTemplates();            
             GenerateScen(FileToProcess);          
+        }       
+        private static void LoadNPCList()
+        {
+            string fn = Path.Combine(TemplateDirPath + "NpcData.dat");
+            BinaryFormatter formatter = new BinaryFormatter();
+            
+            if (File.Exists(fn))
+            {
+                FileStream fs = new FileStream(fn, FileMode.Open);
+                try
+                {
+                    NPCList = formatter.Deserialize(fs) as List<NPC>;
+                }
+                catch { }
+                finally
+                {
+                    fs.Close();
+                }
+            }
+            else
+            {
+                DefaultNPC npc = new DefaultNPC();
+                NPCList.Add(npc);
+                FileStream fs = new FileStream(fn, FileMode.Create);
+                try
+                {
+                    formatter.Serialize(fs, NPCList);
+                }
+                catch { }
+                finally
+                {
+                    fs.Close();
+                }
+            }
         }
-
         private static void GenerateScen(string fileToProcess)
         {
             BaseScene scene = null;
@@ -69,6 +104,7 @@ namespace StoGenMake
         static void FillScenes()
         {
             SceneList.Add(new Scene01());
+            SceneList.Add(new Scene02());
         }
         static void  SaveTemplates()
         {

@@ -1,5 +1,6 @@
 ﻿using Ninject;
 using StoGenLife.Specie;
+using StoGenLife.Specie.EnergySystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace StoGenLife.Injector
         {
             Kernel.Bind<IBaseSpecieEnergyStorage>().To<DefaultBaseSpecieEnergyStorage>();
             Kernel.Bind<IBaseSpecieEnergySystem>().To<DefaultBaseSpecieEnergySystem>();
-            Kernel.Bind<IBaseFoodProcessingSystem>().To<DefaultBaseSpecieEnergySystem>();
+            Kernel.Bind<IBaseFoodDigestionSystem>().To<DefaultBaseFoodDigestionSystem>();
             
         }
     }

@@ -109,6 +109,10 @@
       <Project>{16832A49-6465-4C63-8C20-F7DE36ADF10C}</Project>
       <Name>StoGenClasses</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StoGenLife\StoGenLife.csproj">
+      <Project>{E45DC092-2338-4AE7-A151-423318D217EB}</Project>
+      <Name>StoGenLife</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Scenes\Data\ImageData.txt" />
