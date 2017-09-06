@@ -46,8 +46,8 @@ namespace StoGenMake.Scenes.Base
         }
         public string Description { get; set; }
         public string Name { get; set; }
-        protected List<ScenCadre> Cadres { get; set; } = new List<ScenCadre>();
-        public List<NPC> NPCList { get; private set; } = new List<NPC>();
+        public List<ScenCadre> Cadres { get; set; } = new List<ScenCadre>();
+        
 
         public string FileToProcess = null;
         public virtual void InitCadres()

@@ -61,6 +61,8 @@
     <Compile Include="Scenes\Scene01.cs" />
     <Compile Include="Scenes\Scene02.cs" />
     <Compile Include="StoGenMaker.cs" />
+    <Compile Include="VNPC\BASE\VNPC.cs" />
+    <Compile Include="VNPC\READY\PERS01.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

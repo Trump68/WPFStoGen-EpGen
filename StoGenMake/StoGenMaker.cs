@@ -6,9 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
+using StoGenMake.Pers;
 
 namespace StoGenMake
 {
@@ -21,55 +19,28 @@ namespace StoGenMake
         static List<BaseScene> SceneList = new List<BaseScene>();
         static string FileToProcess = null;
         static string TemplateDirPath { get { return Path.Combine(ExecDir, TemplateDirName); } }
-        public static List<NPC> NPCList = new List<NPC>();
+        public static List<VNPC> NPCList = new List<VNPC>();
        
         public static void Start(string[] args)
         {
+            FillNPC();
             ExecDir = Path.GetDirectoryName(args[0]);
             if (!Directory.Exists(TemplateDirPath)) Directory.CreateDirectory(TemplateDirPath);
             if (args.Length > 1)
             {
                 FileToProcess = args[1];
-            }
-            LoadNPCList();
+            }        
             FillScenes();
             SaveTemplates();            
             GenerateScen(FileToProcess);          
         }       
-        private static void LoadNPCList()
+        private static void FillNPC()
         {
-            //string fn = Path.Combine(TemplateDirPath + "NpcData.dat");
-            //BinaryFormatter formatter = new BinaryFormatter();
-            
-            //if (File.Exists(fn))
-            //{
-            //    FileStream fs = new FileStream(fn, FileMode.Open);
-            //    try
-            //    {
-            //        NPCList = formatter.Deserialize(fs) as List<NPC>;
-            //    }
-            //    catch { }
-            //    finally
-            //    {
-            //        fs.Close();
-            //    }
-            //}
-            //else
-            //{
-                //DefaultNPC npc = new DefaultNPC();
-                //NPCList.Add(npc);
-            //    FileStream fs = new FileStream(fn, FileMode.Create);
-            //    try
-            //    {
-            //        formatter.Serialize(fs, NPCList);
-            //    }
-            //    catch { }
-            //    finally
-            //    {
-            //        fs.Close();
-            //    }
-            //}
+            VNPC pers = new PERS01();            
+            NPCList.Add(pers);
         }
+
+
         private static void GenerateScen(string fileToProcess)
         {
             BaseScene scene = null;
@@ -82,12 +53,30 @@ namespace StoGenMake
                 datalist = Universe.LoadFileToStringList(fileToProcess);
                 datalist.ForEach(x => x.Trim());
                 datalist.RemoveAll(x => x.StartsWith(@"//"));
+
                 string scenName = datalist.FirstOrDefault(x => x.StartsWith(@"SCEN "));
                 if (!string.IsNullOrEmpty(scenName))
                 {
                     scenName = scenName.Replace(@"SCEN ", string.Empty);
                     scene = SceneList.FirstOrDefault(x => x.Name == scenName);
                 }
+                else
+                {
+                    string persName = datalist.FirstOrDefault(x => x.StartsWith(@"SCENPERS "));
+                    if (!string.IsNullOrEmpty(persName))
+                    {
+                        persName = persName.Replace(@"SCENPERS ", string.Empty);
+                        Guid gid = Guid.Parse(persName.Trim());
+                        VNPC pers = NPCList.FirstOrDefault(x => x.GID.Equals(gid));
+                        if (pers != null)
+                        {
+                            pers.PrepareScene();
+                            scene = pers.Scene;                            
+                        }
+                        
+                    }
+                }
+
             }
             if (scene != null)
             {

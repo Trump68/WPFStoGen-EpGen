@@ -8,6 +8,6 @@ namespace StoGenLife.Enviroment
 {
     public static class World
     {
-        public static DateTime GameTime = new DateTime(2017, 9, 1, 9, 0, 0);
+        public static DateTime GameTime = new DateTime(2017, 9, 1, 9, 0, 0);        
     }
 }

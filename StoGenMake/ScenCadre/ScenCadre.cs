@@ -24,18 +24,7 @@ namespace StoGenMake.Elements
             this.Owner = owner;
         }
 
-        //internal virtual IEnumerable<string> GetTemplate()
-        //{
-        //    List<string> result = new List<string>();
-
-        //    result.Add($"CADRE {this.Name}");
-
-        //    foreach (var item in this.VisionList)
-        //    {
-        //        result.Add(item.GetTemplate());
-        //    }
-        //    return result;
-        //}
+       
 
         internal void InitValuesFromScene()
         {
