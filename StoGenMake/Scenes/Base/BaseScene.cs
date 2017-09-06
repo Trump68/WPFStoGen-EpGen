@@ -58,23 +58,45 @@ namespace StoGenMake.Scenes.Base
 
         internal string Generate(List<string> datalist, string fileToProcess)
         {
-            List<string> scendata = GetSceneData(datalist);
-
             FileToProcess = fileToProcess;
+            SetSceneData(datalist);
 
-            string fn = @".\Templates\" + this.Name + @"\" + this.Name + ".stogen";
+            string fnScenario = @".\Templates\" + this.Name + @"\" + this.Name + ".stogen";            
             if (!string.IsNullOrEmpty(FileToProcess))
             {
-                string newfn = Path.GetFileNameWithoutExtension(FileToProcess) + ".stogen";
+                string newfnScenario = Path.GetFileNameWithoutExtension(FileToProcess) + ".stogen";
                 string savepath = Path.GetDirectoryName(FileToProcess);
-                fn = Path.Combine(savepath, newfn);
+                fnScenario = Path.Combine(savepath, newfnScenario);
             }
 
-            File.WriteAllText(fn, string.Join(Environment.NewLine, scendata.ToArray()));
-            return fn;
+
+            List<string> scendata = new List<string>();
+            foreach (var item in this.Cadres)
+            {
+                item.InitValuesFromScene();
+                int i = 0;
+                if (item.IsActivated)
+                {
+                    var cadredata = item.GetCadreData();
+                    if (!string.IsNullOrEmpty(FileToProcess))
+                    {
+                        string newfnCadre = i.ToString("000")+"_"+item.Name+ ".stogen";
+                        string savepathCadre = Path.GetDirectoryName(FileToProcess) + @"\Cadres\";
+                        if (!Directory.Exists(savepathCadre)) Directory.CreateDirectory(savepathCadre);
+                        string fnCadre = Path.Combine(savepathCadre, newfnCadre);
+                        File.WriteAllText(fnCadre, string.Join(Environment.NewLine, cadredata.ToArray()));
+                    }                    
+                    scendata.AddRange(cadredata);
+                }
+            }
+
+            
+
+            File.WriteAllText(fnScenario, string.Join(Environment.NewLine, scendata.ToArray()));
+            return fnScenario;
         }
 
-        public virtual List<string> GetSceneData(List<string> scendata)
+        public virtual void SetSceneData(List<string> scendata)
         {
             List<string> result = new List<string>();
             if (scendata != null)
@@ -87,15 +109,7 @@ namespace StoGenMake.Scenes.Base
                     var val = this.Variables.Where(x => x.Type == vals[0].Trim() && x.Name == vals[1].Trim()).FirstOrDefault();
                     if (val != null) val.Value = vals[2].Trim();
                 }
-            }
-
-            foreach (var item in this.Cadres)
-            {
-                item.InitValuesFromScene();
-                if (item.IsActivated)
-                    result.AddRange(item.GetCadreData());
-            }
-            return result;
+            }                       
         }
 
         private void SetSceneCommonDats(List<string> scendata)
@@ -120,30 +134,31 @@ namespace StoGenMake.Scenes.Base
                 }
             }
 
-            datastr = scendata.Where(x => x.StartsWith(@"SCENPERS ")).ToList();
-            if (datastr != null)
-            {
-                scendata.RemoveAll(x => x.StartsWith(@"SCENPERS "));
-                List<string> vals = datastr.First().Split(';').ToList();
-                foreach (var item in vals)
-                {
-                    if (item.Trim().StartsWith("NPC"))
-                    {
-                        var vals2 = item.Split('=');
-                        string[] items = vals2[1].Split(',');
-                        foreach (var pers in vals2)
-                        {
-                            Guid gid = Guid.Parse(pers);
-                            var persona = StoGenMaker.NPCList.Where(x => x.GID.Equals(gid)).FirstOrDefault();
-                            if (persona != null)
-                            {
-                                this.NPCList.Add(persona);
-                            }
-                        }
-                    }
-                }
+            //datastr = scendata.Where(x => x.StartsWith(@"SCENPERS ")).ToList();
+            //if (datastr != null && datastr.Any())
+            //{
+                
+            //    scendata.RemoveAll(x => x.StartsWith(@"SCENPERS "));
+            //    List<string> vals = datastr.First().Replace(@"SCENPERS ",string.Empty).Split(';').ToList();
+            //    foreach (var item in vals)
+            //    {
+            //        if (item.Trim().StartsWith("NPC"))
+            //        {
+            //            var vals2 = item.Split('=');
+            //            string[] items = vals2[1].Split(',');
+            //            foreach (var pers in items)
+            //            {
+            //                Guid gid = Guid.Parse(pers);
+            //                var persona = StoGenMaker.NPCList.Where(x => x.GID.Equals(gid)).FirstOrDefault();
+            //                if (persona != null)
+            //                {
+            //                    this.NPCList.Add(persona);
+            //                }
+            //            }
+            //        }
+            //    }
 
-            }
+            //}
         }
     }
     public class SceneVariable
