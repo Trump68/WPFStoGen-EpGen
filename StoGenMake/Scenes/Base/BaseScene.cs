@@ -101,7 +101,7 @@ namespace StoGenMake.Scenes.Base
             List<string> result = new List<string>();
             if (scendata != null)
             {
-                SetSceneCommonDats(scendata);
+                //SetSceneCommonDats(scendata);
                 
                 foreach (var item in scendata)
                 {
@@ -130,35 +130,11 @@ namespace StoGenMake.Scenes.Base
                         this.Y = int.Parse(items[1]);
                         this.SizeX = int.Parse(items[2]);
                         this.SizeY = int.Parse(items[3]);
-                    }                    
+                    }
                 }
             }
 
-            //datastr = scendata.Where(x => x.StartsWith(@"SCENPERS ")).ToList();
-            //if (datastr != null && datastr.Any())
-            //{
-                
-            //    scendata.RemoveAll(x => x.StartsWith(@"SCENPERS "));
-            //    List<string> vals = datastr.First().Replace(@"SCENPERS ",string.Empty).Split(';').ToList();
-            //    foreach (var item in vals)
-            //    {
-            //        if (item.Trim().StartsWith("NPC"))
-            //        {
-            //            var vals2 = item.Split('=');
-            //            string[] items = vals2[1].Split(',');
-            //            foreach (var pers in items)
-            //            {
-            //                Guid gid = Guid.Parse(pers);
-            //                var persona = StoGenMaker.NPCList.Where(x => x.GID.Equals(gid)).FirstOrDefault();
-            //                if (persona != null)
-            //                {
-            //                    this.NPCList.Add(persona);
-            //                }
-            //            }
-            //        }
-            //    }
-
-            //}
+           
         }
     }
     public class SceneVariable

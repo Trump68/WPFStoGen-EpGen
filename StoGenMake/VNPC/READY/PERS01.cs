@@ -14,6 +14,7 @@ namespace StoGenMake.Pers
         {
             this.Scene = new Scene02();
             this.Name = "[Oda Non] Non Virgin.Lady 1";
+            this.GID = Guid.Parse("{39FCD7CD-C3A5-497A-9D10-84F2DF6DB34B}");
         }
 
         public override void PrepareScene()

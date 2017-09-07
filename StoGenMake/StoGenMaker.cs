@@ -30,7 +30,6 @@ namespace StoGenMake
             {
                 FileToProcess = args[1];
             }        
-            FillScenes();
             SaveTemplates();            
             GenerateScen(FileToProcess);          
         }       
@@ -65,7 +64,7 @@ namespace StoGenMake
                     string persName = datalist.FirstOrDefault(x => x.StartsWith(@"SCENPERS "));
                     if (!string.IsNullOrEmpty(persName))
                     {
-                        persName = persName.Replace(@"SCENPERS ", string.Empty);
+                        persName = persName.Replace(@"SCENPERS ", string.Empty).Replace(@"NPC=", string.Empty);
                         Guid gid = Guid.Parse(persName.Trim());
                         VNPC pers = NPCList.FirstOrDefault(x => x.GID.Equals(gid));
                         if (pers != null)
@@ -82,7 +81,6 @@ namespace StoGenMake
             {
                 string fn = scene.Generate(datalist, fileToProcess);
                 System.Diagnostics.Process.Start(fn);
-
             }
             else
             {
@@ -90,11 +88,7 @@ namespace StoGenMake
             }
         }
         
-        static void FillScenes()
-        {
-            SceneList.Add(new Scene01());
-            SceneList.Add(new Scene02());
-        }
+        
         static void  SaveTemplates()
         {
             SceneList.ForEach(x => x.SaveTemplate(TemplateDirPath));
