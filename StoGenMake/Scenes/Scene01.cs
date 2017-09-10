@@ -28,43 +28,43 @@ namespace StoGenMake.Scenes
         public Scene01() : base()
         {
             this.Name = "Scen Kiss 01";
-            this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01,                   string.Empty,   Scene01.MainFace_01));
-            this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_blink,             string.Empty,   Scene01.MainFace_01_blink));
-            this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_blink_frown,       string.Empty,   Scene01.MainFace_01_blink_frown));
-            this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_SweatDrop,         string.Empty,   Scene01.MainFace_01_SweatDrop));
-            this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_KissPause,         string.Empty,   Scene01.MainFace_01_KissPause));
-            this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_KissPauseOpenEyes, string.Empty,   Scene01.MainFace_01_KissPauseOpenEyes));
-            this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_TonguePlay1,       string.Empty,   Scene01.MainFace_01_TonguePlay1));            
-            this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_TonguePlay2,       string.Empty,   Scene01.MainFace_01_TonguePlay2));
-            this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_TonguePlay3,       string.Empty,   Scene01.MainFace_01_TonguePlay3));
-            this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_TonguePlay4,       string.Empty,   Scene01.MainFace_01_TonguePlay4));
+            //this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01,                   string.Empty,   Scene01.MainFace_01));
+            //this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_blink,             string.Empty,   Scene01.MainFace_01_blink));
+            //this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_blink_frown,       string.Empty,   Scene01.MainFace_01_blink_frown));
+            //this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_SweatDrop,         string.Empty,   Scene01.MainFace_01_SweatDrop));
+            //this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_KissPause,         string.Empty,   Scene01.MainFace_01_KissPause));
+            //this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_KissPauseOpenEyes, string.Empty,   Scene01.MainFace_01_KissPauseOpenEyes));
+            //this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_TonguePlay1,       string.Empty,   Scene01.MainFace_01_TonguePlay1));            
+            //this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_TonguePlay2,       string.Empty,   Scene01.MainFace_01_TonguePlay2));
+            //this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_TonguePlay3,       string.Empty,   Scene01.MainFace_01_TonguePlay3));
+            //this.Variables.Add(new SceneVariable("IMAGE", Scene01.MainFace_01_TonguePlay4,       string.Empty,   Scene01.MainFace_01_TonguePlay4));
 
-            this.Variables.Add(new SceneVariable("SOUND", Scene01.MainMusic,                     string.Empty,   Scene01.MainMusic));
-            this.Variables.Add(new SceneVariable("SOUND", Scene01.LightScream,                   string.Empty,   Scene01.LightScream));
-            this.Variables.Add(new SceneVariable("SOUND", Scene01.Moaning,                       string.Empty,   Scene01.Moaning));
+            //this.Variables.Add(new SceneVariable("SOUND", Scene01.MainMusic,                     string.Empty,   Scene01.MainMusic));
+            //this.Variables.Add(new SceneVariable("SOUND", Scene01.LightScream,                   string.Empty,   Scene01.LightScream));
+            //this.Variables.Add(new SceneVariable("SOUND", Scene01.Moaning,                       string.Empty,   Scene01.Moaning));
         }
-        public override void InitCadres()
-        {
-            this.Cadres.Add(new ScenCadre_KissStartSetup(this));
-            this.Cadres.Add(new ScenCadre_KissStartAppears(this));
-            this.Cadres.Add(new ScenCadre_KissStart(this));
-            this.Cadres.Add(new ScenCadre_KissDesision(this));
-            this.Cadres.Add(new ScenCadre_KissOrgazmApproaching(this));
-            this.Cadres.Add(new ScenCadre_KissOrgazm1(this));
-            this.Cadres.Add(new ScenCadre_KissPause(this));
-            this.Cadres.Add(new ScenCadre_KissPauseOpenEyes(this));
-            this.Cadres.Add(new ScenCadre_KissAgain(this));
-            this.Cadres.Add(new ScenCadre_TonguePlay01(this));
-            this.Cadres.Add(new ScenCadre_KissPause(this));
-            this.Cadres.Add(new ScenCadre_TonguePlay02(this));
-            base.InitCadres();
-        }
-        public override List<string> GetTemplate()
-        {
-            List<string> result = new List<string>();           
-            result.AddRange(base.GetTemplate());
-            return result;
-        }
+        //public override void InitCadres()
+        //{
+        //    this.Cadres.Add(new ScenCadre_KissStartSetup(this));
+        //    this.Cadres.Add(new ScenCadre_KissStartAppears(this));
+        //    this.Cadres.Add(new ScenCadre_KissStart(this));
+        //    this.Cadres.Add(new ScenCadre_KissDesision(this));
+        //    this.Cadres.Add(new ScenCadre_KissOrgazmApproaching(this));
+        //    this.Cadres.Add(new ScenCadre_KissOrgazm1(this));
+        //    this.Cadres.Add(new ScenCadre_KissPause(this));
+        //    this.Cadres.Add(new ScenCadre_KissPauseOpenEyes(this));
+        //    this.Cadres.Add(new ScenCadre_KissAgain(this));
+        //    this.Cadres.Add(new ScenCadre_TonguePlay01(this));
+        //    this.Cadres.Add(new ScenCadre_KissPause(this));
+        //    this.Cadres.Add(new ScenCadre_TonguePlay02(this));
+        //    base.InitCadres();
+        //}
+        //public override List<string> GetTemplate()
+        //{
+        //    List<string> result = new List<string>();           
+        //    result.AddRange(base.GetTemplate());
+        //    return result;
+        //}
 
     }
     public class ScenCadre_KissStartSetup : ScenCadre

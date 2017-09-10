@@ -59,8 +59,8 @@
     <Compile Include="ScenCadre\ScenCadre.cs" />
     <Compile Include="Scenes\Base\BaseScene.cs" />
     <Compile Include="Scenes\Scene01.cs" />
-    <Compile Include="Scenes\Scene02.cs" />
     <Compile Include="StoGenMaker.cs" />
+    <Compile Include="Transition\Transition.cs" />
     <Compile Include="VNPC\BASE\VNPC.cs" />
     <Compile Include="VNPC\READY\GenericFem.cs" />
     <Compile Include="VNPC\READY\PERS01.cs" />

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using StoGenMake.Scenes.Base;
+using StoGenMake.Pers;
+using StoGenLife.SOUND;
 
 namespace StoGenMake.Elements
 {
@@ -11,6 +13,7 @@ namespace StoGenMake.Elements
     {
 
         public string Name { set; get; }
+        public string Part { set; get; }
         public bool IsOptional { get; internal set; }
         public string File { get; internal set; }
         public string Transition { get; internal set; }
@@ -25,10 +28,20 @@ namespace StoGenMake.Elements
             return string.Empty;
         }
 
-        internal virtual void InitValues(List<SceneVariable> variables)
+        internal virtual void InitValues(List<VNPCVariable> variables)
         {
-            var val = variables.Where(x => x.Name == this.Name).FirstOrDefault();
-            if (val != null) this.File = val.Value;
+            var val = variables.Where(x => x.Name == this.Name && x.Part == this.Part).FirstOrDefault();
+            if (val != null)
+            {
+                string fn = val.Value;
+                if (val.Type == "SOUND")
+                {
+                    string soundval = SoundStore.ValByName(fn);
+                    if (!string.IsNullOrEmpty(soundval))
+                        fn = soundval;
+                }
+                this.File = fn;
+            }
         }
     }
     public class ScenElementImage : ScenElement

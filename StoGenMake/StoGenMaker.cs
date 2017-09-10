@@ -30,7 +30,7 @@ namespace StoGenMake
             {
                 FileToProcess = args[1];
             }        
-            SaveTemplates();            
+            //SaveTemplates();            
             GenerateScen(FileToProcess);          
         }       
         private static void FillNPC()
@@ -42,7 +42,7 @@ namespace StoGenMake
 
         private static void GenerateScen(string fileToProcess)
         {
-            BaseScene scene = null;
+            VNPC pers = null;
             List<string> datalist = new List<string>();
             if (!string.IsNullOrEmpty(fileToProcess))
             {
@@ -53,46 +53,35 @@ namespace StoGenMake
                 datalist.ForEach(x => x.Trim());
                 datalist.RemoveAll(x => x.StartsWith(@"//"));
 
-                string scenName = datalist.FirstOrDefault(x => x.StartsWith(@"SCEN "));
-                if (!string.IsNullOrEmpty(scenName))
-                {
-                    scenName = scenName.Replace(@"SCEN ", string.Empty);
-                    scene = SceneList.FirstOrDefault(x => x.Name == scenName);
-                }
-                else
-                {
+               
                     string persName = datalist.FirstOrDefault(x => x.StartsWith(@"SCENPERS "));
                     if (!string.IsNullOrEmpty(persName))
                     {
                         persName = persName.Replace(@"SCENPERS ", string.Empty).Replace(@"NPC=", string.Empty);
                         Guid gid = Guid.Parse(persName.Trim());
-                        VNPC pers = NPCList.FirstOrDefault(x => x.GID.Equals(gid));
-                        if (pers != null)
-                        {
-                            pers.PrepareScene();
-                            scene = pers.Scene;                            
-                        }
-                        
-                    }
-                }
-
+                        pers = NPCList.FirstOrDefault(x => x.GID.Equals(gid));
+                        datalist.RemoveAll(x => x.StartsWith(@"SCENPERS "));
+                   }
             }
-            if (scene != null)
+            if (pers != null)
             {
-                string fn = scene.Generate(datalist, fileToProcess);
+                pers.SetPersVariablesData(datalist);
+                pers.PrepareScene();
+
+                string fn = pers.Generate(fileToProcess);
                 System.Diagnostics.Process.Start(fn);
             }
             else
             {
-                SceneList.ForEach(x => x.Generate(null,null));
+               // SceneList.ForEach(x => x.Generate(null,null));
             }
         }
         
         
-        static void  SaveTemplates()
-        {
-            SceneList.ForEach(x => x.SaveTemplate(TemplateDirPath));
-        }
+        //static void  SaveTemplates()
+        //{
+        //    SceneList.ForEach(x => x.SaveTemplate(TemplateDirPath));
+        //}
 
     }
 }

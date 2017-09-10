@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using StoGenMake.Scenes.Base;
+using StoGenMake.Pers;
 
 namespace StoGenMake.Elements
 {
@@ -26,11 +27,13 @@ namespace StoGenMake.Elements
 
        
 
-        internal void InitValuesFromScene()
+        internal void InitValuesFromPers(List<VNPCVariable> vars)
         {
-            VisionList.ForEach(x => x.InitValues(this.Owner.Variables));
-            SoundList.ForEach(x => x.InitValues(this.Owner.Variables));
-            TextList.ForEach(x => x.InitValues(this.Owner.Variables));
+            VisionList.ForEach(x => x.InitValues(vars));
+           
+            TextList.ForEach(x => x.InitValues(vars));
+
+            SoundList.ForEach(x => x.InitValues(vars));
         }
 
         public virtual List<string> GetCadreData()

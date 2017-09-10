@@ -50,6 +50,7 @@
     <Compile Include="MaterialWorld\MaterialEntity.cs" />
     <Compile Include="NPC\DefaultNPC.cs" />
     <Compile Include="NPC\NPC.cs" />
+    <Compile Include="SOUND\SoundStore.cs" />
     <Compile Include="Specie\Body\BaseSpecieBody.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Specie\EnergySystem\BaseFoodDigestionSystem.cs" />
