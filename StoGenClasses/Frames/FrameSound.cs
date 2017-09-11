@@ -1,5 +1,6 @@
 ﻿using StoGen.ModelClasses;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Media;
@@ -39,6 +40,20 @@ namespace StoGen.Classes
                 (sender as System.Windows.Media.MediaPlayer).Position = TimeSpan.Zero;
                 (sender as System.Windows.Media.MediaPlayer).Play();
             }
+            else
+            {
+                // Set up next sound in the group
+                if (!string.IsNullOrEmpty(PlayingItems[index].Group))
+                {
+                    GroupItems.Remove(PlayingItems[index]);
+                    if (GroupItems.Any(x => x.Group == PlayingItems[index].Group))
+                    {
+                        var item = GroupItems.Where(x => x.Group == PlayingItems[index].Group).First();
+                        item.Position = PlayingItems[index].Position;
+                        SetSoundOneItem(item.Position, item);
+                    }
+                }                
+            }
         }
 
         public FrameSound()
@@ -56,18 +71,27 @@ namespace StoGen.Classes
                 Projector.Sound[Position].Dispatcher.Invoke(new Action(
                         () =>
                         {
-                            Projector.Sound[4].MediaEnded -= FrameSound_MediaEnded;
+                            Projector.Sound[Position].MediaEnded -= FrameSound_MediaEnded;
                             Projector.Sound[Position].Stop();
-                            Projector.Sound[4].MediaEnded += FrameSound_MediaEnded;
+                            Projector.Sound[Position].MediaEnded += FrameSound_MediaEnded;
                         }));
             }
         }
         public override Cadre Repaint()
         {
             FrameSound.tranManager.Clear();
+            GroupItems.Clear();
             foreach (SoundItem item in this.SoundList)
             {
-                    SetSoundOneItem(item.Position, item);                    
+                if (!string.IsNullOrEmpty(item.Group))
+                {
+                    GroupItems.Add(item);
+                    if (GroupItems.Where(x => x.Group == item.Group).ToList().Count > 1)
+                    {
+                        continue;
+                    }
+                }
+                SetSoundOneItem(item.Position, item);                    
             }
 
             return Owner;
@@ -78,6 +102,7 @@ namespace StoGen.Classes
         SoundItem CurrItem2;
         SoundItem CurrItem3;
         SoundItem CurrItem4;
+        List<SoundItem> GroupItems = new List<SoundItem>();
 
         private void StartPlayer(int N, SoundItem item)
         {
@@ -154,6 +179,7 @@ namespace StoGen.Classes
         internal string Transition { get; set; }
 
         internal bool Start { get; set; } = true;
+        public string Group { get; internal set; }
     }
 
   

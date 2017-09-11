@@ -22,27 +22,7 @@ namespace StoGenMake.Scenes.Base
         {
             //InitCadres();
         }
-        //public void SaveTemplate(string savepath)
-        //{
-        //    List<string> template = GetTemplate();
-        //    if (!Directory.Exists(Path.Combine(savepath, Name))) Directory.CreateDirectory(Path.Combine(savepath, Name));
-        //    string fn = Path.Combine(savepath, Name, Name + ".tmpl");
-        //    File.WriteAllText(fn, string.Join(Environment.NewLine, template.ToArray()));
-        //}
-        //public virtual List<string> GetTemplate()
-        //{
-        //    List<string> result = new List<string>();
-        //    result.Add($"SCEN {this.Name}");
-        //    result.Add($"SCENDATA Ver={this.Version}; Location={this.X},{this.Y},{this.SizeX},{this.SizeY}");
-        //    result.Add($"//===========================//");
-        //    foreach (var item in this.Variables)
-        //    {
-        //        result.Add($"//{item.Description}");
-        //        result.Add($"{item.Type.PadRight(10)};{item.Name.PadRight(50)};{item.Value}");
-        //    }
-
-        //    return result;
-        //}
+       
         public string Description { get; set; }
         public string Name { get; set; }
         public List<ScenCadre> Cadres { get; set; } = new List<ScenCadre>();
@@ -53,47 +33,6 @@ namespace StoGenMake.Scenes.Base
         {
             this.Cadres.ForEach(x => x.InitValuesFromPers(vars));
         }
-
-
-        //internal string Generate(List<string> datalist, string fileToProcess)
-        //{
-        //    FileToProcess = fileToProcess;
-        //    //SetSceneData(datalist);
-
-        //    string fnScenario = @".\Templates\" + this.Name + @"\" + this.Name + ".stogen";            
-        //    if (!string.IsNullOrEmpty(FileToProcess))
-        //    {
-        //        string newfnScenario = Path.GetFileNameWithoutExtension(FileToProcess) + ".stogen";
-        //        string savepath = Path.GetDirectoryName(FileToProcess);
-        //        fnScenario = Path.Combine(savepath, newfnScenario);
-        //    }
-
-
-        //    List<string> scendata = new List<string>();
-        //    foreach (var item in this.Cadres)
-        //    {
-        //        item.InitValuesFromScene();
-        //        int i = 0;
-        //        if (item.IsActivated)
-        //        {
-        //            var cadredata = item.GetCadreData();
-        //            if (!string.IsNullOrEmpty(FileToProcess))
-        //            {
-        //                string newfnCadre = i.ToString("000")+"_"+item.Name+ ".stogen";
-        //                string savepathCadre = Path.GetDirectoryName(FileToProcess) + @"\Cadres\";
-        //                if (!Directory.Exists(savepathCadre)) Directory.CreateDirectory(savepathCadre);
-        //                string fnCadre = Path.Combine(savepathCadre, newfnCadre);
-        //                File.WriteAllText(fnCadre, string.Join(Environment.NewLine, cadredata.ToArray()));
-        //            }                    
-        //            scendata.AddRange(cadredata);
-        //        }
-        //    }
-
-            
-
-        //    File.WriteAllText(fnScenario, string.Join(Environment.NewLine, scendata.ToArray()));
-        //    return fnScenario;
-        //}
 
       
         private void SetSceneCommonDats(List<string> scendata)

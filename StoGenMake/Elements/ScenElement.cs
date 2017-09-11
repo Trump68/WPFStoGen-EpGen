@@ -94,6 +94,7 @@ namespace StoGenMake.Elements
     {
        
         public int V = 100;
+        public string Group;
         public int StartPlay = -1;
         public override bool IsActivated { get { return !string.IsNullOrEmpty(this.File); } }
         internal override void ApplyData(string[] vals)
@@ -106,6 +107,8 @@ namespace StoGenMake.Elements
             List<string> result = new List<string>();
             result.Add($"{this.File.PadRight(20)}");
             result.Add($"v={this.V.ToString().PadRight(4)}");
+            if (!string.IsNullOrEmpty(this.Group))
+                result.Add($"Group={this.Group.PadRight(4)}");
             if (StartPlay > -1) result.Add($"Start={this.StartPlay.ToString().PadRight(4)}");
             if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");
             return string.Join(";", result.ToArray());

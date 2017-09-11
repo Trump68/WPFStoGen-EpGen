@@ -51,8 +51,7 @@ namespace StoGen.Classes
         public Context CurrentContext;
         protected bool isInitialized = false;
         public string Name { get; set; }
-        public bool ShowContextMenuOnInit = true;
-        public ProcVariant CurrentVariant = null;
+        public bool ShowContextMenuOnInit = true;        
         public virtual void Run() { }
 
         public virtual void Init()

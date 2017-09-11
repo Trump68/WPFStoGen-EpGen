@@ -469,6 +469,10 @@ namespace StoGen.Classes
                 {
                     si.Name = vals[1];
                 }
+                else if (vals[0] == "Group")
+                {
+                    si.Group = vals[1];
+                }
                 else if (vals[0] == "Position")
                 {
                     si.Position = Convert.ToInt32(vals[1]);
