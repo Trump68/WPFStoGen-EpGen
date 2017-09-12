@@ -1,26 +1,15 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraLayout.Utils;
-using DevExpress.XtraRichEdit.Utils;
-using PerPixelAlphaBlend;
 using StoGen.ModelClasses;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
-using System.Media;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using WMPLib;
 
 namespace StoGen.Classes
 {

@@ -65,7 +65,6 @@
   <ItemGroup>
     <Compile Include="Cadre.cs" />
     <Compile Include="CadreData.cs" />
-    <Compile Include="CadreMaker.cs" />
     <Compile Include="Controls\frmFrameChoice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,7 +89,6 @@
     <Compile Include="Frames\FrameSound.cs" />
     <Compile Include="Frames\FrameText.cs" />
     <Compile Include="ImageCadreViewModel.cs" />
-    <Compile Include="PerPixelAlpha.cs" />
     <Compile Include="Controls\PicPropsEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,7 +99,6 @@
     <Compile Include="ProcedureBase\ProcedureBase.cs" />
     <Compile Include="Projector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SgEnums.cs" />
     <Compile Include="Parser\StogenParser.cs" />
     <Compile Include="Transition\TransitionManager.cs" />
     <Compile Include="Universe.cs" />
