@@ -14,12 +14,14 @@ namespace StoGenMake.Pers
     {
         public class FemFace
         {
-            public class FemSmile
+            public class FemMouth
             {
                 public string Name { set; get; }
-                public FemSmile(string name)
+                public MouthType Type { set; get; }
+                public FemMouth(string name, MouthType type)
                 {
                     this.Name = name;
+                    this.Type = type;
                 }
             }
             public class FemEyes
@@ -42,7 +44,7 @@ namespace StoGenMake.Pers
                 GoPulsed,
                 GoNone
             }
-            public enum SmileState
+            public enum MouthState
             {
                 Disabled,
                 None,
@@ -51,6 +53,11 @@ namespace StoGenMake.Pers
                 Go,
                 GoPulsed,
                 GoNone
+            }
+            public enum MouthType
+            {
+                Neitral,
+                OpenSense
             }
             public enum EyesState
             {
@@ -72,32 +79,49 @@ namespace StoGenMake.Pers
                 OpenCenter,
                 Close
             }
+
             public FemFace(string name)
             {
                 this.Name = name;
             }
             public string Name { set; get; }
             public BlushState StateBlush { get; set; } = BlushState.Disabled;
-            public SmileState StateSmile { get; set; } = SmileState.Disabled;
+            public MouthState StateMouth { get; set; } = MouthState.Disabled;
             public EyesState  StateEyes  { get; set; } = EyesState.Disabled;
             public BlinkState StateBlink { get; set; } = BlinkState.None;
 
-            public List<FemSmile> SmileList { get; set; } = new List<FemSmile>();
+            public List<FemMouth> MouthList { get; set; } = new List<FemMouth>();
             public List<FemEyes>  EyesList  { get; set; } = new List<FemEyes>();
-            private FemSmile _Smile;
-            public FemSmile Smile
+            private FemMouth _Mouth;
+            public FemMouth Mouth
             {
                 get
                 {
-                    if (_Smile == null)
-                        _Smile = this.SmileList.FirstOrDefault();
-                    return _Smile;
+                    if (_Mouth == null)
+                        _Mouth = this.MouthList.FirstOrDefault();
+                    return _Mouth;
                 }
                 set
                 {
-                    _Smile = value;
-                    if (!this.SmileList.Contains(_Smile))
-                        this.SmileList.Add(_Smile);
+                    _Mouth = value;
+                    if (!this.MouthList.Contains(_Mouth))
+                        this.MouthList.Add(_Mouth);
+                }
+            }
+            private FemMouth _MouthDefault;
+            public FemMouth MouthDefault
+            {
+                get
+                {
+                    if (_MouthDefault == null)
+                        _MouthDefault = this.MouthList.FirstOrDefault();
+                    return _MouthDefault;
+                }
+                set
+                {
+                    _MouthDefault = value;
+                    if (!this.MouthList.Contains(_MouthDefault))
+                        this.MouthList.Add(_MouthDefault);
                 }
             }
             private FemEyes _Eyes;
@@ -114,6 +138,22 @@ namespace StoGenMake.Pers
                     _Eyes = value;
                     if (!this.EyesList.Contains(_Eyes))
                         this.EyesList.Add(_Eyes);
+                }
+            }
+            private FemEyes _EyesDefault;
+            public FemEyes EyesDefault
+            {
+                get
+                {
+                    if (_EyesDefault == null)
+                        _EyesDefault = this.EyesList.FirstOrDefault();
+                    return _EyesDefault;
+                }
+                set
+                {
+                    _EyesDefault = value;
+                    if (!this.EyesList.Contains(_EyesDefault))
+                        this.EyesList.Add(_EyesDefault);
                 }
             }
         }

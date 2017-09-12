@@ -17,16 +17,17 @@ namespace StoGenMake.Pers
             ERECTLIP_LADY_01_MAIN_FIGURE_FACE,
             ERECTLIP_LADY_01_MAIN_FIGURE_FACE_BLUSH,
 
+            ERECTLIP_LADY_01_MAIN_FIGURE_EYES_OPENCENTER_01,
             ERECTLIP_LADY_01_MAIN_FIGURE_EYES_SQUEEZE_01,
             ERECTLIP_LADY_01_MAIN_FIGURE_EYES_HIDE_01,
             ERECTLIP_LADY_01_MAIN_FIGURE_EYES_CLOSE_01,
 
             ERECTLIP_LADY_01_MAIN_FIGURE_BROW_WORRY_01,
 
-            ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_NONE,
+            ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_CLOSENEITRAL,
             ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_OPEN_01,
             ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_OPEN_02,
-            ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_SMILE_01,            
+            ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_OPENSENSE_01,            
             ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_SQUEEZE_01,
             ERECTLIP_LADY_01_MAIN_FIGURE_LIPS_O_01
         }
@@ -47,20 +48,7 @@ namespace StoGenMake.Pers
 
             FillDataImage();
 
-            FemFace face = new FemFace(GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_FACE));
-            face.StateBlush = FemFace.BlushState.None;
-            FemFace.FemSmile smile = new FemFace.FemSmile(GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_SMILE_01));
-            face.Smile = smile;
-            FemFace.FemEyes eyes = new FemFace.FemEyes(GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_EYES_CLOSE_01),FemFace.EyesType.Close);
-            face.EyesList.Add(eyes);
-
-            this.Faces.Add(face);
-
-            this.Face = face;
-
-            this.Face.StateBlush = FemFace.BlushState.GoPulsed;
-            this.Face.StateSmile = FemFace.SmileState.GoPulsed;
-            this.Face.StateBlink = FemFace.BlinkState.Go;
+           
         }
 
         FigureScene SceneFigure
@@ -72,24 +60,55 @@ namespace StoGenMake.Pers
         public override void PrepareScene()
         {
             this.SceneFigure = new FigureScene(this);
+
+            FemFace face = new FemFace(GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_FACE));
+            this.Faces.Add(face);
+            var mouth = new FemFace.FemMouth(GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_CLOSENEITRAL), FemFace.MouthType.Neitral);
+            face.MouthList.Add(mouth);
+            mouth = new FemFace.FemMouth(GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_OPENSENSE_01), FemFace.MouthType.OpenSense);
+            face.MouthList.Add(mouth);
+            FemFace.FemEyes eyes = new FemFace.FemEyes(GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_EYES_OPENCENTER_01), FemFace.EyesType.OpenCenter);
+            face.EyesList.Add(eyes);
+            eyes = new FemFace.FemEyes(GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_EYES_CLOSE_01), FemFace.EyesType.Close);
+            face.EyesList.Add(eyes);
+
+            this.Face = this.Faces.Where(x => x.Name == GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_FACE)).FirstOrDefault();
+            this.Face.EyesDefault = this.Face.EyesList.Where(x => x.Type == FemFace.EyesType.OpenCenter).FirstOrDefault();
+            this.Face.MouthDefault = this.Face.MouthList.Where(x => x.Type == FemFace.MouthType.Neitral).FirstOrDefault();
+            this.Face.Mouth = this.Face.MouthList.Where(x => x.Type == FemFace.MouthType.OpenSense).FirstOrDefault();
+
+            
+            this.Face.StateBlush = FemFace.BlushState.GoPulsed;
+            this.Face.StateEyes = FemFace.EyesState.Already;
+            this.Face.StateBlink = FemFace.BlinkState.Go;
+            this.Face.StateMouth = FemFace.MouthState.GoPulsed;
+            this.SceneFigure.NextCadre("01");
+
+            
+            this.Face.Eyes        = this.Face.EyesList.Where(x=>  x.Type == FemFace.EyesType.Close).FirstOrDefault();
+            this.Face.StateBlink = FemFace.BlinkState.None;
+            this.Face.StateEyes = FemFace.EyesState.GoPulsed;
+            this.SceneFigure.NextCadre("02");
         }
 
         public class FigureScene : BaseScene
         {
             public GenericFem Fem;
-
+            public void NextCadre(string name)
+            {
+                string cloth = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_KIMONO);
+                ScenCadre cadre;
+                cadre = this.AddCadre(null, name, 200, this);
+                this.Cloth(cadre, cloth);
+                this.Head(cadre);
+            }
             public FigureScene(GenericFem fem) : base()
             {
                 this.Fem = fem;
                 this.Name = "Figure scene";
                 this.SizeX = 1500;
                 this.SizeY = 1600;
-                string cloth = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_KIMONO);
-                ScenCadre cadre;
-
-                cadre = this.AddCadre(null, "01", 200, this);
-                this.Cloth(cadre,cloth);
-                this.Head(cadre);
+                
 
                 //cadre = this.AddCadre(KimonoFigure(), "Kimono main -smile", 200);
                 //this.Smile(cadre, true, true);
@@ -163,32 +182,59 @@ namespace StoGenMake.Pers
                 {
                     this.Blush(cadre, this.Fem.Face.StateBlush, true);
                 }
-                if (this.Fem.Face.StateSmile != FemFace.SmileState.Disabled)
+                if (this.Fem.Face.StateMouth != FemFace.MouthState.Disabled)
                 {
-                    this.Smile(cadre, this.Fem.Face.StateSmile, true);
+                    this.Mouth(cadre, this.Fem.Face.StateMouth, true);
+                }
+                if (this.Fem.Face.StateEyes != FemFace.EyesState.Disabled)
+                {
+                    this.SetEyes(cadre, this.Fem.Face.StateEyes, true);
                 }
                 if (this.Fem.Face.StateBlink != FemFace.BlinkState.None)
                 {
                     this.Blink(cadre, this.Fem.Face.StateBlink);
                 }
+               
             }
 
-            internal void Smile(ScenCadre cadre, FemFace.SmileState smile, bool permanent)
+            private void SetEyes(ScenCadre cadre, FemFace.EyesState eyes, bool permanent)
             {
                 bool invisible =
-                   (smile != FemFace.SmileState.Already)
+                   (eyes != FemFace.EyesState.Already)
                    &&
-                   (smile != FemFace.SmileState.GoNone);
+                   (eyes != FemFace.EyesState.GoNone);
                 bool periodic =
-                   (smile == FemFace.SmileState.AlreadyPulsed)
+                   (eyes == FemFace.EyesState.AlreadyPulsed)
                    ||
-                   (smile == FemFace.SmileState.GoPulsed);
+                   (eyes == FemFace.EyesState.GoPulsed);
                 bool reverse =
-                    (smile == FemFace.SmileState.GoNone);
+                    (eyes == FemFace.EyesState.GoNone);
 
-                var image = this.AddImage(cadre, invisible, this.Fem.Face.Smile.Name);
+                if (periodic)
+                {
+                    this.AddImage(cadre, false, this.Fem.Face.EyesDefault.Name);
+                }
+                var image = this.AddImage(cadre, invisible, this.Fem.Face.Eyes.Name);
                 if (invisible || reverse)
-                    image.Transition = Transition.Smile(200, reverse, periodic, permanent);             
+                    image.Transition = Transition.Eyes(200, reverse, periodic, permanent);
+            }
+
+            internal void Mouth(ScenCadre cadre, FemFace.MouthState smile, bool permanent)
+            {
+                bool invisible =
+                   (smile != FemFace.MouthState.Already)
+                   &&
+                   (smile != FemFace.MouthState.GoNone);
+                bool periodic =
+                   (smile == FemFace.MouthState.AlreadyPulsed)
+                   ||
+                   (smile == FemFace.MouthState.GoPulsed);
+                bool reverse =
+                    (smile == FemFace.MouthState.GoNone);
+
+                var image = this.AddImage(cadre, invisible, this.Fem.Face.Mouth.Name);
+                if (invisible || reverse)
+                    image.Transition = Transition.Mouth(200, reverse, periodic, permanent);             
             }
             internal void Blush(ScenCadre cadre, FemFace.BlushState blush, bool permanent)
             {

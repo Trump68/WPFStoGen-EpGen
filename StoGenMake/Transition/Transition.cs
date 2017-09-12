@@ -8,12 +8,12 @@ namespace StoGenMake
 {
     public static class Transition
     {
+        static Random rnd = new Random();
         public static string Eyes_Blink
         {
             get
             {
-                List<string> result = new List<string>() { "W..1000" };
-                Random rnd = new Random();
+                List<string> result = new List<string>() { "W..1000" };                
                 for (int i = 0; i < 50; i++)
                 {
                     result.Add("O.B.40.100>O.B.40.-100");                   
@@ -27,7 +27,6 @@ namespace StoGenMake
         public static string Eye_Close { get; } = "W..1000>O.B.200.100";
         public static string Blush(int time,bool reverse, bool restore, bool permanent)
         {
-            Random rnd = new Random(3);
             int up = 7000;
             int dn = 20000;
             int reversespeed = 7;
@@ -52,9 +51,8 @@ namespace StoGenMake
             }
            return result;
         }
-        public static string Smile(int time, bool reverse, bool restore, bool permanent)
+        public static string Mouth(int time, bool reverse, bool restore, bool permanent)
         {
-            Random rnd = new Random(3);
             int up = 7000;
             int dn = 20000;
             int reversespeed = 2;
@@ -135,6 +133,35 @@ namespace StoGenMake
                 result = $"{result}>W..5000>O.B.{time * 3}.-100";
                 if (permanent)
                     result = $"{result}~";
+            }
+            return result;
+        }
+
+        internal static string Eyes(int time, bool reverse, bool restore, bool permanent)
+        {
+            
+            int up = 7000;
+            int dn = 20000;
+            int reversespeed = 2;
+            string result = $"{rnd.Next(500, 2000)}>";
+            if (reverse)
+            {
+                return $"{result}O.B.{time}.-100";
+            }
+            result = $"{result}O.B.{time}.100";
+            if (restore)
+            {
+
+                result = $"{result}>W..{dn}>O.B.{time * reversespeed}.-100";
+                if (permanent)
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        result = $"{result}>W..{rnd.Next(up, dn)}>O.B.{time}.100";
+                        result = $"{result}>W..{rnd.Next(up, dn)}>O.B.{time * reversespeed}.-100";
+                    }
+                    result = $"{result}~";
+                }
             }
             return result;
         }
