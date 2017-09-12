@@ -22,7 +22,33 @@ namespace StoGenMake.Scenes.Base
         {
             //InitCadres();
         }
-       
+        public ScenCadre AddCadre(ScenCadre cadre, string name, int timer, BaseScene owner)
+        {
+            if (cadre == null)
+                cadre = new ScenCadre(owner);
+            if (name == null)
+            {
+                name = $"Cadre { this.Cadres.Count + 1}";
+            }
+            if (timer < 1) timer = 60;
+            cadre.Timer = timer * 1000;
+            cadre.Name = name;
+            this.Cadres.Add(cadre);
+            return cadre;
+        }
+        protected ScenElementImage AddImage(ScenCadre cadre, bool invisible, string name)
+        {
+            ScenElementImage image = new ScenElementImage();
+            image.SizeX = SizeX;
+            image.SizeY = SizeY;
+            image.Name = name;
+            if (invisible)
+                image.Opacity = 0;
+            else
+                image.Opacity = 100;
+            cadre.VisionList.Add(image);
+            return image;
+        }
         public string Description { get; set; }
         public string Name { get; set; }
         public List<ScenCadre> Cadres { get; set; } = new List<ScenCadre>();

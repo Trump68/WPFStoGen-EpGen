@@ -12,8 +12,114 @@ namespace StoGenMake.Pers
 {
     public class GenericFem : VNPC
     {
-        public bool CanBlink { set; get; } = false;
-        public bool CanWink { set; get; } = false;
+        public class FemFace
+        {
+            public class FemSmile
+            {
+                public string Name { set; get; }
+                public FemSmile(string name)
+                {
+                    this.Name = name;
+                }
+            }
+            public class FemEyes
+            {
+                public string Name { set; get; }
+                public EyesType Type { set; get; } = EyesType.OpenCenter;
+                public FemEyes(string name, EyesType type)
+                {
+                    this.Name = name;
+                    this.Type = type;
+                }
+            }
+            public enum BlushState
+            {
+                Disabled,
+                None,
+                Already,
+                AlreadyPulsed,
+                Go,
+                GoPulsed,
+                GoNone
+            }
+            public enum SmileState
+            {
+                Disabled,
+                None,
+                Already,
+                AlreadyPulsed,
+                Go,
+                GoPulsed,
+                GoNone
+            }
+            public enum EyesState
+            {
+                Disabled,
+                None,
+                Already,
+                AlreadyPulsed,
+                Go,
+                GoPulsed,
+                GoNone
+            }
+            public enum BlinkState
+            {
+                None,
+                Go
+            }
+            public enum EyesType
+            {               
+                OpenCenter,
+                Close
+            }
+            public FemFace(string name)
+            {
+                this.Name = name;
+            }
+            public string Name { set; get; }
+            public BlushState StateBlush { get; set; } = BlushState.Disabled;
+            public SmileState StateSmile { get; set; } = SmileState.Disabled;
+            public EyesState  StateEyes  { get; set; } = EyesState.Disabled;
+            public BlinkState StateBlink { get; set; } = BlinkState.None;
+
+            public List<FemSmile> SmileList { get; set; } = new List<FemSmile>();
+            public List<FemEyes>  EyesList  { get; set; } = new List<FemEyes>();
+            private FemSmile _Smile;
+            public FemSmile Smile
+            {
+                get
+                {
+                    if (_Smile == null)
+                        _Smile = this.SmileList.FirstOrDefault();
+                    return _Smile;
+                }
+                set
+                {
+                    _Smile = value;
+                    if (!this.SmileList.Contains(_Smile))
+                        this.SmileList.Add(_Smile);
+                }
+            }
+            private FemEyes _Eyes;
+            public FemEyes Eyes
+            {
+                get
+                {
+                    if (_Eyes == null)
+                        _Eyes = this.EyesList.FirstOrDefault();
+                    return _Eyes;
+                }
+                set
+                {
+                    _Eyes = value;
+                    if (!this.EyesList.Contains(_Eyes))
+                        this.EyesList.Add(_Eyes);
+                }
+            }
+        }
+
+        public List<FemFace> Faces { set; get; } = new List<FemFace>();
+        public FemFace Face { set; get; }
         public GenericFem():base()
         {
             this.Name = "Generic Fem";
@@ -22,15 +128,6 @@ namespace StoGenMake.Pers
         public override void PrepareScene()
         {
             this.Scene = new MainPersonScene();
-            this.CanBlink =  (this.Data.ByName("IMAGE", VNPC.MAIN_PERSON_PICTURE, VNPC.EYES_CLOSE_01)  != null);
-            this.CanWink  =  (this.Data.ByName("IMAGE", VNPC.MAIN_PERSON_PICTURE, VNPC.RIGHT_EYE_WINK) != null);
-
-
-            (this.Scene as MainPersonScene).AddMainCadre(this.CanBlink);
-            if (this.CanWink)            
-                (this.Scene as MainPersonScene).Wink();
-            (this.Scene as MainPersonScene).ASMR_01(this.CanBlink);
-            (this.Scene as MainPersonScene).ORGAZM_01();
         }
     }
     public class MainPersonScene: BaseScene
