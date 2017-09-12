@@ -7,6 +7,7 @@ using StoGenMake.Elements;
 using System.IO;
 using StoGenLife.NPC;
 using StoGenMake.Pers;
+using StoGenLife.SOUND;
 
 namespace StoGenMake.Scenes.Base
 {
@@ -48,6 +49,14 @@ namespace StoGenMake.Scenes.Base
                 image.Opacity = 100;
             cadre.VisionList.Add(image);
             return image;
+        }
+        protected ScenElementSound AddSound(ScenCadre cadre, string name)
+        {
+            ScenElementSound sound = new ScenElementSound();            
+            sound.Name = name;
+            sound.File = SoundStore.ValByName(name);
+            cadre.SoundList.Add(sound);
+            return sound;
         }
         public string Description { get; set; }
         public string Name { get; set; }

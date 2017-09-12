@@ -218,14 +218,48 @@ namespace StoGenMake.Pers
                 this.Type = type;
             }
         }
+        public class FemVoice
+        {
+            public string Name { set; get; }
+            public VoiceType Type { set; get; }
+            public TermType TermType { set; get; }
+            public FemVoice(string name, VoiceType type, TermType TermType)
+            {
+                this.Name = name;
+                this.Type = type;
+            }
+            public FemVoice(SoundStore.Sounds name, VoiceType type, TermType TermType)
+            {
+                this.Name = Enum.GetName(typeof(SoundStore.Sounds), name);
+                this.Type = type;
+            }
+            
+        }
+        public enum VoiceType
+        {
+            Neitral
+        }
+        public enum TermType
+        {
+            None,
+            Yes,
+            No
+        }
         public enum ClothType
         {
             Naked,
             Kimono,
             KimonoDecolte
         }
+        public enum VoiceState
+        {
+            None,
+            Go,
+            GoPeriodic
+        }
         public List<FemCloth> ClothList { set; get; } = new List<FemCloth>();
         public List<FemFace> Faces { set; get; } = new List<FemFace>();
+        public List<FemVoice> VoiceList { set; get; } = new List<FemVoice>();
         public FemFace Face { set; get; }
         FemCloth _Cloth;
         public FemCloth Cloth
@@ -243,7 +277,23 @@ namespace StoGenMake.Pers
                     this.ClothList.Add(_Cloth);
             }
         }
-
+        FemVoice _Voice;
+        public FemVoice Voice
+        {
+            get
+            {
+                if (_Voice == null)
+                    _Voice = this.VoiceList.FirstOrDefault();
+                return _Voice;
+            }
+            set
+            {
+                _Voice = value;
+                if (!this.VoiceList.Contains(_Voice))
+                    this.VoiceList.Add(_Voice);
+            }
+        }
+        public VoiceState StateVoice { set; get; } = VoiceState.None;
         public override void PrepareScene()
         {
             this.Scene = new MainPersonScene();

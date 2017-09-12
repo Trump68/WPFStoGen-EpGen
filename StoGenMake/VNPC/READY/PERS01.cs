@@ -1,4 +1,5 @@
-﻿using StoGenMake.Elements;
+﻿using StoGenLife.SOUND;
+using StoGenMake.Elements;
 using StoGenMake.Scenes;
 using StoGenMake.Scenes.Base;
 using System;
@@ -41,7 +42,7 @@ namespace StoGenMake.Pers
 
         private void FillDataImage()
         {
-           var list = Enum.GetNames(typeof(FigureImages)).ToList();
+            var list = Enum.GetNames(typeof(FigureImages)).ToList();
             list.ForEach(x => this.Data.Add("IMAGE", x, null, null));
         }
         public PERS01():base()
@@ -63,8 +64,11 @@ namespace StoGenMake.Pers
             this.SceneFigure = new FigureScene(this);
             SetFace();
             SetCloth();
+            SetVoice();
 
-            this.Cloth = this.ClothList.FirstOrDefault(x => x.Type == ClothType.Naked);
+            this.Cloth = this.ClothList.FirstOrDefault(x => x.Type == ClothType.Kimono);
+            this.Voice = this.VoiceList.FirstOrDefault(x => x.Type == VoiceType.Neitral);
+            this.StateVoice = VoiceState.Go;
 
             FaceReset();
             this.SceneFigure.NextCadre("Reset");
@@ -107,7 +111,14 @@ namespace StoGenMake.Pers
             FaceBrowsWorry();
             this.SceneFigure.NextCadre("Brows worry");
 
-            this.SceneFigure.Cadres.Reverse();
+           // this.SceneFigure.Cadres.Reverse();
+        }
+
+        private void SetVoice()
+        {
+            this.VoiceList.Add(new FemVoice(SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_01, VoiceType.Neitral,TermType.None));
+            this.VoiceList.Add(new FemVoice(SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_02, VoiceType.Neitral, TermType.None));
+            this.VoiceList.Add(new FemVoice(SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_03, VoiceType.Neitral, TermType.None));
         }
 
         private void SetCloth()
@@ -291,6 +302,7 @@ namespace StoGenMake.Pers
                     this.Blink(cadre, this.Fem.Face.StateBlink);
                 }              
                 this.Brows(cadre, this.Fem.Face.StateBrows);
+                this.Voice(cadre, this.Fem.StateVoice);
             }
 
          
@@ -355,6 +367,13 @@ namespace StoGenMake.Pers
                 var image = this.AddImage(cadre, invisible, GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_FACE_BLUSH));
                 if (invisible || reverse)
                    image.Transition = Transition.Blush(500, reverse, periodic, permanent);
+            }
+            internal void Voice(ScenCadre cadre, GenericFem.VoiceState voice)
+            {
+                if (voice == VoiceState.None) return;
+                var sound = this.AddSound(cadre, Fem.Voice.Name);
+                // var sound = this.AddSound(cadre,SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_01);
+                //sound.Transition = Transition.Blush(500, reverse, periodic, permanent);
             }
             private void Brows(ScenCadre cadre, FemFace.BrowsState brows)
             {
