@@ -30,20 +30,19 @@ namespace StoGen.Classes
 
         public PictureSourceDataProps():base()
         {
-            this.SelectorDataList = new List<SelectorData>();
+
         }
 
         public PictureSourceDataProps(string fnname)
             : base(fnname)
         {
-            this.SelectorDataList = new List<SelectorData>();
+
         }
 
         public PictureSourceDataProps(string fnname, PictureProps position): base(fnname,position)
         {
-            this.SelectorDataList = new List<SelectorData>();
+
         }
-        public List<SelectorData> SelectorDataList;
 
         public string RawData { get; set; }
         

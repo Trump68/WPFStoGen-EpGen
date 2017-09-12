@@ -23,16 +23,14 @@ namespace StoGen.Classes
             this.Cadres.Clear();
             //this.Variants.Clear();
             this.InnerProc = null;
-            if (this.CurrentContext != null) this.CurrentContext.Data.Clear();
             this.NestedCadreId = 0;
         }
 
         public int Level = 0;
-        public ProcedureBase(Context context, int level)
+        public ProcedureBase(int level)
         {
             InnerProc = null;
             Cadres = new List<Cadre>();
-            this.CurrentContext = context;
             this.Level = level;
             this.NestedCadreId = -1;
             this.MenuCreator = this.CreateMenu;
@@ -48,7 +46,6 @@ namespace StoGen.Classes
             return this.InnerProc.GetLastProc();
         }
         public int NestedCadreId { get; set; } 
-        public Context CurrentContext;
         protected bool isInitialized = false;
         public string Name { get; set; }
         public bool ShowContextMenuOnInit = true;        

@@ -35,7 +35,7 @@ namespace StoGen.Classes
         public string FirstCadreName = null;
         public virtual ProcedureBase InsertAsProcedureTo(ProcedureBase ownerproc, bool isAdd)
         {
-            ProcedureBase procpreg = new ProcedureBase(null, ownerproc.Level + 1);
+            ProcedureBase procpreg = new ProcedureBase(ownerproc.Level + 1);
             procpreg.ShowContextMenuOnInit = false;
             this.CurrentProc = procpreg;
             this.CurrentProc.OnKeyData += OnKeyData;
@@ -865,15 +865,13 @@ namespace StoGen.Classes
         public List<Set_View> sets = new List<Set_View>();
         public List<CycleProc> setsA = new List<CycleProc>();
         public CycleProc(int level)
-            : base(null, level)
+            : base(level)
         {
-            this.CurrentContext = new Context();
             this.MenuCreator = CreateMenu;
         }
         public CycleProc(string fn)
-           : base(null, 0)
+           : base(0)
         {
-            this.CurrentContext = new Context();
             this.MenuCreator = CreateMenu;
             AddNewSet("DUMMY", "DUMMY", fn, null, null, null, null);
             ProcedureBase innerproc = this.setsA.First().sets.First().InsertAsProcedureTo(this, true);

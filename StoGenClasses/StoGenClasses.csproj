@@ -66,7 +66,6 @@
     <Compile Include="Cadre.cs" />
     <Compile Include="CadreData.cs" />
     <Compile Include="CadreMaker.cs" />
-    <Compile Include="Context.cs" />
     <Compile Include="Controls\frmFrameChoice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,10 +101,6 @@
     <Compile Include="ProcedureBase\ProcedureBase.cs" />
     <Compile Include="Projector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SelectorBase.cs" />
-    <Compile Include="SelectorConstants.cs" />
-    <Compile Include="SelectorData.cs" />
-    <Compile Include="SelectorStringGroup.cs" />
     <Compile Include="SgEnums.cs" />
     <Compile Include="Parser\StogenParser.cs" />
     <Compile Include="Transition\TransitionManager.cs" />
