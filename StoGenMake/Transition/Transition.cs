@@ -53,8 +53,8 @@ namespace StoGenMake
         }
         public static string Mouth(int time, bool reverse, bool restore, bool permanent)
         {
-            int up = 7000;
-            int dn = 20000;
+            int up = 5000;
+            int dn = 15000;
             int reversespeed = 2;
             string result = $"{rnd.Next(500, 2000)}>";
             if (reverse)
