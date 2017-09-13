@@ -28,7 +28,6 @@ namespace StoGenWPF
         public static void SetMainProcedure()
         {
             CurrProc = new CycleProc(_MainProcname);
-
         }
        
 

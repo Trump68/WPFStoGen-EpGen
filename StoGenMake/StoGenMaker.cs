@@ -69,7 +69,10 @@ namespace StoGenMake
                 pers.PrepareScene();
 
                 string fn = pers.Generate(fileToProcess);
-                System.Diagnostics.Process.Start(fn);
+                StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
+                window.Startfile = fn;
+                window.Show();
+                //System.Diagnostics.Process.Start(fn);
             }
             else
             {

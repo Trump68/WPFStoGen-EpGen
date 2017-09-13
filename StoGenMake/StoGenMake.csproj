@@ -116,6 +116,10 @@
       <Project>{E45DC092-2338-4AE7-A151-423318D217EB}</Project>
       <Name>StoGenLife</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StoGenWPF\StoGenWPF\StoGenWPF.csproj">
+      <Project>{ad6db9a5-7a96-4a41-bda0-72d01e6e86ac}</Project>
+      <Name>StoGenWPF</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Scenes\Data\ImageData.txt" />

@@ -22,7 +22,7 @@ namespace StoGenWPF
     public partial class MainWindow : Window
     {
 
-
+        public string Startfile = null;
         MediaElement ClipElement;
         
         private MediaPlayer Sound01 = new MediaPlayer();
@@ -64,11 +64,13 @@ namespace StoGenWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            string startfile = null;
-            string[] args = Environment.GetCommandLineArgs();
-            if (args.Length > 1) startfile = args[1];
+            if (Startfile == null)
+            {
+                string[] args = Environment.GetCommandLineArgs();
+                if (args.Length > 1) Startfile = args[1];
+            }
 
-            SGManager.StartMainProc(startfile);
+            SGManager.StartMainProc(Startfile);
 
 
             PictureCadreDS.Visibility = Visibility.Hidden;
