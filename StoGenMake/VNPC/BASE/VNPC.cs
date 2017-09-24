@@ -1,4 +1,5 @@
-﻿using StoGenLife.NPC;
+﻿using StoGen.Classes;
+using StoGenLife.NPC;
 using StoGenLife.SOUND;
 using StoGenMake.Scenes.Base;
 using System;
@@ -63,7 +64,7 @@ namespace StoGenMake.Pers
                 }
             }
         }
-       
+        public string TempFileName = null;
         internal string Generate(string FileToProcess)
         {
             string fnScenario = string.Empty;
@@ -101,6 +102,10 @@ namespace StoGenMake.Pers
         public virtual void PrepareScene()
         {
             
+        }
+        public virtual bool CreateMenuPersone(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        {
+            return false;
         }
     }
 

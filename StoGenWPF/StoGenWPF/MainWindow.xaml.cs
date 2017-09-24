@@ -1,4 +1,5 @@
-﻿using StoGen.ModelClasses;
+﻿using StoGen.Classes.Interfaces;
+using StoGen.ModelClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace StoGenWPF
     {
 
         public string Startfile = null;
+        public IMenuCreator GlobalMenuCreator = null;
         MediaElement ClipElement;
         
         private MediaPlayer Sound01 = new MediaPlayer();
@@ -70,7 +72,7 @@ namespace StoGenWPF
                 if (args.Length > 1) Startfile = args[1];
             }
 
-            SGManager.StartMainProc(Startfile);
+            SGManager.StartMainProc(Startfile, GlobalMenuCreator);
 
 
             PictureCadreDS.Visibility = Visibility.Hidden;

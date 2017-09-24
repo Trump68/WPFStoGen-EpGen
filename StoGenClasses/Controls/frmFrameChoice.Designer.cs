@@ -52,7 +52,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(1033, 803);
+            this.layoutControl1.Size = new System.Drawing.Size(284, 521);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -62,7 +62,7 @@
             this.Grid.Location = new System.Drawing.Point(2, 2);
             this.Grid.MainView = this.gridView1;
             this.Grid.Name = "Grid";
-            this.Grid.Size = new System.Drawing.Size(1029, 799);
+            this.Grid.Size = new System.Drawing.Size(280, 517);
             this.Grid.TabIndex = 4;
             this.Grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -75,7 +75,9 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
-            this.gridView1.OptionsView.ShowAutoFilterRow = true;
+            this.gridView1.OptionsView.ShowColumnHeaders = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.PaintStyleName = "Skin";
             this.gridView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
             this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
@@ -96,7 +98,7 @@
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1033, 803);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(284, 521);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -104,7 +106,7 @@
             this.layoutControlItem1.Control = this.Grid;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1033, 803);
+            this.layoutControlItem1.Size = new System.Drawing.Size(284, 521);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -112,12 +114,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1033, 803);
+            this.ClientSize = new System.Drawing.Size(284, 521);
             this.Controls.Add(this.layoutControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
+            this.Location = new System.Drawing.Point(1300, 0);
             this.Name = "frmFrameChoice";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Options Menu";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmFrameChoice_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

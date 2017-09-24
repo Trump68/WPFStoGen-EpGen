@@ -21,7 +21,7 @@ namespace StoGen.Classes
         public string Country { get; set; }
         public string Description { get; set; }
 
-        public override bool PreProcessFileLists()
+        public override bool PreProcessFileLists(string ScenarioFile)
         {
             string fn = string.Empty;
             string part = null;
@@ -46,13 +46,13 @@ namespace StoGen.Classes
             if (!string.IsNullOrEmpty(ScenarioFile))
             {
                 fn = ScenarioFile;
-                DefaultPath = fn.Replace(Path.GetFileName(fn), string.Empty);
+                StoGenParser.DefaultPath = fn.Replace(Path.GetFileName(fn), string.Empty);
             }
 
 
             if (File.Exists(fn))
             {
-                ProcessFileLists(this.CurrentProc, fn, part);
+                StoGenParser.AddCadresToProcFromFile(this.CurrentProc, fn, part, StoGenParser.DefaultPath);
                 return true;
             }
 
@@ -103,7 +103,7 @@ namespace StoGen.Classes
                 }
             }
             string code = Convert.ToInt32(sender).ToString();
-            foreach (SoundItem soundItem in KeyVarContainer.SoundVariableList)
+            foreach (SoundItem soundItem in StoGenParser.KeyVarContainer.SoundVariableList)
             {
                 if (soundItem.Name == code)
                 {
@@ -111,14 +111,14 @@ namespace StoGen.Classes
                     this.CurrentProc.CurrentCadre.SoundFrameData.Add(soundItem);
                 }
             }
-            foreach (PictureSourceDataProps commonPic in CommonPics)
+            foreach (PictureSourceDataProps commonPic in StoGenParser.CommonPics)
             {
                 if (commonPic.Name == code)
                 {
                     this.CurrentProc.CurrentCadre.PicFrameData.PictureDataList.Add(commonPic);
                 }
             }
-            foreach (TextData textData in KeyVarContainer.TextVariableList)
+            foreach (TextData textData in StoGenParser.KeyVarContainer.TextVariableList)
             {
                 if (textData.Name == code)
                 {
@@ -131,18 +131,14 @@ namespace StoGen.Classes
             this.CurrentProc.CurrentCadre.Repaint(true);
         }
 
-        private void Reload()
-        {
-            this.CurrentProc.Clear();
-            PreProcessFileLists();
-        }
+       
 
      
 
         #region Menus
 
 
-        public virtual bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        public override bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
         {
             ChoiceMenuItem item = null;
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
@@ -258,14 +254,14 @@ namespace StoGen.Classes
         private bool CreateMenuSelectStory(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
         {
             ChoiceMenuItem item = null;
-            if (this.KeyVarContainer.StoryList.Count == 0)
+            if (StoGenParser.KeyVarContainer.StoryList.Count == 0)
             {
                 proc.MenuCreator = CreateMenu;
             }
             else
             {
                 if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-                foreach (KeyVarDataContainer.StoryData storyData in this.KeyVarContainer.StoryList)
+                foreach (KeyVarDataContainer.StoryData storyData in StoGenParser.KeyVarContainer.StoryList)
                 {
 
                     item = new ChoiceMenuItem();
@@ -295,7 +291,7 @@ namespace StoGen.Classes
         private bool CreateMenuSelectKeyVar(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
         {
             ChoiceMenuItem item = null;
-            if (this.KeyVarContainer.keyVarList.Count == 0)
+            if (StoGenParser.KeyVarContainer.keyVarList.Count == 0)
             {
                 proc.MenuCreator = CreateMenu;
             }
@@ -303,7 +299,7 @@ namespace StoGen.Classes
             {
                 if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 
-                foreach (KeyVarDataContainer.KeyVarData variant in this.KeyVarContainer.keyVarList)
+                foreach (KeyVarDataContainer.KeyVarData variant in StoGenParser.KeyVarContainer.keyVarList)
                 {
                     item = new ChoiceMenuItem();
                     item.Name = variant.Key.ToString();
@@ -411,7 +407,7 @@ namespace StoGen.Classes
             item.Data = this;
             item.Executor = delegate (object data)
             {
-                string fn = String.Format("{0}FileList.txt", DefaultPath);
+                string fn = String.Format("{0}FileList.txt", StoGenParser.DefaultPath);
                 frmTextEdit.ShowForm(fn, null, false);
                 Reload();
                 proc.MenuCreator = CreateMenu;
@@ -424,7 +420,7 @@ namespace StoGen.Classes
             item.Data = this;
             item.Executor = delegate (object data)
             {
-                string fn = String.Format("{0}FileList.txt", DefaultPath);
+                string fn = String.Format("{0}FileList.txt", StoGenParser.DefaultPath);
                 frmTextEdit.AddFiles(fn);
                 Reload();
                 proc.MenuCreator = CreateMenu;
@@ -445,7 +441,7 @@ namespace StoGen.Classes
                 //}
                 if (string.IsNullOrEmpty(fn))
                 {
-                    fn = String.Format("{0}{1}.txt", DefaultPath, Path.GetFileNameWithoutExtension(CurrentProc.CurrentCadre.PicFrameData.PictureDataList[0].FileName));
+                    fn = String.Format("{0}{1}.txt", StoGenParser.DefaultPath, Path.GetFileNameWithoutExtension(CurrentProc.CurrentCadre.PicFrameData.PictureDataList[0].FileName));
                 }
                 frmTextEdit.ShowForm(fn, null, false);
                 Reload();
@@ -515,7 +511,7 @@ namespace StoGen.Classes
                 DialogResult dr = PicPropsEdit.ShowProps(this.CurrentProc.CurrentCadre.PicFrameData.PictureDataList[0], ref forAll);
                 if (dr == DialogResult.OK)
                 {
-                    string fn = String.Format("{0}FileList.txt", DefaultPath);
+                    string fn = String.Format("{0}FileList.txt", StoGenParser.DefaultPath);
                     frmTextEdit.ShowForm(fn, this.CurrentProc.CurrentCadre.PicFrameData.PictureDataList[0], forAll);
                     proc.CurrentCadre.Repaint(true);
                 }

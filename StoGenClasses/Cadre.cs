@@ -252,36 +252,8 @@ namespace StoGen.Classes
 
         }
 
-        internal void ApplyPicPostProcesssing(List<PictureBaseProp> list)
-        {           
-            FrameImage Fi = this.GetImageFrame();
-
-        }
-        public void InsertPicPostProcesssing(PictureBaseProp p)
-        {
-            this.PicPostProcessingData.Add(p);
-            //FrameImage Fi = this.GetImageFrame();
-            //Fi.PostProcessingData.Add(p);
-        }
 
 
-        //internal TextData GetTextDataByVariant(ProcVariant variant)
-        //{
-        //    
-        //    if (this.TextFrameData.Count == 0) return null;
-        //    else if (this.TextFrameData.Count == 1) return this.TextFrameData[0];
-        //    else 
-        //    {
-        //        if (variant != null)
-        //        {
-        //            foreach (TextData textData in this.TextFrameData)
-        //            {
-        //                if (textData.VariantName == variant.Name) return textData;
-        //            }
-        //        }
-        //        return this.TextFrameData[0];
-        //    }
-        //}
     }
 
     public class CadreEventArgs:

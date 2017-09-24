@@ -14,6 +14,13 @@ namespace StoGenMake.Scenes.Base
    
     public class BaseScene
     {
+        public enum ViewingTransitionState
+        {
+            Disabled,
+            None,           
+            Go
+        }
+        public ViewingTransitionState StateViewingTransition = ViewingTransitionState.None;
         public int SizeX = 800;
         public int SizeY = 600;
         public int X = 300;

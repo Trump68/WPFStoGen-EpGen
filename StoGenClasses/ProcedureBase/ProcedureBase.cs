@@ -12,7 +12,7 @@ namespace StoGen.Classes
 {
     public class ProcedureBase
     {
-        
+        public MenuCreatorDelegate OldMenuCreator;
         public MenuCreatorDelegate MenuCreator;
         public List<Cadre> Cadres { get; set; }
         //public List<ProcVariant> Variants = new List<ProcVariant>();
@@ -247,7 +247,7 @@ namespace StoGen.Classes
             {
                 cadre.InsertImage(pictureSourceDataProps);
             }
-            if (cadre.PicPostProcessingData.Count > 0) cadre.ApplyPicPostProcesssing(cadre.PicPostProcessingData);
+            
 
             if (cadre.SoundFrameData != null && cadre.SoundFrameData.Count > 0)
             {
@@ -288,7 +288,7 @@ namespace StoGen.Classes
         public virtual bool ShowContextMenu()
         {
             isInitialized = true;
-            if (this.InnerProc != null)
+            if (this.InnerProc != null && this.InnerProc.MenuCreator != null)
             {
                 return this.InnerProc.ShowContextMenu();
             }

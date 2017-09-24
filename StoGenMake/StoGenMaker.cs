@@ -29,8 +29,7 @@ namespace StoGenMake
             if (args.Length > 1)
             {
                 FileToProcess = args[1];
-            }        
-            //SaveTemplates();            
+            }                  
             GenerateScen(FileToProcess);          
         }       
         private static void FillNPC()
@@ -65,14 +64,17 @@ namespace StoGenMake
             }
             if (pers != null)
             {
+                var gWorld = new GameWorld();
+                gWorld.CurrentPersone = pers;
+
                 pers.SetPersVariablesData(datalist);
                 pers.PrepareScene();
 
                 string fn = pers.Generate(fileToProcess);
                 StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
-                window.Startfile = fn;
+                window.Startfile = fn;                
+                window.GlobalMenuCreator = gWorld;
                 window.Show();
-                //System.Diagnostics.Process.Start(fn);
             }
             else
             {

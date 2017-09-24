@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,6 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Elements\ScenElement.cs" />
+    <Compile Include="GameWorld\GameWorld.cs" />
     <Compile Include="ScenCadre\ScenCadre.cs" />
     <Compile Include="Scenes\Base\BaseScene.cs" />
     <Compile Include="Scenes\Scene01.cs" />

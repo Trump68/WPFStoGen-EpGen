@@ -12,8 +12,25 @@ namespace StoGenMake.Pers
 {
     public class GenericFem : VNPC
     {
+        public enum EmotionalState
+        {
+            None,
+            Joy,
+            Flirt,
+            Worry
+        }
+        public enum EmotionalGrade
+        {
+            None,
+            Light,
+            Middle,
+            Heavy
+        }
+        public EmotionalState StateEmotional { get; set; } = EmotionalState.None;
+        public EmotionalGrade GradeEmotional { get; set; } = EmotionalGrade.None;
         public class FemFace
         {
+           
             public class FemMouth
             {
                 public string Name { set; get; }
@@ -119,6 +136,9 @@ namespace StoGenMake.Pers
             public EyesState StateEyes { get; set; } = EyesState.Disabled;
             public BlinkState StateBlink { get; set; } = BlinkState.None;
             public BrowsState StateBrows { get; set; } = BrowsState.None;
+
+
+
 
             public List<FemBrows> BrowsList { get; set; } = new List<FemBrows>();
             public List<FemMouth> MouthList { get; set; } = new List<FemMouth>();

@@ -1,4 +1,5 @@
-﻿using StoGenLife.SOUND;
+﻿using StoGen.Classes;
+using StoGenLife.SOUND;
 using StoGenMake.Elements;
 using StoGenMake.Scenes;
 using StoGenMake.Scenes.Base;
@@ -7,11 +8,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace StoGenMake.Pers
 {
     public class PERS01: GenericFem
     {
+        //FigureScene.ViewingTransitionState StateViewingTransition = BaseScene.ViewingTransitionState.None;
         public enum FigureImages
         {
             ERECTLIP_LADY_01_MAIN_FIGURE_KIMONO,
@@ -47,9 +50,10 @@ namespace StoGenMake.Pers
         }
         public PERS01():base()
         {           
-            this.Name = "[ERECTLIP] Bakunyuu Onsen ~Inran Okami Etsuraku no Yu Hen~.Lady 01";
+            //this.Name = "[ERECTLIP] Bakunyuu Onsen ~Inran Okami Etsuraku no Yu Hen~.Lady 01";
+            this.Name = "Maria Delgado";
             this.GID = Guid.Parse("{39FCD7CD-C3A5-497A-9D10-84F2DF6DB34B}");
-
+            this.TempFileName = $@"d:\temp\{this.Name}.stogen";
             FillDataImage(); 
         }
 
@@ -58,10 +62,20 @@ namespace StoGenMake.Pers
             get { return this.Scene as FigureScene; }
             set { this.Scene = value; }
         }
+        
+        private void GenerateScene()
+        {                    
+            string fn = this.Generate(this.TempFileName);
+        }
+        private void SetObzor()
+        {
+            this.SceneFigure.StateViewingTransition = BaseScene.ViewingTransitionState.Go;
+        }
 
-        public override void PrepareScene()
+        public void PlanScene()
         {
             this.SceneFigure = new FigureScene(this);
+           // this.SceneFigure.StateViewingTransition = this.StateViewingTransition;
             SetFace();
             SetCloth();
             SetVoice();
@@ -71,8 +85,13 @@ namespace StoGenMake.Pers
             this.StateVoice = VoiceState.Go;
 
             FaceReset();
-            this.SceneFigure.NextCadre("Reset");
+        }
 
+        public override void PrepareScene()
+        {
+            PlanScene();
+            this.SceneFigure.NextCadre("Reset");
+            /*
             FaceReset();
             FaceMouthFlirting();
             this.SceneFigure.NextCadre("Flirting");
@@ -110,7 +129,7 @@ namespace StoGenMake.Pers
             FaceReset();
             FaceBrowsWorry();
             this.SceneFigure.NextCadre("Brows worry");
-
+            */
            // this.SceneFigure.Cadres.Reverse();
         }
 
@@ -158,6 +177,16 @@ namespace StoGenMake.Pers
             this.Face.StateBlink = FemFace.BlinkState.Go;
             this.Face.StateBlush = FemFace.BlushState.None;
             this.Face.StateBrows = FemFace.BrowsState.None;
+
+            if (StateEmotional == EmotionalState.Joy)
+            {
+                FaceMouthFlirting();
+            }
+            else if (StateEmotional == EmotionalState.Worry)
+            {
+                FaceBrowsWorry();
+                FaceMouthWorry();
+            }
         }
         private void FaceMouthFlirting()
         {
@@ -199,6 +228,121 @@ namespace StoGenMake.Pers
             this.Face.StateBrows = FemFace.BrowsState.Go;
         }
 
+    
+        public override bool CreateMenuPersone(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        {
+            ChoiceMenuItem item = null;
+            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+
+            item = new ChoiceMenuItem("Оглядеть...", this);
+            item.Executor = delegate (object data)
+            {
+                              
+                PlanScene();
+                SetObzor();
+                this.SceneFigure.NextCadre("Cadre"+proc.Cadres.Count);
+                GenerateScene();
+
+                StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);                
+                proc.MenuCreator = proc.OldMenuCreator;
+                proc.GetNextCadre();
+                
+            };
+            itemlist.Add(item);
+
+            item = new ChoiceMenuItem("Смотреть в лицо ...",this);
+            item.Executor = delegate (object data)
+            {
+                
+                PlanScene();
+                this.SceneFigure.NextCadre("Cadre" + proc.Cadres.Count);
+                GenerateScene();
+
+                
+                StoGenParser.AddCadresToProcFromFile(proc,this.TempFileName,null, StoGenParser.DefaultPath);                                
+                proc.MenuCreator = proc.OldMenuCreator;
+                proc.GetNextCadre();
+            };
+            itemlist.Add(item);
+
+            item = new ChoiceMenuItem("Общение ...", this);
+            item.Executor = delegate (object data)
+            {
+                proc.MenuCreator = this.CreateMenuTalk;
+                proc.ShowContextMenu();
+            };
+            itemlist.Add(item);
+
+            if (frmFrameChoice.ShowOptionsmenu(itemlist) == DialogResult.Cancel)
+            {
+                proc.MenuCreator = proc.OldMenuCreator;
+                proc.ShowContextMenu();
+            }
+            
+
+            return true;
+        }
+        private bool CreateMenuTalk(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        {
+            ChoiceMenuItem item = null;
+            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+
+            item = new ChoiceMenuItem("Пошутить...", this);
+            item.Executor = delegate (object data)
+            {
+                SetJoy(EmotionalGrade.Light);
+                PlanScene();
+                
+                
+                this.SceneFigure.NextCadre("Cadre" + proc.Cadres.Count);
+                GenerateScene();
+
+                StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
+                proc.MenuCreator = proc.OldMenuCreator;
+                proc.GetNextCadre();
+
+            };
+            itemlist.Add(item);
+
+            item = new ChoiceMenuItem("Обидеть...", this);
+            item.Executor = delegate (object data)
+            {
+                SetWorry(EmotionalGrade.Light);
+                PlanScene();
+               
+
+                this.SceneFigure.NextCadre("Cadre" + proc.Cadres.Count);
+                GenerateScene();
+
+                StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
+                proc.MenuCreator = proc.OldMenuCreator;
+                proc.GetNextCadre();
+
+            };
+            itemlist.Add(item);
+
+
+            if (frmFrameChoice.ShowOptionsmenu(itemlist) == DialogResult.Cancel)
+            {
+                proc.MenuCreator = proc.OldMenuCreator;
+                proc.ShowContextMenu();
+            }
+
+
+            return true;
+        }
+
+        private void SetJoy(EmotionalGrade v)
+        {
+            this.StateEmotional = EmotionalState.Joy;
+            this.GradeEmotional = v;
+        }
+        private void SetWorry(EmotionalGrade v)
+        {
+            this.StateEmotional = EmotionalState.Worry;
+            this.GradeEmotional = v;
+        }
+
         public class FigureScene : BaseScene
         {
             public GenericFem Fem;
@@ -208,6 +352,8 @@ namespace StoGenMake.Pers
                 cadre = this.AddCadre(null, name, 200, this);
                 this.Cloth(cadre);
                 this.Head(cadre);
+
+                this.AddObzor(cadre);
             }
             public FigureScene(GenericFem fem) : base()
             {
@@ -303,9 +449,24 @@ namespace StoGenMake.Pers
                 }              
                 this.Brows(cadre, this.Fem.Face.StateBrows);
                 this.Voice(cadre, this.Fem.StateVoice);
+               
             }
 
-         
+            private void AddObzor(ScenCadre cadre)
+            {
+                if (this.StateViewingTransition == ViewingTransitionState.Go)
+                {
+                    foreach (var image in cadre.VisionList)
+                    {
+                        if (!string.IsNullOrEmpty(image.Transition))
+                        {
+                            image.Transition = image.Transition + "*" + Transition.Obzor();
+                        }
+                        else
+                            image.Transition = Transition.Obzor();
+                    }
+                }
+            }
 
             private void SetEyes(ScenCadre cadre, FemFace.EyesState eyes, bool permanent)
             {
@@ -393,7 +554,7 @@ namespace StoGenMake.Pers
             {
                 bool invisible = true;
                 var image = this.AddImage(cadre, invisible, this.Fem.Face.EyesList.Where(x=>x.Type == FemFace.EyesType.Close).FirstOrDefault().Name);
-                image.Transition = Transition.Eyes_Blink;
+                image.Transition = Transition.Eyes_Blink;               
             }
             //private void TalkSmile(ScenCadre cadre)
             //{

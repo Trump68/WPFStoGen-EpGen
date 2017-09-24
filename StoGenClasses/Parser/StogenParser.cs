@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors.Controls;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -6,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace StoGen.Classes
 {
@@ -42,6 +44,9 @@ namespace StoGen.Classes
     }
     public static class StoGenParser
     {
+        public static string DefaultPath;
+        public static List<PictureSourceDataProps> CommonPics = new List<PictureSourceDataProps>();
+        public static KeyVarDataContainer KeyVarContainer = new KeyVarDataContainer();
         public static List<StringDataContainer> GetProcessedFile(string fn, string part, KeyVarDataContainer KeyVarContainer, string original, out List<string> header)
         {
             header = new List<string>();
@@ -493,6 +498,215 @@ namespace StoGen.Classes
                     }
                 }
             }
+        }
+
+        public static bool AddCadresToProcFromFile(ProcedureBase proc, string fn, string part, string defaultPath)
+        {
+            List<string> header;
+            List<StringDataContainer> datalist = new List<StringDataContainer>();
+            string commonFile = $"{defaultPath}{"Common.stogen"}";
+            if (File.Exists(commonFile))
+            {
+                datalist.AddRange(StoGenParser.GetProcessedFile(commonFile, part, KeyVarContainer, null, out header));
+            }
+            datalist.AddRange(StoGenParser.GetProcessedFile(fn, part, KeyVarContainer, null, out header));
+            Cadre LastCadre = null;
+            string key = null;
+            //string laskey = string.Empty;
+            KeyVarDataContainer.KeyVarData codevar = null;
+            //int pos = 0;
+            foreach (StringDataContainer item in datalist)
+            {
+                try
+                {
+                    if (string.IsNullOrEmpty(item.Complete) || item.Complete.StartsWith(@"//")) { }
+                    else if (item.Complete.StartsWith(@"$TEXTVAR:"))
+                    {
+                        string[] vals = item.Complete.Split(':');
+                        key = vals[1].Trim();
+                        if (KeyVarContainer.TextInlines.ContainsKey(key))
+                        {
+                            key = "dontadd";
+                        }
+                        else
+                        {
+                            KeyVarContainer.TextInlines.Add(key, string.Empty);
+                        }
+                    }
+                    else if (item.Complete.StartsWith(@"$TEXTVAR"))
+                    {
+                        key = null;
+                    }
+                    else if (item.Complete.StartsWith(@"$CODEVAR:"))
+                    {
+                        codevar = new KeyVarDataContainer.KeyVarData();
+                        string[] vals = item.Complete.Split(':');
+                        codevar.Key = Convert.ToInt32(vals[1].Trim());
+                        if (vals.Length > 2)
+                            codevar.Description = vals[2];
+                    }
+                    else if (item.Complete.StartsWith(@"$CODEVAR"))
+                    {
+                        codevar = null;
+                    }
+                    else if (codevar != null)
+                    {
+                        AddToCodeVar(codevar, item.Complete, datalist);
+                    }
+                    else if (key != null)
+                    {
+                        if (key != "dontadd")
+                            //this.KeyVarContainer.TextInlines[key] = this.KeyVarContainer.TextInlines[key] + Environment.NewLine + item;
+                            KeyVarContainer.TextInlines[key] = KeyVarContainer.TextInlines[key] + item;
+                    }
+                    else if (item.Complete.StartsWith(@"MainProps="))
+                    {
+                        FillMainPropsFromString(item.Complete);
+                    }
+                    else if (item.Complete.StartsWith(@"MainPics="))
+                    {
+                        LastCadre = new Cadre(proc, true);
+                        FillMainPicsFromString(item, LastCadre);
+                        LastCadre.Name = item.Mark;
+                    }
+                    else if (item.Complete.StartsWith(@"AutoPics="))
+                    {
+                        if (LastCadre == null || LastCadre.Name != item.Mark)
+                        {
+                            LastCadre = new Cadre(proc, true);
+                            FillMainPicsFromString(item, LastCadre);
+                            LastCadre.Name = item.Mark;
+                        }
+                        else
+                        {
+                            FillPicsFromString(item, LastCadre.PicFrameData.PictureDataList, null,DefaultPath);
+                        }
+                    }
+                    else if (item.Complete.StartsWith(@"CadreText="))
+                    {
+                        StoGenParser.FillCadreText(item.Complete, LastCadre.TextFrameData, null, null, fn, DefaultPath);
+                    }
+                    else if (item.Complete.StartsWith(@"CadreSound="))
+                    {
+                        FillCadreSound(item.Complete, LastCadre.SoundFrameData);
+                    }
+                    else if (item.Complete.StartsWith(@"CadreName=")) FillCadreName(item.Complete, LastCadre);
+                    else if (item.Complete.StartsWith(@"DetailPics=") && LastCadre != null)
+                    {
+                        FillPicsFromString(item, LastCadre.PicFrameData.PictureDataList,null,  DefaultPath);
+                    }
+
+
+                    else { };
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show(item.Complete, "!!!!!!" + ex.Message, System.Windows.Forms.MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            // SortCadres();
+
+            return true;
+        }
+        private static void AddToCodeVar(KeyVarDataContainer.KeyVarData codevar, string item, List<StringDataContainer> datalist)
+        {
+            bool found = false;
+            foreach (KeyVarDataContainer.KeyVarData keyVarData in KeyVarContainer.keyVarList)
+            {
+                if (keyVarData.Key == codevar.Key)
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+                KeyVarContainer.keyVarList.Add(codevar);
+            if (item.StartsWith(@"CadreSound=")) StoGenParser.FillCadreSound(item, KeyVarContainer.SoundVariableList, codevar.Key.ToString(), DefaultPath);
+            else if (item.StartsWith(@"DetailPics=")) StoGenParser.FillPicsFromString(new StringDataContainer(item, item), StoGenParser.CommonPics, codevar.Key.ToString(), StoGenParser.DefaultPath);
+            else if (item.StartsWith(@"CadreText=")) StoGenParser.FillCadreText(item, KeyVarContainer.TextVariableList, datalist.Select(x => x.Complete).ToList(), codevar.Key.ToString(), null, DefaultPath);
+        }
+        private static void FillPicsFromString(StringDataContainer itemCont, List<PictureSourceDataProps> list, string name, string defaultPath)
+        {
+            string item = itemCont.Complete;
+
+            string path = defaultPath;
+            if (itemCont.Original.StartsWith(@"File#"))
+            {
+                path = Path.GetDirectoryName(itemCont.Original.Replace(@"File#", string.Empty));
+            }
+
+            int order = int.MaxValue;
+            PictureSourceDataProps psp = StoGenParser.GetPSPFromString(item, path, ref order);
+            if (name != null) psp.Name = name;
+            if (psp != null)
+            {
+                if (psp.Level == PicLevel.None)
+                {
+                    psp.Level = (PicLevel)list.Count();
+                }
+                PictureSourceDataProps existing = null;
+                if (list.Count > 0 && !string.IsNullOrEmpty(psp.Name)) existing = list.FirstOrDefault(data => data.Name == psp.Name);
+                if (existing == null) list.Add(psp);
+                else
+                {
+                    list.Add(psp);
+                    // было сделано чтобы не загружать заново то же самое а просто добавить свойства
+                    //existing.Assign(psp);
+                }
+            }
+        }
+        public static PictureSourceDataProps MainProps;
+        private static void FillMainPropsFromString(string item)
+        {
+            int order = int.MaxValue;
+            MainProps = StoGenParser.GetPSPFromString(item, DefaultPath, ref order);
+
+        }
+        private static void FillCadreSound(string item, List<SoundItem> soundlist)
+        {
+            StoGenParser.FillCadreSound(item, soundlist, null, DefaultPath);
+        }
+        private static void FillCadreName(string item, Cadre LastCadre)
+        {
+            string[] vals = item.Split('=');
+            if (vals.Length > 1)
+            {
+                LastCadre.Name = vals[1];
+            }
+        }
+        private static void FillMainPicsFromString(StringDataContainer itemCont, Cadre cadre)
+        {
+            int order = int.MaxValue;
+            string item = itemCont.Complete;
+
+            string path = DefaultPath;
+            if (itemCont.Original.StartsWith(@"File#") || Path.IsPathRooted(itemCont.Original))
+            {
+                path = Path.GetDirectoryName(itemCont.Original.Replace(@"File#", string.Empty));
+            }
+
+            PictureSourceDataProps psp = StoGenParser.GetPSPFromString(item, path, ref order);
+
+            if (psp != null)
+            {
+                psp.isMain = true;
+                if (psp.Level == PicLevel.None)
+                {
+                    psp.Level = (PicLevel)0;
+                }
+                //create main picture data
+                PictureSourceDataProps mainPsp = new PictureSourceDataProps();
+                // apply common main data
+                if (MainProps != null) mainPsp.Assign(MainProps);
+                // apply spec main data
+                mainPsp.Assign(psp);
+                // add main pic
+                //cadre = this.GetMainCadre(mainPsp);
+                //cadre = new Cadre(this.CurrentProc, true);                
+                cadre.PicFrameData.PictureDataList.Add(mainPsp);
+                if (order < int.MaxValue) cadre.SortOrder = order;
+            }
+
         }
     }
 }

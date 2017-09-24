@@ -25,6 +25,12 @@ namespace StoGenMake
         }
         public static string Eye_Wink { get;} = "W..1000>O.B.200.100>W..200>O.B.200.-100";
         public static string Eye_Close { get; } = "W..1000>O.B.200.100";
+        public static string Obzor()
+        {
+            string result = $"W..1000>Y.B.5000.-700>W..2000>Y.B.5000.700";
+            return result;
+        }
+
         public static string Blush(int time,bool reverse, bool restore, bool permanent)
         {
             int up = 7000;

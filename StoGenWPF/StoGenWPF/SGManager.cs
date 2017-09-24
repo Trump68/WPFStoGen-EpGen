@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Windows.Input;
+using StoGen.Classes.Interfaces;
 
 namespace StoGenWPF
 {
@@ -18,16 +19,17 @@ namespace StoGenWPF
 
 
         #region Runtime compile
-        
-        // start
-        internal static void StartMainProc(string startfile)
+
+        static IMenuCreator GlobalMenuCreator = null;
+        internal static void StartMainProc(string startfile, IMenuCreator globalMenuCreator = null)
         {
+            GlobalMenuCreator = globalMenuCreator;
             if (!string.IsNullOrWhiteSpace(startfile)) _MainProcname = startfile;
             SetMainProcedure();
         }
         public static void SetMainProcedure()
         {
-            CurrProc = new ScenarioProc(_MainProcname);
+            CurrProc = new ScenarioProc(_MainProcname, GlobalMenuCreator);
         }
        
 
@@ -71,9 +73,10 @@ namespace StoGenWPF
             if (CurrProc != null) CurrProc.ApplyContextMenu();
         }
 
+       
         #endregion
 
-    
+
     }
 
    
