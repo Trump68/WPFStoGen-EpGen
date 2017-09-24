@@ -6,15 +6,15 @@ namespace StoGen.Classes
 {
     public class ScenarioProc : ProcedureBase
     {
-        public List<Set_View> sets = new List<Set_View>();
+        public List<ScenarioSet> sets = new List<ScenarioSet>();
 
        
         public ScenarioProc(string fn)
            : base(0)
         {
             this.MenuCreator = CreateMenu;
-            Set_View set = new Set_View();
-            set.Init("DUMMY", fn, null, null, null, null);
+            ScenarioSet set = new ScenarioSet();
+            set.Init(fn);
             this.sets.Add(set);
             set.InsertAsProcedureTo(this,true);
             this.ShowContextMenuOnInit = false;                     

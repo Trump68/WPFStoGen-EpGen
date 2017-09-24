@@ -99,6 +99,7 @@
     <Compile Include="ProcedureBase\CycleProc.cs" />
     <Compile Include="ProcedureBase\ProcedureBase.cs" />
     <Compile Include="ProcedureBase\ScenarioProc.cs" />
+    <Compile Include="ProcedureBase\ScenarioSet.cs" />
     <Compile Include="Projector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Parser\StogenParser.cs" />
