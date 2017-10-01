@@ -24,9 +24,7 @@ namespace StoGenMake
             this.LocationList = new List<VisualLocaton>();
 
             this.AddGenericPers("Lorena B", @"x:\\STOGEN\LADY\REAL\Lorena B\", @"metart_milede_lorena-b_high_0001 copy.jpg");
-            //this.AddGenericPers("Lorena B", @"\\webdav.cloud.mail.ru@SSL\DavWWWRoot\STOGEN\LADY\Lorena B\", @"metart_milede_lorena-b_high_0001 copy.jpg");
-            //this.AddGenericPers("Lorena B", @"https://webdav.cloud.mail.ru//DavWWWRoot/STOGEN/LADY/Lorena_B/");
-
+           
             this.PersoneList.Add(new PERS01());
         }
 

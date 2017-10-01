@@ -1,19 +1,16 @@
 ﻿using StoGen.Classes;
 using StoGenLife.SOUND;
 using StoGenMake.Elements;
-using StoGenMake.Scenes;
 using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static StoGenMake.Pers.GenericFem;
+using static StoGenMake.Pers.VNPC;
 
 namespace StoGenMake.Pers
 {
-    public class PERS01: GenericFem
+    public class PERS01: VNPC
     {
         public PERS01() : base()
         {
@@ -79,24 +76,18 @@ namespace StoGenMake.Pers
         }
 
 
-        FemScene SceneFigure
+        DramaScene SceneFigure
         {
-            get { return this.Scene as FemScene; }
+            get { return this.Scene as DramaScene; }
             set { this.Scene = value; }
         }
 
-        private void SetObzor()
-        {
-            this.SceneFigure.StateViewingTransition = BaseScene.ViewingTransitionState.Go;
-        }
 
-        public void PlanScene()
+        public override void Prepare()
         {
-            this.SceneFigure = new FemScene(this);
-           // this.SceneFigure.StateViewingTransition = this.StateViewingTransition;
-            SetFace();
-            SetCloth();
-            SetVoice();
+            AddFaceData();
+            AddClothData();
+            AddVoiceData();
 
             this.Cloth = this.ClothList.FirstOrDefault(x => x.Type == ClothType.Kimono);
             this.Voice = this.VoiceList.FirstOrDefault(x => x.Type == VoiceType.Neitral);
@@ -105,66 +96,65 @@ namespace StoGenMake.Pers
             FaceReset();
         }
 
-        public override void PrepareScene()
-        {
-            PlanScene();
-            this.SceneFigure.NextCadre("Reset");
-            /*
-            FaceReset();
-            FaceMouthFlirting();
-            this.SceneFigure.NextCadre("Flirting");
+        //public override void PrepareScene()
+        //{
+        //    this.SceneFigure.NextCadre("Reset");
+        //    /*
+        //    FaceReset();
+        //    FaceMouthFlirting();
+        //    this.SceneFigure.NextCadre("Flirting");
 
-            FaceReset();
-            FaceMouthFlirting();
-            FaceExitateBlush();
-            this.SceneFigure.NextCadre("Flirting,exitate");
+        //    FaceReset();
+        //    FaceMouthFlirting();
+        //    FaceExitateBlush();
+        //    this.SceneFigure.NextCadre("Flirting,exitate");
 
-            FaceReset();
-            FaceMouthInsulted();
-            this.SceneFigure.NextCadre("Insulted");
+        //    FaceReset();
+        //    FaceMouthInsulted();
+        //    this.SceneFigure.NextCadre("Insulted");
 
-            FaceReset();
-            FaceMouthInsulted();
-            FaceExitateBlush();
-            this.SceneFigure.NextCadre("Insulted,exitate");
+        //    FaceReset();
+        //    FaceMouthInsulted();
+        //    FaceExitateBlush();
+        //    this.SceneFigure.NextCadre("Insulted,exitate");
 
-            FaceReset();
-            FaceMouthWorry();
-            this.SceneFigure.NextCadre("Worried lightly");
+        //    FaceReset();
+        //    FaceMouthWorry();
+        //    this.SceneFigure.NextCadre("Worried lightly");
 
-            FaceReset();
-            FaceMouthDoubt();
-            this.SceneFigure.NextCadre("Doubt lightly");
+        //    FaceReset();
+        //    FaceMouthDoubt();
+        //    this.SceneFigure.NextCadre("Doubt lightly");
 
-            FaceReset();
-            FaceEyesSqueeze();
-            this.SceneFigure.NextCadre("Eyes squeeze");
+        //    FaceReset();
+        //    FaceEyesSqueeze();
+        //    this.SceneFigure.NextCadre("Eyes squeeze");
 
-            FaceReset();
-            FaceEyesHide();
-            this.SceneFigure.NextCadre("Eyes hide");
+        //    FaceReset();
+        //    FaceEyesHide();
+        //    this.SceneFigure.NextCadre("Eyes hide");
 
-            FaceReset();
-            FaceBrowsWorry();
-            this.SceneFigure.NextCadre("Brows worry");
-            */
-           // this.SceneFigure.Cadres.Reverse();
-        }
+        //    FaceReset();
+        //    FaceBrowsWorry();
+        //    this.SceneFigure.NextCadre("Brows worry");
+        //    */
+        //   // this.SceneFigure.Cadres.Reverse();
+        //}
 
-        private void SetVoice()
+        private void AddVoiceData()
         {
             this.VoiceList.Add(new FemVoice(SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_01, VoiceType.Neitral,TermType.None));
             this.VoiceList.Add(new FemVoice(SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_02, VoiceType.Neitral, TermType.None));
             this.VoiceList.Add(new FemVoice(SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_03, VoiceType.Neitral, TermType.None));
         }
 
-        private void SetCloth()
+        private void AddClothData()
         {
             this.ClothList.Add(new FemCloth(GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_KIMONO),ClothType.Kimono));
             this.ClothList.Add(new FemCloth(GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_KIMONODECOLTE), ClothType.KimonoDecolte));
             this.ClothList.Add(new FemCloth(GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_NAKED), ClothType.Naked));
         }
-        private void SetFace()
+        private void AddFaceData()
         {
             FemFace face = new FemFace(GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_FACE));
             this.Face = face;
@@ -256,8 +246,8 @@ namespace StoGenMake.Pers
             item.Executor = delegate (object data)
             {
                               
-                PlanScene();
-                SetObzor();
+                Prepare();
+                //this.Scene.SetObzor();
                 this.SceneFigure.NextCadre("Cadre"+proc.Cadres.Count);
                 this.Generate(this.TempFileName);
 
@@ -272,7 +262,7 @@ namespace StoGenMake.Pers
             item.Executor = delegate (object data)
             {
                 
-                PlanScene();
+                Prepare();
                 this.SceneFigure.NextCadre("Cadre" + proc.Cadres.Count);
                 this.Generate(this.TempFileName);
 
@@ -310,7 +300,7 @@ namespace StoGenMake.Pers
             item.Executor = delegate (object data)
             {
                 SetJoy(EmotionalGrade.Light);
-                PlanScene();
+                Prepare();
                 
                 
                 this.SceneFigure.NextCadre("Cadre" + proc.Cadres.Count);
@@ -327,7 +317,7 @@ namespace StoGenMake.Pers
             item.Executor = delegate (object data)
             {
                 SetWorry(EmotionalGrade.Light);
-                PlanScene();
+                Prepare();
                
 
                 this.SceneFigure.NextCadre("Cadre" + proc.Cadres.Count);
@@ -362,83 +352,7 @@ namespace StoGenMake.Pers
             this.GradeEmotional = v;
         }
 
-       
-    }
-    public class PERS01Scene : FemScene
-    {
-        public PERS01 Fem;
-        public void NextCadre(string name)
-        {
-            ScenCadre cadre;
-            cadre = this.AddCadre(null, name, 200, this);
-            this.Cloth(cadre);
-            this.Head(cadre);
-
-            this.AddObzor(cadre);
-        }
-        public PERS01Scene(PERS01 fem) : base(fem)
-        {
-
-            //cadre = this.AddCadre(KimonoFigure(), "Kimono main -smile", 200);
-            //this.Smile(cadre, true, true);
-
-            //cadre = this.AddCadre(KimonoFigure(), "Kimono main -blushsmile", 200);
-            //this.Blush(cadre, true, false);
-            //this.Smile(cadre, true, false);
-
-            //cadre = this.AddCadre(KimonoFigure(), "Kimono main -talk", 200);
-            //this.TalkSmile(cadre);
-
-            //cadre = this.AddCadre(KimonoFigure(), "Kimono main -blushtalk", 200);
-            //this.Blush(cadre, false, false);
-            //this.TalkSmile(cadre);
-
-            //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueeze", 200);
-            //this.MouthSqueeze(cadre, true, true);
-
-            //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueezeBlush", 200);
-            //this.MouthSqueeze(cadre, false, false);
-            //this.Blush(cadre, true, true);
-
-            //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueezeBlushTalk", 200);
-            //this.MouthSqueeze(cadre, false, false);
-            //this.Blush(cadre, true, true);
-            //this.TalkFrown(cadre);
-
-            //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueezeBlushEyesSqueeze", 200);
-            //this.MouthSqueeze(cadre, false, false);
-            //this.Blush(cadre, true, true);
-            //this.EyesSqueeze(cadre, false, false);
-
-            //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueezeBlushEyesSqueezeTalk", 200);
-            //this.MouthSqueeze(cadre, false, false);
-            //this.Blush(cadre, true, true);
-            //this.EyesSqueeze(cadre, false, false);
-            //this.BrowWorry(cadre, false, false);
-            //this.TalkFrown(cadre);
-
-            //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueezeBlushEyesSqueezeLipsO", 200);                
-            //this.Blush(cadre, true, true);
-            //this.EyesSqueeze(cadre, false, false);
-            //this.BrowWorry(cadre, false, false);
-            //this.BrowWorry(cadre, false, false);
-            //this.LipsO(cadre, false, false);
-
-            //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueezeBlushEyesHide", 200);
-            //this.MouthSqueeze(cadre, false, false);
-            //this.Blush(cadre, true, true);
-            //this.EyesHide(cadre, false, false);
-            //this.BrowWorry(cadre, false, false);
-
-            //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueezeBlushEyesClose", 200);
-            //this.MouthSqueeze(cadre, false, false);
-            //this.Blush(cadre, true, true);
-            //this.EyesClose(cadre, false, false);
-            //this.BrowWorry(cadre, false, false);
-            //this.Cadres.Reverse();
-        }
-      
-        protected override void Blush(ScenCadre cadre, FemFace.BlushState blush, bool permanent)
+        public override void Blush(ScenCadre cadre, FemFace.BlushState blush, bool permanent)
         {
             base.Blush(cadre, blush, permanent);
             if (blush == FemFace.BlushState.None) return;
@@ -452,109 +366,177 @@ namespace StoGenMake.Pers
                 (blush == FemFace.BlushState.GoPulsed);
             bool reverse =
                 (blush == FemFace.BlushState.GoNone);
-            var image = this.AddImage(cadre, invisible, PERS01.GetImageName(PERS01.FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_FACE_BLUSH));
+            var image = this.Scene.AddImage(cadre, invisible, PERS01.GetImageName(PERS01.FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_FACE_BLUSH));
             if (invisible || reverse)
                 image.Transition = Transition.Blush(500, reverse, periodic, permanent);
         }
-
-        //private void TalkSmile(ScenCadre cadre)
-        //{
-        //    ScenElementImage image = new ScenElementImage();
-        //    image.SizeX = sizeX;
-        //    image.SizeY = sizeY;
-        //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_SMILE_01);
-        //    image.Opacity = 0;
-        //    image.Transition = Transition.Talk();
-        //    cadre.VisionList.Add(image);
-        //}
-        //private void TalkFrown(ScenCadre cadre)
-        //{
-        //    ScenElementImage image = new ScenElementImage();
-        //    image.SizeX = sizeX;
-        //    image.SizeY = sizeY;
-        //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_OPEN_01);
-        //    image.Opacity = 0;
-        //    image.Transition = Transition.Talk();
-        //    cadre.VisionList.Add(image);
-        //}
-        //private void MouthNone(ScenCadre cadre)
-        //{
-        //    ScenElementImage image = new ScenElementImage();
-        //    image.SizeX = sizeX;
-        //    image.SizeY = sizeY;
-        //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_NONE);
-        //    image.Opacity = 100;
-        //    cadre.VisionList.Add(image);
-        //}
-        //private void MouthSqueeze(ScenCadre cadre, bool restore, bool permanent)
-        //{
-        //    ScenElementImage image = new ScenElementImage();
-        //    image.SizeX = sizeX;
-        //    image.SizeY = sizeY;
-        //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_SQUEEZE_01);
-        //    image.Opacity = 0;
-        //    image.Transition = Transition.MouthSqueeze(500, restore, permanent);
-        //    cadre.VisionList.Add(image);
-        //}
-        //private void MouthOpen(ScenCadre cadre, bool restore, bool permanent)
-        //{
-        //    ScenElementImage image = new ScenElementImage();
-        //    image.SizeX = sizeX;
-        //    image.SizeY = sizeY;
-        //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_OPEN_02);
-        //    image.Opacity = 0;
-        //    image.Transition = Transition.MouthOpen(500, restore, permanent);
-        //    cadre.VisionList.Add(image);
-        //}
-        //private void EyesSqueeze(ScenCadre cadre, bool restore, bool permanent)
-        //{
-        //    ScenElementImage image = new ScenElementImage();
-        //    image.SizeX = sizeX;
-        //    image.SizeY = sizeY;
-        //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_EYES_SQUEEZE_01);
-        //    image.Opacity = 0;
-        //    image.Transition = Transition.Smile(500, restore, permanent);
-        //    cadre.VisionList.Add(image);
-        //}
-        //private void BrowWorry(ScenCadre cadre, bool restore, bool permanent)
-        //{
-        //    ScenElementImage image = new ScenElementImage();
-        //    image.SizeX = sizeX;
-        //    image.SizeY = sizeY;
-        //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_BROW_WORRY_01);
-        //    image.Opacity = 0;
-        //    image.Transition = Transition.Smile(500, restore, permanent);
-        //    cadre.VisionList.Add(image);
-        //}
-        //private void LipsO(ScenCadre cadre, bool restore, bool permanent)
-        //{
-        //    ScenElementImage image = new ScenElementImage();
-        //    image.SizeX = sizeX;
-        //    image.SizeY = sizeY;
-        //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_LIPS_O_01);
-        //    image.Opacity = 0;
-        //    image.Transition = Transition.Smile(500, restore, permanent);
-        //    cadre.VisionList.Add(image);
-        //}
-        //private void EyesHide(ScenCadre cadre, bool restore, bool permanent)
-        //{
-        //    ScenElementImage image = new ScenElementImage();
-        //    image.SizeX = sizeX;
-        //    image.SizeY = sizeY;
-        //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_EYES_HIDE_01);
-        //    image.Opacity = 0;
-        //    image.Transition = Transition.Smile(500, restore, permanent);
-        //    cadre.VisionList.Add(image);
-        //}
-        //private void EyesClose(ScenCadre cadre, bool restore, bool permanent)
-        //{
-        //    ScenElementImage image = new ScenElementImage();
-        //    image.SizeX = sizeX;
-        //    image.SizeY = sizeY;
-        //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_EYES_CLOSE_01);
-        //    image.Opacity = 0;
-        //    image.Transition = Transition.Smile(500, restore, permanent);
-        //    cadre.VisionList.Add(image);
-        //}
     }
+    //public class PERS01Scene : DramaScene
+    //{
+    //    public PERS01 Fem;
+      
+    //    public PERS01Scene(PERS01 fem) : base(fem)
+    //    {
+
+    //        //cadre = this.AddCadre(KimonoFigure(), "Kimono main -smile", 200);
+    //        //this.Smile(cadre, true, true);
+
+    //        //cadre = this.AddCadre(KimonoFigure(), "Kimono main -blushsmile", 200);
+    //        //this.Blush(cadre, true, false);
+    //        //this.Smile(cadre, true, false);
+
+    //        //cadre = this.AddCadre(KimonoFigure(), "Kimono main -talk", 200);
+    //        //this.TalkSmile(cadre);
+
+    //        //cadre = this.AddCadre(KimonoFigure(), "Kimono main -blushtalk", 200);
+    //        //this.Blush(cadre, false, false);
+    //        //this.TalkSmile(cadre);
+
+    //        //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueeze", 200);
+    //        //this.MouthSqueeze(cadre, true, true);
+
+    //        //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueezeBlush", 200);
+    //        //this.MouthSqueeze(cadre, false, false);
+    //        //this.Blush(cadre, true, true);
+
+    //        //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueezeBlushTalk", 200);
+    //        //this.MouthSqueeze(cadre, false, false);
+    //        //this.Blush(cadre, true, true);
+    //        //this.TalkFrown(cadre);
+
+    //        //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueezeBlushEyesSqueeze", 200);
+    //        //this.MouthSqueeze(cadre, false, false);
+    //        //this.Blush(cadre, true, true);
+    //        //this.EyesSqueeze(cadre, false, false);
+
+    //        //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueezeBlushEyesSqueezeTalk", 200);
+    //        //this.MouthSqueeze(cadre, false, false);
+    //        //this.Blush(cadre, true, true);
+    //        //this.EyesSqueeze(cadre, false, false);
+    //        //this.BrowWorry(cadre, false, false);
+    //        //this.TalkFrown(cadre);
+
+    //        //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueezeBlushEyesSqueezeLipsO", 200);                
+    //        //this.Blush(cadre, true, true);
+    //        //this.EyesSqueeze(cadre, false, false);
+    //        //this.BrowWorry(cadre, false, false);
+    //        //this.BrowWorry(cadre, false, false);
+    //        //this.LipsO(cadre, false, false);
+
+    //        //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueezeBlushEyesHide", 200);
+    //        //this.MouthSqueeze(cadre, false, false);
+    //        //this.Blush(cadre, true, true);
+    //        //this.EyesHide(cadre, false, false);
+    //        //this.BrowWorry(cadre, false, false);
+
+    //        //cadre = this.AddCadre(KimonoFigure(), "Kimono main -mouthSqueezeBlushEyesClose", 200);
+    //        //this.MouthSqueeze(cadre, false, false);
+    //        //this.Blush(cadre, true, true);
+    //        //this.EyesClose(cadre, false, false);
+    //        //this.BrowWorry(cadre, false, false);
+    //        //this.Cadres.Reverse();
+    //    }
+      
+
+
+    //    //private void TalkSmile(ScenCadre cadre)
+    //    //{
+    //    //    ScenElementImage image = new ScenElementImage();
+    //    //    image.SizeX = sizeX;
+    //    //    image.SizeY = sizeY;
+    //    //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_SMILE_01);
+    //    //    image.Opacity = 0;
+    //    //    image.Transition = Transition.Talk();
+    //    //    cadre.VisionList.Add(image);
+    //    //}
+    //    //private void TalkFrown(ScenCadre cadre)
+    //    //{
+    //    //    ScenElementImage image = new ScenElementImage();
+    //    //    image.SizeX = sizeX;
+    //    //    image.SizeY = sizeY;
+    //    //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_OPEN_01);
+    //    //    image.Opacity = 0;
+    //    //    image.Transition = Transition.Talk();
+    //    //    cadre.VisionList.Add(image);
+    //    //}
+    //    //private void MouthNone(ScenCadre cadre)
+    //    //{
+    //    //    ScenElementImage image = new ScenElementImage();
+    //    //    image.SizeX = sizeX;
+    //    //    image.SizeY = sizeY;
+    //    //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_NONE);
+    //    //    image.Opacity = 100;
+    //    //    cadre.VisionList.Add(image);
+    //    //}
+    //    //private void MouthSqueeze(ScenCadre cadre, bool restore, bool permanent)
+    //    //{
+    //    //    ScenElementImage image = new ScenElementImage();
+    //    //    image.SizeX = sizeX;
+    //    //    image.SizeY = sizeY;
+    //    //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_SQUEEZE_01);
+    //    //    image.Opacity = 0;
+    //    //    image.Transition = Transition.MouthSqueeze(500, restore, permanent);
+    //    //    cadre.VisionList.Add(image);
+    //    //}
+    //    //private void MouthOpen(ScenCadre cadre, bool restore, bool permanent)
+    //    //{
+    //    //    ScenElementImage image = new ScenElementImage();
+    //    //    image.SizeX = sizeX;
+    //    //    image.SizeY = sizeY;
+    //    //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_OPEN_02);
+    //    //    image.Opacity = 0;
+    //    //    image.Transition = Transition.MouthOpen(500, restore, permanent);
+    //    //    cadre.VisionList.Add(image);
+    //    //}
+    //    //private void EyesSqueeze(ScenCadre cadre, bool restore, bool permanent)
+    //    //{
+    //    //    ScenElementImage image = new ScenElementImage();
+    //    //    image.SizeX = sizeX;
+    //    //    image.SizeY = sizeY;
+    //    //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_EYES_SQUEEZE_01);
+    //    //    image.Opacity = 0;
+    //    //    image.Transition = Transition.Smile(500, restore, permanent);
+    //    //    cadre.VisionList.Add(image);
+    //    //}
+    //    //private void BrowWorry(ScenCadre cadre, bool restore, bool permanent)
+    //    //{
+    //    //    ScenElementImage image = new ScenElementImage();
+    //    //    image.SizeX = sizeX;
+    //    //    image.SizeY = sizeY;
+    //    //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_BROW_WORRY_01);
+    //    //    image.Opacity = 0;
+    //    //    image.Transition = Transition.Smile(500, restore, permanent);
+    //    //    cadre.VisionList.Add(image);
+    //    //}
+    //    //private void LipsO(ScenCadre cadre, bool restore, bool permanent)
+    //    //{
+    //    //    ScenElementImage image = new ScenElementImage();
+    //    //    image.SizeX = sizeX;
+    //    //    image.SizeY = sizeY;
+    //    //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_LIPS_O_01);
+    //    //    image.Opacity = 0;
+    //    //    image.Transition = Transition.Smile(500, restore, permanent);
+    //    //    cadre.VisionList.Add(image);
+    //    //}
+    //    //private void EyesHide(ScenCadre cadre, bool restore, bool permanent)
+    //    //{
+    //    //    ScenElementImage image = new ScenElementImage();
+    //    //    image.SizeX = sizeX;
+    //    //    image.SizeY = sizeY;
+    //    //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_EYES_HIDE_01);
+    //    //    image.Opacity = 0;
+    //    //    image.Transition = Transition.Smile(500, restore, permanent);
+    //    //    cadre.VisionList.Add(image);
+    //    //}
+    //    //private void EyesClose(ScenCadre cadre, bool restore, bool permanent)
+    //    //{
+    //    //    ScenElementImage image = new ScenElementImage();
+    //    //    image.SizeX = sizeX;
+    //    //    image.SizeY = sizeY;
+    //    //    image.Name = GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_EYES_CLOSE_01);
+    //    //    image.Opacity = 0;
+    //    //    image.Transition = Transition.Smile(500, restore, permanent);
+    //    //    cadre.VisionList.Add(image);
+    //    //}
+    //}
 }

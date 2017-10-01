@@ -21,7 +21,6 @@ namespace StoGenMake.Scenes.Base
             None,           
             Go
         }
-        public ViewingTransitionState StateViewingTransition = ViewingTransitionState.None;
         public int SizeX = 800;
         public int SizeY = 600;
         public int X = 300;
@@ -45,7 +44,7 @@ namespace StoGenMake.Scenes.Base
             this.Cadres.Add(cadre);
             return cadre;
         }
-        protected ScenElementImage AddImage(ScenCadre cadre, bool invisible, string name)
+        public ScenElementImage AddImage(ScenCadre cadre, bool invisible, string name)
         {
             ScenElementImage image = new ScenElementImage();
             image.SizeX = SizeX;
@@ -58,7 +57,7 @@ namespace StoGenMake.Scenes.Base
             cadre.VisionList.Add(image);
             return image;
         }
-        protected ScenElementSound AddSound(ScenCadre cadre, string name)
+        public ScenElementSound AddSound(ScenCadre cadre, string name)
         {
             ScenElementSound sound = new ScenElementSound();            
             sound.Name = name;

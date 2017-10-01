@@ -19,11 +19,11 @@ namespace StoGenMake
         static List<BaseScene> SceneList = new List<BaseScene>();
         static string FileToProcess = null;
         static string TemplateDirPath { get { return Path.Combine(ExecDir, TemplateDirName); } }
-        public static List<VNPC> NPCList = new List<VNPC>();
+
        
         public static void Start(string[] args)
         {
-            FillNPC();
+
             ExecDir = Path.GetDirectoryName(args[0]);
             if (!Directory.Exists(TemplateDirPath)) Directory.CreateDirectory(TemplateDirPath);
             if (args.Length > 1)
@@ -32,15 +32,12 @@ namespace StoGenMake
             }                  
             GenerateScen(FileToProcess);          
         }       
-        private static void FillNPC()
-        {
-            VNPC pers = new PERS01();            
-            NPCList.Add(pers);
-        }
+      
 
 
         private static void GenerateScen(string fileToProcess)
         {
+            var gWorld = new GameWorld();
             VNPC pers = null;
             List<string> datalist = new List<string>();
             if (!string.IsNullOrEmpty(fileToProcess))
@@ -58,17 +55,20 @@ namespace StoGenMake
                     {
                         persName = persName.Replace(@"SCENPERS ", string.Empty).Replace(@"NPC=", string.Empty);
                         Guid gid = Guid.Parse(persName.Trim());
-                        pers = NPCList.FirstOrDefault(x => x.GID.Equals(gid));
+                        pers = gWorld.PersoneList.FirstOrDefault(x => x.GID.Equals(gid));
                         datalist.RemoveAll(x => x.StartsWith(@"SCENPERS "));
                    }
             }
             if (pers != null)
             {
-                var gWorld = new GameWorld();
+                var scen = new DramaScene(new List<VNPC>() { pers });
                 gWorld.CurrentPersone = pers;
-
+                // set variables
                 pers.SetPersVariablesData(datalist);
-                pers.PrepareScene();
+                // Prepare person             
+                pers.Prepare();
+
+                scen.NextCadre("Reset");
 
                 string fn = pers.Generate(fileToProcess);
                 StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
@@ -76,17 +76,8 @@ namespace StoGenMake
                 window.GlobalMenuCreator = gWorld;
                 window.Show();
             }
-            else
-            {
-               // SceneList.ForEach(x => x.Generate(null,null));
-            }
+           
         }
-        
-        
-        //static void  SaveTemplates()
-        //{
-        //    SceneList.ForEach(x => x.SaveTemplate(TemplateDirPath));
-        //}
 
     }
 }
