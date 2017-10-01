@@ -8,6 +8,7 @@ using System.IO;
 using StoGenLife.NPC;
 using StoGenMake.Pers;
 using StoGenLife.SOUND;
+using StoGenMake.Entity;
 
 namespace StoGenMake.Scenes.Base
 {
@@ -71,7 +72,7 @@ namespace StoGenMake.Scenes.Base
         
 
         public string FileToProcess = null;
-        public virtual void InitCadres(List<VNPCVariable> vars)
+        public virtual void InitCadres(List<EntityVariable> vars)
         {
             this.Cadres.ForEach(x => x.InitValuesFromPers(vars));
         }

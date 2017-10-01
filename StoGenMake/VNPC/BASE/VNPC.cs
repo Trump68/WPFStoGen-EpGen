@@ -1,6 +1,8 @@
 ﻿using StoGen.Classes;
 using StoGenLife.NPC;
 using StoGenLife.SOUND;
+using StoGenMake.Elements;
+using StoGenMake.Entity;
 using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ namespace StoGenMake.Pers
 {
     public class VNPC:NPC
     {
+        #region constants
         // sound
         public static string MUSIC_MAIN_THEME = "MUSIC_MAIN_THEME";
         public static string ASMR_01 = "ASMR_01";
@@ -23,9 +26,12 @@ namespace StoGenMake.Pers
 
         // images
         public static string MAIN_PERSON_PICTURE = "MAIN_PERSON_PICTURE";
+
+        public static string DOCIER_PICTURE = "DOCIER_PICTURE";
         //parts
         public static string RIGHT_EYE_WINK = "RIGHT_EYE_WINK";
-        public static string EYES_CLOSE_01 = "EYES_CLOSE_01";
+        public static string EYES_CLOSE_01 = "EYES_CLOSE_01"; 
+        #endregion
 
         public VNPC()
         {
@@ -44,7 +50,7 @@ namespace StoGenMake.Pers
         public BaseScene Scene { set; get; }
 
 
-        public NPCData Data = new NPCData();
+        public EntityData Data = new EntityData();
         public void SetPersVariablesData(List<string> datalist)
         {
             List<string> result = new List<string>();
@@ -99,6 +105,7 @@ namespace StoGenMake.Pers
             return fnScenario;
         }
 
+
         public virtual void PrepareScene()
         {
             
@@ -107,44 +114,41 @@ namespace StoGenMake.Pers
         {
             return false;
         }
-    }
+        public virtual bool CreateMenuPersoneDocier(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        {
+            ChoiceMenuItem item = null;
+            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 
-    public class NPCData
-    {
-        public static string ImageDialogMain = "PIC Main dialog";
-        public List<VNPCVariable> Variables { get; } = new List<VNPCVariable>();        
-        public IEnumerable<VNPCVariable> ByName(string type, string name, string part)
-        {
-            return Variables.Where(x => x.Type == type && x.Name == name && x.Part == part);
-        }
-        public void SetByName(string type, string name,string part, string val)
-        {
-            ByName(type, name, part).ToList().ForEach(x => x.Value = val);
-        }
-        public void Add(string type, string name, string part, string defaultVal)
-        {
-            if (!ByName(type, name, part).Any())
+            item = new ChoiceMenuItem($"Досье на {this.Name}", this);
+            item.Executor = delegate (object data)
             {
-                this.Variables.Add(new VNPCVariable(type, name,part, defaultVal, null));
+                this.FillDocierScene();
+                //this.SceneFigure.NextCadre("Cadre" + proc.Cadres.Count);
+                this.Generate(this.TempFileName);
+
+                StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
+                proc.MenuCreator = proc.OldMenuCreator;
+                proc.GetNextCadre();
+            };
+            itemlist.Add(item);
+            return true;
+        }
+        public virtual void FillDocierScene()
+        {
+            this.Scene.Cadres.Clear();
+            var items = this.Data.ByName("IMAGE", DOCIER_PICTURE, null);            
+            foreach (var it in items)
+            {
+                ScenCadre cadre;
+                cadre = this.Scene.AddCadre(null, null, 200, this.Scene);
+
+                ScenElementImage image;
+                image = new ScenElementImage();                
+                image.Name = $"DOCIER_PICTURE {cadre.VisionList.Count}";
+                cadre.VisionList.Add(image);
             }
         }
     }
 
-    public class VNPCVariable
-    {
-        public string Name;
-        public string Part;
-        public string Description;
-        public string Value;
-        public string Type;
-        public VNPCVariable(string type, string name,string part, string val, string desc)
-        {
-            Name = name;
-            Part = part;
-            Description = desc;
-            Value = val;
-            Type = type;
-        }
-    }
 }
 

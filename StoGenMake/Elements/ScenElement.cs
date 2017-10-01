@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using StoGenMake.Scenes.Base;
 using StoGenMake.Pers;
 using StoGenLife.SOUND;
+using StoGenMake.Entity;
 
 namespace StoGenMake.Elements
 {
@@ -28,7 +29,7 @@ namespace StoGenMake.Elements
             return string.Empty;
         }
 
-        internal virtual void InitValues(List<VNPCVariable> variables)
+        internal virtual void InitValues(List<EntityVariable> variables)
         {
             var val = variables.Where(x => x.Name == this.Name && x.Part == this.Part).FirstOrDefault();
             if (val != null)

@@ -47,6 +47,7 @@
     <Compile Include="Injector\DcInjector.cs" />
     <Compile Include="Intellect\BaseIntellect.cs" />
     <Compile Include="Intellect\MotivationTarget.cs" />
+    <Compile Include="Location\BaseLocation.cs" />
     <Compile Include="MaterialWorld\MaterialEntity.cs" />
     <Compile Include="NPC\DefaultNPC.cs" />
     <Compile Include="NPC\NPC.cs" />

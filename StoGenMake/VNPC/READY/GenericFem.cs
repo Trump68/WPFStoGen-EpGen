@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static StoGenMake.Pers.GenericFem;
 
 namespace StoGenMake.Pers
 {
@@ -432,5 +433,154 @@ namespace StoGenMake.Pers
             }
 
         }
+    }
+    public class FemScene : BaseScene
+    {
+        public GenericFem Fem;
+        public void NextCadre(string name)
+        {
+            ScenCadre cadre;
+            cadre = this.AddCadre(null, name, 200, this);
+            this.Cloth(cadre);
+            this.Head(cadre);
+
+            this.AddObzor(cadre);
+        }
+        public FemScene(GenericFem fem) : base()
+        {
+            this.Fem = fem;
+            this.Name = "Figure scene";
+            this.SizeX = 1500;
+            this.SizeY = 1600;           
+        }
+
+        protected virtual void Cloth(ScenCadre cadre)
+        {
+            this.AddImage(cadre, false, this.Fem.Cloth.Name);
+        }
+        protected virtual void Head(ScenCadre cadre)
+        {
+            this.AddImage(cadre, false, this.Fem.Face.Name);
+            if (this.Fem.Face.StateBlush != FemFace.BlushState.Disabled)
+            {
+                this.Blush(cadre, this.Fem.Face.StateBlush, true);
+            }
+            if (this.Fem.Face.StateMouth != FemFace.MouthState.Disabled)
+            {
+                this.Mouth(cadre, this.Fem.Face.StateMouth, true);
+            }
+            if (this.Fem.Face.StateEyes != FemFace.EyesState.Disabled)
+            {
+                this.SetEyes(cadre, this.Fem.Face.StateEyes, true);
+            }
+            if (this.Fem.Face.StateBlink != FemFace.BlinkState.None)
+            {
+                this.Blink(cadre, this.Fem.Face.StateBlink);
+            }
+            this.Brows(cadre, this.Fem.Face.StateBrows);
+            this.Voice(cadre, this.Fem.StateVoice);
+
+        }
+
+        protected void AddObzor(ScenCadre cadre)
+        {
+            if (this.StateViewingTransition == ViewingTransitionState.Go)
+            {
+                foreach (var image in cadre.VisionList)
+                {
+                    if (!string.IsNullOrEmpty(image.Transition))
+                    {
+                        image.Transition = image.Transition + "*" + Transition.Obzor();
+                    }
+                    else
+                        image.Transition = Transition.Obzor();
+                }
+            }
+        }
+
+        protected virtual void SetEyes(ScenCadre cadre, FemFace.EyesState eyes, bool permanent)
+        {
+            bool invisible =
+               (eyes != FemFace.EyesState.Already)
+               &&
+               (eyes != FemFace.EyesState.GoNone);
+            bool periodic =
+               (eyes == FemFace.EyesState.AlreadyPulsed)
+               ||
+               (eyes == FemFace.EyesState.GoPulsed);
+            bool reverse =
+                (eyes == FemFace.EyesState.GoNone);
+
+            if (periodic)
+            {
+                this.AddImage(cadre, false, this.Fem.Face.EyesDefault.Name);
+            }
+            var image = this.AddImage(cadre, invisible, this.Fem.Face.Eyes.Name);
+            if (invisible || reverse)
+                image.Transition = Transition.Eyes(200, reverse, periodic, permanent);
+        }
+
+        protected virtual void Mouth(ScenCadre cadre, FemFace.MouthState smile, bool permanent)
+        {
+            bool invisible =
+               (smile != FemFace.MouthState.Already)
+               &&
+               (smile != FemFace.MouthState.GoNone);
+            bool periodic =
+               (smile == FemFace.MouthState.AlreadyPulsed)
+               ||
+               (smile == FemFace.MouthState.GoPulsed);
+            bool reverse =
+                (smile == FemFace.MouthState.GoNone);
+
+            if (periodic)
+            {
+                this.AddImage(cadre, false, this.Fem.Face.MouthDefault.Name);
+            }
+            var image = this.AddImage(cadre, invisible, this.Fem.Face.Mouth.Name);
+            if (invisible || reverse)
+                image.Transition = Transition.Mouth(200, reverse, periodic, permanent);
+        }
+        protected virtual void Blush(ScenCadre cadre, FemFace.BlushState blush, bool permanent)
+        {
+            if (blush == FemFace.BlushState.None) return;
+            bool invisible =
+                (blush != FemFace.BlushState.Already)
+                &&
+                (blush != FemFace.BlushState.GoNone);
+            bool periodic =
+                (blush == FemFace.BlushState.AlreadyPulsed)
+                ||
+                (blush == FemFace.BlushState.GoPulsed);
+            bool reverse =
+                (blush == FemFace.BlushState.GoNone);           
+        }
+        protected virtual void Voice(ScenCadre cadre, GenericFem.VoiceState voice)
+        {
+            if (voice == VoiceState.None) return;
+            var sound = this.AddSound(cadre, Fem.Voice.Name);
+            // var sound = this.AddSound(cadre,SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_01);
+            //sound.Transition = Transition.Blush(500, reverse, periodic, permanent);
+        }
+        protected virtual void Brows(ScenCadre cadre, FemFace.BrowsState brows)
+        {
+            if (brows == FemFace.BrowsState.None) return;
+            bool invisible =
+                (brows != FemFace.BrowsState.Already)
+                &&
+                (brows != FemFace.BrowsState.GoNone);
+            bool reverse =
+                (brows == FemFace.BrowsState.GoNone);
+
+            var image = this.AddImage(cadre, invisible, this.Fem.Face.Brows.Name);
+            if (invisible || reverse)
+                image.Transition = Transition.Blush(500, reverse, false, false);
+        }
+        protected virtual void Blink(ScenCadre cadre, FemFace.BlinkState blink)
+        {
+            bool invisible = true;
+            var image = this.AddImage(cadre, invisible, this.Fem.Face.EyesList.Where(x => x.Type == FemFace.EyesType.Close).FirstOrDefault().Name);
+            image.Transition = Transition.Eyes_Blink;
+        }        
     }
 }

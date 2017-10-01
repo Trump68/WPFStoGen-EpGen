@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using StoGenMake.Scenes.Base;
 using StoGenMake.Pers;
+using StoGenMake.Entity;
 
 namespace StoGenMake.Elements
 {
@@ -27,7 +28,7 @@ namespace StoGenMake.Elements
 
        
 
-        internal void InitValuesFromPers(List<VNPCVariable> vars)
+        internal void InitValuesFromPers(List<EntityVariable> vars)
         {
             VisionList.ForEach(x => x.InitValues(vars));
            
