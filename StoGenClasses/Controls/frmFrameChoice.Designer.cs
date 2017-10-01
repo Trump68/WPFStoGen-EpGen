@@ -52,7 +52,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(284, 521);
+            this.layoutControl1.Size = new System.Drawing.Size(300, 521);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -62,7 +62,7 @@
             this.Grid.Location = new System.Drawing.Point(2, 2);
             this.Grid.MainView = this.gridView1;
             this.Grid.Name = "Grid";
-            this.Grid.Size = new System.Drawing.Size(280, 517);
+            this.Grid.Size = new System.Drawing.Size(296, 517);
             this.Grid.TabIndex = 4;
             this.Grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -98,7 +98,7 @@
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(284, 521);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(300, 521);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -106,7 +106,7 @@
             this.layoutControlItem1.Control = this.Grid;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(284, 521);
+            this.layoutControlItem1.Size = new System.Drawing.Size(300, 521);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -114,11 +114,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 521);
+            this.ClientSize = new System.Drawing.Size(300, 521);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
-            this.Location = new System.Drawing.Point(1300, 0);
+            this.Location = new System.Drawing.Point(1066, 0);
             this.Name = "frmFrameChoice";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Options Menu";

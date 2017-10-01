@@ -54,6 +54,7 @@ namespace StoGen.Classes
             Cadre cadre = new Cadre(this.CurrentProc, isAdd);
             cadre.GetProcFrame().Proc = this.CurrentProc;
             this.CurrentProc.MenuCreator = this.CreateMenu;
+
             PreProcessFileLists(this.ScenarioFile);          
             return this.CurrentProc;
         }

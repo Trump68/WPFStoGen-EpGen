@@ -23,7 +23,11 @@ namespace StoGenMake
             this.PersoneList  = new List<VNPC>();
             this.LocationList = new List<VisualLocaton>();
 
-            this.AddGenericPers("Generic Person 001", @"c:\", "example01.jpg", "example02.jpg");
+            this.AddGenericPers("Lorena B", @"x:\\STOGEN\LADY\REAL\Lorena B\", @"metart_milede_lorena-b_high_0001 copy.jpg");
+            //this.AddGenericPers("Lorena B", @"\\webdav.cloud.mail.ru@SSL\DavWWWRoot\STOGEN\LADY\Lorena B\", @"metart_milede_lorena-b_high_0001 copy.jpg");
+            //this.AddGenericPers("Lorena B", @"https://webdav.cloud.mail.ru//DavWWWRoot/STOGEN/LADY/Lorena_B/");
+
+            this.PersoneList.Add(new PERS01());
         }
 
         private void AddGenericPers(string name,string path,params string[] piclist)
@@ -80,7 +84,7 @@ namespace StoGenMake
 
 
 
-            FinalizeShowMenu(proc, doShowMenu, itemlist, false);
+            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, false);
             return true;
         }
         private bool CreateMenuRelocation(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
@@ -101,7 +105,7 @@ namespace StoGenMake
                 itemlist.Add(item);
             }
 
-            FinalizeShowMenu(proc, doShowMenu, itemlist, true);
+            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
             return true;
         }
         private bool CreateMenuDosie(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
@@ -120,23 +124,11 @@ namespace StoGenMake
                     proc.ShowContextMenu();
                 };
                 itemlist.Add(item);
-            }           
+            }
 
-            FinalizeShowMenu(proc, doShowMenu, itemlist, true);
+            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
             return true;
         }
-        private void FinalizeShowMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, bool processCancel)
-        {
-            if (frmFrameChoice.ShowOptionsmenu(itemlist) != DialogResult.Cancel)
-            {
-                
-            }
-            else if (processCancel)
-            {
-                proc.MenuCreator = proc.OldMenuCreator;
-                proc.ShowContextMenu();
-            }
-            else proc.CurrentCadre.Repaint(true);
-        }
+       
     }
 }

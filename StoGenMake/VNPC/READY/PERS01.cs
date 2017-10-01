@@ -15,6 +15,13 @@ namespace StoGenMake.Pers
 {
     public class PERS01: GenericFem
     {
+        public PERS01() : base()
+        {
+            this.Name = "Maria Delgado";
+            this.GID = Guid.Parse("{39FCD7CD-C3A5-497A-9D10-84F2DF6DB34B}");
+            FillDataImage();
+            this.Description = "[ERECTLIP] Bakunyuu Onsen ~Inran Okami Etsuraku no Yu Hen~";
+        }
         //FigureScene.ViewingTransitionState StateViewingTransition = BaseScene.ViewingTransitionState.None;
         public enum FigureImages
         {
@@ -46,24 +53,37 @@ namespace StoGenMake.Pers
 
         private void FillDataImage()
         {
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_1.png");
+
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_KIMONO),        null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_24.png");
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_KIMONODECOLTE), null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_19.png");
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_NAKED),         null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_20.png");
+
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_FACE_BLUSH), null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_2.png");
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_CLOSENEITRAL), null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_26.png");
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_OPENSENSE_01), null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_3.png");
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_SQUEEZE_01), null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_4.png");
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_OPEN_01), null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_22.png");
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_BROW_WORRY_01), null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_8.png");
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_LIPS_O_01), null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_9.png");
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_EYES_SQUEEZE_01), null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_6.png");
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_EYES_OPENCENTER_01), null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_25.png");
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_EYES_HIDE_01), null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_13.png");
+
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_EYES_CLOSE_01), null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_17.png");
+            this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_FACE), null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_23.png");
+
+
             var list = Enum.GetNames(typeof(FigureImages)).ToList();
             list.ForEach(x => this.Data.Add("IMAGE", x, null, null));
         }
-        public PERS01():base()
-        {           
-            //this.Name = "[ERECTLIP] Bakunyuu Onsen ~Inran Okami Etsuraku no Yu Hen~.Lady 01";
-            this.Name = "Maria Delgado";
-            this.GID = Guid.Parse("{39FCD7CD-C3A5-497A-9D10-84F2DF6DB34B}");
-            this.TempFileName = $@"d:\temp\{this.Name}.stogen";
-            FillDataImage(); 
-        }
+
 
         FemScene SceneFigure
         {
             get { return this.Scene as FemScene; }
             set { this.Scene = value; }
         }
-        
 
         private void SetObzor()
         {

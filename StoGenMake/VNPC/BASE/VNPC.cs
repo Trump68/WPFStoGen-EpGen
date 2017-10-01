@@ -70,7 +70,24 @@ namespace StoGenMake.Pers
                 }
             }
         }
-        public string TempFileName = null;
+        private string _TempFileName;
+        public string TempFileName
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_TempFileName))
+                {
+                    if (!string.IsNullOrEmpty(this.Name)) _TempFileName = $@"d:\temp\{this.Name}.stogen";
+                    else
+                        _TempFileName = $@"d:\temp\{this.GID}.stogen";
+                }
+                return _TempFileName;
+            }
+            set
+            {
+                _TempFileName = value;
+            }
+        }
         internal string Generate(string FileToProcess)
         {
             string fnScenario = string.Empty;
@@ -131,10 +148,12 @@ namespace StoGenMake.Pers
                 proc.GetNextCadre();
             };
             itemlist.Add(item);
+            ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, false);
             return true;
         }
         public virtual void FillDocierScene()
         {
+            if (this.Scene == null) this.Scene = new BaseScene();
             this.Scene.Cadres.Clear();
             var items = this.Data.ByName("IMAGE", DOCIER_PICTURE, null);            
             foreach (var it in items)
@@ -145,6 +164,7 @@ namespace StoGenMake.Pers
                 ScenElementImage image;
                 image = new ScenElementImage();                
                 image.Name = $"DOCIER_PICTURE {cadre.VisionList.Count}";
+                image.File = it.Value;
                 cadre.VisionList.Add(image);
             }
         }

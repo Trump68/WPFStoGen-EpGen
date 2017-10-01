@@ -6,49 +6,49 @@ File#d:\Process2\!!Data\! CommonData\ImageData.txt
 File#d:\Process2\!!Data\! My Enemy\!!! Reworked All\! PNG\ImageData.txt
 
 // Local Image Data
-Inline#002 #AutoPics=.\IMAGE\002.jpg
-Inline#002a#AutoPics=.\IMAGE\002a.jpg
-Inline#002b#AutoPics=.\IMAGE\002b.jpg
-Inline#003 #AutoPics=.\IMAGE\003.jpg
-Inline#003a#AutoPics=.\IMAGE\003a.jpg
-Inline#004 #AutoPics=.\IMAGE\004.jpg
-Inline#005 #AutoPics=.\IMAGE\005.jpg
-Inline#005a#AutoPics=.\IMAGE\005a.jpg
+Inline#002 #.\IMAGE\002.jpg
+Inline#002a#.\IMAGE\002a.jpg
+Inline#002b#.\IMAGE\002b.jpg
+Inline#003 #.\IMAGE\003.jpg
+Inline#003a#.\IMAGE\003a.jpg
+Inline#004 #.\IMAGE\004.jpg
+Inline#005 #.\IMAGE\005.jpg
+Inline#005a#.\IMAGE\005a.jpg
 
-Inline#014 #AutoPics=.\IMAGE\014.jpg
-Inline#014a#AutoPics=.\IMAGE\014a.jpg
-Inline#014b#AutoPics=.\IMAGE\014b.jpg
-Inline#014с#AutoPics=.\IMAGE\014с.jpg
-Inline#015 #AutoPics=.\IMAGE\015.jpg
-Inline#015a#AutoPics=.\IMAGE\015a.jpg
-Inline#015b#AutoPics=.\IMAGE\015b.jpg
-Inline#016 #AutoPics=.\IMAGE\016.jpg
-Inline#017 #AutoPics=.\IMAGE\017.jpg
+Inline#014 #.\IMAGE\014.jpg
+Inline#014a#.\IMAGE\014a.jpg
+Inline#014b#.\IMAGE\014b.jpg
+Inline#014с#.\IMAGE\014с.jpg
+Inline#015 #.\IMAGE\015.jpg
+Inline#015a#.\IMAGE\015a.jpg
+Inline#015b#.\IMAGE\015b.jpg
+Inline#016 #.\IMAGE\016.jpg
+Inline#017 #.\IMAGE\017.jpg
 
-Inline#071 #AutoPics=.\IMAGE\071.jpg
-Inline#072a#AutoPics=.\IMAGE\072a.jpg
-Inline#073a#AutoPics=.\IMAGE\073a.jpg
-Inline#072c#AutoPics=.\IMAGE\072c.jpg
-Inline#072d#AutoPics=.\IMAGE\072d.png
-Inline#072e#AutoPics=.\IMAGE\072e.png
-Inline#072f#AutoPics=.\IMAGE\072f.png
-Inline#072o#AutoPics=.\IMAGE\072o.png
+Inline#071 #.\IMAGE\071.jpg
+Inline#072a#.\IMAGE\072a.jpg
+Inline#073a#.\IMAGE\073a.jpg
+Inline#072c#.\IMAGE\072c.jpg
+Inline#072d#.\IMAGE\072d.png
+Inline#072e#.\IMAGE\072e.png
+Inline#072f#.\IMAGE\072f.png
+Inline#072o#.\IMAGE\072o.png
 
-Inline#071_Face1#AutoPics=.\IMAGE\071_Face1.png
-Inline#071_Face2#AutoPics=.\IMAGE\071_Face2.png
-Inline#071_Face3#AutoPics=.\IMAGE\071_Face3.png
-Inline#071_Face4#AutoPics=.\IMAGE\071_Face4.png
-Inline#071_Face5#AutoPics=.\IMAGE\071_Face5.png
-Inline#071_Face6#AutoPics=.\IMAGE\071_Face6.png
-Inline#071_Face7#AutoPics=.\IMAGE\071_Face7.png
-Inline#071_Face8#AutoPics=.\IMAGE\071_Face8.png
-Inline#071_Face9#AutoPics=.\IMAGE\071_Face9.png
+Inline#071_Face1#.\IMAGE\071_Face1.png
+Inline#071_Face2#.\IMAGE\071_Face2.png
+Inline#071_Face3#.\IMAGE\071_Face3.png
+Inline#071_Face4#.\IMAGE\071_Face4.png
+Inline#071_Face5#.\IMAGE\071_Face5.png
+Inline#071_Face6#.\IMAGE\071_Face6.png
+Inline#071_Face7#.\IMAGE\071_Face7.png
+Inline#071_Face8#.\IMAGE\071_Face8.png
+Inline#071_Face9#.\IMAGE\071_Face9.png
 
-Inline#244 #AutoPics=.\IMAGE\244.jpg
-Inline#244a#AutoPics=.\IMAGE\244a.jpg
-Inline#249 #AutoPics=.\IMAGE\249.jpg
+Inline#244 #.\IMAGE\244.jpg
+Inline#244a#.\IMAGE\244a.jpg
+Inline#249 #.\IMAGE\249.jpg
 
-Inline#WD01#AutoPics=.\IMAGE\002c.png
+Inline#WD01#.\IMAGE\002c.png
 
 
 // Local Sound Data

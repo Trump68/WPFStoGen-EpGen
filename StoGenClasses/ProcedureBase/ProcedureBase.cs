@@ -16,7 +16,14 @@ namespace StoGen.Classes
         public MenuCreatorDelegate MenuCreator;
         public List<Cadre> Cadres { get; set; }
         //public List<ProcVariant> Variants = new List<ProcVariant>();
-        public Cadre CurrentCadre { get { if (this.Cadres.Count < 1) return null; return this.Cadres[this.NestedCadreId]; } }
+        public Cadre CurrentCadre
+        {
+            get
+            {
+                if (this.Cadres.Count < 1 || this.NestedCadreId<0) return null;
+                return this.Cadres[this.NestedCadreId];
+            }
+        }
         public virtual void Clear()
         {
             //if (this.CurrentCadreMaker != null) this.CurrentCadreMaker.Selectors.Clear();
@@ -341,7 +348,7 @@ namespace StoGen.Classes
                 if (this.NestedCadreId == 0) return false;
                 if (this.InnerProc == null)
                 {
-                    if (this.Cadres.Count == 0) return false;
+                    if (this.Cadres.Count == 0 || this.CurrentCadre == null) return false;
                     return this.CurrentCadre.AllowedBackward;
                 }
                 else return this.InnerProc.AllowedBackward;

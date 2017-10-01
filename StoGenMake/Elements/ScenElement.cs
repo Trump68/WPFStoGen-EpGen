@@ -69,7 +69,7 @@ namespace StoGenMake.Elements
             }
             else
             {
-                result.Add($"{this.File.PadRight(20)}");
+                result.Add($"AutoPics={this.File.PadRight(20)}");
                 result.Add($"SizeX={this.SizeX.ToString().PadRight(4)}");
                 result.Add($"SizeY={this.SizeY.ToString().PadRight(4)}");
                 result.Add($"SizeMode={this.SizeMode}");
