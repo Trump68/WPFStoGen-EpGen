@@ -21,10 +21,10 @@ namespace StoGenMake.Entity
         }
         public void Add(string type, string name, string part, string defaultVal)
         {
-            if (!ByName(type, name, part).Any())
-            {
+            //if (!ByName(type, name, part).Any())
+            //{
                 this.Variables.Add(new EntityVariable(type, name, part, defaultVal, null));
-            }
+            //}
         }
     }
 

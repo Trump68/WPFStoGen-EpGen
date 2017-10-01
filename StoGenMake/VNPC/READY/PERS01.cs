@@ -51,6 +51,14 @@ namespace StoGenMake.Pers
         private void FillDataImage()
         {
             this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_1.png");
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\01.png");
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\01a_2.png");
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\01a_3.png");
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\02a_3.png");
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\02a_4.png");
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\02a_7.png");
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\03.png");
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\03a_1.png");
 
             this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_KIMONO),        null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_24.png");
             this.Data.Add("IMAGE", Enum.GetName(typeof(FigureImages), FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_KIMONODECOLTE), null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_19.png");
