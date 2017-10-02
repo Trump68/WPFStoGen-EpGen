@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using StoGenMake.Pers;
 using StoGenMake.Location;
 
+
 namespace StoGenMake
 {
     public class GameWorld: IMenuCreator
@@ -23,24 +24,12 @@ namespace StoGenMake
             this.PersoneList  = new List<VNPC>();
             this.LocationList = new List<VisualLocaton>();
 
-            this.AddGenericPers("Lorena B", @"x:\\STOGEN\LADY\REAL\Lorena B\", @"metart_milede_lorena-b_high_0001 copy.jpg");
-           
+            GameWorldDataLoader.LoadPersList(this.PersoneList);
+
             this.PersoneList.Add(new PERS01());
         }
 
-        private void AddGenericPers(string name,string path,params string[] piclist)
-        {
-            VNPC pers = null;
-            pers = new VNPC();
-            if (string.IsNullOrEmpty(name))
-                name = $"Generic Person {this.PersoneList.Count}";
-            pers.Name = name;
-            foreach (var item in piclist)
-            {
-                pers.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"{path}{item}");
-            }                       
-            this.PersoneList.Add(pers);
-        }
+
 
         public bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
         {
@@ -111,13 +100,37 @@ namespace StoGenMake
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
             ChoiceMenuItem item = null;
 
-            foreach (var pers in PersoneList)
+
+            foreach (var it in Enum.GetValues(typeof(VNPC.PersType)))
+            {
+                item = new ChoiceMenuItem();
+                item.Name = Enum.GetName(typeof(VNPC.PersType), it);
+                item.Data = it;
+                item.Executor = data =>
+                {
+                    proc.MenuCreatorData = data;
+                    proc.MenuCreator = this.CreateMenuDocierForType;
+                    proc.ShowContextMenu();
+                };
+                itemlist.Add(item);
+            }
+           
+
+            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
+            return true;
+        }
+        private bool CreateMenuDocierForType(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        {
+            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+            ChoiceMenuItem item = null;
+
+            foreach (var pers in PersoneList.Where(x=>x.PersonType == (VNPC.PersType)proc.MenuCreatorData))
             {
                 item = new ChoiceMenuItem();
                 item.Name = pers.Name;
                 item.Data = this;
                 item.Executor = data =>
-                {
+                {                    
                     proc.MenuCreator = pers.CreateMenuPersoneDocier;
                     proc.ShowContextMenu();
                 };
@@ -127,6 +140,5 @@ namespace StoGenMake
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
             return true;
         }
-       
     }
 }

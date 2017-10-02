@@ -14,6 +14,7 @@ namespace StoGen.Classes
     {
         public MenuCreatorDelegate OldMenuCreator;
         public MenuCreatorDelegate MenuCreator;
+        public object MenuCreatorData;
         public List<Cadre> Cadres { get; set; }
         //public List<ProcVariant> Variants = new List<ProcVariant>();
         public Cadre CurrentCadre

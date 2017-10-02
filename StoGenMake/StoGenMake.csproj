@@ -59,6 +59,7 @@
     <Compile Include="Elements\ScenElement.cs" />
     <Compile Include="EntityData\EntityData.cs" />
     <Compile Include="GameWorld\GameWorld.cs" />
+    <Compile Include="GameWorld\GameWorldDataLoader.cs" />
     <Compile Include="Location\VisualLocaton.cs" />
     <Compile Include="ScenCadre\ScenCadre.cs" />
     <Compile Include="Scenes\Base\BaseScene.cs" />

@@ -15,6 +15,12 @@ namespace StoGenMake.Pers
 {
     public class VNPC:NPC
     {
+        public enum PersType
+        {
+            Real,
+            HCG,
+            JAV
+        }
         #region constants
         // sound
         public static string MUSIC_MAIN_THEME = "MUSIC_MAIN_THEME";
@@ -46,7 +52,7 @@ namespace StoGenMake.Pers
             this.Data.Add("SOUND", ORGAZM_03, null, null);
             this.Data.Add("SOUND", ORGAZM_04, null, null);
         }
-        
+        public PersType PersonType = PersType.Real;
         public BaseScene Scene { set; get; }
         public EntityData Data = new EntityData();
         public void SetPersVariablesData(List<string> datalist)
