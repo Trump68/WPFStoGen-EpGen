@@ -1,4 +1,5 @@
-﻿using StoGenMake.Pers;
+﻿using StoGenMake.Elements;
+using StoGenMake.Pers;
 using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,20 @@ namespace StoGenMake.Scenes
 {
     public class SCENE_031017: BaseScene
     {
-        public SCENE_031017(List<VNPC> actors) : base(actors) { }
+        private string MainImage ="";
+        private VNPC FemActor;
+        public SCENE_031017() : base()
+        {
+            FemActor = new VNPC();
+            this.AddActor(FemActor);
+        }
+        protected override void MakeCadres()
+        {
+            ScenCadre cadre;
+            cadre = this.AddCadre(null, null, 200);
+            cadre.AddImage(false, this.MainImage);
+            FemActor.AssembleFigure(cadre);            
+        }
     }
+    
 }

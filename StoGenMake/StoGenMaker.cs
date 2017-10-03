@@ -54,17 +54,17 @@ namespace StoGenMake
                 }
             }
 
-            var scen = new BaseScene(new List<VNPC>());
+            var scen = new BaseScene();
             if (pers != null)
             {
-                scen.Actors.Add(pers);
+                scen.AddActor(pers);
                 gWorld.CurrentPersone = pers;
                 // set variables
                 //pers.SetPersVariablesData(datalist);
             }            
                         
-            scen.NextCadre(null);
-            string fn = scen.Generate();
+            
+            string fn = scen.Generate(fileToProcess);
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
             window.Startfile = fn;

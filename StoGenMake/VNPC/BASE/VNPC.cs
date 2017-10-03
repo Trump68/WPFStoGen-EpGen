@@ -23,11 +23,6 @@ namespace StoGenMake.Pers
         public static string ASMR_01 = "ASMR_01";
         public static string ORGAZM_01 = "ORGAZM_01";
 
-        internal virtual void AssebleFigure()
-        {
-            //this.Actors[0].SetCloth(cadre);
-            //this.Actors[0].SetHead(cadre);
-        }
 
         public static string ORGAZM_02 = "ORGAZM_02";
         public static string ORGAZM_03 = "ORGAZM_03";
@@ -64,7 +59,7 @@ namespace StoGenMake.Pers
             {
                 this.FillDocierScene();
                 //this.SceneFigure.NextCadre("Cadre" + proc.Cadres.Count);
-                this.Scene.Generate();
+                this.Scene.Generate(null);
 
                 StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
                 proc.MenuCreator = proc.OldMenuCreator;
@@ -76,13 +71,14 @@ namespace StoGenMake.Pers
         }
         public virtual void FillDocierScene()
         {
-            if (this.Scene == null) this.Scene = new BaseScene(new List<VNPC> { this });
+            if (this.Scene == null) this.Scene = new BaseScene();
+            this.Scene.AddActor(this);
             this.Scene.Cadres.Clear();
             var items = this.Data.ByName("IMAGE", DOCIER_PICTURE, null);            
             foreach (var it in items)
             {
                 ScenCadre cadre;
-                cadre = this.Scene.AddCadre(null, null, 200, this.Scene);
+                cadre = this.Scene.AddCadre(null, null, 200);
 
                 ScenElementImage image;
                 image = new ScenElementImage();                
@@ -129,9 +125,7 @@ namespace StoGenMake.Pers
             }
         }
         
-     
-
-        internal virtual void AssembleFigure(ScenCadre cadre)
+        public virtual void AssembleFigure(ScenCadre cadre)
         {            
             this.Cloth.Set(cadre);            
             this.Face.SetFace(cadre);

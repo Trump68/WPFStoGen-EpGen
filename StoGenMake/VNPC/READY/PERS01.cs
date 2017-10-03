@@ -71,9 +71,7 @@ namespace StoGenMake.Pers
             this.Voice.State = VNPCVoiceState.None;
 
         }    
-
-
-
+        
         #region Menu
         public override bool CreateMenuPersone(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
         {
@@ -83,10 +81,8 @@ namespace StoGenMake.Pers
             item = new ChoiceMenuItem("Оглядеть...", this);
             item.Executor = delegate (object data)
             {
-
-                //this.Scene.SetObzor();
-                this.Scene.NextCadre("Cadre" + proc.Cadres.Count);
-                this.Scene.Generate();
+                
+                this.Scene.Generate(null);
 
                 StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
                 proc.MenuCreator = proc.OldMenuCreator;
@@ -99,8 +95,8 @@ namespace StoGenMake.Pers
             item.Executor = delegate (object data)
             {
 
-                this.Scene.NextCadre("Cadre" + proc.Cadres.Count);
-                this.Scene.Generate();
+                
+                this.Scene.Generate(null);
 
                 StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
                 proc.MenuCreator = proc.OldMenuCreator;
@@ -138,8 +134,8 @@ namespace StoGenMake.Pers
                     Face.StateEmotional = VNPCEmotionalState.Joy;
                     Face.GradeEmotional = VNPCEmotionalGrade.Light;
 
-                    this.Scene.NextCadre("Cadre" + proc.Cadres.Count);
-                    this.Scene.Generate();
+                    
+                    this.Scene.Generate(null);
 
                     StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
                     proc.MenuCreator = proc.OldMenuCreator;
@@ -154,8 +150,7 @@ namespace StoGenMake.Pers
                     Face.StateEmotional = VNPCEmotionalState.Worry;
                     Face.GradeEmotional = VNPCEmotionalGrade.Light;
 
-                    this.Scene.NextCadre("Cadre" + proc.Cadres.Count);
-                    this.Scene.Generate();
+                    this.Scene.Generate(null);
 
                     StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
                     proc.MenuCreator = proc.OldMenuCreator;

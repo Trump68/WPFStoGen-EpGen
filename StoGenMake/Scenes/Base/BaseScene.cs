@@ -16,17 +16,15 @@ namespace StoGenMake.Scenes.Base
    
     public class BaseScene
     {
-        public List<VNPC> Actors;
-        public void NextCadre(string name)
+        protected List<VNPC> Actors;
+        protected virtual void MakeCadres()
         {
             ScenCadre cadre;
-            cadre = this.AddCadre(null, name, 200, this);
+            cadre = this.AddCadre(null, null, 200);
             foreach (var actor in Actors)
             {
-                actor.AssebleFigure();
+                actor.AssembleFigure(cadre);
             }
-
-
             this.AddObzor(cadre);
         }
 
@@ -42,17 +40,15 @@ namespace StoGenMake.Scenes.Base
         public int X = 300;
         public int Y = 0;
         private int Version = 0;
-        public BaseScene(List<VNPC> actors)
-        {
-            this.Actors = actors;
-            foreach (var item in this.Actors)
-            {
-                item.Scene = this;
-            }
-
+        public BaseScene()
+        {           
             this.Name = "Drama scene";
             this.SizeX = 1500;
             this.SizeY = 1600;
+        }
+        public void AddActor(VNPC actor)
+        {
+            this.Actors.Add(actor);
         }
         public ViewingTransitionState StateViewingTransition = ViewingTransitionState.None;
         protected void AddObzor(ScenCadre cadre)
@@ -89,10 +85,10 @@ namespace StoGenMake.Scenes.Base
                 _TempFileName = value;
             }
         }
-        public ScenCadre AddCadre(ScenCadre cadre, string name, int timer, BaseScene owner)
+        public ScenCadre AddCadre(ScenCadre cadre, string name, int timer)
         {
             if (cadre == null)
-                cadre = new ScenCadre(owner);
+                cadre = new ScenCadre();
             if (name == null)
             {
                 name = $"Cadre { this.Cadres.Count + 1}";
@@ -110,38 +106,10 @@ namespace StoGenMake.Scenes.Base
         
 
         public string FileToProcess = null;
-        public virtual void InitCadres(List<EntityVariable> vars)
+        public string Generate(string FileToProcess)
         {
-            this.Cadres.ForEach(x => x.InitValuesFromPers(vars));
-        }
+            this.MakeCadres();
 
-      
-        private void SetSceneCommonDats(List<string> scendata)
-        {
-            if (scendata == null) return;
-            List<string> datastr = scendata.Where(x => x.StartsWith(@"SCENDATA ")).ToList();
-            if (datastr != null)
-            {
-                scendata.RemoveAll(x => x.StartsWith(@"SCENDATA "));
-                List<string> vals = datastr.First().Split(';').ToList();
-                foreach (var item in vals)
-                {
-                    if (item.Trim().StartsWith("Location"))
-                    {
-                        var vals2 = item.Split('=');
-                        string[] items = vals2[1].Split(',');
-                        this.X = int.Parse(items[0]);
-                        this.Y = int.Parse(items[1]);
-                        this.SizeX = int.Parse(items[2]);
-                        this.SizeY = int.Parse(items[3]);
-                    }
-                }
-            }
-
-           
-        }
-        internal string Generate()
-        {
             string fnScenario = string.Empty;
             if (!string.IsNullOrEmpty(this.TempFileName))
             {
@@ -160,11 +128,11 @@ namespace StoGenMake.Scenes.Base
                     var cadredata = item.GetCadreData();
                     if (!string.IsNullOrEmpty(FileToProcess))
                     {
-                        string newfnCadre = i.ToString("000") + "_" + item.Name + ".stogen";
-                        string savepathCadre = Path.GetDirectoryName(FileToProcess) + @"\Cadres\";
-                        if (!Directory.Exists(savepathCadre)) Directory.CreateDirectory(savepathCadre);
-                        string fnCadre = Path.Combine(savepathCadre, newfnCadre);
-                        File.WriteAllText(fnCadre, string.Join(Environment.NewLine, cadredata.ToArray()));
+                     //   string newfnCadre = i.ToString("000") + "_" + item.Name + ".stogen";
+                     //   string savepathCadre = Path.GetDirectoryName(FileToProcess) + @"\Cadres\";
+                    //    if (!Directory.Exists(savepathCadre)) Directory.CreateDirectory(savepathCadre);
+                     //   string fnCadre = Path.Combine(savepathCadre, newfnCadre);
+                      //  File.WriteAllText(fnCadre, string.Join(Environment.NewLine, cadredata.ToArray()));
                     }
                     scendata.AddRange(cadredata);
                 }
@@ -181,10 +149,7 @@ namespace StoGenMake.Scenes.Base
             item = new ChoiceMenuItem($"Scene {this.Name}", this);
             item.Executor = delegate (object data)
             {
-                //this.FillDocierScene();
-                //this.SceneFigure.NextCadre("Cadre" + proc.Cadres.Count);
-                //this.Generate(this.TempFileName);
-
+                this.Generate(null);
                 StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
                 proc.MenuCreator = proc.OldMenuCreator;
                 proc.GetNextCadre();

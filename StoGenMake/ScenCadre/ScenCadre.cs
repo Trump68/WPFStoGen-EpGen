@@ -20,11 +20,11 @@ namespace StoGenMake.Elements
         public List<ScenElement> VisionList = new List<ScenElement>();
         public List<ScenElement> SoundList = new List<ScenElement>();
         public List<ScenElement> TextList = new List<ScenElement>();
-        protected BaseScene Owner;
+        
 
-        public ScenCadre(BaseScene owner)
+        public ScenCadre()
         {
-            this.Owner = owner;
+            
         }
 
         public ScenElementImage AddImage(bool invisible, string name)
@@ -47,14 +47,6 @@ namespace StoGenMake.Elements
             return sound;
         }
 
-        internal void InitValuesFromPers(List<EntityVariable> vars)
-        {
-            VisionList.ForEach(x => x.InitValues(vars));
-           
-            TextList.ForEach(x => x.InitValues(vars));
-
-            SoundList.ForEach(x => x.InitValues(vars));
-        }
 
         public virtual List<string> GetCadreData()
         {

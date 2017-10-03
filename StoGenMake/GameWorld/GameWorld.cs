@@ -108,14 +108,14 @@ namespace StoGenMake
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
             ChoiceMenuItem item = null;
 
-            foreach (var loc in this.SceneList)
+            foreach (var scene in this.SceneList)
             {
                 item = new ChoiceMenuItem();
-                item.Name = loc.Name;
+                item.Name = scene.Name;
                 item.Data = this;
                 item.Executor = data =>
                 {
-                    proc.MenuCreator = loc.CreateMenuScene;
+                    proc.MenuCreator = scene.CreateMenuScene;
                     proc.ShowContextMenu();
                 };
                 itemlist.Add(item);
