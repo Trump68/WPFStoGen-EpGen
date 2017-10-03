@@ -127,9 +127,9 @@ namespace StoGenMake.Pers
         
         public virtual void AssembleFigure(ScenCadre cadre)
         {            
-            this.Cloth.Set(cadre);            
-            this.Face.SetFace(cadre);
-            this.Voice.Set(cadre);
+            if (Cloth != null) this.Cloth.Set(cadre);
+            if (Face != null) this.Face.SetFace(cadre);
+            if (Voice != null) this.Voice.Set(cadre);
         }
        
 
