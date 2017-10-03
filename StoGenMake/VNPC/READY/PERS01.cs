@@ -16,6 +16,7 @@ namespace StoGenMake.Pers
         {
             this.Name = "Maria Delgado";
             this.GID = Guid.Parse("{39FCD7CD-C3A5-497A-9D10-84F2DF6DB34B}");
+            this.PersonType = PersType.HCG;
             FillDataImage();
             this.Description = "[ERECTLIP] Bakunyuu Onsen ~Inran Okami Etsuraku no Yu Hen~";
         }
@@ -84,12 +85,7 @@ namespace StoGenMake.Pers
         }
 
 
-        DramaScene SceneFigure
-        {
-            get { return this.Scene as DramaScene; }
-            set { this.Scene = value; }
-        }
-
+    
 
         public override void Prepare()
         {
@@ -253,13 +249,13 @@ namespace StoGenMake.Pers
             item = new ChoiceMenuItem("Оглядеть...", this);
             item.Executor = delegate (object data)
             {
-                              
-                Prepare();
-                //this.Scene.SetObzor();
-                this.SceneFigure.NextCadre("Cadre"+proc.Cadres.Count);
-                this.Generate(this.TempFileName);
 
-                StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);                
+                this.Scene.Prepare();
+                //this.Scene.SetObzor();
+                this.Scene.NextCadre("Cadre"+proc.Cadres.Count);
+                this.Scene.Generate();
+
+                StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);                
                 proc.MenuCreator = proc.OldMenuCreator;
                 proc.GetNextCadre();
                 
@@ -270,13 +266,13 @@ namespace StoGenMake.Pers
             item.Executor = delegate (object data)
             {
                 
-                Prepare();
-                this.SceneFigure.NextCadre("Cadre" + proc.Cadres.Count);
-                this.Generate(this.TempFileName);
+                this.Scene.Prepare();
+                this.Scene.NextCadre("Cadre" + proc.Cadres.Count);
+                this.Scene.Generate();
 
 
 
-                StoGenParser.AddCadresToProcFromFile(proc,this.TempFileName,null, StoGenParser.DefaultPath);                                
+                StoGenParser.AddCadresToProcFromFile(proc,this.Scene.TempFileName,null, StoGenParser.DefaultPath);                                
                 proc.MenuCreator = proc.OldMenuCreator;
                 proc.GetNextCadre();
             };
@@ -308,13 +304,12 @@ namespace StoGenMake.Pers
             item.Executor = delegate (object data)
             {
                 SetJoy(EmotionalGrade.Light);
-                Prepare();
-                
-                
-                this.SceneFigure.NextCadre("Cadre" + proc.Cadres.Count);
-                this.Generate(this.TempFileName);
 
-                StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
+                this.Scene.Prepare();
+                this.Scene.NextCadre("Cadre" + proc.Cadres.Count);
+                this.Scene.Generate();
+
+                StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
                 proc.MenuCreator = proc.OldMenuCreator;
                 proc.GetNextCadre();
 
@@ -325,13 +320,12 @@ namespace StoGenMake.Pers
             item.Executor = delegate (object data)
             {
                 SetWorry(EmotionalGrade.Light);
-                Prepare();
-               
 
-                this.SceneFigure.NextCadre("Cadre" + proc.Cadres.Count);
-                this.Generate(this.TempFileName);
+                this.Scene.Prepare();               
+                this.Scene.NextCadre("Cadre" + proc.Cadres.Count);
+                this.Scene.Generate();
 
-                StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
+                StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
                 proc.MenuCreator = proc.OldMenuCreator;
                 proc.GetNextCadre();
 

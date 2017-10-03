@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using StoGenMake.Pers;
 using StoGenMake.Location;
-
+using StoGenMake.Scenes.Base;
 
 namespace StoGenMake
 {
@@ -16,13 +16,14 @@ namespace StoGenMake
     {
         public List<VNPC>          PersoneList  { get; internal set; }
         public List<VisualLocaton> LocationList { get; internal set; }
-        
+        public List<BaseScene> SceneList { get; internal set; }
         public VNPC CurrentPersone { get; internal set; }
         public GameWorld()
         {
            
             this.PersoneList  = new List<VNPC>();
             this.LocationList = new List<VisualLocaton>();
+            this.SceneList = new List<BaseScene>();
 
             GameWorldDataLoader.LoadPersList(this.PersoneList);
 
@@ -69,7 +70,14 @@ namespace StoGenMake
             };
             itemlist.Add(item);
 
-
+            // Меню scenes
+            item = new ChoiceMenuItem("Scenes ...", this);
+            item.Executor = data =>
+            {
+                proc.MenuCreator = CreateMenuScenes;
+                proc.ShowContextMenu();
+            };
+            itemlist.Add(item);
 
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, false);
             return true;
@@ -87,6 +95,27 @@ namespace StoGenMake
                 item.Executor = data =>
                 {
                     proc.MenuCreator = loc.CreateMenuLocationDocier;
+                    proc.ShowContextMenu();
+                };
+                itemlist.Add(item);
+            }
+
+            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
+            return true;
+        }
+        private bool CreateMenuScenes(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        {
+            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+            ChoiceMenuItem item = null;
+
+            foreach (var loc in this.SceneList)
+            {
+                item = new ChoiceMenuItem();
+                item.Name = loc.Name;
+                item.Data = this;
+                item.Executor = data =>
+                {
+                    proc.MenuCreator = loc.CreateMenuScene;
                     proc.ShowContextMenu();
                 };
                 itemlist.Add(item);

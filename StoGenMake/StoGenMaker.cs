@@ -61,16 +61,15 @@ namespace StoGenMake
             }
             if (pers != null)
             {
-                var scen = new DramaScene(new List<VNPC>() { pers });
+                var scen = new BaseScene(new List<VNPC>() { pers });
                 gWorld.CurrentPersone = pers;
                 // set variables
                 pers.SetPersVariablesData(datalist);
                 // Prepare person             
-                pers.Prepare();
+                scen.Prepare();
+                scen.NextCadre(null);
+                string fn = scen.Generate();
 
-                scen.NextCadre("Reset");
-
-                string fn = pers.Generate(fileToProcess);
                 StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
                 window.Startfile = fn;                
                 window.GlobalMenuCreator = gWorld;
