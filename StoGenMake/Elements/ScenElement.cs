@@ -56,10 +56,6 @@ namespace StoGenMake.Elements
         public int Opacity = 100;
         public int Timer = -1;
         public override bool IsActivated { get { return (this == Previous) || (!string.IsNullOrEmpty(this.File)); } }
-        internal override void ApplyData(string[] vals)
-        {
-            this.File = vals[1].Trim();
-        }
         internal override string GetElementData()
         {           
             List<string> result = new List<string>();
@@ -82,13 +78,7 @@ namespace StoGenMake.Elements
             return string.Join(";", result.ToArray());
         }
 
-        internal void SetParamsFromScene(BaseScene scene)
-        {
-            this.SizeX = scene.SizeX;
-            this.SizeY = scene.SizeY;
-            this.X = scene.X;
-            this.Y = scene.Y;
-        }
+   
     }
 
     public class ScenElementSound : ScenElement
@@ -98,10 +88,6 @@ namespace StoGenMake.Elements
         public string Group;
         public int StartPlay = -1;
         public override bool IsActivated { get { return !string.IsNullOrEmpty(this.File); } }
-        internal override void ApplyData(string[] vals)
-        {
-            this.File = vals[1].Trim();
-        }
         internal override string GetElementData()
         {
             //#014 #;SizeX=800;SizeY=600;SizeMode=1;X=300;Timer=16000;Opacity=0;TRN=O.B.5000.100

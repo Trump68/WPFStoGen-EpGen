@@ -41,7 +41,8 @@ namespace StoGenMake.Scenes.Base
         public int Y = 0;
         private int Version = 0;
         public BaseScene()
-        {           
+        {
+            this.Actors = new List<VNPC>();
             this.Name = "Drama scene";
             this.SizeX = 1500;
             this.SizeY = 1600;
@@ -111,12 +112,13 @@ namespace StoGenMake.Scenes.Base
             this.MakeCadres();
 
             string fnScenario = string.Empty;
-            if (!string.IsNullOrEmpty(this.TempFileName))
+            if (string.IsNullOrEmpty(FileToProcess))
             {
-                string newfnScenario = Path.GetFileNameWithoutExtension(FileToProcess) + ".stogen";
-                string savepath = Path.GetDirectoryName(FileToProcess);
-                fnScenario = Path.Combine(savepath, newfnScenario);
+                FileToProcess = this.TempFileName;
             }
+            string newfnScenario = Path.GetFileNameWithoutExtension(FileToProcess) + ".stogen";
+            string savepath = Path.GetDirectoryName(FileToProcess);
+            fnScenario = Path.Combine(savepath, newfnScenario);
 
             List<string> scendata = new List<string>();
             foreach (var item in this.Cadres)

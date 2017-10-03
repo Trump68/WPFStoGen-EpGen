@@ -14,7 +14,7 @@ namespace StoGenMake.Elements
     {
         public string Name { set; get; }
         public string Description { set; get; }
-        public virtual bool IsActivated { get { return this.VisionList.First().IsActivated; } }
+        public virtual bool IsActivated { get { return this.VisionList.Any(x=>x.IsActivated); } }
 
         public int Timer = -1;
         public List<ScenElement> VisionList = new List<ScenElement>();
@@ -27,10 +27,11 @@ namespace StoGenMake.Elements
             
         }
 
-        public ScenElementImage AddImage(bool invisible, string name)
+        public ScenElementImage AddImage(bool invisible, string file, string name = null)
         {
             ScenElementImage image = new ScenElementImage();
             image.Name = name;
+            image.File = file;
             if (invisible)
                 image.Opacity = 0;
             else
@@ -38,7 +39,7 @@ namespace StoGenMake.Elements
             VisionList.Add(image);
             return image;
         }
-        public ScenElementSound AddSound(string name)
+        public ScenElementSound AddSound(string name= null)
         {
             ScenElementSound sound = new ScenElementSound();
             sound.Name = name;
