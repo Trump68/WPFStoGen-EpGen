@@ -20,10 +20,9 @@ namespace StoGenMake.Pers
             this.PersonType = VNPCPersType.HCG;
 
             this.Description = "[ERECTLIP] Bakunyuu Onsen ~Inran Okami Etsuraku no Yu Hen~";
-            this.Face = new VNPCFace("Face 01");
+            this.Face = new VNPCFace("Face 01", @"x:\STOGEN\LADY\HCG\Maria Delgado\04a_23.png");
 
-            FillDataImage();
-            AssignDataToBody();
+            FillDataImage();            
         }
         private void FillDataImage()
         {
@@ -34,11 +33,7 @@ namespace StoGenMake.Pers
             this.Data.Add("SOUND", ORGAZM_02, null, null);
             this.Data.Add("SOUND", ORGAZM_03, null, null);
             this.Data.Add("SOUND", ORGAZM_04, null, null);
-
-
-            this.Data.Add("IMAGE", MAIN_PERSON_PICTURE, null, null);
-            this.Data.Add("IMAGE", MAIN_PERSON_PICTURE, RIGHT_EYE_WINK, null);
-            this.Data.Add("IMAGE", MAIN_PERSON_PICTURE, EYES_CLOSE_01, null);
+            
 
             this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_1.png");
             this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\01.png");
@@ -61,8 +56,8 @@ namespace StoGenMake.Pers
             Face.MouthList.Add(new VNPCMouth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_26.png", VNPCMouthType.Neitral));
             Face.MouthList.Add(new VNPCMouth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_3.png", VNPCMouthType.OpenSense));
             Face.MouthList.Add(new VNPCMouth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_4.png", VNPCMouthType.Squeeze));
-            Face.MouthList.Add(new VNPCMouth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_22.png", VNPCMouthType.OpenWorry));
-            //Face.MouthList.Add(new VNPCMouth(GetImageName(FigureImages.ERECTLIP_LADY_01_MAIN_FIGURE_MOUTH_OPEN_02), VNPCMouthType.Doubt));
+            Face.MouthList.Add(new VNPCMouth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_22.png", VNPCMouthType.OpenWorry));           
+
             Face.EyesList.Add(new VNPCEyes($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_25.png", VNPCEyesType.OpenCenter));
             Face.EyesList.Add(new VNPCEyes($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_17.png", VNPCEyesType.Close));
             Face.EyesList.Add(new VNPCEyes($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_6.png", VNPCEyesType.Squeeze));

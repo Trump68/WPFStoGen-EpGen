@@ -64,6 +64,7 @@
     <Compile Include="ScenCadre\ScenCadre.cs" />
     <Compile Include="Scenes\Base\BaseScene.cs" />
     <Compile Include="Scenes\Scene01.cs" />
+    <Compile Include="Scenes\SCENE_031017.cs" />
     <Compile Include="StoGenMaker.cs" />
     <Compile Include="Transition\Transition.cs" />
     <Compile Include="VNPC\BASE\VNPC.cs" />
@@ -104,9 +105,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Scenes\Data\01.stogen" />
-    <None Include="Scenes\Data\Common.stogen" />
-    <None Include="Scenes\Data\Scene01.tmpl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -124,10 +122,6 @@
       <Project>{ad6db9a5-7a96-4a41-bda0-72d01e6e86ac}</Project>
       <Name>StoGenWPF</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Scenes\Data\ImageData.txt" />
-    <Resource Include="Scenes\Data\SoundData.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

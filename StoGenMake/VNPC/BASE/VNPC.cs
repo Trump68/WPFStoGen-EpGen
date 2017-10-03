@@ -49,9 +49,7 @@ namespace StoGenMake.Pers
         public VNPCPersType PersonType = VNPCPersType.Real;
         public BaseScene Scene { set; get; }
         public EntityData Data = new EntityData();
-        
-      
-   
+                 
         public virtual bool CreateMenuPersone(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
         {
             return false;
@@ -93,10 +91,6 @@ namespace StoGenMake.Pers
                 cadre.VisionList.Add(image);
             }
         }
-
-
-
-
        
         public List<VNPCCloth> ClothList { set; get; } = new List<VNPCCloth>();
         public List<VNPCFace> Faces { set; get; } = new List<VNPCFace>();
@@ -154,9 +148,10 @@ public class VNPCFace
 {
 
 
-    public VNPCFace(string name)
+    public VNPCFace(string name, string mainimage)
     {
         this.Name = name;
+        this.MainImage = mainimage;
     }
 
     public string Name { set; get; }
@@ -257,6 +252,8 @@ public class VNPCFace
 
     public VNPCEmotionalState StateEmotional { get; set; } = VNPCEmotionalState.None;
     public VNPCEmotionalGrade GradeEmotional { get; set; } = VNPCEmotionalGrade.None;
+    public string MainImage { get; private set; }
+
     public virtual void Reset()
     {
         EyesDefault = EyesList.Where(x => x.Type == VNPCEyesType.OpenCenter).FirstOrDefault();
@@ -283,7 +280,9 @@ public class VNPCFace
     public virtual void SetFace(ScenCadre cadre)
     {
         Reset();
-        cadre.AddImage(false, Name);
+
+        cadre.AddImage(false, MainImage);
+
         if (StateBlush != VNPCBlushState.Disabled)
         {
             this.SetBlushState(cadre, StateBlush, true);
