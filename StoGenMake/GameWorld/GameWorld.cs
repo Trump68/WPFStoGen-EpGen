@@ -130,10 +130,10 @@ namespace StoGenMake
             ChoiceMenuItem item = null;
 
 
-            foreach (var it in Enum.GetValues(typeof(VNPC.PersType)))
+            foreach (var it in Enum.GetValues(typeof(VNPCPersType)))
             {
                 item = new ChoiceMenuItem();
-                item.Name = Enum.GetName(typeof(VNPC.PersType), it);
+                item.Name = Enum.GetName(typeof(VNPCPersType), it);
                 item.Data = it;
                 item.Executor = data =>
                 {
@@ -153,7 +153,7 @@ namespace StoGenMake
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
             ChoiceMenuItem item = null;
 
-            foreach (var pers in PersoneList.Where(x=>x.PersonType == (VNPC.PersType)proc.MenuCreatorData))
+            foreach (var pers in PersoneList.Where(x=>x.PersonType == (VNPCPersType)proc.MenuCreatorData))
             {
                 item = new ChoiceMenuItem();
                 item.Name = pers.Name;

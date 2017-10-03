@@ -11,9 +11,9 @@ namespace StoGenMake
     {
         public static void LoadPersList (List<VNPC> perlist)
         {
-            AddGenericPers(perlist, "Lorena B", @"x:\\STOGEN\LADY\REAL\Lorena B\", VNPC.PersType.Real, @"metart_milede_lorena-b_high_0001 copy.jpg");
+            AddGenericPers(perlist, "Lorena B", @"x:\\STOGEN\LADY\REAL\Lorena B\", VNPCPersType.Real, @"metart_milede_lorena-b_high_0001 copy.jpg");
         }
-        private static void AddGenericPers(List<VNPC> perlist, string name, string path, VNPC.PersType perstype, params string[] piclist)
+        private static void AddGenericPers(List<VNPC> perlist, string name, string path, VNPCPersType perstype, params string[] piclist)
         {
             VNPC pers = null;
             pers = new VNPC();

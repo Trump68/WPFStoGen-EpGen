@@ -21,8 +21,11 @@ namespace StoGenMake.Scenes.Base
         {
             ScenCadre cadre;
             cadre = this.AddCadre(null, name, 200, this);
-            this.Actors[0].SetCloth(cadre);
-            this.Actors[0].SetHead(cadre);
+            foreach (var actor in Actors)
+            {
+                actor.AssebleFigure();
+            }
+
 
             this.AddObzor(cadre);
         }
@@ -100,27 +103,7 @@ namespace StoGenMake.Scenes.Base
             this.Cadres.Add(cadre);
             return cadre;
         }
-        public ScenElementImage AddImage(ScenCadre cadre, bool invisible, string name)
-        {
-            ScenElementImage image = new ScenElementImage();
-            image.SizeX = SizeX;
-            image.SizeY = SizeY;
-            image.Name = name;
-            if (invisible)
-                image.Opacity = 0;
-            else
-                image.Opacity = 100;
-            cadre.VisionList.Add(image);
-            return image;
-        }
-        public ScenElementSound AddSound(ScenCadre cadre, string name)
-        {
-            ScenElementSound sound = new ScenElementSound();            
-            sound.Name = name;
-            sound.File = SoundStore.ValByName(name);
-            cadre.SoundList.Add(sound);
-            return sound;
-        }
+      
         public string Description { get; set; }
         public string Name { get; set; }
         public List<ScenCadre> Cadres { get; set; } = new List<ScenCadre>();
@@ -210,13 +193,7 @@ namespace StoGenMake.Scenes.Base
             ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, false);
             return true;
         }
-        internal void Prepare()
-        {
-            foreach (var item in this.Actors)
-            {
-                item.Prepare();
-            }
-        }
+
     }
     public class SceneVariable
     {

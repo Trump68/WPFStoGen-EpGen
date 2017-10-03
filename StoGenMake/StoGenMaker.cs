@@ -15,12 +15,9 @@ namespace StoGenMake
         static string ExecDir;
         static string TemplateDirName = "Templates";
         static KeyVarDataContainer KeyVarContainer = new KeyVarDataContainer();
-
         static List<BaseScene> SceneList = new List<BaseScene>();
         static string FileToProcess = null;
         static string TemplateDirPath { get { return Path.Combine(ExecDir, TemplateDirName); } }
-
-       
         public static void Start(string[] args)
         {
 
@@ -29,54 +26,52 @@ namespace StoGenMake
             if (args.Length > 1)
             {
                 FileToProcess = args[1];
-            }                  
-            GenerateScen(FileToProcess);          
-        }       
-      
-
-
+            }
+            GenerateScen(FileToProcess);
+        }
         private static void GenerateScen(string fileToProcess)
         {
             var gWorld = new GameWorld();
             VNPC pers = null;
-            List<string> datalist = new List<string>();
+            
             if (!string.IsNullOrEmpty(fileToProcess))
             {
+                List<string> datalist = new List<string>();
                 List<string> header;
-
                 // найти сценарий и ему передать
                 datalist = Universe.LoadFileToStringList(fileToProcess);
                 datalist.ForEach(x => x.Trim());
                 datalist.RemoveAll(x => x.StartsWith(@"//"));
 
-               
-                    string persName = datalist.FirstOrDefault(x => x.StartsWith(@"SCENPERS "));
-                    if (!string.IsNullOrEmpty(persName))
-                    {
-                        persName = persName.Replace(@"SCENPERS ", string.Empty).Replace(@"NPC=", string.Empty);
-                        Guid gid = Guid.Parse(persName.Trim());
-                        pers = gWorld.PersoneList.FirstOrDefault(x => x.GID.Equals(gid));
-                        datalist.RemoveAll(x => x.StartsWith(@"SCENPERS "));
-                   }
+
+                string persName = datalist.FirstOrDefault(x => x.StartsWith(@"SCENPERS "));
+                if (!string.IsNullOrEmpty(persName))
+                {
+                    persName = persName.Replace(@"SCENPERS ", string.Empty).Replace(@"NPC=", string.Empty);
+                    Guid gid = Guid.Parse(persName.Trim());
+                    pers = gWorld.PersoneList.FirstOrDefault(x => x.GID.Equals(gid));
+                    datalist.RemoveAll(x => x.StartsWith(@"SCENPERS "));
+                }
             }
+
+            var scen = new BaseScene(new List<VNPC>());
             if (pers != null)
             {
-                var scen = new BaseScene(new List<VNPC>() { pers });
+                scen.Actors.Add(pers);
                 gWorld.CurrentPersone = pers;
                 // set variables
-                pers.SetPersVariablesData(datalist);
-                // Prepare person             
-                scen.Prepare();
-                scen.NextCadre(null);
-                string fn = scen.Generate();
+                //pers.SetPersVariablesData(datalist);
+            }            
+                        
+            scen.NextCadre(null);
+            string fn = scen.Generate();
 
-                StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
-                window.Startfile = fn;                
-                window.GlobalMenuCreator = gWorld;
-                window.Show();
-            }
-           
+            StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
+            window.Startfile = fn;
+            window.GlobalMenuCreator = gWorld;
+            window.Show();
+
+
         }
-
     }
 }

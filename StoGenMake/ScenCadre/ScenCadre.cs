@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using StoGenMake.Scenes.Base;
 using StoGenMake.Pers;
 using StoGenMake.Entity;
+using StoGenLife.SOUND;
 
 namespace StoGenMake.Elements
 {
@@ -26,7 +27,25 @@ namespace StoGenMake.Elements
             this.Owner = owner;
         }
 
-       
+        public ScenElementImage AddImage(bool invisible, string name)
+        {
+            ScenElementImage image = new ScenElementImage();
+            image.Name = name;
+            if (invisible)
+                image.Opacity = 0;
+            else
+                image.Opacity = 100;
+            VisionList.Add(image);
+            return image;
+        }
+        public ScenElementSound AddSound(string name)
+        {
+            ScenElementSound sound = new ScenElementSound();
+            sound.Name = name;
+            sound.File = SoundStore.ValByName(name);
+            SoundList.Add(sound);
+            return sound;
+        }
 
         internal void InitValuesFromPers(List<EntityVariable> vars)
         {
