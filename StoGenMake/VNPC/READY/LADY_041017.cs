@@ -19,7 +19,7 @@ namespace StoGenMake.Pers
             this.PersonType = VNPCPersType.HCG;
 
             this.Description = "bellas de noche 128";
-            this.Face = new VNPCFace("Face 01", @"D:\Temp\FACE (bellas de noche 128)-06 copy 2.jpg");
+            this.Faces.Add(new VNPCFace("Face 01", @"D:\Temp\FACE (bellas de noche 128)-06 copy 2.jpg"));
             this.Cloth = new VNPCCloth(@"D:\Temp\(Aca los Maistros 04)-19 copy 3.png",null, VNPCClothType.Undefined);
             FillDataImage();
         }

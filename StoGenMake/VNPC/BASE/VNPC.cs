@@ -14,9 +14,9 @@ using System.Linq;
 
 namespace StoGenMake.Pers
 {
-    public class VNPC:NPC
+    public class VNPC : NPC
     {
-       
+
         #region constants
         // sound
         public static string MUSIC_MAIN_THEME = "MUSIC_MAIN_THEME";
@@ -34,7 +34,7 @@ namespace StoGenMake.Pers
         public static string DOCIER_PICTURE = "DOCIER_PICTURE";
         //parts
         public static string RIGHT_EYE_WINK = "RIGHT_EYE_WINK";
-        public static string EYES_CLOSE_01 = "EYES_CLOSE_01"; 
+        public static string EYES_CLOSE_01 = "EYES_CLOSE_01";
         #endregion
 
         public VNPC()
@@ -44,7 +44,7 @@ namespace StoGenMake.Pers
         public VNPCPersType PersonType = VNPCPersType.Real;
         public BaseScene Scene { set; get; }
         public EntityData Data = new EntityData();
-                 
+
         public virtual bool CreateMenuPersone(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
         {
             return false;
@@ -74,24 +74,44 @@ namespace StoGenMake.Pers
             if (this.Scene == null) this.Scene = new BaseScene();
             this.Scene.AddActor(this);
             this.Scene.Cadres.Clear();
-            var items = this.Data.ByName("IMAGE", DOCIER_PICTURE, null);            
+            var items = this.Data.ByName("IMAGE", DOCIER_PICTURE, null);
             foreach (var it in items)
             {
                 ScenCadre cadre;
                 cadre = this.Scene.AddCadre(null, null, 200);
 
                 ScenElementImage image;
-                image = new ScenElementImage();                
+                image = new ScenElementImage();
                 image.Name = $"DOCIER_PICTURE {cadre.VisionList.Count}";
                 image.File = it.Value;
                 cadre.VisionList.Add(image);
             }
         }
-       
+
         public List<VNPCCloth> ClothList { set; get; } = new List<VNPCCloth>();
         public List<VNPCFace> Faces { set; get; } = new List<VNPCFace>();
         public List<VNPCVoice> VoiceList { set; get; } = new List<VNPCVoice>();
-        public VNPCFace Face { set; get; }
+        private VNPCFace _CurrentFace;
+        public VNPCFace CurrentFace
+        {
+            get
+            {
+                if (!FaceEnabled) return null;
+                if (_CurrentFace == null)
+                {
+                    _CurrentFace = this.Faces.First();
+                }
+                return _CurrentFace;
+            }
+            set
+            {
+                _CurrentFace = value;
+            }
+        }
+        public bool FaceEnabled
+        {
+            get { return this.Faces.Any(); }
+        }
         VNPCCloth _Cloth;
         public VNPCCloth Cloth
         {
@@ -124,7 +144,7 @@ namespace StoGenMake.Pers
                     this.VoiceList.Add(_Voice);
             }
         }
-        
+
         public virtual void AssembleFigure(ScenCadre cadre)
         {
             AssembleBody(cadre);
@@ -137,7 +157,7 @@ namespace StoGenMake.Pers
         }
         public virtual void AssembleHead(ScenCadre cadre)
         {
-            if (Face != null) this.Face.SetFace(cadre);
+            if (FaceEnabled) this.CurrentFace.Applay(cadre);
         }
         public virtual void AssembleVoice(ScenCadre cadre)
         {
@@ -148,458 +168,461 @@ namespace StoGenMake.Pers
 
     }
 
-}
-public class VNPCFace
-{
 
-    public VNPCFace(string name,string file)
-    { 
-        this.Name = name;
-        this.File = file;
-    }
-    public string File { set; get; }
-    public string Name { set; get; }
-    public VNPCBlushState StateBlush { get; set; } = VNPCBlushState.Disabled;
-    
-    public VNPCEyesState StateEyes { get; set; } = VNPCEyesState.Disabled;
-    public VNPCBlinkState StateBlink { get; set; } = VNPCBlinkState.None;
-    public VNPCBrowsState StateBrows { get; set; } = VNPCBrowsState.None;
-
-
-    public List<VNPCBrows> BrowsList { get; set; } = new List<VNPCBrows>();
-    public List<VNPCMouthSnap> MouthList { get; set; } = new List<VNPCMouthSnap>();
-    public List<VNPCEyes> EyesList { get; set; } = new List<VNPCEyes>();
-    public List<VNPCSkin> SkinList { get; set; } = new List<VNPCSkin>();
-
-    public VNPCMouth Mouth { get; set } = new VNPCMouth();
-    
-    private VNPCEyes _Eyes;
-    public VNPCEyes Eyes
+    public class VNPCFace
     {
-        get
+
+        public VNPCFace(string name, string file)
         {
-            if (_Eyes == null)
-                _Eyes = this.EyesList.FirstOrDefault();
-            return _Eyes;
+            this.Name = name;
+            this.File = file;
         }
-        set
+        public string File { set; get; }
+        public string Name { set; get; }
+
+
+        public VNPCMouth Mouth { get; set; } = new VNPCMouth();
+        public VNPCFaceSkin FaceSkin { get; set; } = new VNPCFaceSkin();
+        public VNPCBrows Brows { get; set; } = new VNPCBrows();
+        public VNPCEyes Eyes { get; set; } = new VNPCEyes();
+
+
+
+        public VNPCEmotionalState StateEmotional { get; set; } = VNPCEmotionalState.None;
+        public VNPCEmotionalGrade GradeEmotional { get; set; } = VNPCEmotionalGrade.None;
+
+        public virtual void Reset()
         {
-            _Eyes = value;
-            if (!this.EyesList.Contains(_Eyes))
-                this.EyesList.Add(_Eyes);
-        }
-    }
-    private VNPCEyes _EyesDefault;
-    public VNPCEyes EyesDefault
-    {
-        get
-        {
-            if (_EyesDefault == null)
-                _EyesDefault = this.EyesList.FirstOrDefault();
-            return _EyesDefault;
-        }
-        set
-        {
-            _EyesDefault = value;
-            if (!this.EyesList.Contains(_EyesDefault))
-                this.EyesList.Add(_EyesDefault);
-        }
-    }
-
-    private VNPCBrows _Brows;
-    public VNPCBrows Brows
-    {
-        get
-        {
-            if (_Brows == null)
-                _Brows = this.BrowsList.FirstOrDefault();
-            return _Brows;
-        }
-        set
-        {
-            _Brows = value;
-            if (!this.BrowsList.Contains(_Brows))
-                this.BrowsList.Add(_Brows);
-        }
-    }
-
-    public VNPCEmotionalState StateEmotional { get; set; } = VNPCEmotionalState.None;
-    public VNPCEmotionalGrade GradeEmotional { get; set; } = VNPCEmotionalGrade.None;
-    public string MainImage { get; private set; }
-
-    public virtual void Reset()
-    {
-        EyesDefault = EyesList.Where(x => x.Type == VNPCEyesType.OpenCenter).FirstOrDefault();
-        MouthDefault = MouthList.Where(x => x.Type == VNPCMouthType.Neitral).FirstOrDefault();
-        Eyes = EyesDefault;
-        Mouth = MouthDefault;
-
-        StateEyes = VNPCEyesState.Already;
-        StateMouth = VNPCMouthState.Already;
-        StateBlink = VNPCBlinkState.Go;
-        StateBlush = VNPCBlushState.None;
-        StateBrows = VNPCBrowsState.None;
-
-        if (StateEmotional == VNPCEmotionalState.Joy)
-        {
-            SetMouthType(VNPCMouthType.OpenSense);
-        }
-        else if (StateEmotional == VNPCEmotionalState.Worry)
-        {
-            SetBrowsType(VNPCBrowsType.Worry);
-            SetMouthType(VNPCMouthType.OpenWorry);
-        }
-    }
-    public virtual void SetFace(ScenCadre cadre)
-    {
-        Reset();
-
-        cadre.AddImage(false, MainImage);
-
-        if (StateBlush != VNPCBlushState.Disabled)
-        {
-            this.SetBlushState(cadre, StateBlush, true);
-        }
-        if (StateMouth != VNPCMouthState.Disabled)
-        {
-            SetMouthState(cadre, StateMouth, true);
-        }
-        if (StateEyes != VNPCEyesState.Disabled)
-        {
-            this.SetEyesState(cadre, StateEyes, true);
-        }
-        if (StateBlink != VNPCBlinkState.None)
-        {
-            this.SetBlinkState(cadre, StateBlink);
-        }
-        this.SetBrowsState(cadre, StateBrows);
-       
-    }   
-    private void FaceExitateBlush()
-    {
-        StateBlush = VNPCBlushState.GoPulsed;
-    }
-   
-    private void SetEyesType(VNPCEyesType type)
-    {
-        Eyes = EyesList.Where(x => x.Type == type).FirstOrDefault();
-        StateEyes = VNPCEyesState.GoPulsed;
-    }
-    private void SetBrowsType(VNPCBrowsType type)
-    {
-        Brows = BrowsList.Where(x => x.Type == type).FirstOrDefault();
-        StateBrows = VNPCBrowsState.Go;
-    }
-
-    public virtual void SetBlushState(ScenCadre cadre, VNPCBlushState state, bool permanent)
-    {
-        if (state == VNPCBlushState.None) return;
-        bool invisible =
-            (state != VNPCBlushState.Already)
-            &&
-            (state != VNPCBlushState.GoNone);
-        bool periodic =
-            (state == VNPCBlushState.AlreadyPulsed)
-            ||
-            (state == VNPCBlushState.GoPulsed);
-        bool reverse =
-            (state == VNPCBlushState.GoNone);
-
-        if (state == VNPCBlushState.None) return;
-
-        var image = cadre.AddImage(invisible, SkinList.Where(x => x.BlushState == VNPCBlushState.Go).FirstOrDefault().Name);
-        if (invisible || reverse)
-            image.Transition = Transition.Blush(500, reverse, periodic, permanent);
-    }
-    protected virtual void SetEyesState(ScenCadre cadre, VNPCEyesState state, bool permanent)
-    {
-        bool invisible =
-           (state != VNPCEyesState.Already)
-           &&
-           (state != VNPCEyesState.GoNone);
-        bool periodic =
-           (state == VNPCEyesState.AlreadyPulsed)
-           ||
-           (state == VNPCEyesState.GoPulsed);
-        bool reverse =
-            (state == VNPCEyesState.GoNone);
-
-        if (periodic)
-        {
-            cadre.AddImage(false, EyesDefault.Name);
-        }
-        var image = cadre.AddImage(invisible, Eyes.Name);
-        if (invisible || reverse)
-            image.Transition = Transition.Eyes(200, reverse, periodic, permanent);
-    }
-    protected virtual void SetBrowsState(ScenCadre cadre, VNPCBrowsState state)
-    {
-        if (state == VNPCBrowsState.None) return;
-        bool invisible =
-            (state != VNPCBrowsState.Already)
-            &&
-            (state != VNPCBrowsState.GoNone);
-        bool reverse =
-            (state == VNPCBrowsState.GoNone);
-
-        var image = cadre.AddImage(invisible, Brows.Name);
-        if (invisible || reverse)
-            image.Transition = Transition.Blush(500, reverse, false, false);
-    }
-    protected virtual void SetBlinkState(ScenCadre cadre, VNPCBlinkState state)
-    {
-        bool invisible = true;
-        var image = cadre.AddImage(invisible, EyesList.Where(x => x.Type == VNPCEyesType.Close).FirstOrDefault().Name);
-        image.Transition = Transition.Eyes_Blink;
-    }
-}
+            Eyes.SetType(VNPCEyes.Type.OpenCenter);
+            Eyes.State = VNPCBodyPart.ChangeState.Already;
 
 
-public class VNPCMouth
-{
-    public enum State
-    {
-        Disabled,
-        Default,
-        None,
-        Already,
-        AlreadyPulsed,
-        Go,
-        GoPulsed,
-        GoNone
-    }
-    public enum Type
-    {
-        Neitral,
-        OpenSense,
-        Squeeze,
-        OpenWorry,
-        Doubt
-    }
-    public State StateMouth { get; set; } = State.Default;
-    public bool Enabled { get { return this.SnapList.Any(); } }
-    public List<VNPCMouthSnap> SnapList = new List<VNPCMouthSnap>();
-    private VNPCMouthSnap _Current;
-    public VNPCMouthSnap Current
-    {
-        set { this._Current = value; }
-        get
-        {
-            if (_Current == null)
+            Mouth.SetType(VNPCMouth.Type.Neitral);
+            Mouth.State = VNPCBodyPart.ChangeState.Already;
+
+            FaceSkin.SetType(VNPCFaceSkin.Type.None);
+            FaceSkin.State = VNPCBodyPart.ChangeState.Already;
+
+            Brows.SetType(VNPCBrows.Type.Neitral);
+            Brows.State = VNPCBodyPart.ChangeState.Already;
+
+
+            if (StateEmotional == VNPCEmotionalState.Joy)
             {
-                _Current = this.SnapList.First();
+                Mouth.SetType(VNPCMouth.Type.OpenSense);
             }
-            return _Current;
+            else if (StateEmotional == VNPCEmotionalState.Worry)
+            {
+                Brows.SetType(VNPCBrows.Type.Worry);
+                Mouth.SetType(VNPCMouth.Type.OpenWorry);
+            }
         }
-    }
-    private void SetMouthType(VNPCMouthType type)
-    {
-        Mouth = MouthList.Where(x => x.Type == type).FirstOrDefault();
-        StateMouth = VNPCMouthState.GoPulsed;
-    }
-
-    protected virtual void SetMouthState(ScenCadre cadre, VNPCMouth.State state, bool permanent)
-    {
-        bool invisible =
-           (state != VNPCMouth.State.Already)
-           &&
-           (state != VNPCMouth.State.GoNone);
-        bool periodic =
-           (state == VNPCMouth.State.AlreadyPulsed)
-           ||
-           (state == VNPCMouth.State.GoPulsed);
-        bool reverse =
-            (state == VNPCMouth.State.GoNone);
-
-        if (periodic)
+        public virtual void Applay(ScenCadre cadre)
         {
-            cadre.AddImage(false, MouthDefault.Name);
+            Reset();
+
+            cadre.AddImage(false, File, Name);
+
+            this.FaceSkin.Applay(cadre, true);
+            this.Mouth.Applay(cadre, true);
+            this.Eyes.Applay(cadre, true);
+            this.Brows.Applay(cadre, true);
         }
-        var image = cadre.AddImage(invisible, Mouth.Name);
-        if (invisible || reverse)
-            image.Transition = Transition.Mouth(200, reverse, periodic, permanent);
     }
 
-}
 
-public class VNPCBodyPartSnap
-{
-    public VNPCBodyPartSnap(string file, string name)
+    #region Base parts
+    public class VNPCBodyPart
     {
-        this.File = file;
-        this.Name = name;
-    }
-    public string File { set; get; }
-    public string Name { set; get; }
+        public enum ChangeState
+        {
+            Disabled,
+            Default,
+            None,
+            Already,
+            AlreadyPulsed,
+            Go,
+            GoPulsed,
+            GoNone
+        }
+        public ChangeState State { get; set; } = ChangeState.Already;
+        protected bool invisible
+        {
+            get
+            {
+                return (State != ChangeState.Already)
+                 &&
+                 (State != ChangeState.GoNone);
+            }
+        }
+        protected bool periodic
+        {
+            get
+            {
+                return (State == ChangeState.AlreadyPulsed)
+                       ||
+                       (State == ChangeState.GoPulsed);
+            }
+        }
+        protected bool reverse
+        {
+            get
+            {
+                return (State == ChangeState.GoNone);
+            }
+        }
 
-}
-public class VNPCMouthSnap: VNPCBodyPartSnap
-{
-    public VNPCMouth.Type Type { set; get; }
-    public VNPCMouthSnap(VNPCMouth.Type type, string file, string name) : base(file,name)
-    {
-        this.Type = type;
     }
-}
-public class VNPCSkin
-{
-    public string Name { set; get; }
-    public VNPCBlushState BlushState { set; get; }
-    public VNPCSkin(string name, VNPCBlushState blushState)
+    public class VNPCBodyPartSnap
     {
-        this.Name = name;
-        this.BlushState = blushState;
-    }
-}
-public class VNPCBrows
-{
-    public string Name { set; get; }
-    public VNPCBrowsType Type { set; get; }
-    public VNPCBrows(string name, VNPCBrowsType type)
-    {
-        this.Name = name;
-        this.Type = type;
-    }
-}
-public class VNPCEyes
-{
-    public string Name { set; get; }
-    public VNPCEyesType Type { set; get; } = VNPCEyesType.OpenCenter;
-    public VNPCEyes(string name, VNPCEyesType type)
-    {
-        this.Name = name;
-        this.Type = type;
-    }
-}
-public enum VNPCBlushState
-{
-    Disabled,
-    None,
-    Already,
-    AlreadyPulsed,
-    Go,
-    GoPulsed,
-    GoNone
-}
-public enum VNPCEyesState
-{
-    Disabled,
-    None,
-    Already,
-    AlreadyPulsed,
-    Go,
-    GoPulsed,
-    GoNone
-}
-public enum VNPCBlinkState
-{
-    None,
-    Go
-}
-public enum VNPCEyesType
-{
-    OpenCenter,
-    Close,
-    Squeeze,
-    Hide
-}
-public enum VNPCBrowsState
-{
-    Disabled,
-    None,
-    Already,
-    AlreadyPulsed,
-    Go,
-    GoPulsed,
-    GoNone
-}
-public enum VNPCBrowsType
-{
-    Neitral,
-    Worry
-}
-public class VNPCCloth
-{
-    public string Name { set; get; }
-    public string MainImage { get; private set; }
-    public VNPCClothType Type { set; get; }
-    public VNPCCloth(string file,string name, VNPCClothType type)
-    {
-        this.MainImage = file;
-        this.Name = name;
-        this.Type = type;
-    }
-    public virtual void Set(ScenCadre cadre)
-    {
-        cadre.AddImage(false, Name);
-    }
-}
-public class VNPCVoice
-{
-    public string Name { set; get; }
-    public VNPCVoiceState State { set; get; } = VNPCVoiceState.None;
-    public VNPCVoiceType Type { set; get; }
-    public VNPCTermType TermType { set; get; }
-    public VNPCVoice(string name, VNPCVoiceType type, VNPCTermType TermType)
-    {
-        this.Name = name;
-        this.Type = type;
-    }
-    public VNPCVoice(SoundStore.Sounds name, VNPCVoiceType type, VNPCTermType TermType)
-    {
-        this.Name = Enum.GetName(typeof(SoundStore.Sounds), name);
-        this.Type = type;
-    }
-    public virtual void Set(ScenCadre cadre)
-    {
-        if (State == VNPCVoiceState.None) return;
-        var sound = cadre.AddSound(Name);
-    }    
+        public VNPCBodyPartSnap(string file, string name)
+        {
+            this.File = file;
+            this.Name = name;
+        }
+        public string File { set; get; }
+        public string Name { set; get; }
 
-}
-public enum VNPCPersType
-{
-    Real,
-    HCG,
-    JAV
-}
+    }
+    #endregion
 
-public enum VNPCEmotionalState
-{
-    None,
-    Joy,
-    Flirt,
-    Worry
-}
-public enum VNPCEmotionalGrade
-{
-    None,
-    Light,
-    Middle,
-    Heavy
-}
-public enum VNPCVoiceType
-{
-    Neitral
-}
-public enum VNPCTermType
-{
-    None,
-    Yes,
-    No
-}
-public enum VNPCClothType
-{
-    Undefined,
-    Naked,
-    Kimono,
-    KimonoDecolte
-}
-public enum VNPCVoiceState
-{
-    None,
-    Go,
-    GoPeriodic
+    #region Mouth
+    public class VNPCMouth : VNPCBodyPart
+    {
+        public enum Type
+        {
+            Neitral,
+            OpenSense,
+            Squeeze,
+            OpenWorry,
+            Doubt
+        }
+        public bool Enabled { get { return this.SnapList.Any(); } }
+        public List<VNPCMouthSnap> SnapList = new List<VNPCMouthSnap>();
+        private VNPCMouthSnap _Current;
+        public VNPCMouthSnap Current
+        {
+            set { this._Current = value; }
+            get
+            {
+                if (_Current == null)
+                {
+                    _Current = this.SnapList.First();
+                }
+                return _Current;
+            }
+        }
+        private VNPCMouthSnap _Previous;
+        public VNPCMouthSnap Previous
+        {
+            set { this._Previous = value; }
+            get
+            {
+                if (_Previous == null)
+                {
+                    _Previous = Current;
+                }
+                return _Previous;
+            }
+        }
+        public void SetType(VNPCMouth.Type type)
+        {
+            Current = SnapList.Where(x => x.Type == type).FirstOrDefault();
+            State = VNPCMouth.ChangeState.GoPulsed;
+        }
+        public void Applay(ScenCadre cadre, bool permanent)
+        {
+            if (!Enabled) return;
+            if (periodic)
+                cadre.AddImage(false, Previous.File);
+            var image = cadre.AddImage(invisible, Current.File);
+            if (invisible || reverse)
+                image.Transition = Transition.Mouth(200, reverse, periodic, permanent);
+        }
+
+    }
+    public class VNPCMouthSnap : VNPCBodyPartSnap
+    {
+        public VNPCMouth.Type Type { set; get; }
+        public VNPCMouthSnap(VNPCMouth.Type type, string file, string name) : base(file, name)
+        {
+            this.Type = type;
+        }
+    }
+    #endregion
+
+    #region FaceSkin
+    public class VNPCFaceSkin : VNPCBodyPart
+    {
+        public enum Type
+        {
+            None,
+            Blush
+        }
+        public bool Enabled { get { return this.SnapList.Any(); } }
+        public List<VNPCFaceSkinSnap> SnapList = new List<VNPCFaceSkinSnap>();
+        private VNPCFaceSkinSnap _Current;
+        public VNPCFaceSkinSnap Current
+        {
+            set { this._Current = value; }
+            get
+            {
+                if (_Current == null)
+                {
+                    _Current = this.SnapList.First();
+                }
+                return _Current;
+            }
+        }
+        private VNPCFaceSkinSnap _Previous;
+        public VNPCFaceSkinSnap Previous
+        {
+            set { this._Previous = value; }
+            get
+            {
+                if (_Previous == null)
+                {
+                    _Previous = Current;
+                }
+                return _Previous;
+            }
+        }
+        public void SetType(VNPCFaceSkin.Type type)
+        {
+            Current = SnapList.Where(x => x.Type == type).FirstOrDefault();
+            State = ChangeState.GoPulsed;
+        }
+        public void Applay(ScenCadre cadre, bool permanent)
+        {
+            if (!Enabled) return;
+            var image = cadre.AddImage(invisible, SnapList.Where(x => x.Type == Type.Blush).FirstOrDefault().File, null);
+            if (invisible || reverse)
+                image.Transition = Transition.Blush(500, reverse, periodic, permanent);
+        }
+    }
+    public class VNPCFaceSkinSnap : VNPCBodyPartSnap
+    {
+        public VNPCFaceSkin.Type Type { set; get; }
+        public VNPCFaceSkinSnap(VNPCFaceSkin.Type type, string file, string name) : base(file, name)
+        {
+            this.Type = type;
+        }
+    }
+    #endregion
+
+    #region Brows
+    public class VNPCBrows : VNPCBodyPart
+    {
+        public enum Type
+        {
+            Neitral,
+            Worry
+        }
+        public bool Enabled { get { return this.SnapList.Any(); } }
+        public List<VNPCBrowSnap> SnapList = new List<VNPCBrowSnap>();
+        private VNPCBrowSnap _Current;
+        public VNPCBrowSnap Current
+        {
+            set { this._Current = value; }
+            get
+            {
+                if (_Current == null)
+                {
+                    _Current = this.SnapList.First();
+                }
+                return _Current;
+            }
+        }
+        private VNPCBrowSnap _Previous;
+        public VNPCBrowSnap Previous
+        {
+            set { this._Previous = value; }
+            get
+            {
+                if (_Previous == null)
+                {
+                    _Previous = Current;
+                }
+                return _Previous;
+            }
+        }
+        public void SetType(VNPCBrows.Type type)
+        {
+            Current = SnapList.Where(x => x.Type == type).FirstOrDefault();
+            State = ChangeState.GoPulsed;
+        }
+        public void Applay(ScenCadre cadre, bool permanent)
+        {
+            if (!Enabled) return;
+            var image = cadre.AddImage(invisible, Current.File, null);
+            if (invisible || reverse)
+                image.Transition = Transition.Blush(500, reverse, false, false);
+        }
+
+    }
+    public class VNPCBrowSnap : VNPCBodyPartSnap
+    {
+        public VNPCBrows.Type Type { set; get; }
+        public VNPCBrowSnap(VNPCBrows.Type type, string file, string name) : base(file, name)
+        {
+            this.Type = type;
+        }
+    }
+
+    #endregion
+
+    #region Eyes
+    public class VNPCEyes : VNPCBodyPart
+    {
+        public enum Type
+        {
+            OpenCenter,
+            Close,
+            Squeeze,
+            Hide
+        }
+        public bool Enabled { get { return this.SnapList.Any(); } }
+        public List<VNPCEyesSnap> SnapList = new List<VNPCEyesSnap>();
+        private VNPCEyesSnap _Current;
+        public VNPCEyesSnap Current
+        {
+            set { this._Current = value; }
+            get
+            {
+                if (_Current == null)
+                {
+                    _Current = this.SnapList.First();
+                }
+                return _Current;
+            }
+        }
+        private VNPCEyesSnap _Previous;
+        public VNPCEyesSnap Previous
+        {
+            set { this._Previous = value; }
+            get
+            {
+                if (_Previous == null)
+                {
+                    _Previous = Current;
+                }
+                return _Previous;
+            }
+        }
+        public void SetType(VNPCEyes.Type type)
+        {
+            Current = SnapList.Where(x => x.Type == type).FirstOrDefault();
+            State = ChangeState.GoPulsed;
+        }
+        public void Applay(ScenCadre cadre, bool permanent)
+        {
+            if (!Enabled) return;
+            if (periodic)
+            {
+                cadre.AddImage(false, Previous.File, null);
+            }
+            var image = cadre.AddImage(invisible, Current.File, null);
+            if (invisible || reverse)
+                image.Transition = Transition.Eyes(200, reverse, periodic, permanent);
+
+            image = cadre.AddImage(invisible, SnapList.Where(x => x.Type == Type.Close).FirstOrDefault().File, null);
+            image.Transition = Transition.Eyes_Blink;
+        }
+
+    }
+    public class VNPCEyesSnap : VNPCBodyPartSnap
+    {
+        public VNPCEyes.Type Type { set; get; }
+        public VNPCEyesSnap(VNPCEyes.Type type, string file, string name) : base(file, name)
+        {
+            this.Type = type;
+        }
+    }
+    #endregion
+
+    public class VNPCCloth
+    {
+        public string Name { set; get; }
+        public string MainImage { get; private set; }
+        public VNPCClothType Type { set; get; }
+        public VNPCCloth(string file, string name, VNPCClothType type)
+        {
+            this.MainImage = file;
+            this.Name = name;
+            this.Type = type;
+        }
+        public virtual void Set(ScenCadre cadre)
+        {
+            cadre.AddImage(false, Name);
+        }
+    }
+    public class VNPCVoice
+    {
+        public string Name { set; get; }
+        public VNPCVoiceState State { set; get; } = VNPCVoiceState.None;
+        public VNPCVoiceType Type { set; get; }
+        public VNPCTermType TermType { set; get; }
+        public VNPCVoice(string name, VNPCVoiceType type, VNPCTermType TermType)
+        {
+            this.Name = name;
+            this.Type = type;
+        }
+        public VNPCVoice(SoundStore.Sounds name, VNPCVoiceType type, VNPCTermType TermType)
+        {
+            this.Name = Enum.GetName(typeof(SoundStore.Sounds), name);
+            this.Type = type;
+        }
+        public virtual void Set(ScenCadre cadre)
+        {
+            if (State == VNPCVoiceState.None) return;
+            var sound = cadre.AddSound(Name);
+        }
+
+    }
+    public enum VNPCPersType
+    {
+        Real,
+        HCG,
+        JAV
+    }
+
+    public enum VNPCEmotionalState
+    {
+        None,
+        Joy,
+        Flirt,
+        Worry
+    }
+    public enum VNPCEmotionalGrade
+    {
+        None,
+        Light,
+        Middle,
+        Heavy
+    }
+    public enum VNPCVoiceType
+    {
+        Neitral
+    }
+    public enum VNPCTermType
+    {
+        None,
+        Yes,
+        No
+    }
+    public enum VNPCClothType
+    {
+        Undefined,
+        Naked,
+        Kimono,
+        KimonoDecolte
+    }
+    public enum VNPCVoiceState
+    {
+        None,
+        Go,
+        GoPeriodic
+    }
 }
 //public override void PrepareScene()
 //{

@@ -20,7 +20,7 @@ namespace StoGenMake.Pers
             this.PersonType = VNPCPersType.HCG;
 
             this.Description = "[ERECTLIP] Bakunyuu Onsen ~Inran Okami Etsuraku no Yu Hen~";
-            this.Face = new VNPCFace("Face 01", @"x:\STOGEN\LADY\HCG\Maria Delgado\04a_23.png");
+            
 
             FillDataImage();            
         }
@@ -53,18 +53,18 @@ namespace StoGenMake.Pers
             this.ClothList.Add(new VNPCCloth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_19.png", null, VNPCClothType.KimonoDecolte));
             this.ClothList.Add(new VNPCCloth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_20.png", null, VNPCClothType.Naked));
 
-            Face.MouthList.Add(new VNPCMouthSnap($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_26.png",null, VNPCMouthType.Neitral));
-            Face.MouthList.Add(new VNPCMouthSnap($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_3.png",null, VNPCMouthType.OpenSense));
-            Face.MouthList.Add(new VNPCMouthSnap($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_4.png",null, VNPCMouthType.Squeeze));
-            Face.MouthList.Add(new VNPCMouthSnap($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_22.png",null, VNPCMouthType.OpenWorry));           
-
-            Face.EyesList.Add(new VNPCEyes($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_25.png", VNPCEyesType.OpenCenter));
-            Face.EyesList.Add(new VNPCEyes($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_17.png", VNPCEyesType.Close));
-            Face.EyesList.Add(new VNPCEyes($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_6.png", VNPCEyesType.Squeeze));
-            Face.EyesList.Add(new VNPCEyes($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_13.png", VNPCEyesType.Hide));
-            Face.BrowsList.Add(new VNPCBrows($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_8.png", VNPCBrowsType.Worry));
-
-            Face.SkinList.Add(new VNPCSkin($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_2.png", VNPCBlushState.Go));
+            var face = new VNPCFace("Face 01", @"x:\STOGEN\LADY\HCG\Maria Delgado\04a_23.png");
+            face.Mouth.SnapList.Add(new VNPCMouthSnap(VNPCMouth.Type.Neitral,$@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_26.png",null));
+            face.Mouth.SnapList.Add(new VNPCMouthSnap(VNPCMouth.Type.OpenSense,$@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_3.png",null));
+            face.Mouth.SnapList.Add(new VNPCMouthSnap(VNPCMouth.Type.Squeeze, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_4.png",null));
+            face.Mouth.SnapList.Add(new VNPCMouthSnap(VNPCMouth.Type.OpenWorry,$@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_22.png",null));
+            face.Eyes.SnapList.Add(new VNPCEyesSnap(VNPCEyes.Type.OpenCenter, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_25.png", null));
+            face.Eyes.SnapList.Add(new VNPCEyesSnap(VNPCEyes.Type.Close, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_17.png", null));
+            face.Eyes.SnapList.Add(new VNPCEyesSnap(VNPCEyes.Type.Squeeze, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_6.png", null));
+            face.Eyes.SnapList.Add(new VNPCEyesSnap(VNPCEyes.Type.Hide, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_13.png", null));
+            face.Brows.SnapList.Add(new VNPCBrowSnap(VNPCBrows.Type.Worry, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_8.png", null));
+            face.FaceSkin.SnapList.Add(new VNPCFaceSkinSnap(VNPCFaceSkin.Type.Blush,$@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_2.png", null));
+            this.Faces.Add(face);
 
             this.Cloth = this.ClothList.FirstOrDefault(x => x.Type == VNPCClothType.Kimono);
             this.Voice = this.VoiceList.FirstOrDefault(x => x.Type == VNPCVoiceType.Neitral);
@@ -126,13 +126,13 @@ namespace StoGenMake.Pers
             ChoiceMenuItem item = null;
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 
-            if (this.Face != null)
+            if (this.FaceEnabled)
             {
                 item = new ChoiceMenuItem("Пошутить...", this);
                 item.Executor = delegate (object data)
                 {
-                    Face.StateEmotional = VNPCEmotionalState.Joy;
-                    Face.GradeEmotional = VNPCEmotionalGrade.Light;
+                    CurrentFace.StateEmotional = VNPCEmotionalState.Joy;
+                    CurrentFace.GradeEmotional = VNPCEmotionalGrade.Light;
 
                     
                     this.Scene.Generate(null);
@@ -147,8 +147,8 @@ namespace StoGenMake.Pers
                 item = new ChoiceMenuItem("Обидеть...", this);
                 item.Executor = delegate (object data)
                 {
-                    Face.StateEmotional = VNPCEmotionalState.Worry;
-                    Face.GradeEmotional = VNPCEmotionalGrade.Light;
+                    CurrentFace.StateEmotional = VNPCEmotionalState.Worry;
+                    CurrentFace.GradeEmotional = VNPCEmotionalGrade.Light;
 
                     this.Scene.Generate(null);
 
