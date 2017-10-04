@@ -49,14 +49,14 @@ namespace StoGenMake.Pers
             this.VoiceList.Add(new VNPCVoice(SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_02, VNPCVoiceType.Neitral, VNPCTermType.None));
             this.VoiceList.Add(new VNPCVoice(SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_03, VNPCVoiceType.Neitral, VNPCTermType.None));
 
-            this.ClothList.Add(new VNPCCloth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_24.png", VNPCClothType.Kimono));
-            this.ClothList.Add(new VNPCCloth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_19.png", VNPCClothType.KimonoDecolte));
-            this.ClothList.Add(new VNPCCloth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_20.png", VNPCClothType.Naked));
+            this.ClothList.Add(new VNPCCloth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_24.png",null, VNPCClothType.Kimono));
+            this.ClothList.Add(new VNPCCloth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_19.png", null, VNPCClothType.KimonoDecolte));
+            this.ClothList.Add(new VNPCCloth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_20.png", null, VNPCClothType.Naked));
 
-            Face.MouthList.Add(new VNPCMouth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_26.png", VNPCMouthType.Neitral));
-            Face.MouthList.Add(new VNPCMouth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_3.png", VNPCMouthType.OpenSense));
-            Face.MouthList.Add(new VNPCMouth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_4.png", VNPCMouthType.Squeeze));
-            Face.MouthList.Add(new VNPCMouth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_22.png", VNPCMouthType.OpenWorry));           
+            Face.MouthList.Add(new VNPCMouthSnap($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_26.png",null, VNPCMouthType.Neitral));
+            Face.MouthList.Add(new VNPCMouthSnap($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_3.png",null, VNPCMouthType.OpenSense));
+            Face.MouthList.Add(new VNPCMouthSnap($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_4.png",null, VNPCMouthType.Squeeze));
+            Face.MouthList.Add(new VNPCMouthSnap($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_22.png",null, VNPCMouthType.OpenWorry));           
 
             Face.EyesList.Add(new VNPCEyes($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_25.png", VNPCEyesType.OpenCenter));
             Face.EyesList.Add(new VNPCEyes($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_17.png", VNPCEyesType.Close));

@@ -11,19 +11,22 @@ namespace StoGenMake.Scenes
 {
     public class SCENE_031017: BaseScene
     {
-        private string MainImage = @"D:\Temp\(Aca los Maistros 04)-19 copy 3.png";
-        private VNPC FemActor;
+        private VNPC FemHeadActor;
+        private VNPC FemBodyActor;
         public SCENE_031017() : base()
         {
-            FemActor = new VNPC();
-            this.AddActor(FemActor);
+            FemBodyActor = new VNPC();
+            this.AddActor(FemBodyActor);
+
+            FemHeadActor = new VNPC();
+            this.AddActor(FemHeadActor);
         }
         protected override void MakeCadres()
         {
             ScenCadre cadre;
             cadre = this.AddCadre(null, null, 200);
-            cadre.AddImage(false, this.MainImage);
-            FemActor.AssembleFigure(cadre);            
+            FemBodyActor.AssembleBody(cadre);
+            FemHeadActor.AssembleHead(cadre);            
         }
     }
     
