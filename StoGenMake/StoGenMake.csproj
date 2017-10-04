@@ -68,6 +68,7 @@
     <Compile Include="StoGenMaker.cs" />
     <Compile Include="Transition\Transition.cs" />
     <Compile Include="VNPC\BASE\VNPC.cs" />
+    <Compile Include="VNPC\READY\LADY_041017.cs" />
     <Compile Include="VNPC\READY\PERS01.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

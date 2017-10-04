@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using StoGenMake.Pers;
 using StoGenMake.Location;
 using StoGenMake.Scenes.Base;
+using StoGenMake.Scenes;
 
 namespace StoGenMake
 {
@@ -28,6 +29,8 @@ namespace StoGenMake
             GameWorldDataLoader.LoadPersList(this.PersoneList);
 
             this.PersoneList.Add(new PERS01());
+
+            this.SceneList.Add(new SCENE_031017());
         }
 
 

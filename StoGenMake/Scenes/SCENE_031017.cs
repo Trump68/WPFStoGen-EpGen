@@ -11,7 +11,7 @@ namespace StoGenMake.Scenes
 {
     public class SCENE_031017: BaseScene
     {
-        private string MainImage ="";
+        private string MainImage = @"D:\Temp\(Aca los Maistros 04)-19 copy 3.png";
         private VNPC FemActor;
         public SCENE_031017() : base()
         {
