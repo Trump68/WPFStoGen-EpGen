@@ -27,15 +27,12 @@ namespace StoGenMake.Elements
             
         }
 
-        public ScenElementImage AddImage(bool invisible, string file, string name = null)
+        public ScenElementImage AddImage(int opacity, string file, string name = null)
         {
             ScenElementImage image = new ScenElementImage();
             image.Name = name;
             image.File = file;
-            if (invisible)
-                image.Opacity = 0;
-            else
-                image.Opacity = 100;
+            image.Opacity = opacity;
             VisionList.Add(image);
             return image;
         }

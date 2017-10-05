@@ -492,22 +492,7 @@ namespace StoGen.Classes
         private static DateTime TimeStarted;
         private static int IsLoop = 0;
         private static bool NowReverse = false;
-
-        private string HelpString = @"
-Editor mode
-X:    +NP6-NP4   Y: +NP2-NP8
-Size: +NP7-NP9 Rot: +NP1-NP3
-
-A        - increase ClipX
-S        - decrease ClipX
-D        - increase ClipW
-F        - decrease ClipW
-G        - increase ClipY
-H        - decrease ClipY
-J        - increase ClipH
-K        - decrease ClipH
-
-";
+        
 
         internal void ProcessKey(Key e)
         {

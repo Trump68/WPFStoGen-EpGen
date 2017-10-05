@@ -221,7 +221,7 @@ namespace StoGenMake.Pers
         {
             Reset();
 
-            cadre.AddImage(false, File, Name);
+            cadre.AddImage(100, File, Name);
 
             this.FaceSkin.Applay(cadre, true);
             this.Mouth.Applay(cadre, true);
@@ -250,9 +250,10 @@ namespace StoGenMake.Pers
         {
             get
             {
-                return (State != ChangeState.Already)
+                return ((State != ChangeState.Already)
                  &&
-                 (State != ChangeState.GoNone);
+                 (State != ChangeState.GoNone));
+                
             }
         }
         protected bool periodic
@@ -334,9 +335,13 @@ namespace StoGenMake.Pers
         {
             if (!Enabled) return;
             if (periodic)
-                cadre.AddImage(false, Previous.File);
-            var image = cadre.AddImage(invisible, Current.File);
-            if (invisible || reverse)
+                cadre.AddImage(100, Previous.File);
+
+            int opacity = 100;
+            if (invisible) opacity = 0;
+
+            var image = cadre.AddImage(opacity, Current.File);
+            if ((opacity == 0) || reverse)
                 image.Transition = Transition.Mouth(200, reverse, periodic, permanent);
         }
 
@@ -395,8 +400,12 @@ namespace StoGenMake.Pers
         public void Applay(ScenCadre cadre, bool permanent)
         {
             if (!Enabled) return;
-            var image = cadre.AddImage(invisible, SnapList.Where(x => x.Type == Type.Blush).FirstOrDefault().File, null);
-            if (invisible || reverse)
+
+            int opacity = 100;
+            if (invisible) opacity = 0;
+
+            var image = cadre.AddImage(opacity, SnapList.Where(x => x.Type == Type.Blush).FirstOrDefault().File, null);
+            if ((opacity == 0) || reverse)
                 image.Transition = Transition.Blush(500, reverse, periodic, permanent);
         }
     }
@@ -454,8 +463,11 @@ namespace StoGenMake.Pers
         public void Applay(ScenCadre cadre, bool permanent)
         {
             if (!Enabled) return;
-            var image = cadre.AddImage(invisible, Current.File, null);
-            if (invisible || reverse)
+
+            int opacity = 100;
+            if (invisible) opacity = 0;
+            var image = cadre.AddImage(opacity, Current.File, null);
+            if ((opacity == 0) || reverse)
                 image.Transition = Transition.Blush(500, reverse, false, false);
         }
 
@@ -519,13 +531,18 @@ namespace StoGenMake.Pers
             if (!Enabled) return;
             if (periodic)
             {
-                cadre.AddImage(false, Previous.File, null);
+                cadre.AddImage(100, Previous.File, null);
             }
-            var image = cadre.AddImage(invisible, Current.File, null);
-            if (invisible || reverse)
+
+
+            int opacity = 100;
+            if (invisible) opacity = 0;
+
+            var image = cadre.AddImage(opacity, Current.File, null);
+            if ((opacity == 0) || reverse)
                 image.Transition = Transition.Eyes(200, reverse, periodic, permanent);
 
-            image = cadre.AddImage(invisible, SnapList.Where(x => x.Type == Type.Close).FirstOrDefault().File, null);
+            image = cadre.AddImage(opacity, SnapList.Where(x => x.Type == Type.Close).FirstOrDefault().File, null);
             image.Transition = Transition.Eyes_Blink;
         }
 
@@ -553,7 +570,7 @@ namespace StoGenMake.Pers
         }
         public virtual void Set(ScenCadre cadre)
         {
-            cadre.AddImage(false, Name);
+            cadre.AddImage(100, Name);
         }
     }
     public class VNPCVoice
@@ -574,7 +591,6 @@ namespace StoGenMake.Pers
         }
         public virtual void Set(ScenCadre cadre)
         {
-            if (State == VNPCVoiceState.None) return;
             var sound = cadre.AddSound(Name);
         }
 

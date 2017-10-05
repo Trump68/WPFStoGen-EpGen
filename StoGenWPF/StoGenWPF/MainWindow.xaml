@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:StoGenWPF"
         mc:Ignorable="d"
         Title="MainWindow" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black" Left="0" Top="0" KeyDown="Window_KeyDown" d:DesignHeight="869" Width="992">
-    <Grid Margin="0,0,0,0">
+    <Grid Margin="0,5,0,-5">
         <Image x:Name="Picture1" HorizontalAlignment="Left" Height="561" Margin="10,10,0,0" VerticalAlignment="Top" Width="933"/>
         <Image x:Name="Picture2" HorizontalAlignment="Left" Height="552" VerticalAlignment="Top" Width="1030"/>
         <Image x:Name="Picture3" HorizontalAlignment="Left" Height="552" VerticalAlignment="Top" Width="968"/>
@@ -28,8 +28,12 @@
         <MediaElement x:Name="Clip1"  ScrubbingEnabled="True" HorizontalAlignment="Left" Height="505" Margin="90,47,0,0" VerticalAlignment="Top" Width="853" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>
         <Rectangle x:Name="LmpAuto" Fill="#FF06069B" HorizontalAlignment="Left" Height="10" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>
         <Rectangle x:Name="LmpEndless" Fill="#FFB60B49" HorizontalAlignment="Left" Height="10" Margin="10,0,0,0" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>
-        <GroupBox x:Name="PictureCadreDS" Header="Set Image" HorizontalAlignment="Left" Height="45" Width="968" Background="#FFF9F9F9" BorderBrush="#FFF9FCFD" VerticalAlignment="Bottom">
-            <StackPanel Margin="1" Orientation="Horizontal">
+        <GroupBox x:Name="PictureCadreDS" HorizontalAlignment="Left" Height="78" Width="968" Background="#FFF9F9F9" BorderBrush="#FFF9FCFD" VerticalAlignment="Bottom">
+            <StackPanel Margin="1" Orientation="Vertical">
+                <StackPanel Margin="1" Orientation="Horizontal" Background="#FFF9F9F9">
+                    <TextBlock Text="     X:+NP6-NP4          Y:+NP2-NP8          Size:+NP7-NP9         Rot:+NP1-NP3         ClipX:+A-S          ClipW:+D-F         ClipY:+G-H        ClipH:+J-K"/>
+                </StackPanel>
+                <StackPanel Margin="1" Orientation="Horizontal">
                 <StackPanel Margin="1" Orientation="Horizontal">
                     <TextBlock Text="LayerIndex"/>
                     <TextBox Text="{Binding LayerIndex, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="20" IsTabStop="False"/>
@@ -40,6 +44,7 @@
                 </StackPanel>
                 <StackPanel Margin="1" Orientation="Horizontal">
                     <TextBox Text="{Binding ResultString, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,1" Width="789" IsTabStop="False"/>
+                </StackPanel>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
