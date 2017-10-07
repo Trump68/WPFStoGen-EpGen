@@ -54,7 +54,7 @@ namespace StoGenMake
             GameWorldDataLoader.LoadFemBodyList(this.CommonFemBodyList);
 
             this.PersoneList.Add(new LADY_011017 ());
-            this.SceneList.Add(new SCENE_031017());
+            this.SceneList.Add(new TestScene());
         }
 
 

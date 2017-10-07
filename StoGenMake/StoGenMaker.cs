@@ -56,16 +56,14 @@ namespace StoGenMake
                 }
             }
 
-            var scen = new BaseScene();
-            if (pers != null)
-            {
-                scen.AddActor(pers);
-                GameWorldFactory.GameWorld.CurrentPersone = pers;
-                // set variables
-                //pers.SetPersVariablesData(datalist);
-            }            
-                        
-            
+            //var scen = new BaseScene();
+            //if (pers != null)
+            //{
+            //    scen.AddActor(pers);
+            //    GameWorldFactory.GameWorld.CurrentPersone = pers;
+            //}            
+            var scen = new TestScene();
+
             string fn = scen.Generate(fileToProcess);
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
