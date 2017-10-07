@@ -27,14 +27,24 @@ namespace StoGenMake.Elements
             
         }
 
-        public ScenElementImage AddImage(int opacity, string file, string name = null)
+        public seIm AddImage(seIm sr)
         {
-            ScenElementImage image = new ScenElementImage();
-            image.Name = name;
-            image.File = file;
-            image.Opacity = opacity;
-            VisionList.Add(image);
-            return image;
+            seIm im = new seIm();
+            im.File = sr.File;
+            im.Name = sr.Name;
+            im.Flip = sr.Flip;
+            im.Opa= sr.Opa;
+            im.Part = sr.Part;
+            im.Rot = sr.Rot;
+            im.SizeMode = sr.SizeMode;
+            im.sX = sr.sX;
+            im.sY = sr.sY;
+            im.Timer = sr.Timer;
+            im.Transition = sr.Transition;
+            im.X = sr.X;
+            im.Y = sr.Y;
+            VisionList.Add(im);
+            return im;
         }
         public ScenElementSound AddSound(string name= null)
         {
@@ -54,7 +64,7 @@ namespace StoGenMake.Elements
 
             if (this.Timer > 0)
             {
-                this.VisionList.ForEach(x => (x as ScenElementImage).Timer = this.Timer);
+                this.VisionList.ForEach(x => (x as seIm).Timer = this.Timer);
                 //(this.VisionList.First() as ScenElementImage).Timer = this.Timer;
             }
                

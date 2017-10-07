@@ -18,14 +18,14 @@ namespace StoGenMake.Pers
             this.GID = Guid.Parse("{F9A65242-67AA-4745-9A50-AA69EEE82BA3}");
             this.PersonType = VNPCPersType.HCG;
 
+            string path = @"x:\STOGEN\LADY\COMIX\LADY_041017\";
             this.Description = "bellas de noche 128";
-            this.Faces.Add(new VNPCFace("Face 01", @"D:\Temp\FACE (bellas de noche 128)-06 copy 2.jpg"));
-            this.Cloth = new VNPCCloth(@"D:\Temp\(Aca los Maistros 04)-19 copy 3.png",null, VNPCClothType.Undefined);
-            FillDataImage();
+            this.Faces.Add(new VNPCFace(new seIm($@"{path}(Aca los Maistros 04)-19 copy2.png", "Face 01") { sX=210,X=85,Y=10}));
+
+            var FemBodyActor = GameWorldFactory.GameWorld.CommonFemBodyList.Where(x => x.Name == "LADY_Body_1710070903").FirstOrDefault();
+            this.Cloth = FemBodyActor.GetBody(null);
+
         }
-        private void FillDataImage()
-        {
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"D:\Temp\(Aca los Maistros 04)-19 copy 3.png");
-        }
+
     }
 }

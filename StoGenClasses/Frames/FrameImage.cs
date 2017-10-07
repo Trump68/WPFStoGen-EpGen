@@ -365,7 +365,29 @@ namespace StoGen.Classes
                 Projector.PicContainer.PicList[(int)pi.Props.Level].Margin = new System.Windows.Thickness(pi.Props.X, pi.Props.Y, 0, 0);
                 Projector.PicContainer.PicList[(int)pi.Props.Level].Visibility = System.Windows.Visibility.Visible;
                 Projector.PicContainer.PicList[(int)pi.Props.Level].Tag = fn;
-                //Projector.PicContainer.PicList[(int)pi.Props.Level]
+
+                var transformGroup = new TransformGroup();
+                Projector.PicContainer.PicList[(int)pi.Props.Level].RenderTransformOrigin = new System.Windows.Point(0.5, 0.5);
+             
+                if ((int)pi.Props.Flip == 1)
+                {
+                    ScaleTransform flipTrans = new ScaleTransform();
+                    flipTrans.ScaleX = -1;
+                    transformGroup.Children.Add(flipTrans);
+                }
+                else if ((int)pi.Props.Flip == 2)
+                {
+
+                    ScaleTransform flipTrans = new ScaleTransform();
+                    flipTrans.ScaleY = -1;
+                    transformGroup.Children.Add(flipTrans);
+                }
+                if (pi.Props.Rotate > 0)
+                {
+                    var roateTransform = new RotateTransform(pi.Props.Rotate);
+                    transformGroup.Children.Add(roateTransform);
+                }
+                Projector.PicContainer.PicList[(int)pi.Props.Level].RenderTransform = transformGroup;
 
                 if (pi.Props.ClipX > 0 || pi.Props.ClipY > 0 || pi.Props.ClipW > 0 || pi.Props.ClipH > 0)
                 {
@@ -389,28 +411,7 @@ namespace StoGen.Classes
                 }
 
 
-                var transformGroup = new TransformGroup();
-                Projector.PicContainer.PicList[(int)pi.Props.Level].RenderTransformOrigin = new System.Windows.Point(0.5, 0.5);
-                if ((int)pi.Props.Flip == 1)
-                {
-                    ScaleTransform flipTrans = new ScaleTransform();
-                    flipTrans.ScaleX = -1;
-                    transformGroup.Children.Add(flipTrans);
-                }
-                else if ((int)pi.Props.Flip == 2)
-                {
-
-                    ScaleTransform flipTrans = new ScaleTransform();
-                    flipTrans.ScaleY = -1;
-                    transformGroup.Children.Add(flipTrans);
-                }
-
-                if (pi.Props.Rotate > 0)
-                {
-                    var roateTransform = new RotateTransform(pi.Props.Rotate);
-                    transformGroup.Children.Add(roateTransform);
-                }
-                Projector.PicContainer.PicList[(int)pi.Props.Level].RenderTransform = transformGroup;
+             
 
 
             }

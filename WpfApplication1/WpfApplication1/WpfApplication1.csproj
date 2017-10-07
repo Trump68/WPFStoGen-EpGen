@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{77B13F47-9203-4C8A-9D6D-8C0716EAAA87}</ProjectGuid>
+    <ProjectGuid>{13C6C2BB-82D0-4200-B157-B69B7D7966AB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StoGenMake</RootNamespace>
-    <AssemblyName>StoGenMake</AssemblyName>
+    <RootNamespace>WpfApplication1</RootNamespace>
+    <AssemblyName>WpfApplication1</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -29,7 +29,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\..\Process2\!EXE\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,7 +37,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,20 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Elements\ScenElement.cs" />
-    <Compile Include="EntityData\EntityData.cs" />
-    <Compile Include="GameWorld\GameWorld.cs" />
-    <Compile Include="GameWorld\GameWorldDataLoader.cs" />
-    <Compile Include="Location\VisualLocaton.cs" />
-    <Compile Include="ScenCadre\ScenCadre.cs" />
-    <Compile Include="Scenes\Base\BaseScene.cs" />
-    <Compile Include="Scenes\Scene01.cs" />
-    <Compile Include="Scenes\SCENE_031017.cs" />
-    <Compile Include="StoGenMaker.cs" />
-    <Compile Include="Transition\Transition.cs" />
-    <Compile Include="VNPC\BASE\VNPC.cs" />
-    <Compile Include="VNPC\READY\LADY_041017.cs" />
-    <Compile Include="VNPC\READY\LADY_011017.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -109,20 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\StoGenClasses\StoGenClasses.csproj">
-      <Project>{16832A49-6465-4C63-8C20-F7DE36ADF10C}</Project>
-      <Name>StoGenClasses</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\StoGenLife\StoGenLife.csproj">
-      <Project>{E45DC092-2338-4AE7-A151-423318D217EB}</Project>
-      <Name>StoGenLife</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\StoGenWPF\StoGenWPF\StoGenWPF.csproj">
-      <Project>{ad6db9a5-7a96-4a41-bda0-72d01e6e86ac}</Project>
-      <Name>StoGenWPF</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

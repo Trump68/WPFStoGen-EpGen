@@ -79,12 +79,7 @@ namespace StoGenMake.Pers
             {
                 ScenCadre cadre;
                 cadre = this.Scene.AddCadre(null, null, 200);
-
-                ScenElementImage image;
-                image = new ScenElementImage();
-                image.Name = $"DOCIER_PICTURE {cadre.VisionList.Count}";
-                image.File = it.Value;
-                cadre.VisionList.Add(image);
+                cadre.VisionList.Add(it.Image);
             }
         }
 
@@ -105,6 +100,7 @@ namespace StoGenMake.Pers
             }
             set
             {
+                if (value != null) 
                 _CurrentFace = value;
             }
         }
@@ -155,10 +151,26 @@ namespace StoGenMake.Pers
         {
             if (Cloth != null) this.Cloth.Set(cadre);
         }
-        public virtual void AssembleHead(ScenCadre cadre)
+        public virtual void AssembleHead(ScenCadre cadre, string name = null)
         {
-            if (FaceEnabled) this.CurrentFace.Applay(cadre);
+            if (!FaceEnabled) return;
+            this.CurrentFace = this.Faces.Where(x => x.Head.Name == name).FirstOrDefault();
+            this.CurrentFace.Applay(cadre);
         }
+        public virtual VNPCFace GetHead(string name)
+        {
+            if (!FaceEnabled) return null;
+            if (!string.IsNullOrEmpty(name))
+                this.CurrentFace = this.Faces.Where(x => x.Head.Name == name).FirstOrDefault();
+            return this.CurrentFace;
+        }
+        public virtual VNPCCloth GetBody(string name)
+        {
+            if (!string.IsNullOrEmpty(name))
+                this.Cloth = this.ClothList.Where(x => x.image.Name == name).FirstOrDefault();
+            return this.Cloth;
+        }
+
         public virtual void AssembleVoice(ScenCadre cadre)
         {
             if (Voice != null) this.Voice.Set(cadre);
@@ -171,20 +183,17 @@ namespace StoGenMake.Pers
 
     public class VNPCFace
     {
-
-        public VNPCFace(string name, string file)
+        public seIm Head { set; get; }
+        public VNPCFace(seIm head)
         {
-            this.Name = name;
-            this.File = file;
+            this.Head = head;
         }
-        public string File { set; get; }
-        public string Name { set; get; }
 
 
-        public VNPCMouth Mouth { get; set; } = new VNPCMouth();
-        public VNPCFaceSkin FaceSkin { get; set; } = new VNPCFaceSkin();
-        public VNPCBrows Brows { get; set; } = new VNPCBrows();
-        public VNPCEyes Eyes { get; set; } = new VNPCEyes();
+        public vMouth Mouth { get; set; } = new vMouth();
+        public vFcSkin FaceSkin { get; set; } = new vFcSkin();
+        public vBrow Brows { get; set; } = new vBrow();
+        public vEye Eyes { get; set; } = new vEye();
 
 
 
@@ -193,40 +202,47 @@ namespace StoGenMake.Pers
 
         public virtual void Reset()
         {
-            Eyes.SetType(VNPCEyes.Type.OpenCenter);
+            Eyes.SetType(vEye.Type.OpenCenter);
             Eyes.State = VNPCBodyPart.ChangeState.Already;
 
 
-            Mouth.SetType(VNPCMouth.Type.Neitral);
+            Mouth.SetType(vMouth.Type.Neitral);
             Mouth.State = VNPCBodyPart.ChangeState.Already;
 
-            FaceSkin.SetType(VNPCFaceSkin.Type.None);
+            FaceSkin.SetType(vFcSkin.Type.None);
             FaceSkin.State = VNPCBodyPart.ChangeState.Already;
 
-            Brows.SetType(VNPCBrows.Type.Neitral);
+            Brows.SetType(vBrow.Type.Neitral);
             Brows.State = VNPCBodyPart.ChangeState.Already;
 
 
             if (StateEmotional == VNPCEmotionalState.Joy)
             {
-                Mouth.SetType(VNPCMouth.Type.OpenSense);
+                Mouth.SetType(vMouth.Type.OpenSense);
             }
             else if (StateEmotional == VNPCEmotionalState.Worry)
             {
-                Brows.SetType(VNPCBrows.Type.Worry);
-                Mouth.SetType(VNPCMouth.Type.OpenWorry);
+                Brows.SetType(vBrow.Type.Worry);
+                Mouth.SetType(vMouth.Type.OpenWorry);
             }
         }
         public virtual void Applay(ScenCadre cadre)
         {
             Reset();
 
-            cadre.AddImage(100, File, Name);
-
+            cadre.AddImage(this.Head);
             this.FaceSkin.Applay(cadre, true);
             this.Mouth.Applay(cadre, true);
             this.Eyes.Applay(cadre, true);
             this.Brows.Applay(cadre, true);
+        }
+
+        internal void AlignTo(VNPCCloth body)
+        {
+            this.Head.Reset();
+            var align = GameWorldFactory.GameWorld.HeadToBodyAlignList.Where(x => x.NameHead == this.Head.Name && x.NameBody == body.image.Name).FirstOrDefault();
+            if (align != null)
+                this.Head.AssinFrom(align.Image);
         }
     }
 
@@ -276,19 +292,17 @@ namespace StoGenMake.Pers
     }
     public class VNPCBodyPartSnap
     {
-        public VNPCBodyPartSnap(string file, string name)
+        public VNPCBodyPartSnap(seIm im)
         {
-            this.File = file;
-            this.Name = name;
+            image = im;
         }
-        public string File { set; get; }
-        public string Name { set; get; }
-
+        
+        public seIm image { set; get; } 
     }
     #endregion
 
     #region Mouth
-    public class VNPCMouth : VNPCBodyPart
+    public class vMouth : VNPCBodyPart
     {
         public enum Type
         {
@@ -298,23 +312,23 @@ namespace StoGenMake.Pers
             OpenWorry,
             Doubt
         }
-        public bool Enabled { get { return this.SnapList.Any(); } }
-        public List<VNPCMouthSnap> SnapList = new List<VNPCMouthSnap>();
-        private VNPCMouthSnap _Current;
-        public VNPCMouthSnap Current
+        public bool Enabled { get { return this.Items.Any(); } }
+        public List<VvMouthS> Items = new List<VvMouthS>();
+        private VvMouthS _Current;
+        public VvMouthS Current
         {
             set { this._Current = value; }
             get
             {
                 if (_Current == null)
                 {
-                    _Current = this.SnapList.First();
+                    _Current = this.Items.First();
                 }
                 return _Current;
             }
         }
-        private VNPCMouthSnap _Previous;
-        public VNPCMouthSnap Previous
+        private VvMouthS _Previous;
+        public VvMouthS Previous
         {
             set { this._Previous = value; }
             get
@@ -326,30 +340,30 @@ namespace StoGenMake.Pers
                 return _Previous;
             }
         }
-        public void SetType(VNPCMouth.Type type)
+        public void SetType(vMouth.Type type)
         {
-            Current = SnapList.Where(x => x.Type == type).FirstOrDefault();
-            State = VNPCMouth.ChangeState.GoPulsed;
+            Current = Items.Where(x => x.Type == type).FirstOrDefault();
+            State = vMouth.ChangeState.GoPulsed;
         }
         public void Applay(ScenCadre cadre, bool permanent)
         {
             if (!Enabled) return;
             if (periodic)
-                cadre.AddImage(100, Previous.File);
+                cadre.AddImage(Previous.image);
 
-            int opacity = 100;
-            if (invisible) opacity = 0;
+            if (invisible) Current.image.Opa = 0;
+            else Current.image.Opa = 100;
 
-            var image = cadre.AddImage(opacity, Current.File);
-            if ((opacity == 0) || reverse)
+            var image = cadre.AddImage(Current.image);
+            if (invisible || reverse)
                 image.Transition = Transition.Mouth(200, reverse, periodic, permanent);
         }
 
     }
-    public class VNPCMouthSnap : VNPCBodyPartSnap
+    public class VvMouthS : VNPCBodyPartSnap
     {
-        public VNPCMouth.Type Type { set; get; }
-        public VNPCMouthSnap(VNPCMouth.Type type, string file, string name) : base(file, name)
+        public vMouth.Type Type { set; get; }
+        public VvMouthS(vMouth.Type type, seIm im) : base(im)
         {
             this.Type = type;
         }
@@ -357,30 +371,30 @@ namespace StoGenMake.Pers
     #endregion
 
     #region FaceSkin
-    public class VNPCFaceSkin : VNPCBodyPart
+    public class vFcSkin : VNPCBodyPart
     {
         public enum Type
         {
             None,
             Blush
         }
-        public bool Enabled { get { return this.SnapList.Any(); } }
-        public List<VNPCFaceSkinSnap> SnapList = new List<VNPCFaceSkinSnap>();
-        private VNPCFaceSkinSnap _Current;
-        public VNPCFaceSkinSnap Current
+        public bool Enabled { get { return this.Items.Any(); } }
+        public List<vFcSkinS> Items = new List<vFcSkinS>();
+        private vFcSkinS _Current;
+        public vFcSkinS Current
         {
             set { this._Current = value; }
             get
             {
                 if (_Current == null)
                 {
-                    _Current = this.SnapList.First();
+                    _Current = this.Items.First();
                 }
                 return _Current;
             }
         }
-        private VNPCFaceSkinSnap _Previous;
-        public VNPCFaceSkinSnap Previous
+        private vFcSkinS _Previous;
+        public vFcSkinS Previous
         {
             set { this._Previous = value; }
             get
@@ -392,27 +406,30 @@ namespace StoGenMake.Pers
                 return _Previous;
             }
         }
-        public void SetType(VNPCFaceSkin.Type type)
+        public void SetType(vFcSkin.Type type)
         {
-            Current = SnapList.Where(x => x.Type == type).FirstOrDefault();
+            Current = Items.Where(x => x.Type == type).FirstOrDefault();
             State = ChangeState.GoPulsed;
         }
         public void Applay(ScenCadre cadre, bool permanent)
         {
             if (!Enabled) return;
 
-            int opacity = 100;
-            if (invisible) opacity = 0;
+            var im = Items.Where(x => x.Type == Type.Blush).FirstOrDefault().image;
+            if (im == null) return;
+            
+            if (invisible) im.Opa = 0;
+            else im.Opa = 100;
 
-            var image = cadre.AddImage(opacity, SnapList.Where(x => x.Type == Type.Blush).FirstOrDefault().File, null);
-            if ((opacity == 0) || reverse)
+            var image = cadre.AddImage(im);
+            if (invisible|| reverse)
                 image.Transition = Transition.Blush(500, reverse, periodic, permanent);
         }
     }
-    public class VNPCFaceSkinSnap : VNPCBodyPartSnap
+    public class vFcSkinS : VNPCBodyPartSnap
     {
-        public VNPCFaceSkin.Type Type { set; get; }
-        public VNPCFaceSkinSnap(VNPCFaceSkin.Type type, string file, string name) : base(file, name)
+        public vFcSkin.Type Type { set; get; }
+        public vFcSkinS(vFcSkin.Type type, seIm im) : base(im)
         {
             this.Type = type;
         }
@@ -420,30 +437,30 @@ namespace StoGenMake.Pers
     #endregion
 
     #region Brows
-    public class VNPCBrows : VNPCBodyPart
+    public class vBrow : VNPCBodyPart
     {
         public enum Type
         {
             Neitral,
             Worry
         }
-        public bool Enabled { get { return this.SnapList.Any(); } }
-        public List<VNPCBrowSnap> SnapList = new List<VNPCBrowSnap>();
-        private VNPCBrowSnap _Current;
-        public VNPCBrowSnap Current
+        public bool Enabled { get { return this.Items.Any(); } }
+        public List<vBrowS> Items = new List<vBrowS>();
+        private vBrowS _Current;
+        public vBrowS Current
         {
             set { this._Current = value; }
             get
             {
                 if (_Current == null)
                 {
-                    _Current = this.SnapList.First();
+                    _Current = this.Items.First();
                 }
                 return _Current;
             }
         }
-        private VNPCBrowSnap _Previous;
-        public VNPCBrowSnap Previous
+        private vBrowS _Previous;
+        public vBrowS Previous
         {
             set { this._Previous = value; }
             get
@@ -455,27 +472,28 @@ namespace StoGenMake.Pers
                 return _Previous;
             }
         }
-        public void SetType(VNPCBrows.Type type)
+        public void SetType(vBrow.Type type)
         {
-            Current = SnapList.Where(x => x.Type == type).FirstOrDefault();
+            Current = Items.Where(x => x.Type == type).FirstOrDefault();
             State = ChangeState.GoPulsed;
         }
         public void Applay(ScenCadre cadre, bool permanent)
         {
             if (!Enabled) return;
 
-            int opacity = 100;
-            if (invisible) opacity = 0;
-            var image = cadre.AddImage(opacity, Current.File, null);
-            if ((opacity == 0) || reverse)
+            if (invisible) Current.image.Opa = 0;
+            else Current.image.Opa = 100;
+
+            var image = cadre.AddImage(Current.image);
+            if (invisible|| reverse)
                 image.Transition = Transition.Blush(500, reverse, false, false);
         }
 
     }
-    public class VNPCBrowSnap : VNPCBodyPartSnap
+    public class vBrowS : VNPCBodyPartSnap
     {
-        public VNPCBrows.Type Type { set; get; }
-        public VNPCBrowSnap(VNPCBrows.Type type, string file, string name) : base(file, name)
+        public vBrow.Type Type { set; get; }
+        public vBrowS(vBrow.Type type, seIm im) : base(im)
         {
             this.Type = type;
         }
@@ -484,7 +502,7 @@ namespace StoGenMake.Pers
     #endregion
 
     #region Eyes
-    public class VNPCEyes : VNPCBodyPart
+    public class vEye : VNPCBodyPart
     {
         public enum Type
         {
@@ -493,23 +511,23 @@ namespace StoGenMake.Pers
             Squeeze,
             Hide
         }
-        public bool Enabled { get { return this.SnapList.Any(); } }
-        public List<VNPCEyesSnap> SnapList = new List<VNPCEyesSnap>();
-        private VNPCEyesSnap _Current;
-        public VNPCEyesSnap Current
+        public bool Enabled { get { return this.Items.Any(); } }
+        public List<vEyeS> Items = new List<vEyeS>();
+        private vEyeS _Current;
+        public vEyeS Current
         {
             set { this._Current = value; }
             get
             {
                 if (_Current == null)
                 {
-                    _Current = this.SnapList.First();
+                    _Current = this.Items.First();
                 }
                 return _Current;
             }
         }
-        private VNPCEyesSnap _Previous;
-        public VNPCEyesSnap Previous
+        private vEyeS _Previous;
+        public vEyeS Previous
         {
             set { this._Previous = value; }
             get
@@ -521,9 +539,9 @@ namespace StoGenMake.Pers
                 return _Previous;
             }
         }
-        public void SetType(VNPCEyes.Type type)
+        public void SetType(vEye.Type type)
         {
-            Current = SnapList.Where(x => x.Type == type).FirstOrDefault();
+            Current = Items.Where(x => x.Type == type).FirstOrDefault();
             State = ChangeState.GoPulsed;
         }
         public void Applay(ScenCadre cadre, bool permanent)
@@ -531,46 +549,45 @@ namespace StoGenMake.Pers
             if (!Enabled) return;
             if (periodic)
             {
-                cadre.AddImage(100, Previous.File, null);
+                cadre.AddImage(Previous.image);
             }
+            
+            if (invisible) Current.image.Opa = 0;
+            else
+                Current.image.Opa = 100;
 
-
-            int opacity = 100;
-            if (invisible) opacity = 0;
-
-            var image = cadre.AddImage(opacity, Current.File, null);
-            if ((opacity == 0) || reverse)
+            var image = cadre.AddImage(Current.image);
+            if (invisible || reverse)
                 image.Transition = Transition.Eyes(200, reverse, periodic, permanent);
 
-            image = cadre.AddImage(opacity, SnapList.Where(x => x.Type == Type.Close).FirstOrDefault().File, null);
+            var im = Items.Where(x => x.Type == Type.Close).FirstOrDefault();
+            if (im == null) return;
+            im.image.Opa = 0;
+            image = cadre.AddImage(im.image);
             image.Transition = Transition.Eyes_Blink;
         }
 
     }
-    public class VNPCEyesSnap : VNPCBodyPartSnap
+    public class vEyeS : VNPCBodyPartSnap
     {
-        public VNPCEyes.Type Type { set; get; }
-        public VNPCEyesSnap(VNPCEyes.Type type, string file, string name) : base(file, name)
+        public vEye.Type Type { set; get; }
+        public vEyeS(vEye.Type type, seIm im) : base(im)
         {
             this.Type = type;
         }
     }
     #endregion
 
-    public class VNPCCloth
+    public class VNPCCloth: VNPCBodyPartSnap
     {
-        public string Name { set; get; }
-        public string MainImage { get; private set; }
         public VNPCClothType Type { set; get; }
-        public VNPCCloth(string file, string name, VNPCClothType type)
+        public VNPCCloth(VNPCClothType type, seIm im):base(im)
         {
-            this.MainImage = file;
-            this.Name = name;
             this.Type = type;
         }
         public virtual void Set(ScenCadre cadre)
         {
-            cadre.AddImage(100, Name);
+            cadre.AddImage(this.image);
         }
     }
     public class VNPCVoice
@@ -599,6 +616,8 @@ namespace StoGenMake.Pers
     {
         Real,
         HCG,
+        Comix,
+        ArtCG,
         JAV
     }
 

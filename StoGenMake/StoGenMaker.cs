@@ -31,7 +31,7 @@ namespace StoGenMake
         }
         private static void GenerateScen(string fileToProcess)
         {
-            var gWorld = new GameWorld();
+            
             VNPC pers = null;
             
             if (!string.IsNullOrEmpty(fileToProcess))
@@ -49,7 +49,9 @@ namespace StoGenMake
                 {
                     persName = persName.Replace(@"SCENPERS ", string.Empty).Replace(@"NPC=", string.Empty);
                     Guid gid = Guid.Parse(persName.Trim());
-                    pers = gWorld.PersoneList.FirstOrDefault(x => x.GID.Equals(gid));
+                    var dd = GameWorldFactory.GameWorld.PersoneList;
+                    var d = dd.FirstOrDefault(x => x.GID.Equals(gid));
+                    pers = GameWorldFactory.GameWorld.PersoneList.FirstOrDefault(x => x.GID.Equals(gid));
                     datalist.RemoveAll(x => x.StartsWith(@"SCENPERS "));
                 }
             }
@@ -58,7 +60,7 @@ namespace StoGenMake
             if (pers != null)
             {
                 scen.AddActor(pers);
-                gWorld.CurrentPersone = pers;
+                GameWorldFactory.GameWorld.CurrentPersone = pers;
                 // set variables
                 //pers.SetPersVariablesData(datalist);
             }            
@@ -68,7 +70,7 @@ namespace StoGenMake
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
             window.Startfile = fn;
-            window.GlobalMenuCreator = gWorld;
+            window.GlobalMenuCreator = GameWorldFactory.GameWorld;
             window.Show();
 
 

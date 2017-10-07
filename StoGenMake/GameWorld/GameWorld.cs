@@ -10,12 +10,31 @@ using StoGenMake.Pers;
 using StoGenMake.Location;
 using StoGenMake.Scenes.Base;
 using StoGenMake.Scenes;
+using StoGenMake.Elements;
 
 namespace StoGenMake
 {
+    public static class GameWorldFactory
+    {
+        private static GameWorld _GameWorld;
+        public static GameWorld GameWorld
+        {
+            get
+            {
+                if (_GameWorld == null)
+                {
+                    _GameWorld = new GameWorld();
+                }
+                return _GameWorld;
+            }
+        }
+    }
     public class GameWorld: IMenuCreator
     {
         public List<VNPC>          PersoneList  { get; internal set; }
+        public List<VNPC>          CommonFemHeadList { get; internal set; }
+        public List<VNPC>          CommonFemBodyList { get; internal set; }
+        public List<AlignData> HeadToBodyAlignList { get; internal set; }
         public List<VisualLocaton> LocationList { get; internal set; }
         public List<BaseScene> SceneList { get; internal set; }
         public VNPC CurrentPersone { get; internal set; }
@@ -23,13 +42,18 @@ namespace StoGenMake
         {
            
             this.PersoneList  = new List<VNPC>();
+            this.CommonFemHeadList = new List<VNPC>();
+            this.CommonFemBodyList = new List<VNPC>();
+            this.HeadToBodyAlignList = new List<AlignData>();
+
             this.LocationList = new List<VisualLocaton>();
             this.SceneList = new List<BaseScene>();
 
             GameWorldDataLoader.LoadPersList(this.PersoneList);
+            GameWorldDataLoader.LoadFemHeadList(this.CommonFemHeadList, this.HeadToBodyAlignList);
+            GameWorldDataLoader.LoadFemBodyList(this.CommonFemBodyList);
 
-            this.PersoneList.Add(new PERS01());
-
+            this.PersoneList.Add(new LADY_011017 ());
             this.SceneList.Add(new SCENE_031017());
         }
 
@@ -172,5 +196,17 @@ namespace StoGenMake
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
             return true;
         }
+    }
+    public class AlignData
+    {
+        public AlignData(string head, string body, seIm im)
+        {
+            NameHead = head;
+            NameBody = body;
+            Image = im;
+        }
+        public string NameBody { set; get; }
+        public string NameHead { set; get; }
+        public seIm Image { set; get; } = new seIm();
     }
 }

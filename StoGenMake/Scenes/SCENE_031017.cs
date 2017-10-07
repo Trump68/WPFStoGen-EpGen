@@ -15,18 +15,32 @@ namespace StoGenMake.Scenes
         private VNPC FemBodyActor;
         public SCENE_031017() : base()
         {
-            FemBodyActor = new VNPC();
-            this.AddActor(FemBodyActor);
-
-            FemHeadActor = new VNPC();
-            this.AddActor(FemHeadActor);
+           
         }
         protected override void MakeCadres()
         {
-            ScenCadre cadre;
-            cadre = this.AddCadre(null, null, 200);
+            SetCadre("LADY_Body_1710070900", "LADY_Head_1710070901");
+            SetCadre("LADY_Body_1710070901", "LADY_Head_1710070901");
+
+            SetCadre("LADY_Body_1710070901", "LADY_Head_1710070902");
+            SetCadre("LADY_Body_1710070902", "LADY_Head_1710070902");
+
+            SetCadre("LADY_Body_1710070903", "LADY_Head_1710070903");
+            SetCadre("LADY_Body_1710070900", "LADY_Head_1710070903");
+        }
+
+        private void SetCadre(string bodyN, string headN)
+        {
+            var cadre = this.AddCadre(null, null, 200);
+
+            FemBodyActor = GameWorldFactory.GameWorld.CommonFemBodyList.Where(x => x.Name == bodyN).FirstOrDefault();
+            var body = FemBodyActor.GetBody(null);
             FemBodyActor.AssembleBody(cadre);
-            FemHeadActor.AssembleHead(cadre);            
+
+            FemHeadActor = GameWorldFactory.GameWorld.CommonFemHeadList.Where(x => x.Name == headN).FirstOrDefault();
+            var head = FemHeadActor.GetHead(null);
+            head.AlignTo(body);
+            FemHeadActor.AssembleHead(cadre);
         }
     }
     

@@ -331,7 +331,7 @@ namespace StoGen.Classes
                 else if (mark == "Y") p.Y = Convert.ToInt32(val.Trim());
                 else if (mark == "SizeX") p.SizeX = Convert.ToInt32(val.Trim());
                 else if (mark == "SizeY") p.SizeY = Convert.ToInt32(val.Trim());
-                else if (mark == "Rotate") p.Rotate = Convert.ToInt32(val.Trim());
+                else if (mark == "Rot") p.Rotate = Convert.ToInt32(val.Trim());
                 else if (mark == "Flip") p.Flip = (RotateFlipType)Convert.ToInt32(val.Trim());
                 else if (mark == "R") p.R = Convert.ToInt32(val.Trim());
                 else if (mark == "Blur") p.Blur = Convert.ToInt32(val.Trim());

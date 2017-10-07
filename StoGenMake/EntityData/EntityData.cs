@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoGenMake.Elements;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,36 +12,34 @@ namespace StoGenMake.Entity
     {
         public static string ImageDialogMain = "PIC Main dialog";
         public List<EntityVariable> Variables { get; } = new List<EntityVariable>();
-        public IEnumerable<EntityVariable> ByName(string type, string name, string part)
+        public IEnumerable<EntityVariable> ByName(string type, string group, string part)
         {
-            return Variables.Where(x => x.Type == type && x.Name == name && x.Part == part);
+            return Variables.Where(x => x.Type == type && x.Group == group && x.Part == part);
         }
-        public void SetByName(string type, string name, string part, string val)
+        public void SetByName(string type, string name, string part, seIm im)
         {
-            ByName(type, name, part).ToList().ForEach(x => x.Value = val);
+            ByName(type, name, part).ToList().ForEach(x => x.Image = im);
         }
-        public void Add(string type, string name, string part, string defaultVal)
+        public void Add(string type, string group, seIm im, string part = null)
         {
             //if (!ByName(type, name, part).Any())
             //{
-                this.Variables.Add(new EntityVariable(type, name, part, defaultVal, null));
+                this.Variables.Add(new EntityVariable(type, group, im, part));
             //}
         }
     }
 
     public class EntityVariable
     {
-        public string Name;
+        public seIm Image;
+        public string Group;
         public string Part;
-        public string Description;
-        public string Value;
         public string Type;
-        public EntityVariable(string type, string name, string part, string val, string desc)
+        public EntityVariable(string type,string group, seIm im, string part = null)
         {
-            Name = name;
+            this.Image = im;
+            Group = group;
             Part = part;
-            Description = desc;
-            Value = val;
             Type = type;
         }
     }

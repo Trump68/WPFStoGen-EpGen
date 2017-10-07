@@ -10,10 +10,10 @@ using static StoGenMake.Pers.VNPC;
 
 namespace StoGenMake.Pers
 {
-    public class PERS01: VNPC
+    public class LADY_011017 : VNPC
     {
 
-        public PERS01() : base()
+        public LADY_011017 () : base()
         {
             this.Name = "Maria Delgado";
             this.GID = Guid.Parse("{39FCD7CD-C3A5-497A-9D10-84F2DF6DB34B}");
@@ -26,6 +26,7 @@ namespace StoGenMake.Pers
         }
         private void FillDataImage()
         {
+            string path = $@"x:\STOGEN\LADY\HCG\LADY_011017\";
             // sound
             this.Data.Add("SOUND", MUSIC_MAIN_THEME, null, null);
             this.Data.Add("SOUND", ASMR_01, null, null);
@@ -35,35 +36,35 @@ namespace StoGenMake.Pers
             this.Data.Add("SOUND", ORGAZM_04, null, null);
             
 
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_1.png");
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\01.png");
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\01a_2.png");
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\01a_3.png");
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\02a_3.png");
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\02a_4.png");
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\02a_7.png");
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\03.png");
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, null, $@"x:\STOGEN\LADY\HCG\Maria Delgado\03a_1.png");
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}04a_1.png"));
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}01.png"));
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}01a_2.png"));
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}01a_3.png"));
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}02a_3.png"));
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}02a_4.png"));
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}02a_7.png"));
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}03.png"));
+            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}03a_1.png"));
 
             this.VoiceList.Add(new VNPCVoice(SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_01, VNPCVoiceType.Neitral, VNPCTermType.None));
             this.VoiceList.Add(new VNPCVoice(SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_02, VNPCVoiceType.Neitral, VNPCTermType.None));
             this.VoiceList.Add(new VNPCVoice(SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_03, VNPCVoiceType.Neitral, VNPCTermType.None));
 
-            this.ClothList.Add(new VNPCCloth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_24.png",null, VNPCClothType.Kimono));
-            this.ClothList.Add(new VNPCCloth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_19.png", null, VNPCClothType.KimonoDecolte));
-            this.ClothList.Add(new VNPCCloth($@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_20.png", null, VNPCClothType.Naked));
+            this.ClothList.Add(new VNPCCloth(VNPCClothType.Kimono,new seIm($@"{path}04a_24.png")));
+            this.ClothList.Add(new VNPCCloth(VNPCClothType.KimonoDecolte, new seIm($@"{path}04a_19.png")));
+            this.ClothList.Add(new VNPCCloth(VNPCClothType.Naked, new seIm($@"{path}04a_20.png")));
 
-            var face = new VNPCFace("Face 01", @"x:\STOGEN\LADY\HCG\Maria Delgado\04a_23.png");
-            face.Mouth.SnapList.Add(new VNPCMouthSnap(VNPCMouth.Type.Neitral,$@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_26.png",null));
-            face.Mouth.SnapList.Add(new VNPCMouthSnap(VNPCMouth.Type.OpenSense,$@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_3.png",null));
-            face.Mouth.SnapList.Add(new VNPCMouthSnap(VNPCMouth.Type.Squeeze, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_4.png",null));
-            face.Mouth.SnapList.Add(new VNPCMouthSnap(VNPCMouth.Type.OpenWorry,$@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_22.png",null));
-            face.Eyes.SnapList.Add(new VNPCEyesSnap(VNPCEyes.Type.OpenCenter, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_25.png", null));
-            face.Eyes.SnapList.Add(new VNPCEyesSnap(VNPCEyes.Type.Close, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_17.png", null));
-            face.Eyes.SnapList.Add(new VNPCEyesSnap(VNPCEyes.Type.Squeeze, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_6.png", null));
-            face.Eyes.SnapList.Add(new VNPCEyesSnap(VNPCEyes.Type.Hide, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_13.png", null));
-            face.Brows.SnapList.Add(new VNPCBrowSnap(VNPCBrows.Type.Worry, $@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_8.png", null));
-            face.FaceSkin.SnapList.Add(new VNPCFaceSkinSnap(VNPCFaceSkin.Type.Blush,$@"x:\STOGEN\LADY\HCG\Maria Delgado\04a_2.png", null));
+            var face = new VNPCFace(new seIm($@"{path}04a_23.png", "Face 01"));
+            face.Mouth.Items.Add(new VvMouthS(vMouth.Type.Neitral, new seIm($@"{path}04a_26.png")));
+            face.Mouth.Items.Add(new VvMouthS(vMouth.Type.OpenSense, new seIm($@"{path}04a_3.png")));
+            face.Mouth.Items.Add(new VvMouthS(vMouth.Type.Squeeze, new seIm($@"{path}04a_4.png")));
+            face.Mouth.Items.Add(new VvMouthS(vMouth.Type.OpenWorry, new seIm($@"{path}04a_22.png")));
+            face.Eyes.Items.Add(new vEyeS(vEye.Type.OpenCenter, new seIm($@"{path}04a_25.png")));
+            face.Eyes.Items.Add(new vEyeS(vEye.Type.Close, new seIm($@"{path}04a_17.png")));
+            face.Eyes.Items.Add(new vEyeS(vEye.Type.Squeeze, new seIm($@"{path}04a_6.png")));
+            face.Eyes.Items.Add(new vEyeS(vEye.Type.Hide, new seIm($@"{path}04a_13.png")));
+            face.Brows.Items.Add(new vBrowS(vBrow.Type.Worry, new seIm($@"{path}04a_8.png")));
+            face.FaceSkin.Items.Add(new vFcSkinS(vFcSkin.Type.Blush, new seIm($@"{path}04a_2.png")));
             this.Faces.Add(face);
 
             this.Cloth = this.ClothList.FirstOrDefault(x => x.Type == VNPCClothType.Kimono);
