@@ -80,6 +80,15 @@ namespace StoGenMake.Elements
 
         public seIm() { }
         public static seIm Previous = new seIm() {};
+
+        internal static string GetWhiteImage()
+        {
+            List<string> result = new List<string>();           
+            result.Add($"AutoPics=WHITE");
+            result.Add($"Level=-1");
+            return string.Join(";", result.ToArray());
+        }
+
         public int sX = 900;
         public int sY = 600;
         public int SizeMode = 1;
@@ -91,7 +100,8 @@ namespace StoGenMake.Elements
         public int Rot { get; internal set; } = 0;
         public override bool IsActivated { get { return (this == Previous) || (!string.IsNullOrEmpty(this.File)); } }
 
-        
+        public VNPCPersType PersonType { get; internal set; }
+        public string Description { get; internal set; }
 
         internal override string GetElementData()
         {           

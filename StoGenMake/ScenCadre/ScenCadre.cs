@@ -20,7 +20,7 @@ namespace StoGenMake.Elements
         public List<ScenElement> VisionList = new List<ScenElement>();
         public List<ScenElement> SoundList = new List<ScenElement>();
         public List<ScenElement> TextList = new List<ScenElement>();
-        
+        public bool IsWhite = false;
 
         public ScenCadre()
         {
@@ -67,7 +67,10 @@ namespace StoGenMake.Elements
                 this.VisionList.ForEach(x => (x as seIm).Timer = this.Timer);
                 //(this.VisionList.First() as ScenElementImage).Timer = this.Timer;
             }
-               
+            if (this.IsWhite)               
+            {
+                result.Add(" " + seIm.GetWhiteImage());
+            }
             foreach (var item in this.VisionList)
             {
                 if (item.IsActivated)

@@ -32,26 +32,29 @@ namespace StoGenMake
     public class GameWorld: IMenuCreator
     {
         public List<VNPC>          PersoneList  { get; internal set; }
-        public List<VNPC>          CommonFemHeadList { get; internal set; }
-        public List<VNPC>          CommonFemBodyList { get; internal set; }
+        public List<seIm>          CommonImageList { get; internal set; }
+       
         public List<AlignData> HeadToBodyAlignList { get; internal set; }
         public List<VisualLocaton> LocationList { get; internal set; }
         public List<BaseScene> SceneList { get; internal set; }
         public VNPC CurrentPersone { get; internal set; }
+        
+
         public GameWorld()
         {
            
             this.PersoneList  = new List<VNPC>();
-            this.CommonFemHeadList = new List<VNPC>();
-            this.CommonFemBodyList = new List<VNPC>();
+            this.CommonImageList = new List<seIm>();
             this.HeadToBodyAlignList = new List<AlignData>();
 
             this.LocationList = new List<VisualLocaton>();
             this.SceneList = new List<BaseScene>();
 
             GameWorldDataLoader.LoadPersList(this.PersoneList);
-            GameWorldDataLoader.LoadFemHeadList(this.CommonFemHeadList, this.HeadToBodyAlignList);
-            GameWorldDataLoader.LoadFemBodyList(this.CommonFemBodyList);
+            GameWorldDataLoader.LoadFemHeadList(this.CommonImageList, this.HeadToBodyAlignList);
+            GameWorldDataLoader.LoadFemBodyList(this.CommonImageList);
+            GameWorldDataLoader.LoadManBodyList(this.CommonImageList);
+            GameWorldDataLoader.LoadManHeadList(this.CommonImageList);
 
             this.PersoneList.Add(new LADY_011017 ());
             this.SceneList.Add(new TestScene());

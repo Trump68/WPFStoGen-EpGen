@@ -13,7 +13,7 @@ using StoGen.Classes;
 
 namespace StoGenMake.Scenes.Base
 {
-   
+
     public class BaseScene
     {
         protected List<VNPC> Actors;
@@ -32,7 +32,7 @@ namespace StoGenMake.Scenes.Base
         public enum ViewingTransitionState
         {
             Disabled,
-            None,           
+            None,
             Go
         }
         public int SizeX = 800;
@@ -100,11 +100,11 @@ namespace StoGenMake.Scenes.Base
             this.Cadres.Add(cadre);
             return cadre;
         }
-      
+
         public string Description { get; set; }
         public string Name { get; set; }
         public List<ScenCadre> Cadres { get; set; } = new List<ScenCadre>();
-        
+
 
         public string FileToProcess = null;
         public string Generate(string FileToProcess)
@@ -130,11 +130,11 @@ namespace StoGenMake.Scenes.Base
                     var cadredata = item.GetCadreData();
                     if (!string.IsNullOrEmpty(FileToProcess))
                     {
-                     //   string newfnCadre = i.ToString("000") + "_" + item.Name + ".stogen";
-                     //   string savepathCadre = Path.GetDirectoryName(FileToProcess) + @"\Cadres\";
-                    //    if (!Directory.Exists(savepathCadre)) Directory.CreateDirectory(savepathCadre);
-                     //   string fnCadre = Path.Combine(savepathCadre, newfnCadre);
-                      //  File.WriteAllText(fnCadre, string.Join(Environment.NewLine, cadredata.ToArray()));
+                        //   string newfnCadre = i.ToString("000") + "_" + item.Name + ".stogen";
+                        //   string savepathCadre = Path.GetDirectoryName(FileToProcess) + @"\Cadres\";
+                        //    if (!Directory.Exists(savepathCadre)) Directory.CreateDirectory(savepathCadre);
+                        //   string fnCadre = Path.Combine(savepathCadre, newfnCadre);
+                        //  File.WriteAllText(fnCadre, string.Join(Environment.NewLine, cadredata.ToArray()));
                     }
                     scendata.AddRange(cadredata);
                 }
@@ -161,6 +161,36 @@ namespace StoGenMake.Scenes.Base
             return true;
         }
 
+        protected void SetCadre(string name, bool white)
+        {
+            SetCadre(new Tuple<string, string, seIm>[] { new Tuple<string, string, seIm>(name, null, null) }, white);
+        }
+        protected void SetCadre(Tuple<string,string,seIm>[] imdata, bool isWhite = false)
+        {
+            var cadre = this.AddCadre(null, null, 200);
+            cadre.IsWhite = isWhite;
+            foreach (var item in imdata)
+            {
+                string name = item.Item1;
+                string alignto = item.Item2;
+                seIm align = item.Item3;
+                var im = GameWorldFactory.GameWorld.CommonImageList.Where(x => x.Name == name).FirstOrDefault();
+                if (im != null)
+                {
+                    im.Reset();                    
+                    if (!string.IsNullOrEmpty(alignto))
+                    {
+                        var it = GameWorldFactory.GameWorld.HeadToBodyAlignList.Where(x => x.NameHead == im.Name && x.NameBody == alignto).FirstOrDefault();
+                        if (it != null) im.AssinFrom(it.Image);
+                    }
+                    if (align != null)
+                    {
+                        im.AssinFrom(align);
+                    }
+                    cadre.AddImage(im);
+                }                
+            }
+        }
     }
     public class SceneVariable
     {

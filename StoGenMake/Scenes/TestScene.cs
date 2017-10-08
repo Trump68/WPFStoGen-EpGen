@@ -11,82 +11,225 @@ namespace StoGenMake.Scenes
 {
     public class TestScene: BaseScene
     {
-        private VNPC FemHeadActor;
-        private VNPC FemBodyActor;
+
         public TestScene() : base()
         {
            
         }
         protected override void MakeCadres()
         {
-            SetCadre("LADY_Body_1710071009", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710071008", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710071007", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710071006", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710071005", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710071004", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710071003", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710071002", "LADY_Head_1710070901");
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710071009",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710071009",null)
+            }, false);
 
-            SetCadre("LADY_Body_1710070908a", "LADY_Head_1710071000");
-            SetCadre("LADY_Body_1710070908a", "LADY_Head_1710071001");
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710071008",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710071008",null)
+            }, false);
 
-            SetCadre("LADY_Body_1710070907d", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070907c", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070907b", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070907a", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070907",  "LADY_Head_1710070901");
-            
-            SetCadre("LADY_Body_1710070908p", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908o", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908n", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908m", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908l", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908k", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908j", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908h", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908g", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908f", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908e", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908d", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908c", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908b", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908a", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070908", "LADY_Head_1710070901");
-            
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710071007",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710071007",null)
+            }, false);
 
-            SetCadre("LADY_Body_1710070906", "LADY_Head_1710070906");
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710071006",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710071006",null)
+            }, false);
 
-            SetCadre("LADY_Body_1710070905", "LADY_Head_1710070905");
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710071005",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710071005",null)
+            }, false);
 
-            SetCadre("LADY_Body_1710070900", "LADY_Head_1710070904");
-            SetCadre("LADY_Body_1710070904", "LADY_Head_1710070904");
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710071004",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710071004",null)
+            }, false);
 
-            SetCadre("LADY_Body_1710070900", "LADY_Head_1710070901");
-            SetCadre("LADY_Body_1710070901", "LADY_Head_1710070901");
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710071003",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710071003",null)
+            }, false);
 
-            SetCadre("LADY_Body_1710070901", "LADY_Head_1710070902");
-            SetCadre("LADY_Body_1710070902", "LADY_Head_1710070902");
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710071002",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710071002",null)
+            }, false);
 
-            SetCadre("LADY_Body_1710070903", "LADY_Head_1710070903");
-            SetCadre("LADY_Body_1710070900", "LADY_Head_1710070903");
 
-           
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908a",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710071000","LADY_Body_1710070908a",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908a",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710071001","LADY_Body_1710070908a",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070907d",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070907d",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070907c",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070907c",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070907b",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070907b",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070907a",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070907a",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070907",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070907",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908p",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908p",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908o",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908o",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908n",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908n",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908m",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908m",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908l",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908l",null)
+            }, false);
+
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908k",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908k",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908j",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908j",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908h",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908h",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908g",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908g",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908f",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908f",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908e",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908e",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908d",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908d",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908c",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908c",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908b",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908b",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908a",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908a",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070908",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070908",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070906",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070906","LADY_Body_1710070906",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070905",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070905","LADY_Body_1710070905",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070900",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070904","LADY_Body_1710070900",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070904",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070904","LADY_Body_1710070904",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070900",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070900",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070901",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070901","LADY_Body_1710070901",null)
+            }, false);
+
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070901",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070902","LADY_Body_1710070901",null)
+            }, false);
+
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070902",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070902","LADY_Body_1710070902",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070903",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070903","LADY_Body_1710070903",null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+              new  Tuple<string, string, seIm>("LADY_Body_1710070900",null,null),
+              new  Tuple<string, string, seIm>("LADY_Head_1710070903","LADY_Body_1710070900",null)
+            }, false);
+
         }
 
-        private void SetCadre(string bodyN, string headN)
-        {
-            var cadre = this.AddCadre(null, null, 200);
-
-            FemBodyActor = GameWorldFactory.GameWorld.CommonFemBodyList.Where(x => x.Name == bodyN).FirstOrDefault();
-            var body = FemBodyActor.GetBody(null);
-            FemBodyActor.AssembleBody(cadre);
-
-            FemHeadActor = GameWorldFactory.GameWorld.CommonFemHeadList.Where(x => x.Name == headN).FirstOrDefault();
-            var head = FemHeadActor.GetHead(null);
-            head.AlignTo(body);
-            FemHeadActor.AssembleHead(cadre);
-        }
+      
     }
     
 }

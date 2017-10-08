@@ -7,7 +7,7 @@ namespace StoGen.ModelClasses
 {
     public class Projector
     {
-       
+        
         public static PicturesControl PicContainer = new PicturesControl();
         //public static List<Tuple<AxWindowsMediaPlayer, LayoutControlItem>> Clips = new List<Tuple<AxWindowsMediaPlayer, LayoutControlItem>>();
         public static List<System.Windows.Media.MediaPlayer> Sound = new List<System.Windows.Media.MediaPlayer>();
@@ -62,6 +62,9 @@ namespace StoGen.ModelClasses
                 return imageCadre;
             }
         }
+
+        public static Window Owner { get; set; }
+
         public static void Clear()
         {
             //Projector.PicContainer.Lci.Parent.Visibility = LayoutVisibility.Never;

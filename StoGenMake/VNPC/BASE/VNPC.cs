@@ -239,10 +239,19 @@ namespace StoGenMake.Pers
 
         internal void AlignTo(VNPCCloth body)
         {
+            
             this.Head.Reset();
+            if (body == null) return;
             var align = GameWorldFactory.GameWorld.HeadToBodyAlignList.Where(x => x.NameHead == this.Head.Name && x.NameBody == body.image.Name).FirstOrDefault();
             if (align != null)
                 this.Head.AssinFrom(align.Image);
+        }
+
+        internal void AlignTo(seIm seIm)
+        {
+            this.Head.Reset();
+            if (seIm != null)
+                this.Head.AssinFrom(seIm);
         }
     }
 
@@ -581,6 +590,7 @@ namespace StoGenMake.Pers
     public class VNPCCloth: VNPCBodyPartSnap
     {
         public VNPCClothType Type { set; get; }
+        
         public VNPCCloth(VNPCClothType type, seIm im):base(im)
         {
             this.Type = type;
@@ -588,6 +598,12 @@ namespace StoGenMake.Pers
         public virtual void Set(ScenCadre cadre)
         {
             cadre.AddImage(this.image);
+        }
+
+        internal void AlignTo(seIm seIm)
+        {
+           if (seIm !=null)
+                this.image.AssinFrom(seIm);
         }
     }
     public class VNPCVoice
@@ -617,6 +633,7 @@ namespace StoGenMake.Pers
         Real,
         HCG,
         Comix,
+        Manga,
         ArtCG,
         JAV
     }

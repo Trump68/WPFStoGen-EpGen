@@ -36,7 +36,7 @@ namespace StoGenWPF
         public MainWindow()
         {
             InitializeComponent();
-
+            Projector.Owner = this;
             Projector.PicContainer.Clip = this.Clip1;
             Projector.Text = this.TextBox;
             Projector.NumberText = this.NumberBox;
@@ -73,7 +73,7 @@ namespace StoGenWPF
             }
 
             SGManager.StartMainProc(Startfile, GlobalMenuCreator);
-
+            
 
             PictureCadreDS.Visibility = Visibility.Hidden;
             PictureCadreDS.DataContext = Projector.ImageCadre;

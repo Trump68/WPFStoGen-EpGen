@@ -167,7 +167,7 @@ namespace StoGen.Classes
 
             timer.Change(Timeout.Infinite, Timeout.Infinite);
             Projector.NumberText.Text = $"{this.Owner.Owner.Cadres.IndexOf(this.Owner)+1}/{this.Owner.Owner.Cadres.Count}";
-            
+            Projector.Owner.Background = new SolidColorBrush(Colors.Black);
 
             FrameImage.LoopProcessed = false;
             FrameImage.CurrentProc = this.Proc;
@@ -210,10 +210,18 @@ namespace StoGen.Classes
                     FrameImage.IsLoop = Pics[i].Props.isLoop;
                     continue;
                 }
-
+               
 
                 PictureItem pi = Pics[i];
                 string fn = pi.Props.FileName;
+
+
+                
+                if (pi.Props.FileName.EndsWith("WHITE"))
+                {
+                    Projector.Owner.Background = new SolidColorBrush(Colors.White);
+                    continue;
+                }
 
                 //System.Windows.Controls.Image gf = Projector.PicContainer.PicList[(int)pi.Props.Level];
                 if (Projector.PicContainer.PicList[(int)pi.Props.Level].Tag != null && (string)Projector.PicContainer.PicList[(int)pi.Props.Level].Tag == fn && !pi.Props.Reload)
