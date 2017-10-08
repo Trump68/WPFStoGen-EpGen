@@ -127,18 +127,30 @@ namespace StoGenMake
             commonFemBodyList.Add(GetIm("LADY_Body_1710080926", VNPCPersType.Manga, "Hara Shigeyuki", path, "026.jpg"));
             commonFemBodyList.Add(GetIm("LADY_Body_1710080927", VNPCPersType.Manga, "Hara Shigeyuki", path, "027.jpg"));
             commonFemBodyList.Add(GetIm("LADY_Body_1710080928", VNPCPersType.Manga, "Hara Shigeyuki", path, "028.jpg"));
+            commonFemBodyList.Add(GetIm("LADY_Body_1710080929", VNPCPersType.Manga, "Hara Shigeyuki", path, "029.jpg"));
+            commonFemBodyList.Add(GetIm("LADY_Body_1710080930", VNPCPersType.Manga, "Hara Shigeyuki", path, "030.jpg"));
+            commonFemBodyList.Add(GetIm("LADY_Body_1710080931", VNPCPersType.Manga, "Hara Shigeyuki", path, "031.jpg"));
+            commonFemBodyList.Add(GetIm("LADY_Body_1710080932", VNPCPersType.Manga, "Hara Shigeyuki", path, "032.jpg"));
+            commonFemBodyList.Add(GetIm("LADY_Body_1710080933", VNPCPersType.Manga, "Hara Shigeyuki", path, "033.jpg"));
+            commonFemBodyList.Add(GetIm("LADY_Body_1710080934", VNPCPersType.Manga, "Hara Shigeyuki", path, "034.jpg"));
+            commonFemBodyList.Add(GetIm("LADY_Body_1710080935", VNPCPersType.Manga, "Hara Shigeyuki", path, "035.jpg"));
+            commonFemBodyList.Add(GetIm("LADY_Body_1710080936", VNPCPersType.Manga, "Hara Shigeyuki", path, "036.jpg"));
+            commonFemBodyList.Add(GetIm("LADY_Body_1710080937", VNPCPersType.Manga, "Hara Shigeyuki", path, "037.jpg"));
+            commonFemBodyList.Add(GetIm("LADY_Body_1710080938", VNPCPersType.Manga, "Hara Shigeyuki", path, "038.jpg"));
         }
-
-        
 
         internal static void LoadFemHeadList(List<seIm> commonFemHeadList, List<AlignData> HeadToBodyAlignList)
         {
             string path =null;
 
             path = @"x:\STOGEN\LADY\COMIX\LADY_Heads_Hara Shigeyuki\";
-            commonFemHeadList.Add(GetIm("LADY_Head_1710080900", VNPCPersType.Comix, "Hara Shigeyuki", path, "001.png"));
+            commonFemHeadList.Add(GetIm("LADY_Head_1710080900", VNPCPersType.Manga, "Hara Shigeyuki", path, "001.png"));
             HeadToBodyAlignList.Add(new AlignData("LADY_Head_1710080900", "LADY_Body_1710080900", new seIm() { X = 205, Y = 10, sX = 140, sY = 140 }));
-            commonFemHeadList.Add(GetIm("LADY_Head_1710080901", VNPCPersType.Comix, "Hara Shigeyuki", path, "002.png"));
+            commonFemHeadList.Add(GetIm("LADY_Head_1710080901", VNPCPersType.Manga, "Hara Shigeyuki", path, "002.png"));
+            commonFemHeadList.Add(GetIm("LADY_Head_1710080902", VNPCPersType.Manga, "Hara Shigeyuki", path, "003.png"));
+            commonFemHeadList.Add(GetIm("LADY_Head_1710080903", VNPCPersType.Manga, "Hara Shigeyuki", path, "004.png"));
+            commonFemHeadList.Add(GetIm("LADY_Head_1710080904", VNPCPersType.Manga, "Hara Shigeyuki", path, "005.png"));
+            commonFemHeadList.Add(GetIm("LADY_Head_1710080905", VNPCPersType.Manga, "Hara Shigeyuki", path, "006.png"));
 
             path = @"x:\STOGEN\LADY\COMIX\LADY_Heads_Eriya-J\";
             commonFemHeadList.Add(GetIm("LADY_Head_1710071000", VNPCPersType.ArtCG, "Eriya-J", path, "01.png"));

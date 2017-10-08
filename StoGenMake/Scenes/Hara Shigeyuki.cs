@@ -19,6 +19,22 @@ namespace StoGenMake.Scenes.Base
 
 
             #region Abunai Hitozuma - Shouko no Bouken
+            SetCadre("LADY_Head_1710080905", true);
+            SetCadre("LADY_Head_1710080904", true);
+            SetCadre("LADY_Head_1710080903", true);
+            SetCadre("LADY_Head_1710080902", true);
+            SetCadre("EVILMAN_Head_1710080903", true);
+
+            SetCadre("LADY_Body_1710080938", true);
+            SetCadre("LADY_Body_1710080937", true);
+            SetCadre("LADY_Body_1710080936", true);
+            SetCadre("LADY_Body_1710080935", true);
+            SetCadre("LADY_Body_1710080934", true);
+            SetCadre("LADY_Body_1710080933", true);
+            SetCadre("LADY_Body_1710080932", true);
+            SetCadre("LADY_Body_1710080931", true);
+            SetCadre("LADY_Body_1710080930", true);
+            SetCadre("LADY_Body_1710080929", true);
             SetCadre("LADY_Body_1710080928", true);
             SetCadre("LADY_Body_1710080927", true);
             SetCadre("LADY_Body_1710080926", true);
