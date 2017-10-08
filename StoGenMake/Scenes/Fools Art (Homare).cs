@@ -24,6 +24,12 @@ namespace StoGenMake.Scenes.Base
             SetCadre(new Tuple<string, string, seIm>[] {
                new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
               ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
+              ,new  Tuple<string, string, seIm>("LADY_Body_1710083012",null, null)
+            }, false);
+
+            SetCadre(new Tuple<string, string, seIm>[] {
+               new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
+              ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
               ,new  Tuple<string, string, seIm>("LADY_Body_1710083011",null, null)
             }, false);
 
@@ -147,6 +153,7 @@ namespace StoGenMake.Scenes.Base
             data.Add(GetIm($"LADY_Body_1710083009", VNPCPersType.Manga, "Fools_Art_Homare", path, $"003f.png"));
             data.Add(GetIm($"LADY_Body_1710083010", VNPCPersType.Manga, "Fools_Art_Homare", path, $"003g.png"));
             data.Add(GetIm($"LADY_Body_1710083011", VNPCPersType.Manga, "Fools_Art_Homare", path, $"003h.png"));
+            data.Add(GetIm($"LADY_Body_1710083012", VNPCPersType.Manga, "Fools_Art_Homare", path, $"003j.png"));
         }
         internal static seIm GetIm(string name, VNPCPersType type, string desc, string path, string file)
         {
