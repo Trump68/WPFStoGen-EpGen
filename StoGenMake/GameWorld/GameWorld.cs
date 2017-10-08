@@ -56,6 +56,10 @@ namespace StoGenMake
             GameWorldDataLoader.LoadManBodyList(this.CommonImageList);
             GameWorldDataLoader.LoadManHeadList(this.CommonImageList);
 
+
+            //Hara Shigeyuki
+            Hara_Shigeyuki.LoadData(this.CommonImageList, this.HeadToBodyAlignList);
+
             this.PersoneList.Add(new LADY_011017 ());
             this.SceneList.Add(new TestScene());
         }
