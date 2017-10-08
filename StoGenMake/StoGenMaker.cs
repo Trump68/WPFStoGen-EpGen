@@ -62,7 +62,7 @@ namespace StoGenMake
             //    scen.AddActor(pers);
             //    GameWorldFactory.GameWorld.CurrentPersone = pers;
             //}            
-            var scen = new Hara_Shigeyuki();
+            var scen = new Fools_Art_Homare();
 
             string fn = scen.Generate(fileToProcess);
 
