@@ -34,7 +34,7 @@ namespace StoGenMake
             
             VNPC pers = null;
             
-            if (!string.IsNullOrEmpty(fileToProcess))
+            if (!string.IsNullOrEmpty(fileToProcess) && File.Exists(fileToProcess))
             {
                 List<string> datalist = new List<string>();
                 List<string> header;
@@ -62,7 +62,7 @@ namespace StoGenMake
             //    scen.AddActor(pers);
             //    GameWorldFactory.GameWorld.CurrentPersone = pers;
             //}            
-            var scen = new Fools_Art_Homare();
+            var scen = new TestTran();
 
             string fn = scen.Generate(fileToProcess);
 

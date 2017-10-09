@@ -68,6 +68,7 @@
     <Compile Include="Scenes\TestSceneBW.cs" />
     <Compile Include="Scenes\Scene01.cs" />
     <Compile Include="Scenes\TestScene.cs" />
+    <Compile Include="Scenes\TestTran.cs" />
     <Compile Include="StoGenMaker.cs" />
     <Compile Include="Transition\Transition.cs" />
     <Compile Include="VNPC\BASE\VNPC.cs" />

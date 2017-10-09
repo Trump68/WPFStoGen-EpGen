@@ -58,9 +58,10 @@ namespace StoGenMake
 
 
             //Hara Shigeyuki
-            Hara_Shigeyuki.LoadData(this.CommonImageList, this.HeadToBodyAlignList);
+            //Hara_Shigeyuki.LoadData(this.CommonImageList, this.HeadToBodyAlignList);
             //Fools Art Gallery Homare
-            Fools_Art_Homare.LoadData(this.CommonImageList, this.HeadToBodyAlignList);
+            //Fools_Art_Homare.LoadData(this.CommonImageList, this.HeadToBodyAlignList);
+            TestTran.LoadData(this.CommonImageList, this.HeadToBodyAlignList);
 
             this.PersoneList.Add(new LADY_011017 ());
             this.SceneList.Add(new TestScene());
