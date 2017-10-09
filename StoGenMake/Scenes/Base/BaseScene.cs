@@ -165,89 +165,106 @@ namespace StoGenMake.Scenes.Base
         {
             SetCadre(new Tuple<string, string, seIm>[] { new Tuple<string, string, seIm>(name, null, null) }, white);
         }
-        protected void SetCadre(Tuple<string,string,seIm>[] imdata, bool isWhite = false)
+        protected void SetCadre(Tuple<string, string, seIm>[] imdata, bool isWhite = false)
         {
-            var cadre = this.AddCadre(null, null, 200);
-            cadre.IsWhite = isWhite;
+            List<AlignData> list = new List<AlignData>();
             foreach (var item in imdata)
             {
-                string name = item.Item1;
-                string alignto = item.Item2;
-                seIm align = item.Item3;
-                var im = GameWorldFactory.GameWorld.CommonImageList.Where(x => x.Name == name).FirstOrDefault();
-                if (im != null)
-                {
-                    im.Reset();                    
-                    if (!string.IsNullOrEmpty(alignto))
-                    {
-                        var it = GameWorldFactory.GameWorld.AlignList.Where(x => x.Name == im.Name && x.Parent == alignto).FirstOrDefault();
-                        if (it != null) im.AssinFrom(it.Im);
-                    }
-                    if (align != null)
-                    {
-                        im.AssinFrom(align);
-                    }
-                    cadre.AddImage(im);
-                }                
+                AlignData ni = new AlignData(item.Item1, item.Item2, item.Item3);
+                list.Add(ni);
+            }
+            SetCadre(list.ToArray(), this, isWhite);
+        }
+
+
+        public static void SetCadre(AlignData[] imdata,BaseScene scene = null, bool isWhite = false, bool replace = true, string text = null)
+        {
+            ScenCadre cadre = null;
+            if (scene != null)
+            {
+                cadre = scene.AddCadre(null, null, 200);
+                cadre.IsWhite = isWhite;
+                if (!string.IsNullOrEmpty(text))
+                    cadre.AddText(text);
+            }
+
+            foreach (var item in imdata)
+            {
+                var sourceIm = setAlignData(item, imdata.ToList(),replace);
+                if (sourceIm != null && cadre != null)
+                            cadre.AddImage(sourceIm);
             }
         }
 
-        protected void SetCadre(AlignData[] imdata, bool isWhite = false)
+        private static seIm setAlignData(AlignData item, List<AlignData> list, bool replace)
         {
-            var cadre = this.AddCadre(null, null, 200);
-            cadre.IsWhite = isWhite;
-            foreach (var item in imdata)
-            {
-                var sourceIm = setAlignData(item, imdata.ToList());
-                if (sourceIm != null)
-                    cadre.AddImage(sourceIm);
-            }
-        }
-        private seIm setAlignData(AlignData item,List<AlignData> list)
-        {
-            
+
             var sourceIm = GameWorldFactory.GameWorld.CommonImageList.Where(x => x.Name == item.Name).FirstOrDefault();
             if (sourceIm != null)
             {
                 if (!item.Processed)
                 {
                     sourceIm.Reset();
-                    if (item.Im != null)
-                    {
-                        sourceIm.AssinFrom(item.Im);
-                    }
-
+                    var currAlign = GameWorldFactory.GameWorld.AlignList.Where(x => x.Name == sourceIm.Name && x.Parent == item.Parent && x.Tag == item.Tag).FirstOrDefault();
+                    AlignData parentItem = null;
                     if (!string.IsNullOrEmpty(item.Parent))
                     {
-                        var it = GameWorldFactory.GameWorld.AlignList.Where(x => x.Name == sourceIm.Name && x.Parent == item.Parent && x.Tag == item.Tag).FirstOrDefault();
-                        if (it == null)
+                        parentItem = list.Where(x => x.Name == item.Parent).FirstOrDefault();
+                        if (parentItem != null)
                         {
-                            var parentItem = list.Where(x => x.Name == item.Parent).FirstOrDefault();
-                            if (parentItem != null)
+                            if (!parentItem.Processed)
                             {
-                                if (!parentItem.Processed)
-                                {
-                                    setAlignData(parentItem, list);
-                                }
-                                it = this.GetNewAlign(item,parentItem);
-                                GameWorldFactory.GameWorld.AlignList.Add(it);
+                                setAlignData(parentItem, list,replace);
                             }
                         }
-                        sourceIm.AssinFrom(it.Im);
                     }
-                   
+
+                    if (currAlign == null)
+                    {                        
+                        currAlign = GetNewAlign(item, parentItem);                        
+                    }
+                    else if (item.Im != null)
+                    {
+                        currAlign = GetNewAlign(item, parentItem);
+                        if (replace) //replace old saved
+                        {
+                            GameWorldFactory.GameWorld.AlignList.RemoveAll(x => x.Name == sourceIm.Name && x.Parent == item.Parent && x.Tag == item.Tag);
+                            GameWorldFactory.GameWorld.AlignList.Add(currAlign);
+                        }
+                    }
+                    
+                    //sourceIm.AlignFrom(currAlign);
+                    sourceIm.AlignFrom(currAlign,parentItem);
+                    if (item.Im == null)
+                    {
+                        item.Im = new seIm();
+                        item.Im.AssinFrom(sourceIm);
+                    }
+
                     item.Processed = true;
                 }
             }
-            
+
             return sourceIm;
 
         }
 
-        private AlignData GetNewAlign(AlignData item, AlignData parentItem)
+        private static AlignData GetNewAlign(AlignData item, AlignData parentItem)
         {
-            throw new NotImplementedException();
+            if (item == null || item.Im == null) return null;
+            AlignData newalign = new AlignData(item.Name, new seIm());
+            newalign.Parent = parentItem?.Name;
+            newalign.Tag = item.Tag;
+            newalign.Im.X = item.Im.X - (parentItem == null ? 0 : parentItem.Im.X);
+            newalign.Im.Y = item.Im.Y - (parentItem == null ? 0 : parentItem.Im.Y);
+
+            newalign.Im.sX = item.Im.sX;
+            newalign.Im.sY = item.Im.sY;
+            newalign.Im.Rot = item.Im.Rot;
+            newalign.Im.Flip = item.Im.Flip;
+            GameWorldFactory.GameWorld.AlignList.Add(newalign);
+            return newalign;
         }
     }
- 
+
 }

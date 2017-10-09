@@ -18,25 +18,39 @@ namespace StoGenMake.Scenes.Base
         protected override void MakeCadres()
         {
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-               new  Tuple<string, string, seIm>("Evil_green",null, new seIm() { X = 335, Y = 310, sX = 900, sY = 900, Rot = 20, Flip = 0 })
-              ,new  Tuple<string, string, seIm>("Evil_blue",null, new seIm() { X = 33, Y = 22, sX = 953, sY = 953, Rot = 0, Flip = 0 })
-              ,new  Tuple<string, string, seIm>("Evil_red",null, new seIm() { X = 355, Y = -261, sX = 600, sY = 600, Rot = 80, Flip = 0 })
-            }, false);
-            //
 
+            SetCadre(new AlignData[] {
+                 new AlignData("Evil_blue", new seIm() { X = 33, Y = 22, sX = 953, sY = 953, Rot = 0, Flip = 0 })
+                ,new AlignData("Evil_green","Evil_blue", new seIm() { X = 335, Y = 310, sX = 900, sY = 900, Rot = 20, Flip = 0 })
+                ,new AlignData("Evil_red","Evil_green", new seIm() { X = 355, Y = -261, sX = 600, sY = 600, Rot = 80, Flip = 0 })
+            }, this);
+
+            SetCadre(new AlignData[] {
+                 new AlignData("Evil_blue")
+                ,new AlignData("Evil_green","Evil_blue", new seIm() { X = 200, Y = 310, sX = 900, sY = 900, Rot = 20, Flip = 0 })
+                ,new AlignData("Evil_red","Evil_green")
+            }, this);
+
+            SetCadre(new AlignData[] {
+                 new AlignData("Evil_blue",new seIm() { X = 133, Y = 22, sX = 953, sY = 953, Rot = 0, Flip = 0 })
+                ,new AlignData("Evil_green","Evil_blue")
+                ,new AlignData("Evil_red","Evil_green")
+            }, this);
         }
         internal static void LoadData(List<seIm> data, List<AlignData> alignData)
         {
             string path = null;
 
-            // Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~
+            
             path = @"d:\Temp\";
             //raw
            
             data.Add(GetIm($"Evil_blue", VNPCPersType.Manga, "qqw", path, $"TestBlue.png"));
             data.Add(GetIm($"Evil_red", VNPCPersType.Manga, "we", path, $"TestRed.png"));
-            data.Add(GetIm($"Evil_green", VNPCPersType.Manga, "Fools_Art_werHomare", path, $"TestGreen.png"));
+            data.Add(GetIm($"Evil_green", VNPCPersType.Manga, "er", path, $"TestGreen.png"));
+
+           
+
         }
         internal static seIm GetIm(string name, VNPCPersType type, string desc, string path, string file)
         {

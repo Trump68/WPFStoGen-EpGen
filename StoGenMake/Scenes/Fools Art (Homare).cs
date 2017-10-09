@@ -21,95 +21,109 @@ namespace StoGenMake.Scenes.Base
 
             #region Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-               new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-              ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-              ,new  Tuple<string, string, seIm>("LADY_Body_1710083012",null, null)
-            }, false);
+            //SetCadre(new Tuple<string, string, seIm>[] {
+            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083012",null, null)
+            //}, false);
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-               new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-              ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-              ,new  Tuple<string, string, seIm>("LADY_Body_1710083011",null, null)
-            }, false);
+            //SetCadre(new Tuple<string, string, seIm>[] {
+            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083011",null, null)
+            //}, false);
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-               new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-              ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-              ,new  Tuple<string, string, seIm>("LADY_Body_1710083010",null, null)
-            }, false);
+            //SetCadre(new Tuple<string, string, seIm>[] {
+            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083010",null, null)
+            //}, false);
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-               new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-              ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-              ,new  Tuple<string, string, seIm>("LADY_Body_1710083009",null, null)
-            }, false);
+            //SetCadre(new Tuple<string, string, seIm>[] {
+            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083009",null, null)
+            //}, false);
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-               new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-              ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-              ,new  Tuple<string, string, seIm>("LADY_Body_1710083008",null, null)
-            }, false);
+            //SetCadre(new Tuple<string, string, seIm>[] {
+            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083008",null, null)
+            //}, false);
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-               new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-              ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-              ,new  Tuple<string, string, seIm>("LADY_Body_1710083007",null, null)
-            }, false);
+            //SetCadre(new Tuple<string, string, seIm>[] {
+            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083007",null, null)
+            //}, false);
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-               new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-              ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-              ,new  Tuple<string, string, seIm>("LADY_Body_1710083006",null, null)
-            }, false);
+            //SetCadre(new Tuple<string, string, seIm>[] {
+            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083006",null, null)
+            //}, false);
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-               new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-              ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-              ,new  Tuple<string, string, seIm>("LADY_Body_1710083005",null, null)
-            }, false);
+            //SetCadre(new Tuple<string, string, seIm>[] {
+            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083005",null, null)
+            //}, false);
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-               new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-              ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-              ,new  Tuple<string, string, seIm>("LADY_Body_1710083004",null, null)
-            }, false);
+            //SetCadre(new Tuple<string, string, seIm>[] {
+            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083004",null, null)
+            //}, false);
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-               new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-              ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-              ,new  Tuple<string, string, seIm>("LADY_Body_1710083003",null, null)
-              ,new  Tuple<string, string, seIm>("LADY_PANTY_1710084002",null, new seIm() { X = 398, Y = 283, sX = 254, sY = 254, Rot = 360, Flip = 0 }),
-            }, false);
+            //SetCadre(new Tuple<string, string, seIm>[] {
+            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
+            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083003",null, null)
+            //  ,new  Tuple<string, string, seIm>("LADY_PANTY_1710084002",null, new seIm() { X = 398, Y = 283, sX = 254, sY = 254, Rot = 360, Flip = 0 }),
+            //}, false);
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-               new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-              ,new  Tuple<string, string, seIm>("LADY_Head_1710086001",null, null)
-              ,new  Tuple<string, string, seIm>("LADY_Body_1710083003",null, null)
-              ,new  Tuple<string, string, seIm>("LADY_Mouth_1710084001",null, new seIm() { X = 372, Y = 128, sX = 60, sY = 60, Rot = 277, Flip = 1 })
-              ,new  Tuple<string, string, seIm>("LADY_PANTY_1710084002",null, new seIm() { X = 398, Y = 283, sX = 254, sY = 254, Rot = 360, Flip = 0 }),
-            }, false);
+           
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-               new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-              ,new  Tuple<string, string, seIm>("LADY_Head_1710086001",null, null)
-              ,new  Tuple<string, string, seIm>("LADY_Body_1710083003",null, null)
-              ,new  Tuple<string, string, seIm>("LADY_Mouth_1710084002",null, new seIm() { X = 382, Y = 142, sX = 30, sY = 30, Rot = 279, Flip = 1 }),
-            }, false);
-            SetCadre(new Tuple<string, string, seIm>[] {
-               new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-              ,new  Tuple<string, string, seIm>("LADY_Head_1710086001",null, null)
-              ,new  Tuple<string, string, seIm>("LADY_Body_1710083003",null, null)
-              ,new  Tuple<string, string, seIm>("LADY_Mouth_1710084001",null, new seIm() { X = 372, Y = 128, sX = 60, sY = 60, Rot = 277, Flip = 1 }),
-            }, false);
+            // SetAlign
+            SetCadre(new AlignData[] {
+                new AlignData("Evil_BODY_1710085001", new seIm(){ X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 }),
+                new AlignData("LADY_Head_1710086001","LADY_Body_1710083003"),
+                new AlignData("LADY_Body_1710083003"),
+                new AlignData("LADY_Mouth_1710084001","LADY_Head_1710086001",new seIm()  { X = 372, Y = 128, sX = 60, sY = 60, Rot = 277, Flip = 1 }),
+                new AlignData("LADY_Mouth_1710084002","LADY_Head_1710086001",new seIm()  { X = 382, Y = 142, sX = 30, sY = 30, Rot = 279, Flip = 1 }),
+                new AlignData("LADY_PANTY_1710084002","LADY_Body_1710083003", new seIm() { X = 398, Y = 283, sX = 254, sY = 254, Rot = 360, Flip = 0 }),
+            }, null);
 
 
+            SetCadre(new AlignData[] {
+                new AlignData("Evil_BODY_1710085001"),
+                new AlignData("LADY_Head_1710086001","LADY_Body_1710083003"),
+                new AlignData("LADY_Body_1710083003"),
+                new AlignData("LADY_Mouth_1710084001","LADY_Head_1710086001")
+            }, this);
+
+            SetCadre(new AlignData[] {
+                new AlignData("Evil_BODY_1710085001")
+              ,new AlignData("LADY_Head_1710086001","LADY_Body_1710083003")
+              ,new AlignData("LADY_Body_1710083003")
+              ,new AlignData("LADY_Mouth_1710084002","LADY_Head_1710086001"),
+            }, this);
+
+            SetCadre(new AlignData[] {
+               new  AlignData("Evil_BODY_1710085001")
+              ,new  AlignData("LADY_Head_1710086001","LADY_Body_1710083003")
+              ,new  AlignData("LADY_Body_1710083003")
+              ,new  AlignData("LADY_Mouth_1710084001","LADY_Head_1710086001")
+              ,new  AlignData("LADY_PANTY_1710084002","LADY_Body_1710083003"),
+            }, this);
+
+            this.Cadres.Reverse();
 
 
-            for (int i = 1; i < 142; i++)
-            {
-                SetCadre($"LADY_Body_1710082{i.ToString("D3")}", false); 
-            }
+            //for (int i = 1; i < 142; i++)
+            //{
+            //    SetCadre($"LADY_Body_1710082{i.ToString("D3")}", false); 
+            //}
 
 
 

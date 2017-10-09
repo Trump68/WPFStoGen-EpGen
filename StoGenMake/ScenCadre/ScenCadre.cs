@@ -54,6 +54,12 @@ namespace StoGenMake.Elements
             SoundList.Add(sound);
             return sound;
         }
+        public ScenElementText AddText(string text)
+        {
+            ScenElementText txt = new ScenElementText();
+            txt.Text = text;
+            return txt;
+        }
 
 
         public virtual List<string> GetCadreData()

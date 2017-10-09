@@ -58,9 +58,9 @@ namespace StoGenMake
 
 
             //Hara Shigeyuki
-            //Hara_Shigeyuki.LoadData(this.CommonImageList, this.HeadToBodyAlignList);
+            Hara_Shigeyuki.LoadData(this.CommonImageList, this.AlignList);
             //Fools Art Gallery Homare
-            //Fools_Art_Homare.LoadData(this.CommonImageList, this.HeadToBodyAlignList);
+            Fools_Art_Homare.LoadData(this.CommonImageList, this.AlignList);
             TestTran.LoadData(this.CommonImageList, this.AlignList);
 
             this.PersoneList.Add(new LADY_011017 ());
@@ -214,6 +214,7 @@ namespace StoGenMake
         public string Tag;
         public bool Processed = false;
         public seIm Im;
+        public AlignData(string name) : this(name, null, null, null) { }
         public AlignData(string name, seIm im) : this(name, null, null, im) { }
         public AlignData(string name, string parent) : this(name, parent, null, null) { }
         public AlignData(string name, string parent, seIm im) : this(name, parent, null, im) { }
