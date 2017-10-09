@@ -180,8 +180,8 @@ namespace StoGenMake.Scenes.Base
                     im.Reset();                    
                     if (!string.IsNullOrEmpty(alignto))
                     {
-                        var it = GameWorldFactory.GameWorld.HeadToBodyAlignList.Where(x => x.NameHead == im.Name && x.NameBody == alignto).FirstOrDefault();
-                        if (it != null) im.AssinFrom(it.Image);
+                        var it = GameWorldFactory.GameWorld.AlignList.Where(x => x.Name == im.Name && x.Parent == alignto).FirstOrDefault();
+                        if (it != null) im.AssinFrom(it.Im);
                     }
                     if (align != null)
                     {
@@ -191,19 +191,63 @@ namespace StoGenMake.Scenes.Base
                 }                
             }
         }
-    }
-    public class SceneVariable
-    {
-        public string Type;
-        public string Name;
-        public string Description;
-        public string Value;
-        public SceneVariable(string type, string name, string val, string desc)
+
+        protected void SetCadre(AlignData[] imdata, bool isWhite = false)
         {
-            Type = type;
-            Name = name;
-            Description = desc;
-            Value = val;
+            var cadre = this.AddCadre(null, null, 200);
+            cadre.IsWhite = isWhite;
+            foreach (var item in imdata)
+            {
+                var sourceIm = setAlignData(item, imdata.ToList());
+                if (sourceIm != null)
+                    cadre.AddImage(sourceIm);
+            }
+        }
+        private seIm setAlignData(AlignData item,List<AlignData> list)
+        {
+            
+            var sourceIm = GameWorldFactory.GameWorld.CommonImageList.Where(x => x.Name == item.Name).FirstOrDefault();
+            if (sourceIm != null)
+            {
+                if (!item.Processed)
+                {
+                    sourceIm.Reset();
+                    if (item.Im != null)
+                    {
+                        sourceIm.AssinFrom(item.Im);
+                    }
+
+                    if (!string.IsNullOrEmpty(item.Parent))
+                    {
+                        var it = GameWorldFactory.GameWorld.AlignList.Where(x => x.Name == sourceIm.Name && x.Parent == item.Parent && x.Tag == item.Tag).FirstOrDefault();
+                        if (it == null)
+                        {
+                            var parentItem = list.Where(x => x.Name == item.Parent).FirstOrDefault();
+                            if (parentItem != null)
+                            {
+                                if (!parentItem.Processed)
+                                {
+                                    setAlignData(parentItem, list);
+                                }
+                                it = this.GetNewAlign(item,parentItem);
+                                GameWorldFactory.GameWorld.AlignList.Add(it);
+                            }
+                        }
+                        sourceIm.AssinFrom(it.Im);
+                    }
+                   
+                    item.Processed = true;
+                }
+            }
+            
+            return sourceIm;
+
+        }
+
+        private AlignData GetNewAlign(AlignData item, AlignData parentItem)
+        {
+            throw new NotImplementedException();
         }
     }
+ 
 }

@@ -34,7 +34,7 @@ namespace StoGenMake
         public List<VNPC>          PersoneList  { get; internal set; }
         public List<seIm>          CommonImageList { get; internal set; }
        
-        public List<AlignData> HeadToBodyAlignList { get; internal set; }
+        public List<AlignData> AlignList { get; internal set; }
         public List<VisualLocaton> LocationList { get; internal set; }
         public List<BaseScene> SceneList { get; internal set; }
         public VNPC CurrentPersone { get; internal set; }
@@ -45,13 +45,13 @@ namespace StoGenMake
            
             this.PersoneList  = new List<VNPC>();
             this.CommonImageList = new List<seIm>();
-            this.HeadToBodyAlignList = new List<AlignData>();
+            this.AlignList = new List<AlignData>();
 
             this.LocationList = new List<VisualLocaton>();
             this.SceneList = new List<BaseScene>();
 
             GameWorldDataLoader.LoadPersList(this.PersoneList);
-            GameWorldDataLoader.LoadFemHeadList(this.CommonImageList, this.HeadToBodyAlignList);
+            GameWorldDataLoader.LoadFemHeadList(this.CommonImageList, this.AlignList);
             GameWorldDataLoader.LoadFemBodyList(this.CommonImageList);
             GameWorldDataLoader.LoadManBodyList(this.CommonImageList);
             GameWorldDataLoader.LoadManHeadList(this.CommonImageList);
@@ -61,7 +61,7 @@ namespace StoGenMake
             //Hara_Shigeyuki.LoadData(this.CommonImageList, this.HeadToBodyAlignList);
             //Fools Art Gallery Homare
             //Fools_Art_Homare.LoadData(this.CommonImageList, this.HeadToBodyAlignList);
-            TestTran.LoadData(this.CommonImageList, this.HeadToBodyAlignList);
+            TestTran.LoadData(this.CommonImageList, this.AlignList);
 
             this.PersoneList.Add(new LADY_011017 ());
             this.SceneList.Add(new TestScene());
@@ -209,14 +209,21 @@ namespace StoGenMake
     }
     public class AlignData
     {
-        public AlignData(string head, string body, seIm im)
+        public string Parent;
+        public string Name;
+        public string Tag;
+        public bool Processed = false;
+        public seIm Im;
+        public AlignData(string name, seIm im) : this(name, null, null, im) { }
+        public AlignData(string name, string parent) : this(name, parent, null, null) { }
+        public AlignData(string name, string parent, seIm im) : this(name, parent, null, im) { }
+        public AlignData(string name, string parent, string tag, seIm im)
         {
-            NameHead = head;
-            NameBody = body;
-            Image = im;
+            Parent = parent;
+            Name = name;
+            Tag = tag;
+            Im = im;
         }
-        public string NameBody { set; get; }
-        public string NameHead { set; get; }
-        public seIm Image { set; get; } = new seIm();
     }
+ 
 }

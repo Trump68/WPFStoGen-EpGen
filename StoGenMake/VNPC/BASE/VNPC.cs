@@ -242,9 +242,9 @@ namespace StoGenMake.Pers
             
             this.Head.Reset();
             if (body == null) return;
-            var align = GameWorldFactory.GameWorld.HeadToBodyAlignList.Where(x => x.NameHead == this.Head.Name && x.NameBody == body.image.Name).FirstOrDefault();
+            var align = GameWorldFactory.GameWorld.AlignList.Where(x => x.Name == this.Head.Name && x.Parent == body.image.Name).FirstOrDefault();
             if (align != null)
-                this.Head.AssinFrom(align.Image);
+                this.Head.AssinFrom(align.Im);
         }
 
         internal void AlignTo(seIm seIm)
