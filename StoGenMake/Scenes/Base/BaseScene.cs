@@ -161,23 +161,23 @@ namespace StoGenMake.Scenes.Base
             return true;
         }
 
+        //protected void SetCadre(Tuple<string, string, DifData>[] imdata, bool isWhite = false)
+        //{
+        //    List<AlignData> list = new List<AlignData>();
+        //    foreach (var item in imdata)
+        //    {
+        //        AlignData ni = new AlignData(item.Item1, item.Item2, item.Item3);
+        //        list.Add(ni);
+        //    }
+        //    SetCadre(list.ToArray(), this, isWhite);
+        //}
+
         protected void SetCadre(string name, bool white)
         {
-            SetCadre(new Tuple<string, string, seIm>[] { new Tuple<string, string, seIm>(name, null, null) }, white);
-        }
-        protected void SetCadre(Tuple<string, string, seIm>[] imdata, bool isWhite = false)
-        {
-            List<AlignData> list = new List<AlignData>();
-            foreach (var item in imdata)
-            {
-                AlignData ni = new AlignData(item.Item1, item.Item2, item.Item3);
-                list.Add(ni);
-            }
-            SetCadre(list.ToArray(), this, isWhite);
+            SetCadre(new AlignData[] { new AlignData(name) },this, white);
         }
 
-
-        public static void SetCadre(AlignData[] imdata,BaseScene scene = null, bool isWhite = false, bool replace = true, string text = null)
+        public static void SetCadre(AlignData[] imdata, BaseScene scene = null, bool isWhite = false, bool replace = true, string text = null)
         {
             ScenCadre cadre = null;
             if (scene != null)
@@ -240,8 +240,8 @@ namespace StoGenMake.Scenes.Base
 
                     if (item.Im == null)
                     {
-                        item.Im = new seIm();
-                        item.Im.AssinFrom(sourceIm);
+                        item.Im = new DifData(sourceIm);
+                        //item.Im.AssinFrom(sourceIm);
                     }
 
                     item.Processed = true;

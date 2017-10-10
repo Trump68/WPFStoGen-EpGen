@@ -11,10 +11,10 @@ namespace StoGenMake.Elements
         public string Parent;
         public string Source;
         public string Tag;
-        public seIm SourceIm;
-        public seIm ParentIm;
-
-        public AlignDif(string source, string parent, string tag, seIm imSource, seIm imParent)
+        public DifData SourceIm;
+        public DifData ParentIm;
+        
+        public AlignDif(string source, string parent, string tag, DifData imSource, DifData imParent)
         {
             Parent = parent;
             Source = source;
@@ -22,65 +22,86 @@ namespace StoGenMake.Elements
             SourceIm = imSource;
             ParentIm = imParent;
         }
-        public AlignDif(string source, string parent, string tag, seIm imSource) : this(source, parent, tag, imSource, null) { }
+        public AlignDif(string source, string parent, string tag, DifData imSource) : this(source, parent, tag, imSource, null) { }
 
-        public AlignDif(string source, string tag, seIm imSource) : this(source, null, tag, imSource, null) { }
-        public AlignDif(string source, seIm imSource) : this(source, null, null, imSource, null) { }
+        public AlignDif(string source, string tag, DifData imSource) : this(source, null, tag, imSource, null) { }
+        public AlignDif(string source, DifData imSource) : this(source, null, null, imSource, null) { }
 
 
 
-        //public AlignDif(AlignData item, AlignData parentItem)
-        //{
-        //    this.Source = item.Name;
-        //    this.SourceIm = item.Im;
-        //    this.Parent = item.Parent;
-        //    if (parentItem != null)
-        //    {
-        //        this.Parent = parentItem.Name;
-        //        this.ParentIm = parentItem.Im;
-        //    }
-        //}
+        public AlignDif(DifData item, DifData parentItem)
+        {
+            this.Source = item.Name;
+            this.SourceIm = item;
+            this.Parent = item.Parent;
+            if (parentItem != null)
+            {
+                this.Parent = parentItem.Name;
+                this.ParentIm = parentItem;
+            }
+        }
+
+        public AlignDif(AlignData item, AlignData parentItem)
+        {
+            this.Source = item.Name;
+            this.SourceIm = new DifData(item);
+            this.Parent = item.Parent;
+            if (parentItem != null)
+            {
+                this.Parent = parentItem.Name;
+                this.ParentIm = new DifData(parentItem);
+            }
+        }
 
         public int GetDifX()
         {
-            if (this.ParentIm == null) return this.SourceIm.X;
-            else return this.SourceIm.X - this.ParentIm.X;
+                if (this.ParentIm == null) return this.SourceIm.X.Value;
+                else return this.SourceIm.X.Value - this.ParentIm.X.Value;
         }
         public int GetDifY()
         {
-            if (this.ParentIm == null) return this.SourceIm.Y;
-            else return this.SourceIm.Y - this.ParentIm.Y;
+            if (this.ParentIm == null) return this.SourceIm.Y.Value;
+            else return this.SourceIm.Y.Value - this.ParentIm.Y.Value;
         }
         public void Applay(seIm sourceIm)
         {
             Applay(sourceIm, null);
         }
-        public void Applay(seIm target, seIm actualParent)
+        public void Applay(seIm target, DifData actualParent)
         {
             float modX = 1;
             float modY = 1;
             if (this.ParentIm != null && actualParent != null)
             {
-                modX = ((float)actualParent.sX / (float)this.ParentIm.sX);
-                modY = ((float)actualParent.sY / (float)this.ParentIm.sY);
-
-                target.sX = Convert.ToInt32(this.SourceIm.sX * modX);
-                target.sY = Convert.ToInt32(this.SourceIm.sY * modY);
+                if (this.SourceIm.sX.HasValue)
+                {
+                    modX = ((float)actualParent.sX / (float)this.ParentIm.sX);
+                    target.sX = Convert.ToInt32(this.SourceIm.sX * modX);
+                }
+                if (this.SourceIm.sY.HasValue)
+                {
+                    modY = ((float)actualParent.sY / (float)this.ParentIm.sY);
+                    target.sY = Convert.ToInt32(this.SourceIm.sY * modY);
+                }
             }
             else
             {
-                target.sX = this.SourceIm.sX;
-                target.sY = this.SourceIm.sY;
+                if (this.SourceIm.sX.HasValue) target.sX = this.SourceIm.sX.Value;
+                if(this.SourceIm.sY.HasValue) target.sY = this.SourceIm.sY.Value;
             }
 
-            target.X += Convert.ToInt32((GetDifX() * modX));
-            if (actualParent != null) target.X += actualParent.X;
-
-            target.Y += Convert.ToInt32((GetDifY() * modY));
-            if (actualParent != null) target.Y += actualParent.Y;
-
-            target.Rot = this.SourceIm.Rot;
-            target.Flip = this.SourceIm.Flip;
+            if (this.SourceIm.X.HasValue)
+            {
+                target.X += Convert.ToInt32((GetDifX() * modX));
+                if (actualParent != null && actualParent.X.HasValue) target.X += actualParent.X.Value;
+            }
+            if (this.SourceIm.Y.HasValue)
+            {
+                target.Y += Convert.ToInt32((GetDifY() * modY));
+                if (actualParent != null && actualParent.Y.HasValue) target.Y += actualParent.Y.Value;
+            }
+            if (this.SourceIm.Rot.HasValue) target.Rot = this.SourceIm.Rot.Value;
+            if (this.SourceIm.Flip.HasValue) target.Flip = this.SourceIm.Flip.Value;
         }
     }
 }

@@ -228,6 +228,35 @@ namespace StoGenMake
     }
     public class DifData
     {
+        public DifData() { }
+        public DifData(AlignData item):this()
+        {
+           this.Name = item.Name;
+           this.Parent = item.Parent;
+            if (item.Im != null)
+            {
+                this.X = item.Im.X;
+                this.Y = item.Im.Y;
+                this.sY = item.Im.sY;
+                this.sX = item.Im.sX;
+                this.Rot = item.Im.Rot;
+                this.Flip = item.Im.Flip;
+            }
+            
+        }
+
+        public DifData(seIm item) : this()
+        {
+            this.Name = item.Name;
+            
+            this.X = item.X;
+            this.Y = item.Y;
+            this.sY = item.sY;
+            this.sX = item.sX;
+            this.Rot = item.Rot;
+            this.Flip = item.Flip;
+        }
+
         public string Name { set; get; }
         public string Parent { set; get; }
         public int? X { set; get; }

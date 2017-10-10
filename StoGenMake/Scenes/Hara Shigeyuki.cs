@@ -56,10 +56,10 @@ namespace StoGenMake.Scenes.Base
             SetCadre("LADY_Body_1710080926", true);
             SetCadre("LADY_Body_1710080925", true);
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-              new  Tuple<string, string, seIm>("LADY_Body_1710080919",null, new seIm() { X = 0, Y = 0, sX = 755, sY = 755, Rot = 0, Flip = 0 }),
-              new  Tuple<string, string, seIm>("LADY_Body_1710080922",null, new seIm() { X = 765, Y = 0, sX = 365, sY = 365, Rot = 0, Flip = 0 }),
-            }, true);
+            SetCadre(new AlignData[] {
+              new AlignData("LADY_Body_1710080919",new DifData() { X = 0, Y = 0, sX = 755, sY = 755, Rot = 0, Flip = 0 }),
+              new AlignData("LADY_Body_1710080922",new DifData() { X = 765, Y = 0, sX = 365, sY = 365, Rot = 0, Flip = 0 }),
+            },this, true);
 
             SetCadre("LADY_Body_1710080924", true);
             SetCadre("LADY_Body_1710080923", true);
@@ -75,48 +75,48 @@ namespace StoGenMake.Scenes.Base
             SetCadre("LADY_Body_1710080911", true);
             SetCadre("LADY_Body_1710080910", true);
 
-            SetCadre(new Tuple<string, string, seIm>[]
+            SetCadre(new AlignData[]
              {
-              new  Tuple<string, string, seIm>("LADY_Body_1710080903",null, new seIm() { X = 0, Y = 0, sX = 755, sY = 755, Rot = 0, Flip = 0 }),
-              new  Tuple<string, string, seIm>("EVILMAN_Body_1710080903",null, new seIm() { X = 415, Y = 280, sX = 605, sY = 605, Rot = 0, Flip = 0 }),
-             }, true);
+              new AlignData("LADY_Body_1710080903",null, new DifData() { X = 0, Y = 0, sX = 755, sY = 755, Rot = 0, Flip = 0 }),
+              new AlignData("EVILMAN_Body_1710080903",null, new DifData() { X = 415, Y = 280, sX = 605, sY = 605, Rot = 0, Flip = 0 }),
+             },this, true);
 
-            SetCadre(new Tuple<string, string, seIm>[]
+            SetCadre(new AlignData[]
              {
-              new  Tuple<string, string, seIm>("LADY_Body_1710080902",null,null)
-             }, true);
+              new AlignData("LADY_Body_1710080902",null,null)
+             },this, true);
 
-            SetCadre(new Tuple<string, string, seIm>[]
+            SetCadre(new AlignData[]
              {
-              new  Tuple<string, string, seIm>("LADY_Body_1710080901",null,new seIm() { X = 135, Y = 85, sX = 900, sY = 600, Rot = 0, Flip = 0 }),
-              new  Tuple<string, string, seIm>("EVILMAN_Head_1710080902",null,new seIm() {  X = 460, Y = 270, sX = 305, sY = 305, Rot = 0, Flip = 0 })
-             }, true);
+              new AlignData("LADY_Body_1710080901",null,new DifData() { X = 135, Y = 85, sX = 900, sY = 600, Rot = 0, Flip = 0 }),
+              new AlignData("EVILMAN_Head_1710080902",null,new DifData() {  X = 460, Y = 270, sX = 305, sY = 305, Rot = 0, Flip = 0 })
+             },this, true);
 
-            SetCadre(new Tuple<string, string, seIm>[]
+            SetCadre(new AlignData[]
                                 {
-              new  Tuple<string, string, seIm>("LADY_Body_1710080900",null,null),
-              new  Tuple<string, string, seIm>("LADY_Head_1710080900","LADY_Body_1710080900",null),
-              new  Tuple<string, string, seIm>("EVILMAN_Head_1710080901",null,new seIm() { X = 460, Y = 270, sX = 305, sY = 305, Rot = 0, Flip = 1 })
-                                }, true);
+              new AlignData("LADY_Body_1710080900",null,null),
+              new AlignData("LADY_Head_1710080900","LADY_Body_1710080900",null),
+              new AlignData("EVILMAN_Head_1710080901",null,new DifData() { X = 460, Y = 270, sX = 305, sY = 305, Rot = 0, Flip = 1 })
+              },this, true);
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-              new  Tuple<string, string, seIm>("LADY_Body_1710080900",null,null),
-              new  Tuple<string, string, seIm>("LADY_Head_1710080900","LADY_Body_1710080900",null),
-              new  Tuple<string, string, seIm>("EVILMAN_Head_1710080902",null,new seIm() { X = 460, Y = 270, sX = 305, sY = 305, Rot = 0, Flip = 0 })
-            }, true);
+            SetCadre(new AlignData[] {
+              new AlignData("LADY_Body_1710080900",null,null),
+              new AlignData("LADY_Head_1710080900","LADY_Body_1710080900",null),
+              new AlignData("EVILMAN_Head_1710080902",null,new DifData() { X = 460, Y = 270, sX = 305, sY = 305, Rot = 0, Flip = 0 })
+            },this, true);
 
 
-            SetCadre(new Tuple<string, string, seIm>[]
+            SetCadre(new AlignData[]
                                  {
-              new  Tuple<string, string, seIm>("LADY_Body_1710080900",null,null),
-              new  Tuple<string, string, seIm>("LADY_Head_1710080900","LADY_Body_1710080900",null),
-              new  Tuple<string, string, seIm>("EVILMAN_Head_1710080900",null,new seIm() { X = 460, Y = 270, sX = 305, sY = 305, Rot = 0, Flip = 0 })
-                                 }, true);
+              new AlignData("LADY_Body_1710080900",null,null),
+              new AlignData("LADY_Head_1710080900","LADY_Body_1710080900",null),
+              new AlignData("EVILMAN_Head_1710080900",null,new DifData() { X = 460, Y = 270, sX = 305, sY = 305, Rot = 0, Flip = 0 })
+                                 },this, true);
 
-            SetCadre(new Tuple<string, string, seIm>[] {
-              new  Tuple<string, string, seIm>("LADY_Body_1710080900",null,null),
-              new  Tuple<string, string, seIm>("LADY_Head_1710080900","LADY_Body_1710080900",null)
-            }, true);
+            SetCadre(new AlignData[] {
+              new AlignData("LADY_Body_1710080900",null,null),
+              new AlignData("LADY_Head_1710080900","LADY_Body_1710080900",null)
+            },this, true);
 
             #endregion
         }
@@ -129,7 +129,7 @@ namespace StoGenMake.Scenes.Base
             // faces
             path = @"x:\STOGEN\LADY\COMIX\LADY_Heads_Hara Shigeyuki\";
             data.Add(GetIm("LADY_Head_1710080900", VNPCPersType.Manga, "Hara Shigeyuki", path, "001.png"));
-            alignData.Add(new AlignDif("LADY_Head_1710080900", "LADY_Body_1710080900", new seIm() { X = 205, Y = 10, sX = 140, sY = 140 }));
+            alignData.Add(new AlignDif("LADY_Head_1710080900", "LADY_Body_1710080900", new DifData() { X = 205, Y = 10, sX = 140, sY = 140 }));
             data.Add(GetIm("LADY_Head_1710080901", VNPCPersType.Manga, "Hara Shigeyuki", path, "002.png"));
             data.Add(GetIm("LADY_Head_1710080902", VNPCPersType.Manga, "Hara Shigeyuki", path, "003.png"));
             data.Add(GetIm("LADY_Head_1710080903", VNPCPersType.Manga, "Hara Shigeyuki", path, "004.png"));

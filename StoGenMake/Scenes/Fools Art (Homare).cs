@@ -86,12 +86,12 @@ namespace StoGenMake.Scenes.Base
 
             // SetAlign
             SetCadre(new AlignData[] {
-                new AlignData("Evil_BODY_1710085001", new seIm(){ X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 }),
+                new AlignData("Evil_BODY_1710085001", new DifData(){ X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 }),
                 new AlignData("LADY_Head_1710086001","LADY_Body_1710083003"),
                 new AlignData("LADY_Body_1710083003"),
-                new AlignData("LADY_Mouth_1710084001","LADY_Head_1710086001",new seIm()  { X = 372, Y = 128, sX = 60, sY = 60, Rot = 277, Flip = 1 }),
-                new AlignData("LADY_Mouth_1710084002","LADY_Head_1710086001",new seIm()  { X = 382, Y = 142, sX = 30, sY = 30, Rot = 279, Flip = 1 }),
-                new AlignData("LADY_PANTY_1710084002","LADY_Body_1710083003", new seIm() { X = 398, Y = 283, sX = 254, sY = 254, Rot = 360, Flip = 0 }),
+                new AlignData("LADY_Mouth_1710084001","LADY_Head_1710086001",new DifData()  { X = 372, Y = 128, sX = 60, sY = 60, Rot = 277, Flip = 1 }),
+                new AlignData("LADY_Mouth_1710084002","LADY_Head_1710086001",new DifData()  { X = 382, Y = 142, sX = 30, sY = 30, Rot = 279, Flip = 1 }),
+                new AlignData("LADY_PANTY_1710084002","LADY_Body_1710083003", new DifData() { X = 398, Y = 283, sX = 254, sY = 254, Rot = 360, Flip = 0 }),
             }, null);
 
 
