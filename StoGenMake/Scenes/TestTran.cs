@@ -20,8 +20,8 @@ namespace StoGenMake.Scenes.Base
             // Set align
             SetCadre(new AlignData[] {
                  new AlignData("Evil_blue", new seIm() { X = 33, Y = 22, sX = 600, sY = 600, Rot = 0, Flip = 0 })
-                ,new AlignData("Evil_green","Evil_blue", new seIm() { X = 335, Y = 310, sX = 900, sY = 900, Rot = 20, Flip = 0 })
-                ,new AlignData("Evil_red","Evil_green", new seIm() { X = 355, Y = -261, sX = 600, sY = 600, Rot = 80, Flip = 0 })
+                ,new AlignData("Evil_green","Evil_blue", new seIm() { X = 335, Y = 310, sX = 900, sY = 900, Rot = 0, Flip = 0 })
+                ,new AlignData("Evil_red","Evil_green", new seIm() { X = 355, Y = -261, sX = 600, sY = 600, Rot = 0, Flip = 0 })
             }, null);
 
             // real
@@ -31,20 +31,20 @@ namespace StoGenMake.Scenes.Base
                 ,new AlignData("Evil_red","Evil_green")
             }, this);
 
-            SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue")
-                ,new AlignData("Evil_green","Evil_blue", new seIm() { X = 200 })
-                ,new AlignData("Evil_red","Evil_green")
-            }, this);
+            //SetCadre(new AlignData[] {
+            //     new AlignData("Evil_blue")
+            //    ,new AlignData("Evil_green","Evil_blue", new seIm() { X = 200, Y = 310, sX = 900, sY = 900, Rot = 20, Flip = 0 })
+            //    ,new AlignData("Evil_red","Evil_green")
+            //}, this);
+
+            //SetCadre(new AlignData[] {
+            //     new AlignData("Evil_blue",new seIm() { X = 133, Y = 22, sX = 600, sY = 600, Rot = 0, Flip = 0 } )
+            //    ,new AlignData("Evil_green","Evil_blue")
+            //    ,new AlignData("Evil_red","Evil_green")
+            //}, this);
 
             SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue",new seIm() { X = 133 })
-                ,new AlignData("Evil_green","Evil_blue")
-                ,new AlignData("Evil_red","Evil_green")
-            }, this);
-
-            SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue",new seIm() { sX = 1200, sY = 1200 })
+                 new AlignData("Evil_blue",new seIm() { X = 633, Y = 322, sX = 900, sY = 900, Rot = 0, Flip = 0 })
                 ,new AlignData("Evil_green","Evil_blue")
                 ,new AlignData("Evil_red","Evil_green")
             }, this);

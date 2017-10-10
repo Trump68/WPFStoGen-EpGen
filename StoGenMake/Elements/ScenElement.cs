@@ -102,7 +102,6 @@ namespace StoGenMake.Elements
 
         public VNPCPersType PersonType { get; internal set; }
         public string Description { get; internal set; }
-
         internal override string GetElementData()
         {           
             List<string> result = new List<string>();
@@ -116,8 +115,8 @@ namespace StoGenMake.Elements
                 result.Add($"SizeX={this.sX.ToString().PadRight(4)}");
                 result.Add($"SizeY={this.sY.ToString().PadRight(4)}");
                 result.Add($"SizeMode={this.SizeMode}");
-                result.Add($"X={this.X.ToString().PadRight(4)}");
-                result.Add($"Y={this.Y.ToString().PadRight(4)}");
+                result.Add($"X={(this.X).ToString().PadRight(4)}");
+                result.Add($"Y={(this.Y).ToString().PadRight(4)}");
                 result.Add($"Rot={this.Rot.ToString().PadRight(4)}");
                 result.Add($"Opacity={this.Opa.ToString().PadRight(3)}");
                 result.Add($"Flip={this.Flip.ToString().PadRight(3)}");
@@ -141,18 +140,7 @@ namespace StoGenMake.Elements
         }
 
 
-        //internal void AlignFrom(AlignData item)
-        //{
-        //    if (item == null || item.Im == null) return;
-        //    this.X = this.X + item.Im.X;
-        //    this.Y = this.Y + item.Im.Y;
-
-        //    this.sX = item.Im.sX;
-        //    this.sY = item.Im.sY;
-        //    this.Rot = item.Im.Rot;
-        //    this.Flip = item.Im.Flip;
-        //}
-
+   
         
     }
 

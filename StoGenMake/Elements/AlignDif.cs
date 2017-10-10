@@ -29,18 +29,17 @@ namespace StoGenMake.Elements
 
 
 
-        public AlignDif(AlignData item, AlignData parentItem)
-        {
-            this.Source = item.Name;
-            this.SourceIm = item.Im;
-            this.Parent = item.Parent;
-            if (parentItem != null)
-            {
-                this.Parent = parentItem.Name;
-                this.ParentIm = parentItem.Im;
-            }
-
-        }
+        //public AlignDif(AlignData item, AlignData parentItem)
+        //{
+        //    this.Source = item.Name;
+        //    this.SourceIm = item.Im;
+        //    this.Parent = item.Parent;
+        //    if (parentItem != null)
+        //    {
+        //        this.Parent = parentItem.Name;
+        //        this.ParentIm = parentItem.Im;
+        //    }
+        //}
 
         public int GetDifX()
         {
@@ -58,20 +57,30 @@ namespace StoGenMake.Elements
         }
         public void Applay(seIm target, seIm actualParent)
         {
+            float modX = 1;
+            float modY = 1;
+            if (this.ParentIm != null && actualParent != null)
+            {
+                modX = ((float)actualParent.sX / (float)this.ParentIm.sX);
+                modY = ((float)actualParent.sY / (float)this.ParentIm.sY);
 
-            target.X += GetDifX();
+                target.sX = Convert.ToInt32(this.SourceIm.sX * modX);
+                target.sY = Convert.ToInt32(this.SourceIm.sY * modY);
+            }
+            else
+            {
+                target.sX = this.SourceIm.sX;
+                target.sY = this.SourceIm.sY;
+            }
+
+            target.X += Convert.ToInt32((GetDifX() * modX));
             if (actualParent != null) target.X += actualParent.X;
 
-            target.Y += GetDifY();
+            target.Y += Convert.ToInt32((GetDifY() * modY));
             if (actualParent != null) target.Y += actualParent.Y;
-
-            target.sX = this.SourceIm.sX;
-            target.sY = this.SourceIm.sY;
 
             target.Rot = this.SourceIm.Rot;
             target.Flip = this.SourceIm.Flip;
-
         }
     }
-
 }

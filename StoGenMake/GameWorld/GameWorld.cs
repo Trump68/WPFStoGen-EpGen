@@ -213,18 +213,29 @@ namespace StoGenMake
         public string Name;
         public string Tag;
         public bool Processed = false;
-        public seIm Im;
+        public DifData Im;
         public AlignData(string name) : this(name, null, null, null) { }
-        public AlignData(string name, seIm im) : this(name, null, null, im) { }
+        public AlignData(string name, DifData im) : this(name, null, null, im) { }
         public AlignData(string name, string parent) : this(name, parent, null, null) { }
-        public AlignData(string name, string parent, seIm im) : this(name, parent, null, im) { }
-        public AlignData(string name, string parent, string tag, seIm im)
+        public AlignData(string name, string parent, DifData im) : this(name, parent, null, im) { }
+        public AlignData(string name, string parent, string tag, DifData im)
         {
             Parent = parent;
             Name = name;
             Tag = tag;
             Im = im;
         }
+    }
+    public class DifData
+    {
+        public string Name { set; get; }
+        public string Parent { set; get; }
+        public int? X { set; get; }
+        public int? Y { set; get; }
+        public int? sX { set; get; }
+        public int? sY { set; get; }
+        public int? Rot { set; get; }
+        public int? Flip { set; get; }
     }
 
 
