@@ -129,7 +129,7 @@ namespace StoGenMake.Scenes.Base
 
             #endregion
         }
-        internal static void LoadData(List<seIm> data, List<AlignData> alignData)
+        internal static void LoadData(List<seIm> data, List<AlignDif> alignData)
         {
             string path = null;
 

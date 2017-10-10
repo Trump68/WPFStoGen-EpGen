@@ -205,7 +205,7 @@ namespace StoGenMake.Scenes.Base
                 if (!item.Processed)
                 {
                     sourceIm.Reset();
-                    var currAlign = GameWorldFactory.GameWorld.AlignList.Where(x => x.Name == sourceIm.Name && x.Parent == item.Parent && x.Tag == item.Tag).FirstOrDefault();
+                    var currAlign = GameWorldFactory.GameWorld.AlignList.Where(x => x.Source == sourceIm.Name && x.Parent == item.Parent && x.Tag == item.Tag).FirstOrDefault();
                     AlignData parentItem = null;
                     if (!string.IsNullOrEmpty(item.Parent))
                     {
@@ -219,22 +219,25 @@ namespace StoGenMake.Scenes.Base
                         }
                     }
 
-                    if (currAlign == null)
-                    {                        
-                        currAlign = GetNewAlign(item, parentItem);                        
+                    if (currAlign == null )
+                    {                                                
+                        currAlign = new AlignDif(item, parentItem);
                     }
                     else if (item.Im != null)
                     {
-                        currAlign = GetNewAlign(item, parentItem);
+                        currAlign = new AlignDif(item, parentItem);
                         if (replace) //replace old saved
                         {
-                            GameWorldFactory.GameWorld.AlignList.RemoveAll(x => x.Name == sourceIm.Name && x.Parent == item.Parent && x.Tag == item.Tag);
-                            GameWorldFactory.GameWorld.AlignList.Add(currAlign);
+                            GameWorldFactory.GameWorld.AlignList.RemoveAll(x => x.Source == sourceIm.Name && x.Parent == item.Parent && x.Tag == item.Tag);
                         }
                     }
-                    
-                    //sourceIm.AlignFrom(currAlign);
-                    sourceIm.AlignFrom(currAlign,parentItem);
+
+                    GameWorldFactory.GameWorld.AlignList.Add(currAlign);
+                    if (parentItem != null)
+                        currAlign.Applay(sourceIm, parentItem.Im);
+                    else
+                        currAlign.Applay(sourceIm);
+
                     if (item.Im == null)
                     {
                         item.Im = new seIm();
@@ -249,22 +252,7 @@ namespace StoGenMake.Scenes.Base
 
         }
 
-        private static AlignData GetNewAlign(AlignData item, AlignData parentItem)
-        {
-            if (item == null || item.Im == null) return null;
-            AlignData newalign = new AlignData(item.Name, new seIm());
-            newalign.Parent = parentItem?.Name;
-            newalign.Tag = item.Tag;
-            newalign.Im.X = item.Im.X - (parentItem == null ? 0 : parentItem.Im.X);
-            newalign.Im.Y = item.Im.Y - (parentItem == null ? 0 : parentItem.Im.Y);
-
-            newalign.Im.sX = item.Im.sX;
-            newalign.Im.sY = item.Im.sY;
-            newalign.Im.Rot = item.Im.Rot;
-            newalign.Im.Flip = item.Im.Flip;
-            GameWorldFactory.GameWorld.AlignList.Add(newalign);
-            return newalign;
-        }
+        
     }
 
 }

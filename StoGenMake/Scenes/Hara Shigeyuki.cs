@@ -120,7 +120,7 @@ namespace StoGenMake.Scenes.Base
 
             #endregion
         }
-        internal static void LoadData(List<seIm> data, List<AlignData> alignData)
+        internal static void LoadData(List<seIm> data, List<AlignDif> alignData)
         {
 
 
@@ -129,7 +129,7 @@ namespace StoGenMake.Scenes.Base
             // faces
             path = @"x:\STOGEN\LADY\COMIX\LADY_Heads_Hara Shigeyuki\";
             data.Add(GetIm("LADY_Head_1710080900", VNPCPersType.Manga, "Hara Shigeyuki", path, "001.png"));
-            alignData.Add(new AlignData("LADY_Head_1710080900", "LADY_Body_1710080900", new seIm() { X = 205, Y = 10, sX = 140, sY = 140 }));
+            alignData.Add(new AlignDif("LADY_Head_1710080900", "LADY_Body_1710080900", new seIm() { X = 205, Y = 10, sX = 140, sY = 140 }));
             data.Add(GetIm("LADY_Head_1710080901", VNPCPersType.Manga, "Hara Shigeyuki", path, "002.png"));
             data.Add(GetIm("LADY_Head_1710080902", VNPCPersType.Manga, "Hara Shigeyuki", path, "003.png"));
             data.Add(GetIm("LADY_Head_1710080903", VNPCPersType.Manga, "Hara Shigeyuki", path, "004.png"));

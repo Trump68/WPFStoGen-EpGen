@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Elements\AlignDif.cs" />
     <Compile Include="Elements\ScenElement.cs" />
     <Compile Include="EntityData\EntityData.cs" />
     <Compile Include="GameWorld\GameWorld.cs" />

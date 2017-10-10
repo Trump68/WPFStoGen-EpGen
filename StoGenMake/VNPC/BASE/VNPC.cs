@@ -237,15 +237,16 @@ namespace StoGenMake.Pers
             this.Brows.Applay(cadre, true);
         }
 
-        internal void AlignTo(VNPCCloth body)
-        {
+        //internal void AlignTo(VNPCCloth body)
+        //{
             
-            this.Head.Reset();
-            if (body == null) return;
-            var align = GameWorldFactory.GameWorld.AlignList.Where(x => x.Name == this.Head.Name && x.Parent == body.image.Name).FirstOrDefault();
-            if (align != null)
-                this.Head.AssinFrom(align.Im);
-        }
+        //    this.Head.Reset();
+        //    if (body == null) return;
+        //    var align = GameWorldFactory.GameWorld.AlignList.Where(x => x.Source == this.Head.Name && x.Parent == body.image.Name).FirstOrDefault();
+        //    if (align != null)
+        //        align.AlignSource()
+        //        this.Head.AssinFrom(align.Im);
+        //}
 
         internal void AlignTo(seIm seIm)
         {

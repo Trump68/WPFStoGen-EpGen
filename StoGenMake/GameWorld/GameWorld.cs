@@ -34,7 +34,7 @@ namespace StoGenMake
         public List<VNPC>          PersoneList  { get; internal set; }
         public List<seIm>          CommonImageList { get; internal set; }
        
-        public List<AlignData> AlignList { get; internal set; }
+        public List<AlignDif> AlignList { get; internal set; }
         public List<VisualLocaton> LocationList { get; internal set; }
         public List<BaseScene> SceneList { get; internal set; }
         public VNPC CurrentPersone { get; internal set; }
@@ -45,7 +45,7 @@ namespace StoGenMake
            
             this.PersoneList  = new List<VNPC>();
             this.CommonImageList = new List<seIm>();
-            this.AlignList = new List<AlignData>();
+            this.AlignList = new List<AlignDif>();
 
             this.LocationList = new List<VisualLocaton>();
             this.SceneList = new List<BaseScene>();
@@ -226,5 +226,6 @@ namespace StoGenMake
             Im = im;
         }
     }
- 
+
+
 }

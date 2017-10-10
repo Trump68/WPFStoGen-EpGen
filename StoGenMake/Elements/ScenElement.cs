@@ -153,31 +153,7 @@ namespace StoGenMake.Elements
         //    this.Flip = item.Im.Flip;
         //}
 
-        internal void AlignFrom(AlignData currAlign, AlignData parentItem)
-        {
-            int x = 0;
-            if (currAlign != null) x = x + currAlign.Im.X;
-            if (parentItem != null) x = x + parentItem.Im.X;
-            this.X = x;
-
-            int y = 0;
-            if (currAlign != null) y = y + currAlign.Im.Y;
-            if (parentItem != null) y = y + parentItem.Im.Y;
-            this.Y = y;
-
-            int sx = 0;
-            if (currAlign != null) sx = sx + currAlign.Im.sX;
-            //if (currAlign != null) x = x + parentItem.Im.X;
-            if (sx > 0) this.sX = sx;
-
-            int sy = 0;
-            if (currAlign != null) sy = sy + currAlign.Im.sY;
-            //if (currAlign != null) x = x + parentItem.Im.X;
-            if (sy > 0)  this.sY = sy;
-
-            if (currAlign != null) this.Rot = currAlign.Im.Rot;
-            if (currAlign != null) this.Flip = currAlign.Im.Flip;
-        }
+        
     }
 
     public class ScenElementSound : ScenElement
