@@ -61,8 +61,8 @@ namespace StoGenMake.Elements
 
         internal void Reset()
         {
-          sX = 900;
-          sY = 600;
+          sX = 500;
+          sY = 500;
           SizeMode = 1;
           X = 0;
           Y = 0;

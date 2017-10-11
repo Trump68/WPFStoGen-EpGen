@@ -55,13 +55,17 @@ namespace StoGenMake.Elements
 
         public int GetDifX()
         {
-                if (this.ParentIm == null) return this.SourceIm.X.Value;
-                else return this.SourceIm.X.Value - this.ParentIm.X.Value;
+                if (this.ParentIm == null || !this.ParentIm.X.HasValue)
+                    return this.SourceIm.X.Value;
+                else
+                   return this.SourceIm.X.Value - this.ParentIm.X.Value;
         }
         public int GetDifY()
         {
-            if (this.ParentIm == null) return this.SourceIm.Y.Value;
-            else return this.SourceIm.Y.Value - this.ParentIm.Y.Value;
+            if (this.ParentIm == null || !this.ParentIm.Y.HasValue)
+                return this.SourceIm.Y.Value;
+            else
+                return this.SourceIm.Y.Value - this.ParentIm.Y.Value;
         }
         public void Applay(seIm sourceIm)
         {
@@ -71,17 +75,22 @@ namespace StoGenMake.Elements
         {
             float modX = 1;
             float modY = 1;
+            float mod = 1;
             if (this.ParentIm != null && actualParent != null)
             {
-                if (this.SourceIm.sX.HasValue)
+                if (this.SourceIm.sX.HasValue || this.SourceIm.sY.HasValue)
                 {
-                    modX = ((float)actualParent.sX / (float)this.ParentIm.sX);
-                    target.sX = Convert.ToInt32(this.SourceIm.sX * modX);
-                }
-                if (this.SourceIm.sY.HasValue)
-                {
-                    modY = ((float)actualParent.sY / (float)this.ParentIm.sY);
-                    target.sY = Convert.ToInt32(this.SourceIm.sY * modY);
+                    if (this.SourceIm.sX.HasValue)
+                    {
+                        modX = ((float)actualParent.sX / (float)this.ParentIm.sX);
+                    }
+                    if (this.SourceIm.sY.HasValue)
+                    {
+                        modY = ((float)actualParent.sY / (float)this.ParentIm.sY);
+                    }
+                    mod = Math.Min(modX, modY);
+                    target.sX = Convert.ToInt32(this.SourceIm.sX * mod);
+                    target.sY = Convert.ToInt32(this.SourceIm.sY * mod);
                 }
             }
             else
@@ -92,13 +101,18 @@ namespace StoGenMake.Elements
 
             if (this.SourceIm.X.HasValue)
             {
-                target.X += Convert.ToInt32((GetDifX() * modX));
-                if (actualParent != null && actualParent.X.HasValue) target.X += actualParent.X.Value;
+                //target.X += Convert.ToInt32((GetDifX() * modX));
+                target.X = target.X + (int)(this.SourceIm.X.Value * modY);
+                if (actualParent != null && actualParent.X.HasValue)
+                    target.X = target.X + actualParent.X.Value;
             }
             if (this.SourceIm.Y.HasValue)
             {
-                target.Y += Convert.ToInt32((GetDifY() * modY));
-                if (actualParent != null && actualParent.Y.HasValue) target.Y += actualParent.Y.Value;
+                //target.Y += Convert.ToInt32((GetDifY() * modY));
+                //if (actualParent != null && actualParent.Y.HasValue) target.Y += actualParent.Y.Value;
+                target.Y = target.Y + (int)(this.SourceIm.Y.Value * modY);
+                if (actualParent != null && actualParent.Y.HasValue)
+                    target.Y = target.Y + actualParent.Y.Value;
             }
             if (this.SourceIm.Rot.HasValue) target.Rot = this.SourceIm.Rot.Value;
             if (this.SourceIm.Flip.HasValue) target.Flip = this.SourceIm.Flip.Value;

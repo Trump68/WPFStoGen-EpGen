@@ -21,78 +21,43 @@ namespace StoGenMake.Scenes.Base
 
             #region Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~
 
-            //SetCadre(new Tuple<string, string, seIm>[] {
-            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083012",null, null)
-            //}, false);
+         
 
-            //SetCadre(new Tuple<string, string, seIm>[] {
-            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083011",null, null)
-            //}, false);
-
-            //SetCadre(new Tuple<string, string, seIm>[] {
-            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083010",null, null)
-            //}, false);
-
-            //SetCadre(new Tuple<string, string, seIm>[] {
-            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083009",null, null)
-            //}, false);
-
-            //SetCadre(new Tuple<string, string, seIm>[] {
-            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083008",null, null)
-            //}, false);
-
-            //SetCadre(new Tuple<string, string, seIm>[] {
-            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083007",null, null)
-            //}, false);
-
-            //SetCadre(new Tuple<string, string, seIm>[] {
-            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083006",null, null)
-            //}, false);
-
-            //SetCadre(new Tuple<string, string, seIm>[] {
-            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083005",null, null)
-            //}, false);
-
-            //SetCadre(new Tuple<string, string, seIm>[] {
-            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083004",null, null)
-            //}, false);
-
-            //SetCadre(new Tuple<string, string, seIm>[] {
-            //   new  Tuple<string, string, seIm>("Evil_BODY_1710085001",null, new seIm() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Head_1710086002",null, new seIm() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353, Flip = 0 })
-            //  ,new  Tuple<string, string, seIm>("LADY_Body_1710083003",null, null)
-            //  ,new  Tuple<string, string, seIm>("LADY_PANTY_1710084002",null, new seIm() { X = 398, Y = 283, sX = 254, sY = 254, Rot = 360, Flip = 0 }),
-            //}, false);
-
-           
+          
 
             // SetAlign
             SetCadre(new AlignData[] {
-                new AlignData("Evil_BODY_1710085001", new DifData(){ X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 }),
-                new AlignData("LADY_Head_1710086001","LADY_Body_1710083003"),
+                new AlignData("Evil_BODY_1710085001", new DifData() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 }),
+                new AlignData("Evil_BODY_1710085002", new DifData() { X = -188, Y = -42, sX = 830, sY = 830, Rot = 362, Flip = 1 }),
+
                 new AlignData("LADY_Body_1710083003"),
-                new AlignData("LADY_Mouth_1710084001","LADY_Head_1710086001",new DifData()  { X = 372, Y = 128, sX = 60, sY = 60, Rot = 277, Flip = 1 }),
-                new AlignData("LADY_Mouth_1710084002","LADY_Head_1710086001",new DifData()  { X = 382, Y = 142, sX = 30, sY = 30, Rot = 279, Flip = 1 }),
-                new AlignData("LADY_PANTY_1710084002","LADY_Body_1710083003", new DifData() { X = 398, Y = 283, sX = 254, sY = 254, Rot = 360, Flip = 0 }),
+                new AlignData("LADY_Body_1710083012", new DifData() { sX = 900, sY = 600, X = 0, Y = 0 }),
+
+                //new AlignData("LADY_Head_1710086002"),
+
+                new AlignData("LADY_PANTY_1710084002","LADY_Body_1710083003", new DifData() { X = 398, Y = 283, sX = 254, sY = 254, Rot = 360}),
+
+                new AlignData("LADY_Head_1710086001", "LADY_Body_1710083003"),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083003", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083004", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083005", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083006", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083007", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083008", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083009", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083010", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083011", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083012", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
+
+                new AlignData("LADY_Mouth_1710084001","LADY_Head_1710086001", new DifData()  { X = 372, Y = 128, sX = 60, sY = 60, Rot = 277, Flip = 1 }),
+                new AlignData("LADY_Mouth_1710084002","LADY_Head_1710086001", new DifData()  { X = 382, Y = 142, sX = 30, sY = 30, Rot = 279, Flip = 1 }),
             }, null);
+
+
+            for (int i = 1; i < 142; i++)
+            {
+                SetCadre(new AlignData[] { new AlignData($"LADY_Body_1710082{i.ToString("D3")}") }, this);
+            }
 
 
             SetCadre(new AlignData[] {
@@ -117,13 +82,87 @@ namespace StoGenMake.Scenes.Base
               ,new  AlignData("LADY_PANTY_1710084002","LADY_Body_1710083003"),
             }, this);
 
+            SetCadre(new AlignData[] {
+               new  AlignData("Evil_BODY_1710085001")
+              ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083003")
+              ,new  AlignData("LADY_Body_1710083003")
+              ,new  AlignData("LADY_PANTY_1710084002","LADY_Body_1710083003")
+            }, this);
+
+            SetCadre(new AlignData[] {
+               new  AlignData("Evil_BODY_1710085001")
+              ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083004")
+              ,new  AlignData("LADY_Body_1710083004")
+            }, this);
+
+            SetCadre(new AlignData[] {
+               new  AlignData("Evil_BODY_1710085001")
+              ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083005")
+              ,new  AlignData("LADY_Body_1710083005")
+            }, this);
+
+            SetCadre(new AlignData[] {
+               new  AlignData("Evil_BODY_1710085001")
+              ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083006")
+              ,new  AlignData("LADY_Body_1710083006")
+            }, this);
+
+            SetCadre(new AlignData[] {
+               new  AlignData("Evil_BODY_1710085001")
+              ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083007")
+              ,new  AlignData("LADY_Body_1710083007")
+            }, this);
+
+            SetCadre(new AlignData[] {
+               new  AlignData("Evil_BODY_1710085001")
+              ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083008")
+              ,new  AlignData("LADY_Body_1710083008")
+            }, this);
+
+
+            SetCadre(new AlignData[] {
+               new  AlignData("Evil_BODY_1710085001")
+              ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083009")
+              ,new  AlignData("LADY_Body_1710083009")
+            }, this);
+
+            SetCadre(new AlignData[] {
+               new  AlignData("Evil_BODY_1710085001")
+              ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083010")
+              ,new  AlignData("LADY_Body_1710083010")
+            }, this);
+
+            SetCadre(new AlignData[] {
+               new  AlignData("Evil_BODY_1710085001")
+              ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083011")
+              ,new  AlignData("LADY_Body_1710083011")
+            }, this);
+
+            SetCadre(new AlignData[] {
+               new  AlignData("Evil_BODY_1710085001")
+              ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083012")
+              ,new  AlignData("LADY_Body_1710083012")
+            }, this);
+
+            SetCadre(new AlignData[] {
+               new  AlignData("LADY_Head_1710086002","LADY_Body_1710083012")
+              ,new  AlignData("LADY_Body_1710083012")
+              //,new  AlignData("Evil_BODY_1710085002")
+            }, this);
+
+            SetCadre(new AlignData[] {
+               new  AlignData("LADY_Head_1710086002","LADY_Body_1710083012")
+              //,new  AlignData("LADY_Body_1710083012",new DifData() { X = 169, Y = -5, sX = 1005, sY = 1005})
+              ,new  AlignData("LADY_Body_1710083012",new DifData() { sX = 1005, sY = 1005})
+              //,new  AlignData("Evil_BODY_1710085002")
+            }, this);
+
+            
+           
             this.Cadres.Reverse();
 
 
-            //for (int i = 1; i < 142; i++)
-            //{
-            //    SetCadre($"LADY_Body_1710082{i.ToString("D3")}", false); 
-            //}
+
 
 
 
@@ -143,8 +182,9 @@ namespace StoGenMake.Scenes.Base
 
             // evil
             data.Add(GetIm($"Evil_BODY_1710085001", VNPCPersType.Manga, "Fools_Art_Homare", path, $"EVIL_BODY_01.png"));
-            data.Add(GetIm($"Evil_HEAD_1710085002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"EVIL_BODY_01.png"));
-
+            data.Add(GetIm($"Evil_HEAD_1710085002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"EVIL_HEAD_01.png"));
+            data.Add(GetIm($"Evil_BODY_1710085002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"EVIL_BODY_02.png"));
+            data.Add(GetIm($"Evil_HEAD_1710085003", VNPCPersType.Manga, "Fools_Art_Homare", path, $"EVIL_HEAD_02.png"));
             // parts
             data.Add(GetIm($"LADY_Mouth_1710084001", VNPCPersType.Manga, "Fools_Art_Homare", path, $"MOUTH_01.png"));
             data.Add(GetIm($"LADY_Mouth_1710084002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"MOUTH_02.png"));

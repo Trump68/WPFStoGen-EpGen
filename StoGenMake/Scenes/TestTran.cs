@@ -19,11 +19,16 @@ namespace StoGenMake.Scenes.Base
         {
             // Set align
             SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue", new DifData() { X = 33, Y = 22, sX = 600, sY = 600, Rot = 0, Flip = 0 })
-                ,new AlignData("Evil_green","Evil_blue", new DifData() { X = 335, Y = 310, sX = 900, sY = 900, Rot = 0, Flip = 0 })
-                ,new AlignData("Evil_red","Evil_green", new DifData() { X = 355, Y = -261, sX = 600, sY = 600, Rot = 0, Flip = 0 })
+                 
+                 new AlignData("Evil_blue", new DifData() { X = 0, Y = 0, sX = 500, sY=500 })
+                //,new AlignData("Evil_green", new DifData() { X = 0, Y = 0, sX = 500, sY=500 })
+                ,new AlignData("Evil_green","Evil_blue", new DifData() { X = 230, Y = 0, sX = 500, sY=500 })
+                
+                //,new AlignData("Evil_red", new DifData() { X = 533, Y = -300, sX = 600, sY = 600 })
+                //,new AlignData("Evil_green","Evil_blue", new DifData() { X = 235, Y = 142, sX = 900, sY = 900, Rot = 0, Flip = 0 })
+                ,new AlignData("Evil_red","Evil_green", new DifData() { X = 3, Y = -300, sX = 500, sY = 500, Rot = 0, Flip = 0 })
             }, null);
-
+            
             // real
             SetCadre(new AlignData[] {
                  new AlignData("Evil_blue")
@@ -31,21 +36,10 @@ namespace StoGenMake.Scenes.Base
                 ,new AlignData("Evil_red","Evil_green")
             }, this);
 
-            //SetCadre(new DifData[] {
-            //     new DifData("Evil_blue")
-            //    ,new DifData("Evil_green","Evil_blue", new seIm() { X = 200, Y = 310, sX = 900, sY = 900, Rot = 20, Flip = 0 })
-            //    ,new DifData("Evil_red","Evil_green")
-            //}, this);
-
-            //SetCadre(new DifData[] {
-            //     new DifData("Evil_blue",new seIm() { X = 133, Y = 22, sX = 600, sY = 600, Rot = 0, Flip = 0 } )
-            //    ,new DifData("Evil_green","Evil_blue")
-            //    ,new DifData("Evil_red","Evil_green")
-            //}, this);
 
             SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue",new DifData() { X = 333, sX = 300, sY = 300 })
-                ,new AlignData("Evil_green","Evil_blue")
+                 new AlignData("Evil_blue",new DifData() { X=50, sX = 250, sY = 250 })
+                ,new AlignData("Evil_green","Evil_blue",new DifData() { X=200 })
                 ,new AlignData("Evil_red","Evil_green")
             }, this);
 

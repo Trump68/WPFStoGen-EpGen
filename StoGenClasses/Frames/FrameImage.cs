@@ -241,6 +241,7 @@ namespace StoGen.Classes
                 if (pi.Props.Timer > 0)
                     FrameImage.TimeToNext = pi.Props.Timer;
 
+                #region Video
                 if (Pics[i].Props.isVideo || ext == ".mp4" || ext == ".mpg" || ext == ".avi" || ext == ".wmv" || ext == ".m4v")
                 {
                     FrameImage.TimeToNext = -1;
@@ -316,7 +317,8 @@ namespace StoGen.Classes
                     if (Pics[i].Props.PP2 > 0) PausePeriod2 = Pics[i].Props.PP2;
                     else PausePeriod2 = 40;
                     continue;
-                }
+                } 
+                #endregion
 
                 BitmapImage imageSource = new BitmapImage(new Uri(fn));
 
@@ -332,9 +334,6 @@ namespace StoGen.Classes
                     Projector.PicContainer.PicList[(int)pi.Props.Level].Effect = null;
                 }
                 // resize
-
-
-
                 if (pi.Props.SizeX == -1 || pi.Props.SizeY == -1)
                 {
                     if (pi.Props.SizeX == -1) pi.Props.SizeX = imageSource.PixelWidth;
@@ -370,7 +369,7 @@ namespace StoGen.Classes
 
 
 
-                Projector.PicContainer.PicList[(int)pi.Props.Level].Margin = new System.Windows.Thickness(pi.Props.X, pi.Props.Y, 0, 0);
+                
                 Projector.PicContainer.PicList[(int)pi.Props.Level].Visibility = System.Windows.Visibility.Visible;
                 Projector.PicContainer.PicList[(int)pi.Props.Level].Tag = fn;
 
@@ -418,8 +417,8 @@ namespace StoGen.Classes
                     Projector.PicContainer.PicList[(int)pi.Props.Level].Clip = null;
                 }
 
+                Projector.PicContainer.PicList[(int)pi.Props.Level].Margin = new System.Windows.Thickness(pi.Props.X, pi.Props.Y, 0, 0);
 
-             
 
 
             }
