@@ -67,55 +67,109 @@ namespace StoGenMake.Elements
             else
                 return this.SourceIm.Y.Value - this.ParentIm.Y.Value;
         }
-        public void Applay(seIm sourceIm)
+        public void Applay(seIm sourceIm, AlignData processed)
         {
-            Applay(sourceIm, null);
+            Applay(sourceIm, processed, null);
         }
-        public void Applay(seIm target, DifData actualParent)
+        public void Applay(seIm target, AlignData processed, seIm actualParent)
         {
             float modX = 1;
             float modY = 1;
-            float mod = 1;
+            
             if (this.ParentIm != null && actualParent != null)
             {
                 if (this.SourceIm.sX.HasValue || this.SourceIm.sY.HasValue)
                 {
-                    if (this.SourceIm.sX.HasValue)
+                    if (this.SourceIm.sX.HasValue && this.ParentIm.sX.HasValue)
                     {
                         modX = ((float)actualParent.sX / (float)this.ParentIm.sX);
+                        target.sX = Convert.ToInt32(this.SourceIm.sX * modX);
                     }
-                    if (this.SourceIm.sY.HasValue)
+                    if (this.SourceIm.sY.HasValue && this.ParentIm.sY.HasValue)
                     {
                         modY = ((float)actualParent.sY / (float)this.ParentIm.sY);
+                        target.sY = Convert.ToInt32(this.SourceIm.sY * modY);
+                    }                                
+                }
+                // Parent rotation
+                {
+                    int rot = 0;
+                    if (this.ParentIm.Rot.HasValue) rot = this.ParentIm.Rot.Value;
+                    if ( rot != actualParent.Rot)
+                    {
+                        //!! parent rotation                        
+                        target.ParentRotations.Add(new Tuple<string, int>(this.ParentIm.Name, actualParent.Rot - rot));
                     }
-                    mod = Math.Min(modX, modY);
-                    target.sX = Convert.ToInt32(this.SourceIm.sX * mod);
-                    target.sY = Convert.ToInt32(this.SourceIm.sY * mod);
                 }
             }
             else
             {
                 if (this.SourceIm.sX.HasValue) target.sX = this.SourceIm.sX.Value;
                 if(this.SourceIm.sY.HasValue) target.sY = this.SourceIm.sY.Value;
+
+                if (processed.Im != null && processed.Im.sX.HasValue) target.sX = processed.Im.sX.Value;
+                if (processed.Im != null && processed.Im.sY.HasValue) target.sY = processed.Im.sY.Value;
             }
 
-            if (this.SourceIm.X.HasValue)
-            {
-                //target.X += Convert.ToInt32((GetDifX() * modX));
-                target.X = target.X + (int)(this.SourceIm.X.Value * modY);
-                if (actualParent != null && actualParent.X.HasValue)
-                    target.X = target.X + actualParent.X.Value;
+            { // X,Y coord
+                if (processed.Im != null && !processed.Im.relative)
+                {
+                    if (processed.Im.X.HasValue)
+                        target.X = processed.Im.X.Value;
+                    if (processed.Im.Y.HasValue)
+                        target.Y = processed.Im.Y.Value;
+                }
+                else
+                {
+                    int xDif = 0;
+                    int yDif = 0;
+
+
+                    if (this.SourceIm.X.HasValue)
+                        xDif = this.SourceIm.X.Value;
+                    if (this.SourceIm.Y.HasValue)
+                        yDif = this.SourceIm.Y.Value;
+
+                    if (this.ParentIm != null && this.ParentIm.X.HasValue)
+                        xDif = xDif - this.ParentIm.X.Value;
+                    if (this.ParentIm != null && this.ParentIm.Y.HasValue)
+                        yDif = yDif - this.ParentIm.Y.Value;
+
+                    target.X = target.X + (int)(xDif * modX);
+                    target.Y = target.Y + (int)(yDif * modY);
+
+                    if (actualParent != null)
+                        target.X = target.X + actualParent.X;
+
+                    if (actualParent != null)
+                        target.Y = target.Y + actualParent.Y;
+
+                    if (processed.Fact != null)
+                    {
+                        target.X = target.X + processed.Fact.X;
+                    }
+                    else if (processed.Im != null && processed.Im.X.HasValue)
+                    {
+                        target.X = target.X + processed.Im.X.Value;
+                    }
+
+                    if (processed.Fact != null)
+                    {
+                        target.Y = target.Y + processed.Fact.Y;
+                    }
+                    else if (processed.Im != null && processed.Im.Y.HasValue)
+                    {
+                        target.Y = target.Y + processed.Im.Y.Value;
+                    }
+                }
             }
-            if (this.SourceIm.Y.HasValue)
-            {
-                //target.Y += Convert.ToInt32((GetDifY() * modY));
-                //if (actualParent != null && actualParent.Y.HasValue) target.Y += actualParent.Y.Value;
-                target.Y = target.Y + (int)(this.SourceIm.Y.Value * modY);
-                if (actualParent != null && actualParent.Y.HasValue)
-                    target.Y = target.Y + actualParent.Y.Value;
-            }
+
+
             if (this.SourceIm.Rot.HasValue) target.Rot = this.SourceIm.Rot.Value;
+            if (processed.Im != null && processed.Im.Rot.HasValue) target.Rot = processed.Im.Rot.Value;
+
             if (this.SourceIm.Flip.HasValue) target.Flip = this.SourceIm.Flip.Value;
+            if (processed.Im != null && processed.Im.Flip.HasValue) target.Flip = processed.Im.Flip.Value;
         }
     }
 }

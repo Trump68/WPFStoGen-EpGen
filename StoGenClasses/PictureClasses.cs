@@ -43,7 +43,7 @@ namespace StoGen.Classes
         {
 
         }
-
+        
         public string RawData { get; set; }
         
     }
@@ -103,6 +103,7 @@ namespace StoGen.Classes
             this.ClipX = sourceApperance.ClipX;
             this.ClipY = sourceApperance.ClipY;
             this.Transition = sourceApperance.Transition;
+            this.ParRot = sourceApperance.ParRot;
             this.Mute = sourceApperance.Mute;
         }
         public void Assign(PictureSourceProps sourceApperance)
@@ -228,6 +229,7 @@ namespace StoGen.Classes
         internal bool isMain = false;
         public string Flash = null;
         public string Transition = null;
+        public string ParRot = null;
     }
     public class PictureBaseProp
     {

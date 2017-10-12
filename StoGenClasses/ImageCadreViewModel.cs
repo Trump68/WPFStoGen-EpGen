@@ -29,7 +29,19 @@ namespace StoGenWPF
                 OnPropertyChanged("PropIndex");
             }
         }
-        private int propStep =5;
+
+        private bool relativeProp = false;
+        public bool RelativeProp
+        {
+            get { return relativeProp; }
+            set
+            {
+                relativeProp = value;
+                OnPropertyChanged("RelativeProp");
+            }
+        }
+
+        private int propStep = 5;
         public int PropStep
         {
             get { return propStep; }

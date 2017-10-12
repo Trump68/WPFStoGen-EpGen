@@ -30,19 +30,20 @@ namespace StoGenMake.Elements
         public seIm AddImage(seIm sr)
         {
             seIm im = new seIm();
-            im.File = sr.File;
-            im.Name = sr.Name;
-            im.Flip = sr.Flip;
-            im.Opa= sr.Opa;
-            im.Part = sr.Part;
-            im.Rot = sr.Rot;
-            im.SizeMode = sr.SizeMode;
-            im.sX = sr.sX;
-            im.sY = sr.sY;
-            im.Timer = sr.Timer;
-            im.Transition = sr.Transition;
-            im.X = sr.X;
-            im.Y = sr.Y;
+            im.AssinFrom(sr);
+            //im.File = sr.File;
+            //im.Name = sr.Name;
+            //im.Flip = sr.Flip;
+            //im.Opa= sr.Opa;
+            //im.Part = sr.Part;
+            //im.Rot = sr.Rot;
+            //im.SizeMode = sr.SizeMode;
+            //im.sX = sr.sX;
+            //im.sY = sr.sY;
+            //im.Timer = sr.Timer;
+            //im.Transition = sr.Transition;
+            //im.X = sr.X;
+            //im.Y = sr.Y;
             VisionList.Add(im);
             return im;
         }

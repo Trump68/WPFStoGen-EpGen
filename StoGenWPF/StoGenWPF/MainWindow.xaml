@@ -34,11 +34,15 @@
                     <TextBlock Text="     X:+NP6-NP4          Y:+NP2-NP8          Size:+NP7-NP9         Rot:+NP1-NP3         ClipX:+A-S          ClipW:+D-F         ClipY:+G-H        ClipH:+J-K"/>
                 </StackPanel>
                 <StackPanel Margin="1" Orientation="Horizontal">
-                <StackPanel Margin="1" Orientation="Horizontal">
+                    <StackPanel Margin="1" Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding RelativeProp, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="20" IsTabStop="False"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="1" Orientation="Horizontal">
                     <TextBlock Text="LayerIndex"/>
                     <TextBox Text="{Binding LayerIndex, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="20" IsTabStop="False"/>
                 </StackPanel>
-                <StackPanel Margin="1" Orientation="Horizontal">
+                    <StackPanel Margin="1" Orientation="Horizontal">
                     <TextBlock Text="PropStep"/>
                     <TextBox Text="{Binding PropStep, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="20" IsTabStop="False"/>
                 </StackPanel>

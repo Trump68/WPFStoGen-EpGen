@@ -350,6 +350,11 @@ namespace StoGen.Classes
                 if (this.InnerProc == null)
                 {
                     if (this.Cadres.Count == 0 || this.CurrentCadre == null) return false;
+                    int idx = this.Cadres.IndexOf(this.CurrentCadre) - 1;
+                    if (idx > -1)
+                    {
+                        if (this.Cadres[idx].IsProc) return false;
+                    }
                     return this.CurrentCadre.AllowedBackward;
                 }
                 else return this.InnerProc.AllowedBackward;

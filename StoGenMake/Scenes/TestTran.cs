@@ -20,28 +20,27 @@ namespace StoGenMake.Scenes.Base
             // Set align
             SetCadre(new AlignData[] {
                  
-                 new AlignData("Evil_blue", new DifData() { X = 0, Y = 0, sX = 500, sY=500 })
-                //,new AlignData("Evil_green", new DifData() { X = 0, Y = 0, sX = 500, sY=500 })
-                ,new AlignData("Evil_green","Evil_blue", new DifData() { X = 230, Y = 0, sX = 500, sY=500 })
-                
-                //,new AlignData("Evil_red", new DifData() { X = 533, Y = -300, sX = 600, sY = 600 })
-                //,new AlignData("Evil_green","Evil_blue", new DifData() { X = 235, Y = 142, sX = 900, sY = 900, Rot = 0, Flip = 0 })
-                ,new AlignData("Evil_red","Evil_green", new DifData() { X = 3, Y = -300, sX = 500, sY = 500, Rot = 0, Flip = 0 })
+                 new AlignData("Evil_blue", new DifData() { sX = 500, sY=500 })
+                ,new AlignData("Evil_green","Evil_blue", new DifData() { X = 230, sX = 400, sY=400 })               
+                //,new AlignData("Evil_red","Evil_green", new DifData() { X = 233, Y = -300, sX = 500, sY = 500 })
             }, null);
-            
-            // real
+
+            //// real
             SetCadre(new AlignData[] {
                  new AlignData("Evil_blue")
                 ,new AlignData("Evil_green","Evil_blue")
-                ,new AlignData("Evil_red","Evil_green")
+                //,new AlignData("Evil_red","Evil_green")
             }, this);
 
 
             SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue",new DifData() { X=50, sX = 250, sY = 250 })
-                ,new AlignData("Evil_green","Evil_blue",new DifData() { X=200 })
-                ,new AlignData("Evil_red","Evil_green")
+                 new AlignData("Evil_blue",new DifData() { Rot =45  })
+                 //,new AlignData("Evil_green","Evil_blue",new DifData() { Rot=90 }) // absolute 1030
+                 ,new AlignData("Evil_green","Evil_blue",new DifData() { Rot =45  }) // absolute 1030
+                //,new AlignData("Evil_green","Evil_blue",new DifData() { X=300 })
+                //,new AlignData("Evil_red","Evil_green",new DifData() { X=100 })
             }, this);
+
 
         }
         internal static void LoadData(List<seIm> data, List<AlignDif> alignData)

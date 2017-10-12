@@ -214,6 +214,7 @@ namespace StoGenMake
         public string Tag;
         public bool Processed = false;
         public DifData Im;
+        public seIm Fact;
         public AlignData(string name) : this(name, null, null, null) { }
         public AlignData(string name, DifData im) : this(name, null, null, im) { }
         public AlignData(string name, string parent) : this(name, parent, null, null) { }
@@ -228,7 +229,12 @@ namespace StoGenMake
     }
     public class DifData
     {
+        public bool relative = true;
         public DifData() { }
+        public DifData(bool rel):this()
+        {
+            this.relative = rel;
+        }
         public DifData(AlignData item):this()
         {
            this.Name = item.Name;

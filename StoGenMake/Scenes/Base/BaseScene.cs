@@ -196,20 +196,20 @@ namespace StoGenMake.Scenes.Base
             }
         }
 
-        private static seIm setAlignData(AlignData item, List<AlignData> list, bool replace)
+        private static seIm setAlignData(AlignData processed, List<AlignData> list, bool replace)
         {
 
-            var sourceIm = GameWorldFactory.GameWorld.CommonImageList.Where(x => x.Name == item.Name).FirstOrDefault();
-            if (sourceIm != null)
+            var targetIm = GameWorldFactory.GameWorld.CommonImageList.Where(x => x.Name == processed.Name).FirstOrDefault();
+            if (targetIm != null)
             {
-                if (!item.Processed)
+                if (!processed.Processed)
                 {
-                    sourceIm.Reset();
-                    var currAlign = GameWorldFactory.GameWorld.AlignList.Where(x => x.Source == sourceIm.Name && x.Parent == item.Parent && x.Tag == item.Tag).FirstOrDefault();
+                    targetIm.Reset();
+                    var currAlign = GameWorldFactory.GameWorld.AlignList.Where(x => x.Source == targetIm.Name && x.Parent == processed.Parent && x.Tag == processed.Tag).FirstOrDefault();
                     AlignData parentItem = null;
-                    if (!string.IsNullOrEmpty(item.Parent))
+                    if (!string.IsNullOrEmpty(processed.Parent))
                     {
-                        parentItem = list.Where(x => x.Name == item.Parent).FirstOrDefault();
+                        parentItem = list.Where(x => x.Name == processed.Parent).FirstOrDefault();
                         if (parentItem != null)
                         {
                             if (!parentItem.Processed)
@@ -221,34 +221,32 @@ namespace StoGenMake.Scenes.Base
 
                     if (currAlign == null )
                     {                                                
-                        currAlign = new AlignDif(item, parentItem);
+                        currAlign = new AlignDif(processed, parentItem);
+                        GameWorldFactory.GameWorld.AlignList.Add(currAlign);
                     }
-                    else if (item.Im != null)
-                    {
-                        currAlign = new AlignDif(item, parentItem);
-                        if (replace) //replace old saved
-                        {
-                            GameWorldFactory.GameWorld.AlignList.RemoveAll(x => x.Source == sourceIm.Name && x.Parent == item.Parent && x.Tag == item.Tag);
-                        }
-                    }
+                    //else if (item.Im != null)
+                    //{
+                    //    currAlign = new AlignDif(item, parentItem);
+                    //    //if (replace) //replace old saved
+                    //    //{
+                    //    //    GameWorldFactory.GameWorld.AlignList.RemoveAll(x => x.Source == sourceIm.Name && x.Parent == item.Parent && x.Tag == item.Tag);
+                    //    //}
+                    //}
 
-                    GameWorldFactory.GameWorld.AlignList.Add(currAlign);
+
                     if (parentItem != null)
-                        currAlign.Applay(sourceIm, parentItem.Im);
-                    else
-                        currAlign.Applay(sourceIm);
-
-                    if (item.Im == null)
                     {
-                        item.Im = new DifData(sourceIm);
-                        //item.Im.AssinFrom(sourceIm);
+                        currAlign.Applay(targetIm, processed, parentItem.Fact);
                     }
+                    else
+                        currAlign.Applay(targetIm, processed);
 
-                    item.Processed = true;
+                    processed.Fact = targetIm;                        
+                    processed.Processed = true;
                 }
             }
 
-            return sourceIm;
+            return targetIm;
 
         }
 

@@ -27,30 +27,44 @@ namespace StoGenMake.Scenes.Base
 
             // SetAlign
             SetCadre(new AlignData[] {
-                new AlignData("Evil_BODY_1710085001", new DifData() { X = -188, Y = -32, sX = 595, sY = 595, Rot = 362, Flip = 1 }),
-                new AlignData("Evil_BODY_1710085002", new DifData() { X = -188, Y = -42, sX = 830, sY = 830, Rot = 362, Flip = 1 }),
+                new AlignData("Evil_BODY_1710085001", new DifData() { sX = 900, sY = 900, Flip = 1}),
+                new AlignData("Evil_BODY_1710085002", new DifData() { sX = 900, sY = 900}),
+                new AlignData("Evil_BODY_1710085001","LADY_Body_1710110001",new DifData() { X = 515, Y = -670, sX = 900, sY = 900, Rot=270, Flip=0 }),
 
-                new AlignData("LADY_Body_1710083003"),
-                new AlignData("LADY_Body_1710083012", new DifData() { sX = 900, sY = 600, X = 0, Y = 0 }),
+                new AlignData("LADY_Body_1710083003", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710083004", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710083005", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710083006", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710083007", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710083008", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710083009", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710083010", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710083011", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710083012", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710110001", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710110002", new DifData() { sX = 995, sY = 995}),
 
-                //new AlignData("LADY_Head_1710086002"),
+                new AlignData("LADY_PANTY_1710084002","LADY_Body_1710083003", new DifData() { X = 508, Y = 363, sX = 309, sY = 309, Rot=360 }),
 
-                new AlignData("LADY_PANTY_1710084002","LADY_Body_1710083003", new DifData() { X = 398, Y = 283, sX = 254, sY = 254, Rot = 360}),
+                new AlignData("LADY_Head_1710086001", "LADY_Body_1710083003", new DifData() { X = 62, Y = 33, sX = 865, sY = 865, Rot=363 }),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083003", new DifData() { X = 347, Y = 28, sX = 335, sY = 335, Rot=353 }),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083004", new DifData() { X = 347, Y = 28, sX = 335, sY = 335, Rot=353 }),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083005", new DifData() { X = 347, Y = 28, sX = 335, sY = 335, Rot=353 }),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083006", new DifData() { X = 347, Y = 28, sX = 335, sY = 335, Rot=353 }),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083007", new DifData() { X = 347, Y = 28, sX = 335, sY = 335, Rot=353 }),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083008", new DifData() { X = 347, Y = 28, sX = 335, sY = 335, Rot=353 }),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083009", new DifData() { X = 347, Y = 28, sX = 335, sY = 335, Rot=353 }),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083010", new DifData() { X = 347, Y = 28, sX = 335, sY = 335, Rot=353 }),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083011", new DifData() { X = 347, Y = 28, sX = 335, sY = 335, Rot=353 }),
+                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083012", new DifData() { X = 347, Y = 28, sX = 335, sY = 335, Rot=353 }),
+                new AlignData("LADY_Head_1710110002", "LADY_Body_1710110001", new DifData() { X = 40, sX = 540, sY = 540 }),
+                new AlignData("LADY_Head_1710110002", "LADY_Body_1710110002", new DifData() { X = 40, sX = 540, sY = 540 }),
 
-                new AlignData("LADY_Head_1710086001", "LADY_Body_1710083003"),
-                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083003", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
-                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083004", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
-                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083005", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
-                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083006", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
-                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083007", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
-                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083008", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
-                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083009", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
-                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083010", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
-                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083011", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
-                new AlignData("LADY_Head_1710086002", "LADY_Body_1710083012", new DifData() { X = 262, Y = 13, sX = 280, sY = 280, Rot = 353}),
 
-                new AlignData("LADY_Mouth_1710084001","LADY_Head_1710086001", new DifData()  { X = 372, Y = 128, sX = 60, sY = 60, Rot = 277, Flip = 1 }),
-                new AlignData("LADY_Mouth_1710084002","LADY_Head_1710086001", new DifData()  { X = 382, Y = 142, sX = 30, sY = 30, Rot = 279, Flip = 1 }),
+
+                new AlignData("LADY_Mouth_1710084001","LADY_Head_1710086001", new DifData() { X = 484, Y = 178, sX = 60, sY = 60, Rot=277, Flip = 1 }),
+                new AlignData("LADY_Mouth_1710084002","LADY_Head_1710086001", new DifData() { X = 494, Y = 191, sX = 31, sY = 31, Rot=274, Flip = 1 }),
+                new AlignData("LADY_Mouth_1710084001","LADY_Head_1710110002", new DifData() { X = 182, Y = 162, sX = 125, sY = 125, Rot=264 , Flip = 1 }),
             }, null);
 
 
@@ -61,21 +75,21 @@ namespace StoGenMake.Scenes.Base
 
 
             SetCadre(new AlignData[] {
-                new AlignData("Evil_BODY_1710085001"),
+                new AlignData("Evil_BODY_1710085001",new DifData() { X = -145, sX = 640, sY = 640 }),
                 new AlignData("LADY_Head_1710086001","LADY_Body_1710083003"),
                 new AlignData("LADY_Body_1710083003"),
                 new AlignData("LADY_Mouth_1710084001","LADY_Head_1710086001")
             }, this);
 
             SetCadre(new AlignData[] {
-                new AlignData("Evil_BODY_1710085001")
+                new AlignData("Evil_BODY_1710085001",new DifData() { X = -145, sX = 640, sY = 640 })
               ,new AlignData("LADY_Head_1710086001","LADY_Body_1710083003")
               ,new AlignData("LADY_Body_1710083003")
               ,new AlignData("LADY_Mouth_1710084002","LADY_Head_1710086001"),
             }, this);
 
             SetCadre(new AlignData[] {
-               new  AlignData("Evil_BODY_1710085001")
+               new  AlignData("Evil_BODY_1710085001",new DifData() { X = -145, sX = 640, sY = 640 })
               ,new  AlignData("LADY_Head_1710086001","LADY_Body_1710083003")
               ,new  AlignData("LADY_Body_1710083003")
               ,new  AlignData("LADY_Mouth_1710084001","LADY_Head_1710086001")
@@ -83,82 +97,88 @@ namespace StoGenMake.Scenes.Base
             }, this);
 
             SetCadre(new AlignData[] {
-               new  AlignData("Evil_BODY_1710085001")
+               new  AlignData("Evil_BODY_1710085001",new DifData() { X = -145, sX = 640, sY = 640 })
               ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083003")
               ,new  AlignData("LADY_Body_1710083003")
               ,new  AlignData("LADY_PANTY_1710084002","LADY_Body_1710083003")
             }, this);
 
             SetCadre(new AlignData[] {
-               new  AlignData("Evil_BODY_1710085001")
+               new  AlignData("Evil_BODY_1710085001",new DifData() { X = -145, sX = 640, sY = 640 })
               ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083004")
               ,new  AlignData("LADY_Body_1710083004")
             }, this);
 
             SetCadre(new AlignData[] {
-               new  AlignData("Evil_BODY_1710085001")
+               new  AlignData("Evil_BODY_1710085001",new DifData() { X = -145, sX = 640, sY = 640 })
               ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083005")
               ,new  AlignData("LADY_Body_1710083005")
             }, this);
 
             SetCadre(new AlignData[] {
-               new  AlignData("Evil_BODY_1710085001")
+               new  AlignData("Evil_BODY_1710085001",new DifData() { X = -145, sX = 640, sY = 640 })
               ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083006")
               ,new  AlignData("LADY_Body_1710083006")
             }, this);
 
             SetCadre(new AlignData[] {
-               new  AlignData("Evil_BODY_1710085001")
+               new  AlignData("Evil_BODY_1710085001",new DifData() { X = -145, sX = 640, sY = 640 })
               ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083007")
               ,new  AlignData("LADY_Body_1710083007")
             }, this);
 
             SetCadre(new AlignData[] {
-               new  AlignData("Evil_BODY_1710085001")
+               new  AlignData("Evil_BODY_1710085001",new DifData() { X = -145, sX = 640, sY = 640 })
               ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083008")
               ,new  AlignData("LADY_Body_1710083008")
             }, this);
 
 
             SetCadre(new AlignData[] {
-               new  AlignData("Evil_BODY_1710085001")
+               new  AlignData("Evil_BODY_1710085001",new DifData() { X = -145, sX = 640, sY = 640 })
               ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083009")
               ,new  AlignData("LADY_Body_1710083009")
             }, this);
 
             SetCadre(new AlignData[] {
-               new  AlignData("Evil_BODY_1710085001")
+               new  AlignData("Evil_BODY_1710085001",new DifData() { X = -145, sX = 640, sY = 640 })
               ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083010")
               ,new  AlignData("LADY_Body_1710083010")
             }, this);
 
             SetCadre(new AlignData[] {
-               new  AlignData("Evil_BODY_1710085001")
+               new  AlignData("Evil_BODY_1710085001",new DifData() { X = -145, sX = 640, sY = 640 })
               ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083011")
               ,new  AlignData("LADY_Body_1710083011")
             }, this);
 
             SetCadre(new AlignData[] {
-               new  AlignData("Evil_BODY_1710085001")
+               new  AlignData("Evil_BODY_1710085001",new DifData() { X = -145, sX = 640, sY = 640 })
               ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083012")
               ,new  AlignData("LADY_Body_1710083012")
             }, this);
 
+
             SetCadre(new AlignData[] {
-               new  AlignData("LADY_Head_1710086002","LADY_Body_1710083012")
-              ,new  AlignData("LADY_Body_1710083012")
-              //,new  AlignData("Evil_BODY_1710085002")
+               new  AlignData("Evil_BODY_1710085002",new DifData() { X = -46, Y = 311, sX = 400, sY = 400, Rot=362 })
+              ,new  AlignData("LADY_Head_1710086002","LADY_Body_1710083012")              
+              ,new  AlignData("LADY_Body_1710083012")            
             }, this);
 
             SetCadre(new AlignData[] {
-               new  AlignData("LADY_Head_1710086002","LADY_Body_1710083012")
-              //,new  AlignData("LADY_Body_1710083012",new DifData() { X = 169, Y = -5, sX = 1005, sY = 1005})
-              ,new  AlignData("LADY_Body_1710083012",new DifData() { sX = 1005, sY = 1005})
-              //,new  AlignData("Evil_BODY_1710085002")
+               new  AlignData("Evil_BODY_1710085002",new DifData() { X = -46, Y = 371, sX = 400, sY = 400, Rot=362 })
+               ,new  AlignData("LADY_Body_1710110001", new DifData() {X = 370,  Y = -5 })
+               ,new  AlignData("LADY_Head_1710110002","LADY_Body_1710110001")
+               ,new AlignData("LADY_Mouth_1710084001","LADY_Head_1710110002")
             }, this);
 
-            
-           
+            SetCadre(new AlignData[] {               
+                new  AlignData("LADY_Body_1710110002", new DifData() {X = 370,  Y = -5 } )
+               ,new  AlignData("LADY_Head_1710110002","LADY_Body_1710110002")
+               ,new AlignData("LADY_Mouth_1710084001","LADY_Head_1710110002")
+               ,new  AlignData("Evil_BODY_1710085001","LADY_Body_1710110001")
+            }, this);
+
             this.Cadres.Reverse();
 
 
@@ -195,7 +215,8 @@ namespace StoGenMake.Scenes.Base
             // heads
             data.Add(GetIm($"LADY_Head_1710086001", VNPCPersType.Manga, "Fools_Art_Homare", path, $"003_head.png"));
             data.Add(GetIm($"LADY_Head_1710086002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"002_head.png"));
-
+            data.Add(GetIm($"LADY_Head_1710110001", VNPCPersType.Manga, "Fools_Art_Homare", path, $"004_head.png"));
+            data.Add(GetIm($"LADY_Head_1710110002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"005_head.png"));
             // png
             data.Add(GetIm($"LADY_Body_1710083002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"002.png"));
             data.Add(GetIm($"LADY_Body_1710083003", VNPCPersType.Manga, "Fools_Art_Homare", path, $"003.png"));
@@ -208,6 +229,9 @@ namespace StoGenMake.Scenes.Base
             data.Add(GetIm($"LADY_Body_1710083010", VNPCPersType.Manga, "Fools_Art_Homare", path, $"003g.png"));
             data.Add(GetIm($"LADY_Body_1710083011", VNPCPersType.Manga, "Fools_Art_Homare", path, $"003h.png"));
             data.Add(GetIm($"LADY_Body_1710083012", VNPCPersType.Manga, "Fools_Art_Homare", path, $"003j.png"));
+
+            data.Add(GetIm($"LADY_Body_1710110001", VNPCPersType.Manga, "Fools_Art_Homare", path, $"018.png"));
+            data.Add(GetIm($"LADY_Body_1710110002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"018a.png"));
         }
         internal static seIm GetIm(string name, VNPCPersType type, string desc, string path, string file)
         {

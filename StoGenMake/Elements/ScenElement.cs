@@ -102,6 +102,23 @@ namespace StoGenMake.Elements
 
         public VNPCPersType PersonType { get; internal set; }
         public string Description { get; internal set; }
+        public List<Tuple<string, int>> ParentRotations { get; internal set; } = new List<Tuple<string, int>>();
+        public string ParRot
+        {
+            get
+            {
+                if (ParentRotations.Any())
+                {
+                    List<string> rez = new List<string>();
+                    foreach (var item in ParentRotations)
+                    {
+                        rez.Add($"{item.Item1}@{item.Item2}");
+                    }
+                    return string.Join(",", rez.ToArray());
+                }
+                return string.Empty;
+            }
+        }
         internal override string GetElementData()
         {           
             List<string> result = new List<string>();
@@ -120,8 +137,10 @@ namespace StoGenMake.Elements
                 result.Add($"Rot={this.Rot.ToString().PadRight(4)}");
                 result.Add($"Opacity={this.Opa.ToString().PadRight(3)}");
                 result.Add($"Flip={this.Flip.ToString().PadRight(3)}");
+                
                 if (this.Timer > 0) result.Add($"Timer={this.Timer.ToString().PadRight(7)}");
-                if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");               
+                if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");   
+                if (this.ParentRotations.Any()) result.Add($"ParRot={this.ParRot}");
             }
             return string.Join(";", result.ToArray());
         }
@@ -136,12 +155,28 @@ namespace StoGenMake.Elements
             this.X = image.X;
             this.Y = image.Y;
             this.Rot = image.Rot;
+            this.Part = image.Part;
+            this.File = image.File;
+            this.Name = image.Name;
             this.Transition = image.Transition;
+            this.ParentRotations.AddRange(image.ParentRotations);
+
+            //im.Flip = sr.Flip;
+            //im.Opa= sr.Opa;
+            //im.Part = sr.Part;
+            //im.Rot = sr.Rot;
+            //im.SizeMode = sr.SizeMode;
+            //im.sX = sr.sX;
+            //im.sY = sr.sY;
+            //im.Timer = sr.Timer;
+            //im.Transition = sr.Transition;
+            //im.X = sr.X;
+            //im.Y = sr.Y;
         }
 
 
-   
-        
+
+
     }
 
     public class ScenElementSound : ScenElement
