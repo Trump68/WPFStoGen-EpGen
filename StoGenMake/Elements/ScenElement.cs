@@ -137,7 +137,8 @@ namespace StoGenMake.Elements
                 result.Add($"Rot={this.Rot.ToString().PadRight(4)}");
                 result.Add($"Opacity={this.Opa.ToString().PadRight(3)}");
                 result.Add($"Flip={this.Flip.ToString().PadRight(3)}");
-                
+                result.Add($"Name={this.Name.PadRight(3)}");
+
                 if (this.Timer > 0) result.Add($"Timer={this.Timer.ToString().PadRight(7)}");
                 if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");   
                 if (this.ParentRotations.Any()) result.Add($"ParRot={this.ParRot}");
@@ -159,6 +160,7 @@ namespace StoGenMake.Elements
             this.File = image.File;
             this.Name = image.Name;
             this.Transition = image.Transition;
+            this.ParentRotations.Clear();
             this.ParentRotations.AddRange(image.ParentRotations);
 
             //im.Flip = sr.Flip;

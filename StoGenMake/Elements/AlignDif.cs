@@ -97,7 +97,8 @@ namespace StoGenMake.Elements
                     if (this.ParentIm.Rot.HasValue) rot = this.ParentIm.Rot.Value;
                     if ( rot != actualParent.Rot)
                     {
-                        //!! parent rotation                        
+                        //!! parent rotation
+                        target.ParentRotations.Clear();
                         target.ParentRotations.Add(new Tuple<string, int>(this.ParentIm.Name, actualParent.Rot - rot));
                     }
                 }

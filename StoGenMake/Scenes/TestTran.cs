@@ -20,9 +20,10 @@ namespace StoGenMake.Scenes.Base
             // Set align
             SetCadre(new AlignData[] {
                  
-                 new AlignData("Evil_red", new DifData() { X = 700, Y=400, sX = 5, sY=5})
-                 ,new AlignData("Evil_blue", new DifData() { sX = 500, sY=500 })
-                ,new AlignData("Evil_green","Evil_blue", new DifData() { X = 230, sX = 400, sY=400 })               
+                 //new AlignData("Evil_red", new DifData() { X = 375, Y = 150, sX = 500, sY = 500 })
+                 new AlignData("Evil_blue")
+                ,new AlignData("Evil_blue2","Evil_blue")
+                ,new AlignData("Evil_green","Evil_blue")               
                 //,new AlignData("Evil_red","Evil_green", new DifData() { X = 233, Y = -300, sX = 500, sY = 500 })
             }, null);
 
@@ -30,17 +31,41 @@ namespace StoGenMake.Scenes.Base
             SetCadre(new AlignData[] {
                  new AlignData("Evil_blue")
                 ,new AlignData("Evil_green","Evil_blue")
-                ,new AlignData("Evil_red")
+                //,new AlignData("Evil_red")
             }, this);
-
 
             SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue",new DifData() { Rot =45  })
-                 //,new AlignData("Evil_green","Evil_blue",new DifData() { Rot=90 }) // absolute 1030
-                 ,new AlignData("Evil_green","Evil_blue",new DifData() { Rot =45  }) // absolute 1030
-                //,new AlignData("Evil_green","Evil_blue",new DifData() { X=300 })
-                //,new AlignData("Evil_red","Evil_green",new DifData() { X=100 })
+                 new AlignData("Evil_blue", new DifData() { X=300, Rot = 30 })
+                ,new AlignData("Evil_green","Evil_blue")
+                //,new AlignData("Evil_red")
             }, this);
+
+            SetCadre(new AlignData[] {
+                 new AlignData("Evil_blue", new DifData() { X=100, Rot = 20 })
+                ,new AlignData("Evil_green","Evil_blue")
+                //,new AlignData("Evil_red")
+            }, this);
+
+            SetCadre(new AlignData[] {
+                 new AlignData("Evil_blue", new DifData() { Rot = 30 })
+                ,new AlignData("Evil_green","Evil_blue")
+                //,new AlignData("Evil_red")
+            }, this);
+
+            SetCadre(new AlignData[] {
+                 new AlignData("Evil_blue", new DifData() { Rot = 40 })
+                ,new AlignData("Evil_green","Evil_blue")
+                //,new AlignData("Evil_red")
+            }, this);
+
+
+            //SetCadre(new AlignData[] {
+            //     new AlignData("Evil_blue",new DifData() { Rot =45  })
+            //     //,new AlignData("Evil_green","Evil_blue",new DifData() { Rot=90 }) // absolute 1030
+            //     ,new AlignData("Evil_green","Evil_blue",new DifData() { Rot =45  }) // absolute 1030
+            //    //,new AlignData("Evil_green","Evil_blue",new DifData() { X=300 })
+            //    //,new AlignData("Evil_red","Evil_green",new DifData() { X=100 })
+            //}, this);
 
 
         }
@@ -53,6 +78,7 @@ namespace StoGenMake.Scenes.Base
             //raw
            
             data.Add(GetIm($"Evil_blue", VNPCPersType.Manga, "qqw", path, $"TestBlue.png"));
+            data.Add(GetIm($"Evil_blue2", VNPCPersType.Manga, "qqw", path, $"TestBlue.png"));
             data.Add(GetIm($"Evil_red", VNPCPersType.Manga, "we", path, $"TestRed.png"));
             data.Add(GetIm($"Evil_green", VNPCPersType.Manga, "er", path, $"TestGreen.png"));
 

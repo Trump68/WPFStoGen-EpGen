@@ -418,7 +418,10 @@ namespace StoGen.Classes
                 // Rotate at last 
                 if (pi.Props.Rotate > 0)
                 {
-                    var roateTransform = new RotateTransform(pi.Props.Rotate, Projector.PicContainer.PicList[(int)pi.Props.Level].ActualWidth /2, Projector.PicContainer.PicList[(int)pi.Props.Level].ActualHeight / 2);
+                    var roateTransform = new RotateTransform(
+                        pi.Props.Rotate,
+                        Projector.PicContainer.PicList[(int)pi.Props.Level].Width /2,
+                        Projector.PicContainer.PicList[(int)pi.Props.Level].Height / 2);
                     transformGroup.Children.Add(roateTransform);
                 }
                 Projector.PicContainer.PicList[(int)pi.Props.Level].RenderTransform = transformGroup;
@@ -461,14 +464,16 @@ namespace StoGen.Classes
                                 if (parent != null)
                                 {
                                     var parentControl = Projector.PicContainer.PicList[(int)parent.Props.Level];
-                                    var parentControlCenter = parentControl.PointToScreen(new System.Windows.Point(parentControl.ActualWidth /2, parentControl.ActualHeight /2));
+                                    var pp = new System.Windows.Point(parentControl.Width / 2, parentControl.Height / 2);                                    
+                                    //var pp = new System.Windows.Point(0, 0);
+                                    var parentControlCenter = parentControl.PointToScreen(pp);
                                     var childControlCenter = current.PointFromScreen(parentControlCenter);
-
                                     var rTransform = new RotateTransform(parvalue,
                                         childControlCenter.X,childControlCenter.Y);                                    
                                     if ((current.RenderTransform as TransformGroup) == null)
                                         current.RenderTransform = new TransformGroup();
-                                    (current.RenderTransform as TransformGroup).Children.Add(rTransform);                                     
+                                    (current.RenderTransform as TransformGroup).Children.Add(rTransform);
+                                                                         
                               }
                             }
                         }
