@@ -30,6 +30,9 @@ namespace StoGenMake.Scenes.Base
                 new AlignData("Evil_BODY_1710085001", new DifData() { sX = 900, sY = 900, Flip = 1}),
                 new AlignData("Evil_BODY_1710085002", new DifData() { sX = 900, sY = 900}),
                 new AlignData("Evil_BODY_1710085001","LADY_Body_1710110001",new DifData() { X = 515, Y = -670, sX = 900, sY = 900, Rot=270, Flip=0 }),
+                new AlignData("Evil_BODY_1710085001","LADY_Body_1710110005",new DifData() { X = 225, Y = -675, sX = 900, sY = 900, Rot=270, Flip=0 }),
+                new AlignData("Evil_BODY_1710085001","LADY_Body_1710110006",new DifData() { X = 225, Y = -675, sX = 900, sY = 900, Rot=270, Flip=0 }),
+                new AlignData("Evil_HEAD_1710085004", new DifData() { Flip = 1}),
 
                 new AlignData("LADY_Body_1710083003", new DifData() { sX = 995, sY = 995}),
                 new AlignData("LADY_Body_1710083004", new DifData() { sX = 995, sY = 995}),
@@ -43,6 +46,10 @@ namespace StoGenMake.Scenes.Base
                 new AlignData("LADY_Body_1710083012", new DifData() { sX = 995, sY = 995}),
                 new AlignData("LADY_Body_1710110001", new DifData() { sX = 995, sY = 995}),
                 new AlignData("LADY_Body_1710110002", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710110003", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710110004", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710110005", new DifData() { sX = 995, sY = 995}),
+                new AlignData("LADY_Body_1710110006", new DifData() { sX = 995, sY = 995}),
 
                 new AlignData("LADY_PANTY_1710084002","LADY_Body_1710083003", new DifData() { X = 508, Y = 363, sX = 309, sY = 309, Rot=360 }),
 
@@ -59,12 +66,15 @@ namespace StoGenMake.Scenes.Base
                 new AlignData("LADY_Head_1710086002", "LADY_Body_1710083012", new DifData() { X = 347, Y = 28, sX = 335, sY = 335, Rot=353 }),
                 new AlignData("LADY_Head_1710110002", "LADY_Body_1710110001", new DifData() { X = 40, sX = 540, sY = 540 }),
                 new AlignData("LADY_Head_1710110002", "LADY_Body_1710110002", new DifData() { X = 40, sX = 540, sY = 540 }),
-
-
+                new AlignData("LADY_Head_1710110003", "LADY_Body_1710110003", new DifData() { X = 40, sX = 530, sY = 530 }),
+                new AlignData("LADY_Head_1710110002", "LADY_Body_1710110004", new DifData() { X = 40, sX = 540, sY = 540 }),
+                new AlignData("LADY_Head_1710110002", "LADY_Body_1710110005", new DifData() { X = 40, sX = 540, sY = 540 }),
+                new AlignData("LADY_Head_1710110002", "LADY_Body_1710110006", new DifData() { X = 40, sX = 540, sY = 540 }),
 
                 new AlignData("LADY_Mouth_1710084001","LADY_Head_1710086001", new DifData() { X = 484, Y = 178, sX = 60, sY = 60, Rot=277, Flip = 1 }),
                 new AlignData("LADY_Mouth_1710084002","LADY_Head_1710086001", new DifData() { X = 494, Y = 191, sX = 31, sY = 31, Rot=274, Flip = 1 }),
                 new AlignData("LADY_Mouth_1710084001","LADY_Head_1710110002", new DifData() { X = 182, Y = 162, sX = 125, sY = 125, Rot=264 , Flip = 1 }),
+                new AlignData("LADY_Mouth_1710084001","LADY_Head_1710110003", new DifData() { X = 182, Y = 162, sX = 125, sY = 125, Rot=264 , Flip = 1 }),
             }, null);
 
 
@@ -179,6 +189,40 @@ namespace StoGenMake.Scenes.Base
                ,new  AlignData("Evil_BODY_1710085001","LADY_Body_1710110001")
             }, this);
 
+            SetCadre(new AlignData[] {
+                new  AlignData("LADY_Body_1710110003", new DifData() {X = 370,  Y = -5 } )
+               ,new  AlignData("LADY_Head_1710110003","LADY_Body_1710110003")
+               ,new  AlignData("LADY_Mouth_1710084001","LADY_Head_1710110003")
+               ,new  AlignData("Evil_BODY_1710085001","LADY_Body_1710110001")
+            }, this);
+
+            SetCadre(new AlignData[] {
+                new  AlignData("LADY_Body_1710110004", new DifData() {X = 370,  Y = -5 } )
+               ,new  AlignData("LADY_Head_1710110002","LADY_Body_1710110004")
+               ,new  AlignData("LADY_Mouth_1710084001","LADY_Head_1710110002")
+               ,new  AlignData("Evil_BODY_1710085001", new DifData() { X = -230, Y = -50, sX = 925, sY = 925 , Flip = 1})
+            }, this);
+
+            SetCadre(new AlignData[] {
+                new  AlignData("LADY_Body_1710110005", new DifData() {X = 370,  Y = -5 } )
+               ,new  AlignData("LADY_Head_1710110002","LADY_Body_1710110005")
+               ,new  AlignData("LADY_Mouth_1710084001","LADY_Head_1710110002")
+               ,new  AlignData("Evil_BODY_1710085001","LADY_Body_1710110005")
+            }, this);
+
+            SetCadre(new AlignData[] {
+                new  AlignData("LADY_Body_1710110006", new DifData() {X = 370,  Y = -5 } )
+               ,new  AlignData("LADY_Head_1710110002","LADY_Body_1710110006")
+               ,new  AlignData("LADY_Mouth_1710084001","LADY_Head_1710110002")
+               ,new  AlignData("Evil_BODY_1710085001","LADY_Body_1710110006")
+            }, this);
+
+            SetCadre(new AlignData[] {
+                new  AlignData("LADY_Body_1710110006", new DifData() {X = 370,  Y = -5 } )
+               ,new  AlignData("LADY_Head_1710110002","LADY_Body_1710110006")
+               ,new  AlignData("LADY_Mouth_1710084001","LADY_Head_1710110002")
+               ,new  AlignData("Evil_HEAD_1710085004")
+            }, this);
             this.Cadres.Reverse();
 
 
@@ -205,6 +249,7 @@ namespace StoGenMake.Scenes.Base
             data.Add(GetIm($"Evil_HEAD_1710085002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"EVIL_HEAD_01.png"));
             data.Add(GetIm($"Evil_BODY_1710085002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"EVIL_BODY_02.png"));
             data.Add(GetIm($"Evil_HEAD_1710085003", VNPCPersType.Manga, "Fools_Art_Homare", path, $"EVIL_HEAD_02.png"));
+            data.Add(GetIm($"Evil_HEAD_1710085004", VNPCPersType.Manga, "Fools_Art_Homare", path, $"EVIL_HEAD_03.png"));
             // parts
             data.Add(GetIm($"LADY_Mouth_1710084001", VNPCPersType.Manga, "Fools_Art_Homare", path, $"MOUTH_01.png"));
             data.Add(GetIm($"LADY_Mouth_1710084002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"MOUTH_02.png"));
@@ -217,6 +262,7 @@ namespace StoGenMake.Scenes.Base
             data.Add(GetIm($"LADY_Head_1710086002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"002_head.png"));
             data.Add(GetIm($"LADY_Head_1710110001", VNPCPersType.Manga, "Fools_Art_Homare", path, $"004_head.png"));
             data.Add(GetIm($"LADY_Head_1710110002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"005_head.png"));
+            data.Add(GetIm($"LADY_Head_1710110003", VNPCPersType.Manga, "Fools_Art_Homare", path, $"006_head.png"));
             // png
             data.Add(GetIm($"LADY_Body_1710083002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"002.png"));
             data.Add(GetIm($"LADY_Body_1710083003", VNPCPersType.Manga, "Fools_Art_Homare", path, $"003.png"));
@@ -230,8 +276,13 @@ namespace StoGenMake.Scenes.Base
             data.Add(GetIm($"LADY_Body_1710083011", VNPCPersType.Manga, "Fools_Art_Homare", path, $"003h.png"));
             data.Add(GetIm($"LADY_Body_1710083012", VNPCPersType.Manga, "Fools_Art_Homare", path, $"003j.png"));
 
+
             data.Add(GetIm($"LADY_Body_1710110001", VNPCPersType.Manga, "Fools_Art_Homare", path, $"018.png"));
             data.Add(GetIm($"LADY_Body_1710110002", VNPCPersType.Manga, "Fools_Art_Homare", path, $"018a.png"));
+            data.Add(GetIm($"LADY_Body_1710110003", VNPCPersType.Manga, "Fools_Art_Homare", path, $"018b.png"));
+            data.Add(GetIm($"LADY_Body_1710110004", VNPCPersType.Manga, "Fools_Art_Homare", path, $"018c.png"));
+            data.Add(GetIm($"LADY_Body_1710110005", VNPCPersType.Manga, "Fools_Art_Homare", path, $"018d.png"));
+            data.Add(GetIm($"LADY_Body_1710110006", VNPCPersType.Manga, "Fools_Art_Homare", path, $"018e.png"));
         }
         internal static seIm GetIm(string name, VNPCPersType type, string desc, string path, string file)
         {

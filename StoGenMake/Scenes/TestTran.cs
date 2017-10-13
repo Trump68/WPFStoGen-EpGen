@@ -20,7 +20,8 @@ namespace StoGenMake.Scenes.Base
             // Set align
             SetCadre(new AlignData[] {
                  
-                 new AlignData("Evil_blue", new DifData() { sX = 500, sY=500 })
+                 new AlignData("Evil_red", new DifData() { X = 700, Y=400, sX = 5, sY=5})
+                 ,new AlignData("Evil_blue", new DifData() { sX = 500, sY=500 })
                 ,new AlignData("Evil_green","Evil_blue", new DifData() { X = 230, sX = 400, sY=400 })               
                 //,new AlignData("Evil_red","Evil_green", new DifData() { X = 233, Y = -300, sX = 500, sY = 500 })
             }, null);
@@ -29,7 +30,7 @@ namespace StoGenMake.Scenes.Base
             SetCadre(new AlignData[] {
                  new AlignData("Evil_blue")
                 ,new AlignData("Evil_green","Evil_blue")
-                //,new AlignData("Evil_red","Evil_green")
+                ,new AlignData("Evil_red")
             }, this);
 
 

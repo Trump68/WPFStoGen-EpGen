@@ -62,8 +62,8 @@ namespace StoGenMake
             //    scen.AddActor(pers);
             //    GameWorldFactory.GameWorld.CurrentPersone = pers;
             //}            
-            var scen = new Fools_Art_Homare();
-            //var scen = new TestTran();
+            //var scen = new Fools_Art_Homare();
+            var scen = new TestTran();
             //var scen = new TestScene();
             
             string fn = scen.Generate(fileToProcess);
