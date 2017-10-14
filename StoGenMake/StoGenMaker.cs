@@ -44,16 +44,16 @@ namespace StoGenMake
                 datalist.RemoveAll(x => x.StartsWith(@"//"));
 
 
-                string persName = datalist.FirstOrDefault(x => x.StartsWith(@"SCENPERS "));
-                if (!string.IsNullOrEmpty(persName))
-                {
-                    persName = persName.Replace(@"SCENPERS ", string.Empty).Replace(@"NPC=", string.Empty);
-                    Guid gid = Guid.Parse(persName.Trim());
-                    var dd = GameWorldFactory.GameWorld.PersoneList;
-                    var d = dd.FirstOrDefault(x => x.GID.Equals(gid));
-                    pers = GameWorldFactory.GameWorld.PersoneList.FirstOrDefault(x => x.GID.Equals(gid));
-                    datalist.RemoveAll(x => x.StartsWith(@"SCENPERS "));
-                }
+                //string persName = datalist.FirstOrDefault(x => x.StartsWith(@"SCENPERS "));
+                //if (!string.IsNullOrEmpty(persName))
+                //{
+                //    persName = persName.Replace(@"SCENPERS ", string.Empty).Replace(@"NPC=", string.Empty);
+                //    Guid gid = Guid.Parse(persName.Trim());
+                //    var dd = GameWorldFactory.GameWorld.PersoneList;
+                //    var d = dd.FirstOrDefault(x => x.GID.Equals(gid));
+                //    pers = GameWorldFactory.GameWorld.PersoneList.FirstOrDefault(x => x.GID.Equals(gid));
+                //    datalist.RemoveAll(x => x.StartsWith(@"SCENPERS "));
+                //}
             }
 
             //var scen = new BaseScene();
@@ -61,7 +61,8 @@ namespace StoGenMake
             //{
             //    scen.AddActor(pers);
             //    GameWorldFactory.GameWorld.CurrentPersone = pers;
-            //}            
+            //}       
+            GameWorldFactory.GameWorld.LoadData();
             var scen = new Fools_Art_Homare();
             //var scen = new TestTran();
             //var scen = new TestScene();

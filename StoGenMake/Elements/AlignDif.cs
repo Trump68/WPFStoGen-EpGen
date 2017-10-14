@@ -26,9 +26,17 @@ namespace StoGenMake.Elements
 
         public AlignDif(string source, string tag, DifData imSource) : this(source, null, tag, imSource, null) { }
         public AlignDif(string source, DifData imSource) : this(source, null, null, imSource, null) { }
-
-
-
+        public AlignDif(AlignData item, DifData parentItem)
+        {
+            this.Source = item.Name;
+            this.SourceIm = new DifData(item);
+            this.Parent = item.Parent;
+            if (parentItem != null)
+            {
+                this.Parent = parentItem.Name;
+                this.ParentIm = parentItem;
+            }
+        }
         public AlignDif(DifData item, DifData parentItem)
         {
             this.Source = item.Name;
@@ -40,7 +48,6 @@ namespace StoGenMake.Elements
                 this.ParentIm = parentItem;
             }
         }
-
         public AlignDif(AlignData item, AlignData parentItem)
         {
             this.Source = item.Name;
@@ -52,7 +59,6 @@ namespace StoGenMake.Elements
                 this.ParentIm = new DifData(parentItem);
             }
         }
-
         public int GetDifX()
         {
                 if (this.ParentIm == null || !this.ParentIm.X.HasValue)

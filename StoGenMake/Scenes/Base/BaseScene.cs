@@ -220,8 +220,17 @@ namespace StoGenMake.Scenes.Base
                     }
 
                     if (currAlign == null )
-                    {                                                
-                        currAlign = new AlignDif(processed, parentItem);
+                    {           
+                        if (!string.IsNullOrEmpty(processed.Parent) && parentItem == null)
+                        {
+                            var parnull = GameWorldFactory.GameWorld.AlignList.Where(x => x.Source == processed.Parent && string.IsNullOrEmpty(x.Parent) && x.Tag == processed.Tag).FirstOrDefault();
+                            currAlign = new AlignDif(processed, parnull.SourceIm);
+                        } 
+                        else
+                        {
+                            currAlign = new AlignDif(processed, parentItem);
+                        }                                   
+                        
                         GameWorldFactory.GameWorld.AlignList.Add(currAlign);
                     }
                     //else if (item.Im != null)

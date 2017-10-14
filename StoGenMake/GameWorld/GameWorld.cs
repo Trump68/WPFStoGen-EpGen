@@ -48,8 +48,10 @@ namespace StoGenMake
             this.AlignList = new List<AlignDif>();
 
             this.LocationList = new List<VisualLocaton>();
-            this.SceneList = new List<BaseScene>();
-
+            this.SceneList = new List<BaseScene>();           
+        }
+        public void LoadData()
+        {
             GameWorldDataLoader.LoadPersList(this.PersoneList);
             GameWorldDataLoader.LoadFemHeadList(this.CommonImageList, this.AlignList);
             GameWorldDataLoader.LoadFemBodyList(this.CommonImageList);
@@ -63,10 +65,9 @@ namespace StoGenMake
             Fools_Art_Homare.LoadData(this.CommonImageList, this.AlignList);
             TestTran.LoadData(this.CommonImageList, this.AlignList);
 
-            this.PersoneList.Add(new LADY_011017 ());
+            this.PersoneList.Add(new LADY_011017());
             this.SceneList.Add(new TestScene());
         }
-
 
 
         public bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
@@ -119,6 +120,9 @@ namespace StoGenMake
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, false);
             return true;
         }
+
+      
+
         private bool CreateMenuRelocation(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
