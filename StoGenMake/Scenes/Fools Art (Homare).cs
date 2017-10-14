@@ -31,7 +31,6 @@ namespace StoGenMake.Scenes.Base
                 new AlignData("Evil_BODY_1710085002", new DifData() { sX = 900, sY = 900}),
                 new AlignData("Evil_BODY_1710085001","LADY_Body_1710110001",new DifData() { X = 515, Y = -670, sX = 900, sY = 900, Rot=270, Flip=0 }),
                 new AlignData("Evil_BODY_1710085001","LADY_Body_1710110005",new DifData() { X = 225, Y = -675, sX = 900, sY = 900, Rot=270, Flip=0 }),
-                new AlignData("Evil_BODY_1710085001","LADY_Body_1710110006",new DifData() { X = 225, Y = -675, sX = 900, sY = 900, Rot=270, Flip=0 }),
                 new AlignData("Evil_HEAD_1710085004", new DifData() { Flip = 1}),
 
                 new AlignData("LADY_Body_1710083003", new DifData() { sX = 995, sY = 995}),
@@ -73,8 +72,8 @@ namespace StoGenMake.Scenes.Base
 
                 new AlignData("LADY_Mouth_1710084001","LADY_Head_1710086001", new DifData() { X = 484, Y = 178, sX = 60, sY = 60, Rot=277, Flip = 1 }),
                 new AlignData("LADY_Mouth_1710084002","LADY_Head_1710086001", new DifData() { X = 494, Y = 191, sX = 31, sY = 31, Rot=274, Flip = 1 }),
-                new AlignData("LADY_Mouth_1710084001","LADY_Head_1710110002", new DifData() { X = 182, Y = 162, sX = 125, sY = 125, Rot=264 , Flip = 1 }),
-                new AlignData("LADY_Mouth_1710084001","LADY_Head_1710110003", new DifData() { X = 182, Y = 162, sX = 125, sY = 125, Rot=264 , Flip = 1 }),
+                new AlignData("LADY_Mouth_1710084001","LADY_Head_1710110002", new DifData() { X = 162, Y = 37, sX = 131, sY = 131, Rot=264, Flip = 1 }),
+                new AlignData("LADY_Mouth_1710084001","LADY_Head_1710110003", new DifData() { X = 162, Y = 37, sX = 131, sY = 131, Rot=264, Flip = 1 }),
             }, null);
 
 
@@ -214,14 +213,14 @@ namespace StoGenMake.Scenes.Base
                 new  AlignData("LADY_Body_1710110006", new DifData() {X = 370,  Y = -5 } )
                ,new  AlignData("LADY_Head_1710110002","LADY_Body_1710110006")
                ,new  AlignData("LADY_Mouth_1710084001","LADY_Head_1710110002")
-               ,new  AlignData("Evil_BODY_1710085001","LADY_Body_1710110006")
+               ,new  AlignData("Evil_BODY_1710085001",new DifData() { X = 430, Y = -795, sX = 900, sY = 900, Rot=270, Flip=0 })
             }, this);
 
             SetCadre(new AlignData[] {
                 new  AlignData("LADY_Body_1710110006", new DifData() {X = 370,  Y = -5 } )
                ,new  AlignData("LADY_Head_1710110002","LADY_Body_1710110006")
                ,new  AlignData("LADY_Mouth_1710084001","LADY_Head_1710110002")
-               ,new  AlignData("Evil_HEAD_1710085004")
+               ,new  AlignData("Evil_HEAD_1710085004",new DifData() { X = 865, Y = -460, sX = 365, sY = 365, Rot=320 })
             }, this);
             this.Cadres.Reverse();
 

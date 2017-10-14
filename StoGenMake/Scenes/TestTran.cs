@@ -24,49 +24,33 @@ namespace StoGenMake.Scenes.Base
                  new AlignData("Evil_blue")
                 ,new AlignData("Evil_blue2","Evil_blue")
                 ,new AlignData("Evil_green","Evil_blue")               
-                //,new AlignData("Evil_red","Evil_green", new DifData() { X = 233, Y = -300, sX = 500, sY = 500 })
+                ,new AlignData("Evil_red","Evil_green")
             }, null);
 
             //// real
             SetCadre(new AlignData[] {
                  new AlignData("Evil_blue")
                 ,new AlignData("Evil_green","Evil_blue")
-                //,new AlignData("Evil_red")
+                ,new AlignData("Evil_red","Evil_green")
             }, this);
 
             SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue", new DifData() { X=300, Rot = 30 })
+                 new AlignData("Evil_blue", new DifData() {Rot = 20 })
                 ,new AlignData("Evil_green","Evil_blue")
-                //,new AlignData("Evil_red")
+                ,new AlignData("Evil_red","Evil_green")
             }, this);
 
             SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue", new DifData() { X=100, Rot = 20 })
-                ,new AlignData("Evil_green","Evil_blue")
-                //,new AlignData("Evil_red")
+                 new AlignData("Evil_blue", new DifData() {Rot = 20 })
+                ,new AlignData("Evil_green","Evil_blue", new DifData() {Rot = -20 })
+                ,new AlignData("Evil_red","Evil_green")
             }, this);
 
             SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue", new DifData() { Rot = 30 })
-                ,new AlignData("Evil_green","Evil_blue")
-                //,new AlignData("Evil_red")
+                 new AlignData("Evil_blue", new DifData() {Rot = 20 })
+                ,new AlignData("Evil_green","Evil_blue", new DifData() {Rot = -20 })
+                ,new AlignData("Evil_red","Evil_green", new DifData() {Rot = 20 })
             }, this);
-
-            SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue", new DifData() { Rot = 40 })
-                ,new AlignData("Evil_green","Evil_blue")
-                //,new AlignData("Evil_red")
-            }, this);
-
-
-            //SetCadre(new AlignData[] {
-            //     new AlignData("Evil_blue",new DifData() { Rot =45  })
-            //     //,new AlignData("Evil_green","Evil_blue",new DifData() { Rot=90 }) // absolute 1030
-            //     ,new AlignData("Evil_green","Evil_blue",new DifData() { Rot =45  }) // absolute 1030
-            //    //,new AlignData("Evil_green","Evil_blue",new DifData() { X=300 })
-            //    //,new AlignData("Evil_red","Evil_green",new DifData() { X=100 })
-            //}, this);
-
 
         }
         internal static void LoadData(List<seIm> data, List<AlignDif> alignData)

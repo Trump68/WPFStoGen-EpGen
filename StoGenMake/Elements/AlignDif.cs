@@ -93,12 +93,15 @@ namespace StoGenMake.Elements
                 }
                 // Parent rotation
                 {
+                    target.ParentRotations.Clear();
                     int rot = 0;
+                    if (actualParent != null && actualParent.ParentRotations!=null)
+                    {
+                        target.ParentRotations.AddRange(actualParent.ParentRotations);
+                    }
                     if (this.ParentIm.Rot.HasValue) rot = this.ParentIm.Rot.Value;
                     if ( rot != actualParent.Rot)
                     {
-                        //!! parent rotation
-                        target.ParentRotations.Clear();
                         target.ParentRotations.Add(new Tuple<string, int>(this.ParentIm.Name, actualParent.Rot - rot));
                     }
                 }
