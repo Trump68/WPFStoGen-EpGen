@@ -179,7 +179,27 @@ namespace StoGenMake.Elements
             if (processed.Im != null && processed.Im.Rot.HasValue) target.Rot = processed.Im.Rot.Value;
 
             if (this.SourceIm.Flip.HasValue) target.Flip = this.SourceIm.Flip.Value;
-            if (processed.Im != null && processed.Im.Flip.HasValue) target.Flip = processed.Im.Flip.Value;
+            if (processed.Im != null && processed.Im.Flip.HasValue)
+                target.Flip = processed.Im.Flip.Value;
+            else
+            {
+                //if (this.ParentIm != null && actualParent != null)
+                //{
+                //    if (!this.ParentIm.Flip.HasValue || this.ParentIm.Flip!= actualParent.Flip)
+                //    {
+                //        if (this.SourceIm.Flip.HasValue)
+                //        {
+                //            if (SourceIm.Flip == 0) SourceIm.Flip = 1;
+                //            else SourceIm.Flip = 0;
+                //        }
+                //        else
+                //        {
+                //            SourceIm.Flip = actualParent.Flip;
+                //        }                          
+                //    }                    
+                //}
+            }
+
         }
     }
 }

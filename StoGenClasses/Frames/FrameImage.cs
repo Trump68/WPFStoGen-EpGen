@@ -359,23 +359,6 @@ namespace StoGen.Classes
 
                 #endregion
 
-                #region Flip
-                //Flip
-                if ((int)pi.Props.Flip == 1)
-                {
-                    ScaleTransform flipTrans = new ScaleTransform();
-                    flipTrans.ScaleX = -1;
-                    transformGroup.Children.Add(flipTrans);
-                }
-                else if ((int)pi.Props.Flip == 2)
-                {
-
-                    ScaleTransform flipTrans = new ScaleTransform();
-                    flipTrans.ScaleY = -1;
-                    transformGroup.Children.Add(flipTrans);
-                }
-                #endregion
-
                 #region Size
                 // Size
                 // resize
@@ -400,6 +383,27 @@ namespace StoGen.Classes
                 Projector.PicContainer.PicList[(int)pi.Props.Level].Width = pi.Props.SizeX;
                 Projector.PicContainer.PicList[(int)pi.Props.Level].Height = pi.Props.SizeY;
 
+                #endregion
+
+                #region Flip
+                //Flip
+                if ((int)pi.Props.Flip == 1)
+                {
+                      ScaleTransform flipTrans = new ScaleTransform();
+                    flipTrans.ScaleX = -1;
+                    flipTrans.CenterX = Projector.PicContainer.PicList[(int)pi.Props.Level].Width / 2;
+                    flipTrans.CenterY = Projector.PicContainer.PicList[(int)pi.Props.Level].Height / 2;
+                    transformGroup.Children.Add(flipTrans);
+                }
+                else if ((int)pi.Props.Flip == 2)
+                {
+
+                    ScaleTransform flipTrans = new ScaleTransform();
+                    flipTrans.ScaleY = -1;
+                    flipTrans.CenterX = Projector.PicContainer.PicList[(int)pi.Props.Level].Width / 2;
+                    flipTrans.CenterY = Projector.PicContainer.PicList[(int)pi.Props.Level].Height / 2;
+                    transformGroup.Children.Add(flipTrans);
+                }
                 #endregion
 
                 #region Rotate
@@ -444,6 +448,8 @@ namespace StoGen.Classes
                     Projector.PicContainer.PicList[(int)pi.Props.Level].Clip = null;
                 }
                 #endregion
+
+
 
                 Projector.PicContainer.PicList[(int)pi.Props.Level].RenderTransform = transformGroup;
                 Projector.PicContainer.PicList[(int)pi.Props.Level].Visibility = System.Windows.Visibility.Visible;
@@ -798,7 +804,7 @@ namespace StoGen.Classes
             if (pi.Props.SizeY != 0) rez.Add($"sY = {pi.Props.SizeY}");
             if (pi.Props.Rotate != 0) rez.Add($"Rot={pi.Props.Rotate}");
             rez.Add($"Flip={(int)pi.Props.Flip}");
-            Projector.ImageCadre.ResultString = "new DifData() { " +  string.Join(", ", rez.ToArray()) + " }";
+            Projector.ImageCadre.ResultString = string.Join(", ", rez.ToArray());
             //Projector.ImageCadre.ResultString = 
             //    $";ClipX={pi.Props.ClipX};ClipW={pi.Props.ClipW};ClipY={pi.Props.ClipY};ClipH={pi.Props.ClipH};X={pi.Props.X};Y={pi.Props.Y};SizeX={pi.Props.SizeX};SizeY={pi.Props.SizeY};Rotate={pi.Props.Rotate}";
             System.Windows.Clipboard.SetText(Projector.ImageCadre.ResultString);
