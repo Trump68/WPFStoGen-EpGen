@@ -55,12 +55,12 @@ namespace StoGenMake.Elements
             SoundList.Add(sound);
             return sound;
         }
-        public ScenElementText AddText(string text)
-        {
-            ScenElementText txt = new ScenElementText();
-            txt.Text = text;
-            return txt;
-        }
+        //public seTe AddText(string text)
+        //{
+        //    seTe txt = new seTe();
+        //    txt.Text = text;
+        //    return txt;
+        //}
 
 
         public virtual List<string> GetCadreData()
@@ -118,6 +118,16 @@ namespace StoGenMake.Elements
                 return true;
             }
             return false;
+        }
+
+        internal void AddText(seTe newtext)
+        {
+            this.TextList.Add(newtext);
+        }
+
+        private void AssignFrom(seTe newtext)
+        {
+            throw new NotImplementedException();
         }
     }
 

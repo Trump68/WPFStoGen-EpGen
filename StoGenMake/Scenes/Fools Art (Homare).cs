@@ -671,29 +671,5 @@ namespace StoGenMake.Scenes.Base
 
         }
 
-        internal static void GetIm(string name, VNPCPersType type,
-                                  string desc, string path, string file, List<seIm> data,
-                                  DifData defaultdifdata = null)
-        {
-            seIm im = new seIm($@"{path}{file}", name);
-            im.Name = name;
-            im.PersonType = VNPCPersType.Comix;
-            im.Description = desc;
-            data.Add(im);
-            if (defaultdifdata != null)
-            {
-                SetCadre(new AlignData[] { new AlignData(name, defaultdifdata) }, null);
-            }
-        }
-        internal static seIm GetIm(string name, VNPCPersType type,
-                                  string desc, string path, string file)
-        {
-            seIm im = new seIm($@"{path}{file}", name);
-            im.Name = name;
-            im.PersonType = VNPCPersType.Comix;
-            im.Description = desc;
-            return im;
-        }
     }
-
 }

@@ -66,6 +66,7 @@
     <Compile Include="Scenes\Base\BaseScene.cs" />
     <Compile Include="Scenes\Fools Art %28Homare%29.cs" />
     <Compile Include="Scenes\Hara Shigeyuki.cs" />
+    <Compile Include="Scenes\Ilya_Kuvshinov.cs" />
     <Compile Include="Scenes\TestSceneBW.cs" />
     <Compile Include="Scenes\Scene01.cs" />
     <Compile Include="Scenes\TestScene.cs" />

@@ -64,6 +64,7 @@ namespace StoGenMake
             //Fools Art Gallery Homare
             Fools_Art_Homare.LoadData(this.CommonImageList, this.AlignList);
             TestTran.LoadData(this.CommonImageList, this.AlignList);
+            Ilya_Kuvshinov.LoadData(this.CommonImageList, this.AlignList);
 
             this.PersoneList.Add(new LADY_011017());
             this.SceneList.Add(new TestScene());

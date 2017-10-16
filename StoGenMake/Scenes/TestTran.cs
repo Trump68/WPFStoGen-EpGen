@@ -17,22 +17,16 @@ namespace StoGenMake.Scenes.Base
         }
         protected override void MakeCadres()
         {
-            // Set align
-            SetCadre(new AlignData[] {
-                 
-                 //new AlignData("Evil_red", new DifData() { X = 375, Y = 150, sX = 500, sY = 500 })
-                 new AlignData("Evil_blue")
-                ,new AlignData("Evil_blue2","Evil_blue")
-                ,new AlignData("Evil_green","Evil_blue")               
-                ,new AlignData("Evil_red","Evil_green")
-            }, null);
-
+            this.DefaultSceneText.Shift = 200;
+            this.DefaultSceneText.Size = 60;
+            this.DefaultSceneText.FontSize = 20;
+            this.DefaultSceneText.FontColor = "Yellow";
             //// real
             SetCadre(new AlignData[] {
                  new AlignData("Evil_blue")
                 ,new AlignData("Evil_green","Evil_blue")
                 ,new AlignData("Evil_red","Evil_green")
-            }, this);
+            }, this,"TEST");
 
             SetCadre(new AlignData[] {
                  new AlignData("Evil_blue", new DifData() {Rot = 20 })
@@ -59,23 +53,12 @@ namespace StoGenMake.Scenes.Base
 
             
             path = @"d:\Temp\";
+            string dsc = string.Empty;
             //raw
-           
-            data.Add(GetIm($"Evil_blue", VNPCPersType.Manga, "qqw", path, $"TestBlue.png"));
-            data.Add(GetIm($"Evil_blue2", VNPCPersType.Manga, "qqw", path, $"TestBlue.png"));
-            data.Add(GetIm($"Evil_red", VNPCPersType.Manga, "we", path, $"TestRed.png"));
-            data.Add(GetIm($"Evil_green", VNPCPersType.Manga, "er", path, $"TestGreen.png"));
-
-           
-
-        }
-        internal static seIm GetIm(string name, VNPCPersType type, string desc, string path, string file)
-        {
-            seIm im = new seIm($@"{path}{file}", name);
-            im.Name = name;
-            im.PersonType = VNPCPersType.Comix;
-            im.Description = desc;
-            return im;
+            GetIm($"Evil_blue", VNPCPersType.Manga, dsc, path, $"TestBlue.png", data);
+            GetIm($"Evil_blue2", VNPCPersType.Manga, dsc, path, $"TestBlue.png", data);
+            GetIm($"Evil_red", VNPCPersType.Manga, dsc, path, $"TestRed.png", data);
+            GetIm($"Evil_green", VNPCPersType.Manga, dsc, path, $"TestGreen.png", data);
         }
     }
 

@@ -34,27 +34,27 @@ namespace StoGenMake
             
             VNPC pers = null;
             
-            if (!string.IsNullOrEmpty(fileToProcess) && File.Exists(fileToProcess))
-            {
-                List<string> datalist = new List<string>();
-                List<string> header;
-                // найти сценарий и ему передать
-                datalist = Universe.LoadFileToStringList(fileToProcess);
-                datalist.ForEach(x => x.Trim());
-                datalist.RemoveAll(x => x.StartsWith(@"//"));
+            //if (!string.IsNullOrEmpty(fileToProcess) && File.Exists(fileToProcess))
+            //{
+            //    List<string> datalist = new List<string>();
+            //    List<string> header;
+            //    // найти сценарий и ему передать
+            //    datalist = Universe.LoadFileToStringList(fileToProcess);
+            //    datalist.ForEach(x => x.Trim());
+            //    datalist.RemoveAll(x => x.StartsWith(@"//"));
 
 
-                //string persName = datalist.FirstOrDefault(x => x.StartsWith(@"SCENPERS "));
-                //if (!string.IsNullOrEmpty(persName))
-                //{
-                //    persName = persName.Replace(@"SCENPERS ", string.Empty).Replace(@"NPC=", string.Empty);
-                //    Guid gid = Guid.Parse(persName.Trim());
-                //    var dd = GameWorldFactory.GameWorld.PersoneList;
-                //    var d = dd.FirstOrDefault(x => x.GID.Equals(gid));
-                //    pers = GameWorldFactory.GameWorld.PersoneList.FirstOrDefault(x => x.GID.Equals(gid));
-                //    datalist.RemoveAll(x => x.StartsWith(@"SCENPERS "));
-                //}
-            }
+            //    //string persName = datalist.FirstOrDefault(x => x.StartsWith(@"SCENPERS "));
+            //    //if (!string.IsNullOrEmpty(persName))
+            //    //{
+            //    //    persName = persName.Replace(@"SCENPERS ", string.Empty).Replace(@"NPC=", string.Empty);
+            //    //    Guid gid = Guid.Parse(persName.Trim());
+            //    //    var dd = GameWorldFactory.GameWorld.PersoneList;
+            //    //    var d = dd.FirstOrDefault(x => x.GID.Equals(gid));
+            //    //    pers = GameWorldFactory.GameWorld.PersoneList.FirstOrDefault(x => x.GID.Equals(gid));
+            //    //    datalist.RemoveAll(x => x.StartsWith(@"SCENPERS "));
+            //    //}
+            //}
 
             //var scen = new BaseScene();
             //if (pers != null)
@@ -63,10 +63,12 @@ namespace StoGenMake
             //    GameWorldFactory.GameWorld.CurrentPersone = pers;
             //}       
             GameWorldFactory.GameWorld.LoadData();
-            var scen = new Fools_Art_Homare();
+            //var scen = new Fools_Art_Homare();
             //var scen = new TestTran();
-            //var scen = new TestScene();
+            var scen = new Ilya_Kuvshinov();
             
+            //var scen = new TestScene();
+
             string fn = scen.Generate(fileToProcess);
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();

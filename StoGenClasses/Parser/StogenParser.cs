@@ -584,7 +584,7 @@ namespace StoGen.Classes
                     }
                     else if (item.Complete.StartsWith(@"CadreText="))
                     {
-                        StoGenParser.FillCadreText(item.Complete, LastCadre.TextFrameData, null, null, fn, DefaultPath);
+                        StoGenParser.FillCadreText(item.Complete.Replace(@"CadreText=", string.Empty), LastCadre.TextFrameData, null, null, fn, DefaultPath);
                     }
                     else if (item.Complete.StartsWith(@"CadreSound="))
                     {

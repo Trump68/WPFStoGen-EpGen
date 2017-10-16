@@ -161,31 +161,40 @@ namespace StoGenMake.Scenes.Base
             return true;
         }
 
-        //protected void SetCadre(Tuple<string, string, DifData>[] imdata, bool isWhite = false)
-        //{
-        //    List<AlignData> list = new List<AlignData>();
-        //    foreach (var item in imdata)
-        //    {
-        //        AlignData ni = new AlignData(item.Item1, item.Item2, item.Item3);
-        //        list.Add(ni);
-        //    }
-        //    SetCadre(list.ToArray(), this, isWhite);
-        //}
-
+        public seTe DefaultSceneText = new seTe();
         protected void SetCadre(string name, bool white)
         {
             SetCadre(new AlignData[] { new AlignData(name) },this, white);
         }
 
-        public static void SetCadre(AlignData[] imdata, BaseScene scene = null, bool isWhite = false, bool replace = true, string text = null)
+        public static void SetCadre(AlignData[] imdata, BaseScene scene, string text)
+        {
+            seTe newtext = new seTe(scene.DefaultSceneText);
+            newtext.Text = text;
+            SetCadre(imdata, scene, false, true, newtext);
+        }
+        public static void SetCadre(AlignData[] imdata, BaseScene scene, seTe text)
+        {
+            SetCadre(imdata, scene, false, true, text);
+        }
+        public static void SetCadre(
+            AlignData[] imdata, 
+            BaseScene scene = null,
+            bool isWhite = false,
+            bool replace = true,
+            seTe text = null)
         {
             ScenCadre cadre = null;
             if (scene != null)
             {
                 cadre = scene.AddCadre(null, null, 200);
                 cadre.IsWhite = isWhite;
-                if (!string.IsNullOrEmpty(text))
+                
+                if (text != null)
+                {                    
                     cadre.AddText(text);
+                }
+                    
             }
 
             foreach (var item in imdata)
@@ -259,7 +268,27 @@ namespace StoGenMake.Scenes.Base
 
         }
 
-        
+        internal static void GetIm(string name, VNPCPersType type,
+                                  string desc, string path, string file, List<seIm> data,
+                                  DifData defaultdifdata = null)
+        {
+            seIm im = GetIm(name, type, desc, path, file);
+            data.Add(im);
+            if (defaultdifdata != null)
+            {
+                SetCadre(new AlignData[] { new AlignData(name, defaultdifdata) }, null);
+            }
+        }
+        internal static seIm GetIm(string name, VNPCPersType type,
+                                  string desc, string path, string file)
+        {
+            seIm im = new seIm($@"{path}{file}", name);
+            im.Name = name;
+            im.PersonType = type;
+            im.Description = desc;
+            return im;
+        }
+
     }
 
 }

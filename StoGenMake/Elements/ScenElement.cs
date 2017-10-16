@@ -202,15 +202,65 @@ namespace StoGenMake.Elements
         }       
     }
 
-    public class ScenElementText : ScenElement
+    public class seTe : ScenElement
     {
         public string Text;
+        public int Width = 0;
+        public int Shift = 0;
+        public int Size = 600;
+        public int FontSize = 25;
+        public int Opacity = 100;
+        public int Bottom = 0;
+        public bool AutoShow = true;
+        public bool ClearBack = true;
+        public string FontColor = "Yellow";
+        public string FontName;
+        public string Tran;
+
+
+        public seTe() : base() { }
+        public seTe(seTe origin):this()
+        {
+            this.Text = origin.Text;
+            this.Shift = origin.Shift;
+            this.Size = origin.Size;
+            this.Width = origin.Width;
+            this.Tran = origin.Tran;
+            this.FontSize = origin.FontSize;
+            this.Opacity = origin.Opacity;
+            this.Bottom = origin.Bottom;
+            this.FontColor = origin.FontColor;
+            this.FontName = origin.FontName;
+            this.AutoShow = origin.AutoShow;
+            this.ClearBack = origin.ClearBack;
+        }
+
+       
+
         public override bool IsActivated { get { return !string.IsNullOrEmpty(this.Text); } }
         internal override string GetElementData()
         {            
             List<string> result = new List<string>();
-            result.Add($"{this.Text}");            
+            result.Add($"CadreText=;~={this.Text}");
+            result.Add($"Opacity={this.Opacity}");
+            result.Add($"FontSize={this.FontSize}");
+            result.Add($"Shift={this.Shift}");
+            result.Add($"Width={this.Width}");
+            result.Add($"Size={this.Size}");
+            result.Add($"Bottom={this.Bottom}");
+
+            if (this.AutoShow)
+                result.Add($"AutoShow={1}");
+            else
+                result.Add($"AutoShow={0}");
+
+            if (this.ClearBack)
+                result.Add($"ClearBack={1}");
+            else
+                result.Add($"ClearBack={0}");
             if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");
+            if (!string.IsNullOrEmpty(this.FontColor)) result.Add($"FontColor={this.FontColor}");
+            if (!string.IsNullOrEmpty(this.FontName)) result.Add($"FontName={this.FontName}");
             return string.Join(";", result.ToArray());
         }
     }

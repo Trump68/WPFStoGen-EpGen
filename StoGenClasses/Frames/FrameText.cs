@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using DevExpress.XtraLayout.Utils;
 using StoGen.ModelClasses;
-//using System.Drawing;
-//using System.Windows.Forms;
-using DevExpress.XtraRichEdit.API.Word;
-using DevExpress.XtraRichEdit.API.Native;
 using System.Windows.Media;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
 using System.Threading;
-
 namespace StoGen.Classes
 {
     public class FrameText : Frame
@@ -110,18 +100,21 @@ namespace StoGen.Classes
             if (!string.IsNullOrEmpty(FontColor))
             {
                 if (FontColor == "Black")
-                    Projector.Text.Foreground = Brushes.Black;
+                    Projector.Text.Foreground = System.Windows.Media.Brushes.Black;
                 else if (FontColor == "White")
-                    Projector.Text.Foreground = Brushes.White;
+                    Projector.Text.Foreground = System.Windows.Media.Brushes.White;
                 else if (FontColor == "Red")
-                    Projector.Text.Foreground = Brushes.Red;
+                    Projector.Text.Foreground = System.Windows.Media.Brushes.Red;
                 else if (FontColor == "Blue")
-                    Projector.Text.Foreground = Brushes.Blue;
+                    Projector.Text.Foreground = System.Windows.Media.Brushes.Blue;
                 else if (FontColor == "Yellow")
-                    Projector.Text.Foreground = Brushes.Yellow;
+                    Projector.Text.Foreground = System.Windows.Media.Brushes.Yellow;
+                //else
+                    //Projector.Text.Foreground =  new SolidBrush((System.Drawing.Color)new System.Drawing.ColorConverter().ConvertFromString(FontColor));
             }
 
             Projector.Text.Opacity = this.Opacity / 100;
+            //Projector.Text.Opacity = 0;
             Projector.TextVisible = true;
             return this.Owner;
         }
