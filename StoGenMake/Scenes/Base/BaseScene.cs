@@ -47,7 +47,11 @@ namespace StoGenMake.Scenes.Base
             this.Name = "Drama scene";
             this.SizeX = 1500;
             this.SizeY = 1600;
+            LoadData(
+              GameWorldFactory.GameWorld.CommonImageList,
+              GameWorldFactory.GameWorld.AlignList);
         }
+        protected virtual void LoadData(List<seIm> data, List<AlignDif> alignData) { }
         public void AddActor(VNPC actor)
         {
             this.Actors.Add(actor);
@@ -315,7 +319,7 @@ namespace StoGenMake.Scenes.Base
                 SetCadre(new AlignData[] { new AlignData(name, defaultdifdata) }, null);
             }
         }
-        internal static seIm GetIm(string name, VNPCPersType type,
+        private static seIm GetIm(string name, VNPCPersType type,
                                   string desc, string path, string file)
         {
             seIm im = new seIm($@"{path}{file}", name);

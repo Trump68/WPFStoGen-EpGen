@@ -36,8 +36,8 @@ namespace StoGenMake
             
             GameWorldFactory.GameWorld.LoadData();
             //var scen = new Fools_Art_Homare();
-            var scen = new TestTran();
-            //var scen = new Ilya_Kuvshinov();
+            //var scen = new SC000_TestTran();
+            var scen = new SC002_IlyaKuvshinov();
             
             //var scen = new TestScene();
 

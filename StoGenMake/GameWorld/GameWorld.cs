@@ -58,17 +58,13 @@ namespace StoGenMake
             GameWorldDataLoader.LoadManBodyList(this.CommonImageList);
             GameWorldDataLoader.LoadManHeadList(this.CommonImageList);
 
-
-            //Hara Shigeyuki
-            Hara_Shigeyuki.LoadData(this.CommonImageList, this.AlignList);
-            //Fools Art Gallery Homare
-            Fools_Art_Homare.LoadData(this.CommonImageList, this.AlignList);
-            TestTran.LoadData(this.CommonImageList, this.AlignList);
-            Ilya_Kuvshinov.LoadData(this.CommonImageList, this.AlignList);
+            this.SceneList.Add(new SC000_Various());
+            this.SceneList.Add(new SC000_TestTran());
+            this.SceneList.Add(new SC002_IlyaKuvshinov());
 
             this.PersoneList.Add(new LADY_011017());
-            this.SceneList.Add(new TestScene());
-            this.SceneList.Add(new TestTran());
+
+            
         }
 
 

@@ -9,36 +9,48 @@ using System.Threading.Tasks;
 
 namespace StoGenMake.Scenes
 {
-    public class Ilya_Kuvshinov : BaseScene
+    public class SC002_IlyaKuvshinov : BaseScene
     {
+        #region CADRE GROUPS
+        private string GROUP01 = "Raw data";
+        private string GROUP02 = "Face 001";
+        #endregion
 
-        public Ilya_Kuvshinov() : base()
+        public SC002_IlyaKuvshinov() : base()
         {
-
+            Name = "Ilya Kuvshinov";
+            this.CadreGroups.Add(GROUP01);
+            this.CadreGroups.Add(GROUP02);
+            
         }
 
-     
+
         protected override void MakeCadres(string cadregroup)
         {
-            for (int i = 1; i <= 8; i++)
+            if (cadregroup == GROUP01)
             {
-                SetCadre(new AlignData[] { new AlignData($"Head_IlyaKuvshinov_{i.ToString("D3")}") }, this);
+                for (int i = 1; i <= 8; i++)
+                {
+                    SetCadre(new AlignData[] { new AlignData($"Head_IlyaKuvshinov_{i.ToString("D3")}") }, this);
+                }
             }
 
-            SetCadre(new AlignData[] {
+            if (cadregroup == GROUP02)
+            {
+                SetCadre(new AlignData[] {
                 new AlignData($"Head_IlyaKuvshinov_001"),
                 new AlignData("Evil_BODY_1710085001",new DifData() {X = 460, Y = 85, sX = 980, sY = 980, Flip=0}),
-        }, this);
+                }, this);
+            }
 
             this.Cadres.Reverse();
 
 
         }
-        internal static void LoadData(List<seIm> data, List<AlignDif> alignData)
+        protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
         {
             string path = null;
-
-            // Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~
+           
             path = @"x:\ARTIST\Ilya Kuvshinov\PNG\";
 
             string dsc = "Ilya_Kuvshinov";
@@ -52,7 +64,7 @@ namespace StoGenMake.Scenes
                 GetIm(src, VNPCPersType.ArtCG, dsc, path, fn, data, new DifData() { X = 100, Y = 100, sX = 500, sY = 500, Flip = 0 });
             }
 
-           
+
 
         }
 

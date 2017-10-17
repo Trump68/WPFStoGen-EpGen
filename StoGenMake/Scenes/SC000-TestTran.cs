@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace StoGenMake.Scenes.Base
 {
-    public class TestTran : BaseScene
+    public class SC000_TestTran : BaseScene
     {
 
-        public TestTran() : base()
+        public SC000_TestTran() : base()
         {
             this.Name = "Transition test";
             this.CadreGroups.Add("1");
             this.CadreGroups.Add("2");
-
+        
         }
         protected override void MakeCadres(string cadregroup)
         {
@@ -58,11 +58,11 @@ namespace StoGenMake.Scenes.Base
             //}, this);
 
         }
-        internal static void LoadData(List<seIm> data, List<AlignDif> alignData)
+        protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
         {
             string path = null;
 
-            
+
             path = @"d:\Temp\";
             string dsc = string.Empty;
             //raw
