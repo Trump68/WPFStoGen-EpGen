@@ -43,7 +43,7 @@ namespace StoGen.Classes
             this.NestedCadreId = -1;
             this.MenuCreator = this.CreateMenu;
         }
-        public virtual bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        public virtual bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             return false;
         }
@@ -61,7 +61,7 @@ namespace StoGen.Classes
 
         public virtual void Init()
         {
-            if (ShowContextMenuOnInit && !isInitialized) this.ShowContextMenu();
+            if (ShowContextMenuOnInit && !isInitialized) this.ShowContextMenu(true,null);
             isInitialized = true;
         }
         public virtual Cadre GetNextCadre()
@@ -233,11 +233,11 @@ namespace StoGen.Classes
                     if (parent != null)
                     {
                         parent.InnerProc = null;
-                        parent.ShowContextMenu();
+                        parent.ShowContextMenu(true,null);
                     }
                     else
                     {
-                        this.ShowContextMenu();
+                        this.ShowContextMenu(true, null);
                     }
                 }
                 else if (this.CurrentCadre != null) this.CurrentCadre.ProcessKey(e);
@@ -293,16 +293,16 @@ namespace StoGen.Classes
                 }
             }
         }
-        public virtual bool ShowContextMenu()
+        public virtual bool ShowContextMenu(bool show, object Data)
         {
             isInitialized = true;
             if (this.InnerProc != null && this.InnerProc.MenuCreator != null)
             {
-                return this.InnerProc.ShowContextMenu();
+                return this.InnerProc.ShowContextMenu(show,Data);
             }
             if (MenuCreator != null)
             {
-                return MenuCreator(this, true, null);
+                return MenuCreator(this, show, null, Data);
             }
             return false;
         }
@@ -362,5 +362,5 @@ namespace StoGen.Classes
         }
        
     }
-    public delegate bool MenuCreatorDelegate(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist);
+    public delegate bool MenuCreatorDelegate(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data);
 }

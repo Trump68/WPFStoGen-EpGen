@@ -15,7 +15,7 @@ namespace StoGenMake.Scenes.Base
         {
 
         }
-        protected override void MakeCadres()
+        protected override void MakeCadres(string cadregroup)
         {
 
 

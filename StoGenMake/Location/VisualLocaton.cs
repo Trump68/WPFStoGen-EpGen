@@ -13,7 +13,7 @@ namespace StoGenMake.Location
     {
         public EntityData Data = new EntityData();
 
-        internal bool CreateMenuLocationDocier(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        internal bool CreateMenuLocationDocier(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             ChoiceMenuItem item = null;
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();

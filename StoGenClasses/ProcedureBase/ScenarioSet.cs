@@ -91,11 +91,11 @@ namespace StoGen.Classes
             PreProcessFileLists(this.ScenarioFile);
         }
 
-        public virtual bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        public virtual bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 
-            this.GlobalMenuCreator.CreateMenu(proc, doShowMenu, itemlist);
+            this.GlobalMenuCreator.CreateMenu(proc, doShowMenu, itemlist, Data);
 
             //if (doShowMenu)
             //{

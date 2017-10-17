@@ -74,7 +74,7 @@ namespace StoGenMake.Pers
         }    
         
         #region Menu
-        public override bool CreateMenuPersone(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        public override bool CreateMenuPersone(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             ChoiceMenuItem item = null;
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
@@ -109,20 +109,20 @@ namespace StoGenMake.Pers
             item.Executor = delegate (object data)
             {
                 proc.MenuCreator = this.CreateMenuTalk;
-                proc.ShowContextMenu();
+                proc.ShowContextMenu(doShowMenu,data);
             };
             itemlist.Add(item);
 
             if (frmFrameChoice.ShowOptionsmenu(itemlist) == DialogResult.Cancel)
             {
                 proc.MenuCreator = proc.OldMenuCreator;
-                proc.ShowContextMenu();
+                proc.ShowContextMenu(true,null);
             }
 
 
             return true;
         }
-        private bool CreateMenuTalk(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        private bool CreateMenuTalk(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             ChoiceMenuItem item = null;
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
@@ -164,7 +164,7 @@ namespace StoGenMake.Pers
             if (frmFrameChoice.ShowOptionsmenu(itemlist) == DialogResult.Cancel)
             {
                 proc.MenuCreator = proc.OldMenuCreator;
-                proc.ShowContextMenu();
+                proc.ShowContextMenu(true,null);
             }
 
 

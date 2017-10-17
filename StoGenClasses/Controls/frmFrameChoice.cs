@@ -85,7 +85,7 @@ namespace StoGen.Classes
             {
                 if (current.Executor != null)
                 {
-                    current.Executor(current.Data);
+                    current.Executor(current.itemData);
                 }
             }
         }
@@ -121,11 +121,11 @@ namespace StoGen.Classes
         public ChoiceMenuItem(string name, object data, params MenuDescriptopnItem[] args)        
         {
             this.Name = name;
-            this.Data = data;
+            this.itemData = data;
             this.Props = args;
         }
         public string Name {set; get;}
-        public object Data { set; get; }
+        public object itemData { set; get; }
         public MenuItemExecutorDelegate Executor = null;
         public MenuDescriptopnItem[] Props;
         public static void FinalizeShowMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, bool processCancel)
@@ -137,7 +137,7 @@ namespace StoGen.Classes
             else if (processCancel)
             {
                 proc.MenuCreator = proc.OldMenuCreator;
-                proc.ShowContextMenu();
+                proc.ShowContextMenu(doShowMenu, null);
             }
             else proc.CurrentCadre.Repaint(true);
         }

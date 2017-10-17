@@ -10,6 +10,7 @@ using StoGenMake.Pers;
 using StoGenLife.SOUND;
 using StoGenMake.Entity;
 using StoGen.Classes;
+using static StoGenMake.GameWorld;
 
 namespace StoGenMake.Scenes.Base
 {
@@ -17,15 +18,15 @@ namespace StoGenMake.Scenes.Base
     public class BaseScene
     {
         protected List<VNPC> Actors;
-        protected virtual void MakeCadres()
+        protected virtual void MakeCadres(string cadregroup)
         {
-            ScenCadre cadre;
-            cadre = this.AddCadre(null, null, 200);
-            foreach (var actor in Actors)
-            {
-                actor.AssembleFigure(cadre);
-            }
-            this.AddObzor(cadre);
+            //ScenCadre cadre;
+            //cadre = this.AddCadre(null, null, 200);
+            //foreach (var actor in Actors)
+            //{
+            //    actor.AssembleFigure(cadre);
+            //}
+            //this.AddObzor(cadre);
         }
 
         public Guid GID { set; get; }
@@ -107,9 +108,15 @@ namespace StoGenMake.Scenes.Base
 
 
         public string FileToProcess = null;
-        public string Generate(string FileToProcess)
+        #region Generate
+        public string Generate()
         {
-            this.MakeCadres();
+            return this.Generate(null);
+        }
+        public string Generate(string cadregroup)
+        {
+            this.Cadres.Clear();
+            this.MakeCadres(cadregroup);
 
             string fnScenario = string.Empty;
             if (string.IsNullOrEmpty(FileToProcess))
@@ -130,11 +137,7 @@ namespace StoGenMake.Scenes.Base
                     var cadredata = item.GetCadreData();
                     if (!string.IsNullOrEmpty(FileToProcess))
                     {
-                        //   string newfnCadre = i.ToString("000") + "_" + item.Name + ".stogen";
-                        //   string savepathCadre = Path.GetDirectoryName(FileToProcess) + @"\Cadres\";
-                        //    if (!Directory.Exists(savepathCadre)) Directory.CreateDirectory(savepathCadre);
-                        //   string fnCadre = Path.Combine(savepathCadre, newfnCadre);
-                        //  File.WriteAllText(fnCadre, string.Join(Environment.NewLine, cadredata.ToArray()));
+
                     }
                     scendata.AddRange(cadredata);
                 }
@@ -143,23 +146,56 @@ namespace StoGenMake.Scenes.Base
             File.WriteAllText(fnScenario, string.Join(Environment.NewLine, scendata.ToArray()));
             return fnScenario;
         }
-        internal bool CreateMenuScene(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
-        {
-            ChoiceMenuItem item = null;
-            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 
-            item = new ChoiceMenuItem($"Scene {this.Name}", this);
-            item.Executor = delegate (object data)
+        #endregion
+
+        #region Menu
+
+
+        public List<string> CadreGroups = new List<string>(); 
+        public bool CreateMenuScene(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        {
+            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+            ChoiceMenuItem item = null;
+            foreach (var it in CadreGroups)
             {
-                this.Generate(null);
-                StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
-                proc.MenuCreator = proc.OldMenuCreator;
-                proc.GetNextCadre();
-            };
-            itemlist.Add(item);
-            ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, false);
+                item = new ChoiceMenuItem();
+                item.Name = it;
+                item.itemData = it;
+                item.Executor = data =>
+                {
+                    //proc.MenuCreator = this.CreateMenuSceneForCadreList;
+                    //proc.ShowContextMenu(doShowMenu, data);
+                    
+                    this.Generate(data as string);
+                    StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
+                    proc.MenuCreator = proc.OldMenuCreator;
+                    proc.GetNextCadre();
+
+                };
+                itemlist.Add(item);
+            }
+            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
             return true;
         }
+        //internal bool CreateMenuSceneForCadreList(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        //{
+        //    ChoiceMenuItem item = null;
+        //    if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+
+        //    item = new ChoiceMenuItem($"Scene {this.Name}", this);
+        //    item.Executor = delegate (object data)
+        //    {
+        //        this.Generate(null);
+        //        StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
+        //        proc.MenuCreator = proc.OldMenuCreator;
+        //        proc.GetNextCadre();
+        //    };
+        //    itemlist.Add(item);
+        //    ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, false);
+        //    return true;
+        //}
+        #endregion
 
         public seTe DefaultSceneText = new seTe();
         protected void SetCadre(string name, bool white)

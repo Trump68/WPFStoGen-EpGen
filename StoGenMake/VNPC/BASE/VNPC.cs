@@ -45,11 +45,11 @@ namespace StoGenMake.Pers
         public BaseScene Scene { set; get; }
         public EntityData Data = new EntityData();
 
-        public virtual bool CreateMenuPersone(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        public virtual bool CreateMenuPersone(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             return false;
         }
-        public virtual bool CreateMenuPersoneDocier(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        public virtual bool CreateMenuPersoneDocier(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             ChoiceMenuItem item = null;
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();

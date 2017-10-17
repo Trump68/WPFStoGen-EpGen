@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static StoGenMake.GameWorld;
 
 namespace StoGenMake.Scenes.Base
 {
@@ -258,7 +259,7 @@ namespace StoGenMake.Scenes.Base
             SetCadre(new AlignData[] { new AlignData("LADY_Mouth_1710140004", src, new DifData() { X = 360, Y = 275, sX = 60, sY = 60, Flip = 0 }) });
             SetCadre(new AlignData[] { new AlignData("MouthSensual_1710084001", src, new DifData() { X = 361, Y = 284, sX = 42, sY = 42, Flip = 0 }) });
         }
-        protected override void MakeCadres()
+        protected override void MakeCadres(string cadregroup)
         {
             #region Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~
 

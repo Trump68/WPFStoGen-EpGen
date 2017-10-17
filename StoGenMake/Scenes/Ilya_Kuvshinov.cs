@@ -18,9 +18,9 @@ namespace StoGenMake.Scenes
         }
 
      
-        protected override void MakeCadres()
+        protected override void MakeCadres(string cadregroup)
         {
-            for (int i = 1; i < 6; i++)
+            for (int i = 1; i <= 8; i++)
             {
                 SetCadre(new AlignData[] { new AlignData($"Head_IlyaKuvshinov_{i.ToString("D3")}") }, this);
             }
@@ -46,7 +46,7 @@ namespace StoGenMake.Scenes
             string fn = null;
 
             // Heads
-            for (int i = 1; i < 6; i++)
+            for (int i = 1; i <= 8; i++)
             {
                 src = $"Head_IlyaKuvshinov_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
                 GetIm(src, VNPCPersType.ArtCG, dsc, path, fn, data, new DifData() { X = 100, Y = 100, sX = 500, sY = 500, Flip = 0 });

@@ -13,38 +13,49 @@ namespace StoGenMake.Scenes.Base
 
         public TestTran() : base()
         {
+            this.Name = "Transition test";
+            this.CadreGroups.Add("1");
+            this.CadreGroups.Add("2");
 
         }
-        protected override void MakeCadres()
+        protected override void MakeCadres(string cadregroup)
         {
             this.DefaultSceneText.Shift = 200;
             this.DefaultSceneText.Size = 60;
             this.DefaultSceneText.FontSize = 20;
             this.DefaultSceneText.FontColor = "Yellow";
+
+
             //// real
-            SetCadre(new AlignData[] {
+            if (cadregroup == null || cadregroup == "1")
+            {
+                SetCadre(new AlignData[] {
                  new AlignData("Evil_blue")
                 ,new AlignData("Evil_green","Evil_blue")
                 ,new AlignData("Evil_red","Evil_green")
-            }, this,"TEST");
+                }, this, "TEST");
+            }
 
-            SetCadre(new AlignData[] {
+            if (cadregroup == null || cadregroup == "2")
+            {
+                SetCadre(new AlignData[] {
                  new AlignData("Evil_blue", new DifData() {Rot = 20 })
                 ,new AlignData("Evil_green","Evil_blue")
                 ,new AlignData("Evil_red","Evil_green")
-            }, this);
+                }, this);
+            }
 
-            SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue", new DifData() {Rot = 20 })
-                ,new AlignData("Evil_green","Evil_blue", new DifData() {Rot = -20 })
-                ,new AlignData("Evil_red","Evil_green")
-            }, this);
+            //SetCadre(new AlignData[] {
+            //     new AlignData("Evil_blue", new DifData() {Rot = 20 })
+            //    ,new AlignData("Evil_green","Evil_blue", new DifData() {Rot = -20 })
+            //    ,new AlignData("Evil_red","Evil_green")
+            //}, this);
 
-            SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue", new DifData() {Rot = 20 })
-                ,new AlignData("Evil_green","Evil_blue", new DifData() {Rot = -20 })
-                ,new AlignData("Evil_red","Evil_green", new DifData() {Rot = 20 })
-            }, this);
+            //SetCadre(new AlignData[] {
+            //     new AlignData("Evil_blue", new DifData() {Rot = 20 })
+            //    ,new AlignData("Evil_green","Evil_blue", new DifData() {Rot = -20 })
+            //    ,new AlignData("Evil_red","Evil_green", new DifData() {Rot = 20 })
+            //}, this);
 
         }
         internal static void LoadData(List<seIm> data, List<AlignDif> alignData)
@@ -60,6 +71,27 @@ namespace StoGenMake.Scenes.Base
             GetIm($"Evil_red", VNPCPersType.Manga, dsc, path, $"TestRed.png", data);
             GetIm($"Evil_green", VNPCPersType.Manga, dsc, path, $"TestGreen.png", data);
         }
+
+        #region Menu
+        //internal bool CreateMenuScene(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        //{
+        //    ChoiceMenuItem item = null;
+        //    if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+
+        //    item = new ChoiceMenuItem($"Scene {this.Name}", this);
+        //    item.Executor = delegate (object data)
+        //    {
+        //        this.Generate(null);
+        //        StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
+        //        proc.MenuCreator = proc.OldMenuCreator;
+        //        proc.GetNextCadre();
+        //    };
+        //    itemlist.Add(item);
+        //    ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, false);
+        //    return true;
+        //}
+
+        #endregion
     }
 
 }

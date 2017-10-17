@@ -502,6 +502,10 @@ namespace StoGen.Classes
 
         public static bool AddCadresToProcFromFile(ProcedureBase proc, string fn, string part, string defaultPath)
         {
+            proc.NestedCadreId = 0;
+            while (proc.Cadres.Count > 1)
+            proc.Cadres.RemoveAt(proc.Cadres.Count-1);
+
             List<string> header;
             List<StringDataContainer> datalist = new List<StringDataContainer>();
             string commonFile = $"{defaultPath}{"Common.stogen"}";

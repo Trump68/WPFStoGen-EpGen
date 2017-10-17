@@ -29,26 +29,26 @@ namespace StoGenMake
             }
         }
     }
-    public class GameWorld: IMenuCreator
+    public class GameWorld : IMenuCreator
     {
-        public List<VNPC>          PersoneList  { get; internal set; }
-        public List<seIm>          CommonImageList { get; internal set; }
-       
+        public List<VNPC> PersoneList { get; internal set; }
+        public List<seIm> CommonImageList { get; internal set; }
+
         public List<AlignDif> AlignList { get; internal set; }
         public List<VisualLocaton> LocationList { get; internal set; }
         public List<BaseScene> SceneList { get; internal set; }
         public VNPC CurrentPersone { get; internal set; }
-        
+
 
         public GameWorld()
         {
-           
-            this.PersoneList  = new List<VNPC>();
+
+            this.PersoneList = new List<VNPC>();
             this.CommonImageList = new List<seIm>();
             this.AlignList = new List<AlignDif>();
 
             this.LocationList = new List<VisualLocaton>();
-            this.SceneList = new List<BaseScene>();           
+            this.SceneList = new List<BaseScene>();
         }
         public void LoadData()
         {
@@ -68,10 +68,12 @@ namespace StoGenMake
 
             this.PersoneList.Add(new LADY_011017());
             this.SceneList.Add(new TestScene());
+            this.SceneList.Add(new TestTran());
         }
 
 
-        public bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        #region Menu
+        public bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             if (itemlist == null)
                 itemlist = new List<ChoiceMenuItem>();
@@ -85,7 +87,7 @@ namespace StoGenMake
                 item.Executor = data =>
                 {
                     proc.MenuCreator = CurrentPersone.CreateMenuPersone;
-                    proc.ShowContextMenu();
+                    proc.ShowContextMenu(true,Data);
                 };
                 itemlist.Add(item);
             }
@@ -95,17 +97,17 @@ namespace StoGenMake
             item.Executor = data =>
             {
                 proc.MenuCreator = CreateMenuDosie;
-                proc.ShowContextMenu();
+                proc.ShowContextMenu(true, Data);
             };
             itemlist.Add(item);
-            
+
 
             // Меню перемещения по локациям
             item = new ChoiceMenuItem("Переместиться ...", this);
             item.Executor = data =>
             {
                 proc.MenuCreator = CreateMenuRelocation;
-                proc.ShowContextMenu();
+                proc.ShowContextMenu(true, Data);
             };
             itemlist.Add(item);
 
@@ -114,17 +116,14 @@ namespace StoGenMake
             item.Executor = data =>
             {
                 proc.MenuCreator = CreateMenuScenes;
-                proc.ShowContextMenu();
+                proc.ShowContextMenu(true, Data);
             };
             itemlist.Add(item);
 
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, false);
             return true;
         }
-
-      
-
-        private bool CreateMenuRelocation(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        private bool CreateMenuRelocation(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
             ChoiceMenuItem item = null;
@@ -133,11 +132,11 @@ namespace StoGenMake
             {
                 item = new ChoiceMenuItem();
                 item.Name = loc.Name;
-                item.Data = this;
+                item.itemData = this;
                 item.Executor = data =>
                 {
                     proc.MenuCreator = loc.CreateMenuLocationDocier;
-                    proc.ShowContextMenu();
+                    proc.ShowContextMenu(doShowMenu, Data);
                 };
                 itemlist.Add(item);
             }
@@ -145,7 +144,7 @@ namespace StoGenMake
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
             return true;
         }
-        private bool CreateMenuScenes(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        private bool CreateMenuScenes(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
             ChoiceMenuItem item = null;
@@ -154,11 +153,11 @@ namespace StoGenMake
             {
                 item = new ChoiceMenuItem();
                 item.Name = scene.Name;
-                item.Data = this;
+                item.itemData = this;
                 item.Executor = data =>
                 {
                     proc.MenuCreator = scene.CreateMenuScene;
-                    proc.ShowContextMenu();
+                    proc.ShowContextMenu(doShowMenu, Data);
                 };
                 itemlist.Add(item);
             }
@@ -166,7 +165,7 @@ namespace StoGenMake
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
             return true;
         }
-        private bool CreateMenuDosie(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        private bool CreateMenuDosie(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
             ChoiceMenuItem item = null;
@@ -176,34 +175,34 @@ namespace StoGenMake
             {
                 item = new ChoiceMenuItem();
                 item.Name = Enum.GetName(typeof(VNPCPersType), it);
-                item.Data = it;
+                item.itemData = it;
                 item.Executor = data =>
                 {
                     proc.MenuCreatorData = data;
                     proc.MenuCreator = this.CreateMenuDocierForType;
-                    proc.ShowContextMenu();
+                    proc.ShowContextMenu(doShowMenu,Data);
                 };
                 itemlist.Add(item);
             }
-           
+
 
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
             return true;
         }
-        private bool CreateMenuDocierForType(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        private bool CreateMenuDocierForType(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
             ChoiceMenuItem item = null;
 
-            foreach (var pers in PersoneList.Where(x=>x.PersonType == (VNPCPersType)proc.MenuCreatorData))
+            foreach (var pers in PersoneList.Where(x => x.PersonType == (VNPCPersType)proc.MenuCreatorData))
             {
                 item = new ChoiceMenuItem();
                 item.Name = pers.Name;
-                item.Data = this;
+                item.itemData = this;
                 item.Executor = data =>
-                {                    
+                {
                     proc.MenuCreator = pers.CreateMenuPersoneDocier;
-                    proc.ShowContextMenu();
+                    proc.ShowContextMenu(doShowMenu, Data);
                 };
                 itemlist.Add(item);
             }
@@ -211,7 +210,10 @@ namespace StoGenMake
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
             return true;
         }
-    }
+
+        #endregion
+
+       }
     public class AlignData
     {
         public string Parent;
@@ -236,14 +238,14 @@ namespace StoGenMake
     {
         public bool relative = true;
         public DifData() { }
-        public DifData(bool rel):this()
+        public DifData(bool rel) : this()
         {
             this.relative = rel;
         }
-        public DifData(AlignData item):this()
+        public DifData(AlignData item) : this()
         {
-           this.Name = item.Name;
-           this.Parent = item.Parent;
+            this.Name = item.Name;
+            this.Parent = item.Parent;
             if (item.Im != null)
             {
                 this.X = item.Im.X;
@@ -253,13 +255,13 @@ namespace StoGenMake
                 this.Rot = item.Im.Rot;
                 this.Flip = item.Im.Flip;
             }
-            
+
         }
 
         public DifData(seIm item) : this()
         {
             this.Name = item.Name;
-            
+
             this.X = item.X;
             this.Y = item.Y;
             this.sY = item.sY;
@@ -277,6 +279,5 @@ namespace StoGenMake
         public int? Rot { set; get; }
         public int? Flip { set; get; }
     }
-
 
 }

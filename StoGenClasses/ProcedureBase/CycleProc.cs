@@ -31,7 +31,7 @@ namespace StoGen.Classes
             this.ParentProc = ownerproc;
             return this;
         }
-        public override bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist)
+        public override bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             ChoiceMenuItem item = null;
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
@@ -69,7 +69,7 @@ namespace StoGen.Classes
             if (frmFrameChoice.ShowOptionsmenu(itemlist) == DialogResult.Cancel)
             {
                 this.ParentProc.InnerProc = null;
-                this.ParentProc.ShowContextMenu();
+                this.ParentProc.ShowContextMenu(true,null);
             }
             return true;
         }

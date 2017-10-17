@@ -8,6 +8,6 @@ namespace StoGen.Classes.Interfaces
 {
     public interface IMenuCreator
     {
-        bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist);
+        bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data);
     }
 }

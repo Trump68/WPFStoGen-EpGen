@@ -66,7 +66,7 @@ namespace StoGenWPF
         }
         internal static void ChangeVisibleChoiceMenu()
         {
-            if (CurrProc != null) CurrProc.ShowContextMenu();
+            if (CurrProc != null) CurrProc.ShowContextMenu(true,null);
         }
         internal static void ApplayVisibleChoiceMenu()
         {

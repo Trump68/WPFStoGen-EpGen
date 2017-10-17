@@ -16,7 +16,7 @@ namespace StoGenMake.Scenes
         {
            
         }
-        protected override void MakeCadres()
+        protected override void MakeCadres(string cadregroup)
         {
             SetCadre(new AlignData[] {
               new AlignData("LADY_Body_1710071009",null,null),
