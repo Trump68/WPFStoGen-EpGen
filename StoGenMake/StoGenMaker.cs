@@ -35,9 +35,9 @@ namespace StoGenMake
             VNPC pers = null;
             
             GameWorldFactory.GameWorld.LoadData();
-            //var scen = new Fools_Art_Homare();
+            //var scen = new SC001_FoolsArt();
             //var scen = new SC000_TestTran();
-            var scen = new SC002_IlyaKuvshinov();
+             var scen = new SC002_IlyaKuvshinov();
             
             //var scen = new TestScene();
 

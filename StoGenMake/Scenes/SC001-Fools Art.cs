@@ -287,7 +287,7 @@ namespace StoGenMake.Scenes.Base
         protected override void MakeCadres(string cadregroup)
         {
             #region Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~
-
+            if (cadregroup == null) cadregroup = GROUP10;
             #region GROUP01
             if (cadregroup == GROUP01)
             {
@@ -695,6 +695,8 @@ namespace StoGenMake.Scenes.Base
                 new AlignData("MouthSensual_1710084001","LADY_Head_1710110007"),
                 new AlignData("DoggyTreesome_1710141001"),
             }, this);
+
+              
             }
             #endregion
 
@@ -719,6 +721,8 @@ namespace StoGenMake.Scenes.Base
             #endregion
 
             LoadDataAndAlign(data, alignData, path);
+
+
 
         }
 

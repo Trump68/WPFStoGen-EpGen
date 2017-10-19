@@ -49,7 +49,7 @@ namespace StoGen.Classes
     }
     public class PictureSourceProps : PictureProps
     {
-       
+        //public System.Windows.Point ScreenCenter { get; internal set; }
 
         public PictureSourceProps() : base() { } 
         public PictureSourceProps(PictureProps sourceApperance)

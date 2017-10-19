@@ -252,7 +252,7 @@ namespace StoGenMake.Pers
         {
             this.Head.Reset();
             if (seIm != null)
-                this.Head.AssinFrom(seIm);
+                this.Head.AssignFrom(seIm);
         }
     }
 
@@ -604,7 +604,7 @@ namespace StoGenMake.Pers
         internal void AlignTo(seIm seIm)
         {
            if (seIm !=null)
-                this.image.AssinFrom(seIm);
+                this.image.AssignFrom(seIm);
         }
     }
     public class VNPCVoice

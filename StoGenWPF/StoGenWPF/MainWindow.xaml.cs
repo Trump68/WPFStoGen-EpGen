@@ -72,11 +72,12 @@ namespace StoGenWPF
                 if (args.Length > 1) Startfile = args[1];
             }
 
-            SGManager.StartMainProc(Startfile, GlobalMenuCreator);
-            
-
             PictureCadreDS.Visibility = Visibility.Hidden;
             PictureCadreDS.DataContext = Projector.ImageCadre;
+
+            SGManager.StartMainProc(Startfile, GlobalMenuCreator);
+            
+            //Projector
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

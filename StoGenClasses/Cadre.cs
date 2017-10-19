@@ -157,16 +157,17 @@ namespace StoGen.Classes
             
             Cadre result = this;
             if (doRecalculate) this.Owner.BeforePaintCadre(this, new CadreEventArgs(this));
+            if (this.TextFr == null) Projector.TextVisible = false;
             foreach (Frame item in Frames)
             {
                 Cadre temp = item.Repaint();
-                if (temp != this)
-                {
-                    result = temp;
-                    result.Repaint(doRecalculate);
-                }
+                //if (temp != this)
+                //{
+                //    result = temp;
+                //    result.Repaint(doRecalculate);
+                //}
             }
-            if (this.TextFr == null) Projector.TextVisible = false;
+            
             return result;
         }
         public void Clear(bool withCalculateData)

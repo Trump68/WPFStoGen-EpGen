@@ -78,7 +78,20 @@ namespace StoGenMake.Elements
             this.Name = name;
         }
 
+        internal void AssignFrom(DifData dd)
+        {
+            if (dd == null) return;
+            if (dd.X.HasValue) this.X = dd.X.Value;
+            if (dd.Y.HasValue) this.Y = dd.Y.Value;
+            if (dd.sY.HasValue) this.sY = dd.sY.Value;
+            if (dd.sX.HasValue) this.sX = dd.sX.Value;
+            if (dd.Rot.HasValue) this.Rot = dd.Rot.Value;
+            if (dd.Flip.HasValue) this.Flip = dd.Flip.Value;
+        }
+
         public seIm() { }
+
+
         public static seIm Previous = new seIm() {};
 
         internal static string GetWhiteImage()
@@ -146,7 +159,7 @@ namespace StoGenMake.Elements
             return string.Join(";", result.ToArray());
         }
 
-        internal void AssinFrom(seIm image)
+        internal void AssignFrom(seIm image)
         {
             this.Opa = image.Opa;
             this.Flip = image.Flip;
@@ -163,17 +176,6 @@ namespace StoGenMake.Elements
             this.ParentRotations.Clear();
             this.ParentRotations.AddRange(image.ParentRotations);
 
-            //im.Flip = sr.Flip;
-            //im.Opa= sr.Opa;
-            //im.Part = sr.Part;
-            //im.Rot = sr.Rot;
-            //im.SizeMode = sr.SizeMode;
-            //im.sX = sr.sX;
-            //im.sY = sr.sY;
-            //im.Timer = sr.Timer;
-            //im.Transition = sr.Transition;
-            //im.X = sr.X;
-            //im.Y = sr.Y;
         }
 
 

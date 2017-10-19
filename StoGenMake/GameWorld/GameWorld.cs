@@ -61,7 +61,8 @@ namespace StoGenMake
             this.SceneList.Add(new SC000_Various());
             this.SceneList.Add(new SC000_TestTran());
             this.SceneList.Add(new SC002_IlyaKuvshinov());
-
+            this.SceneList.Add(new SC001_FoolsArt());
+            
             this.PersoneList.Add(new LADY_011017());
 
             
@@ -233,7 +234,11 @@ namespace StoGenMake
     public class DifData
     {
         public bool relative = true;
+        
+
         public DifData() { }
+        public DifData(string name):this() { Name = name; }
+        public DifData(string name, string parent) : this() { Name = name; Parent = parent; }
         public DifData(bool rel) : this()
         {
             this.relative = rel;
@@ -275,5 +280,21 @@ namespace StoGenMake
         public int? Rot { set; get; }
         public int? Flip { set; get; }
     }
+    public class CadreAlignPack
+    {
+        public List<AlignData> AlignList = new List<AlignData>();
+        public List<string> MarkList = new List<string>();
+        
 
+        public CadreAlignPack(AlignData[] alignlist)
+        {
+            AlignList.AddRange(alignlist);
+        }
+
+        public CadreAlignPack(AlignData[] alignlist, string[] marklist)
+        {
+            AlignList.AddRange(alignlist);
+            MarkList.AddRange(marklist);
+        }
+    }
 }
