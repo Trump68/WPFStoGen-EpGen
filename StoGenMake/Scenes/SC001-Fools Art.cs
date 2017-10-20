@@ -12,34 +12,9 @@ namespace StoGenMake.Scenes.Base
     public class SC001_FoolsArt : BaseScene
     {
 
-        #region CADRE GROUPS
-        private string GROUP01 = "Raw data";
-        private string GROUP02 = "Fuck doggy";
-        private string GROUP03 = "Posing legs parted";
-        private string GROUP04 = "Fuck missionare";
-        private string GROUP05 = "Oral on knees";
-        private string GROUP06 = "Oral on knees & Anal";
-        private string GROUP07 = "Oral on knees face";
-        private string GROUP08 = "Petting tits";
-        private string GROUP09 = "Doggy face";
-        private string GROUP10 = "Doggy treesome"; 
-        #endregion
-
         public SC001_FoolsArt() : base()
         {
             Name = "Fools Art (Homare)";
-            this.CadreGroups.Add(GROUP01);
-            this.CadreGroups.Add(GROUP02);
-            this.CadreGroups.Add(GROUP03);
-            this.CadreGroups.Add(GROUP04);
-            this.CadreGroups.Add(GROUP05);
-            this.CadreGroups.Add(GROUP06);
-            this.CadreGroups.Add(GROUP07);
-            this.CadreGroups.Add(GROUP08);
-            this.CadreGroups.Add(GROUP09);
-            this.CadreGroups.Add(GROUP10);
-
-        
         }
 
         internal static void LoadDataAndAlign(List<seIm> data, List<AlignDif> alignData, string path)
@@ -47,15 +22,7 @@ namespace StoGenMake.Scenes.Base
             string dsc = "Fools_Art_Homare";
             string src = null;
             string fn = null;
-            // Evil Body
-            GetIm($"Evil_BODY_1710085001", VNPCPersType.Manga, dsc, path, $"EVIL_BODY_01.png", data, new DifData() { X = 335, Y = -10, sX = 720, sY = 720, Flip = 1 });
-            GetIm($"Evil_BODY_1710085002", VNPCPersType.Manga, dsc, path, $"EVIL_BODY_02.png", data);
-            GetIm($"Evil_BODY_1710085003", VNPCPersType.Manga, dsc, path, $"EVIL_BODY_03.png", data);
-            GetIm($"Evil_HEAD_1710085002", VNPCPersType.Manga, dsc, path, $"EVIL_HEAD_01.png", data);
-            GetIm($"Evil_HEAD_1710085003", VNPCPersType.Manga, dsc, path, $"EVIL_HEAD_02.png", data);
-            GetIm($"Evil_HEAD_1710085004", VNPCPersType.Manga, dsc, path, $"EVIL_HEAD_03.png", data, new DifData() { X = 835, Y = 70, sX = 500, sY = 500, Flip = 1 });
-            GetIm($"Evil_HEAD_1710085005", VNPCPersType.Manga, dsc, path, $"EVIL_HEAD_04.png", data);
-
+            
             // Evil Hands
             src = $"EVIL_HANDS_1710084001"; fn = $"HANDS_01.png";
             GetIm(src, VNPCPersType.Manga, dsc, path, fn, data);
@@ -287,20 +254,18 @@ namespace StoGenMake.Scenes.Base
         protected override void MakeCadres(string cadregroup)
         {
             #region Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~
-            if (cadregroup == null) cadregroup = GROUP10;
+           
             #region GROUP01
-            if (cadregroup == GROUP01)
-            {
+          
                 for (int i = 1; i < 142; i++)
                 {
                     SetCadre(new AlignData[] { new AlignData($"LADY_Body_1710082{i.ToString("D3")}") }, this);
                 }
-            }
+           
             #endregion
 
             #region GROUP02
-            if (cadregroup == GROUP02)
-            {
+           
                 SetCadre(new AlignData[] {
                new  AlignData("Evil_BODY_1710085002",new DifData() { X = -95, Y = 280, sX = 500, sY = 500, Flip=0 }),
                new  AlignData("Body_FuckDoggy_1710110001"),
@@ -359,12 +324,11 @@ namespace StoGenMake.Scenes.Base
                new  AlignData("MouthSensual_1710084001","LADY_Head_1710110002"),
                new  AlignData("Evil_HEAD_1710085004",new DifData(false) { X = -90, Y = -10, sX = 340, sY = 340, Flip=0 }),
             }, this);
-            }
+          
             #endregion
 
             #region GROUP03
-            if (cadregroup == GROUP03)
-            {
+            
                 SetCadre(new AlignData[] {
                 new AlignData("Evil_BODY_1710085001"),
                 new AlignData("LADY_Head_1710086001","Body_PosingLegsParted_1710083003"),
@@ -476,12 +440,11 @@ namespace StoGenMake.Scenes.Base
                 new AlignData("LADY_Mouth_1710140002","LADY_Head_1710086001"),
                 new AlignData("Body_PosingLegsParted_1710083003"),
             }, this);
-            }
+           
             #endregion
 
             #region GROUP04
-            if (cadregroup == GROUP04)
-            {
+           
                 SetCadre(new AlignData[] {
                 new AlignData("Fuck_Missionare_1710140001"),
                 new AlignData("MouthSensual_1710084001",new DifData(false) { X = 740, Y = 305, sX = 65, sY = 65, Rot=75, Flip=1 }),
@@ -511,13 +474,12 @@ namespace StoGenMake.Scenes.Base
                new AlignData("Fuck_Missionare_1710140004"),
                new AlignData("MouthSensual_1710084001",new DifData(false) { X = 740, Y = 305, sX = 65, sY = 65, Rot=75, Flip=1 }),
             }, this);
-            }
+         
 
             #endregion
 
             #region GROUP05
-            if (cadregroup == GROUP05)
-            {
+           
                 SetCadre(new AlignData[] {
                 new AlignData("Oral_OnKnees_1710140000"),
             }, this);
@@ -530,12 +492,11 @@ namespace StoGenMake.Scenes.Base
                 SetCadre(new AlignData[] {
                 new AlignData("Oral_OnKnees_1710140003"),
             }, this);
-            }
+         
             #endregion
 
             #region GROUP06
-            if (cadregroup == GROUP06)
-            {
+           
                 SetCadre(new AlignData[] {
                 new AlignData("Oral_OnKneesAnal_1710141000"),
             }, this);
@@ -560,12 +521,11 @@ namespace StoGenMake.Scenes.Base
                 SetCadre(new AlignData[] {
                 new AlignData("Oral_OnKneesAnal_1710141007"),
             }, this);
-            }
+           
             #endregion
 
             #region GROUP07
-            if (cadregroup == GROUP07)
-            {
+          
                 SetCadre(new AlignData[] {
                 new AlignData("Oral_OnKneesface_1710140000"),
             }, this);
@@ -584,12 +544,11 @@ namespace StoGenMake.Scenes.Base
                 SetCadre(new AlignData[] {
                 new AlignData("Oral_OnKneesface_1710140005"),
             }, this);
-            }
+            
             #endregion
 
             #region GROUP08
-            if (cadregroup == GROUP08)
-            {
+           
                 SetCadre(new AlignData[] {
                 new AlignData("PettingTits_1710141000"),
                 new AlignData("MouthSensual_1710084001",new DifData(false) { X = 540, Y = 251, sX = 50, sY = 50, Rot=341, Flip=1 }),
@@ -604,13 +563,11 @@ namespace StoGenMake.Scenes.Base
                 new AlignData("MouthSensual_1710084001",new DifData(false) { X = 540, Y = 251, sX = 50, sY = 50, Rot=341, Flip=1 }),
                 new AlignData("Evil_HEAD_1710085005",new DifData(false) { X = 205, Y = -45, sX = 360, sY = 360, Rot=345, Flip=0 }),
             }, this);
-            }
+          
             #endregion
 
             #region GROUP09
-            if (cadregroup == GROUP09)
-            {
-                SetCadre(new AlignData[] {
+            SetCadre(new AlignData[] {
                 new AlignData("DoggyFace_1710141000"),
                 new AlignData("LADY_Head_1710110004", new DifData(false) {X = 480, Y = 20, sX = 530, sY = 530, Flip=0 }),
                 new AlignData("LADY_Mouth_1710140004","LADY_Head_1710110004"),
@@ -671,12 +628,11 @@ namespace StoGenMake.Scenes.Base
                 new AlignData("EVIL_HANDS_1710084001", new DifData(false) {X = 520, sX = 275, sY = 275, Flip=0 }),
                 new AlignData("EVIL_POT_1710084001", new DifData(false) {X = 850, sX = 715, sY = 715, Flip=0 }),
             }, this);
-            }
+           
             #endregion
 
             #region GROUP10
-            if (cadregroup == GROUP10)
-            {
+           
 
                 SetCadre(new AlignData[] {
                 new AlignData("LADY_Head_1710110006", new DifData(false) {X = 100, Y = -30, sX = 370, sY = 370, Flip=1 }),
@@ -697,7 +653,7 @@ namespace StoGenMake.Scenes.Base
             }, this);
 
               
-            }
+           
             #endregion
 
 
@@ -708,22 +664,44 @@ namespace StoGenMake.Scenes.Base
         protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
         {
             string path = null;
-
-           
             path = @"x:\ARTIST\FoolsArt (Homare)\Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~\";
-
+            string src = null;
+            string fn = null;
 
             #region Raw data
-            for (int i = 1; i < 142; i++)
+            for (int i = 1; i <= 141; i++)
             {
-                GetIm($"LADY_Body_1710082{i.ToString("D3")}", VNPCPersType.Manga, "Fools_Art_Homare", path, $"{i.ToString("D3")}.jpg",data);
+                src = $"LADY_Body_1710082{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
+                AddToGlobalImage(src, fn, path, new DifData() { sX = 800, sY = 800 });
+                AddLocal(new string[] { "All raw data", $"Raw pic {i.ToString("D3")}" }, new DifData[] { new DifData(src) });
             }
             #endregion
 
+            // Evil Body
+            AddToGlobalImage($"Evil_BODY_1710085001", $"EVIL_BODY_01.png", path, new DifData() { sX = 500, sY = 500 });
+            AddLocal(new string[] { "All evils", $"Evil b 01" }, new DifData[] { new DifData(src) });
+
+            AddToGlobalImage($"Evil_BODY_1710085002", $"EVIL_BODY_02.png", path, new DifData() { sX = 500, sY = 500 });
+            AddLocal(new string[] { "All evils", $"Evil b 02" }, new DifData[] { new DifData(src) });
+
+            AddToGlobalImage($"Evil_BODY_1710085003", $"EVIL_BODY_03.png", path, new DifData() { sX = 500, sY = 500 });
+            AddLocal(new string[] { "All evils", $"Evil b 03" }, new DifData[] { new DifData(src) });
+            // Evil Head
+            AddToGlobalImage($"Evil_HEAD_1710085002", $"EVIL_HEAD_01.png", path, new DifData() { sX = 500, sY = 500 });
+            AddLocal(new string[] { "All evils", $"Evil h 01" }, new DifData[] { new DifData(src) });
+
+            AddToGlobalImage($"Evil_HEAD_1710085003", $"EVIL_HEAD_02.png", path, new DifData() { sX = 500, sY = 500 });
+            AddLocal(new string[] { "All evils", $"Evil h 02" }, new DifData[] { new DifData(src) });
+
+            AddToGlobalImage($"Evil_HEAD_1710085004", $"EVIL_HEAD_03.png", path, new DifData() { sX = 500, sY = 500 });
+            AddLocal(new string[] { "All evils", $"Evil h 03" }, new DifData[] { new DifData(src) });
+
+            AddToGlobalImage($"Evil_HEAD_1710085005", $"EVIL_HEAD_04.png", path, new DifData() { sX = 500, sY = 500 });
+            AddLocal(new string[] { "All evils", $"Evil h 04" }, new DifData[] { new DifData(src) });
+
+
+
             LoadDataAndAlign(data, alignData, path);
-
-
-
         }
 
     }

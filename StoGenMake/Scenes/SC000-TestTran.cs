@@ -14,9 +14,6 @@ namespace StoGenMake.Scenes.Base
         public SC000_TestTran() : base()
         {
             this.Name = "Transition test";
-            this.CadreGroups.Add("1");
-            this.CadreGroups.Add("2");
-        
         }
         protected override void MakeCadres(string cadregroup)
         {
@@ -24,74 +21,32 @@ namespace StoGenMake.Scenes.Base
             this.DefaultSceneText.Size = 60;
             this.DefaultSceneText.FontSize = 20;
             this.DefaultSceneText.FontColor = "Yellow";
-
-
             //// real
-            if (cadregroup == null || cadregroup == "1")
-            {
-                SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue")
-                ,new AlignData("Evil_green","Evil_blue")
-                ,new AlignData("Evil_red","Evil_green")
-                }, this, "TEST");
-            }
-
-            if (cadregroup == null || cadregroup == "2")
-            {
-                SetCadre(new AlignData[] {
-                 new AlignData("Evil_blue", new DifData() {Rot = 20 })
-                ,new AlignData("Evil_green","Evil_blue")
-                ,new AlignData("Evil_red","Evil_green")
-                }, this);
-            }
-
-            //SetCadre(new AlignData[] {
-            //     new AlignData("Evil_blue", new DifData() {Rot = 20 })
-            //    ,new AlignData("Evil_green","Evil_blue", new DifData() {Rot = -20 })
-            //    ,new AlignData("Evil_red","Evil_green")
-            //}, this);
-
-            //SetCadre(new AlignData[] {
-            //     new AlignData("Evil_blue", new DifData() {Rot = 20 })
-            //    ,new AlignData("Evil_green","Evil_blue", new DifData() {Rot = -20 })
-            //    ,new AlignData("Evil_red","Evil_green", new DifData() {Rot = 20 })
-            //}, this);
-
+            base.MakeCadres(cadregroup);
         }
         protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
         {
             string path = null;
-
-
             path = @"d:\Temp\";
-            string dsc = string.Empty;
+            string fn = string.Empty;
+            string name = string.Empty;
             //raw
-            GetIm($"Evil_blue", VNPCPersType.Manga, dsc, path, $"TestBlue.png", data);
-            GetIm($"Evil_blue2", VNPCPersType.Manga, dsc, path, $"TestBlue.png", data);
-            GetIm($"Evil_red", VNPCPersType.Manga, dsc, path, $"TestRed.png", data);
-            GetIm($"Evil_green", VNPCPersType.Manga, dsc, path, $"TestGreen.png", data);
+
+            name = $"Evil_blue"; fn = $"TestBlue.png";
+            AddToGlobalImage(name, fn, path, new DifData() { X = 100, Y = 100, sX = 500, sY = 500, Flip = 0 });
+            name = $"Evil_red"; fn = $"TestRed.png";
+            AddToGlobalImage(name, fn, path, new DifData() { X = 100, Y = 100, sX = 500, sY = 500, Flip = 0 });
+            name = $"Evil_green"; fn = $"TestGreen.png";
+            AddToGlobalImage(name, fn, path, new DifData() { X = 100, Y = 100, sX = 500, sY = 500, Flip = 0 });
+
+            AddLocal(new string[] { "test" },
+            new DifData[] {
+                new DifData("Evil_blue"),
+                new DifData("Evil_red","Evil_blue") { X = 1 },
+            }, true);
+
         }
 
-        #region Menu
-        //internal bool CreateMenuScene(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
-        //{
-        //    ChoiceMenuItem item = null;
-        //    if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-
-        //    item = new ChoiceMenuItem($"Scene {this.Name}", this);
-        //    item.Executor = delegate (object data)
-        //    {
-        //        this.Generate(null);
-        //        StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
-        //        proc.MenuCreator = proc.OldMenuCreator;
-        //        proc.GetNextCadre();
-        //    };
-        //    itemlist.Add(item);
-        //    ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, false);
-        //    return true;
-        //}
-
-        #endregion
     }
 
 }
