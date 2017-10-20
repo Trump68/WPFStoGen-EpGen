@@ -37,7 +37,7 @@ namespace StoGenMake.Scenes.Base
         public float dsY = 1;
         public int Rot = 0;
         public int parRot = 0;
-        public int dFlip = 0;
+        public int parFlip = 0;
         public int Flip = 0;
 
         internal void CreateDifProportions(seIm parIm, seIm childIm)
@@ -50,7 +50,7 @@ namespace StoGenMake.Scenes.Base
             Rot = childIm.Rot;
             parRot = parIm.Rot;
 
-            dFlip = childIm.Flip - parIm.Flip;
+            parFlip = parIm.Flip;
             Flip = childIm.Flip;
             dsX = ((float)childIm.sX / (float)parIm.sX);
             dsY = ((float)childIm.sY / (float)parIm.sY);
@@ -73,6 +73,18 @@ namespace StoGenMake.Scenes.Base
                 if (this.parRot != actualParent.Rot)
                 {
                     target.ParentRotations.Add(new Tuple<string, int>(actualParent.Name, actualParent.Rot - parRot));
+                }
+            }
+            // Parent flip
+            {
+                target.ParentFlips.Clear();
+                if (actualParent.ParentFlips != null)
+                {
+                    target.ParentFlips.AddRange(actualParent.ParentFlips);
+                }
+                if (this.Flip != actualParent.Flip)
+                {
+                    target.ParentFlips.Add(actualParent.Name);
                 }
             }
 

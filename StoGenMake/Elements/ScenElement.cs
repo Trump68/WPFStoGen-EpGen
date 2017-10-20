@@ -116,6 +116,7 @@ namespace StoGenMake.Elements
         public VNPCPersType PersonType { get; internal set; }
         public string Description { get; internal set; }
         public List<Tuple<string, int>> ParentRotations { get; internal set; } = new List<Tuple<string, int>>();
+        public List<string> ParentFlips { get; internal set; } = new List<string>();
         public string ParRot
         {
             get
@@ -126,6 +127,22 @@ namespace StoGenMake.Elements
                     foreach (var item in ParentRotations)
                     {
                         rez.Add($"{item.Item1}@{item.Item2}");
+                    }
+                    return string.Join(",", rez.ToArray());
+                }
+                return string.Empty;
+            }
+        }
+        public string ParFlip
+        {
+            get
+            {
+                if (ParentFlips.Any())
+                {
+                    List<string> rez = new List<string>();
+                    foreach (var item in ParentFlips)
+                    {
+                        rez.Add($"{item}");
                     }
                     return string.Join(",", rez.ToArray());
                 }
@@ -155,6 +172,8 @@ namespace StoGenMake.Elements
                 if (this.Timer > 0) result.Add($"Timer={this.Timer.ToString().PadRight(7)}");
                 if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");   
                 if (this.ParentRotations.Any()) result.Add($"ParRot={this.ParRot}");
+                if (this.ParentFlips.Any())
+                    result.Add($"ParFlip={this.ParFlip}");
             }
             return string.Join(";", result.ToArray());
         }
@@ -175,6 +194,8 @@ namespace StoGenMake.Elements
             this.Transition = image.Transition;
             this.ParentRotations.Clear();
             this.ParentRotations.AddRange(image.ParentRotations);
+            this.ParentFlips.Clear();
+            this.ParentFlips.AddRange(image.ParentFlips);
 
         }
 

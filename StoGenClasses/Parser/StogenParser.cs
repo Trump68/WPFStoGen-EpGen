@@ -409,6 +409,7 @@ namespace StoGen.Classes
                     p.NextCadre = Convert.ToDouble(val);
                 }
                 else if (mark == "ParRot") p.ParRot = val.Trim();
+                else if (mark == "ParFlip") p.ParFlip = val.Trim();
                 else if (mark == "TRN") p.Transition = val.Trim();
                 else if (mark == "Order") CadreOrder = Convert.ToInt32(val.Trim());                
             }

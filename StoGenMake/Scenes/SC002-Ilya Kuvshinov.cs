@@ -18,6 +18,7 @@ namespace StoGenMake.Scenes
 
         protected override void MakeCadres(string cadregroup)
         {
+            cadregroup = "Head 016 combo align";
             base.MakeCadres(cadregroup);
         }
 
@@ -45,6 +46,20 @@ namespace StoGenMake.Scenes
                 new DifData("Head_IlyaKuvshinov_016_CLEAN"),
                 new DifData("Head_IlyaKuvshinov_016_MOUTH","Head_IlyaKuvshinov_016_CLEAN") { X = 318, Y = 514, sX = 85, sY = 85, Flip = 0  },
                 }, true);
+
+            AddLocal(
+               new string[] { "All heads", "Head 016 combo align" },
+               new DifData[] {
+                new DifData("Head_IlyaKuvshinov_016_CLEAN") { Rot=40 , X=300, Y=100, sX =300, sY = 300},
+                new DifData("Head_IlyaKuvshinov_016_MOUTH","Head_IlyaKuvshinov_016_CLEAN") { X = 318, Y = 514, sX = 85, sY = 85, Flip = 0  },
+               }, false);
+
+            AddLocal(
+             new string[] { "All heads", "Head 016 combo align" },
+             new DifData[] {
+                new DifData("Head_IlyaKuvshinov_016_CLEAN") { Rot=50 , X=300, Y=100},
+                new DifData("Head_IlyaKuvshinov_016_MOUTH","Head_IlyaKuvshinov_016_CLEAN") { X = 318, Y = 514, sX = 85, sY = 85, Flip = 0  },
+             }, false);
         }
     }
 }

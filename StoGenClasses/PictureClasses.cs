@@ -49,6 +49,8 @@ namespace StoGen.Classes
     }
     public class PictureSourceProps : PictureProps
     {
+        internal bool SizeChanged = false;
+
         //public System.Windows.Point ScreenCenter { get; internal set; }
 
         public PictureSourceProps() : base() { } 
@@ -104,6 +106,7 @@ namespace StoGen.Classes
             this.ClipY = sourceApperance.ClipY;
             this.Transition = sourceApperance.Transition;
             this.ParRot = sourceApperance.ParRot;
+            this.ParFlip = sourceApperance.ParFlip;
             this.Mute = sourceApperance.Mute;
         }
         public void Assign(PictureSourceProps sourceApperance)
@@ -230,6 +233,7 @@ namespace StoGen.Classes
         public string Flash = null;
         public string Transition = null;
         public string ParRot = null;
+        public string ParFlip = null;
     }
     public class PictureBaseProp
     {
