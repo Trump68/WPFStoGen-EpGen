@@ -28,7 +28,7 @@ namespace StoGen.Classes
       
         public override bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
-            ChoiceMenuItem item = null;
+
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 
                      

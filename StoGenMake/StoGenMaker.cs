@@ -35,13 +35,13 @@ namespace StoGenMake
             VNPC pers = null;
             
             GameWorldFactory.GameWorld.LoadData();
-            var scen = new SC001_FoolsArt();
+            //var scen = new SC001_FoolsArt();
             //var scen = new SC000_TestTran();
             //var scen = new SC002_IlyaKuvshinov();
-            
+            var scen = new A001_Woman();
             //var scen = new TestScene();
 
-            string fn = scen.Generate("test");
+            string fn = scen.Generate();
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
             window.Startfile = fn;

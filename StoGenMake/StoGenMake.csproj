@@ -63,6 +63,7 @@
     <Compile Include="GameWorld\GameWorldDataLoader.cs" />
     <Compile Include="Location\VisualLocaton.cs" />
     <Compile Include="ScenCadre\ScenCadre.cs" />
+    <Compile Include="Scenes\A001-Woman.cs" />
     <Compile Include="Scenes\Base\BaseScene.cs" />
     <Compile Include="Scenes\SC001-Fools Art.cs" />
     <Compile Include="Scenes\SC003-Hara Shigeyuki.cs" />

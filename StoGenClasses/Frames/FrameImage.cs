@@ -391,13 +391,13 @@ namespace StoGen.Classes
                 {
                     if (pi.Props.SizeMode == PictureSizeMode.Clip) Projector.PicContainer.PicList[(int)pi.Props.Level].Stretch = Stretch.Fill;
                 }
-                if (Projector.PicContainer.PicList[(int)pi.Props.Level].Width != pi.Props.SizeX
-                    ||
-                    Projector.PicContainer.PicList[(int)pi.Props.Level].Height != pi.Props.SizeY)
-                {
-                    pi.Props.SizeChanged = true;
-                    this.IsSizeChanged = true;
-                }
+                //if (Projector.PicContainer.PicList[(int)pi.Props.Level].Width != pi.Props.SizeX
+                //    ||
+                //    Projector.PicContainer.PicList[(int)pi.Props.Level].Height != pi.Props.SizeY)
+                //{
+                //    pi.Props.SizeChanged = true;
+                //    this.IsSizeChanged = true;
+                //}
                 Projector.PicContainer.PicList[(int)pi.Props.Level].Width = pi.Props.SizeX;
                 Projector.PicContainer.PicList[(int)pi.Props.Level].Height = pi.Props.SizeY;
 
@@ -440,9 +440,13 @@ namespace StoGen.Classes
 
 
             if (CadreShifted < 0) CadreShifted = this.Pics.Count - 1;
+            for (int j = 0; j < Projector.PicContainer.PicList.Count; j++)
+            {
+                if (Projector.PicContainer.PicList[j].Tag == null) Projector.PicContainer.PicList[j].Visibility = Visibility.Hidden;
 
-            // DoFlipRotateOnParent(false);
-            if (!runClip)
+            }
+
+                if (!runClip)
                 timer.Change(TimerPeriod, TimerPeriod);
             FrameImage.TimeStarted = DateTime.Now;
 
@@ -615,7 +619,7 @@ namespace StoGen.Classes
         private static DateTime TimeStarted;
         private static int IsLoop = 0;
         private static bool NowReverse = false;
-        private bool IsSizeChanged;
+
 
         internal void ProcessKey(Key e)
         {
@@ -748,28 +752,36 @@ namespace StoGen.Classes
                     pi.Props.Rotate -= Projector.ImageCadre.PropStep;
 
 
-                if ((int)pi.Props.Flip == 1) //flip
-                {
-                    ScaleTransform flipTrans = new ScaleTransform();
-                    flipTrans.ScaleX = -1;
-                    transformGroup.Children.Add(flipTrans);
-                }
-                else if ((int)pi.Props.Flip == 2)
-                {
+                var current = Projector.PicContainer.PicList[(int)pi.Props.Level];
+                var controlCenter = new System.Windows.Point(current.Width / 2, current.Height / 2);
 
-                    ScaleTransform flipTrans = new ScaleTransform();
-                    flipTrans.ScaleY = -1;
-                    transformGroup.Children.Add(flipTrans);
-                }
-
-                if (pi.Props.Rotate > 0)  //rotate
+                //if (pi.Props.Rotate > 0)  //rotate
                 {
                     var roateTransform = new RotateTransform(
                         pi.Props.Rotate,
-                        Projector.PicContainer.PicList[(int)pi.Props.Level].ActualWidth / 2,
-                        Projector.PicContainer.PicList[(int)pi.Props.Level].ActualHeight / 2);
+                        controlCenter.X,
+                       controlCenter.Y);
                     transformGroup.Children.Add(roateTransform);
                 }
+
+                if (pi.Props.Flip != 0)
+                {
+                    ScaleTransform flipTrans = new ScaleTransform();
+                    flipTrans.CenterX = controlCenter.X;
+                    flipTrans.CenterY = controlCenter.Y;
+                    if ((int)pi.Props.Flip == 1)
+                    {
+                        flipTrans.ScaleX = -1;
+                    }
+                    else if ((int)pi.Props.Flip == 2)
+                    {
+                        flipTrans.ScaleY = -1;
+                    }
+                    transformGroup.Children.Add(flipTrans);
+                }
+
+
+              
                 Projector.PicContainer.PicList[(int)pi.Props.Level].RenderTransform = transformGroup;
             }
             else if (Projector.ImageCadre.PropIndex == 5) //size
@@ -847,8 +859,9 @@ namespace StoGen.Classes
                 if (pi.Props.X != 0) rez.Add($"X = {pi.Props.X}");
                 if (pi.Props.Y != 0) rez.Add($"Y = {pi.Props.Y}");
             }
-            if (pi.Props.SizeX != 0) rez.Add($"sX = {pi.Props.SizeX}");
-            if (pi.Props.SizeY != 0) rez.Add($"sY = {pi.Props.SizeY}");
+            rez.Add($"s = {pi.Props.SizeX}");
+            //if (pi.Props.SizeX != 0) rez.Add($"sX = {pi.Props.SizeX}");
+            //if (pi.Props.SizeY != 0) rez.Add($"sY = {pi.Props.SizeY}");
             if (pi.Props.Rotate != 0) rez.Add($"Rot={pi.Props.Rotate}");
             rez.Add($"Flip={(int)pi.Props.Flip}");
             Projector.ImageCadre.ResultString = string.Join(", ", rez.ToArray());
