@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace StoGen.Classes
 {
@@ -165,9 +166,17 @@ namespace StoGen.Classes
 
         public override Cadre Repaint()
         {
-            IsSizeChanged = false;
+            for (int j = 1; j < Projector.PicContainer.PicList.Count; j++)
+            {
+                var current = Projector.PicContainer.PicList[j];
+                current.Visibility = System.Windows.Visibility.Visible;
+                current.SizeChanged -= this.SizeChanged;
+                current.RenderTransform = null;
+
+            }
+
             timer.Change(Timeout.Infinite, Timeout.Infinite);
-            Projector.NumberText.Text = $"{this.Owner.Owner.Cadres.IndexOf(this.Owner)+1}/{this.Owner.Owner.Cadres.Count}";
+            Projector.NumberText.Text = $"{this.Owner.Owner.Cadres.IndexOf(this.Owner) + 1}/{this.Owner.Owner.Cadres.Count}";
             Projector.Owner.Background = new SolidColorBrush(Colors.Black);
 
             FrameImage.LoopProcessed = false;
@@ -176,12 +185,10 @@ namespace StoGen.Classes
 
             bool isPrevious = false;
             if (Pics[0].Props.FileName == "SKIP") return this.Owner;
-           
+
 
 
             FrameImage.tranManager.Clear();
-            base.Repaint();
-            //Pics.Sort(sorter);
 
             if (Pics[0].Props.FileName == "PREVIOUS")
             {
@@ -203,35 +210,33 @@ namespace StoGen.Classes
             FrameImage.TimeToNext = -1;
             FrameImage.WaitStart = -1;
             FrameImage.WaitEnd = -1;
-            firstRotateProcessed = false;
             for (int i = 0; i < Pics.Count; i++)
             {
 
-                
+
                 if (Pics[i].Props.NextCadre > 0) FrameImage.NextCadre = Pics[i].Props.NextCadre;
                 if (!Pics[i].Props.Active)
                 {
                     FrameImage.IsLoop = Pics[i].Props.isLoop;
                     continue;
                 }
-               
+
 
                 PictureItem pi = Pics[i];
-                Projector.PicContainer.PicList[(int)pi.Props.Level].SizeChanged -= SizeChanged;
-                Projector.PicContainer.PicList[(int)pi.Props.Level].SizeChanged += SizeChanged;
+
 
 
                 string fn = pi.Props.FileName;
-                
+
                 if (pi.Props.FileName.EndsWith("WHITE"))
                 {
                     Projector.Owner.Background = new SolidColorBrush(Colors.White);
                     continue;
                 }
 
-                
+
                 if (Projector.PicContainer.PicList[(int)pi.Props.Level].Tag != null
-                    && 
+                    &&
                     ((PictureSourceProps)Projector.PicContainer.PicList[(int)pi.Props.Level].Tag).FileName == fn
                     && !pi.Props.Reload)
                 {
@@ -324,7 +329,7 @@ namespace StoGen.Classes
                     if (Pics[i].Props.PP2 > 0) PausePeriod2 = Pics[i].Props.PP2;
                     else PausePeriod2 = 40;
                     continue;
-                } 
+                }
                 #endregion
 
 
@@ -350,7 +355,7 @@ namespace StoGen.Classes
                 else
                 {
                     Projector.PicContainer.PicList[(int)pi.Props.Level].Effect = null;
-                } 
+                }
                 #endregion
 
                 #region Transition
@@ -363,7 +368,7 @@ namespace StoGen.Classes
                     FrameImage.tranManager.Add(trandata);
                 }
 
-                #endregion              
+                #endregion
 
                 #region Size
                 // Size
@@ -402,7 +407,7 @@ namespace StoGen.Classes
                 // Location
                 Projector.PicContainer.PicList[(int)pi.Props.Level].Margin = new System.Windows.Thickness(pi.Props.X, pi.Props.Y, 0, 0);
 
-                #endregion               
+                #endregion
 
                 #region Clip
                 // Clip
@@ -428,41 +433,27 @@ namespace StoGen.Classes
                 }
                 #endregion
 
-
-                
-                Projector.PicContainer.PicList[(int)pi.Props.Level].Visibility = System.Windows.Visibility.Visible;
                 Projector.PicContainer.PicList[(int)pi.Props.Level].Tag = pi.Props;
+                Projector.PicContainer.PicList[(int)pi.Props.Level].SizeChanged += this.SizeChanged;
             }
 
 
 
             if (CadreShifted < 0) CadreShifted = this.Pics.Count - 1;
 
-
-            if (!videoactive) Projector.PicContainer.Clip.Visibility = System.Windows.Visibility.Hidden;
-
-            for (int j = 1; j < Projector.PicContainer.PicList.Count; j++)
-            {
-                var current = Projector.PicContainer.PicList[j];
-                if (!isPrevious && current.Tag == null)
-                {
-                    current.Source = null;
-                    current.Visibility = System.Windows.Visibility.Hidden;
-                }
-            }
-            //if (!IsSizeChanged)
-             //   DoFlipRotateOnParent(false);
-
+            // DoFlipRotateOnParent(false);
             if (!runClip)
                 timer.Change(TimerPeriod, TimerPeriod);
             FrameImage.TimeStarted = DateTime.Now;
 
+
             return this.Owner;
+
         }
         private void DoRotateFlip(PictureSourceProps pi, TransformGroup tg)
         {
             if (pi.Rotate == 0 && (int)pi.Flip == 0) return;
-   
+
             var current = Projector.PicContainer.PicList[(int)pi.Level];
             var controlCenter = new System.Windows.Point(current.Width / 2, current.Height / 2);
 
@@ -476,7 +467,7 @@ namespace StoGen.Classes
             }
             if ((int)pi.Flip > 0)
             {
-               
+
                 ScaleTransform flipTrans = new ScaleTransform();
                 flipTrans.CenterX = controlCenter.X;
                 flipTrans.CenterY = controlCenter.Y;
@@ -497,11 +488,12 @@ namespace StoGen.Classes
             for (int j = 0; j < Projector.PicContainer.PicList.Count; j++)
             {
                 var current = Projector.PicContainer.PicList[j];
+                current.SizeChanged -= this.SizeChanged;
                 if (current.Tag != null)
                 {
                     TransformGroup tg = new TransformGroup();
                     PictureSourceProps sourceProps = current.Tag as PictureSourceProps;
-                    if (sourceProps.SizeChanged != sizeIsChanged) continue;
+                    //if (sourceProps.SizeChanged != sizeIsChanged) continue;
                     sourceProps.SizeChanged = false;
 
                     //Child rotate flip
@@ -532,7 +524,7 @@ namespace StoGen.Classes
                         }
                     }
                     #endregion
-                    
+
                     #region Parent flip
                     if (!string.IsNullOrEmpty(sourceProps.ParFlip))
                     {
@@ -557,18 +549,25 @@ namespace StoGen.Classes
                                 flipTrans.ScaleX = -1;
                                 tg.Children.Add(flipTrans);
                             }
-                        } 
+                        }
                     }
                     #endregion
 
                     current.RenderTransform = tg;
+
+
                 }
+                current.SizeChanged += this.SizeChanged;
             }
         }
-        bool firstRotateProcessed = false;
         private void SizeChanged(object sender, EventArgs e)
         {
-            DoFlipRotateOnParent(true);
+            var s = (sender as System.Windows.Controls.Image).Tag as PictureSourceProps;
+            if (s != null)
+            {
+                var name = s.Name;
+                DoFlipRotateOnParent(true);
+            }
         }
 
         private void Clip_MediaOpened(object sender, System.Windows.RoutedEventArgs e)
@@ -608,7 +607,7 @@ namespace StoGen.Classes
             FrameImage.tranManager.Clear();
 
         }
-       
+
         int CadreShifted = -1;
         public static double ClipStartPos;
         public static double ClipEndPos;
@@ -622,8 +621,8 @@ namespace StoGen.Classes
         {
             if (!Projector.EditorMode) return;
             bool increase = false;
-            
-            
+
+
 
             if (e == Key.NumPad6)
             {
@@ -738,10 +737,10 @@ namespace StoGen.Classes
                 Projector.PicContainer.PicList[(int)pi.Props.Level].Height = pi.Props.SizeY;
 
             }
-            else if (Projector.ImageCadre.PropIndex == 4) 
+            else if (Projector.ImageCadre.PropIndex == 4)
             {
                 Projector.PicContainer.PicList[(int)pi.Props.Level].RenderTransform = null;
-                var transformGroup = new TransformGroup();                                  
+                var transformGroup = new TransformGroup();
 
                 if (increase)
                     pi.Props.Rotate += Projector.ImageCadre.PropStep;

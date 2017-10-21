@@ -59,6 +59,7 @@ namespace StoGenMake.Scenes.Base
             psY = parIm.sY;
         }
 
+        //! new!!!!
         internal void ApplyTo(seIm target, seIm actualParent)
         {
             target.sX = Convert.ToInt32(this.dsX * actualParent.sX);
@@ -92,6 +93,9 @@ namespace StoGenMake.Scenes.Base
             { // X,Y coord
                 int xDif = this.dX;
                 int yDif = this.dY;
+
+                target.X = this.dX;
+                target.Y = this.dY;
 
                 target.X = (int)(this.dX * ((float)actualParent.sX / psX));
                 target.Y = (int)(this.dY * ((float)actualParent.sY / psY));

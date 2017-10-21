@@ -725,27 +725,31 @@ namespace StoGenMake.Scenes.Base
             #region Posing legs parted
             gr = "test";
 
-           
-
-            //src = $"Body_PosingLegsParted_1710083003"; fn = $"003.png";  AddToGlobalImage(src, fn, path, new DifData() { s = 995 });
-            //AddGlobal(new string[] { gr }, new DifData[] {                
-            //    new DifData("Head_IlyaKuvshinov_016_CLEAN") {X = 395, Y = 25, sX = 255, sY = 255, Rot=350, Flip=1},
-            //    new DifData("Head_IlyaKuvshinov_016_MOUTH","Head_IlyaKuvshinov_016_CLEAN","var2"),
-            //    new DifData(src),
+            //AddLocal(new string[] { gr }, new DifData[] {
+            //    new DifData("Head_IlyaKuvshinov_016_CLEAN"),
+            //    new DifData("Head_IlyaKuvshinov_016_MOUTH","Head_IlyaKuvshinov_016_CLEAN"),
             //  });
+
+            //AddLocal(new string[] { gr }, new DifData[] {
+            //    new DifData("Head_IlyaKuvshinov_016_CLEAN"){ X=500, s = 200, Rot =30, Flip=1 },
+            //    new DifData("Head_IlyaKuvshinov_016_MOUTH","Head_IlyaKuvshinov_016_CLEAN"),
+            //  });
+
+
             src = $"Body_PosingLegsParted_1710083003"; fn = $"003.png"; AddToGlobalImage(src, fn, path, new DifData() { s = 995 });
             AddLocal(new string[] { gr }, new DifData[] {
-                
                 new DifData("Head_IlyaKuvshinov_016_CLEAN") {X = 395, Y = 25, sX = 255, sY = 255, Rot=350, Flip=1},
-                new DifData("Head_IlyaKuvshinov_016_MOUTH_2","Head_IlyaKuvshinov_016_CLEAN"),
+                new DifData("Head_IlyaKuvshinov_016_MOUTH","Head_IlyaKuvshinov_016_CLEAN"),
                 new DifData(src),
               });
+
             AddLocal(new string[] { gr }, new DifData[] {
 
                 new DifData("Head_IlyaKuvshinov_016_CLEAN") {X = 395, Y = 25, sX = 255, sY = 255, Rot=350, Flip=1},
                 new DifData("Head_IlyaKuvshinov_016_MOUTH_2","Head_IlyaKuvshinov_016_CLEAN"),
                 new DifData(src),
               });
+
 
             //src = $"Body_PosingLegsParted_1710083004"; fn = $"003a.png";
             //GetIm(src, VNPCPersType.Manga, dsc, path, fn, data, new DifData() { sX = 995, sY = 995 });
