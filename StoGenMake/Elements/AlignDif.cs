@@ -123,7 +123,7 @@ namespace StoGenMake.Elements
             }
 
             { // X,Y coord
-                if (processed.Im != null && !processed.Im.relative)
+                if (processed.Im != null)
                 {
                     if (processed.Im.X.HasValue)
                         target.X = processed.Im.X.Value;

@@ -236,17 +236,12 @@ namespace StoGenMake
         }
     }
     public class DifData
-    {
-        public bool relative = true;
-        
+    {              
 
         public DifData() { }
         public DifData(string name):this() { Name = name; }
         public DifData(string name, string parent) : this() { Name = name; Parent = parent; }
-        public DifData(bool rel) : this()
-        {
-            this.relative = rel;
-        }
+        
         public DifData(AlignData item) : this()
         {
             this.Name = item.Name;
@@ -275,6 +270,12 @@ namespace StoGenMake
             this.Flip = item.Flip;
         }
 
+        public DifData(string name, string parent, string tag) : this(name, parent)
+        {
+            this.Tag = tag;
+        }
+
+        public string Tag { set; get; }
         public string Name { set; get; }
         public string Parent { set; get; }
         public int? X { set; get; }
@@ -283,6 +284,15 @@ namespace StoGenMake
         public int? sY { set; get; }
         public int? Rot { set; get; }
         public int? Flip { set; get; }
+        public int? s
+        {
+            set
+            {
+                sY = value;
+                sX = value;
+            }
+            get { return sX; }
+        }
     }
     public class CadreAlignPack
     {

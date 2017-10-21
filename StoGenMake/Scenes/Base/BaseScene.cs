@@ -28,6 +28,7 @@ namespace StoGenMake.Scenes.Base
         public ImageRelDifVec() { }
         public string ParentName;
         public string AlignVariant;
+        public string Tag;
         public int parY = 0;
         public int dX = 0;
         public int dY = 0;
@@ -325,7 +326,7 @@ namespace StoGenMake.Scenes.Base
                 if (!string.IsNullOrEmpty(ai.Parent)) //if has parent image
                 {
                     // get parent-child proportion
-                    var parentproportion = isi.Parents.Where(x => x.ParentName == ai.Parent).FirstOrDefault();
+                    var parentproportion = isi.Parents.Where(x => x.ParentName == ai.Parent && x.Tag == ai.Tag).FirstOrDefault();
                     if (parentproportion != null)
                     {
                         // get real parent image from cadre
@@ -344,6 +345,7 @@ namespace StoGenMake.Scenes.Base
                     im.AssignFrom(isi.DefaultAlign);
                     // assign delta align, if any
                     im.AssignFrom(ai);
+
                 }
 
                 // add image to cadre
@@ -358,7 +360,9 @@ namespace StoGenMake.Scenes.Base
             newIAV.DefaultAlign = defaultalign;
             GameWorld.ImageStorage.Add(newIAV);
         }
-        protected void AddLocal(string[] marks, DifData[] difs, bool installtoglobal = false)
+        protected void AddLocal(string[] marks, DifData[] difs) { Add(marks, difs, false); }
+        protected void AddGlobal(string[] marks, DifData[] difs) { Add(marks, difs, true); }
+        private void Add(string[] marks, DifData[] difs, bool installtoglobal = false)
         {
             CadreImageAligns CAL = new CadreImageAligns();
             CAL.MarkList.AddRange(marks);
@@ -385,7 +389,7 @@ namespace StoGenMake.Scenes.Base
                 if (storageitem != null)
                 {
                     // check if default align for that parent is not already assigned
-                    var oldalign = storageitem.Parents.Where(x => x.ParentName == dd.Parent).FirstOrDefault();
+                    var oldalign = storageitem.Parents.Where(x => x.ParentName == dd.Parent && x.Tag == dd.Tag).FirstOrDefault();
                     if (oldalign == null)
                     {
                         // Get parent image align via default align and delta
@@ -399,6 +403,7 @@ namespace StoGenMake.Scenes.Base
                         childIm.AssignFrom(dd);
                         // add align for that parent
                         ImageRelDifVec newalign = new ImageRelDifVec();
+                        newalign.Tag = dd.Tag;
                         newalign.ParentName = dd.Parent;
                         newalign.CreateDifProportions(parIm, childIm);
                         storageitem.Parents.Add(newalign);
