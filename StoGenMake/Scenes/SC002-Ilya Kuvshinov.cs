@@ -38,7 +38,7 @@ namespace StoGenMake.Scenes
 
 
             // raw Heads
-            for (int i = 1; i <= 54; i++)
+            for (int i = 1; i <= 105; i++)
             {
                 src = $"Head_IlyaKuvshinov_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
                 AddToGlobalImage(src, fn, path, new DifData() { X = 100, Y = 100, sX = 500, sY = 500, Flip = 0 });
@@ -73,32 +73,6 @@ namespace StoGenMake.Scenes
                 new DifData("Head_IlyaKuvshinov_016_MOUTH","Head_IlyaKuvshinov_016_CLEAN","var2") { X = 321, Y = 515, sX = 75, sY = 75 },
                 });
 
-
-            string gr;
-            gr = "test";
-            src = $"Body_PosingLegsParted_1710083003"; 
-            AddLocal(new string[] { gr }, new DifData[] {
-                new DifData("Head_IlyaKuvshinov_016_CLEAN") {X = 395, Y = 25, sX = 255, sY = 255, Rot=350, Flip=1},
-                new DifData("Head_IlyaKuvshinov_016_MOUTH","Head_IlyaKuvshinov_016_CLEAN","var2"),
-                new DifData(src),
-              });
-
-
-            //AddLocal(
-            //new string[] { "Test", "Head 016 combo align" },
-            //new DifData[] {
-            //                            new DifData("Evil_blue"){ sX = 300, sY = 300, Flip=1, Rot = 40},
-            //                            new DifData("Head_IlyaKuvshinov_016_CLEAN","Evil_blue"),
-            //                            new DifData("Head_IlyaKuvshinov_016_MOUTH","Head_IlyaKuvshinov_016_CLEAN"),
-            //});
-
-            //AddLocal(
-            //new string[] { "Test", "Head 016 combo align" },
-            //new DifData[] {
-            //                            new DifData("Evil_blue"){ sX = 300, sY = 300, Flip=1, Rot = 40},
-            //                            new DifData("Head_IlyaKuvshinov_016_CLEAN","Evil_blue"){ Flip=1},
-            //                            new DifData("Head_IlyaKuvshinov_016_MOUTH","Head_IlyaKuvshinov_016_CLEAN"),
-            //});
 
         }
     }
