@@ -132,20 +132,29 @@ namespace StoGenMake.Scenes.Base
         protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
         {
 
-
+            int ss = 995;
             string path = null;
+            string fn;
+            string src;
+            string gr = "Raw data";
 
             // faces
             path = @"x:\STOGEN\LADY\COMIX\LADY_Heads_Hara Shigeyuki\";
-            GetIm("LADY_Head_1710080900", VNPCPersType.Manga, "Hara Shigeyuki", path, "001.png", data);
-            //alignData.Add(new AlignDif("LADY_Head_1710080900", "LADY_Body_1710080900", new DifData() { X = 205, Y = 10, sX = 140, sY = 140 }));
-            GetIm("LADY_Head_1710080901", VNPCPersType.Manga, "Hara Shigeyuki", path, "002.png", data);
-            GetIm("LADY_Head_1710080902", VNPCPersType.Manga, "Hara Shigeyuki", path, "003.png", data);
-            GetIm("LADY_Head_1710080903", VNPCPersType.Manga, "Hara Shigeyuki", path, "004.png", data);
-            GetIm("LADY_Head_1710080904", VNPCPersType.Manga, "Hara Shigeyuki", path, "005.png", data);
-            GetIm("LADY_Head_1710080905", VNPCPersType.Manga, "Hara Shigeyuki", path, "006.png", data);
+            for (int i = 1; i < 6; i++)
+            {                
+                src = $"HaraShigeyuki_AbunaiHitozuma_LadyFace_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
+                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
+            }
 
-            //Bodies and scenes
+            ////Bodies and scenes
+            //for (int i = 1; i < 6; i++)
+            //{
+            //    src = $"HaraShigeyuki_AbunaiHitozuma_SceneBody_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
+            //    AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+            //    AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
+            //}
+
             path = @"x:\DOUJIN\Hara Shigeyuki\Abunai Hitozuma - Shouko no Bouken\";
             GetIm("LADY_Body_1710080900", VNPCPersType.Manga, "Hara Shigeyuki", path, "005.png", data);
             GetIm("LADY_Body_1710080901", VNPCPersType.Manga, "Hara Shigeyuki", path, "006.png", data);

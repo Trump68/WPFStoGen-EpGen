@@ -33,7 +33,7 @@ namespace StoGenMake.Scenes
             AddToGlobalImage(src, fn, path, new DifData() { X = 100, Y = 100, sX = 500, sY = 500, Flip = 0 });
 
 
-            path = @"x:\ARTIST\Ilya Kuvshinov\PNG\";
+            path = @"z:\ARTIST\Ilya Kuvshinov\PNG\";
             //path = @"d:\Process2+\! Comix\ilya kuvshinov\PNG\";
 
 
@@ -41,7 +41,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 105; i++)
             {
                 src = $"Head_IlyaKuvshinov_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { X = 100, Y = 100, sX = 500, sY = 500, Flip = 0 });
+                AddToGlobalImage(src, fn, path, new DifData() { s = 500 });
                 AddLocal(new string[] { "All heads", $"Head {i.ToString("D3")}" }, new DifData[] { new DifData(src) });
             }
 

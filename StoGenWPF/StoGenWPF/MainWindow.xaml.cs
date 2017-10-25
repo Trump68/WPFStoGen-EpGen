@@ -62,6 +62,7 @@ namespace StoGenWPF
             Projector.PicContainer.PicList.Add(this.Picture14);
             Projector.PicContainer.PicList.Add(this.Picture15);
             Projector.PicContainer.PicList.Add(this.Picture16);
+            Projector.PicContainer.OwnerCanvas = this.CanvasControl;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -91,14 +91,13 @@ namespace StoGenMake.Scenes.Base
             }
 
             { // X,Y coord
-                int xDif = this.dX;
-                int yDif = this.dY;
-
+               
                 target.X = this.dX;
                 target.Y = this.dY;
 
                 target.X = (int)(this.dX * ((float)actualParent.sX / psX));
-                target.Y = (int)(this.dY * ((float)actualParent.sY / psY));
+                target.Y = (int)(this.dY * ((float)actualParent.sX / psX));
+                
 
                 target.X = target.X + actualParent.X;
                 target.Y = target.Y + actualParent.Y;
@@ -351,7 +350,7 @@ namespace StoGenMake.Scenes.Base
                     im.AssignFrom(ai);
 
                 }
-
+               
                 // add image to cadre
                 cadre.AddImage(im);
 

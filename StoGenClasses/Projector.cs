@@ -76,8 +76,7 @@ namespace StoGen.ModelClasses
     public class PicturesControl
     {
         public List<System.Windows.Controls.Image> PicList = new List<System.Windows.Controls.Image>();
-        //public List<PerPixelAlphaForm> FormList = new List<PerPixelAlphaForm>();
-        //   public LayoutControlItem Lci;
+        public Canvas OwnerCanvas;        
         public MediaElement Clip;
     }
 }
