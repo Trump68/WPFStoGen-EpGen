@@ -26,21 +26,12 @@ namespace StoGenMake.Scenes.Base
         {
             //#region CL-orz 51
             string path = null;
-            path = @"D:\Process2+\! Comix\Cle Masahiro\[Doujin] CL-orz 51\";
             
             string src = null;
             string fn = null;
             string gr = null;
 
-            //#region Raw data
-            //for (int i = 1; i <= 1; i++)
-            //{
-            //    src = $"CleMasahiro CL-orz 51 {i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-            //    AddToGlobalImage(src, fn, path, new DifData() { s = 800 });
-            //    AddLocal(new string[] { "All raw data", $"Raw pic {i.ToString("D3")}" }, new DifData[] { new DifData(src) });
-            //}
-            //#endregion
-
+            path = @"D:\Process2+\! Comix\Cle Masahiro\[Doujin] CL-orz 51\";
             La01_CL_orz_51(path);
         }
 
@@ -49,30 +40,23 @@ namespace StoGenMake.Scenes.Base
             string src = null;
             string fn = null;
             string gr = null;
-            string gr2 = null;
             int ss = 250;
 
             gr = "CleMasahiro CL-orz 51";
-            gr2 = "CleMasahiro CL-orz 51 Global Align";
-
-            //src = $"CleMasahiro CL-orz 51 001"; fn = $"001.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
-
             src = $"CleMasahiro CL-orz 51 001 Body"; fn = $"002.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
-            
+            src = $"CleMasahiro CL-orz 51 002 Body"; fn = $"005.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+
             src = $"CleMasahiro CL-orz 51 001 Head"; fn = $"003.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
-            //AddGlobal(new string[] { gr2 }, new DifData[] {
-            //          new DifData(src),
-            //          new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src){  X = 340, Y = 465, s = 125, Rot=70, Flip=0 } });
-           
-            //AddLocal(
-            // new string[] { gr },
-            // new DifData[] {
-            //    new DifData("CleMasahiro CL-orz 51 001 Head") { X = 75, Y = 20, s = 205, Flip=0},
-            //    new DifData("FullsArt_NetorareTsuma_LadyMouth_001","CleMasahiro CL-orz 51 001 Head"),
-            //    new DifData("CleMasahiro CL-orz 51 001 Body"),
-            // });
+            AddGlobal(new string[] { gr }, new DifData[] {
+                      new DifData(src) { X=0, Y=0, s = 250, Flip=0},
+                      new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src)
+                      { X = 110, Y = 147, s = 35, Rot=75, Flip=0 } });
 
-
+            src = $"CleMasahiro CL-orz 51 002 Head"; fn = $"004.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+            AddGlobal(new string[] { gr }, new DifData[] {
+                      new DifData(src) { X=0, Y=0, s = 250, Flip=0},
+                      new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src)
+                      { X = 56, Y = 141, s = 30, Rot=35, Flip=1 } });
         }
 
     }

@@ -85,7 +85,7 @@ namespace StoGenMake.Scenes.Base
                 {
                     target.ParentFlips.AddRange(actualParent.ParentFlips);
                 }
-                if (this.Flip != actualParent.Flip)
+                if (this.parFlip != actualParent.Flip)
                 {
                     target.ParentFlips.Add(actualParent.Name);
                 }

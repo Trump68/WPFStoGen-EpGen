@@ -25,8 +25,8 @@ namespace StoGenMake.Scenes.Base
         {
             //#region Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~
             string path = null;
-            //path = @"z:\ARTIST\FoolsArt (Homare)\Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~\";
-            path = @"D:\Temp\";
+            path = @"z:\ARTIST\FoolsArt (Homare)\Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~\";
+            //path = @"D:\Temp\";
             string src = null;
             string fn = null;
             string gr = null;
