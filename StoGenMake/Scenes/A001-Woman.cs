@@ -128,14 +128,20 @@ namespace StoGenMake.Scenes
             new DifData[] {
                  new DifData(src) { X = 75, Y = 20, s = 205, Flip=1},
                  new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
-                 new DifData("CleMasahiro CL-orz 51 001 Body"),
+                 //new DifData("CleMasahiro CL-orz 51 001 Body"),
             });
 
             AddLocal(new string[] { gr }, new DifData[] {
-                new DifData(src) {X = 370, Y = 90, s = 250, Flip=0},
+                new DifData(src) {X = 370, Y = 90, s = 550, Rot = 600, Flip=0},
                 new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
-                new DifData($"FullsArt_NetorareTsuma_PosingLegsParted_003") { Flip=1 }
+               //new DifData("FullsArt_NetorareTsuma_PosingLegsParted_003") { Flip=1 }
               });
+
+            src = $"CleMasahiro CL-orz 51 001 Head"; 
+            AddGlobal(new string[] { gr }, new DifData[] {
+                      new DifData(src) { X=0, Y=0, s = 250, Flip=0},
+                      new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src)
+                      { X = 100, Y = 142, s = 45, Rot=40, Flip=0 } });
 
             #endregion
         }

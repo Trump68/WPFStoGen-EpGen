@@ -35,50 +35,52 @@ namespace StoGenMake.Scenes.Base
             //raw
 
             name = $"Evil_blue"; fn = $"TestBlue.png";
-            AddToGlobalImage(name, fn, path, new DifData() { sX = 500, sY = 500, Flip = 0 });
+            AddToGlobalImage(name, fn, path, new DifData() { s = 500, Flip = 0 });
             name = $"Evil_red"; fn = $"TestRed.png";
-            AddToGlobalImage(name, fn, path, new DifData() { sX = 500, sY = 500, Flip = 0 });
+            AddToGlobalImage(name, fn, path, new DifData() { s = 300, Flip = 0 });
             name = $"Evil_green"; fn = $"TestGreen.png";
             AddToGlobalImage(name, fn, path, new DifData() { s = 500, Flip = 0 });
 
-            AddGlobal(new string[] { "glob" },
+            AddGlobal(new string[] { "test" },
             new DifData[] {
-                new DifData("Evil_blue"),
-                new DifData("Evil_red","Evil_blue") { s = 300, Rot = 90 },
+                new DifData("Evil_blue") { X=100 },                
+                new DifData("Evil_red","Evil_blue") {X=200},
             });
 
         
-            int ss = 500;
+            int ss = 300;
             int r = 5;
+
             AddLocal(new string[] { "test" },
              new DifData[] {
-                new DifData("Evil_blue") { s=ss, Rot = 45},
+                new DifData("Evil_blue"){ X=200 },
                 new DifData("Evil_red","Evil_blue"),
             });
 
             AddLocal(new string[] { "test" },
              new DifData[] {
-                new DifData("Evil_blue") { s=ss, Rot = 10},
+                new DifData("Evil_blue") {X=300, Rot=45, Flip =1},
                 new DifData("Evil_red","Evil_blue"),
             });
 
-//            AddLocal(new string[] { "test" },
-// new DifData[] {
-//                new DifData("Evil_blue") { X=199, Y=99, s=ss, Rot = r+40},
-//                new DifData("Evil_red","Evil_blue"),
-//});
+            //AddLocal(new string[] { "test" },
+            // new DifData[] {
+            //    new DifData("Evil_blue") { X = 200, s=ss},
+            //    new DifData("Evil_red","Evil_blue"),
+            //});
 
-//            AddLocal(new string[] { "test" },
-// new DifData[] {
-//                new DifData("Evil_blue") { X=199, Y=99, s=ss, Rot = r+60},
-//                new DifData("Evil_red","Evil_blue"),
-//});
+            //AddLocal(new string[] { "test" },
+            // new DifData[] {
+            //    new DifData("Evil_blue") { s=ss, Rot = 20},
+            //    new DifData("Evil_red","Evil_blue"),
+            //});
+            //AddLocal(new string[] { "test" },
+            // new DifData[] {
+            //    new DifData("Evil_blue") { s=ss, Rot = 30},
+            //    new DifData("Evil_red","Evil_blue"),
+            //});
 
-//            AddLocal(new string[] { "test" },
-// new DifData[] {
-//                new DifData("Evil_blue") { X=199, Y=99, s=ss, Rot = r+80},
-//                new DifData("Evil_red","Evil_blue"),
-//});
+
 
         }
     }

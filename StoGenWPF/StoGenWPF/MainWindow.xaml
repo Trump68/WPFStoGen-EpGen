@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:StoGenWPF"
         mc:Ignorable="d"
         Title="MainWindow" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black" Left="0" Top="0" KeyDown="Window_KeyDown" d:DesignHeight="869" Width="992">
-    <Grid Margin="0,5,0,-5">
-        <Canvas Name="CanvasControl" ClipToBounds="True">
+    <Grid Name="MainGrid"  Margin="0,5,0,-5">
+        <!--<Canvas Name="CanvasControl" ClipToBounds="True">-->
         <Image x:Name="Picture1" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
         <Image x:Name="Picture2" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
         <Image x:Name="Picture3" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
@@ -24,14 +24,14 @@
         <Image x:Name="Picture14" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
         <Image x:Name="Picture15" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
         <Image x:Name="Picture16" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        </Canvas>
-                <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="111" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="627" Opacity="0.8" Background="Blue" BorderThickness="0"  AcceptsReturn="True" Margin="139,0,0,65"/>
+        <!--</Canvas>-->
+        <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="111" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="627" Opacity="0.8" Background="Blue" BorderThickness="0"  AcceptsReturn="True" Margin="139,0,0,65"/>
         <TextBox x:Name="NumberBox" HorizontalAlignment="Right" Height="20" VerticalAlignment="Bottom" Width="50" Opacity="0.5" Background="White" BorderThickness="0"  AcceptsReturn="True" Margin="0,-3,0,0"/>
         <MediaElement x:Name="Clip1"  ScrubbingEnabled="True" HorizontalAlignment="Left" Height="505" Margin="90,47,0,0" VerticalAlignment="Top" Width="853" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>
         <Rectangle x:Name="LmpAuto" Fill="#FF06069B" HorizontalAlignment="Left" Height="10" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>
         <Rectangle x:Name="LmpEndless" Fill="#FFB60B49" HorizontalAlignment="Left" Height="10" Margin="10,0,0,0" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>
         <GroupBox x:Name="PictureCadreDS" HorizontalAlignment="Left" Height="78" Width="968" Background="#FFF9F9F9" BorderBrush="#FFF9FCFD" VerticalAlignment="Bottom">
-            <StackPanel Margin="1" Orientation="Vertical">
+            <StackPanel Margin="1,-1,1,3" Orientation="Vertical">
                 <StackPanel Margin="1" Orientation="Horizontal" Background="#FFF9F9F9">
                     <TextBlock Text="     X:+NP6-NP4          Y:+NP2-NP8          Size:+NP7-NP9         Rot:+NP1-NP3         ClipX:+A-S          ClipW:+D-F         ClipY:+G-H        ClipH:+J-K"/>
                 </StackPanel>

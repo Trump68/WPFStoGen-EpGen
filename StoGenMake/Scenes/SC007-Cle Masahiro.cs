@@ -50,7 +50,7 @@ namespace StoGenMake.Scenes.Base
             string fn = null;
             string gr = null;
             string gr2 = null;
-            int ss = 800;
+            int ss = 250;
 
             gr = "CleMasahiro CL-orz 51";
             gr2 = "CleMasahiro CL-orz 51 Global Align";
@@ -60,10 +60,9 @@ namespace StoGenMake.Scenes.Base
             src = $"CleMasahiro CL-orz 51 001 Body"; fn = $"002.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
             
             src = $"CleMasahiro CL-orz 51 001 Head"; fn = $"003.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
-            AddGlobal(new string[] { gr2 },
-                      new DifData[] {
-                          new DifData(src),
-                          new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src){  X = 340, Y = 465, s = 125, Rot=70, Flip=0 } });
+            //AddGlobal(new string[] { gr2 }, new DifData[] {
+            //          new DifData(src),
+            //          new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src){  X = 340, Y = 465, s = 125, Rot=70, Flip=0 } });
            
             //AddLocal(
             // new string[] { gr },

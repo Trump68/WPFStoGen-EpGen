@@ -64,7 +64,7 @@ namespace StoGenMake.Scenes.Base
         {
             target.sX = Convert.ToInt32(this.dsX * actualParent.sX);
             target.sY = Convert.ToInt32(this.dsY * actualParent.sY);
-
+            //int dR = 0;
             // Parent rotation
             {
                 target.ParentRotations.Clear();
@@ -74,7 +74,8 @@ namespace StoGenMake.Scenes.Base
                 }
                 if (this.parRot != actualParent.Rot)
                 {
-                    target.ParentRotations.Add(new Tuple<string, int>(actualParent.Name, actualParent.Rot - parRot));
+                    var dR = actualParent.Rot - parRot;
+                    target.ParentRotations.Add(new Tuple<string, int>(actualParent.Name, dR));
                 }
             }
             // Parent flip
@@ -96,8 +97,8 @@ namespace StoGenMake.Scenes.Base
                 target.Y = this.dY;
 
                 target.X = (int)(this.dX * ((float)actualParent.sX / psX));
-                target.Y = (int)(this.dY * ((float)actualParent.sX / psX));
-                
+                target.Y = (int)(this.dY * ((float)actualParent.sY / psY));
+               
 
                 target.X = target.X + actualParent.X;
                 target.Y = target.Y + actualParent.Y;
@@ -378,12 +379,12 @@ namespace StoGenMake.Scenes.Base
                 CAL.AlignList.Add(dif);
                 if (installtoglobal && !string.IsNullOrEmpty(dif.Parent))
                 {
-                    AddToGlobalAlign(dif);
+                    AddToGlobalAlign(dif, difs.Where(x=>x.Name == dif.Parent).FirstOrDefault());
                 }
             }
             AlignList.Add(CAL);
         }
-        private void AddToGlobalAlign(DifData dd)
+        private void AddToGlobalAlign(DifData dd, DifData pardelta)
         {
             if (!string.IsNullOrEmpty(dd.Parent))
             {
@@ -398,7 +399,8 @@ namespace StoGenMake.Scenes.Base
                         // Get parent image align via default align and delta
                         seIm parIm = new seIm();
                         var pardefaultalgn = GameWorld.ImageStorage.Where(x => x.Name == dd.Parent).FirstOrDefault().DefaultAlign;
-                        parIm.AssignFrom(pardefaultalgn); // only default
+                        parIm.AssignFrom(pardefaultalgn); // default and delta
+                        parIm.AssignFrom(pardelta);
                         // Get child image align via default align and delta
                         seIm childIm = new seIm();
                         var childdefaultalgn = storageitem.DefaultAlign;
