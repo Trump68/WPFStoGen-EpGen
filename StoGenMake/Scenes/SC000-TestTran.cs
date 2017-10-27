@@ -14,6 +14,8 @@ namespace StoGenMake.Scenes.Base
         public SC000_TestTran() : base()
         {
             this.Name = "Transition test";
+            EngineHiVer = 1;
+            EngineLoVer = 0;
         }
         protected override void MakeCadres(string cadregroup)
         {

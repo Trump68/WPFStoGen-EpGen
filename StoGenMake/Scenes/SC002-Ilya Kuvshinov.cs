@@ -14,6 +14,8 @@ namespace StoGenMake.Scenes
         public SC002_IlyaKuvshinov() : base()
         {
             Name = "Ilya Kuvshinov";
+            EngineHiVer = 1;
+            EngineLoVer = 0;
         }
 
         protected override void MakeCadres(string cadregroup)

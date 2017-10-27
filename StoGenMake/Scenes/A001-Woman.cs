@@ -13,14 +13,11 @@ namespace StoGenMake.Scenes
         public A001_Woman() : base()
         {
             Name = "Womans tests";
+            EngineHiVer = 1;
+            EngineLoVer = 0;
         }
 
-        protected override void MakeCadres(string cadregroup)
-        {
-            cadregroup = "Betty (CleMasahiro CL-orz 51 002 Head)";
-            base.MakeCadres(cadregroup);
-            this.Cadres.Reverse();
-        }
+
 
         protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
         {            
@@ -119,8 +116,9 @@ namespace StoGenMake.Scenes
 
             #endregion
 
-            #region Betty (CleMasahiro CL-orz 51 001 Head)
-            gr = "Betty (CleMasahiro CL-orz 51 001 Head)";
+            #region Mary (CleMasahiro CL-orz 51)
+            #region Mary (CleMasahiro CL-orz 51 001 Head)
+            gr = "Mary (CleMasahiro CL-orz 51 001 Head)";
             src = "CleMasahiro CL-orz 51 001 Head";
 
             AddLocal(
@@ -140,11 +138,11 @@ namespace StoGenMake.Scenes
 
             #endregion
 
-            #region Mary (CleMasahiro CL-orz 51 002 Head)
-            gr = "Betty (CleMasahiro CL-orz 51 002 Head)";
+            #region Mary1 (CleMasahiro CL-orz 51 002 Head)
+            gr = "Mary (CleMasahiro CL-orz 51 002 Head)";
             src = "CleMasahiro CL-orz 51 002 Head";
 
-            AddLocal(  new string[] { gr }, new DifData[] {
+            AddLocal(new string[] { gr }, new DifData[] {
                  new DifData(src) {X = 30, Y = 65, s = 220, Rot=-80, Flip=0 },
                  new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
                  new DifData("CleMasahiro CL-orz 51 002 Body"){ Y = 135, s = 640, Flip=0 },
@@ -157,6 +155,113 @@ namespace StoGenMake.Scenes
             });
 
             #endregion
+
+            #region Mary2 (CleMasahiro CL-orz 51 003 Head)
+            gr = "Mary (CleMasahiro CL-orz 51 003 Head)";
+            src = "CleMasahiro CL-orz 51 003 Head";
+
+            AddLocal(new string[] { gr }, new DifData[] {
+                 new DifData(src) {X = 0, Y = 77, s = 220, Rot=-55, Flip=0 },
+                 new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+                 new DifData("CleMasahiro CL-orz 51 002 Body"){ Y = 135, s = 640, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+                 new DifData(src) { X = 75, Y = -25, s = 215, Flip=1},
+                 new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+                 new DifData("CleMasahiro CL-orz 51 001 Body"){ X = 0, Y = -15, s = 770, Flip=0},
+            });
+
+            #endregion
+
+            #region Mary3 (CleMasahiro CL-orz 51 004 Head)
+            gr = "Mary (CleMasahiro CL-orz 51 004 Head)";
+            src = "CleMasahiro CL-orz 51 004 Head";
+
+            AddLocal(new string[] { gr }, new DifData[] {
+                 new DifData(src) {Y = 32, s = 220, Rot=40, Flip=1},
+                 new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+                 new DifData("CleMasahiro CL-orz 51 002 Body"){ Y = 135, s = 640, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+                 new DifData(src) { X = 65, Y = -35, s = 210, Flip=0},
+                 new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+                 new DifData("CleMasahiro CL-orz 51 001 Body"){ X = 0, Y = -15, s = 770, Flip=0},
+            });
+
+            #endregion
+
+            #region Mary4 (CleMasahiro CL-orz 51 005 Head)
+            gr = "Mary (CleMasahiro CL-orz 51 005 Head)";
+            src = "CleMasahiro CL-orz 51 005 Head";
+
+            AddLocal(new string[] { gr }, new DifData[] {
+                 new DifData(src) {X = 35, Y = 47, s = 195, Rot=-60, Flip=0},
+                 new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+                 new DifData("CleMasahiro CL-orz 51 002 Body"){ Y = 135, s = 640, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+                 new DifData(src) { X = 15, s = 190, Flip=1},
+                 new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+                 new DifData("CleMasahiro CL-orz 51 001 Body"){ X = 0, Y = -15, s = 770, Flip=0},
+            });
+
+            #endregion
+
+            #region Mary5 (CleMasahiro CL-orz 51 006 Head)
+            gr = "Mary (CleMasahiro CL-orz 51 006 Head)";
+            src = "CleMasahiro CL-orz 51 006 Head";
+
+            AddLocal(new string[] { gr }, new DifData[] {
+                 new DifData(src) {X = 25, Y = 77, s = 195, Rot=30, Flip=1},
+                 new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+                 new DifData("CleMasahiro CL-orz 51 002 Body"){ Y = 135, s = 640, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+                 new DifData(src) {X = 75, Y = 20, s = 210, Flip=0},
+                 new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+                 new DifData("CleMasahiro CL-orz 51 001 Body"){ X = 0, Y = -15, s = 770, Flip=0},
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+                 new DifData(src) {X = 30, Y = 20, s = 225, Flip=0},
+                 new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+                 new DifData("CleMasahiro CL-orz 51 003 Body"){X = 10, Y = 125, s = 800, Flip=0},
+            });
+            AddLocal(new string[] { gr }, new DifData[] {
+                 new DifData(src) {X = 30, Y = 20, s = 225, Flip=0},
+                 new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+                 new DifData("CleMasahiro CL-orz 51 003 Body"){X = 10, Y = 125, s = 800, Flip=0},
+                 new DifData("CleMasahiro CL-orz 51 001 LoveHeart"){X = 240, Y = 95, s = 40, Flip=1},
+            });
+
+            #endregion
+
+            #region Mary6 (CleMasahiro CL-orz 51 007 Head)
+            gr = "Mary (CleMasahiro CL-orz 51 007 Head)";
+            src = "CleMasahiro CL-orz 51 007 Head";
+
+            AddLocal(new string[] { gr }, new DifData[] {
+                 new DifData(src) { X = -20, Y = -5, s = 225, Rot=25, Flip=1},
+                 new DifData("CleMasahiro CL-orz 51 001 Mouth", src) { },
+                 new DifData("CleMasahiro CL-orz 51 002 Body"){ Y = 135, s = 640, Flip=0 },
+            });
+
+
+            #endregion
+
+            #endregion
+
+
+        }
+        protected override void MakeCadres(string cadregroup)
+        {
+            cadregroup = "Mary (CleMasahiro CL-orz 51 007 Head)";
+            base.MakeCadres(cadregroup);
+            this.Cadres.Reverse();
         }
     }
 }

@@ -15,6 +15,9 @@ namespace StoGenMake.Scenes.Base
         public SC001_FoolsArt() : base()
         {
             Name = "Fools Art (Homare)";
+            EngineHiVer = 1;
+            EngineLoVer = 0;
+
         }
 
         protected override void MakeCadres(string cadregroup)

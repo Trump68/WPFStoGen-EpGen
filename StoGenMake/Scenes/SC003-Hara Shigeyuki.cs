@@ -14,7 +14,8 @@ namespace StoGenMake.Scenes.Base
         public SC003_HaraShigeyuki() : base()
         {
             Name = "Hara Shigeyuki";
-            
+            EngineHiVer = 1;
+            EngineLoVer = 0;
         }
         protected override void MakeCadres(string cadregroup)
         {

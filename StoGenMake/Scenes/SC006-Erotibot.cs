@@ -10,31 +10,18 @@ using System.Threading.Tasks;
 namespace StoGenMake.Scenes
 {
     public class SC006_Erotibot : BaseScene
-    {
-        #region CADRE GROUPS
-        private string GROUP01 = "Various";
-        #endregion
-
+    {  
         public SC006_Erotibot() : base()
         {
             Name = "Erotibot";
-            this.CadreGroups.Add(GROUP01);
-            //this.CadreGroups.Add(GROUP02);
+            EngineHiVer = 1;
+            EngineLoVer = 0;
         }
 
 
         protected override void MakeCadres(string cadregroup)
         {
-            if (cadregroup == GROUP01)
-            {
-                for (int i = 1; i <= 8; i++)
-                {
-                    SetCadre(new AlignData[] { new AlignData($"LADY_Body_1710071{i.ToString("D3")}") }, this);
-                }
-
-            }
-
-
+            base.MakeCadres(cadregroup);
             this.Cadres.Reverse();
         }
         protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
@@ -48,12 +35,14 @@ namespace StoGenMake.Scenes
             string src = null;
             string fn = null;
 
-            for (int i = 1; i <= 7; i++)
+            int ss = 700;
+            for (int i = 1; i <= 9; i++)
             {
-                GetIm($"LADY_Body_1710071{i.ToString("D3")}", VNPCPersType.ArtCG, dsc, path, $"{i.ToString("D3")}.png", data);
+                if (i == 8) continue;
+                src = $"Erotibot BodyScene {i.ToString("D3")}";
+                fn = $"{i.ToString("D3")}.png";
+                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
             }
-            GetIm("LADY_Body_1710071008", VNPCPersType.ArtCG, dsc, path, "009.png",data);
-
         }
 
     }

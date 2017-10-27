@@ -149,8 +149,7 @@ namespace StoGen.Classes
             if (timer != null) timer.Change(TimerPeriod, TimerPeriod);
         }
 
-        PicLevelComparer sorter = new PicLevelComparer();
-
+ 
         public List<PictureItem> Pics { get; set; }
         public bool AutoShift { get; set; }
 
@@ -638,47 +637,132 @@ namespace StoGen.Classes
 
         internal void ProcessKey(Key e)
         {
-            if (!Projector.EditorMode) return;
+
+            if (!Projector.EditorMode)
+            {
+                if (e == Key.Right)
+                {
+                    foreach (var item in this.Pics)
+                    {
+                        item.Props.X++;
+                    }
+                }
+                else if (e == Key.Left)
+                {
+                    foreach (var item in this.Pics)
+                    {
+                        item.Props.X--;
+                    }
+                }
+                else if (e == Key.Up)
+                {
+                    foreach (var item in this.Pics)
+                    {
+                        item.Props.Y--;
+                    }
+                }
+                else if (e == Key.Down)
+                {
+                    foreach (var item in this.Pics)
+                    {
+                        item.Props.Y++;
+                    }
+                }
+                this.Repaint();
+                return;
+            }
             bool increase = false;
+            if (Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                if (e == Key.OemPlus)
+                {
+                    Projector.ImageCadre.PropStep = Projector.ImageCadre.PropStep + 1;
+                    return;
+                }
+                if (e == Key.OemMinus)
+                {
+                    if (Projector.ImageCadre.PropStep > 0)
+                        Projector.ImageCadre.PropStep = Projector.ImageCadre.PropStep - 1;
+                    return;
+                }
+            }
 
-
-
-            if (e == Key.NumPad6)
+            if (e == Key.D0)
+            {
+                Projector.ImageCadre.LayerIndex = 0;
+            }
+            else if (e == Key.D1)
+            {
+                Projector.ImageCadre.LayerIndex = 1;
+            }
+            else if (e == Key.D2)
+            {
+                Projector.ImageCadre.LayerIndex = 2;
+            }
+            else if (e == Key.D3)
+            {
+                Projector.ImageCadre.LayerIndex = 3;
+            }
+            else if (e == Key.D4)
+            {
+                Projector.ImageCadre.LayerIndex = 4;
+            }
+            else if (e == Key.D5)
+            {
+                Projector.ImageCadre.LayerIndex = 5;
+            }
+            else if (e == Key.D6)
+            {
+                Projector.ImageCadre.LayerIndex = 6;
+            }
+            else if (e == Key.D7)
+            {
+                Projector.ImageCadre.LayerIndex = 7;
+            }
+            else if (e == Key.D8)
+            {
+                Projector.ImageCadre.LayerIndex = 8;
+            }
+            else if (e == Key.D9)
+            {
+                Projector.ImageCadre.LayerIndex = 9;
+            }
+            else if (e == Key.NumPad6 || e == Key.Right)
             {
                 Projector.ImageCadre.PropIndex = 1;
                 increase = true;
             }
-            else if (e == Key.NumPad4)
+            else if (e == Key.NumPad4 || e == Key.Left)
             {
                 Projector.ImageCadre.PropIndex = 1;
                 increase = false;
             }
-            else if (e == Key.NumPad2)
+            else if (e == Key.NumPad2 || e == Key.Down)
             {
                 Projector.ImageCadre.PropIndex = 2;
                 increase = true;
             }
-            else if (e == Key.NumPad8)
+            else if (e == Key.NumPad8 || e == Key.Up)
             {
                 Projector.ImageCadre.PropIndex = 2;
                 increase = false;
             }
-            else if (e == Key.NumPad7)
+            else if (e == Key.NumPad7 || e == Key.OemPlus)
             {
                 Projector.ImageCadre.PropIndex = 3;
                 increase = true;
             }
-            else if (e == Key.NumPad9)
+            else if (e == Key.NumPad9 || e == Key.OemMinus)
             {
                 Projector.ImageCadre.PropIndex = 3;
                 increase = false;
             }
-            else if (e == Key.NumPad1)
+            else if (e == Key.NumPad1 || e == Key.OemComma)
             {
                 Projector.ImageCadre.PropIndex = 4;
                 increase = true;
             }
-            else if (e == Key.NumPad3)
+            else if (e == Key.NumPad3 || e == Key.OemPeriod)
             {
                 Projector.ImageCadre.PropIndex = 4;
                 increase = false;
@@ -876,13 +960,5 @@ namespace StoGen.Classes
 
 
     }
-
-    public class PicLevelComparer : IComparer<PictureItem>
-    {
-
-        public int Compare(PictureItem x, PictureItem y)
-        {
-            return x.Props.Level.CompareTo(y.Props.Level);
-        }
-    }
+    
 }
