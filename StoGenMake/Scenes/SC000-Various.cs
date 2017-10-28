@@ -14,10 +14,14 @@ namespace StoGenMake.Scenes
   
         public SC000_Various() : base()
         {
-        
+            Name = "Dtym";
+            EngineHiVer = 1;
+            EngineLoVer = 0;
         }
         protected override void MakeCadres(string cadregroup)
         {
+            base.MakeCadres(cadregroup);
+            this.Cadres.Reverse();
             //if (cadregroup == GROUP01)
             //{
             //    SetCadre(new AlignData[] {
@@ -229,6 +233,35 @@ namespace StoGenMake.Scenes
             //  new AlignData("LADY_Head_1710070903","LADY_Body_1710070900",null)
             //}, this);
             //}
+        }
+        protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
+        {
+            string path = null;
+            path = @"x:\ARTIST\Eriya-J\DBR\";
+
+            string dsc = "Eriya-J";
+            string src = null;
+            string fn = null;
+            int ss = 700;
+            string gr = null;
+
+            gr = "Raw data";
+            for (int i = 1; i <= 2; i++)
+            {
+                src = $"Eriya-J_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
+                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
+            }
+
+            gr = "Face";
+            for (int i = 1; i <= 2; i++)
+            {
+                src = $"Eriya-J_Face_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
+                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
+            }
+
+         
         }
 
 

@@ -49,13 +49,14 @@ namespace StoGenMake.Scenes.Base
             
             src = $"CleMasahiro CL-orz 51 001 LoveHeart"; fn = $"011.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
             ss = 100; gr = "Mouth";
-            src = $"CleMasahiro CL-orz 51 001 Mouth";     fn = $"013.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+            src = $"CleMasahiro_CL_orz_51_001_Mouth";     fn = $"013.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
 
             ss = 700;
             gr = "CleMasahiro CL-orz 51";
             src = $"CleMasahiro CL-orz 51 001 Body"; fn = $"002.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
             src = $"CleMasahiro CL-orz 51 002 Body"; fn = $"005.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
             src = $"CleMasahiro CL-orz 51 003 Body"; fn = $"010.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+            src = $"CleMasahiro CL-orz 51 004 Body"; fn = $"014.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
 
             src = $"CleMasahiro CL-orz 51 001 Head"; fn = $"003.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
             AddGlobal(new string[] { gr }, new DifData[] {
@@ -96,8 +97,13 @@ namespace StoGenMake.Scenes.Base
             src = $"CleMasahiro CL-orz 51 007 Head"; fn = $"012.png"; AddToGlobalImage(src, fn, path, new DifData() { s = ss });
             AddGlobal(new string[] { gr }, new DifData[] {
                       new DifData(src) { X=0, Y=0, s = 700, Flip=0},
-                      new DifData("CleMasahiro CL-orz 51 001 Mouth", src)
-                      { X = 350, Y = 515, s = 84, Flip=0 } });
+                      new DifData("CleMasahiro_CL_orz_51_001_Mouth", src)
+                      { X = 450, Y = 530, s = 84, Flip=0 } });
+            AddGlobal(new string[] { gr }, new DifData[] {
+                      new DifData(src) { },
+                      new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src)
+                      { X = 454, Y = 509, s = 78, Rot=10, Flip=0 } });
+
         }
 
     }

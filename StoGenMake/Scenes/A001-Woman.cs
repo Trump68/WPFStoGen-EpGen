@@ -237,7 +237,12 @@ namespace StoGenMake.Scenes
                  new DifData("CleMasahiro CL-orz 51 003 Body"){X = 10, Y = 125, s = 800, Flip=0},
                  new DifData("CleMasahiro CL-orz 51 001 LoveHeart"){X = 240, Y = 95, s = 40, Flip=1},
             });
-
+            AddLocal(new string[] { gr }, new DifData[] {
+                 new DifData(src) {X = 30, Y = 20, s = 225, Flip=0},
+                 new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+                 new DifData("CleMasahiro CL-orz 51 003 Body"){X = 10, Y = 125, s = 800, Flip=0},
+                 new DifData("CleMasahiro CL-orz 51 001 LoveHeart"){X = 240, Y = 95, s = 40, Flip=1},
+            });
             #endregion
 
             #region Mary6 (CleMasahiro CL-orz 51 007 Head)
@@ -246,10 +251,27 @@ namespace StoGenMake.Scenes
 
             AddLocal(new string[] { gr }, new DifData[] {
                  new DifData(src) { X = -20, Y = -5, s = 225, Rot=25, Flip=1},
-                 new DifData("CleMasahiro CL-orz 51 001 Mouth", src) { },
+                 new DifData("CleMasahiro_CL_orz_51_001_Mouth", src) { },
                  new DifData("CleMasahiro CL-orz 51 002 Body"){ Y = 135, s = 640, Flip=0 },
             });
 
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) { X = 105, Y = -40, s = 230, Rot=10, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src){ X = 339, Y = 519, s = 78, Rot=15, Flip=0 },
+            new DifData("CleMasahiro CL-orz 51 001 Body") { X = 0, Y = -15, s = 770, Flip = 0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) { X = 25, Y = -20, s = 230, Rot=10, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("CleMasahiro CL-orz 51 004 Body") { X = 40, Y = 165, s = 700, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) { X = 25, Y = -20, s = 230, Rot=10, Flip=0},
+            new DifData("CleMasahiro_CL_orz_51_001_Mouth", src),
+            new DifData("CleMasahiro CL-orz 51 004 Body") { X = 40, Y = 165, s = 700, Flip=0 },
+            });
 
             #endregion
 

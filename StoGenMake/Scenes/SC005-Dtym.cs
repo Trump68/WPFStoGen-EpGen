@@ -34,12 +34,32 @@ namespace StoGenMake.Scenes
             string src = null;
             string fn = null;
             int ss = 700;
-            for (int i = 1; i <= 6; i++)
+            string gr = null; 
+
+            gr = "Raw data";
+            for (int i = 1; i <= 39; i++)
             {
-                src = $"Dtym BodyScene {i.ToString("D3")}";
-                fn = $"Body_{i.ToString("D3")}.png";
+                src = $"Dtym_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
                 AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
+
+            gr = "Face";
+            for (int i = 1; i <= 7; i++)
+            {
+                src = $"Dtym_Face_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
+                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
+            }
+
+            gr = "Body";
+            for (int i = 8; i <= 13; i++)
+            {
+                src = $"Dtym_Body_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
+                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
+            }
+           
         }
 
     }

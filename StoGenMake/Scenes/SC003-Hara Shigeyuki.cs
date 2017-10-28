@@ -29,64 +29,36 @@ namespace StoGenMake.Scenes.Base
             string fn;
             string src;
 
-            string gr = "Lady face";
-            // faces
-            path = @"x:\STOGEN\LADY\COMIX\LADY_Heads_Hara Shigeyuki\";
-            for (int i = 1; i < 6; i++)
-            {                
-                src = $"HaraShigeyuki_AbunaiHitozuma_LadyFace_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
-                AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
-            }
+            string gr = "Row data";
 
             //Bodies and scenes
             gr = "Raw data";
             path = @"x:\DOUJIN\Hara Shigeyuki\Abunai Hitozuma - Shouko no Bouken\";
-            for (int i = 5; i <= 8; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 src = $"HaraShigeyuki_AbunaiHitozuma_SceneBody_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
                 AddToGlobalImage(src, fn, path, new DifData() { s = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
-            for (int i = 9; i <= 23; i++)
+
+            for (int i = 1; i <= 262; i++)
             {
                 src = $"HaraShigeyuki_AbunaiHitozuma_SceneBody_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
                 AddToGlobalImage(src, fn, path, new DifData() { s = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
-            for (int i = 25; i <= 271; i++)
-            {
-                src = $"HaraShigeyuki_AbunaiHitozuma_SceneBody_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
-                AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
-            }
+         
 
-
-            // evil man body
-            gr = "evil man body";
-            path = @"x:\STOGEN\EVILMAN\COMIX\Hara Shigeyuki\";
-            for (int i = 1; i <= 4; i++)
+            // evil man body face
+            gr = "evil man body face";
+            path = @"x:\DOUJIN\Hara Shigeyuki\Abunai Hitozuma - Shouko no Bouken\";
+            for (int i = 11; i <= 22; i++)
             {
                 src = $"HaraShigeyuki_AbunaiHitozuma_EvilManBody_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
                 AddToGlobalImage(src, fn, path, new DifData() { s = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
-            // evil man face
-            gr = "evil man face";
-            path = @"x:\STOGEN\EVILMAN\COMIX\Hara Shigeyuki\";
-            for (int i = 5; i <= 9; i++)
-            {
-                src = $"HaraShigeyuki_AbunaiHitozuma_EvilManFace_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
-                AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
-            }
-            
-            for (int i = 1; i <= 3; i++)
-            {
-                src = $"HaraShigeyuki_AbunaiHitozuma_EvilManFace_a{i.ToString("D3")}"; fn = $"{i.ToString("D3")}a.png";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
-                AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
-            }
+
             #endregion
         }
     }
