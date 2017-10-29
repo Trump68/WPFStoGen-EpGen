@@ -28,7 +28,7 @@ namespace StoGenMake.Scenes
         protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
         {
             string path = null;
-            path = @"x:\ARTIST\Dtym\DBR\";
+            path = @"Z:\ARTIST\Dtym\DBR\";
 
             string dsc = "Dtym";
             string src = null;

@@ -29,7 +29,7 @@ namespace StoGenMake.Scenes
             string path = null;
 
 
-            path = @"x:\ARTIST\Erotibot\DBR\";
+            path = @"Z:\ARTIST\Erotibot\DBR\";
 
             string dsc = "Erotibot";
             string src = null;

@@ -273,11 +273,124 @@ namespace StoGenMake.Scenes
             new DifData("CleMasahiro CL-orz 51 004 Body") { X = 40, Y = 165, s = 700, Flip=0 },
             });
 
-            #endregion
+
+            AddLocal(new string[] { gr }, new DifData[] {               
+            new DifData(src) { X = -5, Y = 60, s = 280, Rot=20, Flip=1},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_001") { X = 40, Y = 165, s = 900, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) { X = 15, Y = 190, s = 280, Rot=35, Flip=1},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_002") { X = 40, Y = 165, s = 900, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) { X = 120, Y = 50, s = 255, Rot=35, Flip=1},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_003") { X = 275, Y = -10, s = 765, Rot=-90, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) { X = 70, Y = -30, s = 265, Rot=-25, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_004") { X = 40, Y = 125, s = 1045, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) { X = 35, Y = 5, s = 285, Rot=5, Flip=1},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_005") { X = 35, Y = 10, s = 825, Rot=-40, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) { X = 715, Y = 30, s = 285, Rot=25, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_006") { X = 30, Y = 185, s = 825, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) {X = -50, Y = 20, s = 340, Rot=-40, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_007") { X = 100, Y = 25, s = 925, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) {X = 185, Y = -35, s = 245, Rot=-20, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_008") { X = 95, Y = -5, s = 765, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) {X = 185, Y = -35, s = 245, Rot=-20, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_008") { X = 95, Y = -5, s = 765, Flip=0 },
+            new DifData("Hews_Hack_BodyScene_PNG_Cock_001") {X = 435, Y = 455, s = 405, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) {X = 185, Y = -35, s = 245, Rot=-20, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_008") { X = 95, Y = -5, s = 765, Flip=0 },
+            new DifData("Hews_Hack_BodyScene_PNG_010","Hews_Hack_BodyScene_PNG_008"),
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) {X = 175, Y = -60, s = 235, Rot=5, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_011") { X = 95, Y = -5, s = 765, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) {X = 140, Y = 90, s = 235, Rot=-10, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_012") { X = 10, Y = 5, s = 765, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) {X = 155, Y = -65, s = 230, Rot=-15, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_013") { X = 5, Y = 145, s = 620, Flip=0 },
+            new DifData("Hews_Hack_BodyScene_PNG_Flower_001") {X = 125, Y = 50, s = 70, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) {X = 100, Y = -70, s = 290, Rot=-15, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_014") { X = 5, Y = 145, s = 620, Flip=0 },            
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) {X = -15, Y = 35, s = 195, Rot=5, Flip=1},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_015") { X = 15, Y = 145, s = 620, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) {X = -25, Y = 210, s = 260, Rot=40, Flip=1},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_016") { X = 135, Y = 5, s = 955, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData(src) {X = 330, Y = -15, s = 210, Rot=10, Flip=1},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            new DifData("Hews_Hack_BodyScene_PNG_018") { X = 135, Y = 5, s = 955, Flip=0 },
+            });
 
             #endregion
 
+            #endregion
 
+            #region Nadya (Hews_Hack_017)
+            gr = "Nadya Hews_Hack_017";
+            src = "Hews_Hack_017";
+            AddLocal(new string[] { gr }, new DifData[] {       
+            new DifData("Hews_Hack_BodyScene_PNG_017") { X = 135, Y = 5, s = 955, Flip=0 },
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001"){ X = 359, Y = 200, s = 31, Rot=-5, Flip=0},
+            });
+            #endregion
         }
         protected override void MakeCadres(string cadregroup)
         {

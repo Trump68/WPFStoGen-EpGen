@@ -62,8 +62,10 @@
     <Compile Include="GameWorld\GameWorld.cs" />
     <Compile Include="GameWorld\GameWorldDataLoader.cs" />
     <Compile Include="Location\VisualLocaton.cs" />
+    <Compile Include="Scenes\SC009-Hews Hack.cs" />
     <Compile Include="ScenCadre\ScenCadre.cs" />
     <Compile Include="Scenes\A001-Woman.cs" />
+    <Compile Include="Scenes\AUX01-Accesuar.cs" />
     <Compile Include="Scenes\Base\BaseScene.cs" />
     <Compile Include="Scenes\SC001-Fools Art.cs" />
     <Compile Include="Scenes\SC003-Hara Shigeyuki.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Scenes\SC005-Dtym.cs" />
     <Compile Include="Scenes\SC006-Erotibot.cs" />
     <Compile Include="Scenes\SC007-Cle Masahiro.cs" />
+    <Compile Include="Scenes\SC008-Itachou.cs" />
     <Compile Include="Scenes\Scene01.cs" />
     <Compile Include="Scenes\SC000-Various.cs" />
     <Compile Include="Scenes\SC000-TestTran.cs" />

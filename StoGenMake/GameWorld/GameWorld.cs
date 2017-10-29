@@ -67,6 +67,7 @@ namespace StoGenMake
             this.SceneList.Add(new SC002_IlyaKuvshinov());
             this.SceneList.Add(new SC001_FoolsArt());
             this.SceneList.Add(new SC007_CleMasahiro());
+            this.SceneList.Add(new SC009_Hews_Hack());
             this.SceneList.Add(new A001_Woman());
 
             this.PersoneList.Add(new LADY_011017());
