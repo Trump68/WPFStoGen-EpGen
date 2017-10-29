@@ -34,7 +34,7 @@ namespace StoGenMake.Scenes
 
             gr = "artist Hews Hack PNG";
             path = @"Z:\ARTIST\Hews Hack\DBR\";
-            for (int i = 1; i <= 18; i++)
+            for (int i = 1; i <= 20; i++)
             {
                 if (i == 9) continue;
                 src = $"Hews_Hack_BodyScene_PNG_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";

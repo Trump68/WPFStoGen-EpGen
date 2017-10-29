@@ -180,6 +180,12 @@ namespace StoGenMake.Scenes
                 AddToGlobalImage(src, fn, path, new DifData() { s = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
+            for (int i = 1; i <= 1; i++)
+            {
+                src = $"Ghettoyouth_Head_PNG_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
+                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
+            }
             #endregion
 
         }

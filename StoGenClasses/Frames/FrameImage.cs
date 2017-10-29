@@ -644,28 +644,28 @@ namespace StoGen.Classes
                 {
                     foreach (var item in this.Pics)
                     {
-                        item.Props.X++;
+                        item.Props.X = item.Props.X + 5;
                     }
                 }
                 else if (e == Key.Left)
                 {
                     foreach (var item in this.Pics)
                     {
-                        item.Props.X--;
+                        item.Props.X= item.Props.X-5;
                     }
                 }
                 else if (e == Key.Up)
                 {
                     foreach (var item in this.Pics)
                     {
-                        item.Props.Y--;
+                        item.Props.Y = item.Props.Y - 5;
                     }
                 }
                 else if (e == Key.Down)
                 {
                     foreach (var item in this.Pics)
                     {
-                        item.Props.Y++;
+                        item.Props.Y = item.Props.Y + 5;
                     }
                 }
                 this.Repaint();

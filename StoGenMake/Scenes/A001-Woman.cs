@@ -20,7 +20,7 @@ namespace StoGenMake.Scenes
 
 
         protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
-        {            
+        {
             string gr;
             string src;
 
@@ -274,7 +274,7 @@ namespace StoGenMake.Scenes
             });
 
 
-            AddLocal(new string[] { gr }, new DifData[] {               
+            AddLocal(new string[] { gr }, new DifData[] {
             new DifData(src) { X = -5, Y = 60, s = 280, Rot=20, Flip=1},
             new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
             new DifData("Hews_Hack_BodyScene_PNG_001") { X = 40, Y = 165, s = 900, Flip=0 },
@@ -358,7 +358,7 @@ namespace StoGenMake.Scenes
             AddLocal(new string[] { gr }, new DifData[] {
             new DifData(src) {X = 100, Y = -70, s = 290, Rot=-15, Flip=0},
             new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
-            new DifData("Hews_Hack_BodyScene_PNG_014") { X = 5, Y = 145, s = 620, Flip=0 },            
+            new DifData("Hews_Hack_BodyScene_PNG_014") { X = 5, Y = 145, s = 620, Flip=0 },
             });
 
             AddLocal(new string[] { gr }, new DifData[] {
@@ -379,22 +379,184 @@ namespace StoGenMake.Scenes
             new DifData("Hews_Hack_BodyScene_PNG_018") { X = 135, Y = 5, s = 955, Flip=0 },
             });
 
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Hews_Hack_BodyScene_PNG_019") { X = 5, Y = 135, s = 625, Flip=0 },
+            new DifData(src) {X = 295, Y = -35, s = 235, Rot=10, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Hews_Hack_BodyScene_PNG_019") { X = 5, Y = 135, s = 625, Flip=0 },
+            new DifData("Hews_Hack_BodyScene_PNG_020") { X = 197, Y = 566, s = 280, Flip=0 },
+            new DifData(src) {X = 295, Y = -35, s = 235, Rot=10, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_001") { X = -3, Y = -4, s = 785, Flip=0 },
+            new DifData(src) {X = 285, Y = -50, s = 160, Rot=-10, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_002") { X = -3, Y = -4, s = 1050, Flip=0 },
+            new DifData(src) {X = 440, Y = 30, s = 215, Rot=-10, Flip=1},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001", src),
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_003") { X = 2, Y = 126, s = 700, Flip=0 },
+            new DifData(src) { X = 110, Y = -40, s = 235, Rot=-20, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001",src),
+            });
+
             #endregion
 
+            #endregion
+
+            #region Lotta (Ghettoyouth_001)
+            gr = "Lotta (Ghettoyouth_001)";
+            src = null;
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_004") {  },
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001") { X = 410, Y = 215, s = 55, Rot=-10, Flip=0},
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_005") { s = 765, Flip=0 },
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001") { X = 347, Y = 189, s = 29, Rot=47, Flip=1},
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_003") { X = 2, Y = 126, s = 700, Flip=0 },
+            new DifData("Ghettoyouth_Head_PNG_001") { X = 90, Y = -40, s = 255, Flip=0},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001") { X = 255, Y = 130, s = 35, Rot=15, Flip=0},
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_006") { s = 765, Flip=0 },
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001") { X = 441, Y = 191, s = 34, Rot=42, Flip=1},
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_007") { s = 765, Flip=0 },
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001") { X = 195, Y = 201, s = 27, Rot=34, Flip=0},
+            });
+            #endregion
+
+            #region Gretta (Ghettoyouth_002)
+            gr = "Gretta (Ghettoyouth_002)";
+            src = null;
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_008") { s = 765, Flip=0 },
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001") { X = 482, Y = 274, s = 59, Rot=42, Flip=0},
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_009") { s = 765, Flip=0 },
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001") { X = 172, Y = 174, s = 36, Rot=11, Flip=0},
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_010") { s = 765, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_011") { s = 765, Flip=0 },
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001") { X = 240, Y = 187, s = 34, Rot=33, Flip=1},
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_012") { s = 765, Flip=0 },
+            });
+            #endregion
+
+            #region Loretta (Ghettoyouth_003)
+            gr = "Loretta (Ghettoyouth_003)";
+            src = null;
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_013") { s = 765, Flip=0 },
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_014") {  },
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001") { X = 149, Y = 190, s = 28, Rot=41, Flip=0},
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_015") {  },
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001") { X = 489, Y = 205, s = 33, Rot=11, Flip=0},
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_016") {  },
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001") { X = 154, Y = 146, s = 21, Rot=28, Flip=0},
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("Ghettoyouth_BodyScene_017") {  },
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001") { X = 437, Y = 182, s = 26, Rot=54, Flip=1},
+            });
+
+
+            AddLocal(new string[] { gr }, new DifData[] { new DifData("Ghettoyouth_BodyScene_018") });
+            AddLocal(new string[] { gr }, new DifData[] { new DifData("Ghettoyouth_BodyScene_019") });
             #endregion
 
             #region Nadya (Hews_Hack_017)
             gr = "Nadya Hews_Hack_017";
             src = "Hews_Hack_017";
-            AddLocal(new string[] { gr }, new DifData[] {       
+            AddLocal(new string[] { gr }, new DifData[] {
             new DifData("Hews_Hack_BodyScene_PNG_017") { X = 135, Y = 5, s = 955, Flip=0 },
             new DifData("FullsArt_NetorareTsuma_LadyMouth_001"){ X = 359, Y = 200, s = 31, Rot=-5, Flip=0},
             });
             #endregion
+
+            #region Olya (OyariAshito_001)
+            gr = "Olya_OyariAshito_001";
+            src = "Olya_OyariAshito_001";
+
+            AddGlobal(new string[] { null }, new DifData[] {
+            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_002") {  Flip=1},
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001","OyariAshito_KawaikuteShikatagaNai2_PNG_002"){ X = 360, Y = 495, s = 55, Rot=30, Flip=1},
+            });
+
+            AddGlobal(new string[] { null }, new DifData[] {
+            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_003")  { X = 0, Y = -5, s = 850, Flip=0 },
+            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_001","OyariAshito_KawaikuteShikatagaNai2_PNG_003") { X = 1, Y = 4, s = 737, Flip=0 },
+            });
+
+            AddGlobal(new string[] { null }, new DifData[] {
+            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_003")  { X = 0, Y = -5, s = 850, Flip=0 },
+            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_002","OyariAshito_KawaikuteShikatagaNai2_PNG_003") {X = -31, Y = -5, s = 170, Flip=1},
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_003") { X = 0, Y = -5, s = 850, Flip=0 },
+            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_002","OyariAshito_KawaikuteShikatagaNai2_PNG_003") ,
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001","OyariAshito_KawaikuteShikatagaNai2_PNG_002"){ },
+            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_001","OyariAshito_KawaikuteShikatagaNai2_PNG_003") ,
+            new DifData("FullsArt_NetorareTsuma_EvilManBody_001") {X = 155, Y = 300, s = 320, Flip=0} ,
+            });
+
+            AddLocal(new string[] { gr }, new DifData[] {
+            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_003") { X = 0, Y = -5, s = 1500, Flip=0 },
+            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_002","OyariAshito_KawaikuteShikatagaNai2_PNG_003") ,
+            new DifData("FullsArt_NetorareTsuma_LadyMouth_001","OyariAshito_KawaikuteShikatagaNai2_PNG_002"){ },
+            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_001","OyariAshito_KawaikuteShikatagaNai2_PNG_003") ,
+            new DifData("FullsArt_NetorareTsuma_EvilManBody_001") {X = 285, Y = 480, s = 580, Flip=0 } ,
+            
+            });
+
+            #endregion
         }
         protected override void MakeCadres(string cadregroup)
         {
-            cadregroup = "Mary (CleMasahiro CL-orz 51 007 Head)";
+            //cadregroup = "Mary (CleMasahiro CL-orz 51 007 Head)";
+            cadregroup = "Olya_OyariAshito_001";
             base.MakeCadres(cadregroup);
             this.Cadres.Reverse();
         }
