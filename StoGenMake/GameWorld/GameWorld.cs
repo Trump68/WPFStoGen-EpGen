@@ -245,8 +245,7 @@ namespace StoGenMake
 
         public DifData() { }
         public DifData(string name):this() { Name = name; }
-        public DifData(string name, string parent) : this() { Name = name; Parent = parent; }
-        
+        public DifData(string name, string parent) : this() { Name = name; Parent = parent; }        
         public DifData(AlignData item) : this()
         {
             this.Name = item.Name;
@@ -262,7 +261,6 @@ namespace StoGenMake
             }
 
         }
-
         public DifData(seIm item) : this()
         {
             this.Name = item.Name;
@@ -274,12 +272,10 @@ namespace StoGenMake
             this.Rot = item.Rot;
             this.Flip = item.Flip;
         }
-
         public DifData(string name, string parent, string tag) : this(name, parent)
         {
             this.Tag = tag;
         }
-
         public string Tag { set; get; }
         public string Name { set; get; }
         public string Parent { set; get; }
@@ -297,6 +293,15 @@ namespace StoGenMake
                 sX = value;
             }
             get { return sX; }
+        }
+
+        internal void AssingFrom(DifData value)
+        {
+            if (value.Flip.HasValue) this.Flip = value.Flip;
+            if (value.X.HasValue) this.X = value.X;
+            if (value.Y.HasValue) this.Y = value.Y;
+            if (value.Rot.HasValue) this.Rot = value.Rot;
+            if (value.s.HasValue) this.s = value.s;
         }
     }
     public class CadreAlignPack

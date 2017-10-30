@@ -516,40 +516,16 @@ namespace StoGenMake.Scenes
             #endregion
 
             #region Olya (OyariAshito_001)
-            gr = "Olya_OyariAshito_001";
-            src = "Olya_OyariAshito_001";
+            gr = src = SC010_OyariAshito.Lady_Olga.Name;
+            List<DifData> lady;
 
-            AddGlobal(new string[] { null }, new DifData[] {
-            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_002") {  Flip=1},
-            new DifData("FullsArt_NetorareTsuma_LadyMouth_001","OyariAshito_KawaikuteShikatagaNai2_PNG_002"){ X = 360, Y = 495, s = 55, Rot=30, Flip=1},
-            });
+            lady = SC010_OyariAshito.Lady_Olga.Get(new DifData() { X = 0, Y = -5, s = 850, Flip = 0 });
+            lady.Add(new DifData("FullsArt_NetorareTsuma_EvilManBody_001") { X = 150, Y = 300, s = 345, Flip = 0 });
+            AddLocal(new string[] { gr }, lady.ToArray());
 
-            AddGlobal(new string[] { null }, new DifData[] {
-            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_003")  { X = 0, Y = -5, s = 850, Flip=0 },
-            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_001","OyariAshito_KawaikuteShikatagaNai2_PNG_003") { X = 1, Y = 4, s = 737, Flip=0 },
-            });
-
-            AddGlobal(new string[] { null }, new DifData[] {
-            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_003")  { X = 0, Y = -5, s = 850, Flip=0 },
-            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_002","OyariAshito_KawaikuteShikatagaNai2_PNG_003") {X = -31, Y = -5, s = 170, Flip=1},
-            });
-
-            AddLocal(new string[] { gr }, new DifData[] {
-            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_003") { X = 0, Y = -5, s = 850, Flip=0 },
-            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_002","OyariAshito_KawaikuteShikatagaNai2_PNG_003") ,
-            new DifData("FullsArt_NetorareTsuma_LadyMouth_001","OyariAshito_KawaikuteShikatagaNai2_PNG_002"){ },
-            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_001","OyariAshito_KawaikuteShikatagaNai2_PNG_003") ,
-            new DifData("FullsArt_NetorareTsuma_EvilManBody_001") {X = 155, Y = 300, s = 320, Flip=0} ,
-            });
-
-            AddLocal(new string[] { gr }, new DifData[] {
-            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_003") { X = 0, Y = -5, s = 1500, Flip=0 },
-            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_002","OyariAshito_KawaikuteShikatagaNai2_PNG_003") ,
-            new DifData("FullsArt_NetorareTsuma_LadyMouth_001","OyariAshito_KawaikuteShikatagaNai2_PNG_002"){ },
-            new DifData("OyariAshito_KawaikuteShikatagaNai2_PNG_001","OyariAshito_KawaikuteShikatagaNai2_PNG_003") ,
-            new DifData("FullsArt_NetorareTsuma_EvilManBody_001") {X = 285, Y = 480, s = 580, Flip=0 } ,
-            
-            });
+            lady = SC010_OyariAshito.Lady_Olga.Get(new DifData() { X = 0, Y = -5, s = 1500, Flip = 0 });
+            lady.Add(new DifData("FullsArt_NetorareTsuma_EvilManBody_001") { X = 280, Y = 480, s = 625, Flip = 0 });
+            AddLocal(new string[] { gr }, lady.ToArray());
 
             #endregion
         }

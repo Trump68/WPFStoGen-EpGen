@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:StoGenWPF"
         mc:Ignorable="d"
         Title="MainWindow" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black" Left="0" Top="0" KeyDown="Window_KeyDown" d:DesignHeight="869" Width="992">
-    <Grid Name="MainGrid"  Margin="0,5,0,-5">
+    <Grid Name="MainGrid" ClipToBounds="False" Margin="0,0,0,0">
         <!--<Canvas Name="CanvasControl" ClipToBounds="True">-->
-        <Image x:Name="Picture1" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        <Image x:Name="Picture2" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+        <Image x:Name="Picture1" HorizontalAlignment="Left" Height="5000" VerticalAlignment="Top" Width="5000"/>
+        <Image x:Name="Picture2" HorizontalAlignment="Left" Height="5000" VerticalAlignment="Top" Width="5000"/>
         <Image x:Name="Picture3" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
         <Image x:Name="Picture4" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
         <Image x:Name="Picture5" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>

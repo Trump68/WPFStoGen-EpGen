@@ -434,6 +434,7 @@ namespace StoGen.Classes
                     Projector.PicContainer.PicList[(int)pi.Level].Stretch = Stretch.Fill;
             }
             Projector.PicContainer.PicList[(int)pi.Level].Width = pi.SizeX;
+            Projector.PicContainer.PicList[(int)pi.Level].ClipToBounds = false;
             Projector.PicContainer.PicList[(int)pi.Level].Height = pi.SizeY;
         }
         private void RefreshImage(PictureSourceProps sourceProps)

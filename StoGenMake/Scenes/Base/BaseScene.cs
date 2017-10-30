@@ -374,7 +374,7 @@ namespace StoGenMake.Scenes.Base
             GameWorld.ImageStorage.Add(newIAV);
         }
         protected void AddLocal(string[] marks, DifData[] difs) { Add(marks, difs, false); }
-        protected void AddGlobal(string[] marks, DifData[] difs)
+        public void AddGlobal(string[] marks, DifData[] difs)
         { Add(marks, difs, true); }
         private void Add(
             string[] marks,
