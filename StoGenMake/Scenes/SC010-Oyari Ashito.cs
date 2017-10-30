@@ -94,7 +94,8 @@ namespace StoGenMake.Scenes
             this.Lips = new DifData(lips01);
         }
         public override List<DifData> Get(DifData delta)
-        {            
+        {
+            
             List<DifData> result = base.Get(delta);
             if (this.Body.Name == body01)
             {
@@ -197,28 +198,36 @@ namespace StoGenMake.Scenes
     
     public virtual List<DifData> Get(DifData delta)
     {
-        
+            this.Body.Clear();
+            this.Face.Clear();
+            this.Lips.Clear();
             List<DifData> result = new List<DifData>();
             if (Body != null)
             {
-                Body.AssingFrom(delta);
-                result.Add(Body);
+                DifData newbody = new DifData();
+                newbody.AssingFrom(Body,true);
+                newbody.AssingFrom(delta);
+                result.Add(newbody);
             }
             if (Face != null)
             {
+                DifData newface = new DifData();
+                newface.AssingFrom(Face, true);
                 if (Body != null)
-                    Face.Parent = Body.Name;
+                    newface.Parent = Body.Name;
                 else
-                    Face.AssingFrom(delta);
-                result.Add(Face);
+                    newface.AssingFrom(delta);
+                result.Add(newface);
             }
             if (Lips != null)
             {
+                DifData newlips = new DifData();
+                newlips.AssingFrom(Lips, true);
                 if (Face != null)
-                    Lips.Parent = Face.Name;
+                    newlips.Parent = Face.Name;
                 else if (Body != null)
-                    Lips.Parent = Face.Name;
-                result.Add(Lips);
+                    newlips.Parent = Body.Name;
+                result.Add(newlips);
             }
         return result;
     }

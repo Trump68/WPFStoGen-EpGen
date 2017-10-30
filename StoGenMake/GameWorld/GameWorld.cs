@@ -62,6 +62,7 @@ namespace StoGenMake
             GameWorldDataLoader.LoadManBodyList(this.CommonImageList);
             GameWorldDataLoader.LoadManHeadList(this.CommonImageList);
 
+            this.SceneList.Add(new AUX01_Accesuar());
             this.SceneList.Add(new SC000_Various());
             this.SceneList.Add(new SC000_TestTran());
             this.SceneList.Add(new SC002_IlyaKuvshinov());
@@ -295,13 +296,27 @@ namespace StoGenMake
             get { return sX; }
         }
 
-        internal void AssingFrom(DifData value)
+        internal void AssingFrom(DifData value, bool withnames=false)
         {
             if (value.Flip.HasValue) this.Flip = value.Flip;
             if (value.X.HasValue) this.X = value.X;
             if (value.Y.HasValue) this.Y = value.Y;
             if (value.Rot.HasValue) this.Rot = value.Rot;
             if (value.s.HasValue) this.s = value.s;
+            if (withnames)
+            {
+                this.Name = value.Name;
+                this.Parent = value.Parent;
+            }
+        }
+
+        internal void Clear()
+        {
+            this.Flip = null;
+            this.X = null;
+            this.Y = null;
+            this.Rot = null;
+            this.s = null;
         }
     }
     public class CadreAlignPack
