@@ -24,11 +24,12 @@ namespace StoGenMake.Scenes.Base
         {
             base.MakeCadres(cadregroup);
         }
+        public static string Path = @"z:\ARTIST\FoolsArt (Homare)\Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~\";
         protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
         {
             //#region Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~
             string path = null;
-            path = @"z:\ARTIST\FoolsArt (Homare)\Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~\";
+            path = Path; 
             //path = @"D:\Temp\";
             string src = null;
             string fn = null;
@@ -88,10 +89,7 @@ namespace StoGenMake.Scenes.Base
             string gr = null;
 
             // Evil Body
-            src = $"FullsArt_NetorareTsuma_EvilManBody_001"; fn = $"EVIL_BODY_01.png";
-            AddToGlobalImage(src, fn, path, new DifData() { s = 500 });
-            AddLocal(new string[] { "All evils", $"Evil b 01" }, new DifData[] { new DifData(src) });
-
+           
             src = $"FullsArt_NetorareTsuma_EvilManBody_002"; fn = $"EVIL_BODY_02.png";
             AddToGlobalImage(src, fn, path, new DifData() { s = 500 });
             AddLocal(new string[] { "All evils", $"Evil b 02" }, new DifData[] { new DifData(src) });
@@ -152,8 +150,6 @@ namespace StoGenMake.Scenes.Base
             string gr = null;
         //Z:\ARTIST\FoolsArt(Homare)\Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~\MOUTH_01.png
        // Mouth
-       src = $"FullsArt_NetorareTsuma_LadyMouth_001"; fn = $"MOUTH_01.png"; AddToGlobalImage(src, fn, path, new DifData() { s = 100 });
-            AddLocal(new string[] { "All moutn", $"Mouth 01" }, new DifData[] { new DifData(src) });
 
             src = $"FullsArt_NetorareTsuma_LadyMouth_002"; fn = $"MOUTH_02.png"; AddToGlobalImage(src, fn, path, new DifData() { s = 100 });
             AddLocal(new string[] { "All moutn", $"Mouth 02" }, new DifData[] { new DifData(src) });

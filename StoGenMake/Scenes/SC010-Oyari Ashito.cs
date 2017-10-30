@@ -69,7 +69,7 @@ namespace StoGenMake.Scenes
         private static string face01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_002";
         private static string body01 = "OyariAshito_KawaikuteShikatagaNai2_001";
         private static string part01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_001"; // hand of body1
-        private static string lips01 = "FullsArt_NetorareTsuma_LadyMouth_001";
+        private static string lips01 = Mouth.Sensual_001;
         public Lady_Olga(BaseScene scene): base(scene)
         {
             this.Name = "Olya_OyariAshito_001";

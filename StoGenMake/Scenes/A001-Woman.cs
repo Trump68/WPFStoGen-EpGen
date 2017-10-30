@@ -520,11 +520,11 @@ namespace StoGenMake.Scenes
             List<DifData> lady;
 
             lady = SC010_OyariAshito.Lady_Olga.Get(new DifData() { X = 0, Y = -5, s = 850, Flip = 0 });
-            lady.Add(new DifData("FullsArt_NetorareTsuma_EvilManBody_001") { X = 150, Y = 300, s = 345, Flip = 0 });
+            lady.Add(new DifData(Devil.ManOld_001) { X = 150, Y = 300, s = 345, Flip = 0 });
             AddLocal(new string[] { gr }, lady.ToArray());
 
             lady = SC010_OyariAshito.Lady_Olga.Get(new DifData() { X = 0, Y = -5, s = 1500, Flip = 0 });
-            lady.Add(new DifData("FullsArt_NetorareTsuma_EvilManBody_001") { X = 280, Y = 480, s = 625, Flip = 0 });
+            lady.Add(new DifData(Devil.ManOld_001) { X = 280, Y = 480, s = 625, Flip = 0 });
             AddLocal(new string[] { gr }, lady.ToArray());
 
             #endregion

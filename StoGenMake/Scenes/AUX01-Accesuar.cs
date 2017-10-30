@@ -8,6 +8,14 @@ using System.Threading.Tasks;
 
 namespace StoGenMake.Scenes
 {
+    public static class Mouth
+    {
+        public static string Sensual_001 = $"FullsArt_NetorareTsuma_LadyMouth_001";
+    }
+    public static class Devil
+    {
+        public static string ManOld_001 = "FullsArt_NetorareTsuma_EvilManBody_001";        
+    }
     public class AUX01_Accesuar: BaseScene
     {
         public AUX01_Accesuar() : base()
@@ -25,6 +33,7 @@ namespace StoGenMake.Scenes
             string gr;
             string src;
             string path;
+            string fn;
 
             #region Flowers
             gr = src = "Flowers";
@@ -45,6 +54,14 @@ namespace StoGenMake.Scenes
                 new DifData($"FullsArt_NetorareTsuma_PosingLegsParted_003"),
               });
             #endregion
+
+            #region Mouth
+            AddToGlobalImage(Mouth.Sensual_001, "MOUTH_01.png", SC001_FoolsArt.Path, new DifData() { s = 100 });
+            #endregion
+            #region Devils
+            AddToGlobalImage(Devil.ManOld_001, "EVIL_BODY_01.png", SC001_FoolsArt.Path, new DifData() { s = 500 });
+            #endregion
+
         }
-        }
+    }
     }
