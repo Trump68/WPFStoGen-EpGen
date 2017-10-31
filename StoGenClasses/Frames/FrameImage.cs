@@ -21,7 +21,7 @@ namespace StoGen.Classes
     public class FrameImage : Frame, IDisposable
     {
 
-       
+
         public static System.Threading.Timer timer;
 
         public static TransitionManager tranManager = new TransitionManager();
@@ -149,7 +149,7 @@ namespace StoGen.Classes
             if (timer != null) timer.Change(TimerPeriod, TimerPeriod);
         }
 
- 
+
         public List<PictureItem> Pics { get; set; }
         public bool AutoShift { get; set; }
 
@@ -169,16 +169,16 @@ namespace StoGen.Classes
             Projector.PicContainer.OwnerCanvas.Children.Remove(it);
             Projector.PicContainer.PicList.RemoveAt(index);
             Image im = new Image();
-                im.Name = $"Picture{index}";
-                im.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                im.VerticalAlignment = VerticalAlignment.Top;
-                im.Width = 0;
-                im.Height = 0;
+            im.Name = $"Picture{index}";
+            im.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            im.VerticalAlignment = VerticalAlignment.Top;
+            im.Width = 0;
+            im.Height = 0;
             im.ClipToBounds = false;
             im.Margin = new Thickness(0, 0, 0, 0);
-           
-                Projector.PicContainer.OwnerCanvas.Children.Insert(index,im);
-                Projector.PicContainer.PicList.Insert(index,im);
+
+            Projector.PicContainer.OwnerCanvas.Children.Insert(index, im);
+            Projector.PicContainer.PicList.Insert(index, im);
         }
         public override Cadre Repaint()
         {
@@ -186,7 +186,7 @@ namespace StoGen.Classes
             {
                 RecreateImage(i);
             }
- 
+
             timer.Change(Timeout.Infinite, Timeout.Infinite);
             Projector.NumberText.Text = $"{this.Owner.Owner.Cadres.IndexOf(this.Owner) + 1}/{this.Owner.Owner.Cadres.Count}";
             Projector.Owner.Background = new SolidColorBrush(Colors.Black);
@@ -336,7 +336,7 @@ namespace StoGen.Classes
 
                 BitmapImage imageSource = new BitmapImage(new Uri(fn));
                 Projector.PicContainer.PicList[(int)pi.Props.Level].Source = imageSource;
-                
+
                 #region Opacity
                 // Opacity
                 if (pi.Props.Opacity > -1) Projector.PicContainer.PicList[(int)pi.Props.Level].Opacity = (pi.Props.Opacity / 100.0);
@@ -370,9 +370,9 @@ namespace StoGen.Classes
                 #endregion
 
                 #region Size
-                DoResize(pi.Props, imageSource.PixelWidth, imageSource.PixelHeight);               
+                DoResize(pi.Props, imageSource.PixelWidth, imageSource.PixelHeight);
                 #endregion
-                
+
                 #region Clip
                 // Clip
                 if (pi.Props.ClipX > 0 || pi.Props.ClipY > 0 || pi.Props.ClipW > 0 || pi.Props.ClipH > 0)
@@ -397,7 +397,7 @@ namespace StoGen.Classes
                 }
                 #endregion
 
-                Projector.PicContainer.PicList[(int)pi.Props.Level].Tag = pi.Props;             
+                Projector.PicContainer.PicList[(int)pi.Props.Level].Tag = pi.Props;
             }
 
 
@@ -406,14 +406,14 @@ namespace StoGen.Classes
             for (int j = 0; j < Projector.PicContainer.PicList.Count; j++)
             {
                 if (Projector.PicContainer.PicList[j].Tag == null)
-                    Projector.PicContainer.PicList[j].Visibility = Visibility.Hidden;            
+                    Projector.PicContainer.PicList[j].Visibility = Visibility.Hidden;
             }
 
             DoTransformAll();
             if (!runClip)
                 timer.Change(TimerPeriod, TimerPeriod);
             FrameImage.TimeStarted = DateTime.Now;
-                        
+
             return this.Owner;
 
         }
@@ -426,8 +426,8 @@ namespace StoGen.Classes
                 Projector.PicContainer.PicList[(int)pi.Level].Stretch = Stretch.Uniform;
             }
             else if (pi.SizeX == -2 || pi.SizeY == -2)
-            {                
-                pi.SizeX = 1600;                
+            {
+                pi.SizeX = 1600;
                 pi.SizeY = 900;
                 Projector.PicContainer.PicList[(int)pi.Level].Stretch = Stretch.Uniform;
             }
@@ -441,88 +441,88 @@ namespace StoGen.Classes
             Projector.PicContainer.PicList[(int)pi.Level].Height = pi.SizeY;
         }
         private void RefreshImage(PictureSourceProps sourceProps)
-        {            
+        {
             var current = Projector.PicContainer.PicList[(int)sourceProps.Level];
-                TransformGroup tg = current.RenderTransform as TransformGroup;
-                if (tg == null)
-                    tg = new TransformGroup();
+            TransformGroup tg = current.RenderTransform as TransformGroup;
+            if (tg == null)
+                tg = new TransformGroup();
 
-                #region Move
+            #region Move
 
-                DoLocation(sourceProps, tg);
+            DoLocation(sourceProps, tg);
 
-                #endregion
-
-                #region Rotate
-                DoRotateFlip(sourceProps, tg);
-                #endregion
-
-                #region Parent rotation
-                if (!string.IsNullOrEmpty(sourceProps.ParRot))
-                {
-                    string[] vals = sourceProps.ParRot.Split(',');
-
-                    foreach (var item in vals)
-                    {
-                        string[] vals2 = item.Split('@');
-                        string parname = vals2[0];
-                        int parvalue = Convert.ToInt32(vals2[1]);
-                        var parent = Pics.Where(x => x.Props.Name == parname).FirstOrDefault();
-                        if (parent != null)
-                        {
-                            var ctrl = Projector.PicContainer.PicList[(int)parent.Props.Level];
-                            var controlCenter = new System.Windows.Point(
-                                   (ctrl.Width / 2) + parent.Props.X,
-                                   (ctrl.Height / 2) + parent.Props.Y);
-
-                            var sss = ctrl.PointToScreen(controlCenter);
-
-                            var childControlCenter = current.PointFromScreen(sss);
-                            var rTransform = new RotateTransform();
-                            rTransform.Angle = parvalue;
-                            rTransform.CenterX = childControlCenter.X;
-                            rTransform.CenterY = childControlCenter.Y;
-                            tg.Children.Add(rTransform);
-                        }
-                    }
-                    //sourceProps.ParRot = null;
-                }
-                #endregion
-
-                #region Parent flip
-                if (!string.IsNullOrEmpty(sourceProps.ParFlip))
-                {
-                    string[] vals = sourceProps.ParFlip.Split(',');
-                    foreach (var item in vals)
-                    {
-                        string parname = item;
-                        var parent = Pics.Where(x => x.Props.Name == parname).FirstOrDefault();
-                        if (parent != null)
-                        {
-                            var ctrl = Projector.PicContainer.PicList[(int)parent.Props.Level];
-                            var controlCenter = new System.Windows.Point(
-                                   (ctrl.Width / 2) + parent.Props.X,
-                                   (ctrl.Height / 2) + parent.Props.Y);
-                            var sss = ctrl.PointToScreen(controlCenter);
-
-                            var childControlCenter = current.PointFromScreen(sss);
-
-                            ScaleTransform flipTrans = new ScaleTransform();
-                            flipTrans.CenterX = childControlCenter.X;
-                            flipTrans.CenterY = childControlCenter.Y;
-                            flipTrans.ScaleX = -1;
-                            tg.Children.Add(flipTrans);
-                        }
-                    }
-                    sourceProps.ParFlip = null;
-                }
             #endregion
 
-            current.RenderTransform = tg;            
+            #region Rotate
+            DoRotateFlip(sourceProps, tg);
+            #endregion
+
+            #region Parent rotation
+            if (!string.IsNullOrEmpty(sourceProps.ParRot))
+            {
+                string[] vals = sourceProps.ParRot.Split(',');
+
+                foreach (var item in vals)
+                {
+                    string[] vals2 = item.Split('@');
+                    string parname = vals2[0];
+                    int parvalue = Convert.ToInt32(vals2[1]);
+                    var parent = Pics.Where(x => x.Props.Name == parname).FirstOrDefault();
+                    if (parent != null)
+                    {
+                        var ctrl = Projector.PicContainer.PicList[(int)parent.Props.Level];
+                        var controlCenter = new System.Windows.Point(
+                               (ctrl.Width / 2) + parent.Props.X,
+                               (ctrl.Height / 2) + parent.Props.Y);
+
+                        var sss = ctrl.PointToScreen(controlCenter);
+
+                        var childControlCenter = current.PointFromScreen(sss);
+                        var rTransform = new RotateTransform();
+                        rTransform.Angle = parvalue;
+                        rTransform.CenterX = childControlCenter.X;
+                        rTransform.CenterY = childControlCenter.Y;
+                        tg.Children.Add(rTransform);
+                    }
+                }
+                //sourceProps.ParRot = null;
+            }
+            #endregion
+
+            #region Parent flip
+            if (!string.IsNullOrEmpty(sourceProps.ParFlip))
+            {
+                string[] vals = sourceProps.ParFlip.Split(',');
+                foreach (var item in vals)
+                {
+                    string parname = item;
+                    var parent = Pics.Where(x => x.Props.Name == parname).FirstOrDefault();
+                    if (parent != null)
+                    {
+                        var ctrl = Projector.PicContainer.PicList[(int)parent.Props.Level];
+                        var controlCenter = new System.Windows.Point(
+                               (ctrl.Width / 2) + parent.Props.X,
+                               (ctrl.Height / 2) + parent.Props.Y);
+                        var sss = ctrl.PointToScreen(controlCenter);
+
+                        var childControlCenter = current.PointFromScreen(sss);
+
+                        ScaleTransform flipTrans = new ScaleTransform();
+                        flipTrans.CenterX = childControlCenter.X;
+                        flipTrans.CenterY = childControlCenter.Y;
+                        flipTrans.ScaleX = -1;
+                        tg.Children.Add(flipTrans);
+                    }
+                }
+                sourceProps.ParFlip = null;
+            }
+            #endregion
+
+            current.RenderTransform = tg;
         }
         private void RecreateAndRefreshImage(PictureSourceProps sourceProps)
         {
-            RecreateImage((int)sourceProps.Level);            
+            RecreateImage((int)sourceProps.Level);
             BitmapImage imageSource = new BitmapImage(new Uri(sourceProps.FileName));
             Projector.PicContainer.PicList[(int)sourceProps.Level].Source = imageSource;
             DoResize(sourceProps, imageSource.PixelWidth, imageSource.PixelHeight);
@@ -531,7 +531,7 @@ namespace StoGen.Classes
         private void DoRotateFlip(PictureSourceProps pi, TransformGroup tg)
         {
             var current = Projector.PicContainer.PicList[(int)pi.Level];
-            var controlCenter = new System.Windows.Point(current.Width / 2, current.Height / 2);            
+            var controlCenter = new System.Windows.Point(current.Width / 2, current.Height / 2);
             if (pi.Rotate != 0)
             {
                 var roateTransform = new RotateTransform();
@@ -555,7 +555,7 @@ namespace StoGen.Classes
                     flipTrans.ScaleY = -1;
                 }
                 tg.Children.Add(flipTrans);
-            }            
+            }
         }
         private void DoLocation(PictureSourceProps pi, TransformGroup tg)
         {
@@ -580,18 +580,18 @@ namespace StoGen.Classes
             #endregion
         }
         private void DoTransformAll()
-        {            
+        {
             for (int j = 0; j < Projector.PicContainer.PicList.Count; j++)
-            {             
-                var current = Projector.PicContainer.PicList[j];               
+            {
+                var current = Projector.PicContainer.PicList[j];
                 if (current.Tag != null)
-                {                    
+                {
                     PictureSourceProps sourceProps = current.Tag as PictureSourceProps;
-                    RefreshImage(sourceProps);                    
+                    RefreshImage(sourceProps);
                 }
-            }           
+            }
         }
- 
+
         private void Clip_MediaOpened(object sender, System.Windows.RoutedEventArgs e)
         {
             SetClip();
@@ -637,7 +637,7 @@ namespace StoGen.Classes
         private static DateTime TimeStarted;
         private static int IsLoop = 0;
         private static bool NowReverse = false;
-        
+
 
         internal void ProcessKey(Key e)
         {
@@ -656,7 +656,7 @@ namespace StoGen.Classes
                 {
                     foreach (var item in this.Pics)
                     {
-                        item.Props.X= item.Props.X- step;
+                        item.Props.X = item.Props.X - step;
                     }
                 }
                 else if (e == Key.Up)
@@ -675,19 +675,26 @@ namespace StoGen.Classes
                 }
                 else if (e == Key.OemPlus)
                 {
-                    foreach (var item in this.Pics)
-                    {
-                        item.Props.SizeX = (int)(item.Props.SizeX * (1+stepZoom));
-                    }
+                    Projector.PicContainer.OwnerViewbox.Width =
+                        Projector.PicContainer.OwnerViewbox.Height =
+                        (int)(Projector.PicContainer.OwnerViewbox.Height * (1 + stepZoom));
+                    //foreach (var item in this.Pics)
+                    //{
+                    //    item.Props.SizeX = (int)(item.Props.SizeX * (1+stepZoom));
+                    //}
                 }
                 else if (e == Key.OemMinus)
                 {
-                    foreach (var item in this.Pics)
-                    {
-                        item.Props.SizeX = (int)(item.Props.SizeX / (1 + stepZoom));
-                    }
+                    Projector.PicContainer.OwnerViewbox.Width =
+    Projector.PicContainer.OwnerViewbox.Height =
+    (int)(Projector.PicContainer.OwnerViewbox.Height / (1 + stepZoom));
+
+                    //foreach (var item in this.Pics)
+                    //{
+                    //    item.Props.SizeX = (int)(item.Props.SizeX / (1 + stepZoom));
+                    //}
                 }
-                this.Repaint();                
+                this.Repaint();
                 return;
             }
             bool increase = false;
@@ -869,7 +876,7 @@ namespace StoGen.Classes
                 if (increase)
                     pi.Props.ClipX += Projector.ImageCadre.PropStep;
                 else
-                    pi.Props.ClipX -= Projector.ImageCadre.PropStep;               
+                    pi.Props.ClipX -= Projector.ImageCadre.PropStep;
             }
             else if (Projector.ImageCadre.PropIndex == 6)
             {
@@ -979,5 +986,5 @@ namespace StoGen.Classes
 
 
     }
-    
+
 }

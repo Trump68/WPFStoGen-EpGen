@@ -523,7 +523,7 @@ namespace StoGenMake.Scenes
             cdata.Add(new DifData(Devil.ManOld_001) { X = 150, Y = 300, s = 345, Flip = 0 });
             AddLocal(gr, cdata);
 
-            cdata = SC010_OyariAshito.Lady_Olga.Get(new DifData() {s=2300});
+            cdata = SC010_OyariAshito.Lady_Olga.Get(new DifData() {X=300,s=2300});
             //cdata.Add(new DifData(Devil.ManOld_001) { X = 280, Y = 480, s = 625, Flip = 0 });
             AddLocal(gr, cdata);
 

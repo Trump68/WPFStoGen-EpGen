@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black" Left="0" Top="0" KeyDown="Window_KeyDown" d:DesignHeight="869" Width="992">
     <Grid Name="MainGrid" ClipToBounds="False" Margin="0,0,0,0">
+        <Viewbox Name ="ViewboxControl" Height="5000" Width="5000">
         <Canvas Grid.Row="1" Name="CanvasControl" ClipToBounds="False" Height="5000" Width="5000">
             <Image x:Name="Picture1" ClipToBounds="False" HorizontalAlignment="Left" Height="5000" VerticalAlignment="Top" Width="5000"/>
             <Image x:Name="Picture2" ClipToBounds="False" HorizontalAlignment="Left" Height="5000" VerticalAlignment="Top" Width="5000"/>
@@ -25,6 +26,7 @@
         <Image x:Name="Picture15" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
         <Image x:Name="Picture16" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
         </Canvas>
+        </Viewbox>
         <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="111" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="627" Opacity="0.8" Background="Blue" BorderThickness="0"  AcceptsReturn="True" Margin="139,0,0,65"/>
         <TextBox x:Name="NumberBox" HorizontalAlignment="Right" Height="20" VerticalAlignment="Bottom" Width="50" Opacity="0.5" Background="White" BorderThickness="0"  AcceptsReturn="True" Margin="0,-3,0,0"/>
         <MediaElement x:Name="Clip1"  ScrubbingEnabled="True" HorizontalAlignment="Left" Height="505" Margin="90,47,0,0" VerticalAlignment="Top" Width="853" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>
