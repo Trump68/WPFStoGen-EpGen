@@ -14,7 +14,18 @@ namespace StoGenMake.Scenes
     }
     public static class Devil
     {
-        public static string ManOld_001 = "FullsArt_NetorareTsuma_EvilManBody_001";        
+        public static string ManOld_001 = "FullsArt_NetorareTsuma_EvilManBody_001";
+        public static string ManOld_002 = "FullsArt_NetorareTsuma_EvilManBody_002";
+        public static string ManOld_003 = "FullsArt_NetorareTsuma_EvilManBody_003";
+
+        public static string ManOld_004 = "FullsArt_NetorareTsuma_EvilManHead_001";
+        public static string ManOld_005 = "FullsArt_NetorareTsuma_EvilManHead_002";
+        public static string ManOld_006 = "FullsArt_NetorareTsuma_EvilManHead_003";
+        public static string ManOld_007 = "FullsArt_NetorareTsuma_EvilManHead_004";
+
+        public static string ManHand_001 = "FullsArt_NetorareTsuma_EvilManHands_001";
+
+        public static string ManPot_001 = "FullsArt_NetorareTsuma_EvilManPot_001";
     }
     public class AUX01_Accesuar: BaseScene
     {
@@ -60,6 +71,17 @@ namespace StoGenMake.Scenes
             #endregion
             #region Devils
             AddToGlobalImage(Devil.ManOld_001, "EVIL_BODY_01.png", SC001_FoolsArt.Path, new DifData() { s = 500 });
+            AddToGlobalImage(Devil.ManOld_002, "EVIL_BODY_02.png", SC001_FoolsArt.Path, new DifData() { s = 500 });
+            AddToGlobalImage(Devil.ManOld_003, "EVIL_BODY_03.png", SC001_FoolsArt.Path, new DifData() { s = 500 });
+
+            AddToGlobalImage(Devil.ManOld_004, "EVIL_HEAD_01.png", SC001_FoolsArt.Path, new DifData() { s = 500 });
+            AddToGlobalImage(Devil.ManOld_005, "EVIL_HEAD_02.png", SC001_FoolsArt.Path, new DifData() { s = 500 });
+            AddToGlobalImage(Devil.ManOld_006, "EVIL_HEAD_03.png", SC001_FoolsArt.Path, new DifData() { s = 500 });
+            AddToGlobalImage(Devil.ManOld_007, "EVIL_HEAD_04.png", SC001_FoolsArt.Path, new DifData() { s = 500 });
+
+            AddToGlobalImage(Devil.ManHand_001, "HANDS_01.png", SC001_FoolsArt.Path, new DifData() { s = 500 });
+
+            AddToGlobalImage(Devil.ManPot_001, "EVIL_POT_01.png", SC001_FoolsArt.Path, new DifData() { s = 500 });
             #endregion
 
         }

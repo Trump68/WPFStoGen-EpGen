@@ -76,7 +76,7 @@ namespace StoGen.ModelClasses
     public class PicturesControl
     {
         public List<System.Windows.Controls.Image> PicList = new List<System.Windows.Controls.Image>();
-        public Grid OwnerCanvas;        
+        public Canvas OwnerCanvas;        
         public MediaElement Clip;
     }
 }

@@ -43,11 +43,7 @@ namespace StoGenMake.Scenes.Base
                 AddLocal(new string[] { "All raw data", $"Raw pic {i.ToString("D3")}" }, new DifData[] { new DifData(src) });
             }
             #endregion
-
-            #region Evils data
-            Ga01_Evils(path);
-            #endregion
-
+    
             #region Mouth
             Ga02_Mouth(path);
             #endregion
@@ -81,52 +77,6 @@ namespace StoGenMake.Scenes.Base
             La08_DoggyFace(path);
 
             La09_DoggyTreesome(path);
-        }
-        private void Ga01_Evils(string path)
-        {
-            string src = null;
-            string fn = null;
-            string gr = null;
-
-            // Evil Body
-           
-            src = $"FullsArt_NetorareTsuma_EvilManBody_002"; fn = $"EVIL_BODY_02.png";
-            AddToGlobalImage(src, fn, path, new DifData() { s = 500 });
-            AddLocal(new string[] { "All evils", $"Evil b 02" }, new DifData[] { new DifData(src) });
-
-            src = $"FullsArt_NetorareTsuma_EvilManBody_003"; fn = $"EVIL_BODY_03.png";
-            AddToGlobalImage(src, fn, path, new DifData() { s = 500 });
-            AddLocal(new string[] { "All evils", $"Evil b 03" }, new DifData[] { new DifData(src) });
-
-            // Evil Head
-            src = $"FullsArt_NetorareTsuma_EvilManHead_001"; fn = $"EVIL_HEAD_01.png";
-            AddToGlobalImage(src, fn, path, new DifData() { s = 500 });
-            AddLocal(new string[] { "All evils", $"Evil h 01" }, new DifData[] { new DifData(src) });
-
-            src = $"FullsArt_NetorareTsuma_EvilManHead_002"; fn = $"EVIL_HEAD_02.png";
-            AddToGlobalImage(src, fn, path, new DifData() { s = 500 });
-            AddLocal(new string[] { "All evils", $"Evil h 02" }, new DifData[] { new DifData(src) });
-
-            src = $"FullsArt_NetorareTsuma_EvilManHead_003"; fn = $"EVIL_HEAD_03.png";
-            AddToGlobalImage(src, fn, path, new DifData() { s = 500 });
-            AddLocal(new string[] { "All evils", $"Evil h 03" }, new DifData[] { new DifData(src) });
-
-            src = $"FullsArt_NetorareTsuma_EvilManHead_004"; fn = $"EVIL_HEAD_04.png";
-            AddToGlobalImage(src, fn, path, new DifData() { s = 500 });
-            AddLocal(new string[] { "All evils", $"Evil h 04" }, new DifData[] { new DifData(src) });
-
-
-            // Evil Hands
-            src = $"FullsArt_NetorareTsuma_EvilManHands_001"; fn = $"HANDS_01.png";
-            AddToGlobalImage(src, fn, path, new DifData() { s = 500 });
-            AddLocal(new string[] { "All evils", $"Evil hand 01" }, new DifData[] { new DifData(src) });
-
-
-            // Evil Pot
-            src = $"FullsArt_NetorareTsuma_EvilManPot_001"; fn = $"EVIL_POT_01.png";
-            AddToGlobalImage(src, fn, path, new DifData() { s = 500 });
-            AddLocal(new string[] { "All evils", $"Evil pot 01" }, new DifData[] { new DifData(src) });
-
         }
         private void Ga04_OtherLadyStaff(string path)
         {

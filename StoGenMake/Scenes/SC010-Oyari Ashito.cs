@@ -35,7 +35,7 @@ namespace StoGenMake.Scenes
 
             string src = null;
             string fn = null;
-            int ss = 700;
+            int ss = 970;
             string gr = null;
 
             #region OyariAshito_KawaikuteShikatagaNai2
@@ -50,6 +50,7 @@ namespace StoGenMake.Scenes
             }
             for (int i = 1; i <= 20; i++)
             {
+                path = @"d:\PicWork\";
                 src = $"OyariAshito_KawaikuteShikatagaNai2_PNG_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
                 AddToGlobalImage(src, fn, path, new DifData() { s = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
@@ -67,40 +68,46 @@ namespace StoGenMake.Scenes
     public class Lady_Olga : Personality
     {       
         private static string face01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_002";
-        private static string body01 = "OyariAshito_KawaikuteShikatagaNai2_001";
-        private static string part01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_001"; // hand of body1
-        private static string lips01 = Mouth.Sensual_001;
+
+        private static string body01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_001";
+        private static string part01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_003"; // hand of body1
+        //private static string part02 = "OyariAshito_KawaikuteShikatagaNai2_PNG_004"; // hand of body1
+        //private static string part03 = "OyariAshito_KawaikuteShikatagaNai2_PNG_005"; // hand of body1
+        //private static string part04 = "OyariAshito_KawaikuteShikatagaNai2_PNG_006"; // hand of body1
+
+        private static string lips05 = Mouth.Sensual_001;
         public Lady_Olga(BaseScene scene): base(scene)
         {
             this.Name = "Olya_OyariAshito_001";
             // to body layout
-            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(face01) { Flip = 1},
-            new DifData(lips01, face01) { X = 355, Y = 490, s = 60, Rot = 30, Flip = 1},
-            });
-            //face to body layout
-            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(body01)  { X = 0, Y = -5, s = 850, Flip=0 },
-            new DifData(face01,body01) {X = -30, Y = -5, s = 183, Flip=1},
-            });
+            //this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            //new DifData(face01) { Flip = 1},
+            //new DifData(lips01, face01) { X = 355, Y = 490, s = 60, Rot = 30, Flip = 1},
+            //});
+            ////face to body layout
+            //this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            //new DifData(body01)  { X = 0, Y = -5, s = 850, Flip=0 },
+            //new DifData(face01,body01) {X = -30, Y = -5, s = 183, Flip=1},
+            //});
             //hand to body layout
             this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(body01)  { X = 0, Y = -5, s = 850, Flip=0 },
-            new DifData(part01,body01) { X = 1, Y = -2, s = 828, Flip=0 },
+            new DifData(body01)  { X = 0, Y = 0, s=970, Flip=0 },
+            new DifData(part01,body01) { X = 300, Y = 100, s=100, Flip=0 },
             });
 
-            this.Body = new DifData(body01);
-            this.Face = new DifData(face01);
-            this.Lips = new DifData(lips01);
+
+            //this.Face = new DifData(face01);
+            //this.Lips = new DifData(lips01);
         }
         public override List<DifData> Get(DifData delta)
         {
-            
+            this.Body = new DifData(body01) {};
+
             List<DifData> result = base.Get(delta);
             if (this.Body.Name == body01)
             {
-                // add hand
-                result.Add(new DifData(part01,body01));
+                //add hand
+                result.Add(new DifData(part01, body01));
             }
             return result;
         }
@@ -198,9 +205,7 @@ namespace StoGenMake.Scenes
     
     public virtual List<DifData> Get(DifData delta)
     {
-            this.Body.Clear();
-            this.Face.Clear();
-            this.Lips.Clear();
+           
             List<DifData> result = new List<DifData>();
             if (Body != null)
             {

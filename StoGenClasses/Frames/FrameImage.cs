@@ -174,6 +174,9 @@ namespace StoGen.Classes
                 im.VerticalAlignment = VerticalAlignment.Top;
                 im.Width = 0;
                 im.Height = 0;
+            im.ClipToBounds = false;
+            im.Margin = new Thickness(0, 0, 0, 0);
+           
                 Projector.PicContainer.OwnerCanvas.Children.Insert(index,im);
                 Projector.PicContainer.PicList.Insert(index,im);
         }
@@ -515,7 +518,7 @@ namespace StoGen.Classes
                 }
             #endregion
 
-            current.RenderTransform = tg;
+            current.RenderTransform = tg;            
         }
         private void RecreateAndRefreshImage(PictureSourceProps sourceProps)
         {
@@ -638,38 +641,53 @@ namespace StoGen.Classes
 
         internal void ProcessKey(Key e)
         {
-
+            int step = 40;
+            double stepZoom = 0.2;
             if (!Projector.EditorMode)
             {
                 if (e == Key.Right)
                 {
                     foreach (var item in this.Pics)
                     {
-                        item.Props.X = item.Props.X + 5;
+                        item.Props.X = item.Props.X + step;
                     }
                 }
                 else if (e == Key.Left)
                 {
                     foreach (var item in this.Pics)
                     {
-                        item.Props.X= item.Props.X-5;
+                        item.Props.X= item.Props.X- step;
                     }
                 }
                 else if (e == Key.Up)
                 {
                     foreach (var item in this.Pics)
                     {
-                        item.Props.Y = item.Props.Y - 5;
+                        item.Props.Y = item.Props.Y - step;
                     }
                 }
                 else if (e == Key.Down)
                 {
                     foreach (var item in this.Pics)
                     {
-                        item.Props.Y = item.Props.Y + 5;
+                        item.Props.Y = item.Props.Y + step;
                     }
                 }
-                this.Repaint();
+                else if (e == Key.OemPlus)
+                {
+                    foreach (var item in this.Pics)
+                    {
+                        item.Props.SizeX = (int)(item.Props.SizeX * (1+stepZoom));
+                    }
+                }
+                else if (e == Key.OemMinus)
+                {
+                    foreach (var item in this.Pics)
+                    {
+                        item.Props.SizeX = (int)(item.Props.SizeX / (1 + stepZoom));
+                    }
+                }
+                this.Repaint();                
                 return;
             }
             bool increase = false;
