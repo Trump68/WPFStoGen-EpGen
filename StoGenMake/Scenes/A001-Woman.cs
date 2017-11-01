@@ -535,6 +535,13 @@ namespace StoGenMake.Scenes
             cdata.Add(new DifData(Devil.ManOld_001) { X = 745, Y = 255, s = 1425, Flip = 0 });
             AddLocal(gr, cdata);
 
+            SC010_OyariAshito.Lady_EriAyase.SetBody("003");
+            SC010_OyariAshito.Lady_EriAyase.SetHead(null);
+            SC010_OyariAshito.Lady_EriAyase.SetLips(null);
+
+            cdata = SC010_OyariAshito.Lady_EriAyase.Get(new DifData());
+            cdata.Add(new DifData(Devil.ManOld_001) { X = 745, Y = 255, s = 1425, Flip = 0 });
+            AddLocal(gr, cdata);
             #endregion
         }
         protected override void MakeCadres(string cadregroup)

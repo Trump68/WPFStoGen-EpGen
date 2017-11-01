@@ -25,19 +25,18 @@ namespace StoGenMake.Persona
         {
             get
             {
-                if (_Body == null)
-                    return BodyList.FirstOrDefault();
                 return _Body;
             }
             set
             {
-                if (value == null)
-                    return;
-                var existing = this.BodyList.Where(x => x.Name == value.Name).FirstOrDefault();
-                if (existing != null)
-                    existing.AssingFrom(value);
-                else
-                    this.BodyList.Add(value);
+                if (value != null)
+                {
+                    var existing = this.BodyList.Where(x => x.Name == value.Name).FirstOrDefault();
+                    if (existing != null)
+                        existing.AssingFrom(value);
+                    else
+                        this.BodyList.Add(value);
+                }
                 _Body = value;
             }
         }
@@ -46,19 +45,18 @@ namespace StoGenMake.Persona
         {
             get
             {
-                if (_Face == null)
-                    return FaceList.FirstOrDefault();
                 return _Face;
             }
             set
             {
-                if (value == null)
-                    return;
-                var existing = this.FaceList.Where(x => x.Name == value.Name).FirstOrDefault();
-                if (existing != null)
-                    existing.AssingFrom(value);
-                else
-                    this.FaceList.Add(value);
+                if (value != null)
+                {
+                    var existing = this.FaceList.Where(x => x.Name == value.Name).FirstOrDefault();
+                    if (existing != null)
+                        existing.AssingFrom(value);
+                    else
+                        this.FaceList.Add(value);
+                }
                 _Face = value;
             }
         }
@@ -67,19 +65,18 @@ namespace StoGenMake.Persona
         {
             get
             {
-                if (_Lips == null)
-                    return LipsList.FirstOrDefault();
                 return _Lips;
             }
             set
             {
-                if (value == null)
-                    return;
-                var existing = this.LipsList.Where(x => x.Name == value.Name).FirstOrDefault();
-                if (existing != null)
-                    existing.AssingFrom(value);
-                else
-                    this.LipsList.Add(value);
+                if (value != null)
+                {
+                    var existing = this.LipsList.Where(x => x.Name == value.Name).FirstOrDefault();
+                    if (existing != null)
+                        existing.AssingFrom(value);
+                    else
+                        this.LipsList.Add(value);
+                }
                 _Lips = value;
             }
         }

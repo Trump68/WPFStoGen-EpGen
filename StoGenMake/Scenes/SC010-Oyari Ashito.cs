@@ -70,6 +70,8 @@ namespace StoGenMake.Scenes
         
         private static string body01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_001";
         private static string body02 = "OyariAshito_KawaikuteShikatagaNai2_PNG_005";
+        private static string body03 = "OyariAshito_KawaikuteShikatagaNai2_PNG_008";
+
         private static string face01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_002";
         private static string face02 = "OyariAshito_KawaikuteShikatagaNai2_PNG_006";
         private static string lips01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_003";
@@ -119,8 +121,11 @@ namespace StoGenMake.Scenes
 
             this.Scene.AddLocal($"{this.Name}Body001", new DifData(body01) { s= 3840 });
             this.Scene.AddLocal($"{this.Name}Body002", new DifData(body02) { s = 3800 });
+            this.Scene.AddLocal($"{this.Name}Body003", new DifData(body03) { s = 2300 });
+
             this.Scene.AddLocal($"{this.Name}Face001", new DifData(face01) { s= 825 });
             this.Scene.AddLocal($"{this.Name}Face002", new DifData(face02) { s = 838 });
+
             this.Scene.AddLocal($"{this.Name}Lips001", new DifData(lips01) { s = 64 });
             this.Scene.AddLocal($"{this.Name}Lips002", new DifData(lips02) { s = 55 });
             this.Scene.AddLocal($"{this.Name}Lips_001", new DifData(lips001) { });
@@ -152,6 +157,7 @@ namespace StoGenMake.Scenes
                 if (al!= null)
                     this.Body = al.AlignList.First();
             }
+            else this.Body = null;
             if (!string.IsNullOrEmpty(this.headName))
             {
                 var al = this.Scene.AlignList.Where(
@@ -159,6 +165,7 @@ namespace StoGenMake.Scenes
                 if (al != null)
                     this.Face = al.AlignList.First();
             }
+            else this.Face = null;
             if (!string.IsNullOrEmpty(this.lipsName))
             {
                 var al = this.Scene.AlignList.Where(
@@ -166,6 +173,7 @@ namespace StoGenMake.Scenes
                 if (al != null)
                     this.Lips = al.AlignList.First();
             }
+            else this.Lips = null;
             List<DifData> result = base.Get(delta);
             if (this.Body.Name == body01)
             {
