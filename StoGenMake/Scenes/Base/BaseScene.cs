@@ -7,8 +7,6 @@ using StoGenMake.Elements;
 using System.IO;
 using StoGenLife.NPC;
 using StoGenMake.Pers;
-using StoGenLife.SOUND;
-using StoGenMake.Entity;
 using StoGen.Classes;
 using static StoGenMake.GameWorld;
 
@@ -40,6 +38,9 @@ namespace StoGenMake.Scenes.Base
         public int parRot = 0;
         public int parFlip = 0;
         public int Flip = 0;
+        public int ParO = -1;
+        public int dO = 0;
+        public string parT;
 
         internal void CreateDifProportions(seIm parIm, seIm childIm)
         {
@@ -57,6 +58,9 @@ namespace StoGenMake.Scenes.Base
             dsY = ((float)childIm.sY / (float)parIm.sY);
             psX = parIm.sX;
             psY = parIm.sY;
+            parT = parIm.Transition;
+            ParO = parIm.Opa;
+            dO = childIm.Opa - parIm.Opa;
         }
 
         //! new!!!!
@@ -105,6 +109,8 @@ namespace StoGenMake.Scenes.Base
             }
             target.Rot = this.Rot;
             target.Flip = this.Flip;
+            target.Transition = this.parT;
+            target.Opa = this.ParO;
         }
     }
     public class CadreImageAligns
@@ -122,7 +128,7 @@ namespace StoGenMake.Scenes.Base
     {
         public int EngineHiVer = 0;
         public int EngineLoVer = 0;
-        protected List<VNPC> Actors;
+        //protected List<VNPC> Actors;
         protected virtual void MakeCadres(string cadregroup)
         {
             foreach (var item in AlignList.Where(x => string.IsNullOrEmpty(cadregroup) || x.MarkList.Contains(cadregroup)))
@@ -157,19 +163,20 @@ namespace StoGenMake.Scenes.Base
         private int Version = 0;
         public BaseScene()
         {
-            this.Actors = new List<VNPC>();
+            //this.Actors = new List<VNPC>();
             this.Name = "Drama scene";
             this.SizeX = 1500;
             this.SizeY = 1600;
             LoadData(
-              GameWorldFactory.GameWorld.CommonImageList,
-              GameWorldFactory.GameWorld.AlignList);
+              //GameWorldFactory.GameWorld.CommonImageList,
+              //GameWorldFactory.GameWorld.AlignList
+              );
         }
-        protected virtual void LoadData(List<seIm> data, List<AlignDif> alignData) { }
-        public void AddActor(VNPC actor)
-        {
-            this.Actors.Add(actor);
-        }
+        protected virtual void LoadData() { }
+        //public void AddActor(VNPC actor)
+        //{
+        //    this.Actors.Add(actor);
+        //}
         public ViewingTransitionState StateViewingTransition = ViewingTransitionState.None;
         protected void AddObzor(ScenCadre cadre)
         {
@@ -375,7 +382,8 @@ namespace StoGenMake.Scenes.Base
         }
         protected void AddLocal(string[] marks, DifData[] difs) { Add(marks, difs, false); }
         protected void AddLocal(string[] marks, List<DifData> difs) { Add(marks, difs.ToArray()); }
-        protected void AddLocal(string mark, List<DifData> difs) { Add(new string[] { mark }, difs.ToArray()); }
+        public void AddLocal(string mark, List<DifData> difs) { Add(new string[] { mark }, difs.ToArray()); }
+        public void AddLocal(string mark, DifData dif) { Add(new string[] { mark }, new DifData[] { dif } ); }
         public void AddGlobal(string[] marks, DifData[] difs)
         { Add(marks, difs, true); }
         private void Add(

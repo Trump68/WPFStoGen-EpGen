@@ -1,5 +1,5 @@
 ﻿using StoGenLife.Location;
-using StoGenMake.Entity;
+using StoGenMake.Persona;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace StoGenMake.Location
 {
     public class VisualLocaton : BaseLocation
     {
-        public EntityData Data = new EntityData();
+        //public EntityData Data = new EntityData();
 
         internal bool CreateMenuLocationDocier(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {

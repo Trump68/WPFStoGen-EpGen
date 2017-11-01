@@ -28,23 +28,23 @@ namespace StoGenMake.Pers
         {
             string path = $@"x:\STOGEN\LADY\HCG\LADY_011017\";
             // sound
-            this.Data.Add("SOUND", MUSIC_MAIN_THEME, null, null);
-            this.Data.Add("SOUND", ASMR_01, null, null);
-            this.Data.Add("SOUND", ORGAZM_01, null, null);
-            this.Data.Add("SOUND", ORGAZM_02, null, null);
-            this.Data.Add("SOUND", ORGAZM_03, null, null);
-            this.Data.Add("SOUND", ORGAZM_04, null, null);
+            //this.Data.Add("SOUND", MUSIC_MAIN_THEME, null, null);
+            //this.Data.Add("SOUND", ASMR_01, null, null);
+            //this.Data.Add("SOUND", ORGAZM_01, null, null);
+            //this.Data.Add("SOUND", ORGAZM_02, null, null);
+            //this.Data.Add("SOUND", ORGAZM_03, null, null);
+            //this.Data.Add("SOUND", ORGAZM_04, null, null);
             
 
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}04a_1.png"));
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}01.png"));
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}01a_2.png"));
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}01a_3.png"));
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}02a_3.png"));
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}02a_4.png"));
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}02a_7.png"));
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}03.png"));
-            this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}03a_1.png"));
+            //this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}04a_1.png"));
+            //this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}01.png"));
+            //this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}01a_2.png"));
+            //this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}01a_3.png"));
+            //this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}02a_3.png"));
+            //this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}02a_4.png"));
+            //this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}02a_7.png"));
+            //this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}03.png"));
+            //this.Data.Add("IMAGE", VNPC.DOCIER_PICTURE, new seIm($@"{path}03a_1.png"));
 
             this.VoiceList.Add(new VNPCVoice(SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_01, VNPCVoiceType.Neitral, VNPCTermType.None));
             this.VoiceList.Add(new VNPCVoice(SoundStore.Sounds.ASMR_BellaBrookz_Girlfriend_Roleplay_02, VNPCVoiceType.Neitral, VNPCTermType.None));

@@ -24,7 +24,7 @@ namespace StoGenMake.Scenes
             base.MakeCadres(cadregroup);
         }
 
-        protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
+        protected override void LoadData()
         {
             string path = null;
             string src = null;

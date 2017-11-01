@@ -35,32 +35,17 @@ namespace StoGenMake
         public static List<ImageAlignVec> ImageStorage = new List<ImageAlignVec>();
         // !!! new engine
 
-        public List<VNPC> PersoneList { get; internal set; }
-        public List<seIm> CommonImageList { get; internal set; }
-
-        public List<AlignDif> AlignList { get; internal set; }
-        public List<VisualLocaton> LocationList { get; internal set; }
+        
         public List<BaseScene> SceneList { get; internal set; }
-        public VNPC CurrentPersone { get; internal set; }
+        
 
 
         public GameWorld()
         {
-
-            this.PersoneList = new List<VNPC>();
-            this.CommonImageList = new List<seIm>();
-            this.AlignList = new List<AlignDif>();
-
-            this.LocationList = new List<VisualLocaton>();
             this.SceneList = new List<BaseScene>();
         }
         public void LoadData()
         {
-            GameWorldDataLoader.LoadPersList(this.PersoneList);
-            GameWorldDataLoader.LoadFemHeadList(this.CommonImageList, this.AlignList);
-            GameWorldDataLoader.LoadFemBodyList(this.CommonImageList);
-            GameWorldDataLoader.LoadManBodyList(this.CommonImageList);
-            GameWorldDataLoader.LoadManHeadList(this.CommonImageList);
 
             this.SceneList.Add(new AUX01_Accesuar());
             this.SceneList.Add(new SC000_Various());
@@ -73,7 +58,7 @@ namespace StoGenMake
             
             this.SceneList.Add(new A001_Woman());
 
-            this.PersoneList.Add(new LADY_011017());
+            //this.PersoneList.Add(new LADY_011017());
 
             
         }
@@ -88,35 +73,35 @@ namespace StoGenMake
             ChoiceMenuItem item = null;
 
             // Если есть CurrentPersone - создаем его меню
-            if (CurrentPersone != null)
-            {
-                item = new ChoiceMenuItem($"{CurrentPersone.Name}...", this);
-                item.Executor = data =>
-                {
-                    proc.MenuCreator = CurrentPersone.CreateMenuPersone;
-                    proc.ShowContextMenu(true,Data);
-                };
-                itemlist.Add(item);
-            }
+            //if (CurrentPersone != null)
+            //{
+            //    item = new ChoiceMenuItem($"{CurrentPersone.Name}...", this);
+            //    item.Executor = data =>
+            //    {
+            //        proc.MenuCreator = CurrentPersone.CreateMenuPersone;
+            //        proc.ShowContextMenu(true,Data);
+            //    };
+            //    itemlist.Add(item);
+            //}
 
-            // Меню вызова досье
-            item = new ChoiceMenuItem("Досье ...", this);
-            item.Executor = data =>
-            {
-                proc.MenuCreator = CreateMenuDosie;
-                proc.ShowContextMenu(true, Data);
-            };
-            itemlist.Add(item);
+            //// Меню вызова досье
+            //item = new ChoiceMenuItem("Досье ...", this);
+            //item.Executor = data =>
+            //{
+            //    proc.MenuCreator = CreateMenuDosie;
+            //    proc.ShowContextMenu(true, Data);
+            //};
+            //itemlist.Add(item);
 
 
-            // Меню перемещения по локациям
-            item = new ChoiceMenuItem("Переместиться ...", this);
-            item.Executor = data =>
-            {
-                proc.MenuCreator = CreateMenuRelocation;
-                proc.ShowContextMenu(true, Data);
-            };
-            itemlist.Add(item);
+            //// Меню перемещения по локациям
+            //item = new ChoiceMenuItem("Переместиться ...", this);
+            //item.Executor = data =>
+            //{
+            //    proc.MenuCreator = CreateMenuRelocation;
+            //    proc.ShowContextMenu(true, Data);
+            //};
+            //itemlist.Add(item);
 
             // Меню scenes
             item = new ChoiceMenuItem("Scenes ...", this);
@@ -130,27 +115,27 @@ namespace StoGenMake
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, false);
             return true;
         }
-        private bool CreateMenuRelocation(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
-        {
-            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-            ChoiceMenuItem item = null;
+        //private bool CreateMenuRelocation(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        //{
+        //    if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+        //    ChoiceMenuItem item = null;
 
-            foreach (var loc in LocationList)
-            {
-                item = new ChoiceMenuItem();
-                item.Name = loc.Name;
-                item.itemData = this;
-                item.Executor = data =>
-                {
-                    proc.MenuCreator = loc.CreateMenuLocationDocier;
-                    proc.ShowContextMenu(doShowMenu, Data);
-                };
-                itemlist.Add(item);
-            }
+        //    foreach (var loc in LocationList)
+        //    {
+        //        item = new ChoiceMenuItem();
+        //        item.Name = loc.Name;
+        //        item.itemData = this;
+        //        item.Executor = data =>
+        //        {
+        //            proc.MenuCreator = loc.CreateMenuLocationDocier;
+        //            proc.ShowContextMenu(doShowMenu, Data);
+        //        };
+        //        itemlist.Add(item);
+        //    }
 
-            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
-            return true;
-        }
+        //    ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
+        //    return true;
+        //}
         private bool CreateMenuScenes(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
@@ -172,51 +157,51 @@ namespace StoGenMake
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
             return true;
         }
-        private bool CreateMenuDosie(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
-        {
-            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-            ChoiceMenuItem item = null;
+        //private bool CreateMenuDosie(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        //{
+        //    if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+        //    ChoiceMenuItem item = null;
 
 
-            foreach (var it in Enum.GetValues(typeof(VNPCPersType)))
-            {
-                item = new ChoiceMenuItem();
-                item.Name = Enum.GetName(typeof(VNPCPersType), it);
-                item.itemData = it;
-                item.Executor = data =>
-                {
-                    proc.MenuCreatorData = data;
-                    proc.MenuCreator = this.CreateMenuDocierForType;
-                    proc.ShowContextMenu(doShowMenu,Data);
-                };
-                itemlist.Add(item);
-            }
+        //    foreach (var it in Enum.GetValues(typeof(VNPCPersType)))
+        //    {
+        //        item = new ChoiceMenuItem();
+        //        item.Name = Enum.GetName(typeof(VNPCPersType), it);
+        //        item.itemData = it;
+        //        item.Executor = data =>
+        //        {
+        //            proc.MenuCreatorData = data;
+        //            proc.MenuCreator = this.CreateMenuDocierForType;
+        //            proc.ShowContextMenu(doShowMenu,Data);
+        //        };
+        //        itemlist.Add(item);
+        //    }
 
 
-            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
-            return true;
-        }
-        private bool CreateMenuDocierForType(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
-        {
-            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-            ChoiceMenuItem item = null;
+        //    ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
+        //    return true;
+        //}
+        //private bool CreateMenuDocierForType(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        //{
+        //    if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+        //    ChoiceMenuItem item = null;
 
-            foreach (var pers in PersoneList.Where(x => x.PersonType == (VNPCPersType)proc.MenuCreatorData))
-            {
-                item = new ChoiceMenuItem();
-                item.Name = pers.Name;
-                item.itemData = this;
-                item.Executor = data =>
-                {
-                    proc.MenuCreator = pers.CreateMenuPersoneDocier;
-                    proc.ShowContextMenu(doShowMenu, Data);
-                };
-                itemlist.Add(item);
-            }
+        //    foreach (var pers in PersoneList.Where(x => x.PersonType == (VNPCPersType)proc.MenuCreatorData))
+        //    {
+        //        item = new ChoiceMenuItem();
+        //        item.Name = pers.Name;
+        //        item.itemData = this;
+        //        item.Executor = data =>
+        //        {
+        //            proc.MenuCreator = pers.CreateMenuPersoneDocier;
+        //            proc.ShowContextMenu(doShowMenu, Data);
+        //        };
+        //        itemlist.Add(item);
+        //    }
 
-            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
-            return true;
-        }
+        //    ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
+        //    return true;
+        //}
 
         #endregion
 
@@ -295,6 +280,8 @@ namespace StoGenMake
             }
             get { return sX; }
         }
+        public int? O { set; get; }
+        public string T { set; get; }
 
         internal void AssingFrom(DifData value, bool withnames=false)
         {
@@ -303,6 +290,8 @@ namespace StoGenMake
             if (value.Y.HasValue) this.Y = value.Y;
             if (value.Rot.HasValue) this.Rot = value.Rot;
             if (value.s.HasValue) this.s = value.s;
+            if (value.O.HasValue) this.s = value.O;
+            if (string.IsNullOrEmpty(value.T)) this.T = value.T;
             if (withnames)
             {
                 this.Name = value.Name;
@@ -317,6 +306,8 @@ namespace StoGenMake
             this.Y = null;
             this.Rot = null;
             this.s = null;
+            this.O = null;
+            this.T = null;
         }
     }
     public class CadreAlignPack

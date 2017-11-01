@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using StoGenMake.Scenes.Base;
 using StoGenMake.Pers;
-using StoGenMake.Entity;
+
 using StoGenLife.SOUND;
 
 namespace StoGenMake.Elements
@@ -112,10 +112,10 @@ namespace StoGenMake.Elements
             this.TextList.Add(newtext);
         }
 
-        private void AssignFrom(seTe newtext)
-        {
-            throw new NotImplementedException();
-        }
+        //private void AssignFrom(seTe newtext)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 
 

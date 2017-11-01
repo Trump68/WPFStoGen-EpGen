@@ -58,9 +58,8 @@
     </ApplicationDefinition>
     <Compile Include="Elements\AlignDif.cs" />
     <Compile Include="Elements\ScenElement.cs" />
-    <Compile Include="EntityData\EntityData.cs" />
+    <Compile Include="EntityData\Personality.cs" />
     <Compile Include="GameWorld\GameWorld.cs" />
-    <Compile Include="GameWorld\GameWorldDataLoader.cs" />
     <Compile Include="Location\VisualLocaton.cs" />
     <Compile Include="Scenes\SC009-Hews Hack.cs" />
     <Compile Include="ScenCadre\ScenCadre.cs" />

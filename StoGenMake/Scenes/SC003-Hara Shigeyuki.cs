@@ -21,7 +21,7 @@ namespace StoGenMake.Scenes.Base
         {
             base.MakeCadres(cadregroup);            
         }
-        protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
+        protected override void LoadData()
         {
             #region Abunai Hitozuma - Shouko no Bouken
             int ss = 995;

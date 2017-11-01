@@ -24,7 +24,7 @@ namespace StoGenMake.Scenes.Base
             cadregroup = "CleMasahiro CL-orz 51";
             base.MakeCadres(cadregroup);
         }
-        protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
+        protected override void LoadData()
         {
             //#region CL-orz 51
             string path = null;

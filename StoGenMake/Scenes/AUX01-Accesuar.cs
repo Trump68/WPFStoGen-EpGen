@@ -11,12 +11,24 @@ namespace StoGenMake.Scenes
     public static class Mouth
     {
         public static string Sensual_001 = $"FullsArt_NetorareTsuma_LadyMouth_001";
+        public static string Sensual_002 = $"FullsArt_NetorareTsuma_LadyMouth_002";
+        public static string Sensual_003 = $"FullsArt_NetorareTsuma_LadyMouth_003";
+        public static string Sensual_004 = $"FullsArt_NetorareTsuma_LadyMouth_004";
+        public static string Sensual_005 = $"FullsArt_NetorareTsuma_LadyMouth_005";
+        public static string Sensual_006 = $"FullsArt_NetorareTsuma_LadyMouth_006";
+        public static string Sensual_007 = $"FullsArt_NetorareTsuma_LadyMouth_007";
     }
+    public static class Cloth
+    {
+        public static string Panty_001 = $"FullsArt_NetorareTsuma_LadyPanty_001";
+        public static string Panty_002 = $"FullsArt_NetorareTsuma_LadyPanty_002";
+    }
+
     public static class Devil
     {
         public static string ManOld_001 = "FullsArt_NetorareTsuma_EvilManBody_001";
-        public static string ManOld_002 = "FullsArt_NetorareTsuma_EvilManBody_002";
-        public static string ManOld_003 = "FullsArt_NetorareTsuma_EvilManBody_003";
+        public static string ManOld_002 = "FullsArt_NetorareTsuma_EvilManBody_004.ManOld_002";
+        public static string ManOld_003 = "FullsArt_NetorareTsuma_EvilManBody_003.ManOld_003";
 
         public static string ManOld_004 = "FullsArt_NetorareTsuma_EvilManHead_001";
         public static string ManOld_005 = "FullsArt_NetorareTsuma_EvilManHead_002";
@@ -39,7 +51,7 @@ namespace StoGenMake.Scenes
         {
             base.MakeCadres(cadregroup);
         }
-        protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
+        protected override void LoadData()
         {
             string gr;
             string src;
@@ -68,7 +80,19 @@ namespace StoGenMake.Scenes
 
             #region Mouth
             AddToGlobalImage(Mouth.Sensual_001, "MOUTH_01.png", SC001_FoolsArt.Path, new DifData() { s = 100 });
+            AddToGlobalImage(Mouth.Sensual_002, "MOUTH_02.png", SC001_FoolsArt.Path, new DifData() { s = 100 });
+            AddToGlobalImage(Mouth.Sensual_003, "MOUTH_04.png", SC001_FoolsArt.Path, new DifData() { s = 100 });
+            AddToGlobalImage(Mouth.Sensual_004, "MOUTH_05.png", SC001_FoolsArt.Path, new DifData() { s = 100 });
+            AddToGlobalImage(Mouth.Sensual_005, "MOUTH_06.png", SC001_FoolsArt.Path, new DifData() { s = 100 });
+            AddToGlobalImage(Mouth.Sensual_006, "MOUTH_07.png", SC001_FoolsArt.Path, new DifData() { s = 100 });
+            AddToGlobalImage(Mouth.Sensual_007, "MOUTH_08.png", SC001_FoolsArt.Path, new DifData() { s = 100 });
+
             #endregion
+            #region Cloth
+            AddToGlobalImage(Cloth.Panty_001, "PANTY_01.png", SC001_FoolsArt.Path, new DifData() { s = 100 });
+            AddToGlobalImage(Cloth.Panty_002, "PANTY_02.png", SC001_FoolsArt.Path, new DifData() { s = 100 });
+            #endregion
+
             #region Devils
             AddToGlobalImage(Devil.ManOld_001, "EVIL_BODY_01.png", SC001_FoolsArt.Path, new DifData() { s = 500 });
             AddToGlobalImage(Devil.ManOld_002, "EVIL_BODY_02.png", SC001_FoolsArt.Path, new DifData() { s = 500 });

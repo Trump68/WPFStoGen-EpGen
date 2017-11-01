@@ -5,19 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using StoGenMake.Persona;
 namespace StoGenMake.Scenes
 {
     public class SC010_OyariAshito : BaseScene
     {
-        private static Lady_Olga _Lady_Olga;
-        public static Lady_Olga Lady_Olga
+        private static Lady_EriAyase _Lady_EriAyase;
+        public static Lady_EriAyase Lady_EriAyase
         {
             get
             {
-                if (_Lady_Olga == null)  
-                     _Lady_Olga = new Lady_Olga(Instance);
-                return _Lady_Olga;
+                if (_Lady_EriAyase == null)  
+                     _Lady_EriAyase = new Lady_EriAyase(Instance);
+                return _Lady_EriAyase;
             }
         }
 
@@ -29,7 +29,7 @@ namespace StoGenMake.Scenes
             EngineLoVer = 0;
             Instance = this;
         }
-        protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
+        protected override void LoadData()
         {
             string path = null;
 
@@ -65,176 +65,115 @@ namespace StoGenMake.Scenes
             this.Cadres.Reverse();
         }
     }
-    public class Lady_Olga : Personality
+    public class Lady_EriAyase : Personality
     {       
-        private static string face01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_002";
-
+        
         private static string body01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_001";
-        private static string part01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_003"; // hand of body1
-        //private static string part02 = "OyariAshito_KawaikuteShikatagaNai2_PNG_004"; // hand of body1
-        //private static string part03 = "OyariAshito_KawaikuteShikatagaNai2_PNG_005"; // hand of body1
-        //private static string part04 = "OyariAshito_KawaikuteShikatagaNai2_PNG_006"; // hand of body1
-
-        private static string lips05 = Mouth.Sensual_001;
-        public Lady_Olga(BaseScene scene): base(scene)
+        private static string body02 = "OyariAshito_KawaikuteShikatagaNai2_PNG_005";
+        private static string face01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_002";
+        private static string face02 = "OyariAshito_KawaikuteShikatagaNai2_PNG_006";
+        private static string lips01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_003";
+        private static string lips02 = "OyariAshito_KawaikuteShikatagaNai2_PNG_007";
+        private static string lips001 = Mouth.Sensual_001;
+        private static string part01 = "OyariAshito_KawaikuteShikatagaNai2_PNG_004"; // hand of body1
+        
+        public Lady_EriAyase(BaseScene scene): base(scene)
         {
-            this.Name = "Olya_OyariAshito_001";
-            // to body layout
-            //this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            //new DifData(face01) { Flip = 1},
-            //new DifData(lips01, face01) { X = 355, Y = 490, s = 60, Rot = 30, Flip = 1},
-            //});
-            ////face to body layout
-            //this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            //new DifData(body01)  { X = 0, Y = -5, s = 850, Flip=0 },
-            //new DifData(face01,body01) {X = -30, Y = -5, s = 183, Flip=1},
-            //});
+            this.Name = "EriAyase_OyariAshito_001";
+            
+            //lips to body layout
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(face01) { s = 825 },
+            new DifData(lips01, face01) { X = 200, Y = 595, s = 64, Flip=0 },
+            });
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(face02) { s = 825 },
+            new DifData(lips02, face02) { X = 330, Y = 595, s = 55, Flip=0 },
+            });
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(face01) { s = 825 },
+            new DifData(lips001, face01) {X = 200, Y = 585, s = 60, Rot=25, Flip=1},
+            });
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(face02) { s = 825 },
+            new DifData(lips001, face02) {X = 320, Y = 580, s = 62, Rot=45, Flip=1},
+            });
+            //face to body layout
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(body01)  { s = 3840},
+            new DifData(face01,body01) {X = 40, s = 825, Flip=0},
+            });
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(body02)  { s = 3800},
+            new DifData(face02,body02) {X = 235, Y = 45, s = 793, Flip=0},
+            });
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(body01)  { s = 3800},
+            new DifData(face02,body01) {X = -60, Y = 5, s = 804, Flip=0},
+            });
             //hand to body layout
             this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(body01)  { X = 0, Y = 0, s=970, Flip=0 },
-            new DifData(part01,body01) { X = 300, Y = 100, s=100, Flip=0 },
+            new DifData(body01)  { s=3840},
+            new DifData(part01,body01) { X = 45, Y = 590, s = 266, Flip=0},
             });
 
-
-            //this.Face = new DifData(face01);
-            //this.Lips = new DifData(lips01);
+            this.Scene.AddLocal($"{this.Name}Body001", new DifData(body01) { s= 3840 });
+            this.Scene.AddLocal($"{this.Name}Body002", new DifData(body02) { s = 3800 });
+            this.Scene.AddLocal($"{this.Name}Face001", new DifData(face01) { s= 825 });
+            this.Scene.AddLocal($"{this.Name}Face002", new DifData(face02) { s = 838 });
+            this.Scene.AddLocal($"{this.Name}Lips001", new DifData(lips01) { s = 64 });
+            this.Scene.AddLocal($"{this.Name}Lips002", new DifData(lips02) { s = 55 });
+            this.Scene.AddLocal($"{this.Name}Lips_001", new DifData(lips001) { });
+        }
+        private string bodyName;
+        public Personality SetBody(string name)
+        {
+            bodyName = name;
+            return this;
+        }
+        private string headName;
+        public Personality SetHead(string name)
+        {
+            headName = name;
+            return this;
+        }
+        private string lipsName;
+        public Personality SetLips(string name)
+        {
+            lipsName = name;
+            return this;
         }
         public override List<DifData> Get(DifData delta)
         {
-            this.Body = new DifData(body01) {};
-
+            if (!string.IsNullOrEmpty(this.bodyName))
+            {
+                var al = this.Scene.AlignList.Where(
+                    x => x.MarkList.Contains($"{this.Name}Body{bodyName}")).FirstOrDefault();
+                if (al!= null)
+                    this.Body = al.AlignList.First();
+            }
+            if (!string.IsNullOrEmpty(this.headName))
+            {
+                var al = this.Scene.AlignList.Where(
+                    x => x.MarkList.Contains($"{this.Name}Face{headName}")).FirstOrDefault();
+                if (al != null)
+                    this.Face = al.AlignList.First();
+            }
+            if (!string.IsNullOrEmpty(this.lipsName))
+            {
+                var al = this.Scene.AlignList.Where(
+                    x => x.MarkList.Contains($"{this.Name}Lips{lipsName}")).FirstOrDefault();
+                if (al != null)
+                    this.Lips = al.AlignList.First();
+            }
             List<DifData> result = base.Get(delta);
             if (this.Body.Name == body01)
             {
                 //add hand
-                result.Add(new DifData(part01, body01));
+                result.Add(new DifData(part01,body01));
             }
             return result;
         }
     }
-    public class Personality
-{
-        public string Name;
-    protected BaseScene Scene;
-    public Personality(BaseScene scene)
-    {
-            this.Scene = scene;
-    }
-
-    public List<DifData> BodyList = new List<DifData>();
-    public List<DifData> FaceList = new List<DifData>();
-    public List<DifData> LipsList = new List<DifData>();
-    private DifData _Body;
-    public DifData Body
-    {
-        get
-        {
-            if (_Body == null)
-                return BodyList.FirstOrDefault();
-            return _Body;
-        }
-        set
-        {
-            if (value == null)
-                return;
-            var existing = this.BodyList.Where(x => x.Name == value.Name).FirstOrDefault();
-            if (existing != null)
-                existing.AssingFrom(value);
-            else
-                this.BodyList.Add(value);
-            _Body = value;
-        }
-    }
-    private DifData _Face;
-    public DifData Face
-    {
-        get
-        {
-            if (_Face == null)
-                return FaceList.FirstOrDefault();
-            return _Face;
-        }
-        set
-        {
-            if (value == null)
-                return;
-            var existing = this.FaceList.Where(x => x.Name == value.Name).FirstOrDefault();
-            if (existing != null)
-                existing.AssingFrom(value);
-            else
-                this.FaceList.Add(value);
-            _Face = value;
-        }
-    }
-    private DifData _Lips;
-    public DifData Lips
-    {
-        get
-        {
-            if (_Lips == null)
-                return LipsList.FirstOrDefault();
-            return _Lips;
-        }
-        set
-        {
-            if (value == null)
-                return;
-            var existing = this.LipsList.Where(x => x.Name == value.Name).FirstOrDefault();
-            if (existing != null)
-                existing.AssingFrom(value);
-            else
-                this.LipsList.Add(value);
-            _Lips = value;
-        }
-    }
-    public Personality SetBody(DifData val)
-    {
-        this.Body = val;
-        return this;
-    }
-    public Personality SetFace(DifData val)
-    {
-        this.Face = val;
-        return this;
-    }
-    public Personality SetLips(DifData val)
-    {
-        this.Lips = val;
-        return this;
-    }
-    
-    public virtual List<DifData> Get(DifData delta)
-    {
-           
-            List<DifData> result = new List<DifData>();
-            if (Body != null)
-            {
-                DifData newbody = new DifData();
-                newbody.AssingFrom(Body,true);
-                newbody.AssingFrom(delta);
-                result.Add(newbody);
-            }
-            if (Face != null)
-            {
-                DifData newface = new DifData();
-                newface.AssingFrom(Face, true);
-                if (Body != null)
-                    newface.Parent = Body.Name;
-                else
-                    newface.AssingFrom(delta);
-                result.Add(newface);
-            }
-            if (Lips != null)
-            {
-                DifData newlips = new DifData();
-                newlips.AssingFrom(Lips, true);
-                if (Face != null)
-                    newlips.Parent = Face.Name;
-                else if (Body != null)
-                    newlips.Parent = Body.Name;
-                result.Add(newlips);
-            }
-        return result;
-    }
-}
+  
 }

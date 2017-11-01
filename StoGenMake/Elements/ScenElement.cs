@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using StoGenMake.Scenes.Base;
 using StoGenMake.Pers;
 using StoGenLife.SOUND;
-using StoGenMake.Entity;
+using StoGenMake.Persona;
 
 namespace StoGenMake.Elements
 {
@@ -29,21 +29,21 @@ namespace StoGenMake.Elements
             return string.Empty;
         }
 
-        internal virtual void InitValues(List<EntityVariable> variables)
-        {
-            var val = variables.Where(x => x.Group == this.Name && x.Part == this.Part).FirstOrDefault();
-            if (val != null)
-            {
-                string fn = val.Image.File;
-                if (val.Type == "SOUND")
-                {
-                    string soundval = SoundStore.ValByName(fn);
-                    if (!string.IsNullOrEmpty(soundval))
-                        fn = soundval;
-                }
-                this.File = fn;
-            }
-        }
+        //internal virtual void InitValues(List<EntityVariable> variables)
+        //{
+        //    var val = variables.Where(x => x.Group == this.Name && x.Part == this.Part).FirstOrDefault();
+        //    if (val != null)
+        //    {
+        //        string fn = val.Image.File;
+        //        if (val.Type == "SOUND")
+        //        {
+        //            string soundval = SoundStore.ValByName(fn);
+        //            if (!string.IsNullOrEmpty(soundval))
+        //                fn = soundval;
+        //        }
+        //        this.File = fn;
+        //    }
+        //}
     }
     public class seIm : ScenElement
     {
@@ -87,6 +87,8 @@ namespace StoGenMake.Elements
             if (dd.sX.HasValue) this.sX = dd.sX.Value;
             if (dd.Rot.HasValue) this.Rot = dd.Rot.Value;
             if (dd.Flip.HasValue) this.Flip = dd.Flip.Value;
+            if (dd.O.HasValue) this.Opa = dd.O.Value;
+            if (!string.IsNullOrEmpty(dd.T)) this.Transition = dd.T;
         }
 
         public seIm() { }

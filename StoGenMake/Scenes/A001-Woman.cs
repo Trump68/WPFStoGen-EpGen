@@ -19,7 +19,7 @@ namespace StoGenMake.Scenes
 
 
 
-        protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
+        protected override void LoadData()
         {
             string gr;
             string src;
@@ -515,16 +515,24 @@ namespace StoGenMake.Scenes
             });
             #endregion
 
-            #region Olya (OyariAshito_001)
-            gr = src = SC010_OyariAshito.Lady_Olga.Name;
+            #region EriAyase (OyariAshito_001)
+            gr = src = SC010_OyariAshito.Lady_EriAyase.Name;
             List<DifData> cdata;
 
-            cdata = SC010_OyariAshito.Lady_Olga.Get(new DifData() { X = 0, Y = -5, s = 768, Flip = 0 });
-            cdata.Add(new DifData(Devil.ManOld_001) { X = 150, Y = 300, s = 345, Flip = 0 });
+            SC010_OyariAshito.Lady_EriAyase.SetBody("001");
+            SC010_OyariAshito.Lady_EriAyase.SetHead("002");
+            SC010_OyariAshito.Lady_EriAyase.SetLips("_001");
+
+            cdata = SC010_OyariAshito.Lady_EriAyase.Get(new DifData());
+            cdata.Add(new DifData(Devil.ManOld_001) { X = 740, Y = 255, s = 1535, Flip = 0 });
             AddLocal(gr, cdata);
 
-            cdata = SC010_OyariAshito.Lady_Olga.Get(new DifData() {X=300,s=2300});
-            //cdata.Add(new DifData(Devil.ManOld_001) { X = 280, Y = 480, s = 625, Flip = 0 });
+            SC010_OyariAshito.Lady_EriAyase.SetBody("002");
+            SC010_OyariAshito.Lady_EriAyase.SetHead("002");
+            SC010_OyariAshito.Lady_EriAyase.SetLips("_001");
+
+            cdata = SC010_OyariAshito.Lady_EriAyase.Get(new DifData());
+            cdata.Add(new DifData(Devil.ManOld_001) { X = 745, Y = 255, s = 1425, Flip = 0 });
             AddLocal(gr, cdata);
 
             #endregion
@@ -532,7 +540,7 @@ namespace StoGenMake.Scenes
         protected override void MakeCadres(string cadregroup)
         {
             //cadregroup = "Mary (CleMasahiro CL-orz 51 007 Head)";
-            cadregroup = SC010_OyariAshito.Lady_Olga.Name;
+            cadregroup = SC010_OyariAshito.Lady_EriAyase.Name;
             base.MakeCadres(cadregroup);
             this.Cadres.Reverse();
         }

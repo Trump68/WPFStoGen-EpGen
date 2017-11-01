@@ -22,9 +22,9 @@ namespace StoGenMake.Pers
             this.Description = "bellas de noche 128";
             this.Faces.Add(new VNPCFace(new seIm($@"{path}(Aca los Maistros 04)-19 copy2.png", "Face 01") { sX=210,X=85,Y=10}));
 
-            var imbody = GameWorldFactory.GameWorld.CommonImageList.Where(x => x.Name == "LADY_Body_1710070903").FirstOrDefault();
+            //var imbody = null;//GameWorldFactory.GameWorld.CommonImageList.Where(x => x.Name == "LADY_Body_1710070903").FirstOrDefault();
 
-            this.Cloth = new VNPCCloth(VNPCClothType.Undefined, imbody);
+            //this.Cloth = new VNPCCloth(VNPCClothType.Undefined, imbody);
 
         }
 

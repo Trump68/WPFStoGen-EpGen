@@ -25,7 +25,7 @@ namespace StoGenMake.Scenes
             base.MakeCadres(cadregroup);
             this.Cadres.Reverse();
         }
-        protected override void LoadData(List<seIm> data, List<AlignDif> alignData)
+        protected override void LoadData()
         {
             string path = null;   
             path = @"x:\DOUJIN\Enoshima Iki\[DOUJIN COLOR] Kuro Gal Bitch ga Uchi ni Kita!\"; 

@@ -3,7 +3,7 @@ using StoGenLife.NPC;
 using StoGenLife.SOUND;
 using StoGenMake;
 using StoGenMake.Elements;
-using StoGenMake.Entity;
+using StoGenMake.Persona;
 using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
@@ -43,45 +43,45 @@ namespace StoGenMake.Pers
         }
         public VNPCPersType PersonType = VNPCPersType.Real;
         public BaseScene Scene { set; get; }
-        public EntityData Data = new EntityData();
+        //public EntityData Data = new EntityData();
 
         public virtual bool CreateMenuPersone(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             return false;
         }
-        public virtual bool CreateMenuPersoneDocier(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
-        {
-            ChoiceMenuItem item = null;
-            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+        //public virtual bool CreateMenuPersoneDocier(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        //{
+        //    ChoiceMenuItem item = null;
+        //    if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 
-            item = new ChoiceMenuItem($"Досье на {this.Name}", this);
-            item.Executor = delegate (object data)
-            {
-                this.FillDocierScene();
-                //this.SceneFigure.NextCadre("Cadre" + proc.Cadres.Count);
-                this.Scene.Generate(null);
+        //    item = new ChoiceMenuItem($"Досье на {this.Name}", this);
+        //    item.Executor = delegate (object data)
+        //    {
+        //        this.FillDocierScene();
+        //        //this.SceneFigure.NextCadre("Cadre" + proc.Cadres.Count);
+        //        this.Scene.Generate(null);
 
-                StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
-                proc.MenuCreator = proc.OldMenuCreator;
-                proc.GetNextCadre();
-            };
-            itemlist.Add(item);
-            ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, false);
-            return true;
-        }
-        public virtual void FillDocierScene()
-        {
-            if (this.Scene == null) this.Scene = new BaseScene();
-            this.Scene.AddActor(this);
-            this.Scene.Cadres.Clear();
-            var items = this.Data.ByName("IMAGE", DOCIER_PICTURE, null);
-            foreach (var it in items)
-            {
-                ScenCadre cadre;
-                cadre = this.Scene.AddCadre(null, null, 200);
-                cadre.VisionList.Add(it.Image);
-            }
-        }
+        //        StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
+        //        proc.MenuCreator = proc.OldMenuCreator;
+        //        proc.GetNextCadre();
+        //    };
+        //    itemlist.Add(item);
+        //    ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, false);
+        //    return true;
+        //}
+        ////public virtual void FillDocierScene()
+        //{
+        //    if (this.Scene == null) this.Scene = new BaseScene();
+        //    this.Scene.AddActor(this);
+        //    this.Scene.Cadres.Clear();
+        //    //var items = this.Data.ByName("IMAGE", DOCIER_PICTURE, null);
+        //    //foreach (var it in items)
+        //    //{
+        //    //    ScenCadre cadre;
+        //    //    cadre = this.Scene.AddCadre(null, null, 200);
+        //    //    cadre.VisionList.Add(it.Image);
+        //    //}
+        //}
 
         public List<VNPCCloth> ClothList { set; get; } = new List<VNPCCloth>();
         public List<VNPCFace> Faces { set; get; } = new List<VNPCFace>();
