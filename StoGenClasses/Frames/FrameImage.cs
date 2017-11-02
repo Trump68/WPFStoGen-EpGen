@@ -20,12 +20,10 @@ namespace StoGen.Classes
     public delegate void RunNext();
     public class FrameImage : Frame, IDisposable
     {
-
-
         public static System.Threading.Timer timer;
-
         public static TransitionManager tranManager = new TransitionManager();
         public static ProcedureBase CurrentProc;
+        public static FrameImage Instance;
         public static volatile bool LoopProcessed = false;
         public static int debugcount = 0;
 
@@ -44,9 +42,11 @@ namespace StoGen.Classes
         public static void ProcessLoopDelegate()
         {
             //Transition
-            FrameImage.tranManager.Process();
-
-
+            if (FrameImage.tranManager.Process())
+            {
+                // repaint
+                //Instance.RecreateAndRefreshImage(pi.Props);                
+            }
             if (Projector.TimerEnabled && (FrameImage.TimeToNext > 0))
             {
                 if (FrameImage.TimeStarted.AddMilliseconds(FrameImage.TimeToNext) <= DateTime.Now)
@@ -157,9 +157,9 @@ namespace StoGen.Classes
             : base()
         {
             this.Pics = new List<PictureItem>();
-
             this.AutoShift = false;
             if (timer == null) timer = new System.Threading.Timer(new TimerCallback(TimerProc), null, TimerPeriod, TimerPeriod);
+            Instance = this;
         }
 
 

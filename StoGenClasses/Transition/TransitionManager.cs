@@ -21,8 +21,9 @@ namespace StoGen.Classes
             TransitionList.Add(trandata);
         }
 
-        internal void Process()
+        internal bool Process()
         {
+            bool repaintNeed = false;
             foreach (var TranSeriesForImage in TransitionList)
             {
                 foreach (var TranSeries in TranSeriesForImage.Transitions)
@@ -30,17 +31,20 @@ namespace StoGen.Classes
                     var tran = TranSeries.Where(x => x.Active).FirstOrDefault();
                     if (tran != null)
                     {
-                        if (tran.Execute())
+                        bool rn;
+                        if (tran.Execute(out rn))
                         {
                             if (tran.IsEndless)
                             {
                                 TranSeries.ForEach(x => x.Active = true);
                             }
                         }
+                        if (rn) repaintNeed = true;
                     }
                 }
 
             }
+            return repaintNeed;
         }
     }
     public class TransitionData
@@ -156,8 +160,9 @@ namespace StoGen.Classes
             public bool IsEndless = false;
             public bool IsRelative = false;
             public bool isReverse = false;
-            public virtual bool Execute()
+            public virtual bool Execute(out bool repaintNeed)
             {
+                repaintNeed = false;
                 return true;
             }
             public void Close()
@@ -281,8 +286,9 @@ namespace StoGen.Classes
         {
             public TransitionWait(string[] vals, int level) : base(vals, level) { }
 
-            public override bool Execute()
+            public override bool Execute(out bool repaintNeed)
             {
+                repaintNeed = false;
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
 
                 if (this.Started == 0)
@@ -301,8 +307,9 @@ namespace StoGen.Classes
         public class TransitionPercent : TransitionItem
         {
             public TransitionPercent(string[] vals, int level) : base(vals, level) { }
-            public override bool Execute()
+            public override bool Execute(out bool repaintNeed)
             {
+                repaintNeed = false;
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
                 double cr = CurrentVal;
 
@@ -313,9 +320,9 @@ namespace StoGen.Classes
                     this.End = this.Begin + this.REnd;
                     this.isReverse = this.Begin > this.End;
                     return false;
-                }
+                }                
                 if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
-                {
+                {                    
                     CurrentVal = this.End;
                     this.Close();
                     return true;
@@ -354,9 +361,9 @@ namespace StoGen.Classes
                         Projector.PicContainer.PicList[this.Level].Margin = new System.Windows.Thickness(Projector.PicContainer.PicList[this.Level].Margin.Left, value, 0, 0);
                 }
             }
-            public override bool Execute()
+            public override bool Execute(out bool repaintNeed)
             {
-
+                repaintNeed = false;
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
                 double cr = CurrentVal;
 
@@ -368,6 +375,7 @@ namespace StoGen.Classes
                     this.isReverse = this.Begin > this.End;
                     return false;
                 }
+                repaintNeed = true;
                 if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
                 {
                     CurrentVal = this.End;
@@ -420,8 +428,9 @@ namespace StoGen.Classes
                         Projector.PicContainer.PicList[this.Level].Height = value;
                 }
             }
-            public override bool Execute()
+            public override bool Execute(out bool repaintNeed)
             {
+                repaintNeed = false;
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
                 double cr = CurrentVal;
 
@@ -433,6 +442,7 @@ namespace StoGen.Classes
                     this.isReverse = this.Begin > this.End;
                     return false;
                 }
+                repaintNeed = true;
                 if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
                 {
                     CurrentVal = this.End;
@@ -469,9 +479,9 @@ namespace StoGen.Classes
                     Projector.PicContainer.PicList[this.Level].RenderTransform = transformGroup;
                 }
             }
-            public override bool Execute()
+            public override bool Execute(out bool repaintNeed)
             {
-
+                repaintNeed = false;
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
                 if (this.Started == 0)
                 {
@@ -482,7 +492,7 @@ namespace StoGen.Classes
                         this.End = this.End;
                     }
                 }
-                //if (now < (this.Started)) return false;
+                repaintNeed = true;
                 this.Counter = this.Started + this.Span - now;
                 if (this.Counter <= 0)
                 {
@@ -537,12 +547,12 @@ namespace StoGen.Classes
 
                 }
             }
-            public override bool Execute()
+            public override bool Execute(out bool repaintNeed)
             {
+                repaintNeed = false;
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
                 double cr = CurrentVal;
                 
-
                 if (this.Started == 0)
                 {
                     this.Started = now;
@@ -551,6 +561,7 @@ namespace StoGen.Classes
                     this.isReverse = this.Begin > this.End;
                     return false;
                 }
+                repaintNeed = true;
                 if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
                 {                    
                     this.Close();

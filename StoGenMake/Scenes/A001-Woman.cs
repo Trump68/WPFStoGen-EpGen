@@ -516,41 +516,10 @@ namespace StoGenMake.Scenes
             });
             #endregion
 
-            #region EriAyase (OyariAshito_001)
-            gr = src = SC010_OyariAshito.Lady_EriAyase_Face02.Name;
+            #region EriAyase (OyariAshito_001)            
             List<DifData> cdata;
 
-            //SC010_OyariAshito.Lady_EriAyase.SetBody("001");
-            //SC010_OyariAshito.Lady_EriAyase.SetHead("002");
-            //SC010_OyariAshito.Lady_EriAyase.SetLips("_001");
-
-            //text = $"{src} test text 01";
-            //cdata = SC010_OyariAshito.Lady_EriAyase.Get(new DifData());
-            //cdata.Add(new DifData(Devil.ManOld_001) { X = 740, Y = 255, S = 1535, F = 0 });
-            //AddLocal(gr, text, cdata);
-
-
-            //SC010_OyariAshito.Lady_EriAyase.SetBody("002");
-            //SC010_OyariAshito.Lady_EriAyase.SetHead("002");
-            //SC010_OyariAshito.Lady_EriAyase.SetLips("_001-R10");
-
-            //text = $"{src} test text 02";
-            //cdata = SC010_OyariAshito.Lady_EriAyase.Get(new DifData() { S = 2300 });
-            ////cdata.Add(new DifData(Devil.ManOld_001) { X = 745, Y = 255, S = 10, F = 0 });
-            //AddLocal(gr, text, cdata);
-
-
-            //SC010_OyariAshito.Lady_EriAyase.SetBody("003");
-            //SC010_OyariAshito.Lady_EriAyase.SetHead("003");
-            //SC010_OyariAshito.Lady_EriAyase.SetLips(null);
-
-            //text = $"{src} test text 04";
-            //cdata = SC010_OyariAshito.Lady_EriAyase.Get(new DifData() {});
-            ////cdata.Add(new DifData(Devil.ManOld_001) { X = 745, Y = 255, S = 1425, F = 0 });
-            //AddLocal(gr, text, cdata);
-
-
-            
+            gr = src = SC010_OyariAshito.Lady_EriAyase_Face01.Name;
             text = SC010_OyariAshito.Lady_EriAyase_Face01.Story1;
             cdata = SC010_OyariAshito.Lady_EriAyase_Face01.Get(new DifData() { S = 2300 });
             //cdata.Add(new DifData(Devil.ManOld_001) { X = 745, Y = 255, S = 1425, F = 0 });
@@ -562,13 +531,18 @@ namespace StoGenMake.Scenes
             //cdata.Add(new DifData(Devil.ManOld_001) { X = 745, Y = 255, S = 1425, F = 0 });
             AddLocal(gr, text, cdata);
 
+            gr = src = SC010_OyariAshito.Lady_EriAyase_Face03.Name;
+            text = SC010_OyariAshito.Lady_EriAyase_Face03.Story1;
+            cdata = SC010_OyariAshito.Lady_EriAyase_Face03.Get(new DifData() { S = 2300 });
+            //cdata.Add(new DifData(Devil.ManOld_001) { X = 745, Y = 255, S = 1425, F = 0 });
+            AddLocal(gr, text, cdata);
 
             #endregion
         }
         protected override void MakeCadres(string cadregroup)
         {
             //cadregroup = "Mary (CleMasahiro CL-orz 51 007 Head)";
-            cadregroup = SC010_OyariAshito.Lady_EriAyase_Face02.Name;
+            cadregroup = SC010_OyariAshito.Lady_EriAyase_Face03.Name;
             base.MakeCadres(cadregroup);
             this.Cadres.Reverse();
         }

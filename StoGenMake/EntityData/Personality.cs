@@ -17,9 +17,10 @@ namespace StoGenMake.Persona
             this.Scene = scene;
         }
 
-        //public List<DifData> BodyList = new List<DifData>();
-        //public List<DifData> FaceList = new List<DifData>();
-        //public List<DifData> LipsList = new List<DifData>();
+        protected List<string> BodyList = new List<string>();
+        protected List<string> FaceList = new List<string>();
+        protected List<string> LipsList = new List<string>();
+        protected List<string> PartList = new List<string>();
         private DifData _Body;
         private string bodyName;
         public Personality SetBody(DifData dif)
@@ -36,10 +37,20 @@ namespace StoGenMake.Persona
             this.Body?.AssingFrom(dif);
             return this;
         }
+        public Personality SetBody(int index, DifData dif = null)
+        {
+            if (this.BodyList.Count < index + 1) return this;
+            return SetBody(this.BodyList[index], dif);
+        }
         private string headName;
         public Personality SetHead(DifData dif)
         {
             return this.SetHead(null, dif);
+        }
+        public Personality SetHead(int index, DifData dif = null)
+        {
+            if (this.FaceList.Count < index + 1) return this;
+            return SetHead(this.FaceList[index], dif);
         }
         public Personality SetHead(string name, DifData dif = null)
         {
@@ -53,6 +64,11 @@ namespace StoGenMake.Persona
         }
         private string lipsName;
         public Personality SetLips(DifData dif) { return this.SetLips(null,dif); }
+        public Personality SetLips(int index, DifData dif = null)
+        {
+            if (this.LipsList.Count < index + 1) return this;
+            return SetLips(this.LipsList[index], dif);
+        }
         public Personality SetLips(string name, DifData dif = null)
         {
             lipsName = name;
