@@ -336,6 +336,7 @@ namespace StoGenMake.Scenes.Base
             {
                 //faind main image info in storage
                 var isi = GameWorld.ImageStorage.Where(x => x.Name == ai.Name).FirstOrDefault();
+                if (isi == null) continue;
                 // create image
                 seIm im = new seIm();
                 im.Name = isi.Name;
@@ -378,6 +379,7 @@ namespace StoGenMake.Scenes.Base
         {
             ImageAlignVec newIAV = new ImageAlignVec() { Name = name, File = path + fn };
             newIAV.DefaultAlign = defaultalign;
+            newIAV.DefaultAlign.Name = name;
             GameWorld.ImageStorage.Add(newIAV);
         }
         protected void AddLocal(string[] marks, DifData[] difs) { Add(marks, difs, false); }

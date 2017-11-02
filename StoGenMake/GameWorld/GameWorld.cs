@@ -289,6 +289,7 @@ namespace StoGenMake
 
         internal void AssingFrom(DifData value, bool withnames=false)
         {
+            if (value == null) return;
             if (value.F.HasValue) this.F = value.F;
             if (value.X.HasValue) this.X = value.X;
             if (value.Y.HasValue) this.Y = value.Y;
