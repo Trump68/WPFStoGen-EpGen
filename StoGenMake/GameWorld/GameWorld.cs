@@ -240,10 +240,10 @@ namespace StoGenMake
             {
                 this.X = item.Im.X;
                 this.Y = item.Im.Y;
-                this.sY = item.Im.sY;
-                this.sX = item.Im.sX;
-                this.Rot = item.Im.Rot;
-                this.Flip = item.Im.Flip;
+                this.Sy = item.Im.Sy;
+                this.Sx = item.Im.Sx;
+                this.R = item.Im.R;
+                this.F = item.Im.F;
             }
 
         }
@@ -253,10 +253,10 @@ namespace StoGenMake
 
             this.X = item.X;
             this.Y = item.Y;
-            this.sY = item.sY;
-            this.sX = item.sX;
-            this.Rot = item.Rot;
-            this.Flip = item.Flip;
+            this.Sy = item.sY;
+            this.Sx = item.sX;
+            this.R = item.R;
+            this.F = item.Flip;
         }
         public DifData(string name, string parent, string tag) : this(name, parent)
         {
@@ -266,31 +266,39 @@ namespace StoGenMake
         public string Name { set; get; }
         public string Parent { set; get; }
         public int? X { set; get; }
+        public int? Xd { set; get; }
         public int? Y { set; get; }
-        public int? sX { set; get; }
-        public int? sY { set; get; }
-        public int? Rot { set; get; }
-        public int? Flip { set; get; }
-        public int? s
+        public int? Yd { set; get; }
+        public int? S
         {
             set
             {
-                sY = value;
-                sX = value;
+                Sy = value;
+                Sx = value;
             }
-            get { return sX; }
+            get { return Sx; }
         }
+        public int? Sx { set; get; }
+        public int? Sy { set; get; }
+        public int? R { set; get; } //rotation
+        public int? Rd { set; get; } //increment rotation
+        public int? F { set; get; } // flip   
         public int? O { set; get; }
+        public int? Od { set; get; }
         public string T { set; get; }
 
         internal void AssingFrom(DifData value, bool withnames=false)
         {
-            if (value.Flip.HasValue) this.Flip = value.Flip;
+            if (value.F.HasValue) this.F = value.F;
             if (value.X.HasValue) this.X = value.X;
             if (value.Y.HasValue) this.Y = value.Y;
-            if (value.Rot.HasValue) this.Rot = value.Rot;
-            if (value.s.HasValue) this.s = value.s;
-            if (value.O.HasValue) this.s = value.O;
+            if (value.R.HasValue) this.R = value.R;
+            if (value.S.HasValue) this.S = value.S;            
+            if (value.O.HasValue) this.S = value.O;
+            if (value.Rd.HasValue) this.Rd = value.Rd;
+            if (value.Od.HasValue) this.Od = value.Od;
+            if (value.Xd.HasValue) this.Xd = value.Xd;
+            if (value.Yd.HasValue) this.Yd = value.Yd;
             if (string.IsNullOrEmpty(value.T)) this.T = value.T;
             if (withnames)
             {
@@ -301,13 +309,17 @@ namespace StoGenMake
 
         internal void Clear()
         {
-            this.Flip = null;
+            this.F = null;
             this.X = null;
             this.Y = null;
-            this.Rot = null;
-            this.s = null;
+            this.R = null;
+            this.S = null;
             this.O = null;
             this.T = null;
+            this.Rd = null;
+            this.Od = null;
+            this.Xd = null;
+            this.Yd = null;
         }
     }
     public class CadreAlignPack

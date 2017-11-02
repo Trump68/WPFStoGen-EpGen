@@ -37,11 +37,11 @@ namespace StoGenMake.Scenes.Base
             //raw
 
             name = $"Evil_blue"; fn = $"TestBlue.png";
-            AddToGlobalImage(name, fn, path, new DifData() { s = 500, Flip = 0 });
+            AddToGlobalImage(name, fn, path, new DifData() { S = 500, F = 0 });
             name = $"Evil_red"; fn = $"TestRed.png";
-            AddToGlobalImage(name, fn, path, new DifData() { s = 300, Flip = 0 });
+            AddToGlobalImage(name, fn, path, new DifData() { S = 300, F = 0 });
             name = $"Evil_green"; fn = $"TestGreen.png";
-            AddToGlobalImage(name, fn, path, new DifData() { s = 500, Flip = 0 });
+            AddToGlobalImage(name, fn, path, new DifData() { S = 500, F = 0 });
 
             AddGlobal(new string[] { "test" },
             new DifData[] {
@@ -61,7 +61,7 @@ namespace StoGenMake.Scenes.Base
 
             AddLocal(new string[] { "test" },
              new DifData[] {
-                new DifData("Evil_blue") {X=300, Rot=45, Flip =1},
+                new DifData("Evil_blue") {X=300, R=45, F =1},
                 new DifData("Evil_red","Evil_blue"),
             });
 

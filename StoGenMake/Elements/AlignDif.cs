@@ -85,17 +85,17 @@ namespace StoGenMake.Elements
             
             if (this.ParentIm != null && actualParent != null)
             {
-                if (this.SourceIm.sX.HasValue || this.SourceIm.sY.HasValue)
+                if (this.SourceIm.Sx.HasValue || this.SourceIm.Sy.HasValue)
                 {
-                    if (this.SourceIm.sX.HasValue && this.ParentIm.sX.HasValue)
+                    if (this.SourceIm.Sx.HasValue && this.ParentIm.Sx.HasValue)
                     {
-                        modX = ((float)actualParent.sX / (float)this.ParentIm.sX);
-                        target.sX = Convert.ToInt32(this.SourceIm.sX * modX);
+                        modX = ((float)actualParent.sX / (float)this.ParentIm.Sx);
+                        target.sX = Convert.ToInt32(this.SourceIm.Sx * modX);
                     }
-                    if (this.SourceIm.sY.HasValue && this.ParentIm.sY.HasValue)
+                    if (this.SourceIm.Sy.HasValue && this.ParentIm.Sy.HasValue)
                     {
-                        modY = ((float)actualParent.sY / (float)this.ParentIm.sY);
-                        target.sY = Convert.ToInt32(this.SourceIm.sY * modY);
+                        modY = ((float)actualParent.sY / (float)this.ParentIm.Sy);
+                        target.sY = Convert.ToInt32(this.SourceIm.Sy * modY);
                     }                                
                 }
                 // Parent rotation
@@ -106,20 +106,20 @@ namespace StoGenMake.Elements
                     {
                         target.ParentRotations.AddRange(actualParent.ParentRotations);
                     }
-                    if (this.ParentIm.Rot.HasValue) rot = this.ParentIm.Rot.Value;
-                    if ( rot != actualParent.Rot)
+                    if (this.ParentIm.R.HasValue) rot = this.ParentIm.R.Value;
+                    if ( rot != actualParent.R)
                     {
-                        target.ParentRotations.Add(new Tuple<string, int>(this.ParentIm.Name, actualParent.Rot - rot));
+                        target.ParentRotations.Add(new Tuple<string, int>(this.ParentIm.Name, actualParent.R - rot));
                     }
                 }
             }
             else
             {
-                if (this.SourceIm.sX.HasValue) target.sX = this.SourceIm.sX.Value;
-                if(this.SourceIm.sY.HasValue) target.sY = this.SourceIm.sY.Value;
+                if (this.SourceIm.Sx.HasValue) target.sX = this.SourceIm.Sx.Value;
+                if(this.SourceIm.Sy.HasValue) target.sY = this.SourceIm.Sy.Value;
 
-                if (processed.Im != null && processed.Im.sX.HasValue) target.sX = processed.Im.sX.Value;
-                if (processed.Im != null && processed.Im.sY.HasValue) target.sY = processed.Im.sY.Value;
+                if (processed.Im != null && processed.Im.Sx.HasValue) target.sX = processed.Im.Sx.Value;
+                if (processed.Im != null && processed.Im.Sy.HasValue) target.sY = processed.Im.Sy.Value;
             }
 
             { // X,Y coord
@@ -176,12 +176,12 @@ namespace StoGenMake.Elements
             }
 
 
-            if (this.SourceIm.Rot.HasValue) target.Rot = this.SourceIm.Rot.Value;
-            if (processed.Im != null && processed.Im.Rot.HasValue) target.Rot = processed.Im.Rot.Value;
+            if (this.SourceIm.R.HasValue) target.R = this.SourceIm.R.Value;
+            if (processed.Im != null && processed.Im.R.HasValue) target.R = processed.Im.R.Value;
 
-            if (this.SourceIm.Flip.HasValue) target.Flip = this.SourceIm.Flip.Value;
-            if (processed.Im != null && processed.Im.Flip.HasValue)
-                target.Flip = processed.Im.Flip.Value;
+            if (this.SourceIm.F.HasValue) target.Flip = this.SourceIm.F.Value;
+            if (processed.Im != null && processed.Im.F.HasValue)
+                target.Flip = processed.Im.F.Value;
             else
             {
                 //if (this.ParentIm != null && actualParent != null)

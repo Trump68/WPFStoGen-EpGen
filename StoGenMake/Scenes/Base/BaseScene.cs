@@ -9,6 +9,7 @@ using StoGenLife.NPC;
 using StoGenMake.Pers;
 using StoGen.Classes;
 using static StoGenMake.GameWorld;
+using System.Windows.Media;
 
 namespace StoGenMake.Scenes.Base
 {
@@ -24,50 +25,48 @@ namespace StoGenMake.Scenes.Base
     public class ImageRelDifVec
     {
         public ImageRelDifVec() { }
-        public string ParentName;
-        public string AlignVariant;
+        public string Parent;
         public string Tag;
-        public int parY = 0;
-        public int dX = 0;
-        public int dY = 0;
-        public int psX = 1;
-        public int psY = 1;
-        public float dsX = 1;
-        public float dsY = 1;
-        public int Rot = 0;
-        public int parRot = 0;
-        public int parFlip = 0;
-        public int Flip = 0;
-        public int ParO = -1;
+        public int Xd = 0;
+        public int Yd = 0;
+        public int pSx = 1;
+        public int pSy = 1;
+        public float dSx = 1;
+        public float dSy = 1;
+        public int R = 0;
+        public int pR = 0;
+        public int pF = 0;
+        public int F = 0;
+        public int pO = -1;
         public int dO = 0;
-        public string parT;
+        public string pT;
 
         internal void CreateDifProportions(seIm parIm, seIm childIm)
         {
             if (parIm == null) return;
             if (childIm == null) return;
-            dX = childIm.X - parIm.X;
-            dY = childIm.Y - parIm.Y;
+            Xd = childIm.X - parIm.X;
+            Yd = childIm.Y - parIm.Y;
 
-            Rot = childIm.Rot;
-            parRot = parIm.Rot;
+            R = childIm.R;
+            pR = parIm.R;
 
-            parFlip = parIm.Flip;
-            Flip = childIm.Flip;
-            dsX = ((float)childIm.sX / (float)parIm.sX);
-            dsY = ((float)childIm.sY / (float)parIm.sY);
-            psX = parIm.sX;
-            psY = parIm.sY;
-            parT = parIm.Transition;
-            ParO = parIm.Opa;
+            pF = parIm.Flip;
+            F = childIm.Flip;
+            dSx = ((float)childIm.sX / (float)parIm.sX);
+            dSy = ((float)childIm.sY / (float)parIm.sY);
+            pSx = parIm.sX;
+            pSy = parIm.sY;
+            pT = parIm.Transition;
+            pO = parIm.Opa;
             dO = childIm.Opa - parIm.Opa;
         }
 
         //! new!!!!
-        internal void ApplyTo(seIm target, seIm actualParent)
+        internal void ApplyTo(seIm target, seIm actualParent, DifData delta)
         {
-            target.sX = Convert.ToInt32(this.dsX * actualParent.sX);
-            target.sY = Convert.ToInt32(this.dsY * actualParent.sY);
+            target.sX = Convert.ToInt32(this.dSx * actualParent.sX);
+            target.sY = Convert.ToInt32(this.dSy * actualParent.sY);
             //int dR = 0;
             // Parent rotation
             {
@@ -76,9 +75,9 @@ namespace StoGenMake.Scenes.Base
                 {
                     target.ParentRotations.AddRange(actualParent.ParentRotations);
                 }
-                if (this.parRot != actualParent.Rot)
+                if (this.pR != actualParent.R)
                 {
-                    var dR = actualParent.Rot - parRot;
+                    var dR = actualParent.R - pR;
                     target.ParentRotations.Add(new Tuple<string, int>(actualParent.Name, dR));
                 }
             }
@@ -89,7 +88,7 @@ namespace StoGenMake.Scenes.Base
                 {
                     target.ParentFlips.AddRange(actualParent.ParentFlips);
                 }
-                if (this.parFlip != actualParent.Flip)
+                if (this.pF != actualParent.Flip)
                 {
                     target.ParentFlips.Add(actualParent.Name);
                 }
@@ -97,28 +96,33 @@ namespace StoGenMake.Scenes.Base
 
             { // X,Y coord
                
-                target.X = this.dX;
-                target.Y = this.dY;
+                target.X = this.Xd;
+                target.Y = this.Yd;
 
-                target.X = (int)(this.dX * ((float)actualParent.sX / psX));
-                target.Y = (int)(this.dY * ((float)actualParent.sY / psY));
-               
+                if (delta.Xd.HasValue) target.X = target.X + delta.Xd.Value;
+                if (delta.Yd.HasValue) target.Y = target.Y + delta.Yd.Value;
+
+                target.X = (int)(this.Xd * ((float)actualParent.sX / pSx));
+                target.Y = (int)(this.Yd * ((float)actualParent.sY / pSy));               
 
                 target.X = target.X + actualParent.X;
                 target.Y = target.Y + actualParent.Y;
             }
-            target.Rot = this.Rot;
-            target.Flip = this.Flip;
-            target.Transition = this.parT;
-            target.Opa = this.ParO;
+            target.R = this.R;
+            if (delta.Rd.HasValue) target.R = target.R + delta.Rd.Value;
+            target.Flip = this.F;
+            target.Transition = this.pT;
+            target.Opa = this.pO;
+            if (delta.Od.HasValue) target.Opa = target.Opa + delta.Od.Value;
         }
     }
-    public class CadreImageAligns
+    public class CadreData
     {
         public bool IsGlobalAlign = false;
         public List<DifData> AlignList = new List<DifData>();
         public List<string> MarkList = new List<string>();
-        public CadreImageAligns()
+        public seTe TextData;
+        public CadreData()
         {
 
         }
@@ -128,7 +132,7 @@ namespace StoGenMake.Scenes.Base
     {
         public int EngineHiVer = 0;
         public int EngineLoVer = 0;
-        //protected List<VNPC> Actors;
+        
         protected virtual void MakeCadres(string cadregroup)
         {
             foreach (var item in AlignList.Where(x => string.IsNullOrEmpty(cadregroup) || x.MarkList.Contains(cadregroup)))
@@ -144,55 +148,42 @@ namespace StoGenMake.Scenes.Base
                     te.Shift = 700;
                     te.Text = "SETUP";
                 }
+                else
+                {
+                    te = item.TextData; 
+                }
                 this.CreateCadre(item, isWhite, te);
             }
         }
 
-        public List<CadreImageAligns> AlignList = new List<CadreImageAligns>();
+        public List<CadreData> AlignList = new List<CadreData>();
         public Guid GID { set; get; }
-        public enum ViewingTransitionState
-        {
-            Disabled,
-            None,
-            Go
-        }
-        public int SizeX = 800;
-        public int SizeY = 600;
-        public int X = 300;
-        public int Y = 0;
-        private int Version = 0;
         public BaseScene()
         {
-            //this.Actors = new List<VNPC>();
             this.Name = "Drama scene";
-            this.SizeX = 1500;
-            this.SizeY = 1600;
-            LoadData(
-              //GameWorldFactory.GameWorld.CommonImageList,
-              //GameWorldFactory.GameWorld.AlignList
-              );
+            LoadData();
         }
         protected virtual void LoadData() { }
         //public void AddActor(VNPC actor)
         //{
         //    this.Actors.Add(actor);
         //}
-        public ViewingTransitionState StateViewingTransition = ViewingTransitionState.None;
-        protected void AddObzor(ScenCadre cadre)
-        {
-            if (this.StateViewingTransition == ViewingTransitionState.Go)
-            {
-                foreach (var image in cadre.VisionList)
-                {
-                    if (!string.IsNullOrEmpty(image.Transition))
-                    {
-                        image.Transition = image.Transition + "*" + Transition.Obzor();
-                    }
-                    else
-                        image.Transition = Transition.Obzor();
-                }
-            }
-        }
+        //public ViewingTransitionState StateViewingTransition = ViewingTransitionState.None;
+        //protected void AddObzor(ScenCadre cadre)
+        //{
+        //    if (this.StateViewingTransition == ViewingTransitionState.Go)
+        //    {
+        //        foreach (var image in cadre.VisionList)
+        //        {
+        //            if (!string.IsNullOrEmpty(image.Transition))
+        //            {
+        //                image.Transition = image.Transition + "*" + Transition.Obzor();
+        //            }
+        //            else
+        //                image.Transition = Transition.Obzor();
+        //        }
+        //    }
+        //}
 
         private string _TempFileName;
         public string TempFileName
@@ -252,8 +243,7 @@ namespace StoGenMake.Scenes.Base
 
             List<string> scendata = new List<string>();
             foreach (var item in this.Cadres)
-            {
-                //item.InitValuesFromPers(this.Data.Variables);
+            {             
                 int i = 0;
                 if (item.IsActivated)
                 {
@@ -320,11 +310,21 @@ namespace StoGenMake.Scenes.Base
         //}
         #endregion
 
-        public seTe DefaultSceneText = new seTe();
+        public seTe DefaultSceneText = new seTe()
+           { Shift = 1000,
+            FontSize = 26,
+            Size = 760,
+            Bottom = 0,
+            Width =366,
+            FontColor = "Aqua"};
+                    //te.FontSize = 60;
+                    //te.Size = 100;
+                    //te.Bottom = 0;
+                    //te.Shift = 700;
        
         #region Newest engine!!!
 
-        protected void CreateCadre(CadreImageAligns item, bool isWhite = false, seTe text = null)
+        protected void CreateCadre(CadreData item, bool isWhite = false, seTe text = null)
         {
             var cadre = new ScenCadre();
             cadre.IsWhite = isWhite;
@@ -344,7 +344,7 @@ namespace StoGenMake.Scenes.Base
                 if (!string.IsNullOrEmpty(ai.Parent)) //if has parent image
                 {
                     // get parent-child proportion
-                    var parentproportion = isi.Parents.Where(x => x.ParentName == ai.Parent && x.Tag == ai.Tag).FirstOrDefault();
+                    var parentproportion = isi.Parents.Where(x => x.Parent == ai.Parent && x.Tag == ai.Tag).FirstOrDefault();
                     if (parentproportion != null)
                     {
                         // get real parent image from cadre
@@ -353,7 +353,7 @@ namespace StoGenMake.Scenes.Base
                         {
                             // assign to image parent-child proportion according with real parent 
                             seIm realparent = realpar as seIm;
-                            parentproportion.ApplyTo(im, realparent);
+                            parentproportion.ApplyTo(im, realparent, ai);
                         }
                     }
                 }
@@ -383,6 +383,7 @@ namespace StoGenMake.Scenes.Base
         protected void AddLocal(string[] marks, DifData[] difs) { Add(marks, difs, false); }
         protected void AddLocal(string[] marks, List<DifData> difs) { Add(marks, difs.ToArray()); }
         public void AddLocal(string mark, List<DifData> difs) { Add(new string[] { mark }, difs.ToArray()); }
+        public void AddLocal(string mark, string text, List<DifData> difs) { Add(new string[] { mark },text, difs.ToArray()); }
         public void AddLocal(string mark, DifData dif) { Add(new string[] { mark }, new DifData[] { dif } ); }
         public void AddGlobal(string[] marks, DifData[] difs)
         { Add(marks, difs, true); }
@@ -391,22 +392,41 @@ namespace StoGenMake.Scenes.Base
             DifData[] difs,
             bool installtoglobal = false)
         {
-            CadreImageAligns CAL = new CadreImageAligns();
-            CAL.MarkList.AddRange(marks);
+            Add(marks, difs, null, installtoglobal);
+        }
+        private void Add(
+            string[] marks,
+            string text,
+            DifData[] difs,            
+            bool installtoglobal = false)
+        {
+            seTe textData = new seTe(this.DefaultSceneText);
+            textData.Text = text;
+            Add(marks, difs, textData, installtoglobal);
+        }
+        private void Add(
+            string[] marks,
+            DifData[] difs,
+            seTe text,
+            bool installtoglobal = false)
+        {
+            CadreData cadreData = new CadreData();
+            cadreData.TextData = text;
+            cadreData.MarkList.AddRange(marks);
             foreach (var mark in marks)
             {
                 if (!this.CadreGroups.Contains(mark)) this.CadreGroups.Add(mark);
             }
             foreach (var dif in difs)
             {
-                CAL.AlignList.Add(dif);
+                cadreData.AlignList.Add(dif);
                 if (installtoglobal && !string.IsNullOrEmpty(dif.Parent))
                 {
-                    CAL.IsGlobalAlign = true;
+                    cadreData.IsGlobalAlign = true;
                     AddToGlobalAlign(dif, difs.Where(x=>x.Name == dif.Parent).FirstOrDefault());
                 }
             }
-            AlignList.Add(CAL);
+            AlignList.Add(cadreData);
         }
         private void AddToGlobalAlign(DifData dd, DifData pardelta)
         {
@@ -417,7 +437,7 @@ namespace StoGenMake.Scenes.Base
                 if (storageitem != null)
                 {
                     // check if default align for that parent is not already assigned
-                    var oldalign = storageitem.Parents.Where(x => x.ParentName == dd.Parent && x.Tag == dd.Tag).FirstOrDefault();
+                    var oldalign = storageitem.Parents.Where(x => x.Parent == dd.Parent && x.Tag == dd.Tag).FirstOrDefault();
                     if (oldalign == null)
                     {
                         // Get parent image align via default align and delta
@@ -433,7 +453,7 @@ namespace StoGenMake.Scenes.Base
                         // add align for that parent
                         ImageRelDifVec newalign = new ImageRelDifVec();
                         newalign.Tag = dd.Tag;
-                        newalign.ParentName = dd.Parent;
+                        newalign.Parent = dd.Parent;
                         newalign.CreateDifProportions(parIm, childIm);
                         storageitem.Parents.Add(newalign);
                     }
@@ -445,255 +465,7 @@ namespace StoGenMake.Scenes.Base
 
     #endregion
 
-    //    #region new
-    //public List<CadreAlignPack> Aligns = new List<CadreAlignPack>();
-    //    public void GenerateCadre(
-    //       AlignData[] imdata,
-    //       bool isWhite = false,
-    //       seTe text = null)
-    //    {
-
-    //        ScenCadre cadre = this.AddCadre(null, null, 200);
-    //        cadre.IsWhite = isWhite;
-    //        if (text != null)
-    //        {
-    //            cadre.AddText(text);
-    //        }
-    //        foreach (var item in imdata)
-    //        {
-    //            var sourceIm = ApplyAlignData(item, imdata.ToList(), true);
-    //            if (sourceIm != null) cadre.AddImage(sourceIm);
-    //        }
-    //    }
-    //    private seIm ApplyAlignData(AlignData processed, List<AlignData> list, bool replace)
-    //    {
-    //        var targetIm = GameWorldFactory.GameWorld.CommonImageList.Where(x => x.Name == processed.Name).FirstOrDefault();
-    //        if (targetIm != null)
-    //        {
-    //            if (!processed.Processed)
-    //            {
-    //                targetIm.Reset();
-    //                var currAlign = GameWorldFactory.GameWorld.AlignList.Where(x => x.Source == targetIm.Name && x.Parent == processed.Parent && x.Tag == processed.Tag).FirstOrDefault();
-    //                AlignData parentItem = null;
-    //                if (!string.IsNullOrEmpty(processed.Parent))
-    //                {
-    //                    parentItem = list.Where(x => x.Name == processed.Parent).FirstOrDefault();
-    //                    if (parentItem != null)
-    //                    {
-    //                        if (!parentItem.Processed)
-    //                        {
-    //                            ApplyAlignData(parentItem, list, replace);
-    //                        }
-    //                    }
-    //                }
-
-    //                //if (currAlign == null)
-    //                //{
-    //                //    if (!string.IsNullOrEmpty(processed.Parent) && parentItem == null)
-    //                //    {
-    //                //        var parnull = GameWorldFactory.GameWorld.AlignList.Where(x => x.Source == processed.Parent && string.IsNullOrEmpty(x.Parent) && x.Tag == processed.Tag).FirstOrDefault();
-    //                //        currAlign = new AlignDif(processed, parnull.SourceIm);
-    //                //    }
-    //                //    else
-    //                //    {
-    //                //        currAlign = new AlignDif(processed, parentItem);
-    //                //    }
-
-    //                //    GameWorldFactory.GameWorld.AlignList.Add(currAlign);
-    //                //}
-
-    //                if (parentItem != null)
-    //                {
-    //                    currAlign.Applay(targetIm, processed, parentItem.Fact);
-    //                }
-    //                else
-    //                    currAlign.Applay(targetIm, processed);
-
-    //                processed.Fact = targetIm;
-    //                processed.Processed = true;
-    //            }
-    //        }
-
-    //        return targetIm;
-
-    //    }
-
-    //    internal CadreAlignPack AddIm(string name, VNPCPersType type,
-    //                string desc, string path, string file,
-    //                List<seIm> data,
-    //                AlignData[] imdata)
-    //    {
-    //        CadreAlignPack result = null;
-    //        seIm im = GetIm(name, type, desc, path, file);
-    //        data.Add(im);
-    //        result = new CadreAlignPack(imdata);
-    //        this.Aligns.Add(result);
-
-    //        foreach (var item in imdata)
-    //        {
-    //            AddAlignData(im, item, imdata.ToList());
-    //        }
-    //        return result;
-    //    }
-    //    private void AddAlignData(seIm targetIm, AlignData processed, List<AlignData> list)
-    //    {
-    //        if (targetIm == null)
-    //            targetIm = GameWorldFactory.GameWorld.CommonImageList.Where(x => x.Name == processed.Name).FirstOrDefault();
-    //        if (!processed.Processed)
-    //        {
-    //            targetIm.Reset();
-    //            var currAlign = GameWorldFactory.GameWorld.AlignList.Where(x => x.Source == targetIm.Name && x.Parent == processed.Parent && x.Tag == processed.Tag).FirstOrDefault();
-    //            AlignData parentItem = null;
-    //            if (!string.IsNullOrEmpty(processed.Parent))
-    //            {
-    //                parentItem = list.Where(x => x.Name == processed.Parent).FirstOrDefault();
-    //                if (parentItem != null)
-    //                {
-    //                    if (!parentItem.Processed)
-    //                    {
-    //                        AddAlignData(null, parentItem, list);
-    //                    }
-    //                }
-    //            }
-
-    //            if (currAlign == null)
-    //            {
-    //                if (!string.IsNullOrEmpty(processed.Parent) && parentItem == null)
-    //                {
-    //                    var parnull = GameWorldFactory.GameWorld.AlignList.Where(x => x.Source == processed.Parent && string.IsNullOrEmpty(x.Parent) && x.Tag == processed.Tag).FirstOrDefault();
-    //                    currAlign = new AlignDif(processed, parnull.SourceIm);
-    //                }
-    //                else
-    //                {
-    //                    currAlign = new AlignDif(processed, parentItem);
-    //                }
-    //                GameWorldFactory.GameWorld.AlignList.Add(currAlign);
-    //            }
-    //        }
-    //    }
-
-    //    #endregion
-
-    //    #region old
-    //    protected void SetCadre(string name, bool white)
-    //    {
-    //        SetCadre(new AlignData[] { new AlignData(name) }, this, white);
-    //    }
-
-    //    public static void SetCadre(AlignData[] imdata, BaseScene scene, string text)
-    //    {
-    //        seTe newtext = new seTe(scene.DefaultSceneText);
-    //        newtext.Text = text;
-    //        SetCadre(imdata, scene, false, true, newtext);
-    //    }
-    //    public static void SetCadre(AlignData[] imdata, BaseScene scene, seTe text)
-    //    {
-    //        SetCadre(imdata, scene, false, true, text);
-    //    }
-    //    public static void SetCadre(
-    //        AlignData[] imdata,
-    //        BaseScene scene = null,
-    //        bool isWhite = false,
-    //        bool replace = true,
-    //        seTe text = null)
-    //    {
-    //        ScenCadre cadre = null;
-    //        if (scene != null)
-    //        {
-    //            cadre = scene.AddCadre(null, null, 200);
-    //            cadre.IsWhite = isWhite;
-
-    //            if (text != null)
-    //            {
-    //                cadre.AddText(text);
-    //            }
-
-    //        }
-
-    //        foreach (var item in imdata)
-    //        {
-    //            var sourceIm = setAlignData(item, imdata.ToList(), replace);
-    //            if (sourceIm != null && cadre != null)
-    //                cadre.AddImage(sourceIm);
-    //        }
-    //    }
-
-    //    private static seIm setAlignData(AlignData processed, List<AlignData> list, bool replace)
-    //    {
-    //        var targetIm = GameWorldFactory.GameWorld.CommonImageList.Where(x => x.Name == processed.Name).FirstOrDefault();
-    //        if (targetIm != null)
-    //        {
-    //            if (!processed.Processed)
-    //            {
-    //                targetIm.Reset();
-    //                var currAlign = GameWorldFactory.GameWorld.AlignList.Where(x => x.Source == targetIm.Name && x.Parent == processed.Parent && x.Tag == processed.Tag).FirstOrDefault();
-    //                AlignData parentItem = null;
-    //                if (!string.IsNullOrEmpty(processed.Parent))
-    //                {
-    //                    parentItem = list.Where(x => x.Name == processed.Parent).FirstOrDefault();
-    //                    if (parentItem != null)
-    //                    {
-    //                        if (!parentItem.Processed)
-    //                        {
-    //                            setAlignData(parentItem, list, replace);
-    //                        }
-    //                    }
-    //                }
-
-    //                if (currAlign == null)
-    //                {
-    //                    if (!string.IsNullOrEmpty(processed.Parent) && parentItem == null)
-    //                    {
-    //                        var parnull = GameWorldFactory.GameWorld.AlignList.Where(x => x.Source == processed.Parent && string.IsNullOrEmpty(x.Parent) && x.Tag == processed.Tag).FirstOrDefault();
-    //                        currAlign = new AlignDif(processed, parnull.SourceIm);
-    //                    }
-    //                    else
-    //                    {
-    //                        currAlign = new AlignDif(processed, parentItem);
-    //                    }
-
-    //                    GameWorldFactory.GameWorld.AlignList.Add(currAlign);
-    //                }
-
-    //                if (parentItem != null)
-    //                {
-    //                    currAlign.Applay(targetIm, processed, parentItem.Fact);
-    //                }
-    //                else
-    //                    currAlign.Applay(targetIm, processed);
-
-    //                processed.Fact = targetIm;
-    //                processed.Processed = true;
-    //            }
-    //        }
-
-    //        return targetIm;
-
-    //    }
-
-    //    internal static void GetIm(string name, VNPCPersType type,
-    //                              string desc, string path, string file, List<seIm> data,
-    //                              DifData defaultdifdata = null)
-    //    {
-    //        seIm im = GetIm(name, type, desc, path, file);
-    //        data.Add(im);
-    //        if (defaultdifdata != null)
-    //        {
-    //            SetCadre(new AlignData[] { new AlignData(name, defaultdifdata) }, null);
-    //        }
-    //    }
-
-    //    protected static seIm GetIm(string name, VNPCPersType type,
-    //                              string desc, string path, string file)
-    //    {
-    //        seIm im = new seIm($@"{path}{file}", name);
-    //        im.Name = name;
-    //        im.PersonType = type;
-    //        im.Description = desc;
-    //        return im;
-    //    }
-
-    //    #endregion
+    
     }
 
 }

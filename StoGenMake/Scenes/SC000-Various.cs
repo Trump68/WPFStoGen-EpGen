@@ -41,7 +41,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 2; i++)
             {
                 src = $"Eriya-J_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
 
@@ -49,7 +49,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 2; i++)
             {
                 src = $"Eriya-J_Face_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion
@@ -60,7 +60,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 3; i++)
             {
                 src = $"Codec_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion
@@ -71,7 +71,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 2; i++)
             {
                 src = $"Dako_5_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion
@@ -82,7 +82,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 6; i++)
             {
                 src = $"Dcwj_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion
@@ -93,7 +93,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 3; i++)
             {
                 src = $"Destiny_Child_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion
@@ -104,7 +104,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 7; i++)
             {
                 src = $"Doxy_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion
@@ -115,14 +115,14 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 5; i++)
             {
                 src = $"Emyo_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             gr = "Emyo PNG";
             for (int i = 1; i <= 1; i++)
             {
                 src = $"Emyo_PNG_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion
@@ -133,7 +133,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 6; i++)
             {
                 src = $"Firolian_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion
@@ -144,7 +144,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 18; i++)
             {
                 src = $"Frans_Mensink_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion
@@ -155,7 +155,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 4; i++)
             {
                 src = $"G.m_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion
@@ -166,7 +166,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 9; i++)
             {
                 src = $"Geo_Siador_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion
@@ -177,13 +177,13 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 34; i++)
             {
                 src = $"Ghettoyouth_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             for (int i = 1; i <= 1; i++)
             {
                 src = $"Ghettoyouth_Head_PNG_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { s = ss });
+                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion

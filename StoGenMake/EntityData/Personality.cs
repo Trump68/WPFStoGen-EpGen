@@ -17,10 +17,29 @@ namespace StoGenMake.Persona
             this.Scene = scene;
         }
 
-        public List<DifData> BodyList = new List<DifData>();
-        public List<DifData> FaceList = new List<DifData>();
-        public List<DifData> LipsList = new List<DifData>();
+        //public List<DifData> BodyList = new List<DifData>();
+        //public List<DifData> FaceList = new List<DifData>();
+        //public List<DifData> LipsList = new List<DifData>();
         private DifData _Body;
+        private string bodyName;
+        public Personality SetBody(string name)
+        {
+            bodyName = name;
+            return this;
+        }
+        private string headName;
+        public Personality SetHead(string name)
+        {
+            headName = name;
+            return this;
+        }
+        private string lipsName;
+        public Personality SetLips(string name)
+        {
+            lipsName = name;
+            return this;
+        }
+
         public DifData Body
         {
             get
@@ -29,14 +48,14 @@ namespace StoGenMake.Persona
             }
             set
             {
-                if (value != null)
-                {
-                    var existing = this.BodyList.Where(x => x.Name == value.Name).FirstOrDefault();
-                    if (existing != null)
-                        existing.AssingFrom(value);
-                    else
-                        this.BodyList.Add(value);
-                }
+                //if (value != null)
+                //{
+                //    var existing = this.BodyList.Where(x => x.Name == value.Name).FirstOrDefault();
+                //    if (existing != null)
+                //        existing.AssingFrom(value);
+                //    else
+                //        this.BodyList.Add(value);
+                //}
                 _Body = value;
             }
         }
@@ -49,14 +68,14 @@ namespace StoGenMake.Persona
             }
             set
             {
-                if (value != null)
-                {
-                    var existing = this.FaceList.Where(x => x.Name == value.Name).FirstOrDefault();
-                    if (existing != null)
-                        existing.AssingFrom(value);
-                    else
-                        this.FaceList.Add(value);
-                }
+                //if (value != null)
+                //{
+                //    var existing = this.FaceList.Where(x => x.Name == value.Name).FirstOrDefault();
+                //    if (existing != null)
+                //        existing.AssingFrom(value);
+                //    else
+                //        this.FaceList.Add(value);
+                //}
                 _Face = value;
             }
         }
@@ -69,36 +88,59 @@ namespace StoGenMake.Persona
             }
             set
             {
-                if (value != null)
-                {
-                    var existing = this.LipsList.Where(x => x.Name == value.Name).FirstOrDefault();
-                    if (existing != null)
-                        existing.AssingFrom(value);
-                    else
-                        this.LipsList.Add(value);
-                }
+                //if (value != null)
+                //{
+                //    var existing = this.LipsList.Where(x => x.Name == value.Name).FirstOrDefault();
+                //    if (existing != null)
+                //        existing.AssingFrom(value);
+                //    else
+                //        this.LipsList.Add(value);
+                //}
                 _Lips = value;
             }
         }
-        public Personality SetBody(DifData val)
-        {
-            this.Body = val;
-            return this;
-        }
-        public Personality SetFace(DifData val)
-        {
-            this.Face = val;
-            return this;
-        }
-        public Personality SetLips(DifData val)
-        {
-            this.Lips = val;
-            return this;
-        }
+        //public Personality SetBody(DifData val)
+        //{
+        //    this.Body = val;
+        //    return this;
+        //}
+        //public Personality SetFace(DifData val)
+        //{
+        //    this.Face = val;
+        //    return this;
+        //}
+        //public Personality SetLips(DifData val)
+        //{
+        //    this.Lips = val;
+        //    return this;
+        //}
 
         public virtual List<DifData> Get(DifData delta)
         {
-
+            if (!string.IsNullOrEmpty(this.bodyName))
+            {
+                var al = this.Scene.AlignList.Where(
+                    x => x.MarkList.Contains($"{this.Name}Body{bodyName}")).FirstOrDefault();
+                if (al != null)
+                    this.Body = al.AlignList.First();
+            }
+            else this.Body = null;
+            if (!string.IsNullOrEmpty(this.headName))
+            {
+                var al = this.Scene.AlignList.Where(
+                    x => x.MarkList.Contains($"{this.Name}Face{headName}")).FirstOrDefault();
+                if (al != null)
+                    this.Face = al.AlignList.First();
+            }
+            else this.Face = null;
+            if (!string.IsNullOrEmpty(this.lipsName))
+            {
+                var al = this.Scene.AlignList.Where(
+                    x => x.MarkList.Contains($"{this.Name}Lips{lipsName}")).FirstOrDefault();
+                if (al != null)
+                    this.Lips = al.AlignList.First();
+            }
+            else this.Lips = null;
             List<DifData> result = new List<DifData>();
             if (Body != null)
             {

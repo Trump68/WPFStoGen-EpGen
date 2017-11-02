@@ -55,7 +55,7 @@ namespace StoGenMake.Elements
             this.Y = y;
             this.sX = sX;
             this.sY = sY;
-            this.Rot = rot;
+            this.R = rot;
             this.Opa = opac;
         }
 
@@ -69,7 +69,7 @@ namespace StoGenMake.Elements
           Opa = 100;
           Timer = -1;
           Flip = 0;
-          Rot  = 0;
+          R  = 0;
         }
 
         public seIm(string file, string name = null) : this()
@@ -83,10 +83,10 @@ namespace StoGenMake.Elements
             if (dd == null) return;
             if (dd.X.HasValue) this.X = dd.X.Value;
             if (dd.Y.HasValue) this.Y = dd.Y.Value;
-            if (dd.sY.HasValue) this.sY = dd.sY.Value;
-            if (dd.sX.HasValue) this.sX = dd.sX.Value;
-            if (dd.Rot.HasValue) this.Rot = dd.Rot.Value;
-            if (dd.Flip.HasValue) this.Flip = dd.Flip.Value;
+            if (dd.Sy.HasValue) this.sY = dd.Sy.Value;
+            if (dd.Sx.HasValue) this.sX = dd.Sx.Value;
+            if (dd.R.HasValue) this.R = dd.R.Value;
+            if (dd.F.HasValue) this.Flip = dd.F.Value;
             if (dd.O.HasValue) this.Opa = dd.O.Value;
             if (!string.IsNullOrEmpty(dd.T)) this.Transition = dd.T;
         }
@@ -112,7 +112,7 @@ namespace StoGenMake.Elements
         public int Opa = 100;
         public int Timer = -1;
         public int Flip = 0;
-        public int Rot { get; internal set; } = 0;
+        public int R { get; internal set; } = 0;
         public override bool IsActivated { get { return (this == Previous) || (!string.IsNullOrEmpty(this.File)); } }
 
         public VNPCPersType PersonType { get; internal set; }
@@ -166,7 +166,7 @@ namespace StoGenMake.Elements
                 result.Add($"SizeMode={this.SizeMode}");
                 result.Add($"X={(this.X).ToString().PadRight(4)}");
                 result.Add($"Y={(this.Y).ToString().PadRight(4)}");
-                result.Add($"Rot={this.Rot.ToString().PadRight(4)}");
+                result.Add($"Rot={this.R.ToString().PadRight(4)}");
                 result.Add($"Opacity={this.Opa.ToString().PadRight(3)}");
                 result.Add($"Flip={this.Flip.ToString().PadRight(3)}");
                 result.Add($"Name={this.Name.PadRight(3)}");
@@ -189,7 +189,7 @@ namespace StoGenMake.Elements
             this.sY = image.sY;
             this.X = image.X;
             this.Y = image.Y;
-            this.Rot = image.Rot;
+            this.R = image.R;
             this.Part = image.Part;
             this.File = image.File;
             this.Name = image.Name;

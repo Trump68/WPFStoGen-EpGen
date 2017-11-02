@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using StoGen.ModelClasses;
 using System.Windows.Media;
 using System.Threading;
+
 namespace StoGen.Classes
 {
     public class FrameText : Frame
@@ -109,8 +110,9 @@ namespace StoGen.Classes
                     Projector.Text.Foreground = System.Windows.Media.Brushes.Blue;
                 else if (FontColor == "Yellow")
                     Projector.Text.Foreground = System.Windows.Media.Brushes.Yellow;
-                //else
-                    //Projector.Text.Foreground =  new SolidBrush((System.Drawing.Color)new System.Drawing.ColorConverter().ConvertFromString(FontColor));
+                else                   
+                  Projector.Text.Foreground = new System.Windows.Media.SolidColorBrush(
+                      (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(FontColor));
             }
 
             Projector.Text.Opacity = this.Opacity / 100;
