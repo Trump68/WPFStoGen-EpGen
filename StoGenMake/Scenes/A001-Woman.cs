@@ -537,12 +537,17 @@ namespace StoGenMake.Scenes
             //cdata.Add(new DifData(Devil.ManOld_001) { X = 745, Y = 255, S = 1425, F = 0 });
             AddLocal(gr, text, cdata);
 
+            gr = src = SC010_OyariAshito.Lady_EriAyase_Face04.Name;
+            text = SC010_OyariAshito.Lady_EriAyase_Face04.Story1;
+            cdata = SC010_OyariAshito.Lady_EriAyase_Face04.Get(new DifData());
+            //cdata.Add(new DifData(Devil.ManOld_001) { X = 745, Y = 255, S = 1425, F = 0 });
+            AddLocal(gr, text, cdata);
             #endregion
         }
         protected override void MakeCadres(string cadregroup)
         {
             //cadregroup = "Mary (CleMasahiro CL-orz 51 007 Head)";
-            cadregroup = SC010_OyariAshito.Lady_EriAyase_Face03.Name;
+            cadregroup = SC010_OyariAshito.Lady_EriAyase_Face04.Name;
             base.MakeCadres(cadregroup);
             this.Cadres.Reverse();
         }

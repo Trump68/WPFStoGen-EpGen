@@ -43,7 +43,16 @@ namespace StoGenMake.Scenes
                 return _Lady_EriAyase_Face03;
             }
         }
-
+        private static Lady_EriAyase_Face04 _Lady_EriAyase_Face04;
+        public static Lady_EriAyase_Face04 Lady_EriAyase_Face04
+        {
+            get
+            {
+                if (_Lady_EriAyase_Face04 == null)
+                    _Lady_EriAyase_Face04 = new Lady_EriAyase_Face04(Instance);
+                return _Lady_EriAyase_Face04;
+            }
+        }
         private static SC010_OyariAshito Instance;
         public SC010_OyariAshito() : base()
         {
@@ -89,115 +98,9 @@ namespace StoGenMake.Scenes
         }
     }
   
-    public class Lady_EriAyase_Face03 : Personality
-    {                      
-        #region Text
-        public string Story1 =
-           "Поев, Рабе решил проверить, насколько послушна новая служанка."
-         + "Вся обслуга женского пола в доме не должна была носить нижнего белья."
-         + "И теперь он потребовал от девушки показать, что правила выполняются."
-       ;
-        #endregion
-        public Lady_EriAyase_Face03(BaseScene scene) : base(scene)
-        {
-            this.Name = "EriAyase_OyariAshito_003";
+   
 
-            #region Body            
-            BodyList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_008");
-            #endregion
-
-            #region Face
-            FaceList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_009");
-            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(BodyList[0])  { S = 2300},
-            new DifData(FaceList[0],BodyList[0]) { X = 75, S = 858, F=0},
-            });
-            #endregion
-
-            #region Lips           
-            LipsList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_010");
-            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(FaceList[0]) { S = 858 },
-            new DifData(LipsList[0], FaceList[0]) { X = 330, Y = 595, S = 58, F=0 },
-            });
-            #endregion
-
-
-            // set default body
-            SetBody(BodyList[0], new DifData() { S = 2300 });
-            // set default head
-            SetHead(FaceList[0]);
-            // set default lips
-            SetLips(LipsList[0]);
-        }
-        public override List<DifData> Get(DifData delta = null)
-        {
-            List<DifData> result = base.Get(delta);
-            return result;
-        }
-    }
-
-    public class Lady_EriAyase_Face02 : Personality
-    {
-        #region Text
-        public string Story1 =
-          "'Крис!' - умоляюще воскликнула Мария."
-         + "~~Звала на помощь, или просила уйти?"
-         + "- он так и не узнал."
-         + "~~-Он не будет мешать, деточка."
-         + "-проговорил Рабе и значительно посмотрел на Криса."
-         + "~А Мария отвела взгляд. Что было делать, кроме как уйти?"
-       ;
-        #endregion
-        public Lady_EriAyase_Face02(BaseScene scene) : base(scene)
-        {
-            this.Name = "EriAyase_OyariAshito_002";
-
-            #region Body            
-            BodyList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_005");
-            BodyList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_001");
-            #endregion
-
-            #region Face
-            FaceList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_006");
-            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(BodyList[0])  { S = 3800},
-            new DifData(FaceList[0],BodyList[0]) {X = 235, Y = 45, S = 793, F=0},
-            });
-            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(BodyList[1])  { S = 3840},
-            new DifData(FaceList[0],BodyList[1]) {X = 40, S = 825, F=0},
-            });
-            #endregion
-
-            #region Lips           
-            LipsList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_007");
-            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(FaceList[0]) { S = 825 },
-            new DifData(LipsList[0], FaceList[0]) { X = 330, Y = 595, S = 55, F=0 },
-            });
-            LipsList.Add(Mouth.Sensual_001);            
-            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(FaceList[0]) { S = 825 },
-            new DifData(LipsList[1], FaceList[0]) {X = 320, Y = 580, S = 62, R=45, F=1},
-            });
-
-            #endregion
-
-
-            // set default body
-            SetBody(BodyList[0], new DifData() { S = 3800 });
-            // set default head
-            SetHead(FaceList[0]);
-            // set default lips
-            SetLips(LipsList[0]);
-        }
-        public override List<DifData> Get(DifData delta = null)
-        {
-            List<DifData> result = base.Get(delta);            
-            return result;
-        }
-    }
+   
 
     public class Lady_EriAyase_Face01 : Personality
     {
@@ -268,5 +171,159 @@ namespace StoGenMake.Scenes
             return result;
         }
     }
+    public class Lady_EriAyase_Face02 : Personality
+    {
+        #region Text
+        public string Story1 =
+          "'Крис!' - умоляюще воскликнула Мария."
+         + "~~Звала на помощь, или просила уйти?"
+         + "- он так и не узнал."
+         + "~~-Он не будет мешать, деточка."
+         + "-проговорил Рабе и значительно посмотрел на Криса."
+         + "~А Мария отвела взгляд. Что было делать, кроме как уйти?"
+       ;
+        #endregion
+        public Lady_EriAyase_Face02(BaseScene scene) : base(scene)
+        {
+            this.Name = "EriAyase_OyariAshito_002";
 
+            #region Body            
+            BodyList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_005");
+            BodyList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_001");
+            #endregion
+
+            #region Face
+            FaceList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_006");
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(BodyList[0])  { S = 3800},
+            new DifData(FaceList[0],BodyList[0]) {X = 235, Y = 45, S = 793, F=0},
+            });
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(BodyList[1])  { S = 3840},
+            new DifData(FaceList[0],BodyList[1]) {X = 40, S = 825, F=0},
+            });
+            #endregion
+
+            #region Lips           
+            LipsList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_007");
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(FaceList[0]) { S = 825 },
+            new DifData(LipsList[0], FaceList[0]) { X = 330, Y = 595, S = 55, F=0 },
+            });
+            LipsList.Add(Mouth.Sensual_001);
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(FaceList[0]) { S = 825 },
+            new DifData(LipsList[1], FaceList[0]) {X = 320, Y = 580, S = 62, R=45, F=1},
+            });
+
+            #endregion
+
+
+            // set default body
+            SetBody(BodyList[0], new DifData() { S = 3800 });
+            // set default head
+            SetHead(FaceList[0]);
+            // set default lips
+            SetLips(LipsList[0]);
+        }
+        public override List<DifData> Get(DifData delta = null)
+        {
+            List<DifData> result = base.Get(delta);
+            return result;
+        }
+    }
+    public class Lady_EriAyase_Face03 : Personality
+    {
+        #region Text
+        public string Story1 =
+           "Поев, Рабе решил проверить, насколько послушна новая служанка."
+         + "Вся обслуга женского пола в доме не должна была носить нижнего белья."
+         + "И теперь он потребовал от девушки показать, что правила выполняются."
+       ;
+        #endregion
+        public Lady_EriAyase_Face03(BaseScene scene) : base(scene)
+        {
+            this.Name = "EriAyase_OyariAshito_003";
+
+            #region Body            
+            BodyList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_008");
+            #endregion
+
+            #region Face
+            FaceList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_009");
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(BodyList[0])  { S = 2300},
+            new DifData(FaceList[0],BodyList[0]) { X = 75, S = 858, F=0},
+            });
+            #endregion
+
+            #region Lips           
+            LipsList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_010");
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(FaceList[0]) { S = 858 },
+            new DifData(LipsList[0], FaceList[0]) { X = 275, Y = 595, S = 39, F=0 },
+            });
+            #endregion
+
+
+            // set default body
+            SetBody(BodyList[0], new DifData() { S = 2300 });
+            // set default head
+            SetHead(FaceList[0]);
+            // set default lips
+            SetLips(LipsList[0]);
+        }
+        public override List<DifData> Get(DifData delta = null)
+        {
+            List<DifData> result = base.Get(delta);
+            return result;
+        }
+    }
+    public class Lady_EriAyase_Face04 : Personality
+    {
+        #region Text
+        public string Story1 =
+           "Поев, Рабе решил проверить, насколько послушна новая служанка."
+         + "Вся обслуга женского пола в доме не должна была носить нижнего белья."
+         + "И теперь он потребовал от девушки показать, что правила выполняются."
+       ;
+        #endregion
+        public Lady_EriAyase_Face04(BaseScene scene) : base(scene)
+        {
+            this.Name = "EriAyase_OyariAshito_004";
+
+            #region Body            
+            BodyList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_011");
+            #endregion
+
+            #region Face
+            FaceList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_012");
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(BodyList[0])  { S = 1200},
+            new DifData(FaceList[0],BodyList[0]) { X = 75, S = 270, F=0},
+            });
+            #endregion
+
+            #region Lips           
+            LipsList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_013");
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(FaceList[0]) { S = 270 },
+            new DifData(LipsList[0], FaceList[0]) { X = 120, Y = 185, S = 32, F=0 },
+            });
+            #endregion
+
+
+            // set default body
+            SetBody(BodyList[0], new DifData() { S = 1200 });
+            // set default head
+            SetHead(FaceList[0]);
+            // set default lips
+            SetLips(LipsList[0]);
+        }
+        public override List<DifData> Get(DifData delta = null)
+        {
+            List<DifData> result = base.Get(delta);
+            return result;
+        }
+    }
 }

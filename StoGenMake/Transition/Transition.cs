@@ -9,6 +9,7 @@ namespace StoGenMake
     public static class Transition
     {
         static Random rnd = new Random();
+        public static string Test_Opacity { get; } = "W..1000>O.B.1000.-100";
         public static string Eyes_Blink
         {
             get

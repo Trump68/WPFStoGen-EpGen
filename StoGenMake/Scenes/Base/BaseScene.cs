@@ -51,22 +51,22 @@ namespace StoGenMake.Scenes.Base
             R = childIm.R;
             pR = parIm.R;
 
-            pF = parIm.Flip;
-            F = childIm.Flip;
-            dSx = ((float)childIm.sX / (float)parIm.sX);
-            dSy = ((float)childIm.sY / (float)parIm.sY);
-            pSx = parIm.sX;
-            pSy = parIm.sY;
-            pT = parIm.Transition;
-            pO = parIm.Opa;
-            dO = childIm.Opa - parIm.Opa;
+            pF = parIm.F;
+            F = childIm.F;
+            dSx = ((float)childIm.Sx / (float)parIm.Sx);
+            dSy = ((float)childIm.Sy / (float)parIm.Sy);
+            pSx = parIm.Sx;
+            pSy = parIm.Sy;
+            pT = parIm.T;
+            pO = parIm.O;
+            dO = childIm.O - parIm.O;
         }
 
         //! new!!!!
         internal void ApplyTo(seIm target, seIm actualParent, DifData delta)
         {
-            target.sX = Convert.ToInt32(this.dSx * actualParent.sX);
-            target.sY = Convert.ToInt32(this.dSy * actualParent.sY);
+            target.Sx = Convert.ToInt32(this.dSx * actualParent.Sx);
+            target.Sy = Convert.ToInt32(this.dSy * actualParent.Sy);
             //int dR = 0;
             // Parent rotation
             {
@@ -88,7 +88,7 @@ namespace StoGenMake.Scenes.Base
                 {
                     target.ParentFlips.AddRange(actualParent.ParentFlips);
                 }
-                if (this.pF != actualParent.Flip)
+                if (this.pF != actualParent.F)
                 {
                     target.ParentFlips.Add(actualParent.Name);
                 }
@@ -102,18 +102,25 @@ namespace StoGenMake.Scenes.Base
                 if (delta.Xd.HasValue) target.X = target.X + delta.Xd.Value;
                 if (delta.Yd.HasValue) target.Y = target.Y + delta.Yd.Value;
 
-                target.X = (int)(this.Xd * ((float)actualParent.sX / pSx));
-                target.Y = (int)(this.Yd * ((float)actualParent.sY / pSy));               
+                target.X = (int)(this.Xd * ((float)actualParent.Sx / pSx));
+                target.Y = (int)(this.Yd * ((float)actualParent.Sy / pSy));               
 
                 target.X = target.X + actualParent.X;
                 target.Y = target.Y + actualParent.Y;
             }
             target.R = this.R;
             if (delta.Rd.HasValue) target.R = target.R + delta.Rd.Value;
-            target.Flip = this.F;
-            target.Transition = this.pT;
-            target.Opa = this.pO;
-            if (delta.Od.HasValue) target.Opa = target.Opa + delta.Od.Value;
+            target.F = this.F;
+
+            // transition
+            target.T = this.pT; //default
+            target.T = actualParent.T; // parent
+            if (delta.T != null) //delta
+                target.T = delta.T;
+            
+            // opacity
+            target.O = this.pO;
+              if (delta.Od.HasValue) target.O = target.O + delta.Od.Value;
         }
     }
     public class CadreData

@@ -36,12 +36,11 @@ namespace StoGenMake
             
             GameWorldFactory.GameWorld.LoadData();
             //var scen = new SC001_FoolsArt();
-            //var scen = new SC000_TestTran();
+            var scen = new SC000_TestTran();
             //var scen = new SC002_IlyaKuvshinov();
             //var scen = new TestScene();
             //var scen = new SC007_CleMasahiro();
-
-           var scen = new A001_Woman();
+            //var scen = new A001_Woman();
 
             string fn = scen.Generate();
 

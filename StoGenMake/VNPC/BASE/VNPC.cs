@@ -361,12 +361,12 @@ namespace StoGenMake.Pers
             if (periodic)
                 cadre.AddImage(Previous.image);
 
-            if (invisible) Current.image.Opa = 0;
-            else Current.image.Opa = 100;
+            if (invisible) Current.image.O = 0;
+            else Current.image.O = 100;
 
             var image = cadre.AddImage(Current.image);
             if (invisible || reverse)
-                image.Transition = Transition.Mouth(200, reverse, periodic, permanent);
+                image.T = Transition.Mouth(200, reverse, periodic, permanent);
         }
 
     }
@@ -428,12 +428,12 @@ namespace StoGenMake.Pers
             var im = Items.Where(x => x.Type == Type.Blush).FirstOrDefault().image;
             if (im == null) return;
             
-            if (invisible) im.Opa = 0;
-            else im.Opa = 100;
+            if (invisible) im.O = 0;
+            else im.O = 100;
 
             var image = cadre.AddImage(im);
             if (invisible|| reverse)
-                image.Transition = Transition.Blush(500, reverse, periodic, permanent);
+                image.T = Transition.Blush(500, reverse, periodic, permanent);
         }
     }
     public class vFcSkinS : VNPCBodyPartSnap
@@ -491,12 +491,12 @@ namespace StoGenMake.Pers
         {
             if (!Enabled) return;
 
-            if (invisible) Current.image.Opa = 0;
-            else Current.image.Opa = 100;
+            if (invisible) Current.image.O = 0;
+            else Current.image.O = 100;
 
             var image = cadre.AddImage(Current.image);
             if (invisible|| reverse)
-                image.Transition = Transition.Blush(500, reverse, false, false);
+                image.T = Transition.Blush(500, reverse, false, false);
         }
 
     }
@@ -562,19 +562,19 @@ namespace StoGenMake.Pers
                 cadre.AddImage(Previous.image);
             }
             
-            if (invisible) Current.image.Opa = 0;
+            if (invisible) Current.image.O = 0;
             else
-                Current.image.Opa = 100;
+                Current.image.O = 100;
 
             var image = cadre.AddImage(Current.image);
             if (invisible || reverse)
-                image.Transition = Transition.Eyes(200, reverse, periodic, permanent);
+                image.T = Transition.Eyes(200, reverse, periodic, permanent);
 
             var im = Items.Where(x => x.Type == Type.Close).FirstOrDefault();
             if (im == null) return;
-            im.image.Opa = 0;
+            im.image.O = 0;
             image = cadre.AddImage(im.image);
-            image.Transition = Transition.Eyes_Blink;
+            image.T = Transition.Eye_Close;
         }
 
     }

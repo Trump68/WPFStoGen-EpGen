@@ -17,7 +17,7 @@ namespace StoGenMake.Elements
         public string Part { set; get; }
         public bool IsOptional { get; internal set; }
         public string File { get; internal set; }
-        public string Transition { get; internal set; }
+        public string T { get; internal set; }
         public virtual bool IsActivated { get; } = true;
 
         internal virtual void ApplyData(string[] vals)
@@ -28,22 +28,7 @@ namespace StoGenMake.Elements
         {
             return string.Empty;
         }
-
-        //internal virtual void InitValues(List<EntityVariable> variables)
-        //{
-        //    var val = variables.Where(x => x.Group == this.Name && x.Part == this.Part).FirstOrDefault();
-        //    if (val != null)
-        //    {
-        //        string fn = val.Image.File;
-        //        if (val.Type == "SOUND")
-        //        {
-        //            string soundval = SoundStore.ValByName(fn);
-        //            if (!string.IsNullOrEmpty(soundval))
-        //                fn = soundval;
-        //        }
-        //        this.File = fn;
-        //    }
-        //}
+        
     }
     public class seIm : ScenElement
     {
@@ -53,22 +38,22 @@ namespace StoGenMake.Elements
         {
             this.X = x;
             this.Y = y;
-            this.sX = sX;
-            this.sY = sY;
+            this.Sx = sX;
+            this.Sy = sY;
             this.R = rot;
-            this.Opa = opac;
+            this.O = opac;
         }
 
         internal void Reset()
         {
-          sX = 500;
-          sY = 500;
+          Sx = 500;
+          Sy = 500;
           SizeMode = 1;
           X = 0;
           Y = 0;
-          Opa = 100;
+          O = 100;
           Timer = -1;
-          Flip = 0;
+          F = 0;
           R  = 0;
         }
 
@@ -83,12 +68,12 @@ namespace StoGenMake.Elements
             if (dd == null) return;
             if (dd.X.HasValue) this.X = dd.X.Value;
             if (dd.Y.HasValue) this.Y = dd.Y.Value;
-            if (dd.Sy.HasValue) this.sY = dd.Sy.Value;
-            if (dd.Sx.HasValue) this.sX = dd.Sx.Value;
+            if (dd.Sy.HasValue) this.Sy = dd.Sy.Value;
+            if (dd.Sx.HasValue) this.Sx = dd.Sx.Value;
             if (dd.R.HasValue) this.R = dd.R.Value;
-            if (dd.F.HasValue) this.Flip = dd.F.Value;
-            if (dd.O.HasValue) this.Opa = dd.O.Value;
-            if (!string.IsNullOrEmpty(dd.T)) this.Transition = dd.T;
+            if (dd.F.HasValue) this.F = dd.F.Value;
+            if (dd.O.HasValue) this.O = dd.O.Value;
+            if (!string.IsNullOrEmpty(dd.T)) this.T = dd.T;
         }
 
         public seIm() { }
@@ -104,14 +89,14 @@ namespace StoGenMake.Elements
             return string.Join(";", result.ToArray());
         }
 
-        public int sX = 900;
-        public int sY = 600;
+        public int Sx = 900;
+        public int Sy = 600;
         public int SizeMode = 1;
         public int X = 0;
         public int Y = 0;
-        public int Opa = 100;
+        public int O = 100;
         public int Timer = -1;
-        public int Flip = 0;
+        public int F = 0;
         public int R { get; internal set; } = 0;
         public override bool IsActivated { get { return (this == Previous) || (!string.IsNullOrEmpty(this.File)); } }
 
@@ -161,18 +146,18 @@ namespace StoGenMake.Elements
             else
             {
                 result.Add($"AutoPics={this.File.PadRight(20)}");
-                result.Add($"SizeX={this.sX.ToString().PadRight(4)}");
-                result.Add($"SizeY={this.sY.ToString().PadRight(4)}");
+                result.Add($"SizeX={this.Sx.ToString().PadRight(4)}");
+                result.Add($"SizeY={this.Sy.ToString().PadRight(4)}");
                 result.Add($"SizeMode={this.SizeMode}");
                 result.Add($"X={(this.X).ToString().PadRight(4)}");
                 result.Add($"Y={(this.Y).ToString().PadRight(4)}");
                 result.Add($"Rot={this.R.ToString().PadRight(4)}");
-                result.Add($"Opacity={this.Opa.ToString().PadRight(3)}");
-                result.Add($"Flip={this.Flip.ToString().PadRight(3)}");
+                result.Add($"Opacity={this.O.ToString().PadRight(3)}");
+                result.Add($"Flip={this.F.ToString().PadRight(3)}");
                 result.Add($"Name={this.Name.PadRight(3)}");
 
                 if (this.Timer > 0) result.Add($"Timer={this.Timer.ToString().PadRight(7)}");
-                if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");   
+                if (!string.IsNullOrEmpty(this.T)) result.Add($"TRN={this.T}");   
                 if (this.ParentRotations.Any()) result.Add($"ParRot={this.ParRot}");
                 if (this.ParentFlips.Any())
                     result.Add($"ParFlip={this.ParFlip}");
@@ -182,18 +167,18 @@ namespace StoGenMake.Elements
 
         internal void AssignFrom(seIm image)
         {
-            this.Opa = image.Opa;
-            this.Flip = image.Flip;
+            this.O = image.O;
+            this.F = image.F;
             this.SizeMode = image.SizeMode;
-            this.sX = image.sX;
-            this.sY = image.sY;
+            this.Sx = image.Sx;
+            this.Sy = image.Sy;
             this.X = image.X;
             this.Y = image.Y;
             this.R = image.R;
             this.Part = image.Part;
             this.File = image.File;
             this.Name = image.Name;
-            this.Transition = image.Transition;
+            this.T = image.T;
             this.ParentRotations.Clear();
             this.ParentRotations.AddRange(image.ParentRotations);
             this.ParentFlips.Clear();
@@ -222,7 +207,7 @@ namespace StoGenMake.Elements
             if (!string.IsNullOrEmpty(this.Group))
                 result.Add($"Group={this.Group.PadRight(4)}");
             if (StartPlay > -1) result.Add($"Start={this.StartPlay.ToString().PadRight(4)}");
-            if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");
+            if (!string.IsNullOrEmpty(this.T)) result.Add($"TRN={this.T}");
             return string.Join(";", result.ToArray());
         }       
     }
@@ -283,7 +268,7 @@ namespace StoGenMake.Elements
                 result.Add($"ClearBack={1}");
             else
                 result.Add($"ClearBack={0}");
-            if (!string.IsNullOrEmpty(this.Transition)) result.Add($"TRN={this.Transition}");
+            if (!string.IsNullOrEmpty(this.T)) result.Add($"TRN={this.T}");
             if (!string.IsNullOrEmpty(this.FontColor)) result.Add($"FontColor={this.FontColor}");
             if (!string.IsNullOrEmpty(this.FontName)) result.Add($"FontName={this.FontName}");
             return string.Join(";", result.ToArray());

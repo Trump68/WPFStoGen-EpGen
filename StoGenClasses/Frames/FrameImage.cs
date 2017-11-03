@@ -934,9 +934,9 @@ namespace StoGen.Classes
                 if (pi.Props.X != 0) rez.Add($"X = {pi.Props.X}");
                 if (pi.Props.Y != 0) rez.Add($"Y = {pi.Props.Y}");
             }
-            rez.Add($"s = {pi.Props.SizeX}");
-            if (pi.Props.Rotate != 0) rez.Add($"Rot={pi.Props.Rotate}");
-            rez.Add($"Flip={(int)pi.Props.Flip}");
+            rez.Add($"S = {Math.Max(pi.Props.SizeX, pi.Props.SizeY)}");
+            if (pi.Props.Rotate != 0) rez.Add($"R = {pi.Props.Rotate}");
+            rez.Add($"F = {(int)pi.Props.Flip}");
             Projector.ImageCadre.ResultString = string.Join(", ", rez.ToArray());
             System.Windows.Clipboard.SetText(Projector.ImageCadre.ResultString);
         }

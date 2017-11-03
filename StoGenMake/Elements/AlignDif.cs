@@ -89,13 +89,13 @@ namespace StoGenMake.Elements
                 {
                     if (this.SourceIm.Sx.HasValue && this.ParentIm.Sx.HasValue)
                     {
-                        modX = ((float)actualParent.sX / (float)this.ParentIm.Sx);
-                        target.sX = Convert.ToInt32(this.SourceIm.Sx * modX);
+                        modX = ((float)actualParent.Sx / (float)this.ParentIm.Sx);
+                        target.Sx = Convert.ToInt32(this.SourceIm.Sx * modX);
                     }
                     if (this.SourceIm.Sy.HasValue && this.ParentIm.Sy.HasValue)
                     {
-                        modY = ((float)actualParent.sY / (float)this.ParentIm.Sy);
-                        target.sY = Convert.ToInt32(this.SourceIm.Sy * modY);
+                        modY = ((float)actualParent.Sy / (float)this.ParentIm.Sy);
+                        target.Sy = Convert.ToInt32(this.SourceIm.Sy * modY);
                     }                                
                 }
                 // Parent rotation
@@ -115,11 +115,11 @@ namespace StoGenMake.Elements
             }
             else
             {
-                if (this.SourceIm.Sx.HasValue) target.sX = this.SourceIm.Sx.Value;
-                if(this.SourceIm.Sy.HasValue) target.sY = this.SourceIm.Sy.Value;
+                if (this.SourceIm.Sx.HasValue) target.Sx = this.SourceIm.Sx.Value;
+                if(this.SourceIm.Sy.HasValue) target.Sy = this.SourceIm.Sy.Value;
 
-                if (processed.Im != null && processed.Im.Sx.HasValue) target.sX = processed.Im.Sx.Value;
-                if (processed.Im != null && processed.Im.Sy.HasValue) target.sY = processed.Im.Sy.Value;
+                if (processed.Im != null && processed.Im.Sx.HasValue) target.Sx = processed.Im.Sx.Value;
+                if (processed.Im != null && processed.Im.Sy.HasValue) target.Sy = processed.Im.Sy.Value;
             }
 
             { // X,Y coord
@@ -179,9 +179,9 @@ namespace StoGenMake.Elements
             if (this.SourceIm.R.HasValue) target.R = this.SourceIm.R.Value;
             if (processed.Im != null && processed.Im.R.HasValue) target.R = processed.Im.R.Value;
 
-            if (this.SourceIm.F.HasValue) target.Flip = this.SourceIm.F.Value;
+            if (this.SourceIm.F.HasValue) target.F = this.SourceIm.F.Value;
             if (processed.Im != null && processed.Im.F.HasValue)
-                target.Flip = processed.Im.F.Value;
+                target.F = processed.Im.F.Value;
             else
             {
                 //if (this.ParentIm != null && actualParent != null)

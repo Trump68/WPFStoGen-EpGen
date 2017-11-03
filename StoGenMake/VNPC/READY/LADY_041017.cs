@@ -20,7 +20,7 @@ namespace StoGenMake.Pers
 
             string path = @"x:\STOGEN\LADY\COMIX\LADY_041017\";
             this.Description = "bellas de noche 128";
-            this.Faces.Add(new VNPCFace(new seIm($@"{path}(Aca los Maistros 04)-19 copy2.png", "Face 01") { sX=210,X=85,Y=10}));
+            this.Faces.Add(new VNPCFace(new seIm($@"{path}(Aca los Maistros 04)-19 copy2.png", "Face 01") { Sx=210,X=85,Y=10}));
 
             //var imbody = null;//GameWorldFactory.GameWorld.CommonImageList.Where(x => x.Name == "LADY_Body_1710070903").FirstOrDefault();
 

@@ -43,46 +43,17 @@ namespace StoGenMake.Scenes.Base
             name = $"Evil_green"; fn = $"TestGreen.png";
             AddToGlobalImage(name, fn, path, new DifData() { S = 500, F = 0 });
 
-            AddGlobal(new string[] { "test" },
+            AddGlobal(new string[] { "" },
             new DifData[] {
-                new DifData("Evil_blue") { X=100 },                
+                new DifData("Evil_blue") { X=100 },
                 new DifData("Evil_red","Evil_blue") {X=200},
             });
-
-        
-            int ss = 300;
-            int r = 5;
-
             AddLocal(new string[] { "test" },
-             new DifData[] {
-                new DifData("Evil_blue"){ X=200 },
-                new DifData("Evil_red","Evil_blue"),
+            new DifData[] {
+                new DifData("Evil_blue") { X=100 },
+                new DifData("Evil_red","Evil_blue") {X=200, T=Transition.Test_Opacity},
             });
-
-            AddLocal(new string[] { "test" },
-             new DifData[] {
-                new DifData("Evil_blue") {X=300, R=45, F =1},
-                new DifData("Evil_red","Evil_blue"),
-            });
-
-            //AddLocal(new string[] { "test" },
-            // new DifData[] {
-            //    new DifData("Evil_blue") { X = 200, s=ss},
-            //    new DifData("Evil_red","Evil_blue"),
-            //});
-
-            //AddLocal(new string[] { "test" },
-            // new DifData[] {
-            //    new DifData("Evil_blue") { s=ss, Rot = 20},
-            //    new DifData("Evil_red","Evil_blue"),
-            //});
-            //AddLocal(new string[] { "test" },
-            // new DifData[] {
-            //    new DifData("Evil_blue") { s=ss, Rot = 30},
-            //    new DifData("Evil_red","Evil_blue"),
-            //});
-
-
+            
 
         }
     }

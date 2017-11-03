@@ -253,10 +253,10 @@ namespace StoGenMake
 
             this.X = item.X;
             this.Y = item.Y;
-            this.Sy = item.sY;
-            this.Sx = item.sX;
+            this.Sy = item.Sy;
+            this.Sx = item.Sx;
             this.R = item.R;
-            this.F = item.Flip;
+            this.F = item.F;
         }
         public DifData(string name, string parent, string tag) : this(name, parent)
         {
