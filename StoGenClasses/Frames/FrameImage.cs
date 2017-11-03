@@ -676,23 +676,15 @@ namespace StoGen.Classes
                 else if (e == Key.OemPlus)
                 {
                     Projector.PicContainer.OwnerViewbox.Width =
-                        Projector.PicContainer.OwnerViewbox.Height =
-                        (int)(Projector.PicContainer.OwnerViewbox.Height * (1 + stepZoom));
-                    //foreach (var item in this.Pics)
-                    //{
-                    //    item.Props.SizeX = (int)(item.Props.SizeX * (1+stepZoom));
-                    //}
+                    Projector.PicContainer.OwnerViewbox.Height =
+                    (int)(Projector.PicContainer.OwnerViewbox.Height * (1 + stepZoom));
+
                 }
                 else if (e == Key.OemMinus)
                 {
                     Projector.PicContainer.OwnerViewbox.Width =
-    Projector.PicContainer.OwnerViewbox.Height =
-    (int)(Projector.PicContainer.OwnerViewbox.Height / (1 + stepZoom));
-
-                    //foreach (var item in this.Pics)
-                    //{
-                    //    item.Props.SizeX = (int)(item.Props.SizeX / (1 + stepZoom));
-                    //}
+                    Projector.PicContainer.OwnerViewbox.Height =
+                    (int)(Projector.PicContainer.OwnerViewbox.Height / (1 + stepZoom));
                 }
                 this.Repaint();
                 return;

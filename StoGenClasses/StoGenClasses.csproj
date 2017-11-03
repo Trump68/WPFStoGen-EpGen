@@ -83,6 +83,20 @@
     <Compile Include="Controls\frmTextEdit.Designer.cs">
       <DependentUpon>frmTextEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\A001-Woman.cs" />
+    <Compile Include="Data\AUX01-Accesuar.cs" />
+    <Compile Include="Data\SC000-TestTran.cs" />
+    <Compile Include="Data\SC000-Various.cs" />
+    <Compile Include="Data\SC001-Fools Art.cs" />
+    <Compile Include="Data\SC002-Ilya Kuvshinov.cs" />
+    <Compile Include="Data\SC003-Hara Shigeyuki.cs" />
+    <Compile Include="Data\SC004-Enoshima Iki.cs" />
+    <Compile Include="Data\SC005-Dtym.cs" />
+    <Compile Include="Data\SC006-Erotibot.cs" />
+    <Compile Include="Data\SC007-Cle Masahiro.cs" />
+    <Compile Include="Data\SC008-Itachou.cs" />
+    <Compile Include="Data\SC009-Hews Hack.cs" />
+    <Compile Include="Data\SC010-Oyari Ashito.cs" />
     <Compile Include="Frames\Frame.cs" />
     <Compile Include="Frames\FrameImage.cs" />
     <Compile Include="FrameProc.cs" />
@@ -104,6 +118,13 @@
     <Compile Include="Projector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Parser\StogenParser.cs" />
+    <Compile Include="Scene\BaseScene.cs" />
+    <Compile Include="Scene\GameWorld.cs" />
+    <Compile Include="Scene\Personality.cs" />
+    <Compile Include="Scene\ScenCadre.cs" />
+    <Compile Include="Scene\ScenElement.cs" />
+    <Compile Include="Scene\SoundStore.cs" />
+    <Compile Include="Transition\Transition.cs" />
     <Compile Include="Transition\TransitionManager.cs" />
     <Compile Include="Universe.cs" />
     <Compile Include="ViewModelBase.cs" />

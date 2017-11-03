@@ -144,7 +144,7 @@ namespace StoGenMake
             return result;
         }
 
-        internal static string Eyes(int time, bool reverse, bool restore, bool permanent)
+        public static string Eyes(int time, bool reverse, bool restore, bool permanent)
         {
             
             int up = 7000;

@@ -1,13 +1,4 @@
-﻿using StoGenMake.Elements;
-using StoGenMake.Pers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static StoGenMake.GameWorld;
-
-namespace StoGenMake.Scenes.Base
+﻿namespace StoGenMake.Scenes.Base
 {
     public class SC007_CleMasahiro : BaseScene
     {

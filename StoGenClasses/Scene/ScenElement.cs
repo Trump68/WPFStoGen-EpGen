@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using StoGenMake.Scenes.Base;
-using StoGenMake.Pers;
-using StoGenLife.SOUND;
-using StoGenMake.Persona;
+using StoGen.Classes;
+using System.Drawing;
+using DevExpress.XtraEditors.Controls;
 
 namespace StoGenMake.Elements
 {
@@ -15,9 +13,9 @@ namespace StoGenMake.Elements
 
         public string Name { set; get; }
         public string Part { set; get; }
-        public bool IsOptional { get; internal set; }
-        public string File { get; internal set; }
-        public string T { get; internal set; }
+        public bool IsOptional { get;  set; }
+        public string File { get;  set; }
+        public string T { get;  set; }
         public virtual bool IsActivated { get; } = true;
 
         internal virtual void ApplyData(string[] vals)
@@ -44,7 +42,7 @@ namespace StoGenMake.Elements
             this.O = opac;
         }
 
-        internal void Reset()
+        public void Reset()
         {
           Sx = 500;
           Sy = 500;
@@ -63,7 +61,7 @@ namespace StoGenMake.Elements
             this.Name = name;
         }
 
-        internal void AssignFrom(DifData dd)
+        public void AssignFrom(DifData dd)
         {
             if (dd == null) return;
             if (dd.X.HasValue) this.X = dd.X.Value;
@@ -74,6 +72,25 @@ namespace StoGenMake.Elements
             if (dd.F.HasValue) this.F = dd.F.Value;
             if (dd.O.HasValue) this.O = dd.O.Value;
             if (!string.IsNullOrEmpty(dd.T)) this.T = dd.T;
+        }
+
+        internal PictureSourceProps ToPictureSource()
+        {
+            PictureSourceProps pi = new PictureSourceProps();            
+            pi.Name = this.Name;
+            pi.FileName = this.File;
+            pi.Flip = (RotateFlipType)this.F;
+            pi.Transition = this.T;
+            pi.Opacity = this.O;
+            pi.ParFlip = this.ParFlip;
+            pi.ParRot = this.ParRot;
+            pi.SizeMode = (PictureSizeMode)this.SizeMode;
+            pi.SizeX = this.Sx;
+            pi.SizeY = this.Sy;
+            pi.Rotate = this.R;
+            pi.X = this.X;
+            pi.Y = this.Y;
+            return pi;
         }
 
         public seIm() { }
@@ -97,10 +114,10 @@ namespace StoGenMake.Elements
         public int O = 100;
         public int Timer = -1;
         public int F = 0;
-        public int R { get; internal set; } = 0;
+        public int R { get; set; } = 0;
         public override bool IsActivated { get { return (this == Previous) || (!string.IsNullOrEmpty(this.File)); } }
 
-        public VNPCPersType PersonType { get; internal set; }
+       // public VNPCPersType PersonType { get; internal set; }
         public string Description { get; internal set; }
         public List<Tuple<string, int>> ParentRotations { get; internal set; } = new List<Tuple<string, int>>();
         public List<string> ParentFlips { get; internal set; } = new List<string>();
@@ -164,7 +181,6 @@ namespace StoGenMake.Elements
             }
             return string.Join(";", result.ToArray());
         }
-
         internal void AssignFrom(seIm image)
         {
             this.O = image.O;

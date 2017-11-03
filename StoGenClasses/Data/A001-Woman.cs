@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StoGenMake.Scenes
 {
-    class A001_Woman : BaseScene
+    public class A001_Woman : BaseScene
     {
         public A001_Woman() : base()
         {
@@ -542,12 +542,24 @@ namespace StoGenMake.Scenes
             cdata = SC010_OyariAshito.Lady_EriAyase_Face04.Get(new DifData());
             //cdata.Add(new DifData(Devil.ManOld_001) { X = 745, Y = 255, S = 1425, F = 0 });
             AddLocal(gr, text, cdata);
+
+            gr = src = SC010_OyariAshito.Lady_EriAyase_Face05.Name;
+            text = SC010_OyariAshito.Lady_EriAyase_Face05.Story1;
+            cdata = SC010_OyariAshito.Lady_EriAyase_Face05.Get(new DifData());
+            //cdata.Add(new DifData(Devil.ManOld_001) { X = 745, Y = 255, S = 1425, F = 0 });
+            AddLocal(gr, text, cdata);
+
+            gr = src = SC010_OyariAshito.Lady_EriAyase_Face06.Name;
+            text = SC010_OyariAshito.Lady_EriAyase_Face06.Story1;
+            cdata = SC010_OyariAshito.Lady_EriAyase_Face06.Get(new DifData());
+            //cdata.Add(new DifData(Devil.ManOld_001) { X = 745, Y = 255, S = 1425, F = 0 });
+            AddLocal(gr, text, cdata);
             #endregion
         }
         protected override void MakeCadres(string cadregroup)
         {
             //cadregroup = "Mary (CleMasahiro CL-orz 51 007 Head)";
-            cadregroup = SC010_OyariAshito.Lady_EriAyase_Face04.Name;
+            cadregroup = SC010_OyariAshito.Lady_EriAyase_Face06.Name;
             base.MakeCadres(cadregroup);
             this.Cadres.Reverse();
         }

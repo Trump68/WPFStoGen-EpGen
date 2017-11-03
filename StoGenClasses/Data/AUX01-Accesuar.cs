@@ -56,7 +56,7 @@ namespace StoGenMake.Scenes
             string gr;
             string src;
             string path;
-            string fn;
+            
 
             #region Flowers
             gr = src = "Flowers";

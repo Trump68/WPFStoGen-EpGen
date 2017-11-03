@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using StoGenMake.Scenes.Base;
-using StoGenMake.Pers;
-
+using StoGen.Classes;
 using StoGenLife.SOUND;
 
 namespace StoGenMake.Elements
@@ -42,14 +37,24 @@ namespace StoGenMake.Elements
             SoundList.Add(sound);
             return sound;
         }
-        //public seTe AddText(string text)
-        //{
-        //    seTe txt = new seTe();
-        //    txt.Text = text;
-        //    return txt;
-        //}
+ 
+        #region New native generation
+        public void GetNativeCadreData(out List<PictureItem> Pics)
+        {
+            // native picture list
+            Pics = new List<PictureItem>();
+            foreach (seIm item in this.VisionList)
+            {
+                if (item.IsActivated)
+                {
+                    PictureItem pi = new PictureItem();
+                    pi.Props = item.ToPictureSource();
+                }                    
+            }
+        }
+        #endregion
 
-
+        #region Old generation via file
         public virtual List<string> GetCadreData()
         {
 
@@ -61,14 +66,14 @@ namespace StoGenMake.Elements
                 this.VisionList.ForEach(x => (x as seIm).Timer = this.Timer);
                 //(this.VisionList.First() as ScenElementImage).Timer = this.Timer;
             }
-            if (this.IsWhite)               
+            if (this.IsWhite)
             {
                 result.Add(" " + seIm.GetWhiteImage());
             }
             foreach (var item in this.VisionList)
             {
                 if (item.IsActivated)
-                result.Add(" " + item.GetElementData());
+                    result.Add(" " + item.GetElementData());
             }
             foreach (var item in this.SoundList)
             {
@@ -94,6 +99,8 @@ namespace StoGenMake.Elements
             mark = "TEXT ";
             if (doElementLis(line, mark, this.TextList)) return;
         }
+        #endregion
+
         private bool doElementLis(string line, string mark, List<ScenElement> list)
         {
             if (line.StartsWith(mark))
@@ -111,11 +118,6 @@ namespace StoGenMake.Elements
         {
             this.TextList.Add(newtext);
         }
-
-        //private void AssignFrom(seTe newtext)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 
 

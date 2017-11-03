@@ -53,6 +53,29 @@ namespace StoGenMake.Scenes
                 return _Lady_EriAyase_Face04;
             }
         }
+        private static Lady_EriAyase_Face05 _Lady_EriAyase_Face05;
+        public static Lady_EriAyase_Face05 Lady_EriAyase_Face05
+        {
+            get
+            {
+                if (_Lady_EriAyase_Face05 == null)
+                    _Lady_EriAyase_Face05 = new Lady_EriAyase_Face05(Instance);
+                return _Lady_EriAyase_Face05;
+            }
+        }
+        private static Lady_EriAyase_Face06 _Lady_EriAyase_Face06;
+        public static Lady_EriAyase_Face06 Lady_EriAyase_Face06
+        {
+            get
+            {
+                if (_Lady_EriAyase_Face06 == null)
+                    _Lady_EriAyase_Face06 = new Lady_EriAyase_Face06(Instance);
+                return _Lady_EriAyase_Face06;
+            }
+        }
+
+
+
         private static SC010_OyariAshito Instance;
         public SC010_OyariAshito() : base()
         {
@@ -319,6 +342,92 @@ namespace StoGenMake.Scenes
             SetHead(FaceList[0]);
             // set default lips
             SetLips(LipsList[0]);
+        }
+        public override List<DifData> Get(DifData delta = null)
+        {
+            List<DifData> result = base.Get(delta);
+            return result;
+        }
+    }
+    public class Lady_EriAyase_Face05 : Personality
+    {
+        #region Text
+        public string Story1 ="";
+        #endregion
+        public Lady_EriAyase_Face05(BaseScene scene) : base(scene)
+        {
+            this.Name = "EriAyase_OyariAshito_005";
+
+            #region Body            
+            BodyList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_014");
+            #endregion
+
+            #region Face
+            FaceList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_015");
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(BodyList[0])  { S = 1913},
+            new DifData(FaceList[0],BodyList[0]) {X = 605, S = 586, F = 0},
+            });
+            #endregion
+
+            #region Lips           
+            LipsList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_016");
+            this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(FaceList[0]) { S = 586 },
+            new DifData(LipsList[0], FaceList[0]) {X = 235, Y = 410, S = 25, F = 0},
+            });
+            #endregion
+
+
+            // set default body
+            SetBody(BodyList[0], new DifData() { S = 1913 });
+            // set default head
+            SetHead(FaceList[0]);
+            // set default lips
+            SetLips(LipsList[0]);
+        }
+        public override List<DifData> Get(DifData delta = null)
+        {
+            List<DifData> result = base.Get(delta);
+            return result;
+        }
+    }
+    public class Lady_EriAyase_Face06 : Personality
+    {
+        #region Text
+        public string Story1 = "";
+        #endregion
+        public Lady_EriAyase_Face06(BaseScene scene) : base(scene)
+        {
+            this.Name = "EriAyase_OyariAshito_006";
+
+            #region Body            
+            BodyList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_017");
+            #endregion
+
+            //#region Face
+            //FaceList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_017");
+            //this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            //new DifData(BodyList[0])  { S = 1913},
+            //new DifData(FaceList[0],BodyList[0]) {X = 605, S = 586, F = 0},
+            //});
+            //#endregion
+
+            //#region Lips           
+            //LipsList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_016");
+            //this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            //new DifData(FaceList[0]) { S = 586 },
+            //new DifData(LipsList[0], FaceList[0]) {X = 235, Y = 410, S = 25, F = 0},
+            //});
+            //#endregion
+
+
+            // set default body
+            SetBody(BodyList[0], new DifData() { S = 721 });
+            // set default head
+            //SetHead(FaceList[0]);
+            // set default lips
+            //SetLips(LipsList[0]);
         }
         public override List<DifData> Get(DifData delta = null)
         {

@@ -1,11 +1,8 @@
 ﻿using StoGen.Classes;
-using StoGenLife.NPC;
 using StoGenMake.Scenes;
 using StoGenMake.Scenes.Base;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using StoGenMake.Pers;
 
 namespace StoGenMake
@@ -36,17 +33,18 @@ namespace StoGenMake
             
             GameWorldFactory.GameWorld.LoadData();
             //var scen = new SC001_FoolsArt();
-            var scen = new SC000_TestTran();
+            //var scen = new SC000_TestTran();
             //var scen = new SC002_IlyaKuvshinov();
             //var scen = new TestScene();
             //var scen = new SC007_CleMasahiro();
-            //var scen = new A001_Woman();
+            var scen = new A001_Woman();
 
             string fn = scen.Generate();
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
             window.Startfile = fn;
             window.GlobalMenuCreator = GameWorldFactory.GameWorld;
+            window.Scene = scen;
             window.Show();
 
 

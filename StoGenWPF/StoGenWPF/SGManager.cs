@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using System.Windows.Input;
 using StoGen.Classes.Interfaces;
+using StoGenMake.Scenes.Base;
 
 namespace StoGenWPF
 {
@@ -21,7 +22,7 @@ namespace StoGenWPF
         #region Runtime compile
 
         static IMenuCreator GlobalMenuCreator = null;
-        internal static void StartMainProc(string startfile, IMenuCreator globalMenuCreator = null)
+        internal static void StartMainProc(BaseScene Scene, string startfile, IMenuCreator globalMenuCreator = null)
         {
             GlobalMenuCreator = globalMenuCreator;
             if (!string.IsNullOrWhiteSpace(startfile)) _MainProcname = startfile;
