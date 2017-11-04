@@ -17,6 +17,10 @@ namespace StoGen.Classes.Data
         public static string Lips03 = "ERECTLIP_BakunyuuOnsen_PNG_014";
         public static string Lips04 = "ERECTLIP_BakunyuuOnsen_PNG_016";
         public static string Lips05 = "ERECTLIP_BakunyuuOnsen_PNG_018";
+        public static string Lips06 = "ERECTLIP_BakunyuuOnsen_PNG_022";
+        public static string Lips07 = "ERECTLIP_BakunyuuOnsen_PNG_023";
+        public static string Lips08 = "ERECTLIP_BakunyuuOnsen_PNG_025";
+        public static string Lips09 = "ERECTLIP_BakunyuuOnsen_PNG_026";
         public class Lady_LinaMoana_Face01 : Personality
         {
             #region Text
@@ -219,7 +223,7 @@ namespace StoGen.Classes.Data
             public static string Story1 = "";
             #endregion
             public static string CName = "Lady_LinaMoana_Face03";
-            public static int Variants = 5;
+            public static int Variants = 6;
             public Lady_LinaMoana_Face03(BaseScene scene) : base(scene)
             {
                 this.Name = CName;
@@ -269,8 +273,14 @@ namespace StoGen.Classes.Data
                 //Closed eyes head01
                 PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_017");
                 this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-                new DifData(FaceList[0])  { S=323},
+                new DifData(FaceList[0])  { S=323 },
                 new DifData(PartList[0],FaceList[0]) { O = 0, X = 21, Y = 60, S = 172, F = 0 },
+                });
+                //HalfClosed eyes head01
+                PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_019");
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+                new DifData(FaceList[0])  { S=323 },
+                new DifData(PartList[1],FaceList[0]) {X = 19, Y = 62, S = 159, F = 0 },
                 });
                 #endregion
 
@@ -298,18 +308,139 @@ namespace StoGen.Classes.Data
                     SetLips(LipsList[3], new DifData() { });
                 else if (this.Variant == 4)
                     SetLips(LipsList[4], new DifData() { });
+                
 
                 List<DifData> result = base.Get(delta);
                 if (this.Face.Name == this.FaceList[0])
                 {
+                    if (this.Variant == 5)
+                        result.Add(new DifData(PartList[1], FaceList[0]) {});
+
                     // closed eyes
-                    result.Insert(result.IndexOf(result.Where(x => x.Name == this.Face.Name).FirstOrDefault()) + 1,
-                        new DifData(PartList[0], FaceList[0]) { O = 1, T = Transition.Eyes_Blink });
+                    result.Add(new DifData(PartList[0], FaceList[0]) { O = 0, T = Transition.Eyes_Blink });
                 }
                 return result;
             }
         }
+        public class Lady_LinaMoana_Face04 : Personality
+        {
+            #region Text
+            public static string Story1 = "";
+            #endregion
+            public static string CName = "Lady_LinaMoana_Face04";
+            public static int Variants = 7;
+            public Lady_LinaMoana_Face04(BaseScene scene) : base(scene)
+            {
+                this.Name = CName;
 
+                #region Body                             
+                 BodyList.Add("ERECTLIP_BakunyuuOnsen_PNG_020");
+                #endregion
+
+                #region Face
+                FaceList.Add("ERECTLIP_BakunyuuOnsen_PNG_021");
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+                new DifData(BodyList[0])  { S = 2003 },
+                new DifData(FaceList[0],BodyList[0]) { X = 420, S = 487, F = 0 },
+                });
+                #endregion
+
+                #region Lips   
+                LipsList.Add(SC011_HCG.Lips06);
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+                new DifData(FaceList[0]) { S = 487 },
+                new DifData(LipsList[0], FaceList[0]) { X = 167, Y = 366, S = 65, F = 0},
+                });
+                LipsList.Add(SC011_HCG.Lips07);
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+                new DifData(FaceList[0]) { S = 487 },
+                new DifData(LipsList[1], FaceList[0]) { X = 167, Y = 361, S = 65, F = 0},
+                });
+                LipsList.Add(SC011_HCG.Lips08);
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+                new DifData(FaceList[0]) { S = 487 },
+                new DifData(LipsList[2], FaceList[0]) { X = 167, Y = 361, S = 65, F = 0},
+                });
+                LipsList.Add(SC011_HCG.Lips09);
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+                new DifData(FaceList[0]) { S = 487 },
+                new DifData(LipsList[3], FaceList[0]) { X = 167, Y = 361, S = 61, F = 0},
+                });
+                #endregion
+
+                #region Parts    
+                //Closed eyes head01
+                PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_024");
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+                new DifData(FaceList[0])  { S=487 },
+                new DifData(PartList[0],FaceList[0]) {  O = 0,  X = 57, Y = 198, S = 255, F = 0 },
+                });
+                PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_027");
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+                new DifData(FaceList[0])  { S=487 },
+                new DifData(PartList[1],FaceList[0]) { X = 59, Y = 209, S = 239, F = 0 },
+                });
+                // half naked body
+                PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_028");
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+                new DifData(BodyList[0])  { S=2003 },
+                new DifData(PartList[2],BodyList[0]) { X = -10, Y = -45, S = 2048, F = 0 },
+                }); 
+                // naked body
+                PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_029");
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+                new DifData(BodyList[0])  { S=2003 },
+                new DifData(PartList[3],BodyList[0]) { X = -5, Y = -45, S = 2048, F = 0 },
+                });
+                #endregion
+
+                // set default body
+                SetBody(BodyList[0], new DifData() { S = 2003 });
+                // set default head
+                SetHead(FaceList[0], new DifData() { });
+                // set default lips
+                SetLips(LipsList[0]);
+            }
+            public static List<DifData> Get(BaseScene scene, int var, DifData delta = null)
+            {
+                Lady_LinaMoana_Face04 inst = new Lady_LinaMoana_Face04(scene);
+                inst.Variant = var;                
+                return inst.Get(delta);
+            }
+            public override List<DifData> Get(DifData delta = null)
+            {
+                if (this.Variant == 1)
+                    SetLips(LipsList[1], new DifData() { });
+                else if (this.Variant == 2)
+                    SetLips(LipsList[2], new DifData() { });
+                else if (this.Variant == 3)
+                    SetLips(LipsList[3], new DifData() { });
+                
+                List<DifData> result = base.Get(delta);
+
+                if (this.Variant == 5)
+                {
+                    result.Insert(1,new DifData(PartList[2], BodyList[0]) { });
+                    result[0].O = 0;
+                }
+                else if (this.Variant == 6)
+                {
+                    result.Insert(1, new DifData(PartList[3], BodyList[0]) { });
+                    result[0].O = 0;
+                }
+
+                if (this.Face.Name == this.FaceList[0])
+                {
+                    if (this.Variant == 4)
+                        result.Add(new DifData(PartList[1], FaceList[0]) { });
+                    // closed eyes
+                    result.Add(new DifData(PartList[0], FaceList[0]) { O = 0, T = Transition.Eyes_Blink });
+                }
+                                                    
+                result.Add(new DifData(Devil.ManOld_001) { X = 885, Y = 65, S = 1125, F = 0 });
+                return result;
+            }
+        }
 
         public SC011_HCG() : base()
         {
@@ -329,7 +460,7 @@ namespace StoGen.Classes.Data
 
             gr = "[ERECTLIP] Bakunyuu Onsen ~Inran Okami Etsuraku no Yu Hen~2";
             //path = @"z:\HCG\ERECTLIP\Bakunyuu Onsen ~Inran Okami Etsuraku no Yu Hen~\";
-            path = @"d:\PicWork\";
+            path = @"z:\HCG\ERECTLIP\Bakunyuu Onsen ~Inran Okami Etsuraku no Yu Hen~\";
             for (int i = 1; i <= 38; i++)
             {
                 src = $"ERECTLIP_BakunyuuOnsen_PNG_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";

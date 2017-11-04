@@ -581,6 +581,14 @@ namespace StoGenMake.Scenes
                 cdata = SC011_HCG.Lady_LinaMoana_Face03.Get(this, i, new DifData() { });
                 AddLocal(gr, text, cdata);
             }
+
+            gr = src = SC011_HCG.Lady_LinaMoana_Face04.CName;
+            text = SC011_HCG.Lady_LinaMoana_Face04.Story1;
+            for (int i = 0; i < SC011_HCG.Lady_LinaMoana_Face04.Variants; i++)
+            {
+                cdata = SC011_HCG.Lady_LinaMoana_Face04.Get(this, i, new DifData() { });
+                AddLocal(gr, text, cdata);
+            }
             #endregion
         }
         protected override void MakeCadres(string cadregroup)
@@ -591,6 +599,7 @@ namespace StoGenMake.Scenes
                 SC011_HCG.Lady_LinaMoana_Face01.CName,
                 SC011_HCG.Lady_LinaMoana_Face02.CName,
                 SC011_HCG.Lady_LinaMoana_Face03.CName,
+                SC011_HCG.Lady_LinaMoana_Face04.CName,
             };
 
             base.MakeCadres(cd);
