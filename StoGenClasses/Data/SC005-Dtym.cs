@@ -33,7 +33,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 39; i++)
             {
                 src = $"Dtym_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
 
@@ -41,7 +41,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 7; i++)
             {
                 src = $"Dtym_Face_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
 
@@ -49,7 +49,7 @@ namespace StoGenMake.Scenes
             for (int i = 8; i <= 13; i++)
             {
                 src = $"Dtym_Body_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
            

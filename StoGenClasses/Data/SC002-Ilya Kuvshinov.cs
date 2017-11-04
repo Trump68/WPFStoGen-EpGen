@@ -25,7 +25,7 @@ namespace StoGenMake.Scenes
             path = @"d:\Temp\";
             // test
             src = $"Evil_blue"; fn = $"TestBlue.png";
-            AddToGlobalImage(src, fn, path, new DifData() { X = 100, Y = 100, Sx = 500, Sy = 500, F = 0 });
+            AddToGlobalImage(src, fn, path);
 
 
             path = @"z:\ARTIST\Ilya Kuvshinov\PNG\";
@@ -36,16 +36,16 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 105; i++)
             {
                 src = $"Head_IlyaKuvshinov_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { S = 500 });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { "All heads", $"Head {i.ToString("D3")}" }, new DifData[] { new DifData(src) });
             }
 
 
 
             //combos
-            AddToGlobalImage($"Head_IlyaKuvshinov_016_CLEAN", $"016_CLEAN.png", path, new DifData() { X = 100, Y = 100, Sx = 500, Sy = 500, F = 0 });
-            AddToGlobalImage($"Head_IlyaKuvshinov_016_MOUTH", $"016_MOUTH.png", path, new DifData() { X = 100, Y = 100, Sx = 100, Sy = 100, F = 0 });
-            AddToGlobalImage($"Head_IlyaKuvshinov_016_MOUTH_2", $"016_MOUTH_2.png", path, new DifData() { X = 100, Y = 100, Sx = 100, Sy = 100, F = 0 });
+            AddToGlobalImage($"Head_IlyaKuvshinov_016_CLEAN", $"016_CLEAN.png", path);
+            AddToGlobalImage($"Head_IlyaKuvshinov_016_MOUTH", $"016_MOUTH.png", path);
+            AddToGlobalImage($"Head_IlyaKuvshinov_016_MOUTH_2", $"016_MOUTH_2.png", path);
 
             AddGlobal(
                 new string[] { "All heads", "global alignment" },

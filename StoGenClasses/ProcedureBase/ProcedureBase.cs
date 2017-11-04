@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
+using StoGenMake.Scenes.Base;
 
 namespace StoGen.Classes
 {
@@ -211,6 +212,8 @@ namespace StoGen.Classes
         }
 
         public EventHandler OnKeyData;
+        public BaseScene Scene;
+
         public void ProcessKeyData(int v)
         {
             if (this.InnerProc != null) this.InnerProc.ProcessKeyData(v);

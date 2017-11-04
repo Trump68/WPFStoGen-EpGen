@@ -79,33 +79,33 @@ namespace StoGenMake.Scenes
             #endregion
 
             #region Mouth
-            AddToGlobalImage(Mouth.Sensual_001, "MOUTH_01.png", SC001_FoolsArt.Path, new DifData() { S = 100 });
-            AddToGlobalImage(Mouth.Sensual_002, "MOUTH_02.png", SC001_FoolsArt.Path, new DifData() { S = 100 });
-            AddToGlobalImage(Mouth.Sensual_003, "MOUTH_04.png", SC001_FoolsArt.Path, new DifData() { S = 100 });
-            AddToGlobalImage(Mouth.Sensual_004, "MOUTH_05.png", SC001_FoolsArt.Path, new DifData() { S = 100 });
-            AddToGlobalImage(Mouth.Sensual_005, "MOUTH_06.png", SC001_FoolsArt.Path, new DifData() { S = 100 });
-            AddToGlobalImage(Mouth.Sensual_006, "MOUTH_07.png", SC001_FoolsArt.Path, new DifData() { S = 100 });
-            AddToGlobalImage(Mouth.Sensual_007, "MOUTH_08.png", SC001_FoolsArt.Path, new DifData() { S = 100 });
+            AddToGlobalImage(Mouth.Sensual_001, "MOUTH_01.png", SC001_FoolsArt.Path);
+            AddToGlobalImage(Mouth.Sensual_002, "MOUTH_02.png", SC001_FoolsArt.Path);
+            AddToGlobalImage(Mouth.Sensual_003, "MOUTH_04.png", SC001_FoolsArt.Path);
+            AddToGlobalImage(Mouth.Sensual_004, "MOUTH_05.png", SC001_FoolsArt.Path);
+            AddToGlobalImage(Mouth.Sensual_005, "MOUTH_06.png", SC001_FoolsArt.Path);
+            AddToGlobalImage(Mouth.Sensual_006, "MOUTH_07.png", SC001_FoolsArt.Path);
+            AddToGlobalImage(Mouth.Sensual_007, "MOUTH_08.png", SC001_FoolsArt.Path);
 
             #endregion
             #region Cloth
-            AddToGlobalImage(Cloth.Panty_001, "PANTY_01.png", SC001_FoolsArt.Path, new DifData() { S = 100 });
-            AddToGlobalImage(Cloth.Panty_002, "PANTY_02.png", SC001_FoolsArt.Path, new DifData() { S = 100 });
+            AddToGlobalImage(Cloth.Panty_001, "PANTY_01.png", SC001_FoolsArt.Path);
+            AddToGlobalImage(Cloth.Panty_002, "PANTY_02.png", SC001_FoolsArt.Path);
             #endregion
 
             #region Devils
-            AddToGlobalImage(Devil.ManOld_001, "EVIL_BODY_01.png", SC001_FoolsArt.Path, new DifData() { S = 500 });
-            AddToGlobalImage(Devil.ManOld_002, "EVIL_BODY_02.png", SC001_FoolsArt.Path, new DifData() { S = 500 });
-            AddToGlobalImage(Devil.ManOld_003, "EVIL_BODY_03.png", SC001_FoolsArt.Path, new DifData() { S = 500 });
+            AddToGlobalImage(Devil.ManOld_001, "EVIL_BODY_01.png", SC001_FoolsArt.Path);
+            AddToGlobalImage(Devil.ManOld_002, "EVIL_BODY_02.png", SC001_FoolsArt.Path);
+            AddToGlobalImage(Devil.ManOld_003, "EVIL_BODY_03.png", SC001_FoolsArt.Path);
 
-            AddToGlobalImage(Devil.ManOld_004, "EVIL_HEAD_01.png", SC001_FoolsArt.Path, new DifData() { S = 500 });
-            AddToGlobalImage(Devil.ManOld_005, "EVIL_HEAD_02.png", SC001_FoolsArt.Path, new DifData() { S = 500 });
-            AddToGlobalImage(Devil.ManOld_006, "EVIL_HEAD_03.png", SC001_FoolsArt.Path, new DifData() { S = 500 });
-            AddToGlobalImage(Devil.ManOld_007, "EVIL_HEAD_04.png", SC001_FoolsArt.Path, new DifData() { S = 500 });
+            AddToGlobalImage(Devil.ManOld_004, "EVIL_HEAD_01.png", SC001_FoolsArt.Path);
+            AddToGlobalImage(Devil.ManOld_005, "EVIL_HEAD_02.png", SC001_FoolsArt.Path);
+            AddToGlobalImage(Devil.ManOld_006, "EVIL_HEAD_03.png", SC001_FoolsArt.Path);
+            AddToGlobalImage(Devil.ManOld_007, "EVIL_HEAD_04.png", SC001_FoolsArt.Path);
 
-            AddToGlobalImage(Devil.ManHand_001, "HANDS_01.png", SC001_FoolsArt.Path, new DifData() { S = 500 });
+            AddToGlobalImage(Devil.ManHand_001, "HANDS_01.png", SC001_FoolsArt.Path);
 
-            AddToGlobalImage(Devil.ManPot_001, "EVIL_POT_01.png", SC001_FoolsArt.Path, new DifData() { S = 500 });
+            AddToGlobalImage(Devil.ManPot_001, "EVIL_POT_01.png", SC001_FoolsArt.Path);
             #endregion
 
         }

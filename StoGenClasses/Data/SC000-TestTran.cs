@@ -29,11 +29,11 @@
             //raw
 
             name = $"Evil_blue"; fn = $"TestBlue.png";
-            AddToGlobalImage(name, fn, path, new DifData() { S = 500, F = 0 });
+            AddToGlobalImage(name, fn, path);
             name = $"Evil_red"; fn = $"TestRed.png";
-            AddToGlobalImage(name, fn, path, new DifData() { S = 300, F = 0 });
+            AddToGlobalImage(name, fn, path);
             name = $"Evil_green"; fn = $"TestGreen.png";
-            AddToGlobalImage(name, fn, path, new DifData() { S = 500, F = 0 });
+            AddToGlobalImage(name, fn, path);
 
             AddGlobal(new string[] { "" },
             new DifData[] {

@@ -39,14 +39,14 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 14; i++)
             {
                 src = $"Itachou_Douin_4years_after_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             gr = "[Douin] 4years after PNG";
             for (int i = 1; i <= 2; i++)
             {
                 src = $"Itachou_Douin_4years_after_BodyScene_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion
@@ -57,14 +57,14 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 5; i++)
             {
                 src = ($"{gr}_BodyScene_JPG_{i.ToString("D3")}").Replace(" ","_"); fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             gr = dsc = "[Douin] Bad End de Peace PNG";
             for (int i = 1; i <= 1; i++)
             {
                 src = ($"{gr}_BodyScene_PNG_{i.ToString("D3")}").Replace(" ", "_"); ; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion
@@ -75,7 +75,7 @@ namespace StoGenMake.Scenes
             for (int i = 1; i <= 5; i++)
             {
                 src = ($"{gr}_BodyScene_PNG_{i.ToString("D3")}").Replace(" ", "_"); fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion

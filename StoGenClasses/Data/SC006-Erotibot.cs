@@ -34,7 +34,7 @@ namespace StoGenMake.Scenes
                 if (i == 8) continue;
                 src = $"Erotibot BodyScene {i.ToString("D3")}";
                 fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
             }
         }
 

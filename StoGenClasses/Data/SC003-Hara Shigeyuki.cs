@@ -29,14 +29,14 @@
             for (int i = 1; i <= 10; i++)
             {
                 src = $"HaraShigeyuki_AbunaiHitozuma_SceneBody_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
 
             for (int i = 1; i <= 262; i++)
             {
                 src = $"HaraShigeyuki_AbunaiHitozuma_SceneBody_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
          
@@ -47,7 +47,7 @@
             for (int i = 11; i <= 22; i++)
             {
                 src = $"HaraShigeyuki_AbunaiHitozuma_EvilManBody_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
 

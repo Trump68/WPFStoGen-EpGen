@@ -12,6 +12,7 @@ namespace StoGenMake.Persona
     {
         public string Name;
         protected BaseScene Scene;
+        public int Variant;
         public Personality(BaseScene scene)
         {
             this.Scene = scene;

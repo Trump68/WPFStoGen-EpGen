@@ -1,4 +1,5 @@
-﻿using StoGenMake.Elements;
+﻿using StoGen.Classes.Data;
+using StoGenMake.Elements;
 using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
@@ -555,11 +556,21 @@ namespace StoGenMake.Scenes
             //cdata.Add(new DifData(Devil.ManOld_001) { X = 745, Y = 255, S = 1425, F = 0 });
             AddLocal(gr, text, cdata);
             #endregion
+
+            #region Lina Moana ([ERECTLIP] Bakunyuu Onsen ~Inran Okami Etsuraku no Yu Hen~")
+            gr = src = SC011_HCG.Lady_LinaMoana_Face01.CName;
+            text = SC011_HCG.Lady_LinaMoana_Face01.Story1;
+            for (int i = 0; i < SC011_HCG.Lady_LinaMoana_Face01.Variants; i++)
+            {
+                cdata = SC011_HCG.Lady_LinaMoana_Face01.Get(this, i, new DifData() { });                
+                AddLocal(gr, text, cdata);
+            }
+            #endregion
         }
         protected override void MakeCadres(string cadregroup)
         {
-            //cadregroup = "Mary (CleMasahiro CL-orz 51 007 Head)";
-            cadregroup = SC010_OyariAshito.Lady_EriAyase_Face06.Name;
+            cadregroup = SC011_HCG.Lady_LinaMoana_Face01.CName;
+            //cadregroup = SC010_OyariAshito.Lady_EriAyase_Face03.Name;
             base.MakeCadres(cadregroup);
             this.Cadres.Reverse();
         }

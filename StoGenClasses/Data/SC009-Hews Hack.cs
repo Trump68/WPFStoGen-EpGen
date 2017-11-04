@@ -38,28 +38,28 @@ namespace StoGenMake.Scenes
             {
                 if (i == 9) continue;
                 src = $"Hews_Hack_BodyScene_PNG_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
 
             gr = "artist Hews Hack PNG Cock";
             src = $"Hews_Hack_BodyScene_PNG_Cock_002"; fn = $"002_COCK.png";
-            AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+            AddToGlobalImage(src, fn, path);
             src = $"Hews_Hack_BodyScene_PNG_Cock_001"; fn = $"001_COCK.png";
-            AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+            AddToGlobalImage(src, fn, path);
             AddGlobal(new string[] { gr }, new DifData[] {
                  new DifData("Hews_Hack_BodyScene_PNG_Cock_001") { },
                  new DifData("Hews_Hack_BodyScene_PNG_Cock_002", "Hews_Hack_BodyScene_PNG_Cock_001")
                  {},
             });
             src = $"Hews_Hack_BodyScene_PNG_Cock_003"; fn = $"003_COCK.png";
-            AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+            AddToGlobalImage(src, fn, path);
             src = $"Hews_Hack_BodyScene_PNG_Cock_004"; fn = $"004_COCK.png";
-            AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+            AddToGlobalImage(src, fn, path);
             src = $"Hews_Hack_BodyScene_PNG_Cock_005"; fn = $"004_COCK.png";
-            AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+            AddToGlobalImage(src, fn, path);
             src = $"Hews_Hack_BodyScene_PNG_Flower_001"; fn = $"001_Flower.png";
-            AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+            AddToGlobalImage(src, fn, path);
 
             AddGlobal(new string[] { gr }, new DifData[] {
                  new DifData("Hews_Hack_BodyScene_PNG_008") { },

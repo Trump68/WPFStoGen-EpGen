@@ -97,6 +97,7 @@
     <Compile Include="Data\SC008-Itachou.cs" />
     <Compile Include="Data\SC009-Hews Hack.cs" />
     <Compile Include="Data\SC010-Oyari Ashito.cs" />
+    <Compile Include="Data\SC011-HCG.cs" />
     <Compile Include="Frames\Frame.cs" />
     <Compile Include="Frames\FrameImage.cs" />
     <Compile Include="FrameProc.cs" />

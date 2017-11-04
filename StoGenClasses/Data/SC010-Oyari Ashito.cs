@@ -97,17 +97,18 @@ namespace StoGenMake.Scenes
 
             gr = "OyariAshito_KawaikuteShikatagaNai2";
             path = @"z:\ARTIST\Oyari Ashito\OyariAshito_KawaikuteShikatagaNai2\";
+            //path = @"d:\PicWork\";
             for (int i = 1; i <= 20; i++)
             {
                 src = $"OyariAshito_KawaikuteShikatagaNai2_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.jpg";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             for (int i = 1; i <= 20; i++)
             {
-                path = @"d:\PicWork\";
+                
                 src = $"OyariAshito_KawaikuteShikatagaNai2_PNG_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path, new DifData() { S = ss });
+                AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion            

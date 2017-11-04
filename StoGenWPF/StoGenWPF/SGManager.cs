@@ -22,15 +22,18 @@ namespace StoGenWPF
         #region Runtime compile
 
         static IMenuCreator GlobalMenuCreator = null;
-        internal static void StartMainProc(BaseScene Scene, string startfile, IMenuCreator globalMenuCreator = null)
+        static BaseScene Scene;
+        internal static void StartMainProc(BaseScene scene, string startfile, IMenuCreator globalMenuCreator = null)
         {
             GlobalMenuCreator = globalMenuCreator;
             if (!string.IsNullOrWhiteSpace(startfile)) _MainProcname = startfile;
             SetMainProcedure();
         }
+
         public static void SetMainProcedure()
         {
             CurrProc = new ScenarioProc(_MainProcname, GlobalMenuCreator);
+            //CurrProc.Scene = Scene;
         }
        
 

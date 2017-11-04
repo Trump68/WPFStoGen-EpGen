@@ -58,7 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Location\VisualLocaton.cs" />
     <Compile Include="Scenes\Scene01.cs" />
     <Compile Include="StoGenMaker.cs" />
     <Compile Include="VNPC\BASE\VNPC.cs" />
