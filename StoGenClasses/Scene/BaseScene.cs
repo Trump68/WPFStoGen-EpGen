@@ -32,6 +32,7 @@ namespace StoGenMake.Scenes.Base
         public int pF = 0;
         public int F = 0;
         public int pO = -1;
+        public int cO = -1;
         public int dO = 0;
         public string pT;
 
@@ -58,6 +59,7 @@ namespace StoGenMake.Scenes.Base
 
             pT = parIm.T;
             pO = parIm.O;
+            cO = childIm.O;
             dO = childIm.O - parIm.O;
         }
 
@@ -134,8 +136,9 @@ namespace StoGenMake.Scenes.Base
                 target.T = delta.T;
             
             // opacity
-            target.O = this.pO;
-              if (delta.Od.HasValue) target.O = target.O + delta.Od.Value;
+            if (this.cO > -1 )
+                target.O = this.cO;
+              //if (delta.Od.HasValue) target.O = target.O + delta.Od.Value;
         }
     }
     public class CadreData

@@ -17,7 +17,7 @@ namespace StoGenMake
                 List<string> result = new List<string>() { "W..1000" };                
                 for (int i = 0; i < 50; i++)
                 {
-                    result.Add("O.B.40.100>O.B.40.-100");                   
+                    result.Add("O.B.20.0>O.B.20.100>O.B.20.-100>");                   
                     int wait = rnd.Next(100, 10000);
                     result.Add($"W..{wait}");
                 }

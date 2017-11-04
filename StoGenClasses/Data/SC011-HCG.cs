@@ -1,4 +1,5 @@
-﻿using StoGenMake.Persona;
+﻿using StoGenMake;
+using StoGenMake.Persona;
 using StoGenMake.Scenes;
 using StoGenMake.Scenes.Base;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace StoGen.Classes.Data
 {
-    public class SC011_HCG: BaseScene
+    public class SC011_HCG : BaseScene
     {
         public class Lady_LinaMoana_Face01 : Personality
         {
@@ -73,10 +74,18 @@ namespace StoGen.Classes.Data
             new DifData(BodyList[0])  { S=740},
             new DifData(PartList[4],BodyList[0]) {  X = 20, Y = 610, S = 359, F = 0 },
             });
+                //Closed eyes head01
+                PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_009");
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+            new DifData(FaceList[0])  { S=370},
+            //370,-62
+            new DifData(PartList[5],FaceList[0]) { O = 0, X = 46, Y = 133, S = 155, F = 0 },
+            });
                 #endregion
 
                 // set default body
-                SetBody(BodyList[0], new DifData() { Y=50, S = 740 });
+                SetBody(BodyList[0], new DifData() { Y = 50, S = 740 });
+                //SetBody(BodyList[0], new DifData() {S = 740 });
                 // set default head
                 SetHead(FaceList[0]);
                 // set default lips
@@ -100,7 +109,7 @@ namespace StoGen.Classes.Data
                         //hand left   X = 385, Y = 274 (X = 347, Y = 257, S = 421, R = 12, F = 0)
                         result.Insert(1, new DifData(PartList[1], BodyList[0]) { Xd = -38, Yd = -17, S = 421, R = 12, F = 0 });
                         //bust X = 81, Y = 315,
-                        result.Insert(1, new DifData(PartList[2], BodyList[0]) {  Xd=170, Yd=-40, S = 343});
+                        result.Insert(1, new DifData(PartList[2], BodyList[0]) { Xd = 170, Yd = -40, S = 343 });
                         //left leg X = 495, Y = 560 (X = 460, Y = 397, S = 194, F = 0)
                         result.Insert(1, new DifData(PartList[3], BodyList[0]) { Xd = -35, Yd = -163, S = 194, F = 0 });
                         //right leg X = 20, Y = 610 (X = 120, Y = 445, S = 359, F = 0)
@@ -120,7 +129,13 @@ namespace StoGen.Classes.Data
                         result.Insert(1, new DifData(PartList[4], BodyList[0]));
                     }
                 }
-                result.Add(new DifData(Devil.ManOld_001) { X = 740, Y = -5, S = 1000, F = 0 });
+                if (this.Face.Name == this.FaceList[0])
+                {
+                    // closed eyes
+                    result.Insert(result.IndexOf(result.Where(x=>x.Name == this.Face.Name).FirstOrDefault())+1,
+                        new DifData(PartList[5], FaceList[0]) { O = 1, T = Transition.Eyes_Blink});
+                }                    
+                result.Add(new DifData(Devil.ManOld_001) {X = 740, Y = -5, S = 1000, F = 0 });
                 return result;
             }
         }
@@ -136,7 +151,7 @@ namespace StoGen.Classes.Data
             string path = null;
 
             string src = null;
-            string fn = null;          
+            string fn = null;
             string gr = null;
 
             #region [ERECTLIP] Bakunyuu Onsen ~Inran Okami Etsuraku no Yu Hen~
