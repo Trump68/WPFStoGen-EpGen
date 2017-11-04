@@ -77,20 +77,7 @@ namespace StoGenMake.Scenes.Base
             }
             target.Sx = Convert.ToInt32(dSx * actualParent.Sx);
             target.Sy = Convert.ToInt32(dSy * actualParent.Sy);
-            //int dR = 0;
-            // Parent rotation
-            {
-                target.ParentRotations.Clear();
-                if (actualParent.ParentRotations != null && actualParent.ParentRotations.Any())
-                {
-                    target.ParentRotations.AddRange(actualParent.ParentRotations);
-                }
-                if (this.pR != actualParent.R)
-                {
-                    var dR = actualParent.R - pR;
-                    target.ParentRotations.Add(new Tuple<string, int>(actualParent.Name, dR));
-                }
-            }
+           
             // Parent flip
             {
                 target.ParentFlips.Clear();
@@ -158,12 +145,25 @@ namespace StoGenMake.Scenes.Base
         public int EngineHiVer = 0;
         public int EngineLoVer = 0;
         
+        protected virtual void MakeCadres(string[] cadregroups, bool all = false)
+        {
+            foreach (var item in AlignList.Where(
+                x =>
+                all
+                ||
+                x.MarkList.Any(z=>cadregroups.Contains(z))))
+            {
+                MakeCadre(item);
+            }
+        }
         protected virtual void MakeCadres(string cadregroup)
         {
-            foreach (var item in AlignList.Where(x => string.IsNullOrEmpty(cadregroup) || x.MarkList.Contains(cadregroup)))
-            {
+            MakeCadres(new string[] { cadregroup }, (cadregroup == null));
+        }
+        private void MakeCadre(CadreData item)
+        {
                 seTe te = null;
-                bool isWhite = false;                
+                bool isWhite = false;
                 if (item.IsGlobalAlign)
                 {
                     te = new seTe();
@@ -175,12 +175,10 @@ namespace StoGenMake.Scenes.Base
                 }
                 else
                 {
-                    te = item.TextData; 
+                    te = item.TextData;
                 }
                 this.CreateCadre(item, isWhite, te);
-            }
         }
-
         public List<CadreData> AlignList = new List<CadreData>();
         public Guid GID { set; get; }
 
@@ -366,6 +364,7 @@ namespace StoGenMake.Scenes.Base
                 // create image
                 seIm im = new seIm();
                 im.Name = isi.Name;
+                im.Parent = ai.Parent;
                 im.File = isi.File;
                 // there is 2 alt: assign from parent-child align or from delta align, not combined!
                 if (!string.IsNullOrEmpty(ai.Parent)) //if has parent image

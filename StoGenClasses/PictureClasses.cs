@@ -51,6 +51,8 @@ namespace StoGen.Classes
     {
         internal bool SizeChanged = false;
 
+        
+
         //public System.Windows.Point ScreenCenter { get; internal set; }
 
         public PictureSourceProps() : base() { } 
@@ -105,9 +107,9 @@ namespace StoGen.Classes
             this.ClipX = sourceApperance.ClipX;
             this.ClipY = sourceApperance.ClipY;
             this.Transition = sourceApperance.Transition;
-            this.ParRot = sourceApperance.ParRot;
             this.ParFlip = sourceApperance.ParFlip;
             this.Mute = sourceApperance.Mute;
+            this.Parent = sourceApperance.Parent;
         }
         public void Assign(PictureSourceProps sourceApperance)
         {
@@ -152,6 +154,7 @@ namespace StoGen.Classes
             }
             set { _Name = value; }
         }
+        public string Parent { get; set; }
         internal string SetName { get; set; }
         public bool AutoShift { get; set; }
         public int R { get; set; }
@@ -232,7 +235,6 @@ namespace StoGen.Classes
         internal bool isMain = false;
         public string Flash = null;
         public string Transition = null;
-        public string ParRot = null;
         public string ParFlip = null;
     }
     public class PictureBaseProp
@@ -503,47 +505,7 @@ namespace StoGen.Classes
 
             return (Image)b;
         }
-        //public static void ConvertToGif(string DestinationPath, Image myImage, int myFrames)
-        //{
-        //    Bitmap myBitmap = new Bitmap(myImage.Width / myFrames, myImage.Height);
-        //    GifBitmapEncoder myEncoder = new GifBitmapEncoder();
-
-        //    int i = 0;
-        //    while (i < myFrames)
-        //    {
-        //        Graphics GrDrw = Graphics.FromImage(myBitmap);
-        //        var DestRegion = new Rectangle(0, 0, myBitmap.Width, myBitmap.Height);
-        //        var SrceRegion = new Rectangle(myBitmap.Width * i, 0, myBitmap.Width, myBitmap.Height);
-        //        GrDrw.DrawImage(myImage, DestRegion, SrceRegion, GraphicsUnit.Pixel);
-        //        BitmapSource mySource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(myBitmap.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-        //        myEncoder.Frames.Add(BitmapFrame.Create(mySource, mySource));
-        //        GrDrw.Dispose();
-        //        i += 1;
-        //    }
-
-        //    System.IO.FileStream myStream = new System.IO.FileStream(@DestinationPath, System.IO.FileMode.Create);
-        //    myEncoder.Save(myStream);
-        //}
-        //public static Image ConvertFromGif(Image myImage)
-        //{
-        //    var myDimensions = new FrameDimension(myImage.FrameDimensionsList[0]);
-        //    var myFrames = myImage.GetFrameCount(myDimensions);
-        //    var newImage = new Bitmap(myImage.Width * myFrames, myImage.Height);
-
-        //    for (int i = 0; i < myFrames; i++)
-        //    {
-        //        myImage.SelectActiveFrame(myDimensions, i);
-        //        var DestRegion = new Rectangle(myImage.Width * i, 0, myImage.Width, myImage.Height);
-        //        var SrceRegion = new Rectangle(0, 0, myImage.Width, myImage.Height);
-
-        //        Graphics GrDrw = Graphics.FromImage(newImage);
-        //        GrDrw.DrawImage(myImage, DestRegion, SrceRegion, GraphicsUnit.Pixel);
-        //        GrDrw.Dispose();
-        //    }
-
-        //    return newImage;
-        //}
-      
+     
         public static void Test()
         {
             //GifHelper gh = new GifHelper();            

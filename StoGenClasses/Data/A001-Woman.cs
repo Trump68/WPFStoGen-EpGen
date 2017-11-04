@@ -565,13 +565,35 @@ namespace StoGenMake.Scenes
                 cdata = SC011_HCG.Lady_LinaMoana_Face01.Get(this, i, new DifData() { });                
                 AddLocal(gr, text, cdata);
             }
+
+            gr = src = SC011_HCG.Lady_LinaMoana_Face02.CName;
+            text = SC011_HCG.Lady_LinaMoana_Face02.Story1;
+            for (int i = 0; i < SC011_HCG.Lady_LinaMoana_Face02.Variants; i++)
+            {
+                    cdata = SC011_HCG.Lady_LinaMoana_Face02.Get(this, i, new DifData() { });
+                    AddLocal(gr, text, cdata);
+            }
+
+            gr = src = SC011_HCG.Lady_LinaMoana_Face03.CName;
+            text = SC011_HCG.Lady_LinaMoana_Face03.Story1;
+            for (int i = 0; i < SC011_HCG.Lady_LinaMoana_Face03.Variants; i++)
+            {
+                cdata = SC011_HCG.Lady_LinaMoana_Face03.Get(this, i, new DifData() { });
+                AddLocal(gr, text, cdata);
+            }
             #endregion
         }
         protected override void MakeCadres(string cadregroup)
         {
-            cadregroup = SC011_HCG.Lady_LinaMoana_Face01.CName;
+            //cadregroup = SC011_HCG.Lady_LinaMoana_Face03.CName;
             //cadregroup = SC010_OyariAshito.Lady_EriAyase_Face03.Name;
-            base.MakeCadres(cadregroup);
+            string[] cd = new string[] {
+                SC011_HCG.Lady_LinaMoana_Face01.CName,
+                SC011_HCG.Lady_LinaMoana_Face02.CName,
+                SC011_HCG.Lady_LinaMoana_Face03.CName,
+            };
+
+            base.MakeCadres(cd);
             this.Cadres.Reverse();
         }
     }

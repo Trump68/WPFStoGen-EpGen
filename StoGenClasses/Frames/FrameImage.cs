@@ -457,38 +457,6 @@ namespace StoGen.Classes
             DoRotateFlip(sourceProps, tg);
             #endregion
 
-            #region Parent rotation
-            if (!string.IsNullOrEmpty(sourceProps.ParRot))
-            {
-                string[] vals = sourceProps.ParRot.Split(',');
-
-                foreach (var item in vals)
-                {
-                    string[] vals2 = item.Split('@');
-                    string parname = vals2[0];
-                    int parvalue = Convert.ToInt32(vals2[1]);
-                    var parent = Pics.Where(x => x.Props.Name == parname).FirstOrDefault();
-                    if (parent != null)
-                    {
-                        var ctrl = Projector.PicContainer.PicList[(int)parent.Props.Level];
-                        var controlCenter = new System.Windows.Point(
-                               (ctrl.Width / 2) + parent.Props.X,
-                               (ctrl.Height / 2) + parent.Props.Y);
-
-                        var sss = ctrl.PointToScreen(controlCenter);
-
-                        var childControlCenter = current.PointFromScreen(sss);
-                        var rTransform = new RotateTransform();
-                        rTransform.Angle = parvalue;
-                        rTransform.CenterX = childControlCenter.X;
-                        rTransform.CenterY = childControlCenter.Y;
-                        tg.Children.Add(rTransform);
-                    }
-                }
-                //sourceProps.ParRot = null;
-            }
-            #endregion
-
             #region Parent flip
             if (!string.IsNullOrEmpty(sourceProps.ParFlip))
             {
@@ -528,18 +496,52 @@ namespace StoGen.Classes
             DoResize(sourceProps, imageSource.PixelWidth, imageSource.PixelHeight);
             RefreshImage(sourceProps);
         }
+      
+        private void RotateAroundParent(string parent, TransformGroup tg)
+        {
+            var item = Pics.Where(x => x.Props.Name == parent).FirstOrDefault();
+            if (item != null )
+            {
+                var pi = item.Props;
+                if (pi.Rotate != 0)
+                {
+                    var ctrl = Projector.PicContainer.PicList[(int)pi.Level];
+                    var controlCenter = new System.Windows.Point(ctrl.Width / 2, ctrl.Height / 2);
+                    double x = controlCenter.X + pi.X;
+                    double y = controlCenter.Y + pi.Y;
+                    DoRotate(x, y, pi.Rotate, tg);
+                }
+                if (!string.IsNullOrEmpty(pi.Parent))
+                {
+                    this.RotateAroundParent(pi.Parent, tg);
+                }
+            }
+        }
+        private void DoRotate(double Cx, double Cy, int angle, TransformGroup tg)
+        {
+            var roateTransform = new RotateTransform();
+            roateTransform.Angle = angle;
+            roateTransform.CenterX = Cx;
+            roateTransform.CenterY = Cy;
+            tg.Children.Add(roateTransform);
+        }
         private void DoRotateFlip(PictureSourceProps pi, TransformGroup tg)
         {
             var current = Projector.PicContainer.PicList[(int)pi.Level];
             var controlCenter = new System.Windows.Point(current.Width / 2, current.Height / 2);
             if (pi.Rotate != 0)
             {
-                var roateTransform = new RotateTransform();
-                roateTransform.Angle = pi.Rotate;
-                roateTransform.CenterX = controlCenter.X + pi.X;
-                roateTransform.CenterY = controlCenter.Y + pi.Y;
-                tg.Children.Add(roateTransform);
+                double x = controlCenter.X + pi.X;
+                double y = controlCenter.Y + pi.Y;
+                DoRotate(x,y,pi.Rotate, tg);
+                        
             }
+
+            if (!string.IsNullOrEmpty(pi.Parent))
+            {
+                this.RotateAroundParent(pi.Parent, tg);
+            }
+
             if ((int)pi.Flip > 0)
             {
 
@@ -559,7 +561,6 @@ namespace StoGen.Classes
         }
         private void DoLocation(PictureSourceProps pi, TransformGroup tg)
         {
-            //if (pi.ParRot != null) return;
             #region Location
             // Location
             //Canvas.SetLeft(

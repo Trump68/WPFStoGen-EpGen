@@ -83,7 +83,6 @@ namespace StoGenMake.Elements
             pi.Transition = this.T;
             pi.Opacity = this.O;
             pi.ParFlip = this.ParFlip;
-            pi.ParRot = this.ParRot;
             pi.SizeMode = (PictureSizeMode)this.SizeMode;
             pi.SizeX = this.Sx;
             pi.SizeY = this.Sy;
@@ -119,24 +118,9 @@ namespace StoGenMake.Elements
 
        // public VNPCPersType PersonType { get; internal set; }
         public string Description { get; internal set; }
-        public List<Tuple<string, int>> ParentRotations { get; internal set; } = new List<Tuple<string, int>>();
+        
         public List<string> ParentFlips { get; internal set; } = new List<string>();
-        public string ParRot
-        {
-            get
-            {
-                if (ParentRotations.Any())
-                {
-                    List<string> rez = new List<string>();
-                    foreach (var item in ParentRotations)
-                    {
-                        rez.Add($"{item.Item1}@{item.Item2}");
-                    }
-                    return string.Join(",", rez.ToArray());
-                }
-                return string.Empty;
-            }
-        }
+
         public string ParFlip
         {
             get
@@ -153,6 +137,9 @@ namespace StoGenMake.Elements
                 return string.Empty;
             }
         }
+
+        public string Parent { get; set; }
+
         internal override string GetElementData()
         {           
             List<string> result = new List<string>();
@@ -172,10 +159,11 @@ namespace StoGenMake.Elements
                 result.Add($"Opacity={this.O.ToString().PadRight(3)}");
                 result.Add($"Flip={this.F.ToString().PadRight(3)}");
                 result.Add($"Name={this.Name.PadRight(3)}");
-
+                if (!string.IsNullOrEmpty(this.Parent))
+                    result.Add($"Parent={this.Parent.PadRight(3)}");
                 if (this.Timer > 0) result.Add($"Timer={this.Timer.ToString().PadRight(7)}");
                 if (!string.IsNullOrEmpty(this.T)) result.Add($"TRN={this.T}");   
-                if (this.ParentRotations.Any()) result.Add($"ParRot={this.ParRot}");
+                
                 if (this.ParentFlips.Any())
                     result.Add($"ParFlip={this.ParFlip}");
             }
@@ -194,9 +182,8 @@ namespace StoGenMake.Elements
             this.Part = image.Part;
             this.File = image.File;
             this.Name = image.Name;
+            this.Parent = image.Parent;
             this.T = image.T;
-            this.ParentRotations.Clear();
-            this.ParentRotations.AddRange(image.ParentRotations);
             this.ParentFlips.Clear();
             this.ParentFlips.AddRange(image.ParentFlips);
 
