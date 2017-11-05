@@ -13,9 +13,25 @@ namespace StoGenMake.Persona
         public string Name;
         protected BaseScene Scene;
         public int Variant;
-        public Personality(BaseScene scene)
+
+        protected DifData _Canvas;
+        protected DifData Canvas
+        {
+            get
+            {
+                if (_Canvas == null)
+                {
+                    _Canvas = new DifData(this.Name) { S = 100 };
+                }
+                return _Canvas;
+            }
+        }            
+        public Personality(BaseScene scene, string name)
         {
             this.Scene = scene;
+            this.Name = name;
+            // canvas
+            this.Scene.AddToGlobalImage(this.Name, "CANVAS", null);
         }
 
         protected List<string> BodyList = new List<string>();
@@ -128,15 +144,7 @@ namespace StoGenMake.Persona
                 return _Lips;
             }
             set
-            {
-                //if (value != null)
-                //{
-                //    var existing = this.LipsList.Where(x => x.Name == value.Name).FirstOrDefault();
-                //    if (existing != null)
-                //        existing.AssingFrom(value);
-                //    else
-                //        this.LipsList.Add(value);
-                //}
+            {              
                 _Lips = value;
             }
         }
@@ -145,10 +153,15 @@ namespace StoGenMake.Persona
         {
         
             List<DifData> result = new List<DifData>();
+            DifData canvas = Canvas;            
+            canvas.AssingFrom(delta);
+            result.Add(canvas);
+
             if (Body != null)
             {
                 DifData newbody = new DifData();
                 newbody.AssingFrom(Body, true);
+                newbody.Parent = this.Name;
                 newbody.Name = Body.Name;
                 newbody.AssingFrom(delta);
                 result.Add(newbody);
@@ -158,10 +171,7 @@ namespace StoGenMake.Persona
                 DifData newface = new DifData();
                 newface.AssingFrom(Face, true);
                 newface.Name = Face.Name;
-                if (Body != null)
-                    newface.Parent = Body.Name;
-                else
-                    newface.AssingFrom(delta);
+                newface.Parent = this.Name;
                 result.Add(newface);
             }
             if (Lips != null)
@@ -171,8 +181,8 @@ namespace StoGenMake.Persona
                 newlips.Name = Lips.Name;
                 if (Face != null)
                     newlips.Parent = Face.Name;
-                else if (Body != null)
-                    newlips.Parent = Body.Name;
+                else 
+                    newlips.Parent = this.Name;
                 result.Add(newlips);
             }
             return result;

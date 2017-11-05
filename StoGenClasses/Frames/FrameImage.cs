@@ -236,6 +236,7 @@ namespace StoGen.Classes
                     Projector.Owner.Background = new SolidColorBrush(Colors.White);
                     continue;
                 }
+                
                 if (Projector.PicContainer.PicList[(int)pi.Props.Level].Tag != null
                     &&
                     ((PictureSourceProps)Projector.PicContainer.PicList[(int)pi.Props.Level].Tag).FileName == fn
@@ -245,7 +246,7 @@ namespace StoGen.Classes
                     continue;
                 }
 
-                if (!File.Exists(Pics[i].Props.FileName))
+                if (!Pics[i].Props.FileName.EndsWith("CANVAS") && !File.Exists(Pics[i].Props.FileName))
                 {
                     XtraMessageBox.Show(Pics[i].Props.FileName, "File not exists", System.Windows.Forms.MessageBoxButtons.OK, MessageBoxIcon.Error);
                     continue;
@@ -334,8 +335,7 @@ namespace StoGen.Classes
                 #endregion
 
 
-                BitmapImage imageSource = new BitmapImage(new Uri(fn));
-                Projector.PicContainer.PicList[(int)pi.Props.Level].Source = imageSource;
+               
 
                 #region Opacity
                 // Opacity
@@ -369,8 +369,18 @@ namespace StoGen.Classes
 
                 #endregion
 
+                int ImW = 0;
+                int ImH = 0;
+                if (!Pics[i].Props.FileName.EndsWith("CANVAS"))
+                {
+                    BitmapImage imageSource = new BitmapImage(new Uri(fn));
+                    Projector.PicContainer.PicList[(int)pi.Props.Level].Source = imageSource;
+                    ImW = imageSource.PixelWidth;
+                    ImH = imageSource.PixelHeight;
+                }
+
                 #region Size
-                DoResize(pi.Props, imageSource.PixelWidth, imageSource.PixelHeight);
+                DoResize(pi.Props, ImW, ImH);
                 #endregion
 
                 #region Clip

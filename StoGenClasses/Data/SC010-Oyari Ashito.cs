@@ -17,7 +17,7 @@ namespace StoGenMake.Scenes
             get
             {
                 if (_Lady_EriAyase_Face01 == null)
-                    _Lady_EriAyase_Face01 = new Lady_EriAyase_Face01(Instance);
+                    _Lady_EriAyase_Face01 = new Lady_EriAyase_Face01(Instance, "EriAyase_OyariAshito_001");
                 return _Lady_EriAyase_Face01;
             }
         }
@@ -28,7 +28,7 @@ namespace StoGenMake.Scenes
             get
             {
                 if (_Lady_EriAyase_Face02 == null)
-                    _Lady_EriAyase_Face02 = new Lady_EriAyase_Face02(Instance);
+                    _Lady_EriAyase_Face02 = new Lady_EriAyase_Face02(Instance, "EriAyase_OyariAshito_002");
                 return _Lady_EriAyase_Face02;
             }
         }
@@ -39,7 +39,7 @@ namespace StoGenMake.Scenes
             get
             {
                 if (_Lady_EriAyase_Face03 == null)
-                    _Lady_EriAyase_Face03 = new Lady_EriAyase_Face03(Instance);
+                    _Lady_EriAyase_Face03 = new Lady_EriAyase_Face03(Instance, "EriAyase_OyariAshito_003");
                 return _Lady_EriAyase_Face03;
             }
         }
@@ -49,7 +49,7 @@ namespace StoGenMake.Scenes
             get
             {
                 if (_Lady_EriAyase_Face04 == null)
-                    _Lady_EriAyase_Face04 = new Lady_EriAyase_Face04(Instance);
+                    _Lady_EriAyase_Face04 = new Lady_EriAyase_Face04(Instance, "EriAyase_OyariAshito_004");
                 return _Lady_EriAyase_Face04;
             }
         }
@@ -59,7 +59,7 @@ namespace StoGenMake.Scenes
             get
             {
                 if (_Lady_EriAyase_Face05 == null)
-                    _Lady_EriAyase_Face05 = new Lady_EriAyase_Face05(Instance);
+                    _Lady_EriAyase_Face05 = new Lady_EriAyase_Face05(Instance, "EriAyase_OyariAshito_005");
                 return _Lady_EriAyase_Face05;
             }
         }
@@ -69,7 +69,7 @@ namespace StoGenMake.Scenes
             get
             {
                 if (_Lady_EriAyase_Face06 == null)
-                    _Lady_EriAyase_Face06 = new Lady_EriAyase_Face06(Instance);
+                    _Lady_EriAyase_Face06 = new Lady_EriAyase_Face06(Instance,"EriAyase_OyariAshito_006");
                 return _Lady_EriAyase_Face06;
             }
         }
@@ -138,7 +138,7 @@ namespace StoGenMake.Scenes
          + "~А Мария отвела взгляд. Что было делать, кроме как уйти?"
        ;
         #endregion
-        public Lady_EriAyase_Face01(BaseScene scene) : base(scene)
+        public Lady_EriAyase_Face01(BaseScene scene, string name) : base(scene,name )
         {
             this.Name = "EriAyase_OyariAshito_001";
 
@@ -207,7 +207,7 @@ namespace StoGenMake.Scenes
          + "~А Мария отвела взгляд. Что было делать, кроме как уйти?"
        ;
         #endregion
-        public Lady_EriAyase_Face02(BaseScene scene) : base(scene)
+        public Lady_EriAyase_Face02(BaseScene scene, string name) : base(scene, name)
         {
             this.Name = "EriAyase_OyariAshito_002";
 
@@ -265,7 +265,7 @@ namespace StoGenMake.Scenes
          + "И теперь он потребовал от девушки показать, что правила выполняются."
        ;
         #endregion
-        public Lady_EriAyase_Face03(BaseScene scene) : base(scene)
+        public Lady_EriAyase_Face03(BaseScene scene, string name) : base(scene, name)
         {
             this.Name = "EriAyase_OyariAshito_003";
 
@@ -312,7 +312,7 @@ namespace StoGenMake.Scenes
          + "И теперь он потребовал от девушки показать, что правила выполняются."
        ;
         #endregion
-        public Lady_EriAyase_Face04(BaseScene scene) : base(scene)
+        public Lady_EriAyase_Face04(BaseScene scene, string name) : base(scene, name)
         {
             this.Name = "EriAyase_OyariAshito_004";
 
@@ -355,9 +355,8 @@ namespace StoGenMake.Scenes
         #region Text
         public string Story1 ="";
         #endregion
-        public Lady_EriAyase_Face05(BaseScene scene) : base(scene)
+        public Lady_EriAyase_Face05(BaseScene scene, string name) : base(scene, name)
         {
-            this.Name = "EriAyase_OyariAshito_005";
 
             #region Body            
             BodyList.Add("OyariAshito_KawaikuteShikatagaNai2_PNG_014");
@@ -398,7 +397,7 @@ namespace StoGenMake.Scenes
         #region Text
         public string Story1 = "";
         #endregion
-        public Lady_EriAyase_Face06(BaseScene scene) : base(scene)
+        public Lady_EriAyase_Face06(BaseScene scene, string name) : base(scene, name)
         {
             this.Name = "EriAyase_OyariAshito_006";
 

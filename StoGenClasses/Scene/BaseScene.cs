@@ -400,7 +400,7 @@ namespace StoGenMake.Scenes.Base
             }
 
         }
-        protected void AddToGlobalImage(string name, string fn, string path)
+        public void AddToGlobalImage(string name, string fn, string path)
         {
             ImageAlignVec newIAV = new ImageAlignVec() { Name = name, File = path + fn };
             newIAV.DefaultAlign = new DifData();

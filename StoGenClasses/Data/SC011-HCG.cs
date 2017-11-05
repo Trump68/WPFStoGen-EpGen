@@ -28,27 +28,29 @@ namespace StoGen.Classes.Data
             #endregion
             public static string CName = "Lady_LinaMoana_Face01";
             public static int Variants = 2;
-            public Lady_LinaMoana_Face01(BaseScene scene) : base(scene)
+            public Lady_LinaMoana_Face01(BaseScene scene, string name) : base(scene,name)
             {
-                this.Name = CName;
-
                 #region Body            
                 BodyList.Add("ERECTLIP_BakunyuuOnsen_PNG_001");
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+                Canvas,
+                new DifData(BodyList[0],this.Name) {S = 740, F = 0},
+                });
                 #endregion
 
                 #region Face
                 FaceList.Add("ERECTLIP_BakunyuuOnsen_PNG_002");
                 this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(BodyList[0])  {   S = 740},
-            new DifData(FaceList[0],BodyList[0]) {X = 370, Y = -62, S = 370, F = 0},
-            });
+                Canvas,
+                new DifData(FaceList[0], this.Name) {X = 370, Y = -62, S = 370, F = 0},
+                });
                 #endregion
 
                 #region Lips           
                 LipsList.Add(SC011_HCG.Lips01);
                 this.Scene.AddGlobal(new string[] { null }, new DifData[] {
                 new DifData(FaceList[0]) { S = 370 },
-                new DifData(LipsList[0], FaceList[0]) {X = 100, Y = 240, S = 41, F = 0},
+                new DifData(LipsList[0], FaceList[0]) {X = 105, Y = 240, S = 41, F = 0},
                 });
                 #endregion
 
@@ -56,45 +58,44 @@ namespace StoGen.Classes.Data
                 //hand right of body01
                 PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_003");
                 this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(BodyList[0])  { S=740},
-            new DifData(PartList[0],BodyList[0]) { X = 252, Y = 253, S = 151, F = 0},
-            });
+                Canvas,
+                new DifData(PartList[0],this.Name) { X = 252, Y = 253, S = 151, F = 0},
+                });
                 //hand left of body01
                 PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_004");
                 this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(BodyList[0])  { S=740},
-            new DifData(PartList[1],BodyList[0]) {  X = 385, Y = 274, S = 421, F = 0 },
-            });
+                Canvas,
+                new DifData(PartList[1],this.Name) {  X = 385, Y = 274, S = 421, F = 0 },
+                 });
                 //bust of body01
                 PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_005");
                 this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(BodyList[0])  { S=740},
-            new DifData(PartList[2],BodyList[0]) {   X = 81, Y = 315, S = 518, F = 0 },
-            });
+                Canvas,
+                new DifData(PartList[2],this.Name) {   X = 81, Y = 315, S = 518, F = 0 },
+                });
                 //left leg of body01
                 PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_006");
                 this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(BodyList[0])  { S=740},
-            new DifData(PartList[3],BodyList[0]) {  X = 495, Y = 560, S = 194, F = 0 },
-            });
+                Canvas,
+                new DifData(PartList[3],this.Name) {  X = 495, Y = 560, S = 194, F = 0 },
+                });
                 //right leg of body01
                 PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_007");
                 this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(BodyList[0])  { S=740},
-            new DifData(PartList[4],BodyList[0]) {  X = 20, Y = 610, S = 359, F = 0 },
-            });
+                Canvas,
+                new DifData(PartList[4],this.Name) {  X = 20, Y = 610, S = 359, F = 0 },
+                });
                 //Closed eyes head01
                 PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_009");
                 this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(FaceList[0])  { S=370},
-            //370,-62
-            new DifData(PartList[5],FaceList[0]) { O = 0, X = 46, Y = 133, S = 155, F = 0 },
-            });
+                new DifData(FaceList[0])  { S=370},
+                new DifData(PartList[5],FaceList[0]) { O = 0, X = 46, Y = 133, S = 155, F = 0 },
+                });
                 #endregion
 
+                Canvas.Y = 50;
                 // set default body
-                SetBody(BodyList[0], new DifData() { Y = 50, S = 740 });
-                //SetBody(BodyList[0], new DifData() {S = 740 });
+                SetBody(BodyList[0]);
                 // set default head
                 SetHead(FaceList[0]);
                 // set default lips
@@ -102,7 +103,7 @@ namespace StoGen.Classes.Data
             }
             public static List<DifData> Get(BaseScene scene, int var, DifData delta = null)
             {
-                Lady_LinaMoana_Face01 inst = new Lady_LinaMoana_Face01(scene);
+                Lady_LinaMoana_Face01 inst = new Lady_LinaMoana_Face01(scene, CName);
                 inst.Variant = var;
                 return inst.Get(delta);
             }
@@ -114,37 +115,37 @@ namespace StoGen.Classes.Data
                     if (Variant == 1)
                     {
                         //hand right  X = 252, Y = 253 (X = 302, Y = 233)
-                        result.Insert(1, new DifData(PartList[0], BodyList[0]) { Xd = 50, Yd = -20, S = 151, R = -14, F = 0 });
+                        result.Insert(2, new DifData(PartList[0], this.Name) { Xd = 50, Yd = -20, S = 151, R = -14, F = 0 });
                         //hand left   X = 385, Y = 274 (X = 347, Y = 257, S = 421, R = 12, F = 0)
-                        result.Insert(1, new DifData(PartList[1], BodyList[0]) { Xd = -38, Yd = -17, S = 421, R = 12, F = 0 });
+                        result.Insert(2, new DifData(PartList[1], this.Name) { Xd = -38, Yd = -17, S = 421, R = 12, F = 0 });
                         //bust X = 81, Y = 315,
-                        result.Insert(1, new DifData(PartList[2], BodyList[0]) { Xd = 170, Yd = -40, S = 343 });
+                        result.Insert(2, new DifData(PartList[2], this.Name) { Xd = 170, Yd = -40, S = 343 });
                         //left leg X = 495, Y = 560 (X = 460, Y = 397, S = 194, F = 0)
-                        result.Insert(1, new DifData(PartList[3], BodyList[0]) { Xd = -35, Yd = -163, S = 194, F = 0 });
+                        result.Insert(2, new DifData(PartList[3], this.Name) { Xd = -35, Yd = -163, S = 194, F = 0 });
                         //right leg X = 20, Y = 610 (X = 120, Y = 445, S = 359, F = 0)
-                        result.Insert(1, new DifData(PartList[4], BodyList[0]) { Xd = 100, Yd = -165, S = 359, F = 0 });
+                        result.Insert(2, new DifData(PartList[4], this.Name) { Xd = 100, Yd = -165, S = 359, F = 0 });
                     }
                     else
                     {
                         //hand right
-                        result.Insert(1, new DifData(PartList[0], BodyList[0]));
+                        result.Insert(2, new DifData(PartList[0], this.Name));
                         //hand left
-                        result.Insert(1, new DifData(PartList[1], BodyList[0]));
+                        result.Insert(2, new DifData(PartList[1], this.Name));
                         //bust
-                        result.Insert(1, new DifData(PartList[2], BodyList[0]));
+                        result.Insert(2, new DifData(PartList[2], this.Name));
                         //left leg
-                        result.Insert(1, new DifData(PartList[3], BodyList[0]));
+                        result.Insert(2, new DifData(PartList[3], this.Name));
                         //right leg
-                        result.Insert(1, new DifData(PartList[4], BodyList[0]));
+                        result.Insert(2, new DifData(PartList[4], this.Name));
                     }
                 }
                 if (this.Face.Name == this.FaceList[0])
                 {
                     // closed eyes
-                    result.Insert(result.IndexOf(result.Where(x=>x.Name == this.Face.Name).FirstOrDefault())+1,
-                        new DifData(PartList[5], FaceList[0]) { O = 1, T = Transition.Eyes_Blink});
-                }                    
-                result.Add(new DifData(Devil.ManOld_001) {X = 740, Y = -5, S = 1000, F = 0 });
+                    result.Insert(result.IndexOf(result.Where(x => x.Name == this.Face.Name).FirstOrDefault()) + 1,
+                        new DifData(PartList[5], FaceList[0]) { O = 1, T = Transition.Eyes_Blink });
+                }
+                result.Add(new DifData(Devil.ManOld_001) { X = 740, Y = -5, S = 1000, F = 0 });
                 return result;
             }
         }
@@ -155,20 +156,23 @@ namespace StoGen.Classes.Data
             #endregion
             public static string CName = "Lady_LinaMoana_Face02";
             public static int Variants = 3;
-            public Lady_LinaMoana_Face02(BaseScene scene) : base(scene)
+            public Lady_LinaMoana_Face02(BaseScene scene, string name) : base(scene,name)
             {
-                this.Name = CName;
 
                 #region Body            
                 BodyList.Add("ERECTLIP_BakunyuuOnsen_PNG_010");
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+                Canvas,
+                new DifData(BodyList[0],this.Name) {X=-300, Y=180, S = 1104, F = 0},
+                });
                 #endregion
 
                 #region Face
                 FaceList.Add("ERECTLIP_BakunyuuOnsen_PNG_011");
                 this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-            new DifData(BodyList[0])  { S = 1104 },
-            new DifData(FaceList[0],BodyList[0]) { X = -5, Y = -95, S = 448, R = -35, F = 0 },
-            });
+                Canvas,
+                new DifData(FaceList[0],Name) { X = 90, Y = -25, S = 448, R = 10, F = 0 },
+                });
                 #endregion
 
                 #region Lips           
@@ -190,29 +194,28 @@ namespace StoGen.Classes.Data
                 #endregion
 
 
-
                 // set default body
                 SetBody(BodyList[0], new DifData() { X = -295, Y = 170, S = 1104, R = 45, F = 0 });
                 // set default head
-                SetHead(FaceList[0], new DifData() {  S = 448});
+                SetHead(FaceList[0], new DifData() { S = 448 });
                 // set default lips
                 SetLips(LipsList[0]);
             }
             public static List<DifData> Get(BaseScene scene, int var, DifData delta = null)
             {
-                Lady_LinaMoana_Face02 inst = new Lady_LinaMoana_Face02(scene);
+                Lady_LinaMoana_Face02 inst = new Lady_LinaMoana_Face02(scene,CName);
                 inst.Variant = var;
                 return inst.Get(delta);
             }
             public override List<DifData> Get(DifData delta = null)
             {
-                if (this.Variant == 1)                   
+                if (this.Variant == 1)
                     SetLips(LipsList[1], new DifData() { Rd = -10 });
                 else if (this.Variant == 2)
                     SetLips(LipsList[2], new DifData() { Xd = -5 });
 
                 List<DifData> result = base.Get(delta);
-              
+
                 result.Add(new DifData(Devil.ManOld_001) { X = 740, Y = -5, S = 900, F = 0 });
                 return result;
             }
@@ -224,20 +227,19 @@ namespace StoGen.Classes.Data
             #endregion
             public static string CName = "Lady_LinaMoana_Face03";
             public static int Variants = 6;
-            public Lady_LinaMoana_Face03(BaseScene scene) : base(scene)
+            public Lady_LinaMoana_Face03(BaseScene scene, string name) : base(scene,name)
             {
-                this.Name = CName;
 
                 #region Body            
-               // BodyList.Add("ERECTLIP_BakunyuuOnsen_PNG_010");
+                // BodyList.Add("ERECTLIP_BakunyuuOnsen_PNG_010");
                 #endregion
 
                 #region Face
                 FaceList.Add("ERECTLIP_BakunyuuOnsen_PNG_015");
-                //    this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-                //new DifData(BodyList[0])  { S = 1104 },
-                //new DifData(FaceList[0],BodyList[0]) { X = -5, Y = -95, S = 448, R = -35, F = 0 },
-                //});
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+                Canvas,
+                new DifData(FaceList[0],Name) { X = 60, Y = 55, S = 323, R = 5, F = 0 },
+                });
                 #endregion
 
                 #region Lips           
@@ -292,9 +294,10 @@ namespace StoGen.Classes.Data
                 // set default lips
                 SetLips(LipsList[0]);
             }
-            public static List<DifData> Get(BaseScene scene, int var, DifData delta = null)
+            public static List<DifData> Get(BaseScene scene, int var, bool getBody = true, DifData delta = null)
             {
-                Lady_LinaMoana_Face03 inst = new Lady_LinaMoana_Face03(scene);
+                Lady_LinaMoana_Face03 inst = new Lady_LinaMoana_Face03(scene,CName);
+                if (!getBody) inst.Body = null;
                 inst.Variant = var;
                 return inst.Get(delta);
             }
@@ -308,13 +311,13 @@ namespace StoGen.Classes.Data
                     SetLips(LipsList[3], new DifData() { });
                 else if (this.Variant == 4)
                     SetLips(LipsList[4], new DifData() { });
-                
+
 
                 List<DifData> result = base.Get(delta);
                 if (this.Face.Name == this.FaceList[0])
                 {
                     if (this.Variant == 5)
-                        result.Add(new DifData(PartList[1], FaceList[0]) {});
+                        result.Add(new DifData(PartList[1], FaceList[0]) { });
 
                     // closed eyes
                     result.Add(new DifData(PartList[0], FaceList[0]) { O = 0, T = Transition.Eyes_Blink });
@@ -329,19 +332,22 @@ namespace StoGen.Classes.Data
             #endregion
             public static string CName = "Lady_LinaMoana_Face04";
             public static int Variants = 7;
-            public Lady_LinaMoana_Face04(BaseScene scene) : base(scene)
+            public Lady_LinaMoana_Face04(BaseScene scene, string name) : base(scene, name)
             {
-                this.Name = CName;
 
                 #region Body                             
-                 BodyList.Add("ERECTLIP_BakunyuuOnsen_PNG_020");
+                BodyList.Add("ERECTLIP_BakunyuuOnsen_PNG_020");
+                this.Scene.AddGlobal(new string[] { null }, new DifData[] {
+                Canvas,
+                new DifData(BodyList[0],Name) {S = 2003, F = 0},
+                });
                 #endregion
 
                 #region Face
                 FaceList.Add("ERECTLIP_BakunyuuOnsen_PNG_021");
                 this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-                new DifData(BodyList[0])  { S = 2003 },
-                new DifData(FaceList[0],BodyList[0]) { X = 420, S = 487, F = 0 },
+                Canvas,
+                new DifData(FaceList[0],Name) { X = 420, S = 487, F = 0 },
                 });
                 #endregion
 
@@ -383,28 +389,29 @@ namespace StoGen.Classes.Data
                 // half naked body
                 PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_028");
                 this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-                new DifData(BodyList[0])  { S=2003 },
-                new DifData(PartList[2],BodyList[0]) { X = -10, Y = -45, S = 2048, F = 0 },
-                }); 
+                Canvas,
+                new DifData(PartList[2],Name) { X = -10, Y = -45, S = 2048, F = 0 },
+                });
                 // naked body
                 PartList.Add("ERECTLIP_BakunyuuOnsen_PNG_029");
                 this.Scene.AddGlobal(new string[] { null }, new DifData[] {
-                new DifData(BodyList[0])  { S=2003 },
-                new DifData(PartList[3],BodyList[0]) { X = -5, Y = -45, S = 2048, F = 0 },
+                Canvas,
+                new DifData(PartList[3],Name) { X = -5, Y = -45, S = 2048, F = 0 },
                 });
                 #endregion
 
                 // set default body
-                SetBody(BodyList[0], new DifData() { S = 2003 });
+                SetBody(BodyList[0]);
                 // set default head
-                SetHead(FaceList[0], new DifData() { });
+                SetHead(FaceList[0]);
                 // set default lips
                 SetLips(LipsList[0]);
             }
-            public static List<DifData> Get(BaseScene scene, int var, DifData delta = null)
+            public static List<DifData> Get(BaseScene scene, int var, bool getBody = true, DifData delta = null)
             {
-                Lady_LinaMoana_Face04 inst = new Lady_LinaMoana_Face04(scene);
-                inst.Variant = var;                
+                Lady_LinaMoana_Face04 inst = new Lady_LinaMoana_Face04(scene,CName);
+                if (!getBody) inst.Body = null;
+                inst.Variant = var;
                 return inst.Get(delta);
             }
             public override List<DifData> Get(DifData delta = null)
@@ -415,19 +422,17 @@ namespace StoGen.Classes.Data
                     SetLips(LipsList[2], new DifData() { });
                 else if (this.Variant == 3)
                     SetLips(LipsList[3], new DifData() { });
-                
-                List<DifData> result = base.Get(delta);
-
-                if (this.Variant == 5)
+                else if (this.Variant == 5)
                 {
-                    result.Insert(1,new DifData(PartList[2], BodyList[0]) { });
-                    result[0].O = 0;
+                    SetBody(PartList[2], new DifData() { });
                 }
                 else if (this.Variant == 6)
                 {
-                    result.Insert(1, new DifData(PartList[3], BodyList[0]) { });
-                    result[0].O = 0;
+                    SetBody(PartList[3], new DifData() { });
                 }
+                List<DifData> result = base.Get(delta);
+
+                
 
                 if (this.Face.Name == this.FaceList[0])
                 {
@@ -436,7 +441,7 @@ namespace StoGen.Classes.Data
                     // closed eyes
                     result.Add(new DifData(PartList[0], FaceList[0]) { O = 0, T = Transition.Eyes_Blink });
                 }
-                                                    
+
                 result.Add(new DifData(Devil.ManOld_001) { X = 885, Y = 65, S = 1125, F = 0 });
                 return result;
             }
@@ -465,7 +470,7 @@ namespace StoGen.Classes.Data
             {
                 src = $"ERECTLIP_BakunyuuOnsen_PNG_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
                 AddToGlobalImage(src, fn, path);
-                AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
+                //AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
             #endregion            
         }
