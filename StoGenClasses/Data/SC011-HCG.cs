@@ -410,7 +410,7 @@ namespace StoGen.Classes.Data
             public static List<DifData> Get(BaseScene scene, int var, bool getBody = true, DifData delta = null)
             {
                 Lady_LinaMoana_Face04 inst = new Lady_LinaMoana_Face04(scene,CName);
-                if (!getBody) inst.Body = null;
+                inst.BodyEnabled = getBody;
                 inst.Variant = var;
                 return inst.Get(delta);
             }
@@ -424,15 +424,16 @@ namespace StoGen.Classes.Data
                     SetLips(LipsList[3], new DifData() { });
                 else if (this.Variant == 5)
                 {
-                    SetBody(PartList[2], new DifData() { });
+                    if (BodyEnabled)
+                        SetBody(PartList[2], new DifData() { });
                 }
                 else if (this.Variant == 6)
                 {
-                    SetBody(PartList[3], new DifData() { });
+                    if (BodyEnabled)
+                        SetBody(PartList[3], new DifData() { });
                 }
                 List<DifData> result = base.Get(delta);
 
-                
 
                 if (this.Face.Name == this.FaceList[0])
                 {

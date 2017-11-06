@@ -500,6 +500,7 @@ namespace StoGen.Classes
         }
         private void RecreateAndRefreshImage(PictureSourceProps sourceProps)
         {
+            if (sourceProps.FileName.EndsWith("CANVAS")) return;
             RecreateImage((int)sourceProps.Level);
             BitmapImage imageSource = new BitmapImage(new Uri(sourceProps.FileName));
             Projector.PicContainer.PicList[(int)sourceProps.Level].Source = imageSource;

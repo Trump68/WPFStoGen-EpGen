@@ -341,11 +341,7 @@ namespace StoGenMake.Scenes.Base
             Bottom = 0,
             Width =366,
             FontColor = "Aqua"};
-                    //te.FontSize = 60;
-                    //te.Size = 100;
-                    //te.Bottom = 0;
-                    //te.Shift = 700;
-       
+
         #region Newest engine!!!
 
         protected void CreateCadre(CadreData item, bool isWhite = false, seTe text = null)

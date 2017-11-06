@@ -1,5 +1,6 @@
 ﻿using StoGen.Classes.Data;
 using StoGenMake.Elements;
+using StoGenMake.Persona;
 using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
@@ -586,40 +587,43 @@ namespace StoGenMake.Scenes
             text = SC011_HCG.Lady_LinaMoana_Face04.Story1;
             for (int i = 0; i < SC011_HCG.Lady_LinaMoana_Face04.Variants; i++)
             {
-                cdata = SC011_HCG.Lady_LinaMoana_Face04.Get(this, i,true, new DifData() { });
+                cdata = SC011_HCG.Lady_LinaMoana_Face04.Get(this, i, true, new DifData() { });
                 AddLocal(gr, text, cdata);
             }
 
-            
-           
-            //string path = @"Z:\DOUJIN\Enoshima Iki\[DOUJIN COLOR] Kuro Gal Bitch ga Uchi ni Kita!\";
-            //for (int i = 1; i <= 21; i++)
-            //{
-            //    src = $"test1_{i.ToString("D3")}";
-            //    string fn = $"{i.ToString("D3")}.png";
-            //    AddToGlobalImage(src, fn, path);
-            //}
 
-            //gr = "test1";
-            //cdata = SC011_HCG.Lady_LinaMoana_Face04.Get(this, 0,true, new DifData() { });
-            //cdata.Insert(0, new DifData("test1_001") { });
-            //AddLocal(gr, text, cdata);
+
+            string path = @"Z:\DOUJIN\Enoshima Iki\[DOUJIN COLOR] Kuro Gal Bitch ga Uchi ni Kita!\";
+            for (int i = 1; i <= 21; i++)
+            {
+                src = $"test1_{i.ToString("D3")}";
+                string fn = $"{i.ToString("D3")}.png";
+                AddToGlobalImage(src, fn, path);
+            }
+
+            gr = "test1";
+            for (int i = 1; i <= SC000_Various.Catalogue.Variants; i++)
+            {
+                cdata = SC000_Various.Catalogue.Get(this, i);
+                AddLocal(gr, text, cdata);
+            }
+            
             #endregion
         }
         protected override void MakeCadres(string cadregroup)
         {
             //cadregroup = SC011_HCG.Lady_LinaMoana_Face03.CName;
             //cadregroup = SC010_OyariAshito.Lady_EriAyase_Face03.Name;
-            string[] cd = new string[] {
-                SC011_HCG.Lady_LinaMoana_Face01.CName,
-                SC011_HCG.Lady_LinaMoana_Face02.CName,
-                SC011_HCG.Lady_LinaMoana_Face03.CName,
-                SC011_HCG.Lady_LinaMoana_Face04.CName,
-            };
             //string[] cd = new string[] {
-            //  "test1"
+            //    SC011_HCG.Lady_LinaMoana_Face01.CName,
+            //    SC011_HCG.Lady_LinaMoana_Face02.CName,
+            //    SC011_HCG.Lady_LinaMoana_Face03.CName,
+            //    SC011_HCG.Lady_LinaMoana_Face04.CName,
             //};
-            //test1
+            string[] cd = new string[] {
+              "test1"
+            };
+    
             base.MakeCadres(cd);
             this.Cadres.Reverse();
         }

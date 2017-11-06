@@ -4,6 +4,7 @@ using StoGenMake.Scenes.Base;
 using System.Collections.Generic;
 using System.IO;
 using StoGenMake.Pers;
+using StoGen.Classes.Data.Games;
 
 namespace StoGenMake
 {
@@ -37,7 +38,8 @@ namespace StoGenMake
             //var scen = new SC002_IlyaKuvshinov();
             //var scen = new TestScene();
             //var scen = new SC007_CleMasahiro();
-            var scen = new A001_Woman();
+            //var scen = new A001_Woman();
+            var scen = new SILKYS_SAKURA_OttoNoInuMaNi();
 
             string fn = scen.Generate();
 

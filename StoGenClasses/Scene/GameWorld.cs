@@ -5,6 +5,7 @@ using StoGenMake.Scenes.Base;
 using StoGenMake.Elements;
 using StoGenMake.Scenes;
 using StoGen.Classes.Data;
+using StoGen.Classes.Data.Games;
 
 namespace StoGenMake
 {
@@ -52,10 +53,10 @@ namespace StoGenMake
             this.SceneList.Add(new SC011_HCG());
 
             this.SceneList.Add(new A001_Woman());
-
+            this.SceneList.Add(new SILKYS_SAKURA_OttoNoInuMaNi());
             //this.PersoneList.Add(new LADY_011017());
 
-            
+
         }
 
 

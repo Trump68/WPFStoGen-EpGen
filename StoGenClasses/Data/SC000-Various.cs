@@ -1,10 +1,99 @@
-﻿using StoGenMake.Scenes.Base;
+﻿using StoGen.Classes.Scene;
+using StoGenMake.Persona;
+using StoGenMake.Scenes.Base;
+using System.Collections.Generic;
 
 namespace StoGenMake.Scenes
 {
     public class SC000_Various : BaseScene
     {
-  
+        public class Catalogue : SceneMaker
+        {
+            public static string CName = "SC000_Various_Catalogue";
+            public static int Variants = 11;
+            #region Text          
+            #endregion
+            public Catalogue(BaseScene scene, string name) : base(scene, name)
+            {
+            }
+            public static List<DifData> Get(BaseScene scene, int var, DifData delta = null)
+            {
+                Catalogue inst = new Catalogue(scene, CName);              
+                inst.Variant = var;
+                return inst.Get(delta);
+            }
+            public override List<DifData> Get(DifData delta = null)
+            {
+                List<DifData> result = base.Get(delta);
+
+                #region Codec
+                if (Variant == 1)
+                {
+                    result.Insert(0, new DifData("Codec_BodyScene_001") { X = 10, S = 770, F = 0 });
+                    result.Add(new DifData(Devil.ManOld_001) { X = 330, Y = 5, S = 1425, F = 0 });
+                }
+                else if (Variant == 2)
+                {
+                    result.Insert(0, new DifData("Codec_BodyScene_002") { X = 10, S = 770, F = 0 });
+                    //result.Add(new DifData(Mouth.Sensual_001) { X = 286, Y = 199, S = 21, R = 35, F = 1 });
+                    result.Add(new DifData(Mouth.ERECTLIP_BakunyuuOnsen_001) { X = 286, Y = 204, S = 26, R = 10, F = 0 });
+                    result.Add(new DifData(Devil.ManOld_001) { X = 330, Y = 5, S = 1425, F = 0 });
+                }
+                else if (Variant == 3)
+                {
+                    result.Insert(0, new DifData("Codec_BodyScene_003") { X = 10, S = 770, F = 0 });
+                    //result.Add(new DifData(Mouth.Sensual_001) { X = 286, Y = 199, S = 21, R = 35, F = 1 });
+                    result.Add(new DifData(Devil.ManOld_001) { X = 330, Y = 5, S = 1425, F = 0 });
+                }
+                #endregion
+                #region Eriya - J
+                else if (Variant == 4)
+                {
+                    result.Insert(0, new DifData("Eriya-J_BodyScene_001") { X = 10, S = 770, F = 0 });
+                    result.Add(new DifData(Devil.ManOld_001) { X = 600, Y = 5, S = 1000, F = 0 });
+                }
+                else if (Variant == 5)
+                {
+                    result.Insert(0, new DifData("Eriya-J_BodyScene_002") { X = -45, S = 810, F = 0 });
+                    result.Add(new DifData(Devil.ManOld_001) { X = 600, Y = 5, S = 1000, F = 0 });
+                }
+                #endregion
+                #region Dcwj
+                else if (Variant == 6)
+                {
+                    result.Insert(0, new DifData("Dcwj_BodyScene_001") { X = 10, S = 770, F = 0 });
+                    result.Add(new DifData(Devil.ManOld_001) { X = 485, S = 1065, F = 0 });
+                }
+                else if (Variant == 7)
+                {
+                    result.Insert(0, new DifData("Dcwj_BodyScene_002") { X = -45, S = 810, F = 0 });
+                    result.Add(new DifData(Devil.ManOld_001) { X = 600, Y = 5, S = 1000, F = 0 });
+                }
+                else if (Variant == 8)
+                {
+                    result.Insert(0, new DifData("Dcwj_BodyScene_003") { X = -45, S = 810, F = 0 });
+                    result.Add(new DifData(Devil.ManOld_001) { X = 600, Y = 5, S = 1000, F = 0 });
+                }
+                else if (Variant == 9)
+                {
+                    result.Insert(0, new DifData("Dcwj_BodyScene_004") { X = -45, S = 810, F = 0 });
+                    result.Add(new DifData(Devil.ManOld_001) { X = 600, Y = 5, S = 1000, F = 0 });
+                }
+                else if (Variant == 10)
+                {
+                    result.Insert(0, new DifData("Dcwj_BodyScene_005") { X = -45, S = 810, F = 0 });
+                    result.Add(new DifData(Devil.ManOld_001) { X = 600, Y = 5, S = 1000, F = 0 });
+                }
+                else if (Variant == 11)
+                {
+                    result.Insert(0, new DifData("Dcwj_BodyScene_006") { X = -45, S = 810, F = 0 });
+                    result.Add(new DifData(Devil.ManOld_001) { X = 600, Y = 5, S = 1000, F = 0 });
+                }               
+                #endregion
+                return result;
+            }
+        }
+
         public SC000_Various() : base()
         {
             Name = "SC000-Various";
@@ -38,13 +127,6 @@ namespace StoGenMake.Scenes
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
 
-            gr = "Eriya-J Face";
-            for (int i = 1; i <= 2; i++)
-            {
-                src = $"Eriya-J_Face_{i.ToString("D3")}"; fn = $"{i.ToString("D3")}.png";
-                AddToGlobalImage(src, fn, path);
-                AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
-            }
             #endregion
             #region artist Codec
             dsc = "artist Codec";
@@ -56,6 +138,7 @@ namespace StoGenMake.Scenes
                 AddToGlobalImage(src, fn, path);
                 AddLocal(new string[] { gr }, new DifData[] { new DifData(src) });
             }
+
             #endregion
             #region artist Dako 5
             dsc = "artist Dako 5";
@@ -182,8 +265,6 @@ namespace StoGenMake.Scenes
             #endregion
 
         }
-
-
     }
 
 }

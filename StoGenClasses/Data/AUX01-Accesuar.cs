@@ -1,4 +1,5 @@
-﻿using StoGenMake.Elements;
+﻿using StoGen.Classes.Data;
+using StoGenMake.Elements;
 using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,15 @@ namespace StoGenMake.Scenes
         public static string Sensual_005 = $"FullsArt_NetorareTsuma_LadyMouth_005";
         public static string Sensual_006 = $"FullsArt_NetorareTsuma_LadyMouth_006";
         public static string Sensual_007 = $"FullsArt_NetorareTsuma_LadyMouth_007";
+        public static string ERECTLIP_BakunyuuOnsen_001 = SC011_HCG.Lips01;
+        public static string ERECTLIP_BakunyuuOnsen_002 = SC011_HCG.Lips02;
+        public static string ERECTLIP_BakunyuuOnsen_003 = SC011_HCG.Lips03;
+        public static string ERECTLIP_BakunyuuOnsen_004 = SC011_HCG.Lips04;
+        public static string ERECTLIP_BakunyuuOnsen_005 = SC011_HCG.Lips05;
+        public static string ERECTLIP_BakunyuuOnsen_006 = SC011_HCG.Lips06;
+        public static string ERECTLIP_BakunyuuOnsen_007 = SC011_HCG.Lips07;
+        public static string ERECTLIP_BakunyuuOnsen_008 = SC011_HCG.Lips08;
+        public static string ERECTLIP_BakunyuuOnsen_009 = SC011_HCG.Lips09;
     }
     public static class Cloth
     {
