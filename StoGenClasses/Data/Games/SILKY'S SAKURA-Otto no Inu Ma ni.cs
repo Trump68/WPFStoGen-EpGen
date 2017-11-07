@@ -57,6 +57,11 @@ namespace StoGen.Classes.Data.Games
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG03", "BG03.png", path);// evening street
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG04", "BG04.png", path);// { Evening bedroom}
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG05", "BG05.png", path);// { Morning livingroom}
+            AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG06", "BG06.png", path);// { hight office}
+            AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG07", "BG07.png", path);// { hight street}
+            AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG08", "BG08.png", path);// { hight sky}
+            AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG09", "BG09.png", path);// { hight hotel}
+
 
             this.DefaultSceneText.Size = 100;
             this.DefaultSceneText.Width = 1150;
@@ -72,12 +77,21 @@ namespace StoGen.Classes.Data.Games
         int S1 = 1000;
         int S2 = 1000;
         int S3 = 1000;
+        
+
         int X1 = 0;
         int X2 = 0;
         int X3 = 0;
+        
         int Y1 = 0;
         int Y2 = 0;
         int Y3 = 0;
+
+        int Z1 = 1;
+        int Z2 = 2;
+        int Z3 = 3;
+
+
 
         private void DoScenario()
         {
@@ -907,15 +921,429 @@ namespace StoGen.Classes.Data.Games
             AddCadreBG(1047, 1019, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Yayoi~Yes. Kohei-san negotiated, the repair expenses also cheaper?");
             AddCadreBG(1047, 1019, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "To resolve Asahi's anxiety, speak brightly with a smile on purpose.");
             // voice?
-            AddCadreBG(1047, 1019, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Asahi~I see, Onii-chan ... ... ");
-            //AddCadreBG(1047, 1019, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Yayoi~");
-            //AddCadreBG(1047, 1019, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Yayoi~");
-            //AddCadreBG(1047, 1019, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Yayoi~");
-            //AddCadreBG(1047, 1019, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Yayoi~");
-            //AddCadreBG(1047, 1019, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Yayoi~");
+            AddCadreBG(1047, 1016, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Asahi~I see, Onii-chan ... ... ");
+            AddCadreBG(1047, 1016, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Asahi, who had been making her feel uneasy, also healed his expression as soon as Kohei-san's story came out.");
+            // voice.arc_000631.ogg
+            AddCadreBG(1046, 1016, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Yayoi~(You really trust me, Mr. Kohei)");
+            AddCadreBG(1046, 1016, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "I can understand that feeling as well.");
+            AddCadreBG(1046, 1016, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Mr. Kohei is calm and calm all the time, so he is a very reliable person.");
+            AddCadreBG(1046, 1016, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "If Kohei-san deals with it, it seems that it has already been solved.");
+            AddCadreBG(1046, 1016, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Asahi who stayed together much longer than me, maybe the size of that trust is more than me.");
+            // voice.arc_000632.ogg
+            AddCadreBG(1046, 1016, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Yayoi~... ... So you are already safe?");
+            // voice?
+            AddCadreBG(1046, 1017, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Asahi~Yeah ... but, thanks a lot, Yayoi. ");
+            AddCadreBG(1046, 1017, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "Asahi seems relieved and smiles anyhow.");
+            AddCadreBG(1046, 1017, "SILKYS_SAKURA_OttoNoInuMaNi_BG05", "I finally seemed able to regain a smile and I was happy.");
 
-            //
+
+            // ANTRAKT=================
+            // day livingroom
+            // music.arc_000001.wav
+
+            // voice.arc_000633.ogg
+            AddCadreBG(1046, 1016, null, "Yayoi~Oh, I am sorry, Asahi-chan. I have to go out soon.");
+            // voice?
+            AddCadreBG(1046, 1016, null, "Asahi~Was it already such a time? I have to go home soon ... I will come to play again, Mr. Yayoi. ");
+            // voice.arc_000634.ogg
+            AddCadreBG(1047, 1016, null, "Yayoi~Yeah, come back to visit anytime.");
+            //effect.arc_000020.wav
+            AddCadreBG(1047, 0, null, "Asahi goes out of the room with a dash.");
+            AddCadreBG(1047, 0, null, "I enjoyed talking with Asahi slowly after a long absence.");
+            AddCadreBG(1047, 0, null, "But it is about time we promised to Mr. Muto.");
+            AddCadreBG(1050, 0, null, "Yayoi~I have to go make up properly ...");
+            AddCadreBG(1050, 0, null, "It is usually about a base makeup, I do not do very well.");
+            AddCadreBG(1050, 0, null, "But as expected it did not go that way.");
+            AddCadreBG(1050, 0, null, "Although I am cheerful if I think about what will happen, I can not translate without going beyond what I have promised.");
+            // voice.arc_000635.ogg
+            AddCadreBG(1050, 0, null, "Yayoi~(Even Minato is not that bad so far ... ...)");
+            AddCadreBG(1050, 0, null, "I was hoping for a little bit that he would not do seriously serious things.");
+
+            // ANTRAKT=================
+            Z1 = 2;
+            S2 = 680; X2 = -70; Y2 = 525; Z2 = 1;
+
+            // evening cabinet
+            // music.arc_000005.wav
+            //effect.arc_000020.wav
+            // voice.arc_000636.ogg
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~Excuse me ...... ");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "When I got in the way while being nervous more than before, Mr. Minoda was still working.");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Wistaria~I will not finish, but please wait for a while.");
+            // voice.arc_000637.ogg
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~....yes....");
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Mr. Minato heading to the desk sometimes has a difficult face while turning through the document.");
+            // voice.arc_000638.ogg
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~(I wonder if it is a hard work ...)");
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "I heard that you are working in financial affairs, but I wonder if I can do it personally.");
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "After all it may be an investment or such thing.");
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "While waiting while watching the situation for a while, Mr. Muto stands up with the documents cleared up.");
+            X2 = 845; Y2 = 55;   S2 = 715;
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Wistaria~You made me wait.");
+            // voice.arc_000639.ogg
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~No... ....");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Wistaria~I have clothes ready, can you change my clothes?.");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Look at me, pointing to a paper bag under my feet.");
+            // voice.arc_000640.ogg
+            AddCadreBG(1048, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~Are you changing clothes ...?");
+            AddCadreBG(1048, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "I never expected to be asked for such a thing.");
+            AddCadreBG(1048, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Wistaria~The size should match.");
+            AddCadreBG(1048, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Mr. Minoto told paper bags again with impressive power.");
+            // voice.arc_000641.ogg
+            AddCadreBG(1048, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~Yes, I understand ... ...");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "I do not know why I need to change clothes, but I have to do exactly what I told you.");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Because I promised that Mr. Minodo would be free for a week from today.");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Wistaria~The change of clothes is contained in the paper bag there. You do not mind using the toilet.");
+            // voice.arc_000642.ogg
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~Is this……? ");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "I picked up a paper bag containing the name of the brand and tried inside.");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "If you check the contents, you surely have clothes.");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "But I was amazed at the design of the clothes.");
+            // voice.arc_000643.ogg
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~Huh ... really, this ...!! What?");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Wistaria~Ah. I thought that it would become you.");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Mr. Minato seems to be in a straight line and says such a thing.");
+            // voice.arc_000644.ogg
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~Um ... um ... Is that so ... I understand ");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "You only have to finish by wearing this clothes, but surely not.");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "It was an atmosphere that I could not say not to change clothes.");
+
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "...");
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "... ...");
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "... ... ...");
+            // voice.arc_000645.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~Oh, that... ...I've changed my clothes ...... ");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Clothes prepared by Mr. Minato was very flashy.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "The line of the body is exposed exactly, the exposure of the skin is large, it seems to be visible to the underwear.");
+            // voice.arc_000646.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~(Huh, embarrassing ......) ");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "My figure as seen in the mirror of the toilet was as extravagantly flashy as she was.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Wistaria~── Oh, it is just as I thought, it suits you");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "However, Mr. Minato smiled happily somewhere looking at me like that.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "It may be the first time to see such expression.");
+            // voice.arc_000647.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~Well, then ... what will I do ...... ");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "I wonder what kind of things Muto, who smiles at enjoyment, demands me.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "With anxiety and tension, the sweat drips gently on the palm of your hand.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Wistaria~Oh yeah, shall we go out for a meal for the time being? I am too busy eating nothing from noon.");
+            // voice.arc_000648.ogg
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~Huh ...... Dinner ... ....?");
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Wistaria~Did you finish it already?");
+            // voice.arc_000649.ogg
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~No, but ... yet ...");
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Because of the tension I did not have appetite, I also ate lunch with Asahi.");
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Wistaria~Then, just good. I have a French restaurant that I often use, so I will go there.");
+            // voice.arc_000650.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~Is this you in this shape ...?");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Wistaria~There is no problem as it is a shop with atmosphere.");
+            // voice.arc_000651.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~But");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "I am too embarrassed that you go out for dinner after you have gone out with such gorgeous clothes.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "And it's French restaurant.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Because it is about Mr. Minodo, I think that it is surely a great shop.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Wistaria~Here we go. ");
+            // voice.arc_000652.ogg
+            AddCadreBG(1073, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "Yayoi~(If I go out in such a dress, it might be really outraged ... ... ...)");
+            AddCadreBG(1073, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "But I can not say that I do not want to disagree with Mr. Muto, who seems to be in a good mood, because he is embarrassed.");
+            AddCadreBG(1073, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG06", "I was embarrassed to go outside, but I decided to go along with it.");
+
+            //Change decorations
+            //effect.arc_000017.wav
+            X1 = 470;
+            X2 = 155;
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "After having finished eating at the French restaurant, Mr. Maoto took me to the city of the night.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~The atmosphere was good, and the taste was not bad, was it?");
+            // voice.arc_000654.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~Yes, yes ... Well, it was delicious ......");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "While walking side-by-side, Mr. Minoto calls out.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I talked to each other so that the conversation would not be interrupted, but I did not really know the taste.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I knew only that it was a luxurious meal, but it seems that everyone, including the shop people, is watching me, it was not where I could taste it.");
+            // voice.arc_000655.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~(I do not feel like eating ......)");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Even if I walk in the streets of the night like this, the line of sight of a man passing by hurts.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "It may be natural as well because it has such a big flashy appearance of such exposure.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~............ ");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Perhaps Mr. Minoto is enjoying watching me shy.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Mr. Muto seems to have fun all the time as far as it seems.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~It is a little early to go to the bar ... ... Do you go to the movies?");
+            // voice.arc_000656.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~Huh……?");
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Mr. Muto who muttered so as to look at the clock, turning his hand to my waist while saying so.");
+            // voice.arc_000657.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~Huh……");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "It was a place that was difficult to judge, whether the hand was touching it, waist or buttocks.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "When I noticed it and leaked a small voice, I touched it as if to stroke it.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~Shall we walk away from nearby?");
+            // voice.arc_000658.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~Is ... ... Yes ... ...");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I can not even shake off my hands strongly, I walk a lot while being touched by my butt.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I wonder what people are watching from people around.");
+            // voice.arc_000659.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~(Huh ... ... Please, do not meet people you know ... ...)");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I kept praying in my mind while being embarrassed.");
+
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Even after finishing watching the movie, I keep walking around the streets of the night while taking me by Mr. Minato.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~It is only music that is good, neither the script nor the production is satisfactory.");
+            // voice.arc_000660.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~Well, that's right ......");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "To somehow, Mr. Minato talks about the movie, I feel something offended.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "The movie was a long time ago, but content with meals never comes into the head.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "It was a foreign movie I do not understand well, but I only remembered the beautiful images.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "While you were watching, Mr. Minoto's hand was touching the thighs, and I was concerned only with it.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~There is a bar to go near here. Can you drink sake?");
+            // voice.arc_000661.ogg
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~Huh ......, Yes ... ... If only a little ... ... ");
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Apparently, I guess I will go to the bar next time. I wonder if she is going to drink as it is.");
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Because Kohei does not drink, I do not drink much.");
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "When I was living in my parents house, I was about dating my dad's drink.");
+            // voice.arc_000662.ogg
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~(I have to try not to drink too much ......)");
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "For now, Mr. Minato comes into contact with the body, but his attitude was very gentleman.");
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "But I do not think that it will end like this.");
+            // voice.arc_000663.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~(Drunk me ... or something ... I wonder ... )");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "If so, I have to make sure I do not get drunk.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~Well then, let's go.");
+            // voice.arc_000664.ogg
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~Yes, ...");
+            AddCadreBG(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I have to be firm on my own so that it will not be attached.");
+
+
+            // Decoration change
+
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "...");
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "... ...");
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "... ... ...");
+            // voice.arc_000665.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~Oh");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~Well, Walking a little while waking up drunk.");
+            // voice.arc_000666.ogg
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~Ah ... ... Yes ... ... ");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Thanks to preparing and entering the shop, there was nothing to be badly intoxicated.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Of course there is an influence of liquor, but the head is still firm.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "And yet, Mr. Minoto's hand touched the neighborhood of my ass.");
+
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "...");
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "... ...");
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "... ... ...");
+
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "The way I went walking while being prompted was a corner where loud neon was lining up.");
+            X1 = -435; Y1 = 435;
+            // voice.arc_000667.ogg
+            AddCadreBG(1070, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~(Here, here ... ... That's like that ... ...?)");
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "On the signboards letters such as breaks and lodgings lined up, and the people going are walking so as not to see eyes with people around them.");
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "And the sense of tension increased and the body stiffened to the appearance of the man and woman entering the building.");
+            // voice.arc_000668.ogg
+            AddCadreBG(1071, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~(Huh ...... What shall I do ...... But I ... ....) ");
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I do not want to do something like betraying Kohei.");
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "But if you come and refuse so far, everything may get ruined..");
+            // voice.arc_000669.ogg
+            AddCadreBG(1072, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~(At least ... at least only the last of the clear distinction ......) ");
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Whether they come out the influence of liquor, I determine the ready while I think so.");
+            
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~...... Are you going to be here?");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Mr. Minato stops his legs in front of the buildings in line.");
+            // voice.arc_000670.ogg
+            AddCadreBG(1069, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~Huh!");
+            AddCadreBG(1069, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "That was definitely a love hotel.");
+            AddCadreBG(1069, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "When the leg stopped and stopped, Mr. Minoto's hand strongly pushed my back.");
+            AddCadreBG(1069, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I feel that I can not return to the power of that hand.");
+            // voice.arc_000671.ogg
+            AddCadreBG(1071, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Yayoi~(You ... ... Kohei-san ... ...! Please protect me ... ...!)");
+            AddCadreBG(1071, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "While taking a step towards the entrance, I prayed to shout in my mind.");
+
+            // Decoration change -LOVE HOTEL
+            S1 = 1100; X1 = 135; Y1 = 55;
+            // music.arc_000007.wav
+            // voice.arc_000672.ogg            
+            AddCadreBG(1073, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Yayoi~(This, what is looks like ...)");
+            AddCadreBG(1073, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Also time you are Kohei's and dating, we not that actually entered.");
+            AddCadreBG(1073, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "The interior of a love hotel that I first joined is a little confused.");
+            AddCadreBG(1073, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Even though I thought that it was like anything with a more flashy feeling.");
+            // voice.arc_000673.ogg    
+            AddCadreBG(1073, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Yayoi~(It is surprisingly ordinary ....) ");
+            AddCadreBG(1073, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "I am surprised by myself who can think of such a thing in this situation.");
+            X1 = 470;
+            X2 = 155;
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Wistaria~Yayoi?");
+            // voice.arc_000674.ogg  
+            AddCadreBG(1069, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Yayoi~Huh ... Yes! ");
+            AddCadreBG(1069, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Wistaria~It is good to take a shower first.");
+            // voice.arc_000675.ogg  
+            AddCadreBG(1069, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Yayoi~Well ... OK, I ... ... ");
+            AddCadreBG(1069, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "That said so, the tension rises at once.");
+            AddCadreBG(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "I thought that time was coming, and my legs trembled a little.");
+            //effect.arc_000106.wav  //shower
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "...");
+            //effect.arc_000106.wav  //shower
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "... ...");
+            //effect.arc_000106.wav  //shower
+            AddCadreBG(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "... ... ...");
+            // voice.arc_000676.ogg  
+            AddCadreBG(1050, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Yayoi~O ... ... Thank you for waiting ...... ");
+            AddCadreBG(1050, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "I took a shower and changed my clothes.");
+            AddCadreBG(1050, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "I am trying to express things intention at least for me that I do not plan to forgive everything.");
+            AddCadreBG(1050, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Wistaria~What, have you changed clothes? ");
+            // voice.arc_000677.ogg 
+            AddCadreBG(1050, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Yayoi~Yes ... um, that ... ... ");
+            AddCadreBG(1050, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Wistaria~……HM. Well, I do not mind. ");
+            // voice.arc_000678.ogg
+            AddCadreBG(1050, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Yayoi~I'm sorry ... ");
+            AddCadreBG(1050, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "I do not intend to become Mr. Minodo's thing ... ... Although I was prepared for that kind of thing, when Mr. Mito pointed out, I could not say anything.");
+            AddCadreBG(1050, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "When looking at that line of sight, the back muscles trembling.");
+            // voice.arc_000679.ogg
+            AddCadreBG(1050, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Yayoi~ Мне старшно... ");
+            AddCadreBG(1050, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "I think that it is a person with a mysterious atmosphere, but it feels the first time so.");
+            AddCadreBG(1050, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "This may be the first time that I felt scared of men.");
+            AddCadreBG(1050, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Wistaria~Well ... ... Well, will you serve with your mouth?");
+            AddCadreBG(1050, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "While saying that, Mr. Minato sits down on the edge of the bed.");
+            // voice.arc_000680.ogg
+            AddCadreBG(1050, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Yayoi~Eh... ...Serving... ...");
+            X2 = -15; Y2 = 475;
+            AddCadreBG(1048, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Wistaria~Have you ever experienced blowjobs? I'm busy getting riddled. Let me refresh.");
+            // voice.arc_000681.ogg
+            AddCadreBG(1050, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Yayoi~!!!");
+            AddCadreBG(1050, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Surely, I can not ask for such a thing.");
+            AddCadreBG(1050, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Wistaria~What happened? ");
+            // voice.arc_000682.ogg
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Yayoi~Oh, no ... ... that ... ... I do not have much experience ... ... ");
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "I think for Mr. Kohei, there is that you have to study a little bit.");
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "But when I actually did it, I tried my best and made it go away, it came to be withhold from Kohei-san.");
+            AddCadreBG(1049, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Wistaria~I see ... Well, I do not expect anything like that.");
+            // voice.arc_000683.ogg
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Yayoi~Yes, ... ");
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Although I intended to say it was impossible to drive around, Mr. Muto did not nod me.");
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "I am afraid of what to do ... but maybe it's convenient for me.");
+            // voice.arc_000684.ogg
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Yayoi~(If you do your best and you can satisfy Mr. Minoto, then ... ...) ");
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "If you can lead it to ejaculation with your mouth, you will not worry about crossing the last line.");
+            // voice.arc_000685.ogg
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "Yayoi~Well then, then ... ... I will let you ... ... ");
+            AddCadreBG(1049, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG09", "While I muttered so, I kneeled down to Mr. Minoto.");
+
+            //CHANGE DECO BJ
+            //music.arc_000003.wav
+            // voice.arc_000686.ogg
+            X1 = 0;Y1 = 0; S1 = 1370;
+            AddCadreBG(0042, 0, null, null, "Yayoi~Oh ... oh, er ... ... that ... ... ");
+            AddCadreBG(0042, 0, null, null, "I tried kneeling in front of Mr.Minato 's crotch, but stopped there.");
+            // voice.arc_000687.ogg
+            AddCadreBG(0042, 0, null, null, "Yayoi~Oh");
+            AddCadreBG(0042, 0, null, null, "From here I do not know what to do.");
+            AddCadreBG(0042, 0, null, null, "Everything was different from Kohei-san at all, I did not understand her own way.");
+            AddCadreBG(0042, 0, null, null, "Wistaria~You do not mind, so please let me out. ");
+            // voice.arc_000688.ogg
+            AddCadreBG(0042, 0, null, null, "Yayoi~Oh");
+            AddCadreBG(0042, 0, null, null, "Mr. Minato lifts his back and pushes the crotch forward.");
+            AddCadreBG(0042, 0, null, null, "I say put out, that is, from suit pants ... ... I wonder if I have to do it all.");
+            AddCadreBG(0042, 0, null, null, "Even though Kohei has never done that.");
+            // voice.arc_000689.ogg
+            AddCadreBG(0042, 0, null, null, "Yayoi~(But, I have to ... ... I have to ...) ");
+            AddCadreBG(0042, 0, null, null, "I never reach out to the fasteners of my pants and slowly drop down.");
+            // effect - zipping!
+            AddCadreBG(0042, 0, null, null, "Then, from the pants of the window, vigorously's Minafuji of it has been jumped.");
+
+            AddCadreBG(0043, 0, null, null, ""); //- this is transferring to next
+            // voice.arc_000690.ogg
+            AddCadreBG(0044, 0, null, null, "Yayoi~Oh");
+            AddCadreBG(0044, 0, null, null, "Something of another man who appeared suddenly before my eyes.");
+            AddCadreBG(0044, 0, null, null, "I do not know anything other than Kohei, so I am surprised just by seeing it.");
+            // voice.arc_000691.ogg
+            AddCadreBG(0044, 0, null, null, "Yayoi~Oh");
+            AddCadreBG(0044, 0, null, null, "Wistaria~Is not it such a surprising thing?");
+            AddCadreBG(0044, 0, null, null, "In a somewhat laughing voice, Mr. Minato says so.");
+            AddCadreBG(0044, 0, null, null, "Muto, familiar feeling throughout all the time, has plenty of room to spare.");
+            AddCadreBG(0044, 0, null, null, "But it may be true for a woman who is experiencing various things, for me it is my first experience.");
+            // voice.arc_000692.ogg
+            AddCadreBG(0044, 0, null, null, "Yayoi~(But, ... ... other people are so ... ... ...!?)");
+            AddCadreBG(0044, 0, null, null, "Although it seems not to be completely hard yet, it is bigger than Kohei, and it is somewhat rugged.");
+            AddCadreBG(0044, 0, null, null, "Even without touching with your fingers, you know that it is very hard.");
+            AddCadreBG(0044, 0, null, null, "I wonder if such because they lifted the thick blood vessels.");
+            // voice.arc_000693.ogg
+            AddCadreBG(0044, 0, null, null, "Yayoi~(This, because the body is also larger than Kohei's, because of that I wonder ...)");
+            AddCadreBG(0044, 0, null, null, "Since I have never seen any other man in the first place, I do not know exactly what is the average size or whether it is special.");
+            AddCadreBG(0044, 0, null, null, "Wistaria~How long are you staring at that?");
+            // voice.arc_000694.ogg
+            AddCadreBG(0043, 0, null, null, "Yayoi~Ah ... ... yes ...... um ... ... ");
+            AddCadreBG(0043, 0, null, null, "To encourage earlier, I had been staring at.");
+            AddCadreBG(0043, 0, null, null, "To serve with your mouth you have to lick it.");
+            // voice.arc_000695.ogg
+            AddCadreBG(0043, 0, null, null, "Yayoi~Oh");
+            AddCadreBG(0043, 0, null, null, "If this is Kohei, I can do my best despite being ashamed.");
+            AddCadreBG(0043, 0, null, null, "But I wonder what other men can do such a thing.");
+            // voice.arc_000696.ogg
+            AddCadreBG(0043, 0, null, null, "Yayoi~(But I will not be able to return if I do ... ...)");
+            AddCadreBG(0043, 0, null, null, "You may be asked for more than licking.");
+            AddCadreBG(0043, 0, null, null, "Then ... ... If you can do your best and get satisfied, you can protect only important places.");
+            // voice.arc_000697.ogg
+            AddCadreBG(0043, 0, null, null, "Yayoi~(... ... I have to work hard ... Uoo ... ...)");
+            AddCadreBG(0043, 0, null, null, "I decide my resolution and I will extend my tongue to Mr. Maoto.");
+            // voice.arc_000698.ogg  -lick start
+            AddCadreBG(0045, 0, null, null, "Yayoi~Oh");
+            AddCadreBG(0045, 0, null, null, "Tongue touched hot and hard one.");
+            AddCadreBG(0045, 0, null, null, "If you have not been drinking liquor Maybe, I think I could not be such a thing.");
+            AddCadreBG(0045, 0, null, null, "I am touching the tongue to the one of the other male now.");
+            // voice.arc_000699.ogg
+            AddCadreBG(0045, 0, null, null, "Yayoi~(I'm licking ...... I am licking ... ...)");
+            AddCadreBG(0045, 0, null, null, "Feeling like licking a specially thick fingertip ... .... But, licking is not a finger.");
+            AddCadreBG(0045, 0, null, null, "Why is not Kohei-san?");
+            AddCadreBG(0045, 0, null, null, "While suppressing the coming welled up is such a feeling, we desperately moving the tongue.");
+            // voice.arc_000700.ogg
+            AddCadreBG(0047, 0, null, null, "Yayoi~lick");
+            AddCadreBG(0047, 0, null, null, "Fortunately, I did not have much dislike.");
+            AddCadreBG(0047, 0, null, null, "Mr. Minato is not taking a shower, but he does not feel the smell of the sweat or body odor. It does not taste unpleasant.");
+            AddCadreBG(0047, 0, null, null, "It was sad that I was licking, but I did not think it was particularly bad.");
+            // voice.arc_000700.ogg
+            AddCadreBG(0047, 0, null, null, "Yayoi~lick");
+            AddCadreBG(0047, 0, null, null, "In a way I remember, I licked hard objects in front of my eyes many times.");
+            AddCadreBG(0047, 0, null, null, "Push the tongue firmly, slide it up and down, rub it sideways, and lick all the places that arrive.");
+            AddCadreBG(0047, 0, null, null, "I wonder if it is okay with such feeling.");
+            // voice.arc_000701.ogg
+            AddCadreBG(0048, 0, null, null, "Yayoi~lick");
+            AddCadreBG(0048, 0, null, null, "Mr. Minato is just leaving himself, nothing to say.");
+            AddCadreBG(0048, 0, null, null, "Occasionally, trembling the hips and waist at the time, I just look down at me and stay silent.");
+            AddCadreBG(0048, 0, null, null, "Even so, when I moved my tongue and kept licking, I felt it got harder.");
+            // voice.arc_000702.ogg
+            AddCadreBG(0048, 0, null, null, "Yayoi~lick");
+            AddCadreBG(0048, 0, null, null, "I wonder if I lick it like this, will it be out soon?");
+            // voice.arc_000703.ogg
+            AddCadreBG(0048, 0, null, null, "Yayoi~(I wish I had studied more ... ... ... U. ..)");
+            AddCadreBG(0048, 0, null, null, "Of course for Mr. Kohei.");
+            AddCadreBG(0048, 0, null, null, "But it is late to regret such a thing at this time.");
+            AddCadreBG(0048, 0, null, null, "Anyway, I have to satisfy Mr. Minato anyway.");
+            // voice.arc_000704.ogg
+            AddCadreBG(0048, 0, null, null, "Yayoi~lick");
+            AddCadreBG(0048, 0, null, null, "However, I have little experience or knowledge and I am not sure if it is being done properly.");
+            AddCadreBG(0048, 0, null, null, "Mr. Minodo's stuff is hard and tightly stretched, but I wonder if it makes me feel good.");
+            AddCadreBG(0048, 0, null, null, "Remains of anxiety feelings, continue to lick anyway.");
+            // voice.arc_000705.ogg
+            AddCadreBG(0047, 0, null, null, "Yayoi~Oh");
+            AddCadreBG(0047, 0, null, null, "Язык касается толстых кровеносных сосудов, дрожащих время от времени, дрожащих.");
+            AddCadreBG(0047, 0, null, null, "Стало тяжело, что стало тяжелее, что он стал сильным.");
+            AddCadreBG(0047, 0, null, null, "Но до сих пор человек тоже мокрый, но он этого не чувствует.");
+            // voice.arc_000706.ogg
+            AddCadreBG(0047, 0, null, null, "Yayoi~Oh");
+            // voice.arc_000708.ogg
+            AddCadreBG(0047, 0, null, null, "Yayoi~(Наверное, потому что я слишком плохой ... ...?) ");
+            AddCadreBG(0047, 0, null, null, "Взглянув на меня, минато не шевелился.");
+            AddCadreBG(0047, 0, null, null, "Г-н Минато, похоже, имеет много опыта по-разному, и, возможно, он не чувствует его в моем служении.");
+            AddCadreBG(0047, 0, null, null, "Wistaria~....");
+            // voice.arc_000709.ogg
+            AddCadreBG(0047, 0, null, null, "Yayoi~Oh");
+            AddCadreBG(0047, 0, null, null, "Интересно, что я должен делать.");
+            AddCadreBG(0047, 0, null, null, "Я не могу закончить, как есть, меня могут спросить до будущего.");
+            AddCadreBG(0047, 0, null, null, "Во всяком случае, я должен что-то сделать.");
+            // voice.arc_000710.ogg
+            AddCadreBG(0047, 0, null, null, "Yayoi~Ох ... ... О, это ... ... Разве это не удобно ...? Yayoi");
+            AddCadreBG(0047, 0, null, null, "Я осмелюсь спросить об этом.");
+            AddCadreBG(0047, 0, null, null, "Если вы не можете удовлетворить г-на Минодо, нет смысла держать его таким, каким оно есть.");
+            AddCadreBG(0047, 0, null, null, "Wistaria~Нет, это удобно, как есть.");
+            AddCadreBG(0047, 0, null, null, "Г-н Муто, который, наконец, говорил, был спокоен, но он казался счастливым где-то.");
+            AddCadreBG(0047, 0, null, null, "Передано состояние, в котором возбуждение становится выше, чем начало.");
+            AddCadreBG(0047, 0, null, null, "Yayoi~Oh");
+            AddCadreBG(0047, 0, null, null, "Yayoi~Oh");
         }
+        
         private void AddCadreBG(int index, string Bg, string text)
         { AddCadreBG(index, null, Bg, text); }
         private void AddCadreBG(int index, string man, string Bg, string text)
@@ -924,29 +1352,84 @@ namespace StoGen.Classes.Data.Games
         { AddCadreBG(index, index1, null, Bg, text); }
         private void AddCadreBG(int index,int index1, string man,string Bg, string text)
         {
-            string im = "SILKYS_SAKURA_OttoNoInuMaNi_PLACEHOLDER";
-            if (!string.IsNullOrEmpty(Bg))
-                im = Bg;
+            
+            if (string.IsNullOrEmpty(Bg))
+                Bg = "SILKYS_SAKURA_OttoNoInuMaNi_PLACEHOLDER";
 
             List<DifData> cdata = null;
           
             cdata = new List<DifData>()
             { 
-               new DifData(im) { S = s, F = 0}
+               new DifData(Bg) { S = s, F = 0}
             };
-           
-            if (!string.IsNullOrEmpty(man))
+
+            if (Z3 == 3)
             {
-                cdata.Add(new DifData(man) { S = S2, X = X2, Y = Y2 });
+                if (index1 > 0)
+                {
+                    cdata.Add(new DifData(data[index1 - 1]) { S = S3, X = X3, Y = Y3 });
+                }
             }
-            if (index1 > 0)
+            else if (Z2 == 3)
             {
-                cdata.Add(new DifData(data[index1 - 1]) { S = S3, X = X3, Y = Y3 });
+                if (!string.IsNullOrEmpty(man))
+                {
+                    cdata.Add(new DifData(man) { S = S2, X = X2, Y = Y2 });
+                }
             }
-            if (index > 0)
+            else if (Z1 == 3)
             {
-                cdata.Add(new DifData(data[index - 1]) { S = S1, X = X1, Y = Y1 });
+                if (index > 0)
+                {
+                    cdata.Add(new DifData(data[index - 1]) { S = S1, X = X1, Y = Y1 });
+                }
             }
+
+            if (Z3 == 2)
+            {
+                if (index1 > 0)
+                {
+                    cdata.Add(new DifData(data[index1 - 1]) { S = S3, X = X3, Y = Y3 });
+                }
+            }
+            else if (Z2 == 2)
+            {
+                if (!string.IsNullOrEmpty(man))
+                {
+                    cdata.Add(new DifData(man) { S = S2, X = X2, Y = Y2 });
+                }
+            }
+            else if (Z1 == 2)
+            {
+                if (index > 0)
+                {
+                    cdata.Add(new DifData(data[index - 1]) { S = S1, X = X1, Y = Y1 });
+                }
+            }
+
+            if (Z3 == 1)
+            {
+                if (index1 > 0)
+                {
+                    cdata.Add(new DifData(data[index1 - 1]) { S = S3, X = X3, Y = Y3 });
+                }
+            }
+            else if (Z2 == 1)
+            {
+                if (!string.IsNullOrEmpty(man))
+                {
+                    cdata.Add(new DifData(man) { S = S2, X = X2, Y = Y2 });
+                }
+            }
+            else if (Z1 == 1)
+            {
+                if (index > 0)
+                {
+                    cdata.Add(new DifData(data[index - 1]) { S = S1, X = X1, Y = Y1 });
+                }
+            }
+
+
             AddLocal(currentGr, text, cdata);
         }
 
