@@ -1,4 +1,5 @@
 ﻿using StoGen.Classes.Interfaces;
+using StoGenMake.Scenes.Base;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,11 +12,12 @@ namespace StoGen.Classes
         
 
 
-        public ScenarioProc(string fn, IMenuCreator globalMenuCreator)
+        public ScenarioProc(string fn, IMenuCreator globalMenuCreator, BaseScene scene)
            : base(0)
         {
            
             this.MenuCreator = CreateMenu;
+            this.Scene = scene;
             ScenarioSet set = new ScenarioSet();
             set.GlobalMenuCreator = globalMenuCreator;
             set.Init(fn);

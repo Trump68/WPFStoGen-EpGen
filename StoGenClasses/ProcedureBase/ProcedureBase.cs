@@ -15,6 +15,7 @@ namespace StoGen.Classes
     {
         public MenuCreatorDelegate OldMenuCreator;
         public MenuCreatorDelegate MenuCreator;
+        public BaseScene Scene;
         public object MenuCreatorData;
         public List<Cadre> Cadres { get; set; }
         //public List<ProcVariant> Variants = new List<ProcVariant>();
@@ -212,8 +213,7 @@ namespace StoGen.Classes
         }
 
         public EventHandler OnKeyData;
-        public BaseScene Scene;
-
+        
         public void ProcessKeyData(int v)
         {
             if (this.InnerProc != null) this.InnerProc.ProcessKeyData(v);

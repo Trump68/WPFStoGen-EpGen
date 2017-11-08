@@ -131,6 +131,7 @@ namespace StoGenMake.Scenes.Base
     public class CadreData
     {
         public bool IsGlobalAlign = false;
+        public List<seSo> SoundList = new List<seSo>();
         public List<DifData> AlignList = new List<DifData>();
         public List<string> MarkList = new List<string>();
         public seTe TextData;
@@ -390,6 +391,7 @@ namespace StoGenMake.Scenes.Base
                 // add image to cadre
                 cadre.AddImage(im);
             }
+            cadre.SoundList.AddRange(item.SoundList);
             if (text != null)
             {
                 cadre.AddText(text);
@@ -406,7 +408,10 @@ namespace StoGenMake.Scenes.Base
         protected void AddLocal(string[] marks, DifData[] difs) { Add(marks, difs, false); }
         protected void AddLocal(string[] marks, List<DifData> difs) { Add(marks, difs.ToArray()); }
         public void AddLocal(string mark, List<DifData> difs) { Add(new string[] { mark }, difs.ToArray()); }
-        public void AddLocal(string mark, string text, List<DifData> difs) { Add(new string[] { mark },text, difs.ToArray()); }
+        public void AddLocal(string mark, string text, List<DifData> difs, List<seSo> sounds = null)
+        {
+            Add(new string[] { mark },text, difs.ToArray(), sounds);
+        }
         public void AddLocal(string mark, DifData dif) { Add(new string[] { mark }, new DifData[] { dif } ); }
         public void AddGlobal(string[] marks, DifData[] difs)
         { Add(marks, difs, true); }
@@ -415,41 +420,46 @@ namespace StoGenMake.Scenes.Base
             DifData[] difs,
             bool installtoglobal = false)
         {
-            Add(marks, difs, null, installtoglobal);
+            Add(marks, difs,null, null, installtoglobal);
         }
         private void Add(
             string[] marks,
             string text,
-            DifData[] difs,            
+            DifData[] difs,
+            List<seSo> sounds,
             bool installtoglobal = false)
         {
             seTe textData = new seTe(this.DefaultSceneText);
             textData.Text = text;
-            Add(marks, difs, textData, installtoglobal);
+            Add(marks, difs, textData, sounds, installtoglobal);
         }
         private void Add(
             string[] marks,
-            DifData[] difs,
+            DifData[] difs,            
             seTe text,
-            bool installtoglobal = false)
+            List<seSo> sounds,
+            bool installtoglobal = false
+            )
         {
-            CadreData cadreData = new CadreData();
-            cadreData.TextData = text;
-            cadreData.MarkList.AddRange(marks);
+            CadreData cadreAlignData = new CadreData();
+            cadreAlignData.TextData = text;
+            if (sounds != null && sounds.Any())
+                cadreAlignData.SoundList.AddRange(sounds);
+            cadreAlignData.MarkList.AddRange(marks);
             foreach (var mark in marks)
             {
                 if (!this.CadreGroups.Contains(mark)) this.CadreGroups.Add(mark);
             }
             foreach (var dif in difs)
             {
-                cadreData.AlignList.Add(dif);
+                cadreAlignData.AlignList.Add(dif);
                 if (installtoglobal && !string.IsNullOrEmpty(dif.Parent))
                 {
-                    cadreData.IsGlobalAlign = true;
+                    cadreAlignData.IsGlobalAlign = true;
                     AddToGlobalAlign(dif, difs.Where(x=>x.Name == dif.Parent).FirstOrDefault());
                 }
             }
-            AlignList.Add(cadreData);
+            AlignList.Add(cadreAlignData);
         }
         private void AddToGlobalAlign(DifData dd, DifData pardelta)
         {

@@ -27,12 +27,12 @@ namespace StoGenWPF
         {
             GlobalMenuCreator = globalMenuCreator;
             if (!string.IsNullOrWhiteSpace(startfile)) _MainProcname = startfile;
-            SetMainProcedure();
+            SetMainProcedure(scene);
         }
 
-        public static void SetMainProcedure()
+        public static void SetMainProcedure(BaseScene scene)
         {
-            CurrProc = new ScenarioProc(_MainProcname, GlobalMenuCreator);
+            CurrProc = new ScenarioProc(_MainProcname, GlobalMenuCreator, scene);
             //CurrProc.Scene = Scene;
         }
        

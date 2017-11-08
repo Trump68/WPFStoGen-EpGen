@@ -43,10 +43,7 @@ namespace StoGen.Classes
         }
         public virtual ProcedureBase InsertAsProcedureTo(ProcedureBase ownerproc, bool isAdd)
         {
-            //this.CurrentProc = new ProcedureBase(ownerproc.Level + 1);
-            //this.CurrentProc.ShowContextMenuOnInit = false;
-            //this.CurrentProc.Clear(); // remove first empty cadre
-
+  
             this.CurrentProc = ownerproc;
             this.CurrentProc.ShowContextMenuOnInit = false;
             this.CurrentProc.Clear();
@@ -62,6 +59,7 @@ namespace StoGen.Classes
 
 
         #region Fill cadres from filelist
+        // Replace from SCENE !!!!!!
         public virtual bool PreProcessFileLists(string ScenarioFile)
         {
             string fn = string.Empty;
@@ -85,11 +83,11 @@ namespace StoGen.Classes
 
         #endregion
 
-        public void Reload()
-        {
-            this.CurrentProc.Clear();
-            PreProcessFileLists(this.ScenarioFile);
-        }
+        //public void Reload()
+        //{
+        //    this.CurrentProc.Clear();
+        //    PreProcessFileLists(this.ScenarioFile);
+        //}
 
         public virtual bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {

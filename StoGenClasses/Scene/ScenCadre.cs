@@ -29,9 +29,9 @@ namespace StoGenMake.Elements
             VisionList.Add(im);
             return im;
         }
-        public ScenElementSound AddSound(string name= null)
+        public seSo AddSound(string name= null)
         {
-            ScenElementSound sound = new ScenElementSound();
+            seSo sound = new seSo();
             sound.Name = name;
             sound.File = SoundStore.ValByName(name);
             SoundList.Add(sound);

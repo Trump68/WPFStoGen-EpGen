@@ -194,22 +194,29 @@ namespace StoGenMake.Elements
 
     }
 
-    public class ScenElementSound : ScenElement
+    public class seSo : ScenElement
     {
        
         public int V = 100;
         public string Group;
         public int StartPlay = -1;
         public override bool IsActivated { get { return !string.IsNullOrEmpty(this.File); } }
+
+        public bool IsLoop { get; set; } = false;
+
         internal override string GetElementData()
         {
             //#014 #;SizeX=800;SizeY=600;SizeMode=1;X=300;Timer=16000;Opacity=0;TRN=O.B.5000.100
             List<string> result = new List<string>();
-            result.Add($"{this.File.PadRight(20)}");
+            result.Add($"CadreSound={this.File.PadRight(20)}");
             result.Add($"v={this.V.ToString().PadRight(4)}");
             if (!string.IsNullOrEmpty(this.Group))
                 result.Add($"Group={this.Group.PadRight(4)}");
             if (StartPlay > -1) result.Add($"Start={this.StartPlay.ToString().PadRight(4)}");
+            if (IsLoop) 
+                    result.Add($"IsLoop=1");
+            else
+                result.Add($"IsLoop=0");
             if (!string.IsNullOrEmpty(this.T)) result.Add($"TRN={this.T}");
             return string.Join(";", result.ToArray());
         }       
