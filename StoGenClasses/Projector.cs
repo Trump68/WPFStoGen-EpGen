@@ -12,7 +12,11 @@ namespace StoGen.ModelClasses
         //public static List<Tuple<AxWindowsMediaPlayer, LayoutControlItem>> Clips = new List<Tuple<AxWindowsMediaPlayer, LayoutControlItem>>();
         public static List<System.Windows.Media.MediaPlayer> Sound = new List<System.Windows.Media.MediaPlayer>();
         //public static Tuple<RadioGroup, LayoutControlItem> Choice;
-        public static System.Windows.Controls.TextBox Text;
+        public static System.Windows.Controls.Canvas TextCanvas;
+        public static System.Windows.Controls.TextBlock TextBlock1;
+        public static System.Windows.Controls.TextBlock TextBlock2;
+        public static System.Windows.Controls.TextBlock TextBlock3;
+        public static System.Windows.Controls.TextBlock TextBlock4;
         public static System.Windows.Controls.TextBox NumberText;
 
         private static bool textVisibleEnabled = true;
@@ -25,26 +29,26 @@ namespace StoGen.ModelClasses
                 textVisibleEnabled = value;
                 if (textVisibleEnabled)
                 {
-                    Projector.Text.Visibility = Visibility.Visible;
+                    Projector.TextCanvas.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    Projector.Text.Visibility = Visibility.Hidden;
+                    Projector.TextCanvas.Visibility = Visibility.Hidden;
                 }
             }
         }
         public static bool TextVisible
         {
-            get { return Projector.Text.Visibility == Visibility.Visible; }
+            get { return Projector.TextCanvas.Visibility == Visibility.Visible; }
             set
             {                
                 if (value && textVisibleEnabled)
                 {
-                    Projector.Text.Visibility = Visibility.Visible;
+                    Projector.TextCanvas.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    Projector.Text.Visibility = Visibility.Hidden;
+                    Projector.TextCanvas.Visibility = Visibility.Hidden;
                 }
             }
         }

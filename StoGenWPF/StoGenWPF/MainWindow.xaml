@@ -27,7 +27,29 @@
         <Image x:Name="Picture16" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
         </Canvas>
         </Viewbox>
-        <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="111" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="627" Opacity="0.8" Background="Blue" BorderThickness="0"  AcceptsReturn="True" Margin="139,0,0,65"/>
+        <Canvas Name ="TextCanvas" Height="100" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="139,0,0,65">
+            <TextBlock  Name="Tb1"  Text="Хелло ворлд!" FontSize="20" Foreground="White">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="0"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBlock  Name="Tb2" Text="Хелло ворлд!" FontSize="20" Foreground="White">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="90"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBlock  Name="Tb3" Text="Хелло ворлд!" FontSize="20" Foreground="White">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="180"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBlock  Name="Tb4" Text="Хелло ворлд!" FontSize="20" Foreground="White">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="270"/>
+                </TextBlock.Effect>
+            </TextBlock>
+        </Canvas>
+        <!--<TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="111" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="627" Opacity="0.8" Background="Blue" BorderThickness="0"  AcceptsReturn="True" Margin="139,0,0,65"/>-->
         <TextBox x:Name="NumberBox" HorizontalAlignment="Right" Height="20" VerticalAlignment="Bottom" Width="50" Opacity="0.5" Background="White" BorderThickness="0"  AcceptsReturn="True" Margin="0,-3,0,0"/>
         <MediaElement x:Name="Clip1"  ScrubbingEnabled="True" HorizontalAlignment="Left" Height="505" Margin="90,47,0,0" VerticalAlignment="Top" Width="853" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>
         <Rectangle x:Name="LmpAuto" Fill="#FF06069B" HorizontalAlignment="Left" Height="10" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>

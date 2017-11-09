@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using StoGen.ModelClasses;
 using System.Windows.Media;
 using System.Threading;
+using System.Windows.Media.Animation;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace StoGen.Classes
 {
@@ -58,12 +61,12 @@ namespace StoGen.Classes
 
             if (Size > 0)
             {
-                Projector.Text.Height = Size;
-                if (Width>0) Projector.Text.Width = Width;
-                else Projector.Text.Width = 800;
+                Projector.TextCanvas.Height = Size;
+                if (Width>0) Projector.TextCanvas.Width = Width;
+                else Projector.TextCanvas.Width = 800;
                 double bm = Bottom;                
-                double tm = Projector.Text.Margin.Top;
-                Projector.Text.Margin  = new System.Windows.Thickness(Shift, tm, Projector.Text.Margin.Right, bm);
+                double tm = Projector.TextCanvas.Margin.Top;
+                Projector.TextCanvas.Margin  = new System.Windows.Thickness(Shift, tm, Projector.TextCanvas.Margin.Right, bm);
             }
             if (!string.IsNullOrEmpty(Transition))
             {
@@ -72,53 +75,110 @@ namespace StoGen.Classes
                 FrameImage.tranManager.Add(trandata);
             }
             if (!ClearBack)
-                Projector.Text.Background = new SolidColorBrush(this.BackColor);
+                Projector.TextCanvas.Background = new SolidColorBrush(this.BackColor);
             else
-                Projector.Text.Background = null;
+                Projector.TextCanvas.Background = null;
             if (!string.IsNullOrWhiteSpace(FontName))
             {
                 FontFamily font = new FontFamily(FontName);
-                Projector.Text.FontFamily = font;
+                Projector.TextBlock1.FontFamily = font;
+                Projector.TextBlock2.FontFamily = font;
+                Projector.TextBlock3.FontFamily = font;
+                Projector.TextBlock4.FontFamily = font;
             }
             if (FontSize > 0)
             {
-                Projector.Text.FontSize = FontSize;
+                Projector.TextBlock1.FontSize = FontSize;
+                Projector.TextBlock2.FontSize = FontSize;
+                Projector.TextBlock3.FontSize = FontSize;
+                Projector.TextBlock4.FontSize = FontSize;
             }
 
             if (Aligh == 1)
             {
-                Projector.Text.TextAlignment = System.Windows.TextAlignment.Right;
+                Projector.TextBlock1.TextAlignment = System.Windows.TextAlignment.Right;
+                Projector.TextBlock2.TextAlignment = System.Windows.TextAlignment.Right;
+                Projector.TextBlock3.TextAlignment = System.Windows.TextAlignment.Right;
+                Projector.TextBlock4.TextAlignment = System.Windows.TextAlignment.Right;
             }
             else if (Aligh == 0)
             {
-                Projector.Text.TextAlignment = System.Windows.TextAlignment.Left;
+                Projector.TextBlock1.TextAlignment = System.Windows.TextAlignment.Left;
+                Projector.TextBlock2.TextAlignment = System.Windows.TextAlignment.Left;
+                Projector.TextBlock3.TextAlignment = System.Windows.TextAlignment.Left;
+                Projector.TextBlock4.TextAlignment = System.Windows.TextAlignment.Left;
             }
             else if (Aligh == 2)
             {
-                Projector.Text.TextAlignment = System.Windows.TextAlignment.Center;
+                Projector.TextBlock1.TextAlignment = System.Windows.TextAlignment.Center;
+                Projector.TextBlock2.TextAlignment = System.Windows.TextAlignment.Center;
+                Projector.TextBlock3.TextAlignment = System.Windows.TextAlignment.Center;
+                Projector.TextBlock4.TextAlignment = System.Windows.TextAlignment.Center;
             }            
-            Projector.Text.Text = string.Join(Environment.NewLine, TextList.ToArray());
+
             if (!string.IsNullOrEmpty(FontColor))
             {
+                SolidColorBrush br = System.Windows.Media.Brushes.White;
                 if (FontColor == "Black")
-                    Projector.Text.Foreground = System.Windows.Media.Brushes.Black;
+                    br = System.Windows.Media.Brushes.Black;
                 else if (FontColor == "White")
-                    Projector.Text.Foreground = System.Windows.Media.Brushes.White;
+                    br = System.Windows.Media.Brushes.White;
                 else if (FontColor == "Red")
-                    Projector.Text.Foreground = System.Windows.Media.Brushes.Red;
+                    br = System.Windows.Media.Brushes.Red;
                 else if (FontColor == "Blue")
-                    Projector.Text.Foreground = System.Windows.Media.Brushes.Blue;
+                    br = System.Windows.Media.Brushes.Blue;
                 else if (FontColor == "Yellow")
-                    Projector.Text.Foreground = System.Windows.Media.Brushes.Yellow;
+                    br = System.Windows.Media.Brushes.Yellow;
                 else                   
-                  Projector.Text.Foreground = new System.Windows.Media.SolidColorBrush(
+                  br = new System.Windows.Media.SolidColorBrush(
                       (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(FontColor));
+
+                Projector.TextBlock1.Foreground = br;
+                Projector.TextBlock2.Foreground = br;
+                Projector.TextBlock3.Foreground = br;
+                Projector.TextBlock4.Foreground = br;
             }
 
-            Projector.Text.Opacity = this.Opacity / 100;
+            Projector.TextCanvas.Opacity = this.Opacity / 100;
             //Projector.Text.Opacity = 0;
             Projector.TextVisible = true;
+
+            //Projector.TextBlock1.Text = string.Join(Environment.NewLine, TextList.ToArray());
+            //Projector.TextBlock2.Text = string.Join(Environment.NewLine, TextList.ToArray());
+            //Projector.TextBlock3.Text = string.Join(Environment.NewLine, TextList.ToArray());
+            //Projector.TextBlock4.Text = string.Join(Environment.NewLine, TextList.ToArray());
+            string txt = string.Join(Environment.NewLine, TextList.ToArray());
+            TypewriteTextblock(txt, Projector.TextBlock1, new TimeSpan(0, 0, 1));
+            TypewriteTextblock(txt, Projector.TextBlock2, new TimeSpan(0, 0, 1));
+            TypewriteTextblock(txt, Projector.TextBlock3, new TimeSpan(0, 0, 1));
+            TypewriteTextblock(txt, Projector.TextBlock4, new TimeSpan(0, 0, 1));
+
             return this.Owner;
+        }
+        private void TypewriteTextblock(string textToAnimate, TextBlock txt, TimeSpan timeSpan)
+        {
+            Storyboard story = new Storyboard();
+            story.FillBehavior = FillBehavior.HoldEnd;
+            //story.RepeatBehavior = RepeatBehavior.Forever;
+            story.RepeatBehavior = new RepeatBehavior(1);
+
+            DiscreteStringKeyFrame discreteStringKeyFrame;
+            StringAnimationUsingKeyFrames stringAnimationUsingKeyFrames = new StringAnimationUsingKeyFrames();
+            stringAnimationUsingKeyFrames.Duration = new Duration(timeSpan);
+
+            string tmp = string.Empty;
+            foreach (char c in textToAnimate)
+            {
+                discreteStringKeyFrame = new DiscreteStringKeyFrame();
+                discreteStringKeyFrame.KeyTime = KeyTime.Paced;
+                tmp += c;
+                discreteStringKeyFrame.Value = tmp;
+                stringAnimationUsingKeyFrames.KeyFrames.Add(discreteStringKeyFrame);
+            }
+            Storyboard.SetTargetName(stringAnimationUsingKeyFrames, txt.Name);
+            Storyboard.SetTargetProperty(stringAnimationUsingKeyFrames, new PropertyPath(TextBlock.TextProperty));
+            story.Children.Add(stringAnimationUsingKeyFrames);
+            story.Begin(txt);
         }
         public bool AutoShow { get; set; }
         public override void SetVisible(bool show)

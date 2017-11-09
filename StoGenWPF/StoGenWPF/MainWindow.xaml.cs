@@ -33,7 +33,11 @@ namespace StoGenWPF
             InitializeComponent();
             Projector.Owner = this;
             Projector.PicContainer.Clip = this.Clip1;
-            Projector.Text = this.TextBox;
+            Projector.TextCanvas = this.TextCanvas;
+            Projector.TextBlock1 = this.Tb1;
+            Projector.TextBlock2 = this.Tb2;
+            Projector.TextBlock3 = this.Tb3;
+            Projector.TextBlock4 = this.Tb4;
             Projector.NumberText = this.NumberBox;
 
             Projector.Sound.Add(this.Sound01);

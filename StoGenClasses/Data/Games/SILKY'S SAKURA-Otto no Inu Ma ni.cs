@@ -51,12 +51,14 @@ namespace StoGen.Classes.Data.Games
         int VOLUME_V = 9;
         int VOLUME_M = 1;
         int VOLUME_E = 9;
+        int VOLUME_E2 = 1; // prolonged effect {loop=true}
 
         int SoundPauseNone = 0;
         int SoundPauseShort = 500;
         int SoundPauseNorm = 1000;
         int SoundPauseLong = 2000;
         string BG_EVENING_CABINET = "SILKYS_SAKURA_OttoNoInuMaNi_BG06"; // evening cabinet
+        string BG_EVENING_STREET = "SILKYS_SAKURA_OttoNoInuMaNi_BG07"; // evening street
         string MAN1 = "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1";
         string BadManName = "Mr.Minoda";
         string GirlName = "Mary";
@@ -103,7 +105,7 @@ namespace StoGen.Classes.Data.Games
             this.DefaultSceneText.FontSize = 25;
             this.DefaultSceneText.Size = 100;
             this.DefaultSceneText.Shift = 230;
-            this.DefaultSceneText.FontColor = "Black";
+            this.DefaultSceneText.FontColor = "Yellow";
 
             currentGr = "Save2-1";
 
@@ -1183,7 +1185,7 @@ namespace StoGen.Classes.Data.Games
             string BadMan = BadManName;
             string Girl = GirlName;
 
-            currentGr = "14";
+            currentGr = "14.Переодевание у финансиста";
             Z1 = 2;
             S2 = 680; X2 = -70; Y2 = 525; Z2 = 1;            
             int i = 637; // voice indexer
@@ -1238,7 +1240,8 @@ namespace StoGen.Classes.Data.Games
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(1048, 0, MAN, BG, $"{Girl}~ да ... ...");
             //19
-            DoC(1049, 0, MAN, BG, $"Не знаю, зачем ему нужно, что бы я переоделать, но мне придется сделать это.", new OpEf(1, true, 350, true, 0));
+            DoC(1049, 0, MAN, BG, $"Не знаю, зачем ему нужно, что бы я переоделать, но мне придется сделать это."
+                , new OpEf(1, true, 350, true, 0));
             //20
             DoC(1049, 0, MAN, BG, $"Ведь я обязалась неделю быть его женщиной, начиная с сегодняшнего дня.");
             //21
@@ -1296,164 +1299,233 @@ namespace StoGen.Classes.Data.Games
             //44
             DoC(1073, 0, MAN, BG, $"Я ждала, что теперь потребует от меня {BadMan},который продолжал довольно улыбаться.");
             //45
-            DoC(1073, 0, MAN, BG, $"With anxiety and tension, the sweat drips gently on the palm of your hand.");
+            DoC(1073, 0, MAN, BG, $"От волнения и возбуждения ладони мои стали влажными.");
             //46
-            DoC(1073, 0, MAN, BG, $"{BadMan}~Oh yeah, shall we go out for a meal for the time being? I am too busy eating nothing from noon.");
+            DoC(1073, 0, MAN, BG, $"{BadMan}~Ах да, для начала, хотите пойти поужинать? Я с утра был слишком занят, чтобы поесть, и проголодался.");
             //47
-            //// voice.arc_000648.ogg
-            //AddCadr($"voice.arc_000{i++}.ogg", 1070, 0, MAN, BG, $"{Girl}~Huh ...... Dinner ... ....?");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1070, 0, MAN, BG, $"{Girl}~оох ...  ужин ... ....?", new OpEf(1, true, 350, true, 0));
             //48
-            DoC(1070, 0, MAN, BG, $"{BadMan}~Did you finish it already?");
+            DoC(1070, 0, MAN, BG, $"{BadMan}~Вы уже ужинали?");
             //49
-            //// voice.arc_000649.ogg
-            //AddCadr($"voice.arc_000{i++}.ogg", 1070, 0, MAN, BG, $"{Girl}~No, but ... yet ...");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1070, 0, MAN, BG, $"{Girl}~Да ...то есть... еще нет ...");
             //50
-            DoC(1070, 0, MAN, BG, $"Because of the tension I did not have appetite, I also ate lunch with Asahi.");
+            DoC(1070, 0, MAN, BG, $"От врлнения у меня не было аппетита, к тому же я хорошо пообедала.");
             //51
-            DoC(1070, 0, MAN, BG, $"{BadMan}~Then, just good. I have a French restaurant that I often use, so I will go there.");
+            DoC(1070, 0, MAN, BG, $"{BadMan}~Что ж, отлично. Есть один французский ресторан, где я часто обедаю, так что пойдем туда.");
             //52
-            //// voice.arc_000650.ogg
-            //AddCadr($"voice.arc_000{i++}.ogg", 1073, 0, MAN, BG, $"{Girl}~Is this you in this shape ...?");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1073, 0, MAN, BG, $"{Girl}~В таком виде ...?", new OpEf(1, true, 350, true, 0));
             //53
-            DoC(1073, 0, MAN, BG, $"{BadMan}~There is no problem as it is a shop with atmosphere.");
-            //// voice.arc_000651.ogg
+            DoC(1073, 0, MAN, BG, $"{BadMan}~Нет проблем, там свободная обстановка.");
             //54
-            //AddCadr($"voice.arc_000{i++}.ogg", 1073, 0, MAN, BG, $"{Girl}~But");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);            
+            DoC(1073, 0, MAN, BG, $"{Girl}~Но...");
             //55
-            DoC(1073, 0, MAN, BG, $"I am too embarrassed that you go out for dinner after you have gone out with such gorgeous clothes.");
+            DoC(1073, 0, MAN, BG, $"Я чувствую себя слишком неловко в таком наряде, чтобы пойти в нем в общественное место.");
             //56
-            DoC(1073, 0, MAN, BG, $"And it's French restaurant.");
+            DoC(1073, 0, MAN, BG, $"Тем более во французский ресторан.");
             //57
-            DoC(1073, 0, MAN, BG, $"Because it is about Mr. Minodo, I think that it is surely a great shop.");
+            DoC(1073, 0, MAN, BG, $"Так как это {BadMan}, я думаю, что он очень дорогой.");
             //58
-            DoC(1073, 0, MAN, BG, $"{BadMan}~Here we go. ");
+            DoC(1073, 0, MAN, BG, $"{BadMan}~Пойдемте же. ");
             //59
-            //// voice.arc_000652.ogg
-            //AddCadr($"voice.arc_000{i++}.ogg", 1073, BG, "${Girl}~(If I go out in such a dress, it might be really outraged ... ... ...)");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1073, 0, MAN, BG, $"{Girl}~(Если пойти в таком наряде, может случиться скандал ... ... ...)");
             //60
-            //DoC(1073, BG, $"But I can not say that I do not want to disagree with Mr. Muto, who seems to be in a good mood, because he is embarrassed.");            
+            DoC(1073, 0, MAN, BG, $"Но я не могу отказаться, ведь {BadMan} кажется, это нравится.");            
             //61
-            //DoC(1073, BG, $"I was embarrassed to go outside, but I decided to go along with it.");
+            DoC(1073, 0, MAN, BG, $"Мне было очень стыдно, но я решила пережить и это.");
 
 
             ClearSound(true, true, true);
         }
         private void Cartina_EveningPromenad()
         {
-            currentGr = "15";
-            //string BG = "SILKYS_SAKURA_OttoNoInuMaNi_BG06"; // evening cabinet
-            //string MAN = "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1";
-            //Z1 = 2;
-            //S2 = 680; X2 = -70; Y2 = 525; Z2 = 1;
+            string BG = BG_EVENING_STREET; // evening cabinet
+            string MAN = MAN1;
+            string BadMan = BadManName;
+            string Girl = GirlName;
+
+            currentGr = "15.Вечерний променад.";
+            Z1 = 2; X1 = 470;
+            S2 = 680; X2 = 155; Y2 = 525; Z2 = 1;
+
+            int i = 654; // voice indexer
             CurrentSounds = new List<seSo>();
-            //int i = 636; // cound indexer
-            //Music
-            //CurrentSounds.Add(new seSo() { File = $"{PATH_M}music.arc_000005.wav", Name = "MUSIC", V = VOLUME_M });
+            //Music ============================
+            AddMusic("music.arc_000005.wav");
+            //Music ============================
 
-            //Change decorations
+            
+            //1
             //effect.arc_000017.wav
-            X1 = 470;
-            X2 = 155;
-            DoC(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "After having finished eating at the French restaurant, Mr. Maoto took me to the city of the night.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~The atmosphere was good, and the taste was not bad, was it?");
-            // voice.arc_000654.ogg
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~Yes, yes ... Well, it was delicious ......");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "While walking side-by-side, Mr. Minoto calls out.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I talked to each other so that the conversation would not be interrupted, but I did not really know the taste.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I knew only that it was a luxurious meal, but it seems that everyone, including the shop people, is watching me, it was not where I could taste it.");
-            // voice.arc_000655.ogg
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~(I do not feel like eating ......)");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Even if I walk in the streets of the night like this, the line of sight of a man passing by hurts.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "It may be natural as well because it has such a big flashy appearance of such exposure.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~............ ");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Perhaps Mr. Minoto is enjoying watching me shy.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Mr. Muto seems to have fun all the time as far as it seems.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~It is a little early to go to the bar ... ... Do you go to the movies?");
-            // voice.arc_000656.ogg
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~Huh……?");
-            DoC(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Mr. Muto who muttered so as to look at the clock, turning his hand to my waist while saying so.");
-            // voice.arc_000657.ogg
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~Huh……");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "It was a place that was difficult to judge, whether the hand was touching it, waist or buttocks.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "When I noticed it and leaked a small voice, I touched it as if to stroke it.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~Shall we walk away from nearby?");
-            // voice.arc_000658.ogg
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~Is ... ... Yes ... ...");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I can not even shake off my hands strongly, I walk a lot while being touched by my butt.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I wonder what people are watching from people around.");
-            // voice.arc_000659.ogg
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~(Huh ... ... Please, do not meet people you know ... ...)");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I kept praying in my mind while being embarrassed.");
+            DoC(0, 0, null, BG, $"After having finished eating at the French restaurant, Mr. Maoto took me to the city of the night.");
+            //2
+            DoC(1073, 0, MAN, BG, $"{BadMan}~The atmosphere was good, and the taste was not bad, was it?");
+            //3
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1073, 0, MAN, BG, $"{Girl}~Yes, yes ... Well, it was delicious ......");
+            //4
+            DoC(1073, 0, MAN, BG, $"While walking side-by-side, Mr. Minoto calls out.");
+            //5
+            DoC(1073, 0, MAN, BG, $"I talked to each other so that the conversation would not be interrupted, but I did not really know the taste.");
+            //6
+            DoC(1073, 0, MAN, BG, $"I knew only that it was a luxurious meal, but it seems that everyone, including the shop people, is watching me, it was not where I could taste it.");
+            //7
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1073, 0, MAN, BG, $"{Girl}~(I do not feel like eating ......)");
+            //8
+            DoC(1073, 0, MAN, BG, $"Even if I walk in the streets of the night like this, the line of sight of a man passing by hurts.");
+            //9
+            DoC(1073, 0, MAN, BG, $"It may be natural as well because it has such a big flashy appearance of such exposure.");
+            //10
+            DoC(1073, 0, MAN, BG, $"{BadMan}~............ ");
+            //11
+            DoC(1073, 0, MAN, BG, $"Perhaps Mr. Minoto is enjoying watching me shy.");
+            //12
+            DoC(1073, 0, MAN, BG, $"Mr. Muto seems to have fun all the time as far as it seems.");
+            //13
+            DoC(1073, 0, MAN, BG, $"{BadMan}~It is a little early to go to the bar ... ... Do you go to the movies?");
+            //14
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1073, 0, MAN, BG, $"{Girl}~Huh……?");
+            //15
+            DoC(1070, 0, MAN, BG, $"Mr. Muto who muttered so as to look at the clock, turning his hand to my waist while saying so.");
+            //16
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1073, 0, MAN, BG, $"{Girl}~Huh……");
+            //17
+            DoC(1073, 0, MAN, BG, $"It was a place that was difficult to judge, whether the hand was touching it, waist or buttocks.");
+            //18
+            DoC(1073, 0, MAN, BG, $"When I noticed it and leaked a small voice, I touched it as if to stroke it.");
+            //19
+            DoC(1073, 0, MAN, BG, $"{BadMan}~Shall we walk away from nearby?");
+            //20
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);            
+            DoC(1073, 0, MAN, BG, $"{Girl}~Is ... ... Yes ... ...");
+            //21
+            DoC(1073, 0, MAN, BG, $"I can not even shake off my hands strongly, I walk a lot while being touched by my butt.");
+            //22
+            DoC(1073, 0, MAN, BG, $"I wonder what people are watching from people around.");
+            //23
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1073, 0, MAN, BG, $"{Girl}~(Huh ... ... Please, do not meet people you know ... ...)");
+            //24
+            DoC(1073, 0, MAN, BG, $"I kept praying in my mind while being embarrassed.");
+            //25
+            DoC(0, 0, null, BG, $"Even after finishing watching the movie, I keep walking around the streets of the night while taking me by Mr. Minato.");
+            //26
+            DoC(1073, 0, MAN, BG, $"{BadMan}~It is only music that is good, neither the script nor the production is satisfactory.");
+            //27
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1073, 0, MAN, BG, $"{Girl}~Well, that's right ......");
+            //28
+            DoC(1073, 0, MAN, BG, $"To somehow, Mr. Minato talks about the movie, I feel something offended.");
+            //29
+            DoC(1073, 0, MAN, BG, $"The movie was a long time ago, but content with meals never comes into the head.");
+            //30
+            DoC(1073, 0, MAN, BG, $"It was a foreign movie I do not understand well, but I only remembered the beautiful images.");
+            //31
+            DoC(1073, 0, MAN, BG, $"While you were watching, Mr. Minoto's hand was touching the thighs, and I was concerned only with it.");
+            //32
+            DoC(1073, 0, MAN, BG, $"{BadMan}~There is a bar to go near here. Can you drink sake?");
+            //33
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1070, 0, MAN, BG, $"{Girl}~Huh ......, Yes ... ... If only a little ... ... ");
+            //34
+            DoC(1070, 0, MAN, BG, $"Apparently, I guess I will go to the bar next time. I wonder if she is going to drink as it is.");
+            //35
+            DoC(1070, 0, MAN, BG, $"Because Kohei does not drink, I do not drink much.");
+            //36
+            DoC(1070, 0, MAN, BG, $"When I was living in my parents house, I was about dating my dad's drink.");
+            //37
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1070, 0, MAN, BG, $"{Girl}~(I have to try not to drink too much ......)");
+            //38
+            DoC(1070, 0, MAN, BG, $"For now, Mr. Minato comes into contact with the body, but his attitude was very gentleman.");
+            //39
+            DoC(1070, 0, MAN, BG, $"But I do not think that it will end like this.");
+            //40
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);            
+            DoC(1073, 0, MAN, BG, $"{Girl}~(Drunk me ... or something ... I wonder ... )");
+            //41
+            DoC(1073, 0, MAN, BG, $"If so, I have to make sure I do not get drunk.");
+            //42
+            DoC(1073, 0, MAN, BG, $"{BadMan}~Well then, let's go.");
+            //43
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1070, 0, MAN, BG, $"{Girl}~Yes, ...");
+            //44
+            DoC(1070, 0, MAN, BG, $"I have to be firm on my own so that it will not be attached.");
+            //45
+            DoC(0, 0, null, $"SILKYS_SAKURA_OttoNoInuMaNi_BG08", $"...");
+            //46
+            DoC(0, 0, null, $"SILKYS_SAKURA_OttoNoInuMaNi_BG08", $"... ...");
+            //47
+            DoC(0, 0, null, $"SILKYS_SAKURA_OttoNoInuMaNi_BG08", $"... ... ...");
+            //48
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1073, 0, MAN, BG, $"{Girl}~Oh");
+            //49
+            DoC(1073, 0, MAN, BG, $"{BadMan}~Well, Walking a little while waking up drunk.");
+            //50
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);            
+            DoC(1073, 0, MAN, BG, $"{Girl}~Ah ... ... Yes ... ... ");
+            //51
+            DoC(1073, 0, MAN, BG, $"Thanks to preparing and entering the shop, there was nothing to be badly intoxicated.");
+            //52
+            DoC(1073, 0, MAN, BG, $"Of course there is an influence of liquor, but the head is still firm.");
+            //53
+            DoC(1073, 0, MAN, BG, $"And yet, Mr. Minoto's hand touched the neighborhood of my ass.");
+            //54
+            DoC(0, 0, null, $"SILKYS_SAKURA_OttoNoInuMaNi_BG08", $"...");
+            //55
+            DoC(0, 0, null, $"SILKYS_SAKURA_OttoNoInuMaNi_BG08", $"... ...");
+            //56
+            DoC(0, 0, null, $"SILKYS_SAKURA_OttoNoInuMaNi_BG08", $"... ... ...");
+            //57
+            DoC(0, 0, null, BG, $"The way I went walking while being prompted was a corner where loud neon was lining up.");
 
-            DoC(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Even after finishing watching the movie, I keep walking around the streets of the night while taking me by Mr. Minato.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~It is only music that is good, neither the script nor the production is satisfactory.");
-            // voice.arc_000660.ogg
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~Well, that's right ......");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "To somehow, Mr. Minato talks about the movie, I feel something offended.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "The movie was a long time ago, but content with meals never comes into the head.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "It was a foreign movie I do not understand well, but I only remembered the beautiful images.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "While you were watching, Mr. Minoto's hand was touching the thighs, and I was concerned only with it.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~There is a bar to go near here. Can you drink sake?");
-            // voice.arc_000661.ogg
-            DoC(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~Huh ......, Yes ... ... If only a little ... ... ");
-            DoC(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Apparently, I guess I will go to the bar next time. I wonder if she is going to drink as it is.");
-            DoC(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Because Kohei does not drink, I do not drink much.");
-            DoC(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "When I was living in my parents house, I was about dating my dad's drink.");
-            // voice.arc_000662.ogg
-            DoC(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~(I have to try not to drink too much ......)");
-            DoC(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "For now, Mr. Minato comes into contact with the body, but his attitude was very gentleman.");
-            DoC(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "But I do not think that it will end like this.");
-            // voice.arc_000663.ogg
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~(Drunk me ... or something ... I wonder ... )");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "If so, I have to make sure I do not get drunk.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~Well then, let's go.");
-            // voice.arc_000664.ogg
-            DoC(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~Yes, ...");
-            DoC(1070, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I have to be firm on my own so that it will not be attached.");
-
-
-            // Decoration change
-
-            DoC(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "...");
-            DoC(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "... ...");
-            DoC(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "... ... ...");
-            // voice.arc_000665.ogg
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~Oh");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~Well, Walking a little while waking up drunk.");
-            // voice.arc_000666.ogg
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~Ah ... ... Yes ... ... ");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Thanks to preparing and entering the shop, there was nothing to be badly intoxicated.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Of course there is an influence of liquor, but the head is still firm.");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "And yet, Mr. Minoto's hand touched the neighborhood of my ass.");
-
-            DoC(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "...");
-            DoC(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "... ...");
-            DoC(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG08", "... ... ...");
-
-            DoC(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "The way I went walking while being prompted was a corner where loud neon was lining up.");
             X1 = -435; Y1 = 435;
-            // voice.arc_000667.ogg
-            DoC(1070, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~(Here, here ... ... That's like that ... ...?)");
-            DoC(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "On the signboards letters such as breaks and lodgings lined up, and the people going are walking so as not to see eyes with people around them.");
-            DoC(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "And the sense of tension increased and the body stiffened to the appearance of the man and woman entering the building.");
-            // voice.arc_000668.ogg
-            DoC(1071, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~(Huh ...... What shall I do ...... But I ... ....) ");
-            DoC(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I do not want to do something like betraying Kohei.");
-            DoC(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "But if you come and refuse so far, everything may get ruined..");
-            // voice.arc_000669.ogg
-            DoC(1072, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~(At least ... at least only the last of the clear distinction ......) ");
-            DoC(0, 0, null, "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Whether they come out the influence of liquor, I determine the ready while I think so.");
-
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Wistaria~...... Are you going to be here?");
-            DoC(1073, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "Mr. Minato stops his legs in front of the buildings in line.");
-            // voice.arc_000670.ogg
-            DoC(1069, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~Huh!");
-            DoC(1069, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "That was definitely a love hotel.");
-            DoC(1069, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "When the leg stopped and stopped, Mr. Minoto's hand strongly pushed my back.");
-            DoC(1069, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "I feel that I can not return to the power of that hand.");
-            // voice.arc_000671.ogg
-            DoC(1071, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "{Girl}~(You ... ... Kohei-san ... ...! Please protect me ... ...!)");
-            DoC(1071, 0, "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "SILKYS_SAKURA_OttoNoInuMaNi_BG07", "While taking a step towards the entrance, I prayed to shout in my mind.");
+            //58
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1070, 0, null, BG, $"{Girl}~(Here, here ... ... That's like that ... ...?)");
+            //59
+            DoC(0, 0, null, BG, $"On the signboards letters such as breaks and lodgings lined up, and the people going are walking so as not to see eyes with people around them.");
+            //60
+            DoC(0, 0, null, BG, $"And the sense of tension increased and the body stiffened to the appearance of the man and woman entering the building.");
+            //61
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1071, 0, null, BG, $"{Girl}~(Huh ...... What shall I do ...... But I ... ....) ");
+            //62
+            DoC(0, 0, null, BG, $"I do not want to do something like betraying Kohei.");
+            //63
+            DoC(0, 0, null, BG, $"But if you come and refuse so far, everything may get ruined..");
+            //64
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1072, 0, null, BG, $"{Girl}~(At least ... at least only the last of the clear distinction ......) ");
+            //65
+            DoC(0, 0, null, BG, $"Whether they come out the influence of liquor, I determine the ready while I think so.");
+            //66
+            DoC(1073, 0, MAN, BG, $"{BadMan}~...... Are you going to be here?");
+            //67
+            DoC(1073, 0, MAN, BG, $"Mr. Minato stops his legs in front of the buildings in line.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            //68
+            DoC(1069, 0, MAN, BG, $"{Girl}~Huh!");
+            //69
+            DoC(1069, 0, MAN, BG, $"That was definitely a love hotel.");
+            //70
+            DoC(1069, 0, MAN, BG, $"When the leg stopped and stopped, Mr. Minoto's hand strongly pushed my back.");
+            //71
+            DoC(1069, 0, MAN, BG, $"I feel that I can not return to the power of that hand.");
+            //72
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1071, 0, MAN, BG, $"{Girl}~(You ... ... Kohei-san ... ...! Please protect me ... ...!)");
+            //73
+            DoC(1071, 0, MAN, BG, $"While taking a step towards the entrance, I prayed to shout in my mind.");
 
             //Clear sound
             ClearSound(true, true, true);
@@ -1681,13 +1753,7 @@ namespace StoGen.Classes.Data.Games
         }
 
 
-        private void AddSound(
-            string voice,  int voicePause, bool voiceLoop,
-            string effect1, int effect1Pause, bool effect1Loop)
-        {
-            AddEffect1(effect1,  effect1Pause, effect1Loop);
-            AddVoice(voice, voicePause, voiceLoop);
-        }
+
         private void AddEffect1(string effect1, int effect1Pause, bool effect1Loop)
         {
             if (!string.IsNullOrEmpty(effect1))
@@ -1700,6 +1766,23 @@ namespace StoGen.Classes.Data.Games
                     IsLoop = effect1Loop,
                     StartPlay = 0,
                     T = $"W..{effect1Pause}>p.A.0.1" });
+            }
+        }
+        // add prolonged effect (Loop=true)
+        private void AddEffect2(string effect, int effectPause, bool effectLoop)
+        {
+            if (!string.IsNullOrEmpty(effect))
+            {
+                CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
+                CurrentSounds.Add(new seSo()
+                {
+                    File = $"{PATH_E}{effect}",
+                    Name = "EFFECT2",
+                    V = VOLUME_E2,
+                    IsLoop = effectLoop,
+                    StartPlay = 0,
+                    T = $"W..{effectPause}>p.A.0.1"
+                });
             }
         }
         private void AddVoice(string voice, int voicePause, bool voiceLoop)
@@ -1975,7 +2058,7 @@ namespace StoGen.Classes.Data.Games
         protected override void MakeCadres(string cadregroup)
         {       
             string[] cd = new string[] {
-                "14"
+                "14.Переодевание у финансиста"
             };
             base.MakeCadres(cd);
             //this.Cadres.Reverse();

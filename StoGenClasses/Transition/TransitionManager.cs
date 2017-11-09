@@ -608,11 +608,11 @@ namespace StoGen.Classes
             {
                 get
                 {
-                    return Projector.Text.Opacity * 100;
+                    return Projector.TextCanvas.Opacity * 100;
                 }
                 set
                 {
-                    Projector.Text.Opacity = value / 100;
+                    Projector.TextCanvas.Opacity = value / 100;
                 }
             }         
         }
