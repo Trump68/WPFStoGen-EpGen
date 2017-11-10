@@ -200,6 +200,9 @@
     <None Include="Properties\DataSources\SgPicture.datasource" />
     <None Include="Properties\DataSources\StoGen.Classes.SgMovie.datasource" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\Games\TextFile1.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

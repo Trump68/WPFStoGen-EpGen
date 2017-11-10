@@ -58,6 +58,10 @@ namespace StoGen.Classes
             
             base.Repaint();
             FrameText.tranManager.Clear();
+            Projector.TextBlock1.TextWrapping  = TextWrapping.Wrap;            
+            Projector.TextBlock2.TextWrapping = TextWrapping.Wrap;
+            Projector.TextBlock3.TextWrapping = TextWrapping.Wrap;
+            Projector.TextBlock4.TextWrapping = TextWrapping.Wrap;
 
             if (Size > 0)
             {
@@ -142,11 +146,7 @@ namespace StoGen.Classes
             Projector.TextCanvas.Opacity = this.Opacity / 100;
             //Projector.Text.Opacity = 0;
             Projector.TextVisible = true;
-
-            //Projector.TextBlock1.Text = string.Join(Environment.NewLine, TextList.ToArray());
-            //Projector.TextBlock2.Text = string.Join(Environment.NewLine, TextList.ToArray());
-            //Projector.TextBlock3.Text = string.Join(Environment.NewLine, TextList.ToArray());
-            //Projector.TextBlock4.Text = string.Join(Environment.NewLine, TextList.ToArray());
+            
             string txt = string.Join(Environment.NewLine, TextList.ToArray());
             TypewriteTextblock(txt, Projector.TextBlock1, new TimeSpan(0, 0, 1));
             TypewriteTextblock(txt, Projector.TextBlock2, new TimeSpan(0, 0, 1));
