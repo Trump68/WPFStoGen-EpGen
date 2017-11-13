@@ -70,10 +70,12 @@ namespace StoGen.Classes.Data.Games
         string BG_NIGHT_SKY = "SILKYS_SAKURA_OttoNoInuMaNi_BG08"; // night sky
         string BG_LOVE_HOTEL = "SILKYS_SAKURA_OttoNoInuMaNi_BG09"; // love hotel
         string MAN1 = "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1";
+        string MAN2 = "SILKYS_SAKURA_OttoNoInuMaNi_BM01_2";
+        string MAN3 = "SILKYS_SAKURA_OttoNoInuMaNi_BM01_3";
         string BadManName = "Mr.Minoda";
         string GoodManName = "Kohei";
         string GirlName = "Mary";
-
+        bool ORGAZM = false;
         int s = 1370;
         protected override void LoadData()
         {
@@ -93,12 +95,20 @@ namespace StoGen.Classes.Data.Games
             
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_PLACEHOLDER", "PLACEHOLDER.png", path);
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BM01", "BM01.png", path);
+            
+
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "BM01_1.png", path);
+            AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BM01_2", "BM01_2.png", path);
+            AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BM01_3", "BM01_3.png", path);
+
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BM02_1", "BM02_1.png", path);
+
+
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BM02_2", "BM02_2.png", path);
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_GM01_1", "GM01_1.png", path);
 	        AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_GM01_2", "GM01_2.png", path);
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_GM01_3", "GM01_3.png", path);
+
 
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG01", "BG01.png", path);//blue sky
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG02", "BG02.png", path);// day office
@@ -110,6 +120,7 @@ namespace StoGen.Classes.Data.Games
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG08", "BG08.png", path);// { hight sky}
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG09", "BG09.png", path);// { love hotel}
 
+            AddToGlobalImage("FLASH_BG", "WHITE.JPG", path);
 
             this.DefaultSceneText.Size = 100;
             this.DefaultSceneText.Width = 1130;
@@ -161,6 +172,7 @@ namespace StoGen.Classes.Data.Games
             Cartina_EveningPromenad();
             Cartina_LoveHotelBegin();
             Cartina_Blowjob();
+            Cartina_FinansistHotelFuck();
         }
 
         private void Cartina_HusbCall1()
@@ -2090,7 +2102,406 @@ namespace StoGen.Classes.Data.Games
             ClearSound(true, true, true);
 
         }
+        private void Cartina_FinansistHotelFuck()
+        {
+            string BG = BG_LOVE_HOTEL; //
+            string MAN = MAN2;
+            string BadMan = BadManName;
+            string Girl = GirlName;
+            string GoodMan = GoodManName;
 
+            currentGr = "18.Love Hotel - second part.";
+            int i = 760; // voice indexer
+            CurrentSounds = new List<seSo>();
+            //Music ============================
+            AddMusic("music.arc_000003.wav");
+            //Music ============================
+
+            // Decoration change -LOVE HOTEL
+            S2 = 0715; X2 = 860; Y2 = 55; 
+            S1 = 1100; X1 = -215; Y1 = 55;
+            //1
+            DoC(0, 0, null, BG, $"I will be embarrassed to get me embarrassed and I will forcibly take off my clothes.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1063, 0, MAN, BG, $"{Girl}~Wait, wait ...... ",
+                OpEf.AppearCurrent(1), OpEf.AppearCurrent(2));
+            DoC(1063, 0, MAN, BG, $"{BadMan}~Remains were wearing clothes would become dirty? Well, it does not matter because the clothes are.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1063, 0, MAN, BG, $"{Girl}~Something like that...!Oh, ah...!");
+            DoC(0, 0, null, BG, $"It not can also shake off their hands, very quickly I would be taken off all.",
+                 OpEf.HidePrev(1), OpEf.HidePrev(2));
+            MAN = MAN3;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1097, 0, MAN, BG, $"{Girl}~I am in trouble ...... Such a brutal ... ...",
+              OpEf.AppearCurrent(1), OpEf.AppearCurrent(2));
+            DoC(1097, 0, MAN, BG, $"Have you come so far, there is no push? Come here. ");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1097, 0, MAN, BG, $"{Girl}~Wait ... ... Ahh ......!");
+            DoC(1097, 0, MAN, BG, $"I thought that it would be done to the end as it was, but I panicked, but it was not so.");
+            DoC(1097, 0, MAN, BG, $"Mr.Minodo took my hand and put it on the bed, I was made to a position I do not understand well.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(1097, 0, MAN, BG, $"{Girl}~(No, what are you planning to do ...... !?) ");
+            X1 = 0; Y1 = 0; S1 = 1370;
+            DoC(0, 0, null, null, $"", OpEf.HidePrev(0), OpEf.HidePrev(1), OpEf.HidePrev(2));
+            DoC(0059, 0, null, null, $"What are you doing ...?!", OpEf.AppearCurrent(1));
+            DoC(0059, 0, null, null, $"It felt like crossing the face of Mr. Muto who was lying on his back on the bed, I was wearing a cover over it.");
+            DoC(0059, 0, null, null, $"{BadMan}~What, you do not know Six Nine, too?");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(0059, 0, null, null, $"{Girl}~I ... ... I do not have it any secret ...?");
+            DoC(0059, 0, null, null, $"Somehow I have heard it, but I can not remember it a little.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            int g = 0061;
+            DoC(g, 0, null, null, $"{Girl}~(I wonder what it was ...... But if this position ... ... ... ...) "
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"Mr. Minoto's breath was blown in my crotch.");
+            DoC(g, 0, null, null, $"There is my crotch in front of Mr. Minato. Surely the embarrassed place must be visible.");
+            DoC(g, 0, null, null, $"And before my eyes there was something that was held until a while ago.");
+            DoC(g, 0, null, null, $"{BadMan}~Well, this is the act of caressing each other like this. ");
+            g = 0060;
+            i++;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~... ... to each other ...! What?"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"It is certainly such a position but I did not think that I should do it yet.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(But, I thought it would be the end if I put it out ...) ");
+            DoC(g, 0, null, null, $"Kohei-san is always over when I put it out, and I thought that the man's man can only be issued once.");
+            DoC(g, 0, null, null, $"But, Mr. Muto's thing is still firm.");
+            DoC(g, 0, null, null, $"There is no other way than to say that my idea I did not know was sweet.");
+            g = 0062;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Huh ... ... here in this kind of dress ... ...."
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"{BadMan}~That's why, please also serve well. ");
+            g = 0060;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Uooh ...... Yes ... ..."
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"Every time Mr. Minato speaks, I take a breath over there.");
+            DoC(g, 0, null, null, $"Kohei - san is ashamed because he did not close his face so close.");
+            g = 0061;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Haa ...... Haa ...... Haa ......, Fuu ...... "
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"But, as soon as I come here, I have to decide my mind and continue.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(2 times ...... If you put it out twice, surely ... ....) " );
+            DoC(g, 0, null, null, $"Mr. Minodo was drinking as well at the bar and I wanted to think that I could not continue so much.");
+            g = 0062;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Chu ...... Chu ...... Re ... .... Re ... ... "
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"I drove embarrassment to a corner of my head and stretched my tongue to Mr. Mr. Minato who was still stiff.");
+            DoC(g, 0, null, null, $"The thick blood vessel rises, the tongue tip is aligned with the rugged portion, and it makes it crawl along the line.");
+            DoC(g, 0, null, null, $"Was it a bit familiar or a feeling paralyzed just a little while ago, this time I will be licked without hesitation.");
+            DoC(g, 0, null, null, $"I was not bothered by that it was covered with sperm and just slimy.");
+            g = 0061;
+            DoC(g, 0, null, null, $"To the other party is not a Mr. Kohei, I wonder why it is such a thing.", OpEf.HidePrev(1));
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Chu ...... Chu ...... Re ... .... Re ... ... ");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"(Mi, because it's for everyone ...... Asahi-chan, Kohei-san ... ...)");
+            DoC(g, 0, null, null, $"So let's tell themselves and try hard.");
+            DoC(g, 0, null, null, $"I made up my mind and moved my tongue over and over.");
+            DoC(g, 0, null, null, $"But with this position, I will be concerned about Mr. Minoto's line of sight.");
+            g = 0060;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(Mi......I've been watching ... ... ... ...) "
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"Even if not see directly into the shadow of the ass, body temperature transmitted to the skin, it will tell the movement of the face of Mr. Minafuji.");
+            g = 0061;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Haa ...... Haa ...... Haah ... .... Uoo, Huhu ...."
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"Even though I made up my mind, when I feel a gaze over there, I can not concentrate on making my tongue crawl on that in front of me.");
+            DoC(g, 0, null, null, $"I have already seen naked, but it is still more embarrassing than that.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Haa ...... Haa ...... Haah ... .... Uoo, Huhu ....");
+            DoC(g, 0, null, null, $"While service in Minafuji's, only that of the line-of-sight becomes mind.");
+            DoC(g, 0, null, null, $"Even though I can not finish it unless I concentrate and try hard.");
+            DoC(g, 0, null, null, $"{BadMan}~However, it has a beautiful color considerably. There is no collapse of the shape");
+            g = 0060;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Haa"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"Like a inflame such a thing my shame, Mr. Minafuji was such a thing impressions in the mouth.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(Yes, color or shape ... so ... ...!) ");
+            DoC(g, 0, null, null, $"After all it was seen by Mr. Minato.");
+            g = 0061;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Haa"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"I'm too embarrassed and it seems to get a fire from my face.");
+            DoC(g, 0, null, null, $"Even Kohei-san, you have not been seen so close.");
+            DoC(g, 0, null, null, $"{BadMan}~What's wrong, your mouth stopped?");
+            g = 0060;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Ah, that ... ... Do not look so much ...... I ... ... it's too embarrassing ...... "
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"{BadMan}~I can not do anything if I do not see it? I think the same thing is being watched by it.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~That ... ... ... ... Yes, but, but ... ");
+            DoC(g, 0, null, null, $"{BadMan}~Well, I will not mind that at once.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Lie ...... That's ...!");
+            DoC(g, 0, null, null, $"{BadMan}~Look here ......");
+            g = 0064;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Cowrie ...! Hmm ... ... do not ... ...!"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"Before I knew it well, Mr. Minato's finger suddenly came in me.");
+            DoC(g, 0, null, null, $"{Girl}~Huhuu, the person behind you is moist. Did you get excited with my cock? ");
+
+            AddEffect2($"effect.arc_000160.wav", SoundPauseShort, true);//Effect - squish
+
+            DoC(g, 0, null, null, $"Mr. Minodo began to move his fingers inside so as to ascertain my feel.");
+            g = 0063;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Sure, that ... ... hey, that's ...! Oh no, well ...!"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"Even though Mr. Kohei could be touched, I never put my fingers inside like this.");
+            DoC(g, 0, null, null, $"Moreover, it has been seen in front of you.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~ahhh ... ...!");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(This shy is too embarrassing, I will manage somehow ...!) ");
+            DoC(g, 0, null, null, $"It is embarrassing just to be seen, but I can not put it in my fingers.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Oh, no it ...! Please, please pull me out ...!");
+            DoC(g, 0, null, null, $"I accidentally appealed to it with such words, but Mr. Minodo did not seem to get through at all.");
+            g = 0064;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~ahh...    no ...!"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"As the shape of the finger will be clearly Kanjitore, and strongly pressed against the inside, it continued to fuck.");
+            DoC(g, 0, null, null, $"Even though I am ashamed of this, I felt like I was enjoying it.");
+            CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
+            DoC(g, 0, null, null, $"{BadMan}~Hmm ... ... for married people the tightness is also good. ");
+            DoC(g, 0, null, null, $"I finally stop fingering, I mutter such things.");
+            DoC(g, 0, null, null, $"It is terrible to express a woman 's body that way.");
+            g = 0063;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Or, Mr. Minoto ...!"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"{BadMan}~Let's see which sensitivity you are.");
+            DoC(g, 0, null, null, $"While saying that with a funny voice, Mr. Minoto's finger started moving slowly again.");
+            g = 0064;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~ahhh!"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"This time I will touch little by little, looking for something.");
+            DoC(g, 0, null, null, $"It seems like I'm verifying my reaction while touching.");
+            DoC(g, 0, null, null, $"If you are conscious of such a thing, you will be concerned only with Mr. Minato's fingers moving in that place.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~ahhh!");
+            DoC(g, 0, null, null, $"I wonder if my fingers are concerned, or because I am ashamed, I feel nervous and my breath does not stop.");
+            DoC(g, 0, null, null, $"If you keep on keeping it like this, I will manage to do something.");
+            g = 0063;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(Wow ... I want to end it soon ... ...)"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"To that end, I have to lead Mr. Muto until ejaculation.");
+            DoC(g, 0, null, null, $"If I think that I should try my best the same way, it just gets heavier.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(But, ... ... as it is ... .... Uuu ... ...) ");
+            DoC(g, 0, null, null, $"I can not bear this embarrassing thing.");
+            DoC(g, 0, null, null, $"As I escaped the reality from embarrassment in front of you, I resolved to prepare and I also got a thing of Mr. Minodo.");
+            g = 0066;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"It sucks hard and deeply into it and sucks and sucks it deeper than before.");
+            DoC(g, 0, null, null, $"I am used to getting acquainted and sucking licking.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh");
+            DoC(g, 0, null, null, $"It has become quite accustomed to shape and size, so I was able to serve much more smoothly than before.");
+            DoC(g, 0, null, null, $"However, even though I intend to concentrate on such a mouth service, I will be more concerned about what Mr. Muto is supposed to do.");
+            g = 0067;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh"
+                , OpEf.HidePrev(1));
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(Ah ... ... well, do not stir it with your fingers so much ...!) ");
+            DoC(g, 0, null, null, $"You can see that Mr. Maoto's fingers are moving in me.");
+            DoC(g, 0, null, null, $"There just probably because you are in the mood, have become much more sensitive than usual.");
+            DoC(g, 0, null, null, $"A bit of movement can be clearly felt.");
+            DoC(g, 0, null, null, $"Just a bad feeling becomes stronger, do not be too concentrated in service.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~.....");
+            DoC(g, 0, null, null, $"{BadMan}~Like suddenly, suck it tightly? I also do it well.");
+            g = 0065;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh"
+                , OpEf.HidePrev(1));
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(You do not have to do such a thing) ");
+            DoC(g, 0, null, null, $"I could not say.");
+            g = 0066;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"I am embarrassed, I move my face in the way I just learned a little while ago, sucking hard and keep sucking it suddenly.");
+            DoC(g, 0, null, null, $"Move your face with your head and slide your tongue, treat it with your lips and cheeks, and serve in a way that uses your whole mouth.");
+            DoC(g, 0, null, null, $"But Muto's finger movements block it.");
+            g = 0067;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh"
+                , OpEf.HidePrev(1));
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh");
+            DoC(g, 0, null, null, $"Movement that stirs slowly, has gradually turned into something different.");
+            DoC(g, 0, null, null, $"The fingertips that moved as if to stroke inside crooked and started to move in and out while scratching.");
+            DoC(g, 0, null, null, $"It makes me so irritated and strange that it gets dumpy.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh");
+            DoC(g, 0, null, null, $"{BadMan}~According to the you of the service, I because I also'll be pleasant.");
+            DoC(g, 0, null, null, $"In other words it, the more I work hard if hang in there, was that would come back to yourself.");
+            g = 0065;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh"
+                , OpEf.HidePrev(1));
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(Well, such a trouble ... ...! Ay ... ...) ");
+            DoC(g, 0, null, null, $"I just wanna satisfy Mr. Minoda.");
+            DoC(g, 0, null, null, $"Separately I do not want you to feel pleasant.");
+            DoC(g, 0, null, null, $"However, Mr. Minato will not stop the movement of the fingers put in me.");
+            DoC(g, 0, null, null, $"If I did not do anything, it only lasted for a long time.");
+            g = 0067;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"According to my sucking, Mr. Minoto's fingers moved again.");
+            AddEffect2($"effect.arc_000162.wav", SoundPauseShort, true);//Effect - squish
+            DoC(g, 0, null, null, $"Although it is slowly, when put in and out there, a sticky big sound leaks out.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(Doing......Sounds horny...___ ___ ___");
+            g = 0068;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"I did not want to believe, had gotten have been wet enough to be heard clearly up to my ear."); 
+            DoC(g, 0, null, null, $"{BadMan}~It's pretty sensitive, not bad.");
+            g = 0066;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh"
+                , OpEf.HidePrev(1));
+            AddEffect2($"effect.arc_000163.wav", SoundPauseShort, true);//Effect - squish
+            DoC(g, 0, null, null, $"As service is intensified, Mr. Minoto's fingers also moves fancy, and embarrassing sounds are getting bigger and bigger.");
+            DoC(g, 0, null, null, $"She seems to be saying that he wants me to feel more pleasant.");
+            DoC(g, 0, null, null, $"Even though I do not plan to do that, it will result in that.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh");
+            DoC(g, 0, null, null, $"I can not go on to not continue.");
+            DoC(g, 0, null, null, $"I have to be satisfied with Mr. Minato before my body can not stand this feeling.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh");
+            DoC(g, 0, null, null, $"Mr. Minato's finger movement is not intense, but over there will be getting more and more difficult.");
+            DoC(g, 0, null, null, $"Before I knew it, my lower body was getting hot and it got hot.");
+            DoC(g, 0, null, null, $"There is no feeling of well-being that makes the heart warm, like Kohei-san did, but that extra was exciting.");
+            g = 0067;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"So as not to lose the stimulus from the Minafuji's, suck licking desperately.");
+            DoC(g, 0, null, null, $"Somehow, but I learned a little about it.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh");
+            DoC(g, 0, null, null, $"If you accumulate saliva in your mouth, it will be easier to suck up a little.");
+            DoC(g, 0, null, null, $"But when I'm just sucking, my jaws get tired, so I will use my tongue at the same time and stimulate it.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh");
+            DoC(g, 0, null, null, $"Also coming is also blurred horny your juice, Mr. Minafuji is me properly become comfortably.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(If we work hard in this state...)");
+            DoC(g, 0, null, null, $"Thinking that way, despite being desperate, Mr. Minodo's finger blocks that idea.");
+            g = 0065;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"It was involuntarily stimulation of the more likely causes trembling waist.If you have not'm still painting mouth, maybe I had gotten out amazing voice.");
+            AddEffect2($"effect.arc_000164.wav", SoundPauseShort, true);//Effect - squish
+            DoC(g, 0, null, null, $"Mr. Minato's fingers are put in and out a little hard.");
+            DoC(g, 0, null, null, $"{BadMan}~If you feel this much in the finger, that's variously expected to be likely. ");
+            DoC(g, 0, null, null, $"While saying such a funny voice, I will blame me hard.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~uh");
+            g = 0071;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(Do not intensify ... ... Do not intensify... ...!)"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"I also have a lot of seasoned juice.");
+            DoC(g, 0, null, null, $"It will not be fake for me so long as it will be this way."); 
+            DoC(g, 0, null, null, $"To the fact that I felt, my heart is tightened with a sense of guilt.");
+            DoC(g, 0, null, null, $"I do not forgive everything, but that does not make any excuse.");
+            g = 0070;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~ah"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"In order to escape from such guilt, I try to devote himself to the service before my eyes.");
+            DoC(g, 0, null, null, $"Because too spicy and not to do so.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~ah");
+            DoC(g, 0, null, null, $"However, Mr. Minodo blamed me more intensely like laughing at my feelings.");
+            AddEffect2($"effect.arc_000165.wav", SoundPauseShort, true);//Effect - squish
+            g = 0071;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~ah"
+                , OpEf.HidePrev(1));
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(ah)");
+            DoC(g, 0, null, null, $"My fingers move fiercely more than the momentum I lick.");
+            DoC(g, 0, null, null, $"It was roughly disturbed and the waist trembled.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~ah");
+            DoC(g, 0, null, null, $"Still, somehow, I will continue to serve hard so that I can not defeat the stimulus.");
+            DoC(g, 0, null, null, $"It seemed that I could not do anything anymore if I took a rest for a while.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~ah");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(But, ... ... I got it any longer ...!)");
+            DoC(g, 0, null, null, $"Continue to serve Mr. Muto hard while enduring the culmination which gradually increases.");
+            DoC(g, 0, null, null, $"Only the feeling which stiffly stretches in your mouth supported the tense feeling.");
+            g = 0070;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(Even, a little more ... ...!)"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"If Mr. Minodo issues it, it ends with that.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~ah");
+            DoC(g, 0, null, null, $"I just suck it and it sucks licking desperately.");
+            DoC(g, 0, null, null, $"My jaw is also tired and salivation does not stop, and my sense of lips and tongue is getting dull.");
+            DoC(g, 0, null, null, $"But now I can not stop whining.");
+            g = 0071;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(Oh, ah ......! Well, it's useless ... ...!) "
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"Intense fingering's Minafuji to go cornered.");
+            DoC(g, 0, null, null, $"I will not be able to endure any more.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~((Sorry, Kohei-san ... ...!) ) ");
+            DoC(g, 0, null, null, $"While apologizing to Kohei's in my mind, decide prepared to become reached.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~ah");
+            DoC(g, 0, null, null, $"{BadMan}~I will release it soon ...!");
+            DoC(g, 0, null, null, $"It was just after that that he heard that word.");
+
+            g = 0073;
+            ORGAZM = true;
+            CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{ Girl}~ah"
+                , OpEf.HidePrev(1));
+
+            //DoC(g, 0, null, null, $"");
+            //DoC(g, 0, null, null, $"");
+            //DoC(g, 0, null, null, $"");
+            //DoC(g, 0, null, null, $"");
+            //DoC(g, 0, null, null, $"");
+            //DoC(g, 0, null, null, $"");
+            //DoC(g, 0, null, null, $"");
+            //DoC(g, 0, null, null, $"");
+        }
 
 
         private void AddEffect1(string effect1, int effect1Pause, bool effect1Loop)
@@ -2308,6 +2719,11 @@ namespace StoGen.Classes.Data.Games
                 }
             }
            
+            if (ORGAZM)
+            {
+                cdata.Add(new DifData() { Name = "FLASH_BG",O=0, S=1370, T=Transition.Test_Opacity});
+                ORGAZM = false;
+            }
 
             AddLocal(currentGr, text, cdata, this.CurrentSounds);
             this.ClearSound(false,true,true);
@@ -2400,10 +2816,10 @@ namespace StoGen.Classes.Data.Games
         protected override void MakeCadres(string cadregroup)
         {       
             string[] cd = new string[] {
-                "17.Finansist minet."
+                "18.Love Hotel - second part."
             };
             base.MakeCadres(cd);
-            //this.Cadres.Reverse();
+            this.Cadres.Reverse();
         }
     }
 }
