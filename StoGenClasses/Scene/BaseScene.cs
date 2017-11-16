@@ -145,24 +145,21 @@ namespace StoGenMake.Scenes.Base
     {
         public int EngineHiVer = 0;
         public int EngineLoVer = 0;
-        
-        protected virtual void MakeCadres(string[] cadregroups, bool all = false)
+
+        protected virtual void DoFilter(string[] cadregroups, bool all = false)
         {
-            foreach (var item in AlignList.Where(
-                x =>
-                all
-                ||
-                x.MarkList.Any(z=>cadregroups.Contains(z))))
-            {
-                MakeCadre(item);
-            }
+            this.AlignList.RemoveAll(x =>
+                    !all
+                    &&
+                    !x.MarkList.Any(z => cadregroups.Contains(z)));
         }
-        protected virtual void MakeCadres(string cadregroup)
+        protected virtual void DoFilter(string cadregroup)
         {
-            MakeCadres(new string[] { cadregroup }, (cadregroup == null));
+            DoFilter(new string[] { cadregroup }, (cadregroup == null));
         }
-        private void MakeCadre(CadreData item)
+        public ScenCadre MakeCadre(CadreData item)
         {
+
                 seTe te = null;
                 bool isWhite = false;
                 if (item.IsGlobalAlign)
@@ -178,7 +175,7 @@ namespace StoGenMake.Scenes.Base
                 {
                     te = item.TextData;
                 }
-                this.CreateCadre(item, isWhite, te);
+                return this.CreateCadre(item, isWhite, te);
         }
         public List<CadreData> AlignList = new List<CadreData>();
         public Guid GID { set; get; }
@@ -189,27 +186,7 @@ namespace StoGenMake.Scenes.Base
             LoadData();
         }
         protected virtual void LoadData() { }
-        //public void AddActor(VNPC actor)
-        //{
-        //    this.Actors.Add(actor);
-        //}
-        //public ViewingTransitionState StateViewingTransition = ViewingTransitionState.None;
-        //protected void AddObzor(ScenCadre cadre)
-        //{
-        //    if (this.StateViewingTransition == ViewingTransitionState.Go)
-        //    {
-        //        foreach (var image in cadre.VisionList)
-        //        {
-        //            if (!string.IsNullOrEmpty(image.Transition))
-        //            {
-        //                image.Transition = image.Transition + "*" + Transition.Obzor();
-        //            }
-        //            else
-        //                image.Transition = Transition.Obzor();
-        //        }
-        //    }
-        //}
-
+        
         private string _TempFileName;
         public string TempFileName
         {
@@ -255,34 +232,34 @@ namespace StoGenMake.Scenes.Base
         public string Generate(string cadregroup)
         {
             this.Cadres.Clear();
-            this.MakeCadres(cadregroup);
+            this.DoFilter(cadregroup);
+            return null;
+            //string fnScenario = string.Empty;
+            //if (string.IsNullOrEmpty(FileToProcess))
+            //{
+            //    FileToProcess = this.TempFileName;
+            //}
+            //string newfnScenario = Path.GetFileNameWithoutExtension(FileToProcess) + ".stogen";
+            //string savepath = Path.GetDirectoryName(FileToProcess);
+            //fnScenario = Path.Combine(savepath, newfnScenario);
 
-            string fnScenario = string.Empty;
-            if (string.IsNullOrEmpty(FileToProcess))
-            {
-                FileToProcess = this.TempFileName;
-            }
-            string newfnScenario = Path.GetFileNameWithoutExtension(FileToProcess) + ".stogen";
-            string savepath = Path.GetDirectoryName(FileToProcess);
-            fnScenario = Path.Combine(savepath, newfnScenario);
+            //List<string> scendata = new List<string>();
+            //foreach (var item in this.Cadres)
+            //{             
+            //    int i = 0;
+            //    if (item.IsActivated)
+            //    {
+            //        var cadredata = item.GetCadreData();
+            //        if (!string.IsNullOrEmpty(FileToProcess))
+            //        {
 
-            List<string> scendata = new List<string>();
-            foreach (var item in this.Cadres)
-            {             
-                int i = 0;
-                if (item.IsActivated)
-                {
-                    var cadredata = item.GetCadreData();
-                    if (!string.IsNullOrEmpty(FileToProcess))
-                    {
+            //        }
+            //        scendata.AddRange(cadredata);
+            //    }
+            //}
 
-                    }
-                    scendata.AddRange(cadredata);
-                }
-            }
-
-            File.WriteAllText(fnScenario, string.Join(Environment.NewLine, scendata.ToArray()));
-            return fnScenario;
+            //File.WriteAllText(fnScenario, string.Join(Environment.NewLine, scendata.ToArray()));
+            //return fnScenario;
         }
 
         #endregion
@@ -306,7 +283,7 @@ namespace StoGenMake.Scenes.Base
                     //proc.ShowContextMenu(doShowMenu, data);
 
                     this.Generate(data as string);
-                    StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
+                    //StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
                     proc.MenuCreator = proc.OldMenuCreator;
                     proc.GetNextCadre();
 
@@ -345,14 +322,11 @@ namespace StoGenMake.Scenes.Base
 
         #region Newest engine!!!
 
-        protected void CreateCadre(CadreData item, bool isWhite = false, seTe text = null)
+        protected ScenCadre CreateCadre(CadreData item, bool isWhite = false, seTe text = null)
         {
             var cadre = new ScenCadre();
             cadre.IsWhite = isWhite;
-            cadre.Name = $"Cadre {this.Cadres.Count + 1}";
-            this.Cadres.Add(cadre);
-
-
+            cadre.Name = $"Cadre {this.Cadres.Count + 1}";            
             foreach (var ai in item.AlignList)
             {
                 //faind main image info in storage
@@ -396,7 +370,7 @@ namespace StoGenMake.Scenes.Base
             {
                 cadre.AddText(text);
             }
-
+            return cadre;
         }
         public void AddToGlobalImage(string name, string fn, string path)
         {

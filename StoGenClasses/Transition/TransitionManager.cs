@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace StoGen.Classes
@@ -349,16 +350,20 @@ namespace StoGen.Classes
                 get
                 {
                     if (!isYcoord)
-                        return Projector.PicContainer.PicList[this.Level].Margin.Left;
+                        return VisualTreeHelper.GetOffset(Projector.PicContainer.PicList[this.Level]).X;
+                    //return Canvas.GetLeft(Projector.PicContainer.PicList[this.Level]);
                     else
-                        return Projector.PicContainer.PicList[this.Level].Margin.Top;
+                        return VisualTreeHelper.GetOffset(Projector.PicContainer.PicList[this.Level]).Y;
+                    return Canvas.GetTop(Projector.PicContainer.PicList[this.Level]);
                 }
                 set
                 {
                     if (!isYcoord)
-                        Projector.PicContainer.PicList[this.Level].Margin = new System.Windows.Thickness(value, Projector.PicContainer.PicList[this.Level].Margin.Top, 0, 0);
+                     
+                       Canvas.SetLeft(Projector.PicContainer.PicList[this.Level],value);
                     else
-                        Projector.PicContainer.PicList[this.Level].Margin = new System.Windows.Thickness(Projector.PicContainer.PicList[this.Level].Margin.Left, value, 0, 0);
+                        Canvas.SetTop(Projector.PicContainer.PicList[this.Level], value);
+                    //Projector.PicContainer.PicList[this.Level].Margin = new System.Windows.Thickness(Projector.PicContainer.PicList[this.Level].Margin.Left, value, 0, 0);
                 }
             }
             public override bool Execute(out bool repaintNeed)

@@ -10,10 +10,10 @@
             EngineLoVer = 0;
        }
 
-    protected override void MakeCadres(string cadregroup)
+    protected override void DoFilter(string cadregroup)
         {
             cadregroup = "CleMasahiro CL-orz 51";
-            base.MakeCadres(cadregroup);
+            base.DoFilter(cadregroup);
         }
         protected override void LoadData()
         {

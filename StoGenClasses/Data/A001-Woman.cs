@@ -610,7 +610,7 @@ namespace StoGenMake.Scenes
             
             #endregion
         }
-        protected override void MakeCadres(string cadregroup)
+        protected override void DoFilter(string cadregroup)
         {
             //cadregroup = SC011_HCG.Lady_LinaMoana_Face03.CName;
             //cadregroup = SC010_OyariAshito.Lady_EriAyase_Face03.Name;
@@ -624,7 +624,7 @@ namespace StoGenMake.Scenes
               "test1"
             };
     
-            base.MakeCadres(cd);
+            base.DoFilter(cd);
             this.Cadres.Reverse();
         }
     }

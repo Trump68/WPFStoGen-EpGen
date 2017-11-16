@@ -114,10 +114,10 @@ namespace StoGenMake.Scenes
             #endregion            
         }
 
-        protected override void MakeCadres(string cadregroup)
+        protected override void DoFilter(string cadregroup)
         {
             cadregroup = "OyariAshito_KawaikuteShikatagaNai2";
-            base.MakeCadres(cadregroup);
+            base.DoFilter(cadregroup);
             this.Cadres.Reverse();
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace StoGenMake.Scenes.Base
+﻿using System;
+
+namespace StoGenMake.Scenes.Base
 {
     public class SC000_TestTran : BaseScene
     {
@@ -9,7 +11,7 @@
             EngineHiVer = 1;
             EngineLoVer = 0;
         }
-        protected override void MakeCadres(string cadregroup)
+        protected override void DoFilter(string cadregroup)
         {
             this.DefaultSceneText.Shift = 200;
             this.DefaultSceneText.Size = 60;
@@ -18,7 +20,7 @@
             //// real
             cadregroup = "test";
 
-            base.MakeCadres(cadregroup);
+            base.DoFilter(cadregroup);
         }
         protected override void LoadData()
         {
@@ -35,18 +37,19 @@
             name = $"Evil_green"; fn = $"TestGreen.png";
             AddToGlobalImage(name, fn, path);
 
-            AddGlobal(new string[] { "" },
-            new DifData[] {
-                new DifData("Evil_blue") { X=100 },
-                new DifData("Evil_red","Evil_blue") {X=200},
-            });
+            //AddGlobal(new string[] { "" },
+            //new DifData[] {
+            //    new DifData("Evil_blue") { X=100 },
+            //    new DifData("Evil_red","Evil_blue") {X=200},
+            //});
             AddLocal(new string[] { "test" },
             new DifData[] {
                 new DifData("Evil_blue") { X=100 },
-                new DifData("Evil_red","Evil_blue") {X=200, T=Transition.Test_Opacity},
+                new DifData("Evil_red") {X=500, T="W..1000>X.B.3000.100"},
             });
             
 
         }
+
     }
 }

@@ -46,13 +46,13 @@ namespace StoGen.Classes
             if (!string.IsNullOrEmpty(ScenarioFile))
             {
                 fn = ScenarioFile;
-                StoGenParser.DefaultPath = fn.Replace(Path.GetFileName(fn), string.Empty);
+                //StoGenParser.DefaultPath = fn.Replace(Path.GetFileName(fn), string.Empty);
             }
 
 
             if (File.Exists(fn))
             {
-                StoGenParser.AddCadresToProcFromFile(this.CurrentProc, fn, part, StoGenParser.DefaultPath);
+                //StoGenParser.AddCadresToProcFromFile(this.CurrentProc, fn, part, StoGenParser.DefaultPath);
                 return true;
             }
 
@@ -66,7 +66,7 @@ namespace StoGen.Classes
         {
             ProcedureBase procpreg = base.InsertAsProcedureTo(ownerproc, isAdd);
 
-            this.CurrentProc.OnKeyData += OnKeyData;
+            //this.CurrentProc.OnKeyData += OnKeyData;
             if (!string.IsNullOrEmpty(this.FirstCadreName))
             {
                 Cadre cdr = this.CurrentProc.Cadres.FirstOrDefault(x => x.Name == FirstCadreName);
@@ -88,48 +88,49 @@ namespace StoGen.Classes
             this.Studio = studio;
             base.Init(path);
         }
-        private void OnKeyData(object sender, EventArgs e)
-        {
-            this.CurrentProc.CurrentCadre.SoundFrameData.Clear();
-            this.CurrentProc.CurrentCadre.GetSoundFrame().SoundList.Clear();
-            this.CurrentProc.CurrentCadre.TextFrameData.Clear();
 
-            for (int i = 0; i < this.CurrentProc.CurrentCadre.PicFrameData.PictureDataList.Count; i++)
-            {
-                if (!this.CurrentProc.CurrentCadre.PicFrameData.PictureDataList[i].isMain)
-                {
-                    this.CurrentProc.CurrentCadre.PicFrameData.PictureDataList.RemoveAt(i);
-                    i--;
-                }
-            }
-            string code = Convert.ToInt32(sender).ToString();
-            foreach (SoundItem soundItem in StoGenParser.KeyVarContainer.SoundVariableList)
-            {
-                if (soundItem.Name == code)
-                {
-                    soundItem.Position = this.CurrentProc.CurrentCadre.SoundFrameData.Count;
-                    this.CurrentProc.CurrentCadre.SoundFrameData.Add(soundItem);
-                }
-            }
-            foreach (PictureSourceDataProps commonPic in StoGenParser.CommonPics)
-            {
-                if (commonPic.Name == code)
-                {
-                    this.CurrentProc.CurrentCadre.PicFrameData.PictureDataList.Add(commonPic);
-                }
-            }
-            foreach (TextData textData in StoGenParser.KeyVarContainer.TextVariableList)
-            {
-                if (textData.Name == code)
-                {
-                    this.CurrentProc.CurrentCadre.TextFrameData.Add(textData);
-                }
-            }
-            // this.CurrentProc.CurrentCadre.GetTextFrame().Repaint();
-            this.CurrentProc.CurrentCadre.GetSoundFrame().Repaint();
-            //this.CurrentProc.CurrentCadre.GetImageFrame().Repaint();
-            this.CurrentProc.CurrentCadre.Repaint(true);
-        }
+        //private void OnKeyData(object sender, EventArgs e)
+        //{
+        //    this.CurrentProc.CurrentCadre.SoundFrameData.Clear();
+        //    this.CurrentProc.CurrentCadre.GetSoundFrame().SoundList.Clear();
+        //    this.CurrentProc.CurrentCadre.TextFrameData.Clear();
+
+        //    for (int i = 0; i < this.CurrentProc.CurrentCadre.PicFrameData.PictureDataList.Count; i++)
+        //    {
+        //        if (!this.CurrentProc.CurrentCadre.PicFrameData.PictureDataList[i].isMain)
+        //        {
+        //            this.CurrentProc.CurrentCadre.PicFrameData.PictureDataList.RemoveAt(i);
+        //            i--;
+        //        }
+        //    }
+        //    string code = Convert.ToInt32(sender).ToString();
+        //    foreach (SoundItem soundItem in StoGenParser.KeyVarContainer.SoundVariableList)
+        //    {
+        //        if (soundItem.Name == code)
+        //        {
+        //            soundItem.Position = this.CurrentProc.CurrentCadre.SoundFrameData.Count;
+        //            this.CurrentProc.CurrentCadre.SoundFrameData.Add(soundItem);
+        //        }
+        //    }
+        //    foreach (PictureSourceDataProps commonPic in StoGenParser.CommonPics)
+        //    {
+        //        if (commonPic.Name == code)
+        //        {
+        //            this.CurrentProc.CurrentCadre.PicFrameData.PictureDataList.Add(commonPic);
+        //        }
+        //    }
+        //    foreach (TextData textData in StoGenParser.KeyVarContainer.TextVariableList)
+        //    {
+        //        if (textData.Name == code)
+        //        {
+        //            this.CurrentProc.CurrentCadre.TextFrameData.Add(textData);
+        //        }
+        //    }
+        //    // this.CurrentProc.CurrentCadre.GetTextFrame().Repaint();
+        //    this.CurrentProc.CurrentCadre.GetSoundFrame().Repaint();
+        //    //this.CurrentProc.CurrentCadre.GetImageFrame().Repaint();
+        //    this.CurrentProc.CurrentCadre.Repaint(true);
+        //}
 
        
 

@@ -108,7 +108,7 @@ namespace StoGen.Classes
                 NestedCadreId++;
                 if (result.IsProc)
                 {
-                    this.InnerProc = result.GetProcFrame().Proc;
+                    this.InnerProc = result.ProcFr.Proc;
                     if (this.InnerProc != null)
                     {
                         if (this.InnerProc.NestedCadreId == 0) this.InnerProc.NestedCadreId = -1;
@@ -182,7 +182,7 @@ namespace StoGen.Classes
                 if (NestedCadreId >= 1)
                 {
                     if (!Cadres[NestedCadreId - 1].AllowedBackward) return result;
-                    Cadres[NestedCadreId].BeforeLeave();
+                    //Cadres[NestedCadreId].BeforeLeave();
                     result = Cadres[NestedCadreId - 1];
                     NestedCadreId--;
                     while (result != null && result.IsProc)
@@ -249,53 +249,25 @@ namespace StoGen.Classes
 
         // Cadre Managing
         // refresh cadre according cadre data
-        public virtual void BeforePaintCadre(object sender, CadreEventArgs e)
-        {
-            Cadre cadre = e.Cadre;
-            cadre.Clear(false);
+        //public virtual void BeforePaintCadre(object sender, CadreEventArgs e)
+        //{
+        //    Cadre cadre = e.Cadre;
+        //    cadre.Clear(false);
 
-            foreach (PictureSourceDataProps pictureSourceDataProps in cadre.PicFrameData.PictureDataList)
-            {
-                cadre.InsertImage(pictureSourceDataProps);
-            }
+        //    foreach (PictureSourceDataProps pictureSourceDataProps in cadre.PicFrameData.PictureDataList)
+        //    {
+        //        cadre.InsertImage(pictureSourceDataProps);
+        //    }
             
 
-            if (cadre.SoundFrameData != null && cadre.SoundFrameData.Count > 0)
-            {
-                FrameSound fs = cadre.GetSoundFrame();
-                fs.SoundList.Clear();
-                fs.SoundList.AddRange(cadre.SoundFrameData);
-            }
-            PrepareTextData(cadre);
-        }
-        public virtual void PrepareTextData(Cadre cadre)
-        {
-            if (cadre.TextFrameData.Count > 0)
-            {
-                //TextData data = this.CurrentCadre.GetTextDataByVariant(this.CurrentVariant);
-                TextData data = cadre.TextFrameData[0];
-                if (data != null)
-                {
-                    FrameText ft = cadre.GetTextFrame();
-                    ft.TextList.AddRange(data.TextList);
-
-                    ft.BackColor = data.BackColor;
-                    ft.FontName = data.FontName;
-                    ft.FontSize = data.FontSize;
-                    ft.FontColor = data.FontColor;
-                    ft.Size = data.Size;
-                    ft.Shift = data.Shift;
-                    ft.Bottom = data.Bottom;
-                    ft.Width = data.Width;
-                    ft.ClearBack = data.ClearBack;
-                    ft.AutoShow = data.AutoShow;
-                    ft.Rtf = data.Rtf;
-                    ft.Aligh = data.Align;
-                    ft.Opacity = data.Opacity;
-                    ft.Transition = data.Transition;
-                }
-            }
-        }
+        //    if (cadre.SoundFrameData != null && cadre.SoundFrameData.Count > 0)
+        //    {
+        //        FrameSound fs = cadre.GetSoundFrame();
+        //        fs.SoundList.Clear();
+        //        fs.SoundList.AddRange(cadre.SoundFrameData);
+        //    }
+        //    PrepareTextData(cadre);
+        //}
         public virtual bool ShowContextMenu(bool show, object Data)
         {
             isInitialized = true;

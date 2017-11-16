@@ -17,9 +17,18 @@ namespace StoGen.Classes.Data.Games
         {
             //new OpEf(1, true, 250, true, 1000)); to dissapear previous
             //new OpEf(1, false,250, false,1000) to appear current
+            //new OpEf(1, true, 100, "W..0>O.B.200.-100*W..0>Y.B.200.300")
             public static OpEf AppearCurrent(int i)
             {
                return new OpEf(i, false, 250, false, 0);
+            }
+            public static OpEf AppearCurrent(int i, string t)
+            {
+                return new OpEf(i, false, 0, t);
+            }
+            public static OpEf HidePrev(int i, string t)
+            {
+                return new OpEf(i, true, 100, t);
             }
             public static OpEf HidePrev(int i)
             {
@@ -33,22 +42,55 @@ namespace StoGen.Classes.Data.Games
                 W = w;
                 D = d;
             }
+            //string CurrentTran = "W..1000>X.B.3000.100";
+            public string Tran = null;
+            public OpEf(int l, bool p, int o, string tran)
+            {
+                L = l;
+                P = p;                
+                O = o;
+                Tran = tran;
+            }
             public OpEf(int l, int t)
             {
                 L = l;               
-                T = T;
+                T = t;
             }
             public int L = 0; // pic level            
             public bool P = false; // false - current, true - previous
             public int T = 500; //speed time, ms
             public int W = 500; //wait time, ms
             public bool D = true;//direction, true - dissapeared, false - appeared
+
+            public int O { get; set; } = 100;
         }
         public SILKYS_SAKURA_OttoNoInuMaNi() : base()
         {
             Name = "SILKYS_SAKURA_OttoNoInuMaNi";
             EngineHiVer = 1;
             EngineLoVer = 0;
+
+            this.BadMan.I = "мистер Минода";
+            this.BadMan.R = "мистера Миноды";
+            this.BadMan.D = "мистеру Миноде";
+            this.BadMan.V = "мистера Миноду";
+            this.BadMan.T = "мистером Минодой";
+            this.BadMan.P = "мистере Миноде";
+
+            this.GoodMan.I = "дон Витра";
+            this.GoodMan.R = "дона Витры";
+            this.GoodMan.D = "дону Витре";
+            this.GoodMan.V = "дона Витру";
+            this.GoodMan.T = "доном Витрой";
+            this.GoodMan.P = "доне Витре";
+
+            this.Girl.I = "Ксения";
+            this.Girl.R = "Ксении";
+            this.Girl.D = "Ксении";
+            this.Girl.V = "Ксению";
+            this.Girl.T = "Ксенией";
+            this.Girl.P = "Ксении";
+
         }
 
         List<string> data = new List<string>();
@@ -72,9 +114,11 @@ namespace StoGen.Classes.Data.Games
         string MAN1 = "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1";
         string MAN2 = "SILKYS_SAKURA_OttoNoInuMaNi_BM01_2";
         string MAN3 = "SILKYS_SAKURA_OttoNoInuMaNi_BM01_3";
-        string BadManName = "Mr.Minoda";
-        string GoodManName = "Kohei";
-        string GirlName = "Mary";
+        
+        HumanName BadMan = new HumanName("");
+        HumanName GoodMan = new HumanName("");
+        HumanName Girl = new HumanName("");
+
         bool ORGAZM = false;
         int s = 1370;
         protected override void LoadData()
@@ -1205,9 +1249,7 @@ namespace StoGen.Classes.Data.Games
         private void Cartina_ChangingClothInCabinet()
         {
             string BG = BG_EVENING_CABINET; // evening cabinet
-            string MAN = MAN1;
-            string BadMan = BadManName;
-            string Girl = GirlName;
+            string MAN = MAN1;            
 
             currentGr = "14.Переодевание у финансиста";
             Z1 = 2;
@@ -1369,9 +1411,6 @@ namespace StoGen.Classes.Data.Games
         {
             string BG = BG_EVENING_STREET; // evening cabinet
             string MAN = MAN1;
-            string BadMan = BadManName;
-            string Girl = GirlName;
-            string GoodMan = GoodManName;
 
             currentGr = "15.Вечерний променад.";
             Z1 = 2; X1 = 470;
@@ -1582,9 +1621,6 @@ namespace StoGen.Classes.Data.Games
         {
             string BG = BG_LOVE_HOTEL; // evening cabinet
             string MAN = MAN1;
-            string BadMan = BadManName;
-            string Girl = GirlName;
-            string GoodMan = GoodManName;
 
             currentGr = "16.Love Hotel - begin.";
             int i = 672; // voice indexer
@@ -1709,14 +1745,14 @@ namespace StoGen.Classes.Data.Games
             DoC(1049, 0, null, BG, $"Я боялась того, что надо сделать ... но может это будет для меня лучше.");
             //42
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(1049, 0, null, BG, $"{Girl}~(If you do your best and you can satisfy Mr. Minoto, then ... ...) ");
+            DoC(1049, 0, null, BG, $"{Girl}~(Я постараюсь и {BadMan} будет удовлетворен, и тогда ... ...) ");
             //43
-            DoC(1049, 0, null, BG, $"If you can lead it to ejaculation with your mouth, you will not worry about crossing the last line.");
+            DoC(1049, 0, null, BG, $"Если добиться эякуляции ртом, то до еще худшего так и не дойдет.");
             //44
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(1049, 0, null, BG, $"{Girl}~Well then, then ... ... I will let you ... ... ");
+            DoC(1049, 0, null, BG, $"{Girl}~Хорошо, я согласна ... ... сделать это ... ... ");
             //45
-            DoC(1049, 0, null, BG, $"While I muttered so, I kneeled down to Mr. Minoto.");
+            DoC(1049, 0, null, BG, $"Едва слышно промолвив эти слова, я опустилась на колени перед {BadMan}.");
 
             ClearSound(true,true,true);
         }
@@ -1724,9 +1760,6 @@ namespace StoGen.Classes.Data.Games
         {
             string BG = BG_LOVE_HOTEL; // evening cabinet
             string MAN = MAN1;
-            string BadMan = BadManName;
-            string Girl = GirlName;
-            string GoodMan = GoodManName;
 
             currentGr = "17.Finansist minet.";
             int i = 686; // voice indexer
@@ -2106,9 +2139,6 @@ namespace StoGen.Classes.Data.Games
         {
             string BG = BG_LOVE_HOTEL; //
             string MAN = MAN2;
-            string BadMan = BadManName;
-            string Girl = GirlName;
-            string GoodMan = GoodManName;
 
             currentGr = "18.Love Hotel - second part.";
             int i = 760; // voice indexer
@@ -2118,22 +2148,35 @@ namespace StoGen.Classes.Data.Games
             //Music ============================
 
             // Decoration change -LOVE HOTEL
-            S2 = 0715; X2 = 860; Y2 = 55; 
-            S1 = 1100; X1 = -215; Y1 = 55;
             //1
             DoC(0, 0, null, BG, $"I will be embarrassed to get me embarrassed and I will forcibly take off my clothes.");
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+
+            S1 = 1100; X1 = -515; Y1 = 55;
+            S2 = 0715; X2 = 1160; Y2 = 55;
             DoC(1063, 0, MAN, BG, $"{Girl}~Wait, wait ...... ",
-                OpEf.AppearCurrent(1), OpEf.AppearCurrent(2));
+                OpEf.AppearCurrent(1, "W..0>O.B.200.100*W..0>X.B.200.300"),
+                OpEf.AppearCurrent(2, "W..0>O.B.200.100*W..0>X.B.200.-300")
+            );
+            X1 = -215; X2 = 860;
+
             DoC(1063, 0, MAN, BG, $"{BadMan}~Remains were wearing clothes would become dirty? Well, it does not matter because the clothes are.");
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(1063, 0, MAN, BG, $"{Girl}~Something like that...!Oh, ah...!");
+
             DoC(0, 0, null, BG, $"It not can also shake off their hands, very quickly I would be taken off all.",
-                 OpEf.HidePrev(1), OpEf.HidePrev(2));
+                OpEf.HidePrev(1, "W..0>O.B.200.-100*W..0>Y.B.200.300"),
+                OpEf.HidePrev(2, "W..0>O.B.200.-100*W..0>Y.B.200.300"));
+
             MAN = MAN3;
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            S1 = 1100; X1 = -515; Y1 = 55;
+            S2 = 0715; X2 = 1160; Y2 = 55;
             DoC(1097, 0, MAN, BG, $"{Girl}~I am in trouble ...... Such a brutal ... ...",
-              OpEf.AppearCurrent(1), OpEf.AppearCurrent(2));
+                OpEf.AppearCurrent(1, "W..0>O.B.200.100*W..0>X.B.200.300"),
+                OpEf.AppearCurrent(2, "W..0>O.B.200.100*W..0>X.B.200.-300"));
+            X1 = -215; X2 = 860;
+
             DoC(1097, 0, MAN, BG, $"Have you come so far, there is no push? Come here. ");
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(1097, 0, MAN, BG, $"{Girl}~Wait ... ... Ahh ......!");
@@ -2492,15 +2535,55 @@ namespace StoGen.Classes.Data.Games
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(g, 0, null, null, $"{ Girl}~ah"
                 , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"...");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{ Girl}~ah");
+            DoC(g, 0, null, null, $"Mr. Maito's ejaculation begins at the beat that I opened my mouth without thinking.");
+            DoC(g, 0, null, null, $"Suddenly overflowing from Mr. Mihito's pulsating in front of my eyes.");
+            g = 0072;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~ah"
+                , OpEf.HidePrev(1));
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(Ah ... .... Ah, it's hot, so much ...!!)");
+            DoC(g, 0, null, null, $"Even though I just got out earlier, I still wish I could have gone so much.");
+            DoC(g, 0, null, null, $"Besides, I also reached it lightly with Mr. Minodo's ejaculation.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(Ah ... .... Ah, it's hot, so much ...!!)");
+            DoC(g, 0, null, null, $"Besides, I also reached it lightly with Mr. Minodo's ejaculation.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"({Girl}~(Uoo, ... together until me ......) ");
+            DoC(g, 0, null, null, $"It is embarrassing that we have reached together if it only serves.");
+            DoC(g, 0, null, null, $"It makes me feel comfortable by being made by someone other than Kohei.");
+            g = 0075;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~ah"
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"With the great smell of semen and the lingering finish of cum, the body is still hot.");
+            DoC(g, 0, null, null, $"My head is getting bogged down and it seems I can not think about it properly.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"({Girl}~(Well ... but it was over with this ... ...?)");
+            DoC(g, 0, null, null, $"I want to think so, but I was not very confident.");
+            DoC(g, 0, null, null, $"Perhaps it is said that it will continue still.");
+            DoC(g, 0, null, null, $"I have no confidence to satisfy with service alone.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~ah");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~(But, until the end ... that is only ... ...) ");
+            DoC(g, 0, null, null, $"If you betray Kohei to that point, you will definitely not be able to match your face.");
+            DoC(g, 0, null, null, $"At least with guilt, I did not have confidence to speak properly.");
+            DoC(g, 0, null, null, $"{BadMan}~Well, it was not bad service");
+            g = 0074;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, null, $"{Girl}~Haa ...... Haa ...... Oh, thank you .... "
+                , OpEf.HidePrev(1));
+            DoC(g, 0, null, null, $"{BadMan}~Have you finished it properly?");
+            //DoC(g, 0, null, null, $"");
+            //DoC(g, 0, null, null, $"");
+            //DoC(g, 0, null, null, $"");
+            //DoC(g, 0, null, null, $"");
+            //DoC(g, 0, null, null, $"");
 
-            //DoC(g, 0, null, null, $"");
-            //DoC(g, 0, null, null, $"");
-            //DoC(g, 0, null, null, $"");
-            //DoC(g, 0, null, null, $"");
-            //DoC(g, 0, null, null, $"");
-            //DoC(g, 0, null, null, $"");
-            //DoC(g, 0, null, null, $"");
-            //DoC(g, 0, null, null, $"");
         }
 
 
@@ -2596,6 +2679,7 @@ namespace StoGen.Classes.Data.Games
         {
             DoC(index, index1, man, Bg, text, null);
         }
+
         private void DoC(int index,int index1, string man,string Bg, string text, params OpEf[] oefa)
         {
             
@@ -2699,20 +2783,28 @@ namespace StoGen.Classes.Data.Games
                             d.S = old.S;
                             cdata.Add(d);
                         }
-                        if (oef.D)
+                        if (oef.Tran != null)
                         {
-                            if (d != null)
-                            {
-                                d.O = 100;
-                                d.T = $"W..{oef.W}>O.B.{oef.T}.-100";
-                            }
+                            d.O = oef.O;
+                            d.T = oef.Tran;
                         }
                         else
                         {
-                            if (d != null)
+                            if (oef.D)
                             {
-                                d.O = 0;
-                                d.T = $"W..{oef.W}>O.B.{oef.T}.100";
+                                if (d != null)
+                                {
+                                    d.O = 100;
+                                    d.T = $"W..{oef.W}>O.B.{oef.T}.-100";
+                                }
+                            }
+                            else
+                            {
+                                if (d != null)
+                                {
+                                    d.O = 0;
+                                    d.T = $"W..{oef.W}>O.B.{oef.T}.100";
+                                }
                             }
                         }
                     }
@@ -2813,13 +2905,31 @@ namespace StoGen.Classes.Data.Games
        
 
 
-        protected override void MakeCadres(string cadregroup)
+        protected override void DoFilter(string cadregroup)
         {       
             string[] cd = new string[] {
                 "18.Love Hotel - second part."
             };
-            base.MakeCadres(cd);
+            base.DoFilter(cd);
             this.Cadres.Reverse();
         }
+    }
+
+    public class HumanName
+    {
+        public HumanName(string i)
+        {
+            this.I = i;
+        }
+        public override string ToString()
+        {
+            return this.I;
+        }
+        public string I;
+        public string R;
+        public string V;
+        public string T;
+        public string D;
+        public string P;
     }
 }

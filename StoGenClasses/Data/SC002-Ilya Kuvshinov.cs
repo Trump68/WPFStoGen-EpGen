@@ -11,10 +11,10 @@ namespace StoGenMake.Scenes
             EngineLoVer = 0;
         }
 
-        protected override void MakeCadres(string cadregroup)
+        protected override void DoFilter(string cadregroup)
         {
             //cadregroup = "global alignment";
-            base.MakeCadres(cadregroup);
+            base.DoFilter(cadregroup);
         }
 
         protected override void LoadData()

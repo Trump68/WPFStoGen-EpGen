@@ -74,9 +74,9 @@ namespace StoGenMake.Elements
             if (!string.IsNullOrEmpty(dd.T)) this.T = dd.T;
         }
 
-        internal PictureSourceProps ToPictureSource()
+        internal PictureSourceDataProps ToPictureDataSource()
         {
-            PictureSourceProps pi = new PictureSourceProps();            
+            PictureSourceDataProps pi = new PictureSourceDataProps();            
             pi.Name = this.Name;
             pi.FileName = this.File;
             pi.Flip = (RotateFlipType)this.F;
@@ -219,7 +219,19 @@ namespace StoGenMake.Elements
                 result.Add($"IsLoop=0");
             if (!string.IsNullOrEmpty(this.T)) result.Add($"TRN={this.T}");
             return string.Join(";", result.ToArray());
-        }       
+        }
+
+        internal SoundItem ToSoundDataSource()
+        {
+            SoundItem result = new SoundItem();
+            result.FileName = this.File;
+            result.Name = this.Name;
+            result.isLoop = this.IsLoop;            
+            result.Start = (this.StartPlay == 1);
+            result.Transition = this.T;
+            result.Volume = this.V;
+            return result;
+        }
     }
 
     public class seTe : ScenElement
@@ -235,7 +247,7 @@ namespace StoGenMake.Elements
         public bool ClearBack = true;
         public string FontColor = "Yellow";
         public string FontName;
-        public string Tran;
+        //public string Tran;
 
 
         public seTe() : base() { }
@@ -245,7 +257,7 @@ namespace StoGenMake.Elements
             this.Shift = origin.Shift;
             this.Size = origin.Size;
             this.Width = origin.Width;
-            this.Tran = origin.Tran;
+            
             this.FontSize = origin.FontSize;
             this.Opacity = origin.Opacity;
             this.Bottom = origin.Bottom;
@@ -283,6 +295,8 @@ namespace StoGenMake.Elements
             if (!string.IsNullOrEmpty(this.FontName)) result.Add($"FontName={this.FontName}");
             return string.Join(";", result.ToArray());
         }
+
+
     }
 }
 

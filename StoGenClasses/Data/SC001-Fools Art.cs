@@ -11,9 +11,9 @@
 
         }
 
-        protected override void MakeCadres(string cadregroup)
+        protected override void DoFilter(string cadregroup)
         {
-            base.MakeCadres(cadregroup);
+            base.DoFilter(cadregroup);
         }
         public static string Path = @"z:\ARTIST\FoolsArt (Homare)\Netorare Tsuma ~Otto no Chichi to Kindan no Kankei~\";
         protected override void LoadData()

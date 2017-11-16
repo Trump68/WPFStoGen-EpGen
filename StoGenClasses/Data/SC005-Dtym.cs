@@ -13,9 +13,9 @@ namespace StoGenMake.Scenes
         }
 
 
-        protected override void MakeCadres(string cadregroup)
+        protected override void DoFilter(string cadregroup)
         {
-            base.MakeCadres(cadregroup);
+            base.DoFilter(cadregroup);
             this.Cadres.Reverse();
         }
         protected override void LoadData()

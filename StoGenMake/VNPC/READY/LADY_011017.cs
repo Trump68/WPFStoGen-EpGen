@@ -85,7 +85,7 @@ namespace StoGenMake.Pers
                 
                 this.Scene.Generate(null);
 
-                StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
+                //StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
                 proc.MenuCreator = proc.OldMenuCreator;
                 proc.GetNextCadre();
 
@@ -99,7 +99,7 @@ namespace StoGenMake.Pers
                 
                 this.Scene.Generate(null);
 
-                StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
+                //StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
                 proc.MenuCreator = proc.OldMenuCreator;
                 proc.GetNextCadre();
             };
@@ -138,7 +138,7 @@ namespace StoGenMake.Pers
                     
                     this.Scene.Generate(null);
 
-                    StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
+                    //StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
                     proc.MenuCreator = proc.OldMenuCreator;
                     proc.GetNextCadre();
 
@@ -153,7 +153,7 @@ namespace StoGenMake.Pers
 
                     this.Scene.Generate(null);
 
-                    StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
+                    //StoGenParser.AddCadresToProcFromFile(proc, this.Scene.TempFileName, null, StoGenParser.DefaultPath);
                     proc.MenuCreator = proc.OldMenuCreator;
                     proc.GetNextCadre();
 

@@ -39,19 +39,19 @@ namespace StoGenMake.Elements
         }
  
         #region New native generation
-        public void GetNativeCadreData(out List<PictureItem> Pics)
-        {
-            // native picture list
-            Pics = new List<PictureItem>();
-            foreach (seIm item in this.VisionList)
-            {
-                if (item.IsActivated)
-                {
-                    PictureItem pi = new PictureItem();
-                    pi.Props = item.ToPictureSource();
-                }                    
-            }
-        }
+        //public void GetNativeCadreData(out List<PictureItem> Pics)
+        //{
+        //    // native picture list
+        //    Pics = new List<PictureItem>();
+        //    foreach (seIm item in this.VisionList)
+        //    {
+        //        if (item.IsActivated)
+        //        {
+        //            PictureItem pi = new PictureItem();
+        //            pi.Props = item.ToPictureSource();
+        //        }                    
+        //    }
+        //}
         #endregion
 
         #region Old generation via file

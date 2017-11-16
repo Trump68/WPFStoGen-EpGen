@@ -9,9 +9,9 @@
             EngineHiVer = 1;
             EngineLoVer = 0;
         }
-        protected override void MakeCadres(string cadregroup)
+        protected override void DoFilter(string cadregroup)
         {
-            base.MakeCadres(cadregroup);            
+            base.DoFilter(cadregroup);            
         }
         protected override void LoadData()
         {

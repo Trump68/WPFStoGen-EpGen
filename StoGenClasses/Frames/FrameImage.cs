@@ -177,6 +177,7 @@ namespace StoGen.Classes
             im.ClipToBounds = false;
             im.Margin = new Thickness(0, 0, 0, 0);
 
+            
             Projector.PicContainer.OwnerCanvas.Children.Insert(index, im);
             Projector.PicContainer.PicList.Insert(index, im);
         }
@@ -572,23 +573,12 @@ namespace StoGen.Classes
         }
         private void DoLocation(PictureSourceProps pi, TransformGroup tg)
         {
-            #region Location
-            // Location
-            //Canvas.SetLeft(
-            //    Projector.PicContainer.PicList[(int)pi.Level],
-            //    pi.X);
-            //Canvas.SetTop(
-            //    Projector.PicContainer.PicList[(int)pi.Level],
-            //    pi.Y);
-            //Projector.PicContainer.PicList[(int)pi.Level].Margin =
-            //    new System.Windows.Thickness(pi.X, pi.Y, 0, 0);
-
-
+            #region Location      
             TranslateTransform tt = new TranslateTransform();
             tt.X = pi.X;
             tt.Y = pi.Y;
             tg.Children.Add(tt);
-
+            
             #endregion
         }
         private void DoTransformAll()

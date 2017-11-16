@@ -27,7 +27,7 @@ namespace StoGen.Classes
         {
             this.Clear(); // remove first empty cadre
             Cadre cadre = new Cadre(ownerproc, true);
-            cadre.GetProcFrame().Proc = this;
+            cadre.ProcFr.Proc = this;
             this.ParentProc = ownerproc;
             return this;
         }

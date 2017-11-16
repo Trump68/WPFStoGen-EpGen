@@ -15,7 +15,7 @@ namespace StoGenWPF
     public partial class MainWindow : Window
     {
 
-        public string Startfile = null;
+        
         public IMenuCreator GlobalMenuCreator = null;
         MediaElement ClipElement;
         
@@ -68,18 +68,13 @@ namespace StoGenWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Startfile == null)
-            {
-                string[] args = Environment.GetCommandLineArgs();
-                if (args.Length > 1) Startfile = args[1];
-            }
-
+           
             PictureCadreDS.Visibility = Visibility.Hidden;
             PictureCadreDS.DataContext = Projector.ImageCadre;
 
-            SGManager.StartMainProc(Scene, Startfile, GlobalMenuCreator);
+            SGManager.StartMainProc(Scene, GlobalMenuCreator);
             
-            //Projector
+            
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

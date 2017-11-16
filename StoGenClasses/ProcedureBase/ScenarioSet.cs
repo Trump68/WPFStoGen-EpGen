@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using StoGen.Classes.Interfaces;
+using StoGenMake.Elements;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,12 +34,12 @@ namespace StoGen.Classes
 
             if (string.IsNullOrEmpty(fn))
             {
-                StoGenParser.DefaultPath = path;
+                //StoGenParser.DefaultPath = path;
             }
             else
             {
                 this.ScenarioFile = path;
-                StoGenParser.DefaultPath = Path.GetFullPath(this.ScenarioFile);
+                //StoGenParser.DefaultPath = Path.GetFullPath(this.ScenarioFile);
             }
         }
         public virtual ProcedureBase InsertAsProcedureTo(ProcedureBase ownerproc, bool isAdd)
@@ -49,10 +50,11 @@ namespace StoGen.Classes
             this.CurrentProc.Clear();
 
             Cadre cadre = new Cadre(this.CurrentProc, isAdd);
-            cadre.GetProcFrame().Proc = this.CurrentProc;
+            cadre.ProcFr.Proc = this.CurrentProc;
             this.CurrentProc.MenuCreator = this.CreateMenu;
 
-            PreProcessFileLists(this.ScenarioFile);          
+            //PreProcessFileLists(this.ScenarioFile);          
+            PreProcessFileLists();
             return this.CurrentProc;
         }
 
@@ -60,25 +62,56 @@ namespace StoGen.Classes
 
         #region Fill cadres from filelist
         // Replace from SCENE !!!!!!
+        //public virtual bool PreProcessFileLists(string ScenarioFile)
+        //{
+        //    string fn = string.Empty;
+        //    string part = null;
+
+        //    if (!string.IsNullOrEmpty(ScenarioFile))
+        //    {
+        //        fn = ScenarioFile;
+        //        StoGenParser.DefaultPath = fn.Replace(Path.GetFileName(fn), string.Empty);
+        //    }
+
+
+        //    if (File.Exists(fn))
+        //    {
+        //        StoGenParser.AddCadresToProcFromFile(this.CurrentProc, fn, part, StoGenParser.DefaultPath);
+        //        return true;
+        //    }
+
+        //    return false;
+        //}
+
         public virtual bool PreProcessFileLists(string ScenarioFile)
         {
-            string fn = string.Empty;
-            string part = null;
-
-            if (!string.IsNullOrEmpty(ScenarioFile))
-            {
-                fn = ScenarioFile;
-                StoGenParser.DefaultPath = fn.Replace(Path.GetFileName(fn), string.Empty);
-            }
-
-
-            if (File.Exists(fn))
-            {
-                StoGenParser.AddCadresToProcFromFile(this.CurrentProc, fn, part, StoGenParser.DefaultPath);
-                return true;
-            }
-
             return false;
+        }
+        public virtual bool PreProcessFileLists()
+        {
+            var i = 0;
+            foreach (var ad in this.CurrentProc.Scene.AlignList)
+            {                
+                var AppCadre = new Cadre(this.CurrentProc, true);
+                AppCadre.AlignData = ad;
+                //foreach (seIm data in cdr.VisionList)
+                //{
+                //    var ids = data.ToPictureDataSource();
+                //    ids.Level = (PicLevel)(cdr.VisionList.IndexOf(data));
+                //    AppCadre.PicFrameData.PictureDataList.Add(ids);
+                //}
+                //foreach (seSo data in cdr.SoundList)
+                //{
+                //    var sds = data.ToSoundDataSource();
+                //    sds.Position = cdr.SoundList.IndexOf(data);
+                //    AppCadre.SoundFrameData.Add(sds);
+                //}
+                //foreach (seTe data in cdr.TextList)
+                //{
+                //    AppCadre.TextFrameData.Add(data.ToTextDataSource());
+                //}
+            }
+            return true;         
         }
 
         #endregion
