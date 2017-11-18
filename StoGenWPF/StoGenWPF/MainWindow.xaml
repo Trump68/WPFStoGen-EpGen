@@ -28,22 +28,22 @@
         </Canvas>
         </Viewbox>
         <Canvas Name ="TextCanvas" Height="100" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="139,0,0,65">
-            <TextBlock  Name="Tb1"  Text="" FontSize="20" Foreground="White">
+            <TextBlock  Name="Tb1"  Text="asdasdasdasd" FontSize="20" Foreground="White" TextWrapping="Wrap">
                 <TextBlock.Effect>
                     <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="0"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <TextBlock  Name="Tb2" Text="" FontSize="20" Foreground="White">
+            <TextBlock  Name="Tb2" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
                 <TextBlock.Effect>
                     <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="90"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <TextBlock  Name="Tb3" Text="" FontSize="20" Foreground="White">
+            <TextBlock  Name="Tb3" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
                 <TextBlock.Effect>
                     <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="180"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <TextBlock  Name="Tb4" Text="" FontSize="20" Foreground="White">
+            <TextBlock  Name="Tb4" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
                 <TextBlock.Effect>
                     <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="270"/>
                 </TextBlock.Effect>

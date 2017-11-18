@@ -70,6 +70,11 @@ namespace StoGen.Classes
                 Projector.TextCanvas.Height = Size;
                 if (Width > 0) Projector.TextCanvas.Width = Width;
                 else Projector.TextCanvas.Width = 800;
+                Projector.TextBlock1.Width = Projector.TextCanvas.Width;
+                Projector.TextBlock2.Width = Projector.TextCanvas.Width;
+                Projector.TextBlock3.Width = Projector.TextCanvas.Width;
+                Projector.TextBlock4.Width = Projector.TextCanvas.Width;
+
                 double bm = Bottom;
                 double tm = Projector.TextCanvas.Margin.Top;
                 Projector.TextCanvas.Margin = new System.Windows.Thickness(Shift, tm, Projector.TextCanvas.Margin.Right, bm);
@@ -151,10 +156,10 @@ namespace StoGen.Classes
             Projector.TextVisible = true;
             
             string txt = string.Join(Environment.NewLine, TextList.ToArray());
-            TypewriteTextblock(txt, Projector.TextBlock1, new TimeSpan(0, 0, 1));
-            TypewriteTextblock(txt, Projector.TextBlock2, new TimeSpan(0, 0, 1));
-            TypewriteTextblock(txt, Projector.TextBlock3, new TimeSpan(0, 0, 1));
-            TypewriteTextblock(txt, Projector.TextBlock4, new TimeSpan(0, 0, 1));
+            TypewriteTextblock(txt, Projector.TextBlock1, new TimeSpan(0, 0, 3));
+            TypewriteTextblock(txt, Projector.TextBlock2, new TimeSpan(0, 0, 3));
+            TypewriteTextblock(txt, Projector.TextBlock3, new TimeSpan(0, 0, 3));
+            TypewriteTextblock(txt, Projector.TextBlock4, new TimeSpan(0, 0, 3));
 
             return this.Owner;
         }
@@ -217,122 +222,5 @@ namespace StoGen.Classes
         public bool Html { get; set; }
         public bool Rtf { get; set; }
     }
-    //public class TextData
-    //{
-    //    public TextData()
-    //    {
-    //        TextList = new List<string>();
-    //        BackColor = Colors.Tan;
-    //        AutoShow = true;
-    //        Rtf = false;
-    //    }
-    //    public List<string> TextList;
-    //    public string FileName;
-    //    internal string Part;
-    //    internal string Name;
-
-    //    public string FontName { get; set; }
-    //    public string Transition { get; set; }
-    //    public int Opacity { get; set; }
-    //    public int FontSize { get; set; }
-    //    public Color BackColor { get; set; }
-    //    public int Size { get; set; }
-    //    public int Shift { get; set; } = 200;
-    //    public bool AutoShow { get; set; }
-    //    public bool Rtf { get; set; }
-    //    public bool Html { get; set; }
-    //    public int Align { get; internal set; }
-    //    public string RawData { get; set; }
-    //    public int Width { get; internal set; }
-    //    public bool ClearBack { get; internal set; }
-    //    public int Bottom { get; internal set; }
-    //    public string FontColor { get; internal set; }
-
-    //    public void LoadfromFile(string fn)
-    //    {            
-    //        List<string> tt = Universe.LoadFileToStringList(fn);
-    //        LoadfromStringList(tt);
-    //    }
-    //    public void LoadfromStringList(List<string> data)
-    //    {
-    //        if (!string.IsNullOrEmpty(Part))
-    //        {
-    //            bool found = false;
-    //            foreach (string item in data)
-    //            {
-    //                if (!found && !item.StartsWith(@"@@" + Part) && !item.StartsWith(@"#" + Part))
-    //                {
-    //                    continue;
-    //                }
-    //                if (!found)
-    //                {
-    //                    found = true;
-    //                    continue;
-    //                }
-    //                if (item.StartsWith(@"@@") || item.StartsWith(@"#")) break;
-    //                this.TextList.Add(item);
-    //            }
-
-    //        }
-    //        else
-    //        {
-    //            this.TextList = data;
-    //        }
-
-    //    }
-    //}
-    //static class FontHelper
-    //{
-    //    private static List<string> _fonts = new List<string>()
-    //    {
-    //        "Mon Amour One",
-    //        "Mon Amour Two",
-    //        "Majestic",
-    //        "Menuet script",
-    //        "VivaldiD CL",
-    //        "Venski sad One",
-    //        "Rosamunda Two",
-    //        "Margarita script",
-    //        "Classica One",
-    //        "Bikham Cyr Script",
-    //        "Bolero script",
-    //        "1 Balmoral LET Plain1.0",
-    //        "DisneyPark",//Disney
-    //        "Shlapak Script",//Gothic
-    //        "PaladinPCRus Medium",//Gothic
-    //        "Deutsch Gothic",//Gothic
-    //        "CyrillicGoth Medium", //Gothic
-    //        "ChinaCyr", //china
-    //        "AsylbekM29.kz",//arabic
-    //        "DS Arabic", //arabic
-    //        "Devanagari Normal",//alien
-    //        "SpriteGraffitiShadow",//graffity
-    //        "SpriteGraffiti",//graffity
-    //        "NfS MW",//graffity
-    //        "RAZMAHONT Bold",//graffity
-    //        "Liana",//decor
-    //        "m_Brody",//decor
-    //        "RupsterScriptFree",//decor
-    //        "AngryBirds Regular",//decor
-    //        "Victoriana",//decor
-    //        "Xiomara",//decor
-    //        "a_Romanus",//decor
-    //        "Korinna Normal-Italic",//decor
-    //        "Korinna_SU Italic",//decor
-    //        "ER Architect 1251",//decor
-    //        "Briolin"//decor
-    //    };
-
-    //    public static string GetNextFont(string current)
-    //    {
-    //        int pos = _fonts.IndexOf(current);
-    //        if (pos == (_fonts.Count - 1)) pos = 0;
-    //        else pos++;
-    //        return _fonts[pos];
-    //    }
-
-      
-
-    //}
-
+ 
 }
