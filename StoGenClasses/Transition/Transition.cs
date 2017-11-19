@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StoGenMake
+namespace StoGen.Classes.Transition
 {
-    public static class Transition
+    public static class Transitions
     {
         static Random rnd = new Random();
         public static string Test_Opacity { get; } = "W..0>O.A.0.100>O.B.250.-100";

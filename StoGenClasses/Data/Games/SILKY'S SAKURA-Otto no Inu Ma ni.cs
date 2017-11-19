@@ -1,4 +1,5 @@
 ﻿
+using StoGen.Classes.Transition;
 using StoGenMake;
 using StoGenMake.Elements;
 using StoGenMake.Scenes.Base;
@@ -13,57 +14,7 @@ namespace StoGen.Classes.Data.Games
 {
     public class SILKYS_SAKURA_OttoNoInuMaNi : BaseScene
     {
-        class OpEf //Opacity transition effect
-        {
-            //new OpEf(1, true, 250, true, 1000)); to dissapear previous
-            //new OpEf(1, false,250, false,1000) to appear current
-            //new OpEf(1, true, 100, "W..0>O.B.400.-100*W..0>Y.B.200.300")
-            public static OpEf AppearCurrent(int i)
-            {
-               return new OpEf(i, false, 250, false, 0);
-            }
-            public static OpEf AppCurr(int i, string t)
-            {
-                return new OpEf(i, false, 0, t);
-            }
-            public static OpEf HidPrev(int i, string t)
-            {
-                return new OpEf(i, true, 100, t);
-            }
-            public static OpEf HidePrev(int i)
-            {
-                return new OpEf(i, true, 250, true, 0);
-            }
-            public OpEf(int l, bool p, int t, bool d, int w)
-            {
-                L = l;
-                P = p;
-                T = t;
-                W = w;
-                D = d;
-            }
-            //string CurrentTran = "W..1000>X.B.3000.100";
-            public string Tran = null;
-            public OpEf(int l, bool p, int o, string tran)
-            {
-                L = l;
-                P = p;                
-                O = o;
-                Tran = tran;
-            }
-            public OpEf(int l, int t)
-            {
-                L = l;               
-                T = t;
-            }
-            public int L = 0; // pic level            
-            public bool P = false; // false - current, true - previous
-            public int T = 500; //speed time, ms
-            public int W = 500; //wait time, ms
-            public bool D = true;//direction, true - dissapeared, false - appeared
-
-            public int O { get; set; } = 100;
-        }
+        
         public SILKYS_SAKURA_OttoNoInuMaNi() : base()
         {
             Name = "SILKYS_SAKURA_OttoNoInuMaNi";
@@ -75,14 +26,8 @@ namespace StoGen.Classes.Data.Games
         }
 
         List<string> data = new List<string>();
-        List<seSo> CurrentSounds = new List<seSo>();
-        string PATH_V = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Voice\";
-        string PATH_M = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Music\";
-        string PATH_E = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Effect\";
-        int VOLUME_V = 9;
-        int VOLUME_M = 1;
-        int VOLUME_E = 9;
-        int VOLUME_E2 = 1; // prolonged effect {loop=true}
+
+
 
         int SoundPauseNone = 0;
         int SoundPauseShort = 500;
@@ -91,7 +36,13 @@ namespace StoGen.Classes.Data.Games
         string BG_EVENING_CABINET = "SILKYS_SAKURA_OttoNoInuMaNi_BG06"; // evening cabinet
         string BG_EVENING_STREET = "SILKYS_SAKURA_OttoNoInuMaNi_BG07"; // evening street
         string BG_NIGHT_SKY = "SILKYS_SAKURA_OttoNoInuMaNi_BG08"; // night sky
+        string BG_MORNING_SKY = "SILKYS_SAKURA_OttoNoInuMaNi_BG12"; // morning sky
         string BG_LOVE_HOTEL = "SILKYS_SAKURA_OttoNoInuMaNi_BG09"; // love hotel
+        string BG_MORNING_BEDROOM = "SILKYS_SAKURA_OttoNoInuMaNi_BG10"; // morning bedroom
+        string BG_DAY_BEDROOM = "SILKYS_SAKURA_OttoNoInuMaNi_BG11"; // day bedroom
+        string BG_EVENING_BEDROOM = "SILKYS_SAKURA_OttoNoInuMaNi_BG04"; // evening bedroom
+
+
         string MAN1 = "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1";
         string MAN2 = "SILKYS_SAKURA_OttoNoInuMaNi_BM01_2";
         string MAN3 = "SILKYS_SAKURA_OttoNoInuMaNi_BM01_3";
@@ -104,6 +55,10 @@ namespace StoGen.Classes.Data.Games
         int s = 1370;
         protected override void LoadData()
         {
+            PATH_V = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Voice\";
+            PATH_M = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Music\";
+            PATH_E = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Effect\";
+
             this.BadMan.I = "мистер Минода";
             this.BadMan.R = "мистера Миноды";
             this.BadMan.D = "мистеру Миноде";
@@ -165,6 +120,9 @@ namespace StoGen.Classes.Data.Games
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG07", "BG07.png", path);// { hight street}
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG08", "BG08.png", path);// { hight sky}
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG09", "BG09.png", path);// { love hotel}
+            AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG10", "BG10.png", path);// { morning bedroom}
+            AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG11", "BG11.png", path);// { day bedroom}
+            AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BG12", "BG12.png", path);// { morning sky}
 
             AddToGlobalImage("FLASH_BG", "WHITE.JPG", path);
 
@@ -218,6 +176,9 @@ namespace StoGen.Classes.Data.Games
             Cartina_LoveHotelBegin();
             Cartina_Blowjob();
             Cartina_FinansistHotelFuck();
+            Cartina_MorningAfterFinansistHotelFuck();
+            Cartina_DayAfterFinansistHotelFuck();
+            Cartina_EveningAfterFinansistHotelFuck();
         }
 
         private void Cartina_HusbCall1()
@@ -2547,9 +2508,6 @@ namespace StoGen.Classes.Data.Games
             DoC(g, 0, null, null, $"Even though I just got out earlier, I still wish I could have gone so much.");
             DoC(g, 0, null, null, $"Besides, I also reached it lightly with Mr. Minodo's ejaculation.");
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~(Ah ... .... Ah, it's hot, so much ...!!)");
-            DoC(g, 0, null, null, $"Besides, I also reached it lightly with Mr. Minodo's ejaculation.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(g, 0, null, null, $"({Girl}~(Uoo, ... together until me ......) ");
             DoC(g, 0, null, null, $"It is embarrassing that we have reached together if it only serves.");
             DoC(g, 0, null, null, $"It makes me feel comfortable by being made by someone other than Kohei.");
@@ -2588,8 +2546,8 @@ namespace StoGen.Classes.Data.Games
             DoC(g, 0, null, null, $"И это вызвало тело так, чтобы отклонить мое тело.");
             DoC(0, 0, null, null, $"");
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            S1 = 1100; X1 = 750;  Y1 = 55;
-            S2 = 0715; X2 = -50;  Y2 = 55;
+            S1 = 1100; X1 = 750; Y1 = 55;
+            S2 = 0715; X2 = -50; Y2 = 55;
             g = 1097;
             DoC(g, 0, MAN, BG, $"{Girl}~ ...... ",
                 OpEf.AppCurr(2, "W..0>O.B.400.100*W..0>X.B.400.300"),
@@ -2601,6 +2559,7 @@ namespace StoGen.Classes.Data.Games
             DoC(g, 0, MAN, BG, $"{Girl}~(...oh....{GoodMan}....)");
             DoC(g, 0, MAN, BG, $"The leg trembles as if I think I will cross the last line.");
             DoC(g, 0, MAN, BG, $"But Mr. Mihito returned his heel on the spot and turned his back on me.");
+            AddMusic("music.arc_000007.wav");
             DoC(g, 0, MAN, BG, $"{BadMan}~I get back after taking a shower.Since check out is keep finished earlier, may you're back at you like timing.");
             g = 1094;
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
@@ -2609,37 +2568,214 @@ namespace StoGen.Classes.Data.Games
             DoC(g, 0, MAN, BG, $"And put it in his mouth, it was afraid that become snake.");
             DoC(g, 0, null, BG, $"Mr. Minato enters the bath, as it is.",
                 OpEf.HidPrev(2, "W..0>O.B.400.-100*W..0>X.B.400.-300"));
+            AddEffect1($"effect.arc_000020.wav", SoundPauseShort, false);//Effect - shoot door            
             g = 1095;
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(g, 0, null, BG, $"{Girl}~... I wonder what it is ... ...", OpEf.HidePrev(1));
+            AddEffect2($"effect.arc_000108.wav", SoundPauseNone, false);//Effect - shower   (also effect.arc_000106.wav)         
             DoC(g, 0, null, BG, $"I do not quite understand it, but I did not go beyond the last one line.");
             DoC(g, 0, null, BG, $"While relieving to that, it also makes me uneasy.");
             DoC(g, 0, null, BG, $"Because I was not sure what Mr. Mito thought.");
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(g, 0, null, BG, $"{Girl}~(Perhaps, I was already satisfied ... ...?)");
             DoC(g, 0, null, BG, $"I wanted to think so because it was issued twice, but I do not understand well because there is no object compared to except Mr. Kohei.");
+            CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
+            AddEffect1($"effect.arc_000020.wav", SoundPauseShort, false);//Effect - shoot door
             DoC(g, 0, null, BG, $"Mr. Mito finishes showering and comes back while I am confused as to what I should do.");
-            MAN = MAN2; X2 = -50;
+            MAN = MAN2; X2 = -50;           
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(g, 0, MAN, BG, $"{Girl}~ ......  ......  ......  ......  ...... ",
-               OpEf.AppCurr(2, "W..0>O.B.400.100*W..0>X.B.400.300")          
+               OpEf.AppCurr(2, "W..0>O.B.400.100*W..0>X.B.400.300")
                );
             MAN = MAN1; X2 = -50;
-            DoC(g, 0, MAN, BG, $"And in front of my eyes I changed to a suit again."                
+            DoC(g, 0, MAN, BG, $"And in front of my eyes I changed to a suit again."
                 , OpEf.HidPrev(2, "W..0000>O.B.400.-100*W..0000>X.B.400.-300")
                 , OpEf.AppCurr(2, "W..1000>O.B.400.+100*W..1000>X.B.400.+300")
                );
             X2 = 250;
             DoC(g, 0, MAN, BG, $"{BadMan}~Well then, I will contact you again.");
-            //DoC(g, 0, null, BG, $"");
-            //DoC(g, 0, null, BG, $"");
-            //DoC(g, 0, null, BG, $"");
-            //DoC(g, 0, null, BG, $"");
-            //DoC(g, 0, null, BG, $"");
-            //DoC(g, 0, null, BG, $"");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, MAN, BG, $"{Girl}~ ......  ...... yes ......  ......  ...... ");
+            
+            DoC(g, 0, null, BG, $"And, as it was, he really left the room."
+                , OpEf.HidPrev(2, "W..0000>O.B.400.-100*W..0000>X.B.400.-300"));
+            AddEffect1($"effect.arc_000020.wav", SoundPauseShort, false);//Effect - shoot door
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, BG, $"{Girl}~Did you finish? truly……?");
+            DoC(g, 0, null, BG, $"While seeing the door where Mr. Mihara disappeared, power came through from the whole body at a stretch.");
+            DoC(g, 0, null, BG, $"I did not understand well before I ended up.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, BG, $"{Girl}~It was good ...");
+            DoC(g, 0, null, BG, $"I was able to survive on day one.");
+            DoC(g, 0, null, BG, $"I do not know what will become of him from tomorrow, but I am filled with a feeling of relief that I just did not go beyond the last one line.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, BG, $"{Girl}~Let me take a shower and go home ......");
+
+            S2 = 1500; X2 = 0; Y2 = 0;
+            MAN = "SILKYS_SAKURA_OttoNoInuMaNi_PLACEHOLDER";
+            DoC(g, 0, MAN, BG, $"",
+                OpEf.AppCurr(2, "W..0>O.B.2000.+100"));
         }
+        private void Cartina_MorningAfterFinansistHotelFuck()
+        {
+            string BG = BG_MORNING_BEDROOM; //
+            string MAN = MAN2;
 
+            currentGr = "19.At Home after hotel fuck.";
+            int i = 856; // voice indexer
+            CurrentSounds = new List<seSo>();
+            //Music ============================
+            AddMusic("music.arc_000001.wav");
+            //Music ============================
 
+            DoC(0, 0, null, BG, $"The next day, when I woke up I was already close to lunch.");
+            DoC(0, 0, null, BG, $"I came back yesterday and seemed to have gone to bed without changing clothes.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            int g = 1063;
+            X1 = 135;
+            DoC(g, 0, null, BG, $"{Girl}~Uoo ... ... ... head ... hurts ... ",
+                OpEf.AppearCurrent(1)
+            );
+            DoC(g, 0, null, BG, $"Besides, I still have liquor yesterday, I feel a little headache and I am not feeling well.");
+            DoC(g, 0, null, BG, $"I wonder if you should take something even medicine.");
+            DoC(g, 0, null, BG, $"When I woke up as I thought of such things, the events of yesterday came back at once.");
+            g = 1062;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, BG, $"{Girl}~ ... ... ... me ...  ... ",
+                 OpEf.HidePrev(1));
+            DoC(g, 0, null, BG, $"I was drunk on Mr. Minato, and entered a love hotel together.");
+            DoC(g, 0, null, BG, $"I never crossed the last line, but I can not deny the fact that I forgave my body.");
+            g = 1064;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, BG, $"{Girl}~I have done such a thing ... ... ... ",
+                 OpEf.HidePrev(1));
+            DoC(g, 0, null, BG, $"I accepted it thought that I would not refuse, but my heart aches when I think about Kohei.");
+            DoC(g, 0, null, BG, $"But at the same time, there was a relieved part.");
+            DoC(g, 0, null, BG, $"If I had crossed the last line, I could not see Kohei's face anymore.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, BG, $"{Girl}~I was okay not to be ... ... I guess it's useless, surely ... Yayoi");
+            DoC(g, 0, null, BG, $"Also, my promise with Mr. Minato lasts a week.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, BG, $"{Girl}~You are called again ... ...");
+            DoC(g, 0, null, BG, $"Because I just finished is still one day, I do not know what's coming.");
+            DoC(g, 0, null, BG, $"I feel heavy considering that fact.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, BG, $"{Girl}~ ahh.....");
+            DoC(g, 0, null, BG, $"I definitely do not want to cross a line. I do not want to do something like yesterday again.");
+            DoC(g, 0, null, BG, $"Perhaps I can dig into Mr. Mitsudo if I lie to the point that I have fallen ill.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, BG, $"{Girl}~But, I'm going to be able to see through lies I throw up .");
+            DoC(g, 0, null, BG, $"Even just one day yesterday, it's Minafuji was able to understand a little.");
+            DoC(g, 0, null, BG, $"...... I want to say, but I can not read any action at all and I can not understand that behavior.I only understood.");
+            DoC(g, 0, null, BG, $"In the end it was such a thing, but I still do not know why why I took a meal or a movie.");
+            S2 = 1500; X2 = 0; Y2 = 0;
+            MAN = "SILKYS_SAKURA_OttoNoInuMaNi_PLACEHOLDER";
+            DoC(g, 0, MAN, BG, $"",
+                OpEf.AppCurr(2, "W..0>O.B.2000.+100"));
+        }
+        private void Cartina_DayAfterFinansistHotelFuck()
+        {
+            string BG = BG_DAY_BEDROOM; //
+            string MAN = MAN2;
+
+            currentGr = "20.Day after hotel fuck.";
+            int i = 863; // voice indexer
+            CurrentSounds = new List<seSo>();
+            //Music ============================
+            AddMusic("music.arc_000007.wav");
+            //Music ============================
+
+            DoC(0, 0, null, BG, $"While I was anxious, I was frightened and waited, but even though evening I did not hear from Mr. Mito.");           
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            int g = 1049;
+            X1 = 135;
+            DoC(g, 0, null, BG, $"{Girl}~I wonder if I should contact you from ...?",
+                OpEf.AppearCurrent(1)
+            );
+            DoC(g, 0, null, BG, $"I just wait at home, but my sense of mental exhaustion is terrible.");
+            DoC(g, 0, null, BG, $"Today I was not cleaned and washing, but I was completely tired.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, BG, $"{Girl}~(But I also have trouble contacting me and becoming a snorkeler)");
+            DoC(g, 0, null, BG, $"It is not necessary if there is no contact, because that person is kind enough for me.");
+            g = 1050;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, BG, $"{Girl}~ahhh",
+                OpEf.HidePrev(1));
+            DoC(g, 0, null, BG, $"After all, I could only sigh.");
+            S2 = 1500; X2 = 0; Y2 = 0;
+            MAN = "SILKYS_SAKURA_OttoNoInuMaNi_PLACEHOLDER";
+            DoC(g, 0, MAN, BG, $"",
+                OpEf.AppCurr(2, "W..0>O.B.2000.+100"));
+        }
+        private void Cartina_EveningAfterFinansistHotelFuck()
+        {
+            string BG = BG_EVENING_BEDROOM; //
+            string MAN = MAN2;
+
+            currentGr = "21.Evening after hotel fuck.";
+            int i = 863; // voice indexer
+            CurrentSounds = new List<seSo>();
+            //Music ============================
+            AddMusic("music.arc_000009.wav");
+            //Music ============================
+
+            DoC(0, 0, null, BG, $"I kept waiting at home forever, but there was no contact from Mr. Minato");
+            DoC(0, 0, null, BG, $"The date of the clock's hand is about to change soon.");
+
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            int g = 1049;
+            X1 = 135;
+            DoC(g, 0, null, BG, $"{Girl}~Anything, I will not be called from such a time ... Yayoi",
+                OpEf.AppearCurrent(1)
+            );
+            DoC(g, 0, null, BG, $"Kohei, too, was busy with work today and I could not video chat.");
+            DoC(g, 0, null, BG, $"But, it is painful to see the face properly now, so I feel like I was not good.");
+            g = 1050;
+            X1 = 135;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, BG, $"{Girl}~ahh",
+                OpEf.HidePrev(1)
+            );
+            DoC(g, 0, null, BG, $"Мне немного грустно, что я чувствую облегчение, что не могу поговорить с г-ном Кохеем.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, BG, $"{Girl}~I have not been called today, but I have five days to keep promises.");
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            DoC(g, 0, null, BG, $"{Girl}~I wonder if it is tomorrow ...... Yayoi");
+            DoC(g, 0, null, BG, $"When I think about things from tomorrow, I feel still heavy.");
+            DoC(g, 0, null, BG, $"It's about time we had to go to bed, but I thought of various things, I had not been able to sleep yet for a while.");
+            S2 = 1500; X2 = 0; Y2 = 0;
+            MAN = "SILKYS_SAKURA_OttoNoInuMaNi_PLACEHOLDER";
+            DoC(g, 0, MAN, BG, $"",
+                OpEf.AppCurr(2, "W..0>O.B.2000.+100"));
+
+            CurrentSounds.RemoveAll(x => x.Name == "MUSIC");
+            AddEffect2($"effect.arc_000018.wav", SoundPauseNone, false);//Effect - night
+            BG = BG_NIGHT_SKY;
+            DoC(0, 0, null, BG, $".....",
+                OpEf.HidPrev(2, "W..0>O.B.2000.-100"));
+            DoC(0, 0, null, BG, $"..... .....");
+            DoC(0, 0, null, BG, $"..... ..... .....");
+            CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
+
+            BG = BG_MORNING_SKY;
+            DoC(0, 0, null, BG, $"But even the next day -",
+              OpEf.HidPrev(0, "W..0>O.B.2000.-100"));
+            DoC(0, 0, null, BG, $"And next day -");
+
+            AddMusic("music.arc_000001.wav");
+            BG = BG_MORNING_BEDROOM; //
+            DoC(0, 0, null, BG, $"There was no contact from Mr. Minato.",
+                       OpEf.HidPrev(0, "W..0>O.B.2000.-100"));
+
+            i = 870;
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
+            g = 1049;
+            X1 = 135;
+            DoC(g, 0, null, BG, $"{Girl}~Three days left ...... What do you mean ...?",
+                OpEf.AppearCurrent(1)
+            );
+
+        }
         private void AddEffect1(string effect1, int effect1Pause, bool effect1Loop)
         {
             if (!string.IsNullOrEmpty(effect1))
@@ -2692,33 +2828,9 @@ namespace StoGen.Classes.Data.Games
             CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
         }
 
-        private void RemoveMusic()
-        {
-            CurrentSounds.RemoveAll(x => x.Name == "MUSIC");
-        }
-        private void AddMusic(string file)
-        {
-            RemoveMusic();
-            CurrentSounds.Add(new seSo()
-            { File = $"{PATH_M}{file}",
-                Name = "MUSIC",
-                StartPlay = 1,
-                IsLoop = true,
-                V = VOLUME_M });
-        }
-        private void ClearSound()
-        {
-            ClearSound(true,true, true);
-        }
-        private void ClearSound(bool music, bool effect1, bool voice)
-        {
-            if (music)
-            CurrentSounds.RemoveAll(x => x.Name == "MUSIC");
-            if (effect1)
-            CurrentSounds.RemoveAll(x => x.Name == "EFFECT1");
-            if (voice)
-            CurrentSounds.RemoveAll(x => x.Name == "VOICE");
-        }
+      
+      
+      
 
         private void AddCadr(int index, string Bg, string text, OpEf op = null)
         { DoC(index, 0, null, Bg, text , op); }
@@ -2866,7 +2978,7 @@ namespace StoGen.Classes.Data.Games
            
             if (ORGAZM)
             {
-                cdata.Add(new DifData() { Name = "FLASH_BG",O=0, S=1370, T=Transition.Test_Opacity});
+                cdata.Add(new DifData() { Name = "FLASH_BG",O=0, S=1370, T= Transitions.Test_Opacity});
                 ORGAZM = false;
             }
 
@@ -2961,10 +3073,10 @@ namespace StoGen.Classes.Data.Games
         protected override void DoFilter(string cadregroup)
         {       
             string[] cd = new string[] {
-                "18.Love Hotel - second part."
+                "21.Evening after hotel fuck."
             };
             base.DoFilter(cd);
-            this.AlignList.Reverse();
+            //this.AlignList.Reverse();
         }
     }
 

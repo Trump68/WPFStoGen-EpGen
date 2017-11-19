@@ -86,6 +86,7 @@
     <Compile Include="Data\A001-Woman.cs" />
     <Compile Include="Data\AUX01-Accesuar.cs" />
     <Compile Include="Data\Games\SILKY%27S SAKURA-Otto no Inu Ma ni.cs" />
+    <Compile Include="Data\Movie\[2011][USA][SRL] Homeland.cs" />
     <Compile Include="Data\SC000-TestTran.cs" />
     <Compile Include="Data\SC000-Various.cs" />
     <Compile Include="Data\SC001-Fools Art.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Scene\ScenElement.cs" />
     <Compile Include="Scene\SceneMaker.cs" />
     <Compile Include="Scene\SoundStore.cs" />
+    <Compile Include="Transition\OpEf.cs" />
     <Compile Include="Transition\Transition.cs" />
     <Compile Include="Transition\TransitionManager.cs" />
     <Compile Include="Universe.cs" />

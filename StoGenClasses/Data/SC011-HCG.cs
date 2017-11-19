@@ -1,13 +1,9 @@
-﻿using StoGenMake;
-using StoGenMake.Persona;
+﻿using StoGenMake.Persona;
 using StoGenMake.Scenes;
 using StoGenMake.Scenes.Base;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using StoGen.Classes.Transition;
 namespace StoGen.Classes.Data
 {
     public class SC011_HCG : BaseScene
@@ -142,8 +138,8 @@ namespace StoGen.Classes.Data
                 if (this.Face.Name == this.FaceList[0])
                 {
                     // closed eyes
-                    result.Insert(result.IndexOf(result.Where(x => x.Name == this.Face.Name).FirstOrDefault()) + 1,
-                        new DifData(PartList[5], FaceList[0]) { O = 1, T = Transition.Eyes_Blink });
+                    result.Insert(result.IndexOf(result.Where(x => x.Name == Face.Name).FirstOrDefault()) + 1,
+                        new DifData(PartList[5], FaceList[0]) { O = 1, T = Transitions.Eyes_Blink });
                 }
                 result.Add(new DifData(Devil.ManOld_001) { X = 740, Y = -5, S = 1000, F = 0 });
                 return result;
@@ -320,7 +316,7 @@ namespace StoGen.Classes.Data
                         result.Add(new DifData(PartList[1], FaceList[0]) { });
 
                     // closed eyes
-                    result.Add(new DifData(PartList[0], FaceList[0]) { O = 0, T = Transition.Eyes_Blink });
+                    result.Add(new DifData(PartList[0], FaceList[0]) { O = 0, T = Transitions.Eyes_Blink });
                 }
                 return result;
             }
@@ -440,7 +436,7 @@ namespace StoGen.Classes.Data
                     if (this.Variant == 4)
                         result.Add(new DifData(PartList[1], FaceList[0]) { });
                     // closed eyes
-                    result.Add(new DifData(PartList[0], FaceList[0]) { O = 0, T = Transition.Eyes_Blink });
+                    result.Add(new DifData(PartList[0], FaceList[0]) { O = 0, T = Transitions.Eyes_Blink });
                 }
 
                 result.Add(new DifData(Devil.ManOld_001) { X = 885, Y = 65, S = 1125, F = 0 });

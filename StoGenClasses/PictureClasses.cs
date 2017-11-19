@@ -73,20 +73,12 @@ namespace StoGen.Classes
             if (sourceApperance.SizeX != 0) this.SizeX = sourceApperance.SizeX;
             if (sourceApperance.SizeY != 0) this.SizeY = sourceApperance.SizeY;
             this.Z = sourceApperance.Z;
-            this.R = sourceApperance.R;
             this.Level = sourceApperance.Level;
             this.Rotate = sourceApperance.Rotate;
             this.Align = sourceApperance.Align;
             this.SizeMode = sourceApperance.SizeMode;
-            this.PP1= sourceApperance.PP1;
-            this.PP2 = sourceApperance.PP2;
-            this.isLoop = sourceApperance.isLoop;
             this.BackColor = sourceApperance.BackColor;
             this.BackFileName = sourceApperance.BackFileName;
-            this.RateMax = sourceApperance.RateMax;
-            this.RateMin = sourceApperance.RateMin;
-            this.StartPos = sourceApperance.StartPos;
-            this.EndPos = sourceApperance.EndPos;
             this.NextCadre = sourceApperance.NextCadre;
             this.Opacity = sourceApperance.Opacity;
             this.SetName = sourceApperance.SetName;
@@ -108,7 +100,8 @@ namespace StoGen.Classes
             this.ClipY = sourceApperance.ClipY;
             this.Transition = sourceApperance.Transition;
             this.ParFlip = sourceApperance.ParFlip;
-            this.Mute = sourceApperance.Mute;
+            this.Animations.Clear();
+            this.Animations.AddRange(sourceApperance.Animations);
             this.Parent = sourceApperance.Parent;
         }
         public void Assign(PictureSourceProps sourceApperance)
@@ -128,6 +121,7 @@ namespace StoGen.Classes
         }
 
     }
+
     public class PictureProps : PictureBaseProp
     {
       
@@ -157,85 +151,91 @@ namespace StoGen.Classes
         public string Parent { get; set; }
         internal string SetName { get; set; }
         public bool AutoShift { get; set; }
-        public int R { get; set; }
-        public int Rmax { get; set; }
-        public int Rmin { get; set; }
+        
+
         public int SizeX { get; set; }
         public int SizeY { get; set; }
         public int Opacity { get; set; } = 100;
-        public double StartPos { get; set; }
-        public double EndPos { get; set; }
+    
         public double NextCadre { get; set; }
-        public int PP1 { get; set; } // pause period, ms
-        public int PP2 { get; set; } // pause period, ms
+
         public int Rotate { get; set; }
-        public AnimationRate Rate
-        {
-            get { return (AnimationRate)R; }
-            set { R = (int)value; }
-        }
-        public AnimationRate RateMax
-        {
-            get { return (AnimationRate)Rmax; }
-            set { Rmax = (int)value; }
-        }
-        public AnimationRate RateMin
-        {
-            get { return (AnimationRate)Rmin; }
-            set { Rmin = (int)value; }
-        }
+
         public int Zoom
         {
             get { return Z; }
             set { Z = value; }
         }
-        public bool Mute { get; internal set; } = true;
         public ContentAlignment Align { get; set; }
         public PictureSizeMode SizeMode { get; set; }
-        public int isLoop { get; set; }
         public string BackFileName { get; set; }
         public System.Drawing.Color BackColor { get; set; }
         public RotateFlipType Flip { get; set; }
-        public PictureProps(AnimationRate rate)
-            : this()
-        {
-            this.R = (int)rate;
-            this.AutoShift = false;
-        }
-        public PictureProps(int x, int y, int zoom, AnimationRate rate)
-            : this()
-        {
-            this.X = x;
-            this.Y = y;
-            this.Z = zoom;
-            this.R = (int)rate;
-        }
-        public PictureProps(int x, int y, int zoom)
-            : this(x, y, zoom, 0)
-        {
 
-        }
-        public PictureProps(int x, int y)
-            : this(x, y, 100, 0)
-        {
-        }
+
         public PictureProps()
         {
             BackColor = System.Drawing.Color.Transparent;
             this.Align = ContentAlignment.TopLeft;
             this.SizeMode = PictureSizeMode.Clip;
-            this.isLoop = 1;
             this.Zoom = 100;
             this.Rotate = 0;
-            this.RateMax = AnimationRate.VeryFast;
-            this.RateMin = AnimationRate.VerySlow;
-            this.Rate = AnimationRate.Default;
+            //this.RateMax = AnimationRate.VeryFast;
+            //this.RateMin = AnimationRate.VerySlow;
+            //this.Rate = AnimationRate.Default;
             this.Flip = RotateFlipType.RotateNoneFlipNone;
         }
         internal bool isMain = false;
         public string Flash = null;
         public string Transition = null;
         public string ParFlip = null;
+        public List<AP> Animations = new List<AP>();
+        private AP _CurrentAnimation;
+        public AP CurrentAnimation
+        {
+            get
+            {
+                if (_CurrentAnimation == null)
+                {
+                    _CurrentAnimation = Animations.FirstOrDefault();
+                }
+                return _CurrentAnimation;
+            }
+        }
+    }
+    public class AP
+    {
+        public int AR { set; get; } = 100;//animation ratio
+        public int AV { set; get; } = 100;//animation volume
+        public double APS { set; get; } //animation start pos
+        public double APE { set; get; } //animation end pos
+        public int AWS { set; get; } //animation wait start
+        public int AWE { set; get; } //animation wait end
+        public int ALM { set; get; } = -1;//animation loop mode
+        public int ALC { set; get; } = 0; //loop count, 0 - endless
+        //public double StartPos { get; set; }
+        //public double EndPos { get; set; }
+        //public int Volume { get; set; } = 100;
+        //public int R { get; set; }
+        //public int Rmax { get; set; }
+        //public int Rmin { get; set; }
+        //public AnimationRate Rate
+        //{
+        //    get { return (AnimationRate)R; }
+        //    set { R = (int)value; }
+        //}
+        //public AnimationRate RateMax
+        //{
+        //    get { return (AnimationRate)Rmax; }
+        //    set { Rmax = (int)value; }
+        //}
+        //public AnimationRate RateMin
+        //{
+        //    get { return (AnimationRate)Rmin; }
+        //    set { Rmin = (int)value; }
+        //}
+        //public int PP1 { get; set; } // pause period, ms
+        //public int PP2 { get; set; } // pause period, ms
     }
     public class PictureBaseProp
     {

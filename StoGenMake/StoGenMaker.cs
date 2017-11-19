@@ -5,32 +5,20 @@ using System.Collections.Generic;
 using System.IO;
 using StoGenMake.Pers;
 using StoGen.Classes.Data.Games;
+using StoGen.Classes.Data.Movie;
 
 namespace StoGenMake
 {
     public static class StoGenMaker
     {
-        //static string ExecDir;
-        //static string TemplateDirName = "Templates";
-        //static KeyVarDataContainer KeyVarContainer = new KeyVarDataContainer();
         static List<BaseScene> SceneList = new List<BaseScene>();
-        //static string FileToProcess = null;
-        //static string TemplateDirPath { get { return Path.Combine(ExecDir, TemplateDirName); } }
         public static void Start(string[] args)
         {
-
-            //ExecDir = Path.GetDirectoryName(args[0]);
-            //if (!Directory.Exists(TemplateDirPath)) Directory.CreateDirectory(TemplateDirPath);
-            //if (args.Length > 1)
-            //{
-            //    FileToProcess = args[1];
-            //}
             GenerateScen();
         }
         private static void GenerateScen()
         {
-                        
-            
+
             GameWorldFactory.GameWorld.LoadData();
             //var scen = new SC001_FoolsArt();
             //  var scen = new SC000_TestTran();
@@ -38,7 +26,8 @@ namespace StoGenMake
             //var scen = new TestScene();
             //var scen = new SC007_CleMasahiro();
             //var scen = new A001_Woman();
-            var scen = new SILKYS_SAKURA_OttoNoInuMaNi();
+            //var scen = new SILKYS_SAKURA_OttoNoInuMaNi();
+            var scen = new _2011_USA_SRL_Homeland();
 
             string fn = scen.Generate();
 

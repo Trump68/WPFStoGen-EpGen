@@ -6,6 +6,7 @@ using StoGenMake.Elements;
 using StoGenMake.Scenes;
 using StoGen.Classes.Data;
 using StoGen.Classes.Data.Games;
+using StoGen.Classes.Data.Movie;
 
 namespace StoGenMake
 {
@@ -54,7 +55,7 @@ namespace StoGenMake
 
             this.SceneList.Add(new A001_Woman());
             this.SceneList.Add(new SILKYS_SAKURA_OttoNoInuMaNi());
-            //this.PersoneList.Add(new LADY_011017());
+            this.SceneList.Add(new _2011_USA_SRL_Homeland());
 
 
         }

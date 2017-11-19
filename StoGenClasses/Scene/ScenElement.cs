@@ -71,6 +71,9 @@ namespace StoGenMake.Elements
             if (dd.R.HasValue) this.R = dd.R.Value;
             if (dd.F.HasValue) this.F = dd.F.Value;
             if (dd.O.HasValue) this.O = dd.O.Value;
+            this.Animations.Clear();
+            this.Animations.AddRange(dd.AL);
+
             if (!string.IsNullOrEmpty(dd.T)) this.T = dd.T;
         }
 
@@ -89,6 +92,15 @@ namespace StoGenMake.Elements
             pi.Rotate = this.R;
             pi.X = this.X;
             pi.Y = this.Y;
+            pi.Animations.Clear();
+            pi.Animations.AddRange(this.Animations);
+            //if (this.AR.HasValue) pi.Rate = (AnimationRate)this.AR.Value;
+            //if (this.AV.HasValue) pi.Volume = this.AV.Value;
+            //if (this.APS.HasValue) pi.StartPos = this.APS.Value;
+            //if (this.APE.HasValue) pi.EndPos = this.APE.Value;
+            //if (this.AWS.HasValue) pi.Timer = this.AWS.Value;
+            //if (this.AWE.HasValue) pi.Timer2 = this.AWE.Value;
+            //if (this.ALM.HasValue) pi.isLoop = this.ALM.Value;
             return pi;
         }
 
@@ -104,7 +116,7 @@ namespace StoGenMake.Elements
             result.Add($"Level=-1");
             return string.Join(";", result.ToArray());
         }
-
+        public List<AP> Animations = new List<AP>();
         public int Sx = 900;
         public int Sy = 600;
         public int SizeMode = 1;
@@ -113,6 +125,14 @@ namespace StoGenMake.Elements
         public int O = 100;
         public int Timer = -1;
         public int F = 0;
+        //public int? AR { set; get; } //animation ratio
+        //public int? AV { set; get; } //animation volume
+        //public double? APS { set; get; } //animation start pos
+        //public double? APE { set; get; } //animation end pos
+        //public int? AWS { set; get; } //animation wait start
+        //public int? AWE { set; get; } //animation wait end
+        //public int? ALM { set; get; } //animation loop mode
+
         public int R { get; set; } = 0;
         public override bool IsActivated { get { return (this == Previous) || (!string.IsNullOrEmpty(this.File)); } }
 
@@ -186,6 +206,8 @@ namespace StoGenMake.Elements
             this.T = image.T;
             this.ParentFlips.Clear();
             this.ParentFlips.AddRange(image.ParentFlips);
+            this.Animations.Clear();
+            this.Animations.AddRange(image.Animations);
 
         }
 

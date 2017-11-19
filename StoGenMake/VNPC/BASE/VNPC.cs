@@ -1,4 +1,5 @@
 ﻿using StoGen.Classes;
+using StoGen.Classes.Transition;
 using StoGenLife.NPC;
 using StoGenLife.SOUND;
 using StoGenMake;
@@ -366,7 +367,7 @@ namespace StoGenMake.Pers
 
             var image = cadre.AddImage(Current.image);
             if (invisible || reverse)
-                image.T = Transition.Mouth(200, reverse, periodic, permanent);
+                image.T = Transitions.Mouth(200, reverse, periodic, permanent);
         }
 
     }
@@ -433,7 +434,7 @@ namespace StoGenMake.Pers
 
             var image = cadre.AddImage(im);
             if (invisible|| reverse)
-                image.T = Transition.Blush(500, reverse, periodic, permanent);
+                image.T = Transitions.Blush(500, reverse, periodic, permanent);
         }
     }
     public class vFcSkinS : VNPCBodyPartSnap
@@ -496,7 +497,7 @@ namespace StoGenMake.Pers
 
             var image = cadre.AddImage(Current.image);
             if (invisible|| reverse)
-                image.T = Transition.Blush(500, reverse, false, false);
+                image.T = Transitions.Blush(500, reverse, false, false);
         }
 
     }
@@ -568,13 +569,13 @@ namespace StoGenMake.Pers
 
             var image = cadre.AddImage(Current.image);
             if (invisible || reverse)
-                image.T = Transition.Eyes(200, reverse, periodic, permanent);
+                image.T = Transitions.Eyes(200, reverse, periodic, permanent);
 
             var im = Items.Where(x => x.Type == Type.Close).FirstOrDefault();
             if (im == null) return;
             im.image.O = 0;
             image = cadre.AddImage(im.image);
-            image.T = Transition.Eye_Close;
+            image.T = Transitions.Eye_Close;
         }
 
     }

@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows;
 using StoGenMake.Elements;
 using System.Linq;
+using StoGen.Classes.Transition;
 
 namespace StoGen.Classes
 {

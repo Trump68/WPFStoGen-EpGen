@@ -145,7 +145,45 @@ namespace StoGenMake.Scenes.Base
     {
         public int EngineHiVer = 0;
         public int EngineLoVer = 0;
-
+        #region Sound
+        public List<seSo> CurrentSounds = new List<seSo>();
+        public string PATH_V;
+        public string PATH_M;
+        public string PATH_E;
+        public int VOLUME_V = 9;
+        public int VOLUME_M = 1;
+        public int VOLUME_E = 9;
+        public int VOLUME_E2 = 1; // prolonged effect {loop=true}
+        public void RemoveMusic()
+        {
+            CurrentSounds.RemoveAll(x => x.Name == "MUSIC");
+        }
+        public void AddMusic(string file)
+        {
+            RemoveMusic();
+            CurrentSounds.Add(new seSo()
+            {
+                File = $"{PATH_M}{file}",
+                Name = "MUSIC",
+                StartPlay = 1,
+                IsLoop = true,
+                V = VOLUME_M
+            });
+        }
+        public void ClearSound()
+        {
+            ClearSound(true, true, true);
+        }
+        public void ClearSound(bool music, bool effect1, bool voice)
+        {
+            if (music)
+                CurrentSounds.RemoveAll(x => x.Name == "MUSIC");
+            if (effect1)
+                CurrentSounds.RemoveAll(x => x.Name == "EFFECT1");
+            if (voice)
+                CurrentSounds.RemoveAll(x => x.Name == "VOICE");
+        } 
+        #endregion
         protected virtual void DoFilter(string[] cadregroups, bool all = false)
         {
             this.AlignList.RemoveAll(x =>
@@ -477,7 +515,7 @@ namespace StoGenMake.Scenes.Base
 
     public class DifData
     {
-
+       
         public DifData() { }
         public DifData(string name) : this() { Name = name; }
         public DifData(string name, string parent) : this() { Name = name; Parent = parent; }
@@ -487,12 +525,7 @@ namespace StoGenMake.Scenes.Base
             this.Parent = item.Parent;
             if (item.Im != null)
             {
-                this.X = item.Im.X;
-                this.Y = item.Im.Y;
-                this.Sy = item.Im.Sy;
-                this.Sx = item.Im.Sx;
-                this.R = item.Im.R;
-                this.F = item.Im.F;
+                this.AssingFrom(item.Im, false);
             }
 
         }
@@ -536,6 +569,9 @@ namespace StoGenMake.Scenes.Base
         public int? Od { set; get; }
         public string T { set; get; }
 
+      
+        public List<AP> AL = new List<AP>();
+
         internal void AssingFrom(DifData value, bool withnames = false)
         {
             if (value == null) return;
@@ -549,6 +585,11 @@ namespace StoGenMake.Scenes.Base
             if (value.Od.HasValue) this.Od = value.Od;
             if (value.Xd.HasValue) this.Xd = value.Xd;
             if (value.Yd.HasValue) this.Yd = value.Yd;
+            if (value.AL.Any())
+            {
+                this.AL.Clear();
+                this.AL.AddRange(value.AL);
+            }
             if (string.IsNullOrEmpty(value.T)) this.T = value.T;
             if (withnames)
             {
@@ -570,6 +611,7 @@ namespace StoGenMake.Scenes.Base
             this.Od = null;
             this.Xd = null;
             this.Yd = null;
+            this.AL.Clear();
         }
     }
 }

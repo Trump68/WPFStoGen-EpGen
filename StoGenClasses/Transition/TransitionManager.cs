@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace StoGen.Classes
+namespace StoGen.Classes.Transition
 {
     public class TransitionManager
     {

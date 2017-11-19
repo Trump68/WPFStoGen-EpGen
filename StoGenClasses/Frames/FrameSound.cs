@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Media;
+using StoGen.Classes.Transition;
 
 namespace StoGen.Classes
 {

@@ -61,13 +61,13 @@ namespace StoGen.Classes
             this.PictureDataList.Add(data);
             return data;
         }
-        public PictureSourceDataProps Add(string fnname, AnimationRate rate)
-        {
-            PictureSourceDataProps data = new PictureSourceDataProps(fnname);
-            data.Rate = rate;
-            this.PictureDataList.Add(data);
-            return data;
-        }
+        //public PictureSourceDataProps Add(string fnname, AnimationRate rate)
+        //{
+        //    PictureSourceDataProps data = new PictureSourceDataProps(fnname);
+        //    data.Rate = rate;
+        //    this.PictureDataList.Add(data);
+        //    return data;
+        //}
         public void Assign(CadrePicData cadreData)
         {
             this.PictureDataList.Clear();
