@@ -210,60 +210,60 @@ namespace MVVMApp.ViewModels
 
         public void AddCadre()
         {
-            if ((eCadres.SourceCollection as ObservableCollection<ECadreViewModel>).ToList().Any())
-            {
-                SaveFile();
-            }
-            int lastMarkCounter = 0;
-            (eCadres.SourceCollection as ObservableCollection<ECadreViewModel>).ToList().ForEach(x =>
-            {
-                if (x.Mark.StartsWith("M") && x.Mark.Length == 4)
-                {
-                    int val = Convert.ToInt32(x.Mark.Remove(0, 1));
-                    if (val > lastMarkCounter) lastMarkCounter = val;
-                }
-            }
-            );
+            //if ((eCadres.SourceCollection as ObservableCollection<ECadreViewModel>).ToList().Any())
+            //{
+            //    SaveFile();
+            //}
+            //int lastMarkCounter = 0;
+            //(eCadres.SourceCollection as ObservableCollection<ECadreViewModel>).ToList().ForEach(x =>
+            //{
+            //    if (x.Mark.StartsWith("M") && x.Mark.Length == 4)
+            //    {
+            //        int val = Convert.ToInt32(x.Mark.Remove(0, 1));
+            //        if (val > lastMarkCounter) lastMarkCounter = val;
+            //    }
+            //}
+            //);
 
 
-            Model.ECadre cadre = new Model.ECadre() { PicTemplate = this.PicTemplate, SoundTemplate = this.SoundTemplate, TextTemplate = this.TextTemplate };
-            cadre.Mark = $"M{(++lastMarkCounter).ToString("000")}";
+            //Model.ECadre cadre = new Model.ECadre() { PicTemplate = this.PicTemplate, SoundTemplate = this.SoundTemplate, TextTemplate = this.TextTemplate };
+            //cadre.Mark = $"M{(++lastMarkCounter).ToString("000")}";
 
 
-            PictureSourceDataProps pp = new PictureSourceDataProps();
+            //PictureSourceDataProps pp = new PictureSourceDataProps();
 
-            if ((eCadres.SourceCollection as ObservableCollection<ECadreViewModel>).ToList().Any())
-            {
-                pp.StartPos = ((eCadres.SourceCollection as ObservableCollection<ECadreViewModel>).ToList().Last().EndPos);
-                pp.EndPos = pp.StartPos;
-            }
-            cadre.PicData.Add(pp);
+            ////if ((eCadres.SourceCollection as ObservableCollection<ECadreViewModel>).ToList().Any())
+            ////{
+            ////    pp.StartPos = ((eCadres.SourceCollection as ObservableCollection<ECadreViewModel>).ToList().Last().EndPos);
+            ////    pp.EndPos = pp.StartPos;
+            ////}
+            //cadre.PicData.Add(pp);
 
-            cadre.SoundData.Add(new SoundItem());
+            //cadre.SoundData.Add(new SoundItem());
 
-            TextData td = new TextData();
-            if ((eCadres.SourceCollection as ObservableCollection<ECadreViewModel>).ToList().Any())
-            {
-                ECadreViewModel ecvm = (eCadres.SourceCollection as ObservableCollection<ECadreViewModel>).ToList().Last();
-                if (!string.IsNullOrWhiteSpace(ecvm.Text) && ecvm.Text.Length > 1 && ecvm.Text != ecvm.Mark)
-                {
-                    td.TextList.Add(ecvm.Text);
-                }
-                else
-                {
-                    td.TextList.Add(cadre.Mark);
-                }
+            //TextData td = new TextData();
+            //if ((eCadres.SourceCollection as ObservableCollection<ECadreViewModel>).ToList().Any())
+            //{
+            //    ECadreViewModel ecvm = (eCadres.SourceCollection as ObservableCollection<ECadreViewModel>).ToList().Last();
+            //    if (!string.IsNullOrWhiteSpace(ecvm.Text) && ecvm.Text.Length > 1 && ecvm.Text != ecvm.Mark)
+            //    {
+            //        td.TextList.Add(ecvm.Text);
+            //    }
+            //    else
+            //    {
+            //        td.TextList.Add(cadre.Mark);
+            //    }
 
-            }
-            else
-            {
-                td.TextList.Add(cadre.Mark);
-            }
+            //}
+            //else
+            //{
+            //    td.TextList.Add(cadre.Mark);
+            //}
 
-            cadre.TextFrameData.Add(td);
+            //cadre.TextFrameData.Add(td);
 
-            VMBusinessLogic.AddCadre(eCadres, cadre);
-            eCadres.MoveCurrentToLast();
+            //VMBusinessLogic.AddCadre(eCadres, cadre);
+            //eCadres.MoveCurrentToLast();
         }
         private void DeleteCadre()
         {
@@ -300,7 +300,7 @@ namespace MVVMApp.ViewModels
         
         internal void CopyPosStr()
         {
-            Clipboard.SetText($"{(eCadres.CurrentItem as ECadreViewModel).StartPos};EndPos={(eCadres.CurrentItem as ECadreViewModel).EndPos}");
+            //Clipboard.SetText($"{(eCadres.CurrentItem as ECadreViewModel).StartPos};EndPos={(eCadres.CurrentItem as ECadreViewModel).EndPos}");
         }
         internal void CopySets()
         {

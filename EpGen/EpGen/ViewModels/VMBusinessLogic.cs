@@ -20,18 +20,18 @@ namespace MVVMApp.ViewModels
                 cadres = CollectionViewSource.GetDefaultView(new ObservableCollection<ECadreViewModel>());
             }
 
-            List<ECadre> list = ECadreStorage.LoadFile(ScenarioFileName);
-            if (list!=null)
-            {
+            //List<ECadre> list = ECadreStorage.LoadFile(ScenarioFileName);
+            //if (list!=null)
+            //{
 
-                (cadres.SourceCollection as ObservableCollection<ECadreViewModel>).Clear();
-                list.ForEach(x => 
-                {
-                    ECadreViewModel newmodel = new ECadreViewModel(x);
-                    (cadres.SourceCollection as ObservableCollection<ECadreViewModel>).Add(newmodel);
-                });
+            //    (cadres.SourceCollection as ObservableCollection<ECadreViewModel>).Clear();
+            //    list.ForEach(x => 
+            //    {
+            //        ECadreViewModel newmodel = new ECadreViewModel(x);
+            //        (cadres.SourceCollection as ObservableCollection<ECadreViewModel>).Add(newmodel);
+            //    });
                 
-            }
+            //}
             return cadres;
         }
         internal static void AddCadre(ICollectionView cadres,Model.ECadre cadre)
@@ -48,7 +48,7 @@ namespace MVVMApp.ViewModels
         internal static void SaveCadres(string scenarioFileName, ICollectionView eCadres)
         {        
             string savefilename = scenarioFileName;
-            ECadreStorage.SaveFile((eCadres.SourceCollection as ObservableCollection<ECadreViewModel>).Select(x => x.ecadre).ToList(), savefilename);
+            //ECadreStorage.SaveFile((eCadres.SourceCollection as ObservableCollection<ECadreViewModel>).Select(x => x.ecadre).ToList(), savefilename);
         }
 
         internal static void CreateFimmografy()

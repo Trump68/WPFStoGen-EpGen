@@ -28,22 +28,10 @@ namespace MVVMApp.Model
                 this.PicData.FirstOrDefault().FileName = value;
             }
         }
-        public string Text
-        {
-            get
-            {
-
-                return string.Join("~",this.TextFrameData.FirstOrDefault().TextList.ToArray());
-            }
-            set
-            {
-                if (!this.TextFrameData.Any())
-                    this.TextFrameData.Add(new TextData());
-                this.TextFrameData.FirstOrDefault().TextList = value.Split('~').ToList();
-            }
-        }
+        public string Text { set; get; }
+       
         public string Mark { get; internal set; }
-        public List<TextData> TextFrameData { get; internal set; } = new List<TextData>();
+        //public List<TextData> TextFrameData { get; internal set; } = new List<TextData>();
         public List<PictureSourceDataProps> PicData { get; internal set; } = new List<PictureSourceDataProps>();
         public List<SoundItem> SoundData { get; internal set; } = new List<SoundItem>();
         public string PicTemplate { get; internal set; }

@@ -37,28 +37,28 @@ namespace MVVMApp.Views
         }
         public void RefreshStart()
         {
-            if ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem != null)
-            {
-                string fp = System.IO.Path.GetDirectoryName(minionPlayer.Source.LocalPath);
-                string nfp = System.IO.Path.GetDirectoryName(((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).MainFileName);
-                if (string.IsNullOrEmpty(nfp))
-                {
-                    nfp = minionPlayer.Source.LocalPath;
-                    ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).MainFileName = System.IO.Path.GetFileName(nfp);
-                }
-                if (minionPlayer.Source.LocalPath != nfp)
-                {
-                    if (!string.IsNullOrEmpty(nfp))
-                    {
-                        (this.DataContext as ECadreListViewModel).ClipToProcess = nfp;
-                        minionPlayer.Source = new Uri(nfp);
-                        minionPlayer.Play();
-                    }
-                }
-                minionPlayer.Position = TimeSpan.FromSeconds((((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).StartPos));                
-                CurrentPosition = minionPlayer.Position.TotalMilliseconds;               
-                ShowPosition();
-            }
+            //if ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem != null)
+            //{
+            //    string fp = System.IO.Path.GetDirectoryName(minionPlayer.Source.LocalPath);
+            //    string nfp = System.IO.Path.GetDirectoryName(((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).MainFileName);
+            //    if (string.IsNullOrEmpty(nfp))
+            //    {
+            //        nfp = minionPlayer.Source.LocalPath;
+            //        ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).MainFileName = System.IO.Path.GetFileName(nfp);
+            //    }
+            //    if (minionPlayer.Source.LocalPath != nfp)
+            //    {
+            //        if (!string.IsNullOrEmpty(nfp))
+            //        {
+            //            (this.DataContext as ECadreListViewModel).ClipToProcess = nfp;
+            //            minionPlayer.Source = new Uri(nfp);
+            //            minionPlayer.Play();
+            //        }
+            //    }
+            //    minionPlayer.Position = TimeSpan.FromSeconds((((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).StartPos));                
+            //    CurrentPosition = minionPlayer.Position.TotalMilliseconds;               
+            //    ShowPosition();
+            //}
         }
         private void minionPlayer_MediaOpened(object sender, RoutedEventArgs e)
         {
@@ -201,27 +201,27 @@ namespace MVVMApp.Views
         }
         private void btnSaveStart_Click(object sender, RoutedEventArgs e)
         {
-            if ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem != null)
-            {
-                ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).StartPos = sbarPosition.Value;
-            }
+            //if ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem != null)
+            //{
+            //    ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).StartPos = sbarPosition.Value;
+            //}
         }
         private void btnSaveEnd_Click(object sender, RoutedEventArgs e)
         {
-            if ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem != null)
-            {
-                ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).EndPos = sbarPosition.Value;
-                ((this.DataContext as ECadreListViewModel)).CopyPosStr();
-            }
+            //if ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem != null)
+            //{
+            //    ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).EndPos = sbarPosition.Value;
+            //    ((this.DataContext as ECadreListViewModel)).CopyPosStr();
+            //}
         }
         private void btnSaveEndAndAdd_Click(object sender, RoutedEventArgs e)
         {
-            if ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem != null)
-            {
-                ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).EndPos = sbarPosition.Value;
-                ((this.DataContext as ECadreListViewModel)).CopyPosStr();
-                (this.DataContext as ECadreListViewModel).AddCadre();
-            }
+            //if ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem != null)
+            //{
+            //    ((this.DataContext as ECadreListViewModel).ECadres.CurrentItem as ECadreViewModel).EndPos = sbarPosition.Value;
+            //    ((this.DataContext as ECadreListViewModel)).CopyPosStr();
+            //    (this.DataContext as ECadreListViewModel).AddCadre();
+            //}
         }
         private void btnScreenshot_Click(object sender, RoutedEventArgs e)
         {
