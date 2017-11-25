@@ -26,7 +26,7 @@ namespace StoGen.Classes
         public static ProcedureBase CurrentProc;
         public static FrameImage Instance;
         public static volatile bool LoopProcessed = false;
-        public static int debugcount = 0;
+        
 
         public static void RunNextDelegate()
         {

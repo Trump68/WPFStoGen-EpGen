@@ -7,51 +7,51 @@
         mc:Ignorable="d"
         Title="MainWindow" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black" Left="0" Top="0" KeyDown="Window_KeyDown" d:DesignHeight="869" Width="992">
     <Grid Name="MainGrid" ClipToBounds="False" Margin="0,0,0,0">
-        <Viewbox Name ="ViewboxControl" Height="5000" Width="5000">
-        <Canvas Grid.Row="1" Name="CanvasControl" ClipToBounds="False" Height="5000" Width="5000">
-            <Image x:Name="Picture1" ClipToBounds="False" HorizontalAlignment="Left" Height="5000" VerticalAlignment="Top" Width="5000"/>
-            <Image x:Name="Picture2" ClipToBounds="False" HorizontalAlignment="Left" Height="5000" VerticalAlignment="Top" Width="5000"/>
-            <Image x:Name="Picture3" ClipToBounds="False" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        <Image x:Name="Picture4" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        <Image x:Name="Picture5" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        <Image x:Name="Picture6" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        <Image x:Name="Picture7" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        <Image x:Name="Picture8" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        <Image x:Name="Picture9" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        <Image x:Name="Picture10" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        <Image x:Name="Picture11" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        <Image x:Name="Picture12" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        <Image x:Name="Picture13" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        <Image x:Name="Picture14" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        <Image x:Name="Picture15" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        <Image x:Name="Picture16" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
-        </Canvas>
+        <MediaElement x:Name="Clip1"  ScrubbingEnabled="True" HorizontalAlignment="Left" Height="505" Margin="90,47,0,0" VerticalAlignment="Top" Width="853" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>
+        <Viewbox x:Name ="ViewboxControl" Height="5000" Width="5000">
+            <Canvas Grid.Row="1" x:Name="CanvasControl" ClipToBounds="False" Height="5000" Width="5000">
+                <Image x:Name="Picture1" ClipToBounds="False" HorizontalAlignment="Left" Height="5000" VerticalAlignment="Top" Width="5000"/>
+                <Image x:Name="Picture2" ClipToBounds="False" HorizontalAlignment="Left" Height="5000" VerticalAlignment="Top" Width="5000"/>
+                <Image x:Name="Picture3" ClipToBounds="False" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture4" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture5" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture6" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture7" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture8" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture9" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture10" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture11" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture12" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture13" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture14" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture15" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture16" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+            </Canvas>
         </Viewbox>
-        <Canvas Name ="TextCanvas" Height="100" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="139,0,0,65">
-            <TextBlock  Name="Tb1"  Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
+        <!--<TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="111" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="627" Opacity="0.8" Background="Blue" BorderThickness="0"  AcceptsReturn="True" Margin="139,0,0,65"/>-->
+        <TextBox x:Name="NumberBox" HorizontalAlignment="Right" Height="20" VerticalAlignment="Bottom" Width="50" Opacity="0.5" Background="White" BorderThickness="0"  AcceptsReturn="True" Margin="0,-3,0,0"/>
+        <Canvas x:Name ="TextCanvas" Height="100" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="139,0,0,65">
+            <TextBlock  x:Name="Tb1"  Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
                 <TextBlock.Effect>
                     <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="0"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <TextBlock  Name="Tb2" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
+            <TextBlock  x:Name="Tb2" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
                 <TextBlock.Effect>
                     <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="90"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <TextBlock  Name="Tb3" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
+            <TextBlock  x:Name="Tb3" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
                 <TextBlock.Effect>
                     <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="180"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <TextBlock  Name="Tb4" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
+            <TextBlock  x:Name="Tb4" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
                 <TextBlock.Effect>
                     <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="270"/>
                 </TextBlock.Effect>
             </TextBlock>
         </Canvas>
-        <!--<TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="111" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="627" Opacity="0.8" Background="Blue" BorderThickness="0"  AcceptsReturn="True" Margin="139,0,0,65"/>-->
-        <TextBox x:Name="NumberBox" HorizontalAlignment="Right" Height="20" VerticalAlignment="Bottom" Width="50" Opacity="0.5" Background="White" BorderThickness="0"  AcceptsReturn="True" Margin="0,-3,0,0"/>
-        <MediaElement x:Name="Clip1"  ScrubbingEnabled="True" HorizontalAlignment="Left" Height="505" Margin="90,47,0,0" VerticalAlignment="Top" Width="853" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>
         <Rectangle x:Name="LmpAuto" Fill="#FF06069B" HorizontalAlignment="Left" Height="10" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>
         <Rectangle x:Name="LmpEndless" Fill="#FFB60B49" HorizontalAlignment="Left" Height="10" Margin="10,0,0,0" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>
         <GroupBox x:Name="PictureCadreDS" HorizontalAlignment="Right" Height="78" Width="650" Background="#FFF9F9F9" BorderBrush="#FFF9FCFD" VerticalAlignment="Bottom" Margin="300,0,0,0">
@@ -65,16 +65,16 @@
                     </StackPanel>
 
                     <StackPanel Margin="1" Orientation="Horizontal">
-                    <TextBlock Text="LayerIndex"/>
-                    <TextBox Text="{Binding LayerIndex, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="20" IsTabStop="False"/>
-                </StackPanel>
+                        <TextBlock Text="LayerIndex"/>
+                        <TextBox Text="{Binding LayerIndex, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="20" IsTabStop="False"/>
+                    </StackPanel>
                     <StackPanel Margin="1" Orientation="Horizontal">
-                    <TextBlock Text="PropStep"/>
-                    <TextBox Text="{Binding PropStep, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="20" IsTabStop="False"/>
-                </StackPanel>
-                <StackPanel Margin="1" Orientation="Horizontal">
-                    <TextBox Text="{Binding ResultString, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,1" Width="789" IsTabStop="False"/>
-                </StackPanel>
+                        <TextBlock Text="PropStep"/>
+                        <TextBox Text="{Binding PropStep, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" Width="20" IsTabStop="False"/>
+                    </StackPanel>
+                    <StackPanel Margin="1" Orientation="Horizontal">
+                        <TextBox Text="{Binding ResultString, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,1" Width="789" IsTabStop="False"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
