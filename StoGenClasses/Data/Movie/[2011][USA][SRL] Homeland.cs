@@ -55,6 +55,16 @@ namespace StoGen.Classes.Data.Movie
             AddToGlobalImage(src, "Homeland.s01e03.xvid.bdrip.lostfilm.[qqss44] 0003.m4v", path);
             src = $"2011_USA_SRL_Homeland_{(i++).ToString("D4")}";
             AddToGlobalImage(src, "Homeland.s01e03.xvid.bdrip.lostfilm.[qqss44] 0005.m4v", path);
+            src = $"2011_USA_SRL_Homeland_{(i++).ToString("D4")}";
+            AddToGlobalImage(src, "Homeland.s01e04.xvid.bdrip.lostfilm.[qqss44] 0001.m4v", path);
+            src = $"2011_USA_SRL_Homeland_{(i++).ToString("D4")}";
+            AddToGlobalImage(src, "Homeland.s01e04.xvid.bdrip.lostfilm.[qqss44] 0003.m4v", path);
+            src = $"2011_USA_SRL_Homeland_{(i++).ToString("D4")}";
+            AddToGlobalImage(src, "Homeland.s01e05.xvid.bdrip.lostfilm.[qqss44] 0001.m4v", path);
+            src = $"2011_USA_SRL_Homeland_{(i++).ToString("D4")}";
+            AddToGlobalImage(src, "Homeland.s01e07.xvid.bdrip.lostfilm.[qqss44] 0001.m4v", path);
+            src = $"2011_USA_SRL_Homeland_{(i++).ToString("D4")}";
+            AddToGlobalImage(src, "Homeland.s01e07.xvid.bdrip.lostfilm.[qqss44] 0002.m4v", path);
             path = @"d:\temp\";
             src = $"woho1";
             AddToGlobalImage(src, "1.png", path);
@@ -69,6 +79,11 @@ namespace StoGen.Classes.Data.Movie
             Scene9();
             Scene10();
             Scene11();
+            Scene12();
+            Scene13();
+            Scene14();
+            Scene15();
+            Scene16();
         }
         private void Scene1()
         {
@@ -252,12 +267,73 @@ namespace StoGen.Classes.Data.Movie
             AC(file, new AP() { APS = 02.5, APE = 061.3, ALM = 3, ALC = 6 }); //fuck 
             AC(file, new AP() { APS = 02.5, APE = 017.7, ALM = 3, ALC = 6 }); //fuck !!!
         }
+        private void Scene12()
+        {
+            CurrentGr = "Scene12";
+            MODE = 1;
+            string file = "2011_USA_SRL_Homeland_0012";
+            Rate = 100;
+            AddMusic("music.arc_000005.wav");
+            AC(file, new AP() { APS = 06.2, APE = 016.1, ALM = 3, ALC = 6 }); //lingerie
+        }
+        private void Scene13()
+        {
+            CurrentGr = "Scene13";
+            MODE = 1;
+            string file = "2011_USA_SRL_Homeland_0013";
+            Rate = 100;
+            AddMusic("music.arc_000005.wav");
+            AC(file, new AP() { APS = 92.9, APE = 098.0, ALM = 3, ALC = 6 });
+            AC(file, new AP() { APS = 73.2, APE = 077.2, ALM = 3, ALC = 6 });
+            AC(file, new AP() { APS = 43.2, APE = 049.9, ALM = 3, ALC = 6 });
+            AC(file, new AP() { APS = 20.2, APE = 028.5, ALM = 3, ALC = 6 });
+        }
+        private void Scene14()
+        {
+            CurrentGr = "Scene14";
+            MODE = 1;
+            string file = "2011_USA_SRL_Homeland_0014";
+            Rate = 100;
+            AddMusic("music.arc_000005.wav");
+            AC(file, new AP() { APS = 03.4, APE = 05.2, ALM = 3, ALC = 6 });
+            AC(file, new AP() { APS = 06.8, APE = 07.9, ALM = 3, ALC = 6 });
+            AC(file, new AP() { APS = 09.8, APE = 12.1, ALM = 3, ALC = 6 });
+            AC(file, new AP() { APS = 15.4, APE = 17.8, ALM = 3, ALC = 6 });
+            AC(file, new AP() { APS = 20.7, APE = 28.1, ALM = 3, ALC = 6 });
+            AC(file, new AP() { APS = 40.8, APE = 85.1, ALM = 3, ALC = 6 });
+        }
+        private void Scene15()
+        {
+            CurrentGr = "Scene15";
+            MODE = 1;
+            string file = "2011_USA_SRL_Homeland_0015";
+            Rate = 100;
+            AddMusic("music.arc_000005.wav");
+            AC(file, new AP() { APS = 00.1, APE = 20.0});
+            AC(file, new AP() { APS = 20.2, APE = 45.5, ALM = 3, ALC = 6 });
+            AC(file, new AP() { APS = 51.8, APE = 54.3, ALM = 3, ALC = 6 });
+            AC(file, new AP() { APS = 58.7, APE = 61.3, ALM = 3, ALC = 6 });
+            AC(file, new AP() { APS = 61.5, APE = 65.8, ALM = 3, ALC = 6 });
+            AC(file, new AP() { APS = 70.7, APE = 87.4, ALM = 3, ALC = 6 }); // kiss
+            AC(file, new AP() { APS = 79.4, APE = 82.7, ALM = 3, ALC = 6 }); // kiss
+            AC(file, new AP() { APS = 70.7, APE = 79.1, ALM = 3, ALC = 6 }); // kiss
+        }
+        private void Scene16()
+        {
+            CurrentGr = "Scene16";
+            MODE = 1;
+            string file = "2011_USA_SRL_Homeland_0016";
+            Rate = 100;
+            AddMusic("music.arc_000005.wav");
+            AC(file, new AP() { APS = 04.3, APE = 08.0, ALM = 3, ALC = 6 });
+
+        }
         private void AC(string n,params AP[] animations)
         {
             List<DifData> cdata;
             cdata = new List<DifData>();
             List<AP> al = new List<AP>();
-            al.AddRange(animations);
+            al.AddRange(animations);                                                                                                                                               
             al.ForEach(x => { x.AR = Rate; x.AV = 0; if (x.ALM < 0) x.ALM = MODE; });
             cdata.Add(new DifData(n) { S = S1, X = X1, Y = Y1, AL = al });
             //cdata.Add(new DifData("woho1") { X = -135, Y = -135, S = 1120, F = 0 });
@@ -266,7 +342,7 @@ namespace StoGen.Classes.Data.Movie
         protected override void DoFilter(string cadregroup)
         {
             string[] cd = new string[] {
-                "Scene11"
+                "Scene16"
             };
             base.DoFilter(cd);
             this.AlignList.Reverse();
