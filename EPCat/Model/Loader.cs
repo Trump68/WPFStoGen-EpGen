@@ -34,7 +34,7 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            DoTempWork();
+            DoTempWork1();
             return null;
             EpItem.DictionaryData.Dict_Class.Clear();
             EpItem.DictionaryData.Dict_Name.Clear();
@@ -107,39 +107,48 @@ namespace EPCat.Model
             DoTempWork1_OneCountry("CAN");
             DoTempWork1_OneCountry("NLD");
             DoTempWork1_OneCountry("HSP");
+            DoTempWork1_OneCountry("THA");
         }
         private void DoTempWork1_OneCountry(string Country)
         {
-            string fromPath = @"d:\Process2\!!Data\EroFilms\converted\";
-            string toPath = @"d:\Process2\!!Data\EroFilms\";
+            string fromPath = @"d:\uTorrent\! ToProcess\";
+            string toPath = @"d:\Process2+\EroFilms\";
             var files = Directory.GetFiles(fromPath, "*.m4v", SearchOption.TopDirectoryOnly).ToList();
             foreach (var fn in files)
             {
+                string source = fn;
                 string fnwe = Path.GetFileName(fn);
+                if (fnwe.Contains($"[{Country}]"))
+                {
+                    string newfnwe = $"{Country} {fnwe.Replace($"[{Country}]", string.Empty)}";
+                    File.Move(Path.Combine(fromPath, fnwe), Path.Combine(fromPath, newfnwe));
+                    fnwe = newfnwe;
+                    source = newfnwe;
+                }
                 if (fnwe.ToUpper().StartsWith($"{Country} "))
                 {
                     string nfm = fnwe.Remove(0, 4);
                     nfm = nfm.Replace(".m4v", string.Empty);
 
                     nfm = nfm.Trim();
-                    while (Char.IsDigit(nfm.Last()))
-                    {
-                        nfm = nfm.Remove(nfm.Length - 1);
-                    }
-                    if (nfm.Last() == '-') nfm = nfm.Remove(nfm.Length - 1);
-                    nfm = nfm.Trim();
+                    //while (Char.IsDigit(nfm.Last()))
+                    //{
+                    //    nfm = nfm.Remove(nfm.Length - 1);
+                    //}
+                    //if (nfm.Last() == '-') nfm = nfm.Remove(nfm.Length - 1);
+                    //nfm = nfm.Trim();
 
                     string yearstr = nfm.Substring(0, 4);
-                    int Year;
+                    int Year = 0;
                     bool ok = false;
-                    if (int.TryParse(yearstr, out Year))
-                    {
-                        if (Year > 1949 && Year < 2018)
-                        {
-                            nfm = nfm.Remove(0, 4);
-                            ok = true;
-                        }
-                    }
+                    //if (int.TryParse(yearstr, out Year))
+                    //{
+                    //    if (Year > 1949 && Year < 2018)
+                    //    {
+                    //        nfm = nfm.Remove(0, 4);
+                    //        ok = true;
+                    //    }
+                    //}
 
                     if (!ok)
                     {
@@ -170,7 +179,11 @@ namespace EPCat.Model
 
 
 
-                        string newPath = Path.Combine(@"d:\Process2\!!Data\EroFilms\", Year.ToString());
+                        string newPath = Path.Combine(toPath, Year.ToString());
+                        if (!Directory.Exists(newPath))
+                        {
+                            Directory.CreateDirectory(newPath);
+                        }
                         if (Directory.Exists(newPath))
                         {
                             newPath = Path.Combine(newPath, Name);
@@ -185,7 +198,7 @@ namespace EPCat.Model
                                 File.WriteAllLines(Path.Combine(newPath, EpItem.p_PassportName), lines);
                             }
 
-                            File.Move(fn, Path.Combine(newPath, Name) + ".m4v");
+                            File.Move(Path.Combine(fromPath, source), Path.Combine(newPath, Name) + ".m4v");
                         }
                     }
                 }

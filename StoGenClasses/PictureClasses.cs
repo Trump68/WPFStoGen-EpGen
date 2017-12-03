@@ -205,6 +205,12 @@ namespace StoGen.Classes
     }
     public class AP
     {
+        public AP() { }
+        public AP(string file):this()
+        {
+            this.File = file;
+        }
+        public string File { set; get; }
         public int AR { set; get; } = 100;//animation ratio
         public int AV { set; get; } = 100;//animation volume
         public double APS { set; get; } //animation start pos
@@ -213,29 +219,7 @@ namespace StoGen.Classes
         public int AWE { set; get; } //animation wait end
         public int ALM { set; get; } = -1;//animation loop mode
         public int ALC { set; get; } = 0; //loop count, 0 - endless
-        //public double StartPos { get; set; }
-        //public double EndPos { get; set; }
-        //public int Volume { get; set; } = 100;
-        //public int R { get; set; }
-        //public int Rmax { get; set; }
-        //public int Rmin { get; set; }
-        //public AnimationRate Rate
-        //{
-        //    get { return (AnimationRate)R; }
-        //    set { R = (int)value; }
-        //}
-        //public AnimationRate RateMax
-        //{
-        //    get { return (AnimationRate)Rmax; }
-        //    set { Rmax = (int)value; }
-        //}
-        //public AnimationRate RateMin
-        //{
-        //    get { return (AnimationRate)Rmin; }
-        //    set { Rmin = (int)value; }
-        //}
-        //public int PP1 { get; set; } // pause period, ms
-        //public int PP2 { get; set; } // pause period, ms
+        public string Source { get; set; } = null;
     }
     public class PictureBaseProp
     {

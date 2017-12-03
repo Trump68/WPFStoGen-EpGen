@@ -308,6 +308,7 @@ namespace StoGen.Classes.Data.Movie
             MODE = 1;
             string file = "2011_USA_SRL_Homeland_0015";
             Rate = 100;
+
             AddMusic("music.arc_000005.wav");
             AC(file, new AP() { APS = 00.1, APE = 20.0});
             AC(file, new AP() { APS = 20.2, APE = 45.5, ALM = 3, ALC = 6 });
@@ -320,23 +321,27 @@ namespace StoGen.Classes.Data.Movie
         }
         private void Scene16()
         {
-            CurrentGr = "Scene16";
-            MODE = 1;
-            string file = "2011_USA_SRL_Homeland_0016";
-            Rate = 100;
-            AddMusic("music.arc_000005.wav");
-            AC(file, new AP() { APS = 04.3, APE = 08.0, ALM = 3, ALC = 6 });
+            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            st.currentGr = "Scene16";
 
+            List<AP> anims = new List<AP>()
+            {
+                new AP("2011_USA_SRL_Homeland_0016") { APS = 04.3, APE = 08.0,AR = 100, ALM = 3, ALC = 6 }
+            };            
+            List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
+
+            st.VideoFrame800(anims,music);
+            st.DoFilter(new string[] { "Scene16" });
+            this.AlignList.AddRange(st.AlignList);           
         }
-        private void AC(string n,params AP[] animations)
+        private void AC(string n, params AP[] animations)
         {
             List<DifData> cdata;
             cdata = new List<DifData>();
             List<AP> al = new List<AP>();
-            al.AddRange(animations);                                                                                                                                               
+            al.AddRange(animations);
             al.ForEach(x => { x.AR = Rate; x.AV = 0; if (x.ALM < 0) x.ALM = MODE; });
             cdata.Add(new DifData(n) { S = S1, X = X1, Y = Y1, AL = al });
-            //cdata.Add(new DifData("woho1") { X = -135, Y = -135, S = 1120, F = 0 });
             AddLocal(CurrentGr, text, cdata, this.CurrentSounds);
         }
         protected override void DoFilter(string cadregroup)

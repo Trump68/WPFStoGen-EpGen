@@ -26,7 +26,7 @@ namespace StoGen.Classes
         public static ProcedureBase CurrentProc;
         public static FrameImage Instance;
         public static volatile bool LoopProcessed = false;
-        
+        public static bool videoactive = false;        
 
         public static void RunNextDelegate()
         {
@@ -71,6 +71,8 @@ namespace StoGen.Classes
                 }
             }
             #endregion 
+
+            if (!videoactive) return;
 
             #region Reverse loops
             if (!FrameImage.LoopProcessed && FrameImage.ClipEndPos > 0)
@@ -154,13 +156,22 @@ namespace StoGen.Classes
 
                     FrameImage.Loops = 0;
                     FrameImage.LoopProcessed = false;
+                    if (!string.IsNullOrEmpty(FrameImage.Animations[FrameImage.AnimationIndex].Source))
+                    {
+                        if (Projector.PicContainer.Clip.Source != new Uri(FrameImage.Animations[FrameImage.AnimationIndex].Source))
+                        {
+                            Projector.PicContainer.Clip.Source = new Uri(FrameImage.Animations[FrameImage.AnimationIndex].Source);
+                            Projector.PicContainer.Clip.Play();
+                        }
+                    }
+
                     FrameImage.IsLoop = FrameImage.Animations[FrameImage.AnimationIndex].ALM;
                     FrameImage.ClipStartPos = FrameImage.Animations[FrameImage.AnimationIndex].APS;
                     FrameImage.ClipEndPos = FrameImage.Animations[FrameImage.AnimationIndex].APE;
                     FrameImage.WaitStart = FrameImage.Animations[FrameImage.AnimationIndex].AWS;
                     FrameImage.WaitEnd = FrameImage.Animations[FrameImage.AnimationIndex].AWE;
                     Projector.PicContainer.Clip.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
-                    Projector.PicContainer.Clip.Volume = FrameImage.Animations[FrameImage.AnimationIndex].AV;
+                    Projector.PicContainer.Clip.Volume = ((float)FrameImage.Animations[FrameImage.AnimationIndex].AV /100);
                     float rate = ((float)FrameImage.Animations[FrameImage.AnimationIndex].AR / 100);
                     Projector.PicContainer.Clip.SpeedRatio = rate;
                 }
@@ -248,7 +259,7 @@ namespace StoGen.Classes
             }
 
             bool runClip = false;
-            bool videoactive = false;
+            videoactive = false;
             FrameImage.TimeToNext = -1;
             FrameImage.WaitStart = -1;
             FrameImage.WaitEnd = -1;
@@ -315,7 +326,7 @@ namespace StoGen.Classes
                     {
                         SetClip();
                     }
-                    Projector.PicContainer.Clip.Volume = pi.Props.CurrentAnimation.AV;
+                    Projector.PicContainer.Clip.Volume = ((float)pi.Props.CurrentAnimation.AV / 100);
                     float rate = ((float)Pics[i].Props.CurrentAnimation.AR / 100);
                     Projector.PicContainer.Clip.SpeedRatio = rate;
 

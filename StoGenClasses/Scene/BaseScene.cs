@@ -4,6 +4,7 @@ using System.Linq;
 using StoGenMake.Elements;
 using System.IO;
 using StoGen.Classes;
+using StoGen.Classes.Transition;
 
 namespace StoGenMake.Scenes.Base
 {
@@ -68,7 +69,7 @@ namespace StoGenMake.Scenes.Base
         {
             float dSx = ((float)cSx / (float)pSx);
             float dSy = ((float)cSy / (float)pSy);
-            if (delta != null )
+            if (delta != null)
             {
                 if (delta.Sx.HasValue)
                     dSx = ((float)delta.Sx / (float)pSx);
@@ -77,7 +78,7 @@ namespace StoGenMake.Scenes.Base
             }
             target.Sx = Convert.ToInt32(dSx * actualParent.Sx);
             target.Sy = Convert.ToInt32(dSy * actualParent.Sy);
-           
+
             // Parent flip
             {
                 target.ParentFlips.Clear();
@@ -92,7 +93,7 @@ namespace StoGenMake.Scenes.Base
             }
 
             { // X,Y coord
-               
+
                 target.X = this.Xd;
                 target.Y = this.Yd;
 
@@ -100,7 +101,7 @@ namespace StoGenMake.Scenes.Base
                 if (delta.Yd.HasValue) target.Y = target.Y + delta.Yd.Value;
 
                 target.X = (int)(target.X * ((float)actualParent.Sx / pSx));
-                target.Y = (int)(target.Y * ((float)actualParent.Sy / pSy));               
+                target.Y = (int)(target.Y * ((float)actualParent.Sy / pSy));
 
                 target.X = target.X + actualParent.X;
                 target.Y = target.Y + actualParent.Y;
@@ -121,11 +122,11 @@ namespace StoGenMake.Scenes.Base
             target.T = actualParent.T; // parent
             if (delta.T != null) //delta
                 target.T = delta.T;
-            
+
             // opacity
-            if (this.cO > -1 )
+            if (this.cO > -1)
                 target.O = this.cO;
-              //if (delta.Od.HasValue) target.O = target.O + delta.Od.Value;
+            //if (delta.Od.HasValue) target.O = target.O + delta.Od.Value;
         }
     }
     public class CadreData
@@ -146,6 +147,11 @@ namespace StoGenMake.Scenes.Base
         public int EngineHiVer = 0;
         public int EngineLoVer = 0;
         #region Sound
+        public int SoundPauseNone = 0;
+        public int SoundPauseShort = 500;
+        public int SoundPauseNorm = 1000;
+        public int SoundPauseLong = 2000;
+
         public List<seSo> CurrentSounds = new List<seSo>();
         public string PATH_V;
         public string PATH_M;
@@ -182,9 +188,155 @@ namespace StoGenMake.Scenes.Base
                 CurrentSounds.RemoveAll(x => x.Name == "EFFECT1");
             if (voice)
                 CurrentSounds.RemoveAll(x => x.Name == "VOICE");
-        } 
+        }
+        public void AddVoice(string voice, int voicePause, bool voiceLoop)
+        {
+            if (!string.IsNullOrEmpty(voice))
+            {
+                CurrentSounds.RemoveAll(x => x.Name == "VOICE");
+                CurrentSounds.Add(new seSo()
+                {
+                    File = $"{PATH_V}{voice}",
+                    Name = "VOICE",
+                    V = VOLUME_V,
+                    IsLoop = voiceLoop,
+                    StartPlay = 0,
+                    //T = $"W..{voicePause}>p"
+                    T = $"W..{voicePause}>p.A.0.1"
+                });
+            }
+        }
+        public void RemoveEffect2()
+        {
+            CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
+        }
+        public void AddEffect1(string effect1, int effect1Pause, bool effect1Loop)
+        {
+            if (!string.IsNullOrEmpty(effect1))
+            {
+                CurrentSounds.RemoveAll(x => x.Name == "EFFECT1");
+                CurrentSounds.Add(new seSo()
+                {
+                    File = $"{PATH_E}{effect1}",
+                    Name = "EFFECT1",
+                    V = VOLUME_E,
+                    IsLoop = effect1Loop,
+                    StartPlay = 0,
+                    T = $"W..{effect1Pause}>p.A.0.1"
+                });
+            }
+        }
+        public void AddEffect2(string effect, int effectPause, bool effectLoop)
+        {
+            if (!string.IsNullOrEmpty(effect))
+            {
+                CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
+                CurrentSounds.Add(new seSo()
+                {
+                    File = $"{PATH_E}{effect}",
+                    Name = "EFFECT2",
+                    V = VOLUME_E2,
+                    IsLoop = effectLoop,
+                    StartPlay = 0,
+                    T = $"W..{effectPause}>p.A.0.1"
+                });
+            }
+        }
+
         #endregion
-        protected virtual void DoFilter(string[] cadregroups, bool all = false)
+
+        #region 'External' scene generations
+        public string currentGr;
+//        public Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
+        public List<OpEf> CurrTransitions = new List<OpEf>();
+        public void DoC2(string text, List<DifData> pics, List<OpEf> trans = null)
+        {
+
+            List<DifData> cdata = new List<DifData>();
+            foreach (var item in pics)
+            {
+                var ndd = new DifData(item.Name);
+                ndd.AssingFrom(item);
+                cdata.Add(ndd);
+            }
+
+            if (trans != null)
+            {
+                foreach (var oef in trans)
+                {
+                    if (oef != null)
+                    {
+                        DifData d = null;
+                        if (!oef.P)
+                        {
+                            d = cdata[oef.L - 1];
+                        }
+                        else
+                        {
+                            var old = this.AlignList.Last().AlignList[oef.L - 1];
+                            d = new DifData();
+                            d.AssingFrom(old);
+                            d.Name = old.Name;
+                            d.Parent = old.Parent;
+                            d.S = old.S;
+                            cdata.Add(d);
+                        }
+                        if (oef.Tran != null)
+                        {
+                            d.O = oef.O;
+                            d.T = oef.Tran;
+                        }
+                        else
+                        {
+                            if (oef.D)
+                            {
+                                if (d != null)
+                                {
+                                    d.O = 100;
+                                    d.T = $"W..{oef.W}>O.B.{oef.T}.-100";
+                                }
+                            }
+                            else
+                            {
+                                if (d != null)
+                                {
+                                    d.O = 0;
+                                    d.T = $"W..{oef.W}>O.B.{oef.T}.100";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            AddLocal(currentGr, text, cdata, this.CurrentSounds);
+            this.CurrTransitions.Clear();
+            this.ClearSound(false, true, true);
+        }
+        //public void AddPicture(string key, DifData val)
+        //{
+        //    if (Pictures.ContainsKey(key))
+        //        Pictures[key] = val;
+        //    else
+        //        Pictures.Add(key, val);
+        //}      
+        protected void AddAnim(string n,string text, DifData difdata, params AP[] animations)
+        {
+            List<DifData> cdata;
+            cdata = new List<DifData>();
+            List<AP> al = new List<AP>();
+            al.AddRange(animations);
+            //al.ForEach(x => x.AV = 0);
+            DifData newdd = new DifData(n);
+            newdd.AssingFrom(difdata);
+            newdd.AL = al;
+            cdata.Add(newdd);
+            AddLocal(currentGr, text, cdata, this.CurrentSounds);
+        }
+        #endregion
+
+
+
+        public virtual void DoFilter(string[] cadregroups, bool all = false)
         {
             this.AlignList.RemoveAll(x =>
                     !all
@@ -198,22 +350,22 @@ namespace StoGenMake.Scenes.Base
         public ScenCadre MakeCadre(CadreData item)
         {
 
-                seTe te = null;
-                bool isWhite = false;
-                if (item.IsGlobalAlign)
-                {
-                    te = new seTe();
-                    te.FontSize = 60;
-                    te.Size = 100;
-                    te.Bottom = 0;
-                    te.Shift = 700;
-                    te.Text = "SETUP";
-                }
-                else
-                {
-                    te = item.TextData;
-                }
-                return this.CreateCadre(item, isWhite, te);
+            seTe te = null;
+            bool isWhite = false;
+            if (item.IsGlobalAlign)
+            {
+                te = new seTe();
+                te.FontSize = 60;
+                te.Size = 100;
+                te.Bottom = 0;
+                te.Shift = 700;
+                te.Text = "SETUP";
+            }
+            else
+            {
+                te = item.TextData;
+            }
+            return this.CreateCadre(item, isWhite, te);
         }
         public List<CadreData> AlignList = new List<CadreData>();
         public Guid GID { set; get; }
@@ -224,7 +376,7 @@ namespace StoGenMake.Scenes.Base
             LoadData();
         }
         protected virtual void LoadData() { }
-        
+
         private string _TempFileName;
         public string TempFileName
         {
@@ -261,7 +413,7 @@ namespace StoGenMake.Scenes.Base
         public string Name { get; set; }
         public List<ScenCadre> Cadres { get; set; } = new List<ScenCadre>();
         public string FileToProcess = null;
-        
+
         #region Generate
         public string Generate()
         {
@@ -351,12 +503,14 @@ namespace StoGenMake.Scenes.Base
         #endregion
 
         public seTe DefaultSceneText = new seTe()
-           { Shift = 1000,
+        {
+            Shift = 1000,
             FontSize = 26,
             Size = 760,
             Bottom = 0,
-            Width =366,
-            FontColor = "Aqua"};
+            Width = 366,
+            FontColor = "Aqua"
+        };
 
         #region Newest engine!!!
 
@@ -364,7 +518,7 @@ namespace StoGenMake.Scenes.Base
         {
             var cadre = new ScenCadre();
             cadre.IsWhite = isWhite;
-            cadre.Name = $"Cadre {this.Cadres.Count + 1}";            
+            cadre.Name = $"Cadre {this.Cadres.Count + 1}";
             foreach (var ai in item.AlignList)
             {
                 //faind main image info in storage
@@ -399,7 +553,7 @@ namespace StoGenMake.Scenes.Base
                     // assign delta align, if any
                     im.AssignFrom(ai);
 
-                }               
+                }
                 // add image to cadre
                 cadre.AddImage(im);
             }
@@ -422,9 +576,9 @@ namespace StoGenMake.Scenes.Base
         public void AddLocal(string mark, List<DifData> difs) { Add(new string[] { mark }, difs.ToArray()); }
         public void AddLocal(string mark, string text, List<DifData> difs, List<seSo> sounds = null)
         {
-            Add(new string[] { mark },text, difs.ToArray(), sounds);
+            Add(new string[] { mark }, text, difs.ToArray(), sounds);
         }
-        public void AddLocal(string mark, DifData dif) { Add(new string[] { mark }, new DifData[] { dif } ); }
+        public void AddLocal(string mark, DifData dif) { Add(new string[] { mark }, new DifData[] { dif }); }
         public void AddGlobal(string[] marks, DifData[] difs)
         { Add(marks, difs, true); }
         private void Add(
@@ -432,7 +586,7 @@ namespace StoGenMake.Scenes.Base
             DifData[] difs,
             bool installtoglobal = false)
         {
-            Add(marks, difs,null, null, installtoglobal);
+            Add(marks, difs, null, null, installtoglobal);
         }
         private void Add(
             string[] marks,
@@ -447,7 +601,7 @@ namespace StoGenMake.Scenes.Base
         }
         private void Add(
             string[] marks,
-            DifData[] difs,            
+            DifData[] difs,
             seTe text,
             List<seSo> sounds,
             bool installtoglobal = false
@@ -468,7 +622,7 @@ namespace StoGenMake.Scenes.Base
                 if (installtoglobal && !string.IsNullOrEmpty(dif.Parent))
                 {
                     cadreAlignData.IsGlobalAlign = true;
-                    AddToGlobalAlign(dif, difs.Where(x=>x.Name == dif.Parent).FirstOrDefault());
+                    AddToGlobalAlign(dif, difs.Where(x => x.Name == dif.Parent).FirstOrDefault());
                 }
             }
             AlignList.Add(cadreAlignData);
@@ -506,16 +660,16 @@ namespace StoGenMake.Scenes.Base
             }
 
         }
-    
 
-    #endregion
 
-    
+        #endregion
+
+
     }
 
     public class DifData
     {
-       
+
         public DifData() { }
         public DifData(string name) : this() { Name = name; }
         public DifData(string name, string parent) : this() { Name = name; Parent = parent; }
@@ -568,13 +722,14 @@ namespace StoGenMake.Scenes.Base
         public int? O { set; get; }
         public int? Od { set; get; }
         public string T { set; get; }
+        public int? Z { set; get; } // z- position on screen (level)
 
-      
         public List<AP> AL = new List<AP>();
 
         internal void AssingFrom(DifData value, bool withnames = false)
         {
             if (value == null) return;
+            if (value.Z.HasValue) this.Z = value.Z;
             if (value.F.HasValue) this.F = value.F;
             if (value.X.HasValue) this.X = value.X;
             if (value.Y.HasValue) this.Y = value.Y;

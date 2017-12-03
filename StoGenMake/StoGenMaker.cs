@@ -27,8 +27,11 @@ namespace StoGenMake
             //var scen = new SC007_CleMasahiro();
             //var scen = new A001_Woman();
             //var scen = new SILKYS_SAKURA_OttoNoInuMaNi();
-            var scen = new _2011_USA_SRL_Homeland();
-
+            // var scen = new _2011_USA_SRL_Homeland();
+            //var scen = new _ALL__Mainstream();
+            //var scen = new _ALL__WEB();
+            //var scen = new _All__USA__PlayerHomeVideo();
+            var scen = new _ALL__Korean();
             string fn = scen.Generate();
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();

@@ -1,4 +1,5 @@
 ﻿
+using StoGen.Classes.Data.Movie;
 using StoGen.Classes.Transition;
 using StoGenMake;
 using StoGenMake.Elements;
@@ -14,16 +15,7 @@ namespace StoGen.Classes.Data.Games
 {
     public class SILKYS_SAKURA_OttoNoInuMaNi : BaseScene
     {
-        public Dictionary<string, string> Pictures = new Dictionary<string, string>();
-        public List<DifData> Difs = new List<DifData>();
 
-        public void AddPicture(string key,string val)
-        {
-            if (Pictures.ContainsKey(key))            
-                Pictures[key] = val;            
-            else
-                Pictures.Add(key,val);
-        }
 
         public SILKYS_SAKURA_OttoNoInuMaNi() : base()
         {
@@ -31,18 +23,12 @@ namespace StoGen.Classes.Data.Games
             EngineHiVer = 1;
             EngineLoVer = 0;
 
-           
-
         }
 
         List<string> data = new List<string>();
 
 
 
-        int SoundPauseNone = 0;
-        int SoundPauseShort = 500;
-        int SoundPauseNorm = 1000;
-        int SoundPauseLong = 2000;
         string BG_EVENING_CABINET = "SILKYS_SAKURA_OttoNoInuMaNi_BG06"; // evening cabinet
         string BG_EVENING_STREET = "SILKYS_SAKURA_OttoNoInuMaNi_BG07"; // evening street
         string BG_NIGHT_SKY = "SILKYS_SAKURA_OttoNoInuMaNi_BG08"; // night sky
@@ -56,7 +42,7 @@ namespace StoGen.Classes.Data.Games
         string MAN1 = "SILKYS_SAKURA_OttoNoInuMaNi_BM01_1";
         string MAN2 = "SILKYS_SAKURA_OttoNoInuMaNi_BM01_2";
         string MAN3 = "SILKYS_SAKURA_OttoNoInuMaNi_BM01_3";
-        
+
         MorfableName BadMan = new MorfableName("");
         MorfableName GoodMan = new MorfableName("");
         MorfableName Girl = new MorfableName("");
@@ -102,20 +88,20 @@ namespace StoGen.Classes.Data.Games
             string gr;
             string src;
             string text;
-            
 
-            string path = @"d:\Process2+\HCG\SILKY'S SAKURA\Otto no Inu Ma ni\EVENTS\";
+
+            string path = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\EVENTS\";
             for (int i = 1; i <= 1100; i++)
             {
                 src = $"SILKYS_SAKURA_OttoNoInuMaNi_{i.ToString("D4")}";
-                string fn = $"{i.ToString("D4")}.png";                
+                string fn = $"{i.ToString("D4")}.png";
                 AddToGlobalImage(src, fn, path);
                 data.Add(src);
             }
-            
+
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_PLACEHOLDER", "PLACEHOLDER.png", path);
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BM01", "BM01.png", path);
-            
+
 
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BM01_1", "BM01_1.png", path);
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BM01_2", "BM01_2.png", path);
@@ -126,7 +112,7 @@ namespace StoGen.Classes.Data.Games
 
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_BM02_2", "BM02_2.png", path);
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_GM01_1", "GM01_1.png", path);
-	        AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_GM01_2", "GM01_2.png", path);
+            AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_GM01_2", "GM01_2.png", path);
             AddToGlobalImage("SILKYS_SAKURA_OttoNoInuMaNi_GM01_3", "GM01_3.png", path);
 
 
@@ -145,28 +131,23 @@ namespace StoGen.Classes.Data.Games
 
             AddToGlobalImage("FLASH_BG", "WHITE.JPG", path);
 
-            this.DefaultSceneText.Size = 200;
-            this.DefaultSceneText.Width = 1000;
-            this.DefaultSceneText.FontSize = 32;            
-            this.DefaultSceneText.Shift = 250;
-            this.DefaultSceneText.FontColor = "White";
 
             currentGr = "Save2-1";
 
             DoScenario();
         }
 
-        string currentGr;
-        
+
+
         int Size1 = 1000;
         int Size2 = 1000;
         int Size3 = 1000;
-        
+
 
         int posX1 = 0;
         int posX2 = 0;
         int posX3 = 0;
-        
+
         int posY1 = 0;
         int posY2 = 0;
         int posY3 = 0;
@@ -178,7 +159,7 @@ namespace StoGen.Classes.Data.Games
 
 
         private void DoScenario()
-        {                       
+        {
             Cartina_HusbCall1();
             Cartina_GoToFinancist();
             Cartina_FirstMeetingWithFinancist();
@@ -195,18 +176,44 @@ namespace StoGen.Classes.Data.Games
             Cartina_ChangingClothInCabinet();
             Cartina_EveningPromenad();
             Cartina_LoveHotelBegin();
-
-            AddPicture("BACKGROUND", BG_LOVE_HOTEL);
-            AddPicture("MAN1_FIGURE1", MAN1);
-            AddPicture("EVENT_0042", data[0042 - 1]);
             Cartina_FinansistHotelBlowjob();
-
             Cartina_FinansistHotelFuck();
             Cartina_MorningAfterFinansistHotelFuck();
             Cartina_DayAfterFinansistHotelFuck();
             Cartina_EveningAfterFinansistHotelFuck();
         }
+        private void Cartina_FinansistHotelBlowjob()
+        {
+            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            st.PATH_V = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Voice\";
+            st.PATH_M = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Music\";
+            st.PATH_E = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Effect\";
 
+            st.currentGr = "17. Finansist hotel blowjob.";
+            Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();            
+            Pictures.Add("PLACEHOLDER", new DifData("SILKYS_SAKURA_OttoNoInuMaNi_PLACEHOLDER") { S = 1370 });
+            Pictures.Add("BACKGROUND", new DifData(BG_LOVE_HOTEL) { S = 1370 });
+            Pictures.Add("MAN1_FIGURE1", new DifData(MAN1) { });
+            Pictures.Add("EVENT_0042", new DifData(data[0042 - 1]) { S = 1370 });
+            Pictures.Add("EVENT_0043", new DifData(data[0043 - 1]) { S = 1370 });
+            Pictures.Add("EVENT_0044", new DifData(data[0044 - 1]) { S = 1370 });
+            Pictures.Add("EVENT_0045", new DifData(data[0045 - 1]) { S = 1370 });
+            Pictures.Add("EVENT_0046", new DifData(data[0046 - 1]) { S = 1370 });
+            Pictures.Add("EVENT_0047", new DifData(data[0047 - 1]) { S = 1370 });
+            Pictures.Add("EVENT_0048", new DifData(data[0048 - 1]) { S = 1370 });
+            Pictures.Add("EVENT_0049", new DifData(data[0049 - 1]) { S = 1370 });
+            Pictures.Add("EVENT_0050", new DifData(data[0050 - 1]) { S = 1370 });
+            Pictures.Add("EVENT_0051", new DifData(data[0051 - 1]) { S = 1370 });
+
+            Dictionary<string, MorfableName> names = new Dictionary<string, MorfableName>();
+            names.Add("Girl", Girl);
+            names.Add("BadMan", BadMan);
+            names.Add("GoodMan", GoodMan);
+            names.Add("Penis", Penis);
+            st.Cartina_FinansistHotelBlowjob(Pictures, names);
+            st.DoFilter(new string[] { st.currentGr });
+            this.AlignList.AddRange(st.AlignList);
+        }
         private void Cartina_HusbCall1()
         {
             //string BG = "SILKYS_SAKURA_OttoNoInuMaNi_BG06"; // evening cabinet
@@ -1237,11 +1244,11 @@ namespace StoGen.Classes.Data.Games
         private void Cartina_ChangingClothInCabinet()
         {
             string BG = BG_EVENING_CABINET; // evening cabinet
-            string MAN = MAN1;            
+            string MAN = MAN1;
 
             currentGr = "14.Переодевание у финансиста";
             posZ1 = 2;
-            Size2 = 680; posX2 = -70; posY2 = 525; posZ2 = 1;            
+            Size2 = 680; posX2 = -70; posY2 = 525; posZ2 = 1;
             int i = 637; // voice indexer
             CurrentSounds = new List<seSo>();
             //Music ============================
@@ -1250,15 +1257,15 @@ namespace StoGen.Classes.Data.Games
 
             //1
             AddEffect1($"effect.arc_000020.wav", SoundPauseShort, false);//Effect - shoot door
-            AddVoice($"voice.arc_000{i++}.ogg",  SoundPauseLong, false);            
-            DoC(1049, 0, null, BG, $"{Girl}~Простите? ...... ", new OpEf(1,false,500,false,2000));
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseLong, false);
+            DoC(1049, 0, null, BG, $"{Girl}~Простите? ...... ", new OpEf(1, false, 500, false, 2000));
             //2
-            DoC(1049, 0, null, BG, $"Когда я, вошла, волнуясь даже больше, чем раньше, {BadMan} еще работал.");            
+            DoC(1049, 0, null, BG, $"Когда я, вошла, волнуясь даже больше, чем раньше, {BadMan} еще работал.");
             //3
-            DoC(1049, 0, MAN,  BG, $"{BadMan}~Я еще не закончил, подождите.", new OpEf(2, false, 350, false, 0));
+            DoC(1049, 0, MAN, BG, $"{BadMan}~Я еще не закончил, подождите.", new OpEf(2, false, 350, false, 0));
             //4
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(1049, 0, MAN,  BG, $"{Girl}~....хорошо....");
+            DoC(1049, 0, MAN, BG, $"{Girl}~....хорошо....");
             //5 
             DoC(1049, 0, null, BG, $"{BadMan} сидел за столом, перебирая документы с озабоченным выражением лица.", new OpEf(2, true, 500, true, 0));
             //6
@@ -1273,17 +1280,17 @@ namespace StoGen.Classes.Data.Games
             //==== Change position
             posX2 = 845; posY2 = 55; Size2 = 715;
             //10
-            DoC(1049, 0, MAN,  BG, $"{BadMan}~Простите, что заставил вас ждать.", new OpEf(2, false, 350, false, 0));
+            DoC(1049, 0, MAN, BG, $"{BadMan}~Простите, что заставил вас ждать.", new OpEf(2, false, 350, false, 0));
             //11
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(1049, 0, MAN,  BG, $"{Girl}~совсем нет... ....");
+            DoC(1049, 0, MAN, BG, $"{Girl}~совсем нет... ....");
             //12
-            DoC(1049, 0, MAN,  BG, $"{BadMan}~Я уже успел переодеться, теперь вы не могли бы надеть другое платье?.");
+            DoC(1049, 0, MAN, BG, $"{BadMan}~Я уже успел переодеться, теперь вы не могли бы надеть другое платье?.");
             //13
-            DoC(1049, 0, MAN,  BG, $"Посмотрел на меня и показал на бумажный пакет у моих ног.");
+            DoC(1049, 0, MAN, BG, $"Посмотрел на меня и показал на бумажный пакет у моих ног.");
             //14
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(1048, 0, MAN,  BG, $"{Girl}~ Надеть другое платье...?", new OpEf(1, true, 350, true, 0));
+            DoC(1048, 0, MAN, BG, $"{Girl}~ Надеть другое платье...?", new OpEf(1, true, 350, true, 0));
             //15
             DoC(1048, 0, MAN, BG, $"Я никак не ожидала такого предложения.");
             //16
@@ -1374,7 +1381,7 @@ namespace StoGen.Classes.Data.Games
             //53
             DoC(1073, 0, MAN, BG, $"{BadMan}~Нет проблем, там свободная обстановка.");
             //54
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);            
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(1073, 0, MAN, BG, $"{Girl}~Но...");
             //55
             DoC(1073, 0, MAN, BG, $"Я чувствую себя слишком неловко в таком наряде, чтобы пойти в нем в общественное место.");
@@ -1388,7 +1395,7 @@ namespace StoGen.Classes.Data.Games
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(1073, 0, MAN, BG, $"{Girl}~(Если пойти в таком наряде, может случиться скандал ... ... ...)");
             //60
-            DoC(1073, 0, MAN, BG, $"Но я не могу отказаться, ведь {BadMan} кажется, это нравится.");            
+            DoC(1073, 0, MAN, BG, $"Но я не могу отказаться, ведь {BadMan} кажется, это нравится.");
             //61
             DoC(1073, 0, MAN, BG, $"Мне было очень стыдно, но я решила пережить и это.");
 
@@ -1446,7 +1453,7 @@ namespace StoGen.Classes.Data.Games
             DoC(1073, 0, MAN, BG, $"{Girl}~........?");
             //15
             DoC(1070, 0, MAN, BG, $"{BadMan}, глядя на часы, протянул руку и обнял меня за талию."
-                ,new OpEf(1, true, 350, true, 0));
+                , new OpEf(1, true, 350, true, 0));
             //16
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(1073, 0, MAN, BG, $"{Girl}~......."
@@ -1458,7 +1465,7 @@ namespace StoGen.Classes.Data.Games
             //19
             DoC(1073, 0, MAN, BG, $"{BadMan}~Прогуляемся?");
             //20
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);            
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(1073, 0, MAN, BG, $"{Girl}~д ... ... да ... ...");
             //21
             DoC(1073, 0, MAN, BG, $"Я не смогла даже отвести его руку, и он продолжал держать меня меня за попу.");
@@ -1469,7 +1476,7 @@ namespace StoGen.Classes.Data.Games
             DoC(1073, 0, MAN, BG, $"{Girl}~(пожалуйста ... лишь бы не встретить никого знакомого ... ...)");
             //24
             DoC(1073, 0, MAN, BG, $"Я мысленно молилась, сгорая от смущения."
-                , new OpEf(1, false, 350, true, 0), new OpEf(2, false, 350, true , 0));
+                , new OpEf(1, false, 350, true, 0), new OpEf(2, false, 350, true, 0));
 
             DoC(0, 0, null, null, $"....");
             DoC(0, 0, null, null, $".... ....");
@@ -1495,7 +1502,7 @@ namespace StoGen.Classes.Data.Games
             //33
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(1070, 0, MAN, BG, $"{Girl}~д ......, да ... ... только если немного ... ... "
-                ,new OpEf(1, true, 350, true, 0));
+                , new OpEf(1, true, 350, true, 0));
             //34
             DoC(1070, 0, MAN, BG, $"Я поняла, что сейчас мы пойдем в бар. Наверно он собирается выпить.");
             //35
@@ -1510,7 +1517,7 @@ namespace StoGen.Classes.Data.Games
             //39
             DoC(1070, 0, MAN, BG, $"Но я не лумаю, что так будет и дальше.");
             //40
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);            
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(1073, 0, MAN, BG, $"{Girl}~(Он наверно постарается напоить меня ... или что-то еще... )"
                 , new OpEf(1, true, 350, true, 0));
             //41
@@ -1536,7 +1543,7 @@ namespace StoGen.Classes.Data.Games
             //49
             DoC(1073, 0, MAN, BG, $"{BadMan}~Прогуляемся, чтобы проветрить алкоголь.");
             //50
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);            
+            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(1073, 0, MAN, BG, $"{Girl}~ах ... ... да ... ... ");
             //51
             DoC(1073, 0, MAN, BG, $"Благодаря тому, что ранее был ужин, я не слишком опьянела.");
@@ -1558,7 +1565,7 @@ namespace StoGen.Classes.Data.Games
             //58
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(1070, 0, null, BG, $"{Girl}~(это...это ... ... похоже на ... ...?)"
-                ,OpEf.AppearCurrent(1));
+                , OpEf.AppearCurrent(1));
             //59
             DoC(0, 0, null, BG, $"Лампы давали неровный свет, и люди, которые заходили внутрь прятали лица."
                 , OpEf.HidePrev(1));
@@ -1598,7 +1605,7 @@ namespace StoGen.Classes.Data.Games
             //72
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(1071, 0, MAN, BG, $"{Girl}~(Ооо... ... {GoodMan} ... ...! Спаси меня ... ...!)"
-                ,OpEf.HidePrev(1));
+                , OpEf.HidePrev(1));
             //73
             DoC(1071, 0, MAN, BG, $"Шагнув ко входу, я мысленно взывала ему.");
 
@@ -1636,9 +1643,9 @@ namespace StoGen.Classes.Data.Games
             //6
             DoC(1073, 0, null, BG, $"Удивительно, что я думала сейчас о таких пустяках.");
             //7
-            posX1 = 470;posX2 = 155;            
+            posX1 = 470; posX2 = 155;
             DoC(1073, 0, MAN, BG, $"{BadMan}~{Girl}?"
-                ,OpEf.AppearCurrent(2));
+                , OpEf.AppearCurrent(2));
             //8
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(1069, 0, MAN, BG, $"{Girl}~.... ... да..! "
@@ -1722,7 +1729,7 @@ namespace StoGen.Classes.Data.Games
             DoC(1049, 0, null, BG, $"Я стала делать это, но не смогла, и больше мы не пробовали.");
             //38
             DoC(1049, 0, MAN, BG, $"{BadMan}~Вижу ... что ж, я не ожидал такого."
-                ,OpEf.AppearCurrent(2));
+                , OpEf.AppearCurrent(2));
             //39
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(1049, 0, null, BG, $"{Girl}~хорошо ... "
@@ -1742,389 +1749,9 @@ namespace StoGen.Classes.Data.Games
             //45
             DoC(1049, 0, null, BG, $"Едва слышно промолвив эти слова, я опустилась на колени перед {BadMan}.");
 
-            ClearSound(true,true,true);
-        }
-        private void Cartina_FinansistHotelBlowjob()
-        {
-                        
-            string BG = Pictures["BACKGROUND"]; //background
-            string MAN = Pictures["MAN1_FIGURE1"];
-            currentGr = "17. Finansist hotel blowjob.";
-            int i = 686; // voice indexer
-            CurrentSounds = new List<seSo>();
-            //Music ============================
-            AddMusic("music.arc_000003.wav");
-            //Music ============================
-
-
-            posX1 = 0; posY1 = 0; Size1 = 1370;
-            string gg = Pictures["EVENT_0042"];
-
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(gg, null, null, null, $"{Girl}~ ... ... ... ... ");
-            DoC(gg, null, null, null, $"Я оказалась на коленях, перед пахом {BadMan.R}.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(gg, null, null, null, $"{Girl}~...............");
-            DoC(gg, null, null, null, $"Что делать дальше, я не понимала.");
-            DoC(gg, null, null, null, $"По сравнению с {GoodMan.T} все было по-другому, я растерялась.");
-            DoC(gg, null, null, null, $"{BadMan}~Может быть, пора его уже достать? ");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(gg, null, null, null, $"{Girl}~........");
-            DoC(gg, null, null, null, $"{BadMan} приподнялся и выпятил пах.");
-            DoC(gg, null, null, null, $"Достать это из его брюк ... ... мне на самом деле нужно это сделать?");
-            DoC(gg, null, null, null, $"Я не делала такого даже с {GoodMan.T}.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(gg, null, null, null, $"{Girl}~(Я должна ... ... должна ...) ");
-            DoC(gg, null, null, null, $"Пальцы осторожно берут застежку молнии и медленно тянут ее вниз.");            
-            AddEffect1($"effect.arc_000075.wav", SoundPauseShort, false); // effect - zipper
-            DoC(gg, null, null, null, $"Ширинка раскрывается, и оттуда с силой выпрыгивает пенис {BadMan.R}.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0044, 0, null, null, $"{Girl}~........."
-                , OpEf.HidePrev(1));
-            DoC(0044, 0, null, null, $"Прямо перед моими глазами - интимная часть мужчины, и притом - не моего мужа.");
-            DoC(0044, 0, null, null, $"Я не была ни с кем, кроме {GoodMan.R}, поэтому, возможно, что мне было чуть-чуть любопытно.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0044, 0, null, null, $"{Girl}~........");
-            DoC(0044, 0, null, null, $"{BadMan}~Впечатляет, правда?");
-            DoC(0044, 0, null, null, $"Интонация голоса {BadMan.R} была насмешливая.");
-            DoC(0044, 0, null, null, $"{BadMan} явно забавлялся моей реакцией.");
-            DoC(0044, 0, null, null, $"Но эта реакция была бы неуместна для опытной женщины, у меня же это было в первый раз.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0044, 0, null, null, $"{Girl}~(... ... у других он выглядит так... ... ...!?)");
-            DoC(0044, 0, null, null, $"Хоть еще не полностью возбужденный, он был больше, чем {GoodMan.R}, и какой-то более жесткий.");
-            DoC(0044, 0, null, null, $"Даже не прикасаясь к нему, я чувствовала, что он твердый.");
-            DoC(0044, 0, null, null, $"Возможно, потому что он был весь увит толстыми венами.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0044, 0, null, null, $"{Girl}~(Наверно, это потому, что {BadMan} больше, чем {GoodMan} ...)");
-            DoC(0044, 0, null, null, $"Так как я раньше видела 'его' только у {GoodMan.V}, то не могла сказать, среднего он размера, или большого.");
-            DoC(0044, 0, null, null, $"{BadMan}~Долго будем разглядывать?");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0043, 0, null, null, $"{Girl}~... ... ...... ... ... ",
-                OpEf.HidePrev(1));
-            DoC(0043, 0, null, null, $"Немного осмелев, я на самом деле рассматривала его 'штуку'.");
-            DoC(0043, 0, null, null, $"Работать ртом - значит лизать это.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0043, 0, null, null, $"{Girl}~..........");
-            DoC(0043, 0, null, null, $"Если бы это был {GoodMan}, я делала бы все, несмотря на стыд.");
-            DoC(0043, 0, null, null, $"Но как делать такие вещи с другим мужчиной?");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0043, 0, null, null, $"{Girl}~(Если я сделаю это, то пути назад уже может не быть ... ...)");
-            DoC(0043, 0, null, null, $"От меня могут потребовать чего-то большего, чем просто полизать это.");
-            DoC(0043, 0, null, null, $"Тогда ... ... Если сделать все хорошо, и он будет удовлетворен, тогда мое самое важное место будет спасено.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0043, 0, null, null, $"{Girl}~(... ... но я должна хорошо постараться ... ... ...)");
-            DoC(0043, 0, null, null, $"Я решилась и осторожно дотронулась языком до {BadMan.R}.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0045, 0, null, null, $"{Girl}~............."
-                 ,OpEf.HidePrev(1));
-            DoC(0045, 0, null, null, $"Язык коснулся очень горячего и твердого.");
-            DoC(0045, 0, null, null, $"Если бы я не пила ликер, я бы никогда такого не сделала.");
-            DoC(0045, 0, null, null, $"Я сейчас трогаю языком орган другого мужчины.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0045, 0, null, null, $"{Girl}~(Облизываю ...... лижу ... ...)");
-            DoC(0045, 0, null, null, $"Это похоже на то, как облизывать очень толстый палец ... .... но я облизываю не палец.");
-            DoC(0045, 0, null, null, $"Почему это не {GoodMan}?");
-            DoC(0045, 0, null, null, $"Стараясь не думать о растущем в сердце чувстве вины, я стараюсь быстрей ласкать орган языком.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0047, 0, null, null, $"{Girl}~..."
-                 ,OpEf.HidePrev(1));
-            DoC(0047, 0, null, null, $"По счастью, это оказалось не так уж трудно.");
-            DoC(0047, 0, null, null, $"{BadMan} не был в душе, но неприятного запаха я не чувствовала.");
-            DoC(0047, 0, null, null, $"В сердце была печаль и чувство вины, но я не могу сказать, что мне было противно.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0047, 0, null, null, $"{Girl}~lick");
-            DoC(0047, 0, null, null, $"Я помню, что облизывала и облизывала твердую штуку перед моими глазами.");
-            DoC(0047, 0, null, null, $"Работала языком вверх-вниз, по бокам, по всем местам, которые могла достать.");
-            DoC(0047, 0, null, null, $"Наверно, это было достаточно приятно.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0048, 0, null, null, $"{Girl}~.........",
-                 OpEf.HidePrev(1));
-            DoC(0048, 0, null, null, $"{BadMan} сидел молча и расслабленно.");
-            DoC(0048, 0, null, null, $"Время от времени его бедра содрогались, но он продолжал молча смотреть сверху на меня.");
-            DoC(0048, 0, null, null, $"Я продолжала ласки языком и поцелуи, и чувствовала, как его {Penis} все больше твердеет.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0048, 0, null, null, $"{Girl}~.....");
-            DoC(0048, 0, null, null, $"Интересно, сколько еще надо таких ласк, чтобы брызнуло его семя?");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0048, 0, null, null, $"{Girl}~(Мне надо было практиковаться раньше ... ... ... )");
-            DoC(0048, 0, null, null, $"Конечно, я имела в виду {GoodMan.R}");
-            DoC(0048, 0, null, null, $"Но сейчас уже было поздно, для того чтобы думать о таких вещах.");
-            DoC(0048, 0, null, null, $"Сейчас мнее надо было следать так, чтобы {BadMan} был удовлетворен.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0048, 0, null, null, $"{Girl}~...");
-            DoC(0048, 0, null, null, $"Но у меня не было ни опыта, ни знаний, чтобы делать все правильно.");
-            DoC(0048, 0, null, null, $"{Penis} {BadMan.R} был очень тверд и напряжен, но я была неуверена, что ему нравится.");
-            DoC(0048, 0, null, null, $"Гадая, я продолжала облизывать его {Penis}.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0047, 0, null, null, $"{Girl}~......"
-                 ,OpEf.HidePrev(1));
-            DoC(0047, 0, null, null, $"Я чувствовала своим языком пульсирование толстых вен.");
-            DoC(0047, 0, null, null, $"Он твердел все больше и больше.");
-            DoC(0047, 0, null, null, $"И истекал с кончика.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0047, 0, null, null, $"{Girl}~......");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0047, 0, null, null, $"{Girl}~(Наверное, у меня плохо получается ... ...?) $");
-            DoC(0047, 0, null, null, $"{BadMan} смотрел на меня,и не шевелился.");
-            DoC(0047, 0, null, null, $"{BadMan}, наверно имел много женщин, и, возможно, я недостаточно хороша для него.");
-            DoC(0047, 0, null, null, $"{BadMan}~....");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0047, 0, null, null, $"{Girl}~....");
-            DoC(0047, 0, null, null, $"Что же мне делать?");
-            DoC(0047, 0, null, null, $"Я не могу на этом остановиться, или он потребует большего.");
-            DoC(0047, 0, null, null, $"В любом случае, я должна что-то сделать.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0045, 0, null, null, $"{Girl}~... ... ... ва ... ... вам не нравится ...?"
-                , OpEf.HidePrev(1));
-            DoC(0045, 0, null, null, $"Я набралась смелости и спросила прямо.");
-            DoC(0045, 0, null, null, $"Если {BadMan.V} не получиться удовлетворить этим способом, то нет смысла продолжать.");
-            DoC(0045, 0, null, null, $"{BadMan}~Нравится, продолжай.");
-            DoC(0045, 0, null, null, $"{BadMan}, наконец, заговорил, выглядел спокойным, но довольным .");
-            DoC(0045, 0, null, null, $"Кажется, его возбуждение росло");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0045, 0, null, null, $"{Girl}~.....");
-            DoC(0045, 0, null, null, $"Скорей бы он брызнул.");
-            DoC(0045, 0, null, null, $"{BadMan}~Хочешь, чтобы я кончил?");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0047, 0, null, null, $"{Girl}~......, так было бы ... ... наверно  лучше, да?... ... "
-                , OpEf.HidePrev(1));
-            DoC(0047, 0, null, null, $"{BadMan}~Мы только начали. Но если готова сначала в рот принять..");
-            DoC(0047, 0, null, null, $"Ответил {BadMan} и посмотрел на меня с каким-то презрением.");
-            DoC(0047, 0, null, null, $"Я не поняла, отчего.");
-            DoC(0047, 0, null, null, $"Но зато я поняла, что у меня есть проблема.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0047, 0, null, null, $"{Girl}~(Боже если это только начало ... ... это плохо...!)");
-            DoC(0047, 0, null, null, $"Я должна как-то удовлетворить его, используя только рот.");
-            DoC(0047, 0, null, null, $"Если сделать это другим, более интимным местом, то это будет предательством {GoodMan.R}.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0045, 0, null, null, $"{Girl}~я, ... ... я хочу чтобы {BadMan}... что ... ... прошу сказать мне... как сделать ему еще приятней ...?"
-                , OpEf.HidePrev(1));
-            DoC(0045, 0, null, null, $"Об этом знал сам {BadMan}.");
-            DoC(0045, 0, null, null, $"Поэтому я просила его сказать мне прямо.");
-            DoC(0045, 0, null, null, $"{BadMan} важно кивнул.");
-            DoC(0045, 0, null, null, $"{BadMan}~Тогда ты должна взять член в рот и хорошо сосать его.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0046, 0, null, null, $"{Girl}~боже, сосать его...! но как ?  ... это же... так ... ..", OpEf.HidePrev(1));
-            DoC(0046, 0, null, null, $"Кажется, продолжать облизывать бесполезно, надо поменять способ, но как это сделать?");
-            DoC(0046, 0, null, null, $"Во-первых, как такой большой и твердый {Penis} поместится у меня во рту?");
-            DoC(0046, 0, null, null, $"И дальше, что и как делать, когда он там окажется?");
-            DoC(0046, 0, null, null, $"{BadMan}~Если бы я не спешил, я бы не заставлял тебя.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0045, 0, null, null, $"{Girl}~(что же делать ......! но ведь ... ... если отказаться, то ...) "
-                , OpEf.HidePrev(1));
-            DoC(0046, 0, null, null, $"Если я не смогу удовлетворить {Girl}, тогда все будет зря.");
-            DoC(0046, 0, null, null, $"Этого не должно случиться, а если я не сделаю того, чего он хочет, то будет еще хуже.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(0046, 0, null, null, $"{Girl}~д.. .... да, я ... ");
-            DoC(0046, 0, null, null, $"Чтобы {BadMan} удовлетворился поскорей, я не должна сомневаться.");
-            DoC(0046, 0, null, null, $"Я собрала все смелость, оставшуюся от выпитого ликера, приняла решение, и приоткрыла рот.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            int g = 0050;
-            DoC(g, 0, null, null, $"{Girl}~ ...... ... ...!  ... ....  ... ...! "
-                , OpEf.HidePrev(1));
-            
-            DoC(g, 0, null, null, $"Пока я старалась вместить его, рот наполнился вкусом и запахом, который трудно описать словами.");
-            DoC(g, 0, null, null, $"И как только он оказался у меня во рту, все посторонние мысли тут же исчезли.");
-            DoC(g, 0, null, null, $"Этот {Penis} сильно отличался от {Penis.R} {GoodMan.R} не только размером и формой, но также и вкусом, и запахом.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~.....");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~(Как это отличается у разных мужчин ...!)");
-            DoC(g, 0, null, null, $"Этот вкус казался мне каким-то очень развратным.");
-            DoC(g, 0, null, null, $"В нем было что-то животное, звериное.");
-            DoC(g, 0, null, null, $"Я попробовала его оттолкнуть языком, и почувствовал как он запульсировал.");
-            DoC(g, 0, null, null, $"{BadMan}~Да, не заглатывай слишком много, а то может затошнить.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~.......");
-            DoC(g, 0, null, null, $"Закрыв глаза, {BadMan} кивнул.");
-            DoC(g, 0, null, null, $"Я немного приспособилась к размеру, и могла нормально дышать.");
-            DoC(g, 0, null, null, $"Приходилось быть осторожной, потому что я боялась случайно прикусить его.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~...");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~( ... он огромный, у меня уже скулы заныли ... ...) ");
-            DoC(g, 0, null, null, $"Надо все время держать рот широко открытым, иначе он не влезае.");
-            DoC(g, 0, null, null, $"Кроме того, как сказал {BadMan},нельзя чтобы он прошел до горла, а то меня затошнит.");
-            g = 0051;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~(...все ... я сосу это ... ... ... ...)"
-                , OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"приходилось все время глотать слюну.");
-            DoC(g, 0, null, null, $"неужели я могу это делать.");
-            g = 0050;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~....."
-                , OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"Я старалась сосать, даже когда он был глубоко.");
-            DoC(g, 0, null, null, $"{BadMan}~Что такое? Если очень трудно, то можешь остановиться. ");
-            DoC(g, 0, null, null, $"Не знала, смогу ли я, но не могла позволить себе сомневаться.");
-            g = 0049;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~.."
-                , OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"Надо было помогать себе языком, стараться перекатывать его во рту.");
-            DoC(g, 0, null, null, $"Из-за большого размера, несколько раз я чуть не закашлялась.");
-            g = 0050;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~...", OpEf.HidePrev(1));
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~.... Больно...");
-            DoC(g, 0, null, null, $"Из-за того, что мне надо было широко открывать рот, лицевые мышцы тоже заболели.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~..");
-            DoC(g, 0, null, null, $"Надо было терпеть и продолжать сосать этот {Penis}.");
-            DoC(g, 0, null, null, $"Массировать его, языком, губами, всем ртом");
-            DoC(g, 0, null, null, $"Не знаю, хорошо ли у меня получалось, но я старалась изо всех сил.");
-            g = 0051;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~......"
-                , OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"Прстепенно, кончик его {Penis.R} стал выделать смазку.");
-            DoC(g, 0, null, null, $"Наверно так бывает, когда мужчина испытывает удовольствие.");
-            DoC(g, 0, null, null, $"Наверно, {BadMan.D} понравились ласки.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~....");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~(Вот так, правильно ... ....)");
-            DoC(g, 0, null, null, $"Я стала чувствовать его ответную реакуцию.");
-            g = 0050;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~........"
-                , OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"И я приспособилась в конце концов.");
-            DoC(g, 0, null, null, $"Только в начале было болезненно, а потом постепенно я привыкла.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~(Надо стараться двигать шею как можно плавней... ...) ");
-            DoC(g, 0, null, null, $"Я чувствовала, как работают мои губы.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~.....");
-            DoC(g, 0, null, null, $"Но этого мало для стимуляции, поэтому надо пытаться также работать языком.");
-            DoC(g, 0, null, null, $"И в конце концов приходит результат.");
-            DoC(g, 0, null, null, $"{BadMan}~Да, так уже хорошо.");
-            DoC(g, 0, null, null, $"{BadMan.D} понравилось.");
-            DoC(g, 0, null, null, $"Я люблю когда меня хвалят, что бы я не делала.");
-            g = 0049;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~....."
-                , OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"Я вдруг поняла, что хочу нравиться еще больше.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~....");
-            DoC(g, 0, null, null, $"Если продолжать так, я точно добьюсь результата.");
-            DoC(g, 0, null, null, $"Это ожидание росло во мне, и я все охотнее старалась.");
-            g = 0050;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~...."
-                , OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"Я уже не вспоминала о {GoodMan.P}, а увлеченно сосала то, что было у меня во рту.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~..........");
-            DoC(g, 0, null, null, $"В уголке губ скопилась слюна.");
-            DoC(g, 0, null, null, $"На груди было влажное пятно, но это даже меня не заботило.");
-            DoC(g, 0, null, null, $"Я думала только о том, чтобы заставить {BadMan.R} кончить.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~(Я должна полностью удовлетворить его ... ...!) ");
-            DoC(g, 0, null, null, $"Для того чтобы не быть вынужденной идти дальше, мне надо все сделать ртом.");
-            g = 0051;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~..........");
-            DoC(g, 0, null, null, $"Губы и язык уставали, но это меня не могло остановить.");
-            DoC(g, 0, null, null, $"{BadMan}~Прекоасно ... это просто чудесно.");
-            g = 0052;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~(Надо постараться еще немного ......) ", OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"Я поняла, что близка к цели по голосу {BadMan.R} и по тому, как напрягся его {Penis} в моем рту.");
-            DoC(g, 0, null, null, $"Я сказала себе, что нужно еще немного, и продолжила ласки без остановки.");
-            g = 0050;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~(Вот, еще ......) ", OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"Я отчаянно ласкала, и из {Penis.R} стало сочиться.");
-            DoC(g, 0, null, null, $"Странно, от этого у меня начала кружиться голова, а все чувства парализовало.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~......");
-            DoC(g, 0, null, null, $"Во рту стало очень горячо.");
-            DoC(g, 0, null, null, $"Весь мир исчез для меня.");
-            DoC(g, 0, null, null, $"Горький вкус растекался по рту и обжигал язык.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~.......");
-            DoC(g, 0, null, null, $"Я страстно желала, чтобы брызнул прямо сейчас.");
-            DoC(g, 0, null, null, $"Я думала только об этом.");
-            DoC(g, 0, null, null, $"{BadMan}~ммммммммм ......");
-            g = 0052;
-            DoC(g, 0, null, null, $"{BadMan} застонал, и я языком сильно прижала его {Penis} к небу."
-                , OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"Наверно это было очень приятно.");
-            g = 0050;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~..............", OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"Я почувствовала, что развязка близко и стала ласкать быстрей.");
-            DoC(g, 0, null, null, $"Он положил руку мне на голову и стал давить.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~(Прошу быстрей ......!)");
-            DoC(g, 0, null, null, $"И вот рот {BadMan.R} вдруг открылся.");
-            DoC(g, 0, null, null, $"{BadMan}~...... Я кончаю.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            g = 0050;
-            DoC(g, 0, null, null, $"{Girl}~......", OpEf.HidePrev(1));
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~......");
-            DoC(g, 0, null, null, $"Я еще не поняла смысл слов {BadMan.R}, но почувствовала сильную пульсацию во рту.");
-            g = 0053;
-
-            AddEffect1($"effect.arc_000150.wav", SoundPauseShort, false); // effect - splach also effect.arc_000142.wav,144-156,
-            ORGAZM = true;
-            DoC(g, 0, null, null, $"Сплат! Сплат! Сплат! Сплат!", OpEf.HidePrev(1));
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~.......");
-
-            DoC(g, 0, null, null, $"Сперма {BadMan.R} стала выплескиваться мощными толчками.");
-            DoC(g, 0, null, null, $"Струи, одна за другой, били мне в горло.");
-            DoC(g, 0, null, null, $"Бездумно, я старалась проглотить их.");
-            g = 0054;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~.........", OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"Я крепко обхватила губами сильно пульсирующий {Penis}.");
-            DoC(g, 0, null, null, $"Первый раз в жизни я принимала его извержение прямо в рот, и была поражена  пульсацией.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~(Оооох, эякуляция настолько мощная ... ....!)");
-            DoC(g, 0, null, null, $"Я была ошеломлена, не могла двигаться, клейкая масса все наполняла мне рот.");
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~...");
-            DoC(g, 0, null, null, $"Стараясь не закашляться, я принимала ее.");
-            DoC(g, 0, null, null, $"Когда рот был заполнен до конца, мне пришлось понемногу глотать, чтобы не задохнуться.");
-            g = 0055;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~.....", OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"Немного протекло даже из носа через носоглотку.");
-            DoC(g, 0, null, null, $"Я дождалась, когда эякуляция закончится, и {Penis} был убран.");
-            g = 0056;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~......", OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"Вкус и запах теплой спермы наполнял мой рот, и я сразу постаралась освободить его.");
-            DoC(g, 0, null, null, $"Мое дыхание пахло неприятно.");
-            DoC(g, 0, null, null, $"Я быстро сплюнула, много еще оставалось во рту.");
-            DoC(g, 0, null, null, $"{BadMan}~Ты правда первый раз приняла в рот? Это было неплохо.");
-            g = 0058;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~а ... ... а ... .... а да, было ... ... хорошо ...", OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"Мне еще не удалось восстановить дыхание, но я чувствовала облегчение.");
-            DoC(g, 0, null, null, $"Я смогла удовлетворить {BadMan.V}.");
-            g = 0057;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~...........", OpEf.HidePrev(1));
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~(Я справилась, все закончилось ... ...)");
-            DoC(g, 0, null, null, $"Я смогла пройти через это.");
-            DoC(g, 0, null, null, $"От чувства удовлетворения, что я смогла довести {BadMan.V} до эякуляции, на сердце стало легко.");
-            DoC(g, 0, null, null, $"Но тут, как в насмешку над моими надеждами, {BadMan} стал раздеваться.");
-            DoC(g, 0, null, null, $"{BadMan}~Я теперь я сделаю тебе хорошо.");
-            g = 0058;
-            AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~....., .... ...... ... это .....это не все? ... ...! ", OpEf.HidePrev(1));
-
             ClearSound(true, true, true);
-
         }
+
         private void Cartina_FinansistHotelFuck()
         {
             string BG = BG_LOVE_HOTEL; //
@@ -2217,7 +1844,7 @@ namespace StoGen.Classes.Data.Games
                 , OpEf.HidePrev(1));
             DoC(g, 0, null, null, $"But, as soon as I come here, I have to decide my mind and continue.");
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
-            DoC(g, 0, null, null, $"{Girl}~(2 times ...... If you put it out twice, surely ... ....) " );
+            DoC(g, 0, null, null, $"{Girl}~(2 times ...... If you put it out twice, surely ... ....) ");
             DoC(g, 0, null, null, $"Mr. Minodo was drinking as well at the bar and I wanted to think that I could not continue so much.");
             g = 0062;
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
@@ -2412,7 +2039,7 @@ namespace StoGen.Classes.Data.Games
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(g, 0, null, null, $"{Girl}~uh"
                 , OpEf.HidePrev(1));
-            DoC(g, 0, null, null, $"I did not want to believe, had gotten have been wet enough to be heard clearly up to my ear."); 
+            DoC(g, 0, null, null, $"I did not want to believe, had gotten have been wet enough to be heard clearly up to my ear.");
             DoC(g, 0, null, null, $"{BadMan}~It's pretty sensitive, not bad.");
             g = 0066;
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
@@ -2463,7 +2090,7 @@ namespace StoGen.Classes.Data.Games
             DoC(g, 0, null, null, $"{Girl}~(Do not intensify ... ... Do not intensify... ...!)"
                 , OpEf.HidePrev(1));
             DoC(g, 0, null, null, $"I also have a lot of seasoned juice.");
-            DoC(g, 0, null, null, $"It will not be fake for me so long as it will be this way."); 
+            DoC(g, 0, null, null, $"It will not be fake for me so long as it will be this way.");
             DoC(g, 0, null, null, $"To the fact that I felt, my heart is tightened with a sense of guilt.");
             DoC(g, 0, null, null, $"I do not forgive everything, but that does not make any excuse.");
             g = 0070;
@@ -2612,7 +2239,7 @@ namespace StoGen.Classes.Data.Games
             CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
             AddEffect1($"effect.arc_000020.wav", SoundPauseShort, false);//Effect - shoot door
             DoC(g, 0, null, BG, $"Mr. Mito finishes showering and comes back while I am confused as to what I should do.");
-            MAN = MAN2; posX2 = -50;           
+            MAN = MAN2; posX2 = -50;
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(g, 0, MAN, BG, $"{Girl}~ ......  ......  ......  ......  ...... ",
                OpEf.AppCurr(2, "W..0>O.B.400.100*W..0>X.B.400.300")
@@ -2626,7 +2253,7 @@ namespace StoGen.Classes.Data.Games
             DoC(g, 0, MAN, BG, $"{BadMan}~Well then, I will contact you again.");
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             DoC(g, 0, MAN, BG, $"{Girl}~ ......  ...... yes ......  ......  ...... ");
-            
+
             DoC(g, 0, null, BG, $"And, as it was, he really left the room."
                 , OpEf.HidPrev(2, "W..0000>O.B.400.-100*W..0000>X.B.400.-300"));
             AddEffect1($"effect.arc_000020.wav", SoundPauseShort, false);//Effect - shoot door
@@ -2715,7 +2342,7 @@ namespace StoGen.Classes.Data.Games
             AddMusic("music.arc_000007.wav");
             //Music ============================
 
-            DoC(0, 0, null, BG, $"While I was anxious, I was frightened and waited, but even though evening I did not hear from Mr. Mito.");           
+            DoC(0, 0, null, BG, $"While I was anxious, I was frightened and waited, but even though evening I did not hear from Mr. Mito.");
             AddVoice($"voice.arc_000{i++}.ogg", SoundPauseNone, false);
             int g = 1049;
             posX1 = 135;
@@ -2806,64 +2433,12 @@ namespace StoGen.Classes.Data.Games
             );
 
         }
-        private void AddEffect1(string effect1, int effect1Pause, bool effect1Loop)
-        {
-            if (!string.IsNullOrEmpty(effect1))
-            {
-                CurrentSounds.RemoveAll(x => x.Name == "EFFECT1");
-                CurrentSounds.Add(new seSo()
-                { File = $"{PATH_E}{effect1}",
-                    Name = "EFFECT1",
-                    V = VOLUME_E,
-                    IsLoop = effect1Loop,
-                    StartPlay = 0,
-                    T = $"W..{effect1Pause}>p.A.0.1" });
-            }
-        }
-        // add prolonged effect (Loop=true)
-        private void AddEffect2(string effect, int effectPause, bool effectLoop)
-        {
-            if (!string.IsNullOrEmpty(effect))
-            {
-                CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
-                CurrentSounds.Add(new seSo()
-                {
-                    File = $"{PATH_E}{effect}",
-                    Name = "EFFECT2",
-                    V = VOLUME_E2,
-                    IsLoop = effectLoop,
-                    StartPlay = 0,
-                    T = $"W..{effectPause}>p.A.0.1"
-                });
-            }
-        }
-        private void AddVoice(string voice, int voicePause, bool voiceLoop)
-        {
-            if (!string.IsNullOrEmpty(voice))
-            {
-                CurrentSounds.RemoveAll(x => x.Name == "VOICE");
-                CurrentSounds.Add(new seSo()
-                { File = $"{PATH_V}{voice}",
-                    Name = "VOICE",
-                    V = VOLUME_V,
-                    IsLoop = voiceLoop,
-                    StartPlay = 0,
-                    //T = $"W..{voicePause}>p"
-                    T = $"W..{voicePause}>p.A.0.1"
-                });
-            }
-        }
-        private void RemoveEffect2()
-        {
-            CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
-        }
+   
 
-      
-      
-      
+
 
         private void AddCadr(int index, string Bg, string text, OpEf op = null)
-        { DoC(index, 0, null, Bg, text , op); }
+        { DoC(index, 0, null, Bg, text, op); }
         private void AddCadr(int index, string Bg, string text)
         { AddCadr(index, null, Bg, text); }
         private void AddCadr(int index, string man, string Bg, string text)
@@ -2883,16 +2458,16 @@ namespace StoGen.Classes.Data.Games
             if (index1 > 0) g1 = data[index1 - 1];
             DoC(g, g1, man, Bg, text, oefa);
         }
-        private void DoC(string g,string g1, string man,string Bg, string text, params OpEf[] oefa)
+        private void DoC(string g, string g1, string man, string Bg, string text, params OpEf[] oefa)
         {
-            
+
             if (string.IsNullOrEmpty(Bg))
                 Bg = "SILKYS_SAKURA_OttoNoInuMaNi_PLACEHOLDER";
 
-            List<DifData> cdata = null;            
+            List<DifData> cdata = null;
 
             cdata = new List<DifData>()
-            { 
+            {
                new DifData(Bg) { S = s, F = 0}
             };
 
@@ -3013,16 +2588,17 @@ namespace StoGen.Classes.Data.Games
                     }
                 }
             }
-           
+
             if (ORGAZM)
             {
-                cdata.Add(new DifData() { Name = "FLASH_BG",O=0, S=1370, T= Transitions.Test_Opacity});
+                cdata.Add(new DifData() { Name = "FLASH_BG", O = 0, S = 1370, T = Transitions.Test_Opacity });
                 ORGAZM = false;
             }
 
             AddLocal(currentGr, text, cdata, this.CurrentSounds);
-            this.ClearSound(false,true,true);
+            this.ClearSound(false, true, true);
         }
+
 
         private void AddCadre2(int index, string text, int? Xx = null)
         {
@@ -3046,7 +2622,7 @@ namespace StoGen.Classes.Data.Games
             }
             AddLocal(currentGr, text, cdata);
         }
-        private void AddCadreAoiKohei(int index,string gm, string text)
+        private void AddCadreAoiKohei(int index, string gm, string text)
         {
             List<DifData> cdata = new List<DifData>() {
             new DifData(data[index - 1]) { X = 0, S = s, F = 0},
@@ -3082,9 +2658,9 @@ namespace StoGen.Classes.Data.Games
              new DifData(data[index - 1]) { X = -425, S = 1500, F = 0},
             }; AddLocal(currentGr, text, cdata);
         }
-        private void AddCadreAoiAsahi(int index,int index1, string text)
+        private void AddCadreAoiAsahi(int index, int index1, string text)
         {
-            List<DifData>  cdata = new List<DifData>() {
+            List<DifData> cdata = new List<DifData>() {
             new DifData(data[index - 1]) { X = 385, S = s, F = 0},
             new DifData(data[index1 - 1]) { X = -330, S = s, F = 0},
             }; AddLocal(currentGr, text, cdata);
@@ -3105,15 +2681,15 @@ namespace StoGen.Classes.Data.Games
             new DifData(data[index - 1]) { X = -35, S = 1500, F = 0},
             }; AddLocal(currentGr, text, cdata);
         }
-       
+
 
 
         protected override void DoFilter(string cadregroup)
         {
-                   
+
             string[] cd = new string[] {
-              //"17. Finansist hotel blowjob."
-                "21.Evening after hotel fuck."
+              "17. Finansist hotel blowjob."
+               // "21.Evening after hotel fuck."
             };
             base.DoFilter(cd);
             //this.AlignList.Reverse();
