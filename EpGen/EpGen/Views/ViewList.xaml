@@ -8,7 +8,7 @@
         Title="Ep Gen" Height="800" Width="1400" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="690"/>
+            <ColumnDefinition Width="600"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <StackPanel Margin="10">

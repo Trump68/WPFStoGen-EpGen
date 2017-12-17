@@ -31,7 +31,8 @@ namespace StoGenMake
             //var scen = new _ALL__Mainstream();
             //var scen = new _ALL__WEB();
             //var scen = new _All__USA__PlayerHomeVideo();
-            var scen = new _ALL__Korean();
+            //var scen = new _ALL__Korean();
+            var scen = new _ERO__Best();
             string fn = scen.Generate();
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();

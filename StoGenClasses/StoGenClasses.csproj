@@ -87,10 +87,11 @@
     <Compile Include="Data\AUX01-Accesuar.cs" />
     <Compile Include="Data\Games\SILKY%27S SAKURA-Otto no Inu Ma ni.cs" />
     <Compile Include="Data\Movie\[2011][USA][SRL] Homeland.cs" />
-    <Compile Include="Data\Movie\[ALL] Korean.cs" />
+    <Compile Include="Data\Movie\[ALL] Asian.cs" />
     <Compile Include="Data\Movie\[ALL] ScenarioText.cs" />
     <Compile Include="Data\Movie\[ALL] WEB.cs" />
     <Compile Include="Data\Movie\[All][USA] PlayerHomeVideo.cs" />
+    <Compile Include="Data\Movie\[ERO] Best.cs" />
     <Compile Include="Data\SC000-TestTran.cs" />
     <Compile Include="Data\SC000-Various.cs" />
     <Compile Include="Data\SC001-Fools Art.cs" />

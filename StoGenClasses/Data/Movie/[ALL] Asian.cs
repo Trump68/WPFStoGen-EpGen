@@ -35,8 +35,17 @@ namespace StoGen.Classes.Data.Movie
             AddToGlobalImage(src, src, path);
             src = $"Long Ping Ha Rak.m4v"; path = @"d:\Process2+\EroFilms\2015\Long Ping Ha Rak\";
             AddToGlobalImage(src, src, path);
-            
+            src = $"Mae Bia.m4v"; path = @"d:\Process2+\EroFilms\2015\Mae Bia\";
+            AddToGlobalImage(src, src, path);
+            src = $"My Friend's Wife Cast.m4v"; path = @"d:\Process2+\EroFilms\2015\My Friend's Wife Cast\";
+            AddToGlobalImage(src, src, path);
+            src = $"New Folder 2.m4v"; path = @"d:\Process2+\EroFilms\2015\New Folder 2\";
+            AddToGlobalImage(src, src, path);
+            src = $"No - soo Ram & Others - Bad Class.m4v"; path = @"d:\Process2+\EroFilms\2015\No-soo Ram & Others - Bad Class\";
+            AddToGlobalImage(src, src, path);
 
+
+            
             // Mainstream , drama, bdsm, rape of actress
             KOR_2013_Norigae();
             // Ero romantic
@@ -55,8 +64,15 @@ namespace StoGen.Classes.Data.Movie
             KOR_2015_Female_War_Lousy_Deal();// PART II
             //Ero drama   GRADE-4
             KOR_2015_Female_Workers_Romance_At_Work();
-            //
+            //Ero drama
             THA_2015_Long_Ping_Ha_Rak();
+            //Ero mystic
+            THA_2015_Mae_Bia();
+            //Ero drama
+            KOR_2015_My_Friends_Wife_Cast();
+            //Ero comedy
+            KOR_2015_New_Folder_2();
+            KOR_2015_No_soo_Ram_Others_Bad_Class();
         }
         private void KOR_2013_Norigae()
         {
@@ -323,10 +339,111 @@ namespace StoGen.Classes.Data.Movie
             st.DoFilter(new string[] { st.currentGr });
             this.AlignList.AddRange(st.AlignList);
         }
+        private void THA_2015_Mae_Bia()
+        {
+            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            st.currentGr = "Mae Bia.m4v";
+            int speed = 100;
+            int volume = 1;
+            List<AP> anims = new List<AP>()
+            {
+                new AP(st.currentGr) { APS = 856.2, APE = 863.3, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 866.8, APE = 884.9, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS =1278.7 , APE = 1322, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 2247.4, APE = 2250.1, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 4053.6, APE = 4093, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 4573.4, APE = 4584.4, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 6365.3, APE = 6475.3, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+               
+          };
+            List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
+
+            st.VideoFrame800(anims, music);
+            st.DoFilter(new string[] { st.currentGr });
+            this.AlignList.AddRange(st.AlignList);
+        }
+        private void KOR_2015_My_Friends_Wife_Cast()
+        {
+            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            st.currentGr = "My Friend's Wife Cast.m4v";
+            int speed = 100;
+            int volume = 1;
+            List<AP> anims = new List<AP>()
+            {
+                new AP(st.currentGr) { APS = 2672.9, APE =2676.2 , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 2953.2, APE = 2988, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS =3730.8 , APE = 3890.8, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 4315.3, APE = 4334.8, ALM = 1, ALC = 6 , AR=speed, AV = volume},//               
+                new AP(st.currentGr) { APS = 4427.2, APE = 4436.7, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 4486.2, APE = 4519.7, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+
+            };
+            List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
+
+            st.VideoFrame800(anims, music);
+            st.DoFilter(new string[] { st.currentGr });
+            this.AlignList.AddRange(st.AlignList);
+        }
+        private void KOR_2015_New_Folder_2()
+        {
+            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            st.currentGr = "New Folder 2.m4v";
+            int speed = 100;
+            int volume = 1;
+            List<AP> anims = new List<AP>()
+            {
+                new AP(st.currentGr) { APS = 254.5, APE = 275.4, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 275.5, APE = 295.1, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 309.3, APE = 565.6, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 2115, APE = 2147, ALM = 1, ALC = 6 , AR=speed, AV = volume},//shower
+                new AP(st.currentGr) { APS = 2768.7, APE = 2776.7, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 2874.3, APE = 3151.3, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 3501.2, APE = 3830.0, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 4523.8, APE = 4926, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+
+            };
+            List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
+
+            st.VideoFrame800(anims, music);
+            st.DoFilter(new string[] { st.currentGr });
+            this.AlignList.AddRange(st.AlignList);
+        }
+        private void KOR_2015_No_soo_Ram_Others_Bad_Class()
+        {
+            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            st.currentGr = "No-soo Ram & Others - Bad Class.m4v";
+            int speed = 100;
+            int volume = 1;
+            List<AP> anims = new List<AP>()
+            {
+                new AP(st.currentGr) { APS = 185.6, APE = 232, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                new AP(st.currentGr) { APS = 419.6, APE = 441.8, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//                              
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//                              
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//                              
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//                              
+                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
+            };
+            List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
+
+            st.VideoFrame800(anims, music);
+            st.DoFilter(new string[] { st.currentGr });
+            this.AlignList.AddRange(st.AlignList);
+        }
         protected override void DoFilter(string cadregroup)
         {
             string[] cd = new string[] {
-                "Long Ping Ha Rak.m4v"
+                "No-soo Ram & Others - Bad Class.m4v"
             };
             base.DoFilter(cd);
             this.AlignList.Reverse();

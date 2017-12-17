@@ -61,6 +61,7 @@ namespace EPCat.Model
         private bool GetLeastNumImage(string ItemPath, string PosterPath)
         {
             bool ok = false;
+            if (!Directory.Exists(ItemPath)) return ok;
             List<string> files = Directory.GetFiles(ItemPath, "*.jpg").ToList();
             if (files.Any())
             {

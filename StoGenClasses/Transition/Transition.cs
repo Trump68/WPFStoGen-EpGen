@@ -9,7 +9,7 @@ namespace StoGen.Classes.Transition
     public static class Transitions
     {
         static Random rnd = new Random();
-        public static string Test_Opacity { get; } = "W..0>O.A.0.100>O.B.250.-100";
+        public static string Orgazm { get; } = "W..0>O.A.0.100>O.B.250.-100";
         public static string Eyes_Blink
         {
             get

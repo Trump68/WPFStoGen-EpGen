@@ -247,12 +247,12 @@ namespace StoGenMake.Scenes.Base
 
         #region 'External' scene generations
         public string currentGr;
-//        public Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
         public List<OpEf> CurrTransitions = new List<OpEf>();
         public void DoC2(string text, List<DifData> pics, List<OpEf> trans = null)
         {
 
             List<DifData> cdata = new List<DifData>();
+            //pics = pics.OrderBy(x => x.Z).ToList();
             foreach (var item in pics)
             {
                 var ndd = new DifData(item.Name);
@@ -279,7 +279,10 @@ namespace StoGenMake.Scenes.Base
                             d.Name = old.Name;
                             d.Parent = old.Parent;
                             d.S = old.S;
-                            cdata.Add(d);
+                            if (cdata.Count > oef.L)
+                                cdata.Insert(oef.L,d);
+                            else
+                                cdata.Add(d);
                         }
                         if (oef.Tran != null)
                         {
@@ -312,25 +315,18 @@ namespace StoGenMake.Scenes.Base
             this.CurrTransitions.Clear();
             this.ClearSound(false, true, true);
         }
-        //public void AddPicture(string key, DifData val)
-        //{
-        //    if (Pictures.ContainsKey(key))
-        //        Pictures[key] = val;
-        //    else
-        //        Pictures.Add(key, val);
-        //}      
-        protected void AddAnim(string n,string text, DifData difdata, params AP[] animations)
+       
+        protected void AddAnim(string n,string text, List<DifData> difdata, params AP[] animations)
         {
-            List<DifData> cdata;
-            cdata = new List<DifData>();
-            List<AP> al = new List<AP>();
-            al.AddRange(animations);
-            //al.ForEach(x => x.AV = 0);
-            DifData newdd = new DifData(n);
-            newdd.AssingFrom(difdata);
-            newdd.AL = al;
-            cdata.Add(newdd);
-            AddLocal(currentGr, text, cdata, this.CurrentSounds);
+            //List<DifData> cdata = new List<DifData>();
+            //List<AP> al = new List<AP>();
+            //al.AddRange(animations);
+
+            ////DifData size = new DifData() { S = 800 };
+            ////size.AL = al;
+            ////cdata.Add(size);
+            //cdata.AddRange(difdata);
+            AddLocal(currentGr, text, difdata, this.CurrentSounds);
         }
         #endregion
 
@@ -735,7 +731,7 @@ namespace StoGenMake.Scenes.Base
             if (value.Y.HasValue) this.Y = value.Y;
             if (value.R.HasValue) this.R = value.R;
             if (value.S.HasValue) this.S = value.S;
-            if (value.O.HasValue) this.S = value.O;
+            if (value.O.HasValue) this.O = value.O;
             if (value.Rd.HasValue) this.Rd = value.Rd;
             if (value.Od.HasValue) this.Od = value.Od;
             if (value.Xd.HasValue) this.Xd = value.Xd;
@@ -745,7 +741,7 @@ namespace StoGenMake.Scenes.Base
                 this.AL.Clear();
                 this.AL.AddRange(value.AL);
             }
-            if (string.IsNullOrEmpty(value.T)) this.T = value.T;
+            if (!string.IsNullOrEmpty(value.T)) this.T = value.T;
             if (withnames)
             {
                 this.Name = value.Name;

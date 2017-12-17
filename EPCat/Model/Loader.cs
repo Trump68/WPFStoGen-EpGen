@@ -34,8 +34,8 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            DoTempWork1();
-            return null;
+            //DoTempwork2(@"e:\Process2\!!Data\EroFilms\");
+            //return null;
             EpItem.DictionaryData.Dict_Class.Clear();
             EpItem.DictionaryData.Dict_Name.Clear();
             CapsItem.DictionaryData.Dict_Class.Clear();
@@ -141,27 +141,27 @@ namespace EPCat.Model
                     string yearstr = nfm.Substring(0, 4);
                     int Year = 0;
                     bool ok = false;
-                    //if (int.TryParse(yearstr, out Year))
-                    //{
-                    //    if (Year > 1949 && Year < 2018)
-                    //    {
-                    //        nfm = nfm.Remove(0, 4);
-                    //        ok = true;
-                    //    }
-                    //}
-
-                    if (!ok)
+                    if (int.TryParse(yearstr, out Year))
                     {
-                        yearstr = nfm.Substring(nfm.Length - 4, 4);
-                        if (int.TryParse(yearstr, out Year))
+                        if (Year > 1949 && Year < 2018)
                         {
-                            if (Year > 1949 && Year < 2018)
-                            {
-                                nfm = nfm.Replace(yearstr, string.Empty);
-                                ok = true;
-                            }
+                            nfm = nfm.Remove(0, 4);
+                            ok = true;
                         }
                     }
+
+                    //if (!ok)
+                    //{
+                    //    yearstr = nfm.Substring(nfm.Length - 4, 4);
+                    //    if (int.TryParse(yearstr, out Year))
+                    //    {
+                    //        if (Year > 1949 && Year < 2018)
+                    //        {
+                    //            nfm = nfm.Replace(yearstr, string.Empty);
+                    //            ok = true;
+                    //        }
+                    //    }
+                    //}
 
                     if (ok)
                     {
@@ -202,6 +202,32 @@ namespace EPCat.Model
                         }
                     }
                 }
+            }
+        }
+        private void DoTempwork2(string passportPath)
+        {            
+            List<string> dirList = Directory.GetDirectories(passportPath).ToList();
+            foreach (var dir in dirList)
+            {
+                DoTempwork2(dir);
+            }
+
+            List<string> passportList = Directory.GetFiles(passportPath, EpItem.p_PassportName).ToList();
+            foreach (var pass in passportList)
+            {
+                List<string> passport = new List<string>(File.ReadAllLines(pass));
+                if (passport != null)
+                {
+                    EpItem item = EpItem.GetFromPassport(passport);
+                    string dirname = Path.GetDirectoryName(passportPath);
+                    string name = Path.GetFileName(passportPath);
+                    if (!name.StartsWith("["))
+                    {
+                        string newdirname = Path.Combine(dirname, $"[{item.Country}] {name}");                    
+                        Directory.Move(passportPath, newdirname);
+                    }
+                }
+                return;
             }
         }
         private string CurrentCatalog;
@@ -485,7 +511,7 @@ namespace EPCat.Model
             List<string> passportList = Directory.GetFiles(itemPath, EpItem.p_PassportName).ToList();
             foreach (var passport in passportList)
             {
-                CreateUpdateFromPassort(passport);
+                CreateUpdateFromPassport(passport);
             }
             List<string> dirList = Directory.GetDirectories(itemPath).ToList();
             foreach (var dir in dirList)
@@ -519,7 +545,7 @@ namespace EPCat.Model
             File.WriteAllLines(item.ItemPath, passportData);
         }
 
-        private void CreateUpdateFromPassort(string passportPath)
+        private void CreateUpdateFromPassport(string passportPath)
         {
             List<string> passport = new List<string>(File.ReadAllLines(passportPath));
             if (passport != null)

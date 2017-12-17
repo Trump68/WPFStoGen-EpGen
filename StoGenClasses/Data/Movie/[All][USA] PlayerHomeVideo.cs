@@ -20,15 +20,18 @@ namespace StoGen.Classes.Data.Movie
             AddToGlobalImage(src,src, path);
             src = $"Biker Dreams (1995).m4v";
             AddToGlobalImage(src, src, path);
+            src = $"Biker Fantasies(1994).m4v";
+            AddToGlobalImage(src, src, path);
 
-            American_Pinup_Girls();
-            Beverly_Hills_Workout();
-            Biker_Dreams();
+            USA_1997_American_Pinup_Girls();
+            USA_1993_Beverly_Hills_Workout();
+            USA_1995_Biker_Dreams();
+            USA_1994_Biker_Fantasies();
         }
-        private void American_Pinup_Girls()
+        private void USA_1997_American_Pinup_Girls()
         {
             _ALL__ScenarioText st = new _ALL__ScenarioText();
-            st.currentGr = "Beverly Hills Workout (1993).m4v";
+            st.currentGr = "American Pinup Girls (1997).m4v";
             int speed = 100;
             List<AP> anims = new List<AP>()
             {
@@ -62,7 +65,7 @@ namespace StoGen.Classes.Data.Movie
             st.DoFilter(new string[] { st.currentGr });
             this.AlignList.AddRange(st.AlignList);
         }
-        private void Beverly_Hills_Workout()
+        private void USA_1993_Beverly_Hills_Workout()
         {
             _ALL__ScenarioText st = new _ALL__ScenarioText();
             st.currentGr = "Beverly Hills Workout (1993).m4v";
@@ -113,18 +116,43 @@ namespace StoGen.Classes.Data.Movie
             st.DoFilter(new string[] { st.currentGr });
             this.AlignList.AddRange(st.AlignList);
         }
-        private void Biker_Dreams()
+        private void USA_1995_Biker_Dreams()
         {
             _ALL__ScenarioText st = new _ALL__ScenarioText();
             st.currentGr = "Biker Dreams (1995).m4v";
             int speed = 125;
             List<AP> anims = new List<AP>()
-            {
-                
-               
-                //1 Brunette, long hair
-                 new AP("Biker Dreams (1995).m4v") { APS = 497.5, APE = 556.7, ALM = 3, ALC = 6 , AR=speed},
-                
+            {                               
+                 //1 Brunette, long hair
+                 new AP(currentGr) { APS = 497.5, APE = 556.7, ALM = 3, ALC = 6 , AR=speed},
+                 new AP(currentGr) { APS = 557, APE = 613, ALM = 3, ALC = 6 , AR=speed},
+                 new AP(currentGr) { APS = 1723, APE = 1878, ALM = 3, ALC = 6 , AR=speed},
+                 //2 Brunette, long hair
+                 new AP(currentGr) { APS = 2422, APE = 2439, ALM = 3, ALC = 6 , AR=speed},
+            };
+            List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
+
+            st.VideoFrame800(anims, music);
+            st.DoFilter(new string[] { st.currentGr });
+            this.AlignList.AddRange(st.AlignList);
+        }
+        private void USA_1994_Biker_Fantasies()
+        {
+            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            st.currentGr = "Biker Fantasies (1994).m4v";
+            int speed = 100;
+            List<AP> anims = new List<AP>()
+            {                               
+                 //1 Auburn, long hair
+                 new AP(currentGr) { APS = 208.4, APE = 226, ALM = 3, ALC = 6 , AR=speed},
+                 new AP(currentGr) { APS = 1698.5, APE = 1866.5, ALM = 3, ALC = 6 , AR=speed},
+                 //2 Black, long hair
+                 new AP(currentGr) { APS = 899.7, APE = 913, ALM = 3, ALC = 6 , AR=speed},
+                 //3 Black, long hair
+                 new AP(currentGr) { APS = 1062.8, APE = 1090.3, ALM = 3, ALC = 6 , AR=speed},
+                 //4 Black, long hair
+                 new AP(currentGr) { APS = 1667.6, APE = 1689.0, ALM = 3, ALC = 6 , AR=speed},
+                 new AP(currentGr) { APS = 2668.6, APE = 2726, ALM = 3, ALC = 6 , AR=speed},
             };
             List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
 
@@ -135,7 +163,7 @@ namespace StoGen.Classes.Data.Movie
         protected override void DoFilter(string cadregroup)
         {
             string[] cd = new string[] {
-                "Biker Dreams (1995).m4v"
+                "Biker Fantasies (1994).m4v"
             };
             base.DoFilter(cd);
             this.AlignList.Reverse();
