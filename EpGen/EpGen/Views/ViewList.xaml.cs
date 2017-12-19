@@ -62,7 +62,7 @@ namespace MVVMApp.Views
         }
         private void minionPlayer_MediaOpened(object sender, RoutedEventArgs e)
         {
-           
+            minionPlayer.Volume = 0;
             sbarSeek.Minimum = 0;
             sbarSeek.Maximum = (this.DataContext as ECadreListViewModel).ScrollFactor1;
             sbarSeek.Value = (int)(sbarSeek.Maximum / 2);
