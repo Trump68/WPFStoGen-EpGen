@@ -19,6 +19,7 @@ namespace StoGenWPF
         public IMenuCreator GlobalMenuCreator = null;
         MediaElement ClipElement;
         
+
         private MediaPlayer Sound01 = new MediaPlayer();
         private MediaPlayer Sound02 = new MediaPlayer();
         private MediaPlayer Sound03 = new MediaPlayer();
@@ -39,7 +40,7 @@ namespace StoGenWPF
             Projector.TextBlock3 = this.Tb3;
             Projector.TextBlock4 = this.Tb4;
             Projector.NumberText = this.NumberBox;
-
+            Projector.ClipSound = new MediaPlayer();
             Projector.Sound.Add(this.Sound01);
             Projector.Sound.Add(this.Sound02);
             Projector.Sound.Add(this.Sound03);

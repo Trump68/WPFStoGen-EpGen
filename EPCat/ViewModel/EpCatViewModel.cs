@@ -135,6 +135,7 @@ namespace EPCat
         public void ProcessScriptFile()
         {
             this._FolderList = _Loader.ProcessScriptFile(this._FolderList, this._CapsList);
+            if (this._FolderList == null) return;
             this.FolderListView = new ObservableCollection<EpItem>(this._FolderList);
             this.CapsListView = new ObservableCollection<CapsItem>(this._CapsList.Where(x=>string.IsNullOrEmpty(x.ParentId)));
             RaisePropertyChanged(() => this.FolderListView);

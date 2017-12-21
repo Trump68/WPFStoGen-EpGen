@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using StoGenWPF;
 
 namespace StoGen.ModelClasses
@@ -57,6 +59,8 @@ namespace StoGen.ModelClasses
         public static bool EndlessVideo { get; set; } = false;
         public static bool EditorMode { get; set; } = false;
         private static ImageCadreViewModel imageCadre;
+        public static System.Windows.Media.MediaPlayer ClipSound;
+
         public static ImageCadreViewModel ImageCadre
         {
             get

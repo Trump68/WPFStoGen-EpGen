@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StoGen.Classes.Data.Movie
 {
-    public class _ALL__Korean: BaseScene
+    public class _ALL__Asian: BaseScene
     {
         protected override void LoadData()
         {
@@ -15,65 +15,389 @@ namespace StoGen.Classes.Data.Movie
             PATH_M = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Music\";
             string path;
             string src;
-            src = $"Norigae.m4v";               path = @"d:\Process2+\EroFilms\2013\Norigae\";
+            string root = @"d:\Process2+\EroFilms\";
+            // Mainstream , drama, bdsm, rape of actress            
+            src = $"Norigae.m4v";               path = $@"{root}2013\Norigae\";
             AddToGlobalImage(src, src, path);
-            src = $"Lie I Love Sex.m4v";        path = @"d:\Process2+\EroFilms\2013\Lie I Love Sex\";
-            AddToGlobalImage(src, src, path);
-            src = $"Taste.m4v";                 path = @"d:\Process2+\EroFilms\2013\Taste\";
-            AddToGlobalImage(src, src, path);
-            src = $"Love Match.m4v";            path = @"d:\Process2+\EroFilms\2014\Love Match\";
-            AddToGlobalImage(src, src, path);
-            src = $"Paradise In Service.m4v";   path = @"d:\Process2+\EroFilms\2014\Paradise In Service\";
-            AddToGlobalImage(src, src, path);
-            src = $"Spell.m4v";                 path = @"d:\Process2+\EroFilms\2014\Spell\";
-            AddToGlobalImage(src, src, path);
-            src = $"7 Princess.m4v";            path = @"d:\Process2+\EroFilms\2015\7 Princess\";
-            AddToGlobalImage(src, src, path);
-            src = $"Female War – Lousy Deal.m4v"; path = @"d:\Process2+\EroFilms\2015\Female War – Lousy Deal\";
-            AddToGlobalImage(src, src, path);
-            src = $"Female Workers Romance At Work.m4v"; path = @"d:\Process2+\EroFilms\2015\Female Workers Romance At Work\";
-            AddToGlobalImage(src, src, path);
-            src = $"Long Ping Ha Rak.m4v"; path = @"d:\Process2+\EroFilms\2015\Long Ping Ha Rak\";
-            AddToGlobalImage(src, src, path);
-            src = $"Mae Bia.m4v"; path = @"d:\Process2+\EroFilms\2015\Mae Bia\";
-            AddToGlobalImage(src, src, path);
-            src = $"My Friend's Wife Cast.m4v"; path = @"d:\Process2+\EroFilms\2015\My Friend's Wife Cast\";
-            AddToGlobalImage(src, src, path);
-            src = $"New Folder 2.m4v"; path = @"d:\Process2+\EroFilms\2015\New Folder 2\";
-            AddToGlobalImage(src, src, path);
-            src = $"No - soo Ram & Others - Bad Class.m4v"; path = @"d:\Process2+\EroFilms\2015\No-soo Ram & Others - Bad Class\";
-            AddToGlobalImage(src, src, path);
-
-
-            
-            // Mainstream , drama, bdsm, rape of actress
             KOR_2013_Norigae();
             // Ero romantic
+            src = $"Lie I Love Sex.m4v";        path = $@"{root}2013\Lie I Love Sex\";
+            AddToGlobalImage(src, src, path);
             KOR_2013_Lie_I_Love_Sex();
             // Ero romantic
+            src = $"Taste.m4v";                 path = $@"{root}2013\Taste\";
+            AddToGlobalImage(src, src, path);
             KOR_2013_Taste();
             // Ero romantic
+            src = $"Love Match.m4v";            path = $@"{root}2014\Love Match\";
+            AddToGlobalImage(src, src, path);
             KOR_2014_Love_Match();
-            // Mainstream , war drama
+            // Mainstream , war drama        
+            src = $"Paradise In Service.m4v";   path = $@"{root}2014\Paradise In Service\";
+            AddToGlobalImage(src, src, path);
             KOR_2014_Paradise_In_Service();
             // Ero Horror
+            src = $"Spell.m4v";                 path = $@"{root}2014\Spell\";
+            AddToGlobalImage(src, src, path);
             THA_2014_Spell();
             // Ero comedy
+            src = $"7 Princess.m4v";            path = $@"{root}2015\7 Princess\";
+            AddToGlobalImage(src, src, path);
             KOR_2015_7_Princess();
             // Ero drama (PART II) GRADE-6 COOL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            src = $"Female War – Lousy Deal.m4v"; path = $@"{root}2015\Female War – Lousy Deal\";
+            AddToGlobalImage(src, src, path);
             KOR_2015_Female_War_Lousy_Deal();// PART II
             //Ero drama   GRADE-4
+            src = $"Female Workers Romance At Work.m4v"; path = $@"{root}2015\Female Workers Romance At Work\";
+            AddToGlobalImage(src, src, path);
             KOR_2015_Female_Workers_Romance_At_Work();
             //Ero drama
+            src = $"Long Ping Ha Rak.m4v"; path = $@"{root}2015\Long Ping Ha Rak\";
+            AddToGlobalImage(src, src, path);
             THA_2015_Long_Ping_Ha_Rak();
             //Ero mystic
+            src = $"Mae Bia.m4v"; path = $@"{root}2015\Mae Bia\";
+            AddToGlobalImage(src, src, path);
             THA_2015_Mae_Bia();
             //Ero drama
+            src = $"My Friend's Wife Cast.m4v"; path = $@"{root}2015\My Friend's Wife Cast\";
+            AddToGlobalImage(src, src, path);
             KOR_2015_My_Friends_Wife_Cast();
             //Ero comedy
+            src = $"New Folder 2.m4v"; path = $@"{root}2015\New Folder 2\";
+            AddToGlobalImage(src, src, path);
             KOR_2015_New_Folder_2();
+            //Ero comedy
+            src = $"No - soo Ram & Others - Bad Class.m4v"; path = $@"{root}2015\No-soo Ram & Others - Bad Class\";
+            AddToGlobalImage(src, src, path);
             KOR_2015_No_soo_Ram_Others_Bad_Class();
+            //Ero drama
+            src = $"KOR_2016_Affair.m4v"; path = $@"{root}2016\[KOR] Affair\";
+            AddToGlobalImage(src, src, path);
+            KOR_2016_Affair(src);
+            // Ero Nikatsu drama
+            src = $"JAP 1985 Beautiful Teacher Torture Hell.m4v"; path = $@"{root}1985\[JAP] Beautiful Teacher Torture Hell\";
+            AddToGlobalImage(src, src, path);
+            JAP_1985_Beautiful_Teacher_Torture_Hell(src);
+
+
         }
+        private void KOR_2016_Affair(string src)
+        {
+            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            st.currentGr = src;
+            List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
+            List<List<AP>> anims;
+            int speed = 100;
+            int volume = 100;
+            st.VOLUME_M = 0;
+            this.VOLUME_M = 0;
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() { // wife looks in phone and masturbate  
+                new AP(src) { APS = 329.9, APE = 401.9, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // some man fucks somebody in distant window, erotic moans 
+                new AP(src) { APS = 1246.8, APE = 1255.5, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // some man fucks somebody in distant window, erotic moans 
+                new AP(src) { APS = 1265.6, APE = 1273.3, ALM = 1, ALC = 9 , AR=speed, AV=volume},
+                new AP(src) { APS = 1279.5, APE = 1290.4, ALM = 1, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // some man fucks somebody in distant window, erotic moans 
+                new AP(src) { APS = 1294.3, APE = 1301.7, ALM = 1, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // wife masturbate outdoore at noght, erotic moans 
+                new AP(src) { APS = 1301.8, APE = 1315.1, ALM = 1, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // some man fucks somebody in distant window, erotic moans 
+                new AP(src) { APS = 1315.3, APE = 1334.3, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            st.DoFilter(new string[] { st.currentGr });
+            this.AlignList.AddRange(st.AlignList);
+        }
+        private void JAP_1985_Beautiful_Teacher_Torture_Hell(string src)
+        {
+            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            st.currentGr = src;
+            List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
+            List<List<AP>> anims;
+            int speed = 100;
+            int volume = 0;
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {     // assault teacher
+                new AP(src) { APS = 179.2, APE = 198.1, ALM = 3, ALC = 3 , AR=speed, AV=volume},                
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {  //assault teacher
+                new AP(src) { APS =221.7, APE = 229.5, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//assault teacher
+                new AP(src) { APS = 268.0, APE =280.1 , ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//assault teacher
+                new AP(src) { APS = 280.4, APE = 304.4, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {
+                new AP(src) { APS = 770.1, APE = 852.2, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 904.0, APE = 907.4, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 910.4, APE = 917.6, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 948.8, APE = 985.7, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 985.9, APE = 990.4, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 990.7, APE = 1000.7, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 1005.2, APE = 1018.5, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 1018.7, APE = 1022.6, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 1026.6, APE = 1032.4, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 1032.7, APE = 1041.4, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 2307.3, APE = 2314.0, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 2320.8, APE = 2323.6, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {// evil man
+                new AP(src) { APS = 2344.6, APE = 2346.4, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                new AP(src) { APS = 2418.8, APE = 2421.4, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                new AP(src) { APS = 2432.2, APE = 2436.3, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                new AP(src) { APS = 2441.3, APE = 2452.4, ALM = 1, ALC = 3 , AR=speed, AV=volume},
+                new AP(src) { APS = 2773.9, APE = 2780.8, ALM = 1, ALC = 3 , AR=speed, AV=volume},
+                new AP(src) { APS = 3294.7, APE = 3297.3, ALM = 1, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//force bj teacher
+                new AP(src) { APS = 2436.5, APE = 2441.1, ALM = 1, ALC = 1 , AR=speed, AV=volume},
+                new AP(src) { APS = 2361.3, APE = 2377.1, ALM = 1, ALC = 1 , AR=speed, AV=volume},
+                new AP(src) { APS = 2377.4, APE = 2383.5, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                new AP(src) { APS = 2383.7, APE = 2386.6, ALM = 1, ALC = 3 , AR=speed, AV=volume},//evil
+                new AP(src) { APS = 2386.8, APE = 2389.6, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                new AP(src) { APS = 2389.8, APE = 2392.6, ALM = 1, ALC = 3 , AR=speed, AV=volume},//evil
+                new AP(src) { APS = 2392.8, APE = 2404.5, ALM = 1, ALC = 3 , AR=speed, AV=volume},
+                new AP(src) { APS = 2404.5, APE = 2418.6, ALM = 7, ALC = 3 , AR=speed, AV=volume},
+                new AP(src) { APS = 2421.6, APE = 2426.1, ALM = 7, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+
+            #region Torture
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 2462.1, APE = 2484.4, ALM = 1, ALC = 1 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 2484.6, APE = 2527.4, ALM = 1, ALC = 1 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 2527.6, APE = 2537.9, ALM = 1, ALC = 1 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 2538.1, APE = 2562.0, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 2562.2, APE = 2580.4, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 2582.9, APE = 2617.8, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 2618.1, APE = 2649.0, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 2649.1, APE = 2687.1, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 2687.3, APE = 2758.3, ALM = 1, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 2782.1, APE = 2820.2, ALM = 1, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 3076.8, APE = 3100.4, ALM = 1, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 3108.4, APE = 3151.4, ALM = 1, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 3177.8, APE = 3184.7, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 3198.4, APE = 3212.8, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//torture teacher
+                new AP(src) { APS = 3198.4, APE = 3212.8, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+            #endregion
+
+            anims = new List<List<AP>>()
+            {
+                new List<AP>() {//long scene with bdsm fuck
+                new AP(src) { APS = 2320.8, APE = 3933.7, ALM = 3, ALC = 3 , AR=speed, AV=volume},
+                }
+            }; st.VideoFrame800(anims, music);
+
+            st.DoFilter(new string[] { st.currentGr });
+            this.AlignList.AddRange(st.AlignList);
+        }
+
         private void KOR_2013_Norigae()
         {
             _ALL__ScenarioText st = new _ALL__ScenarioText();
@@ -419,20 +743,6 @@ namespace StoGen.Classes.Data.Movie
             {
                 new AP(st.currentGr) { APS = 185.6, APE = 232, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
                 new AP(st.currentGr) { APS = 419.6, APE = 441.8, ALM = 1, ALC = 6 , AR=speed, AV = volume},//
-                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//                              
-                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
-                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
-                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
-                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//                              
-                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
-                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
-                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
-                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//                              
-                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
-                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
-                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
-                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//                              
-                //new AP(st.currentGr) { APS = , APE = , ALM = 1, ALC = 6 , AR=speed, AV = volume},//
             };
             List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
 
@@ -440,10 +750,11 @@ namespace StoGen.Classes.Data.Movie
             st.DoFilter(new string[] { st.currentGr });
             this.AlignList.AddRange(st.AlignList);
         }
+
         protected override void DoFilter(string cadregroup)
         {
             string[] cd = new string[] {
-                "No-soo Ram & Others - Bad Class.m4v"
+                "KOR_2016_Affair.m4v"
             };
             base.DoFilter(cd);
             this.AlignList.Reverse();
