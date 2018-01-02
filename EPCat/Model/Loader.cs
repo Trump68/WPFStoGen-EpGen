@@ -34,8 +34,8 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            //DoTempwork2(@"d:\Process2+\EroFilms\");
             //DoTempWork1();
+            //DoTempwork2(@"d:\Process2+\EroFilms\");
             //return null;
             EpItem.DictionaryData.Dict_Class.Clear();
             EpItem.DictionaryData.Dict_Name.Clear();
@@ -110,6 +110,7 @@ namespace EPCat.Model
             DoTempWork1_OneCountry("HSP");
             DoTempWork1_OneCountry("THA");
             DoTempWork1_OneCountry("GER");
+            DoTempWork1_OneCountry("CHN");
         }
         private void DoTempWork1_OneCountry(string Country)
         {

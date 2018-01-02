@@ -188,7 +188,6 @@ namespace EPCat.Model
                     File.WriteAllLines(Path.Combine(this.ItemDirectory, CurrentPassportImage), lines);
             }
         }
-
         public List<CapsItem> CapsPassportData = new List<CapsItem>();
 
 
@@ -265,6 +264,10 @@ namespace EPCat.Model
         public int Month { get; set; }
         public int Day { get; set; }
         public string Rated { get; set; }
+        public string XRated { get; set; }
+        public string Kind { get; set; }
+        public string Type { get; set; }
+        public string Brand { get; set; }
         public string Star { get; set; }
         public string MyDescr { get; set; }
         public string Director { get; set; }
@@ -316,6 +319,10 @@ namespace EPCat.Model
             this.Day = item.Day;
             this.AltTitle = item.AltTitle;
             this.Rated = item.Rated;
+            this.XRated = item.XRated;
+            this.Kind = item.Kind;
+            this.Type = item.Type;
+            this.Brand = item.Brand;
             this.Star = item.Star;
             this.MyDescr = item.MyDescr;
             this.Director = item.Director;
@@ -349,6 +356,10 @@ namespace EPCat.Model
         static string p_Month = "MONTH:";
         static string p_Day = "Day:";
         static string p_Rated = "RATED:";
+        static string p_XRated = "XRATED:";
+        static string p_Kind = "KIND:";
+        static string p_Type = "TYPE:";
+        static string p_Brand = "BRAND:";
         static string p_Star = "STAR:";
         static string p_MyDescr = "MYCOMMENTS:";
         static string p_Director = "Director:";
@@ -496,6 +507,38 @@ namespace EPCat.Model
                     if (!string.IsNullOrWhiteSpace(term))
                     {
                         result.Rated = term;
+                    }
+                }
+                else if (term.StartsWith(p_XRated))
+                {
+                    term = term.Replace(p_XRated, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.XRated = term;
+                    }
+                }
+                else if (term.StartsWith(p_Kind))
+                {
+                    term = term.Replace(p_Kind, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.Kind = term;
+                    }
+                }
+                else if (term.StartsWith(p_Type))
+                {
+                    term = term.Replace(p_Type, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.Type = term;
+                    }
+                }
+                else if (term.StartsWith(p_Brand))
+                {
+                    term = term.Replace(p_Brand, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.Brand = term;
                     }
                 }
                 else if (term.StartsWith(p_Star))
@@ -661,6 +704,10 @@ namespace EPCat.Model
             result.Add(p_Month + (item.Month > 0 ? item.Month.ToString() : string.Empty));
             result.Add(p_Day + (item.Day > 0 ? item.Day.ToString() : string.Empty));
             result.Add(p_Rated + item.Rated);
+            result.Add(p_XRated + item.XRated);
+            result.Add(p_Kind + item.Kind);
+            result.Add(p_Type + item.Type);
+            result.Add(p_Brand + item.Brand);
             result.Add(p_Star + item.Star);
             result.Add(p_MyDescr + item.MyDescr);
             result.Add(p_Director + item.Director);

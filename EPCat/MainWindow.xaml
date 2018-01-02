@@ -157,6 +157,10 @@
                             <dxg:GridColumn FieldName="Month" IsSmart="True" />
                             <dxg:GridColumn FieldName="Day" IsSmart="True" />
                             <dxg:GridColumn FieldName="Rated" IsSmart="True" />
+                            <dxg:GridColumn FieldName="XRated" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Kind" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Brand" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Type" IsSmart="True" />
                             <dxg:GridColumn FieldName="Star" IsSmart="True" />
                             <dxg:GridColumn FieldName="MyDescr" IsSmart="True" />
                             <dxg:GridColumn FieldName="Director" IsSmart="True" />

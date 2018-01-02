@@ -76,12 +76,99 @@ namespace StoGen.Classes.Data.Movie
             src = $"KOR_2016_Affair.m4v"; path = $@"{root}2016\[KOR] Affair\";
             AddToGlobalImage(src, src, path);
             KOR_2016_Affair(src);
+            //Ero comedy
+            src = $"KOR 2016 Additional Package.m4v"; path = $@"{root}2016\[KOR] Additional Package\";
+            AddToGlobalImage(src, src, path);
+            KOR_2016_Additional_Package(src);
+            //Ero comedy
+            src = $"KOR 2016 Angel Ladies.m4v"; path = $@"{root}2016\[KOR] Angel Ladies\";
+            AddToGlobalImage(src, src, path);
+            KOR_2016_Angel_Ladies(src);
+            //Ero comedy
+            src = $"KOR 2016 Comic Stories.m4v"; path = $@"{root}2016\[KOR] Comic Stories\";
+            AddToGlobalImage(src, src, path);
+            KOR_2016_Comic_Stories(src);
             // Ero Nikatsu drama
             src = $"JAP 1985 Beautiful Teacher Torture Hell.m4v"; path = $@"{root}1985\[JAP] Beautiful Teacher Torture Hell\";
             AddToGlobalImage(src, src, path);
             JAP_1985_Beautiful_Teacher_Torture_Hell(src);
 
 
+        }
+        private void KOR_2016_Comic_Stories(string src)
+        {
+            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            st.currentGr = src;
+            List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
+            List<List<AP>> anims;
+            int speed = 100;
+            int volume = 100;
+            st.VOLUME_M = 0;
+            this.VOLUME_M = 0;
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // shower 
+                new AP(src) { APS =800.7 , APE = 886.8, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // fuck 
+                new AP(src) { APS =3349.4 , APE = 3363.5, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // fuck 
+                new AP(src) { APS =3363.8 , APE = 3375.2, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // fuck 
+                new AP(src) { APS =3391.5 , APE = 3394.2, ALM = 9, ALC = 9 , AR=speed, AV=0},
+                }}; st.VideoFrame800(anims, music);
+
+
+            st.DoFilter(new string[] { st.currentGr });
+            this.AlignList.AddRange(st.AlignList);
+        }
+        private void KOR_2016_Angel_Ladies(string src)
+        {
+            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            st.currentGr = src;
+            List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
+            List<List<AP>> anims;
+            int speed = 100;
+            int volume = 100;
+            st.VOLUME_M = 0;
+            this.VOLUME_M = 0;
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // fuck 
+                new AP(src) { APS =800.7 , APE = 1284.3, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+
+            st.DoFilter(new string[] { st.currentGr });
+            this.AlignList.AddRange(st.AlignList);
+        }
+        private void KOR_2016_Additional_Package(string src)
+        {
+            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            st.currentGr = src;
+            List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
+            List<List<AP>> anims;
+            int speed = 100;
+            int volume = 100;
+            st.VOLUME_M = 0;
+            this.VOLUME_M = 0;
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // grouping 
+                new AP(src) { APS =2339.5 , APE = 2676.5, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+
+            st.DoFilter(new string[] { st.currentGr });
+            this.AlignList.AddRange(st.AlignList);
         }
         private void KOR_2016_Affair(string src)
         {
@@ -126,6 +213,72 @@ namespace StoGen.Classes.Data.Movie
                 new List<AP>() { // some man fucks somebody in distant window, erotic moans 
                 new AP(src) { APS = 1315.3, APE = 1334.3, ALM = 3, ALC = 9 , AR=speed, AV=volume},
                 }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // wife masturbate outdoore at noght, erotic moans 
+                new AP(src) { APS = 1334.6, APE = 1346.8, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // wife masturbate outdoore at noght, erotic moans 
+                new AP(src) { APS = 2525.4, APE = 2555.4, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // erotic massage whole scene !!!!!
+                new AP(src) { APS = 1809.0, APE = 2172.9, ALM = 1, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // wife shower fuck 'rakom'
+                new AP(src) { APS = 3215.8, APE = 3315.6, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // wife shower fuck 'standing' 
+                new AP(src) { APS = 3315.9, APE = 3406.1, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // grouping
+                new AP(src) { APS = 3526.2, APE = 3539.6, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // fuck
+                new AP(src) { APS = 3679.6, APE = 3690.7, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // fuck
+                new AP(src) { APS = 3738.9, APE = 3757.2, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // fuck
+                new AP(src) { APS =3757.4 , APE = 3775.3, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // fuck !!!
+                new AP(src) { APS =3775.5 , APE = 3789.4, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // fuck !!!
+                new AP(src) { APS =3789.6 , APE = 3796.2, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // fuck !!!
+                new AP(src) { APS =3796.4 , APE = 3826.6, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
+            anims = new List<List<AP>>() {
+                new List<AP>() { // fuck 
+                new AP(src) { APS =4470.1 , APE = 4553.2, ALM = 3, ALC = 9 , AR=speed, AV=volume},
+                }}; st.VideoFrame800(anims, music);
+
 
             st.DoFilter(new string[] { st.currentGr });
             this.AlignList.AddRange(st.AlignList);
@@ -754,7 +907,7 @@ namespace StoGen.Classes.Data.Movie
         protected override void DoFilter(string cadregroup)
         {
             string[] cd = new string[] {
-                "KOR_2016_Affair.m4v"
+                "KOR 2016 Comic Stories.m4v"
             };
             base.DoFilter(cd);
             this.AlignList.Reverse();
