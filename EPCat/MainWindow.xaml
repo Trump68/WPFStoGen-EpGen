@@ -44,14 +44,12 @@
 
                 <dxlc:LayoutControl Orientation="Vertical" Margin="0" Padding="0">
                     <dxlc:LayoutGroup>
-                        <dxlc:LayoutGroup dx:ScrollViewerTouchBehavior.IsEnabled="True" Serialization:SerializableItem.TypeName="LayoutGroup">
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" HorizontalAlignment="Left" Click="simpleButton_Click" />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left" Margin="100,0,0,0">
-                                <dx:SimpleButton x:Name="CollapseBtn" Content="Hide" Width="50" HorizontalAlignment="Left" Click="Collapse_Click" />
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" HorizontalAlignment="Left" Click="simpleButton_Click" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="100,0,0,0">
+                            <dx:SimpleButton x:Name="CollapseBtn" Content="Hide" Width="50" HorizontalAlignment="Left" Click="Collapse_Click" />
+                        </dxlc:LayoutItem>
                         <dxlc:LayoutItem Margin="20,0,0,0" Width="50">
                             <dxe:CheckEdit x:Name="EditAllowed" Content="Edit" />
                         </dxlc:LayoutItem>
@@ -60,7 +58,7 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Margin="0,0,0,0" Width="140">
-                            <dxe:ListBoxEdit Name="rgCapsMode" ShowBorder="True" EditValueChanged="SetCapsMode" SelectedIndex="0">
+                            <dxe:ListBoxEdit x:Name="rgCapsMode" ShowBorder="True" EditValueChanged="SetCapsMode" SelectedIndex="0">
                                 <dxe:ListBoxEdit.StyleSettings>
                                     <dxe:RadioListBoxEditStyleSettings />
                                 </dxe:ListBoxEdit.StyleSettings>
@@ -69,15 +67,13 @@
                                         <StackPanel Orientation="Horizontal" />
                                     </ItemsPanelTemplate>
                                 </dxe:ListBoxEdit.ItemsPanel>
-                                <dxe:ListBoxEdit.Items>
-                                    <dxe:ListBoxEditItem Content="All" />
-                                    <dxe:ListBoxEditItem Content="Parent" />
-                                </dxe:ListBoxEdit.Items>
+                                <dxe:ListBoxEditItem Content="All" />
+                                <dxe:ListBoxEditItem Content="Parent" />
                             </dxe:ListBoxEdit>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Margin="0,0,0,0" Width="500">
-                            <dxe:ListBoxEdit Name="rgCapsPassport" ShowBorder="True" EditValueChanged="SetCurrentImagePassort" SelectedIndex="0">
+                            <dxe:ListBoxEdit x:Name="rgCapsPassport" ShowBorder="True" EditValueChanged="SetCurrentImagePassort" SelectedIndex="0">
                                 <dxe:ListBoxEdit.StyleSettings>
                                     <dxe:RadioListBoxEditStyleSettings />
                                 </dxe:ListBoxEdit.StyleSettings>
@@ -86,20 +82,18 @@
                                         <StackPanel Orientation="Horizontal" />
                                     </ItemsPanelTemplate>
                                 </dxe:ListBoxEdit.ItemsPanel>
-                                <dxe:ListBoxEdit.Items>
-                                    <dxe:ListBoxEditItem Content="Caps" />
-                                    <dxe:ListBoxEditItem Content="Events" />
-                                    <dxe:ListBoxEditItem Content="Figures" />
-                                    <dxe:ListBoxEditItem Content="Parts" />
-                                    <dxe:ListBoxEditItem Content="Backg" />
-                                    <dxe:ListBoxEditItem Content="Compos" />
-                                </dxe:ListBoxEdit.Items>
+                                <dxe:ListBoxEditItem Content="Caps" />
+                                <dxe:ListBoxEditItem Content="Events" />
+                                <dxe:ListBoxEditItem Content="Figures" />
+                                <dxe:ListBoxEditItem Content="Parts" />
+                                <dxe:ListBoxEditItem Content="Backg" />
+                                <dxe:ListBoxEditItem Content="Compos" />
                             </dxe:ListBoxEdit>
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup>
-                        <dxg:GridControl x:Name="GV" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" ItemsSource="{Binding FolderListView}" SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell">
+                        <dxg:GridControl x:Name="GV" Width="800" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" ItemsSource="{Binding FolderListView}" SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell">
 
                             <dxg:GridControl.View>
 
@@ -171,22 +165,28 @@
                             <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" Width="20" Header="." />
                         </dxg:GridControl>
                         <dxlc:LayoutGroup View="Group" Orientation="Vertical">
-                        <dxlc:LayoutGroup Name="MainDetail" View="Group" Orientation="Horizontal">
-                            <dxlc:LayoutItem Margin="0" Padding="0" ElementSpace="0" MinHeight="100" MaxHeight="900" MaxWidth="200">
-                                <Image Source="{Binding SelectedItem.Poster, ElementName=GV  }" Stretch="Uniform" />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Margin="0" Padding="0" ElementSpace="0">
-                                <ContentPresenter x:Name="DetailView" Grid.Row="0" Grid.Column="1" Content="{Binding SelectedItem, ElementName=GV}" ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch" />
-                            </dxlc:LayoutItem>
-                            
-                        </dxlc:LayoutGroup>
-                        <dxlc:LayoutItem Label="Comments" LabelPosition="Top">
-                                <dxe:TextEdit Text="{Binding SelectedItem.CommentsAsString, ElementName=GV }" 
+                            <dxlc:LayoutGroup x:Name="MainDetail" View="Group" Orientation="Horizontal">
+                                <dxlc:LayoutGroup Header="LayoutGroup" View="Tabs" Height="600">
+                                    <dxlc:LayoutGroup Header="Tab">
+                                        <dxlc:LayoutItem Margin="0" Padding="0" ElementSpace="0" MinHeight="100" VerticalAlignment="Stretch" LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
+                                            <Image Source="{Binding SelectedItem.Poster, ElementName=GV}" Stretch="Uniform" />
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup Header="Tab">
+                                        <dxlc:LayoutItem Margin="0" Padding="0" ElementSpace="0">
+                                            <ContentPresenter x:Name="DetailView" Grid.Row="0" Grid.Column="1" Content="{Binding SelectedItem, ElementName=GV}" ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch" />
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>
+
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutItem Label="Comments" LabelPosition="Top">
+                                <dxe:TextEdit Text="{Binding SelectedItem.CommentsAsString, ElementName=GV}" 
                                             TextWrapping="WrapWithOverflow"
                                             AcceptsReturn="True"
                                             VerticalContentAlignment="Top" 
                                             MaxHeight="300" />
-                        </dxlc:LayoutItem>
+                            </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutControl>
@@ -240,36 +240,36 @@
                                                 <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Vertical" MaxWidth="600">
 
                                                     <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Horizontal" HorizontalAlignment="Left">
-                                                        
+
                                                         <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Vertical" HorizontalAlignment="Left">
-                                                        <dxlc:LayoutItem Label="Id" LabelPosition="Top">
-                                                            <dxe:TextEdit Text="{Binding Id}" IsReadOnly="True" />
-                                                        </dxlc:LayoutItem>
-                                                        <dxlc:LayoutItem Label="Parent:" LabelPosition="Top">
-                                                            <dxe:TextEdit Text="{Binding ParentId}" />
-                                                        </dxlc:LayoutItem>
-                                                        <dxlc:LayoutItem Label="Name" LabelPosition="Top">
-                                                            <dxe:TextEdit Text="{Binding Name}" TextWrapping="Wrap" />
-                                                        </dxlc:LayoutItem>
+                                                            <dxlc:LayoutItem Label="Id" LabelPosition="Top">
+                                                                <dxe:TextEdit Text="{Binding Id}" IsReadOnly="True" />
+                                                            </dxlc:LayoutItem>
+                                                            <dxlc:LayoutItem Label="Parent:" LabelPosition="Top">
+                                                                <dxe:TextEdit Text="{Binding ParentId}" />
+                                                            </dxlc:LayoutItem>
+                                                            <dxlc:LayoutItem Label="Name" LabelPosition="Top">
+                                                                <dxe:TextEdit Text="{Binding Name}" TextWrapping="Wrap" />
+                                                            </dxlc:LayoutItem>
                                                         </dxlc:LayoutGroup>
 
                                                         <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Vertical" HorizontalAlignment="Left">
                                                             <dxlc:LayoutItem Label="Description" LabelPosition="Top">
-                                                            <dxe:TextEdit Text="{Binding Description}" TextWrapping="Wrap" />
-                                                        </dxlc:LayoutItem>
-                                                        <dxlc:LayoutItem Label="Star" LabelPosition="Top">
-                                                            <dxe:TextEdit Text="{Binding Star}" TextWrapping="Wrap" />
-                                                        </dxlc:LayoutItem>
+                                                                <dxe:TextEdit Text="{Binding Description}" TextWrapping="Wrap" />
+                                                            </dxlc:LayoutItem>
+                                                            <dxlc:LayoutItem Label="Star" LabelPosition="Top">
+                                                                <dxe:TextEdit Text="{Binding Star}" TextWrapping="Wrap" />
+                                                            </dxlc:LayoutItem>
                                                         </dxlc:LayoutGroup>
-                                                        
+
                                                     </dxlc:LayoutGroup>
-                                                    
+
                                                     <dxlc:LayoutGroup View="Group" Header="Source2" Orientation="Vertical" HorizontalAlignment="Stretch">
                                                         <dxlc:LayoutItem Margin="0" Padding="0" VerticalAlignment="Stretch" ElementSpace="0" HorizontalAlignment="Stretch">
-                                                            <ContentPresenter x:Name="DetailView" Content="{Binding}" ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch" />                                                    
+                                                            <ContentPresenter x:Name="DetailView" Content="{Binding}" ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch" />
                                                         </dxlc:LayoutItem>
                                                     </dxlc:LayoutGroup>
-                                                    
+
                                                 </dxlc:LayoutGroup>
                                             </dxlc:LayoutGroup>
 
@@ -295,51 +295,51 @@
 
                         <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
                             <dxg:GridControl x:Name="GVGroups" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" ItemsSource="{Binding CapsListView}" SelectedItem="{Binding CurrentCapsGroup}" SelectionMode="Cell" SelectedItemChanged="RefreshGroup">
-                            <dxg:GridControl.View>
-                                <dxg:TableView AllowConditionalFormattingMenu="True" AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="False" CellValueChanged="UpdateGroup">
-                                    <dxg:TableView.PredefinedIconSetFormats>
-                                        <dxc:FormatInfoCollection>
-                                            <local:StandardIconSetFormatInfoExExtension FormatName="Arrows3ColoredIconSet2" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows3GrayIconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Triangles3IconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows4GrayIconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows4ColoredIconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows5GrayIconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows5ColoredIconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights3UnrimmedIconSet" Group="ShapesGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights3RimmedIconSet" Group="ShapesGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Signs3IconSet" Group="ShapesGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights4IconSet" Group="ShapesGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="RedToBlackIconSet" Group="ShapesGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Symbols3CircledIconSet" Group="IndicatorsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Symbols3UncircledIconSet" Group="IndicatorsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Flags3IconSet" Group="IndicatorsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Stars3IconSet" Group="RatingsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Ratings4IconSet" Group="RatingsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Quarters5IconSet" Group="RatingsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Ratings5IconSet" Group="RatingsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Boxes5IconSet" Group="RatingsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeArrowsColoredIconSet" Group="PositiveNegativeGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeArrowsGrayIconSet" Group="PositiveNegativeGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeTrianglesIconSet" Group="PositiveNegativeGroup" />
-                                        </dxc:FormatInfoCollection>
-                                    </dxg:TableView.PredefinedIconSetFormats>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView AllowConditionalFormattingMenu="True" AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="False" CellValueChanged="UpdateGroup">
+                                        <dxg:TableView.PredefinedIconSetFormats>
+                                            <dxc:FormatInfoCollection>
+                                                <local:StandardIconSetFormatInfoExExtension FormatName="Arrows3ColoredIconSet2" Group="DirectionalGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows3GrayIconSet" Group="DirectionalGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Triangles3IconSet" Group="DirectionalGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows4GrayIconSet" Group="DirectionalGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows4ColoredIconSet" Group="DirectionalGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows5GrayIconSet" Group="DirectionalGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows5ColoredIconSet" Group="DirectionalGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights3UnrimmedIconSet" Group="ShapesGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights3RimmedIconSet" Group="ShapesGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Signs3IconSet" Group="ShapesGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights4IconSet" Group="ShapesGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="RedToBlackIconSet" Group="ShapesGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Symbols3CircledIconSet" Group="IndicatorsGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Symbols3UncircledIconSet" Group="IndicatorsGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Flags3IconSet" Group="IndicatorsGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Stars3IconSet" Group="RatingsGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Ratings4IconSet" Group="RatingsGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Quarters5IconSet" Group="RatingsGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Ratings5IconSet" Group="RatingsGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Boxes5IconSet" Group="RatingsGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeArrowsColoredIconSet" Group="PositiveNegativeGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeArrowsGrayIconSet" Group="PositiveNegativeGroup" />
+                                                <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeTrianglesIconSet" Group="PositiveNegativeGroup" />
+                                            </dxc:FormatInfoCollection>
+                                        </dxg:TableView.PredefinedIconSetFormats>
 
-                                </dxg:TableView>
-                            </dxg:GridControl.View>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
 
-                            <dxg:GridControl.TotalSummary>
-                                <dxg:GridSummaryItem FieldName="Name" SummaryType="Count" />
-                                <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
-                            </dxg:GridControl.TotalSummary>
-                            <dxg:GridColumn FieldName="Id" IsSmart="True" Width="10" />
-                            <dxg:GridColumn FieldName="Name" IsSmart="True" Width="40" />
-                            <dxg:GridColumn FieldName="Description" IsSmart="True" Width="40" />
+                                <dxg:GridControl.TotalSummary>
+                                    <dxg:GridSummaryItem FieldName="Name" SummaryType="Count" />
+                                    <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
+                                </dxg:GridControl.TotalSummary>
+                                <dxg:GridColumn FieldName="Id" IsSmart="True" Width="10" />
+                                <dxg:GridColumn FieldName="Name" IsSmart="True" Width="40" />
+                                <dxg:GridColumn FieldName="Description" IsSmart="True" Width="40" />
                                 <dxg:GridColumn FieldName="Star" IsSmart="True" />
                                 <dxg:GridColumn FieldName="PassportPath" IsSmart="True" />
                             </dxg:GridControl>
-                       </dxlc:LayoutGroup>
-                     
+                        </dxlc:LayoutGroup>
+
                     </dxlc:GroupBox>
 
                     <dxlc:GroupBox dxlc:DockLayoutControl.Dock="Client" dxlc:DockLayoutControl.AllowHorizontalSizing="True">
