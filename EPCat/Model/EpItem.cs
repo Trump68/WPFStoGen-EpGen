@@ -102,6 +102,7 @@ namespace EPCat.Model
             get
             {
                 if (string.IsNullOrEmpty(ItemDirectory)) return new List<string>();
+                if (!Directory.Exists(ItemDirectory)) return new List<string>();
                 return Directory.GetFiles(ItemDirectory, "*.m4v").ToList();
             }
         }
@@ -258,6 +259,7 @@ namespace EPCat.Model
             }
         }
         public string Name { get; set; }
+        public int LastEdit { get; set; }
         public string AltTitle { get; set; }
         public string Country { get; set; }
         public int Year { get; set; }
@@ -313,6 +315,7 @@ namespace EPCat.Model
         {
             this.ItemPath = item.ItemPath;
             this.Name = item.Name;
+            this.LastEdit = item.LastEdit;
             this.Country = item.Country;
             this.Year = item.Year;
             this.Month = item.Month;
@@ -350,6 +353,7 @@ namespace EPCat.Model
 
         static string p_GID = "GID:";
         static string p_Name = "NAME:";
+        static string p_LastEdit = "LASTEDIT:";
         static string p_AltTitle = "ALTTITLE:";
         static string p_Country = "COUNTRY:";
         static string p_Year = "YEAR:";
@@ -456,6 +460,14 @@ namespace EPCat.Model
                     if (!string.IsNullOrWhiteSpace(term))
                     {
                         result.Name = term;
+                    }
+                }
+                else if (term.StartsWith(p_LastEdit))
+                {
+                    term = term.Replace(p_LastEdit, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.LastEdit = Convert.ToInt32(term);
                     }
                 }
                 else if (term.StartsWith(p_AltTitle))
@@ -698,6 +710,7 @@ namespace EPCat.Model
             List<string> result = new List<string>();
             result.Add(p_GID + item.GID.ToString());
             result.Add(p_Name + item.Name);
+            result.Add($"{p_LastEdit}{item.LastEdit}");
             result.Add(p_AltTitle + item.AltTitle);
             result.Add(p_Country + item.Country);
             result.Add(p_Year + (item.Year > 0 ? item.Year.ToString() : string.Empty));

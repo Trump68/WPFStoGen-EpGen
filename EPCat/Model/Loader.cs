@@ -236,11 +236,19 @@ namespace EPCat.Model
         private string CurrentCatalog;
         internal void SaveCatalog()
         {
-            if (string.IsNullOrEmpty(CurrentCatalog)) return;
+            if (string.IsNullOrEmpty(CurrentCatalog)) return;            
             System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<EpItem>));
             using (var writer = new StreamWriter(CurrentCatalog))
             {
                 serializer.Serialize(writer, Source);
+            }
+            foreach (EpItem item in Source)
+            {
+                if (Directory.Exists(item.ItemDirectory))
+                {
+                    List<string> lines = EpItem.SetToPassport(item);
+                    File.WriteAllLines(Path.Combine(item.ItemDirectory, EpItem.p_PassportName), lines);
+                }
             }
         }
 
@@ -511,6 +519,7 @@ namespace EPCat.Model
         private void UpdateFolder(string parameters)
         {
             string itemPath = parameters.ToLower();
+            if (!Directory.Exists(itemPath)) return;
             List<string> passportList = Directory.GetFiles(itemPath, EpItem.p_PassportName).ToList();
             foreach (var passport in passportList)
             {
@@ -544,7 +553,8 @@ namespace EPCat.Model
 
         internal void UpdateItem(EpItem item)
         {
-            List<string> passportData = EpItem.SetToPassport(item);
+            if (!Directory.Exists(Path.GetDirectoryName(item.ItemPath))) return;
+            List<string> passportData = EpItem.SetToPassport(item);            
             File.WriteAllLines(item.ItemPath, passportData);
         }
 
@@ -570,7 +580,14 @@ namespace EPCat.Model
                 }
                 else
                 {
-                    existingItem.UpdateFrom(item);
+                    if (existingItem.LastEdit < item.LastEdit)
+                    {
+                        existingItem.UpdateFrom(item);
+                    }
+                    else
+                    {
+                        existingItem.ItemPath = item.ItemPath;
+                    }
                 }
             }
         }
