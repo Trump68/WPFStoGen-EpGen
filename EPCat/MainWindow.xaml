@@ -94,6 +94,9 @@
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup>
                         <dxg:GridControl x:Name="GV" Width="800" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" ItemsSource="{Binding FolderListView}" SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell">
+                            <dxg:GridControl.GroupSummary>
+                                <dxg:GridSummaryItem FieldName="Year" SummaryType="Count" ShowInColumn="" DisplayFormat="{}{0}" Alignment="Default"/>
+                            </dxg:GridControl.GroupSummary>
 
                             <dxg:GridControl.View>
 
@@ -147,7 +150,7 @@
                             <dxg:GridColumn FieldName="Name" IsSmart="True" />
                             <dxg:GridColumn FieldName="AltTitle" IsSmart="True" />
                             <dxg:GridColumn FieldName="Country" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Year" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Year" IsSmart="True" AllowGrouping="True" />
                             <dxg:GridColumn FieldName="Month" IsSmart="True" />
                             <dxg:GridColumn FieldName="Day" IsSmart="True" />
                             <dxg:GridColumn FieldName="Rated" IsSmart="True" />

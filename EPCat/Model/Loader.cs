@@ -111,6 +111,9 @@ namespace EPCat.Model
             DoTempWork1_OneCountry("THA");
             DoTempWork1_OneCountry("GER");
             DoTempWork1_OneCountry("CHN");
+            DoTempWork1_OneCountry("PHI");
+            DoTempWork1_OneCountry("BRA");
+            DoTempWork1_OneCountry("AUS");
         }
         private void DoTempWork1_OneCountry(string Country)
         {
