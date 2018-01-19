@@ -114,9 +114,16 @@ namespace EPCat.Model
             DoTempWork1_OneCountry("PHI");
             DoTempWork1_OneCountry("BRA");
             DoTempWork1_OneCountry("AUS");
+
+            DoTempWork1_OneCountry("$WEB");
         }
-        private void DoTempWork1_OneCountry(string Country)
+        private void DoTempWork1_OneCountry(string mark)
         {
+            string Country = mark;
+            string Catalog = "MOV";
+            string Studio = string.Empty;
+            string Actors = string.Empty;
+            int Year = 0;
             string fromPath = @"d:\uTorrent\! ToProcess\";
             string toPath = @"d:\Process2+\EroFilms\";
             var files = Directory.GetFiles(fromPath, "*.m4v", SearchOption.TopDirectoryOnly).ToList();
@@ -124,68 +131,77 @@ namespace EPCat.Model
             {
                 string source = fn;
                 string fnwe = Path.GetFileName(fn);
-                if (fnwe.Contains($"[{Country}]"))
+                if (fnwe.StartsWith($"[{Country}]"))
                 {
                     string newfnwe = $"{Country} {fnwe.Replace($"[{Country}]", string.Empty)}";
                     File.Move(Path.Combine(fromPath, fnwe), Path.Combine(fromPath, newfnwe));
                     fnwe = newfnwe;
                     source = newfnwe;
                 }
-                if (fnwe.ToUpper().StartsWith($"{Country} "))
+
+                if (fnwe.ToUpper().StartsWith($"{mark} "))
                 {
+
                     string nfm = fnwe.Remove(0, 4);
                     nfm = nfm.Replace(".m4v", string.Empty);
-
                     nfm = nfm.Trim();
-                    //while (Char.IsDigit(nfm.Last()))
-                    //{
-                    //    nfm = nfm.Remove(nfm.Length - 1);
-                    //}
-                    //if (nfm.Last() == '-') nfm = nfm.Remove(nfm.Length - 1);
-                    //nfm = nfm.Trim();
-
-                    string yearstr = nfm.Substring(0, 4);
-                    int Year = 0;
                     bool ok = false;
-                    if (int.TryParse(yearstr, out Year))
+
+                    if (fnwe.ToUpper().StartsWith("$"))
                     {
-                        if (Year > 1949 && Year < 2018)
+                        Country = string.Empty;
+                        Catalog = mark.Replace("$", string.Empty);
+                        var items = nfm.Split(' ');
+                        if (items[0].Contains("[") && items[0].Contains("]"))
+                            Studio = items[0].Replace("[", string.Empty).Replace("]", string.Empty).Trim();
+
+                        ok = true;
+                    }
+                    else
+                    {
+                        string yearstr = nfm.Substring(0, 4);
+                        if (int.TryParse(yearstr, out Year))
                         {
-                            nfm = nfm.Remove(0, 4);
-                            ok = true;
+                            if (Year > 1949 && Year < 2018)
+                            {
+                                nfm = nfm.Remove(0, 4);
+                                ok = true;
+                            }
                         }
                     }
+                    
+                    if (nfm.Contains("{") && nfm.Contains("}"))
+                    {
+                        int fi = nfm.IndexOf('{') + 1;
+                        int si = nfm.IndexOf('}') - 1;
+                        Actors = nfm.Substring(fi, si - fi + 1);
+                    }
 
-                    //if (!ok)
-                    //{
-                    //    yearstr = nfm.Substring(nfm.Length - 4, 4);
-                    //    if (int.TryParse(yearstr, out Year))
-                    //    {
-                    //        if (Year > 1949 && Year < 2018)
-                    //        {
-                    //            nfm = nfm.Replace(yearstr, string.Empty);
-                    //            ok = true;
-                    //        }
-                    //    }
-                    //}
 
                     if (ok)
                     {
                         string Name = nfm.Trim();
-
-                        if (Name.Contains("-"))
+                        string newPath = string.Empty;
+                        if (Catalog == "MOV")
                         {
-                            while (Char.IsDigit(Name.Last()))
+                            newPath = Path.Combine(toPath, Year.ToString());
+                            if (Name.Contains("-"))
                             {
-                                Name = Name.Remove(Name.Length - 1);
+                                while (Char.IsDigit(Name.Last()))
+                                {
+                                    Name = Name.Remove(Name.Length - 1);
+                                }
+                                if (Name.Last() == '-') Name = Name.Remove(Name.Length - 1);
+                                Name = Name.Trim();
                             }
-                            if (Name.Last() == '-') Name = Name.Remove(Name.Length - 1);
-                            Name = Name.Trim();
+                        }
+                        else
+                        {
+                            newPath = Path.Combine(toPath, Catalog, Studio);
                         }
 
+                        
 
-
-                        string newPath = Path.Combine(toPath, Year.ToString());
                         if (!Directory.Exists(newPath))
                         {
                             Directory.CreateDirectory(newPath);
@@ -198,8 +214,11 @@ namespace EPCat.Model
                                 Directory.CreateDirectory(newPath);
                                 EpItem item = new EpItem(0);
                                 item.Name = Name;
+                                item.Catalog = Catalog;
                                 item.Country = Country;
                                 item.Year = Year;
+                                item.Studio = Studio;
+                                item.Star = Actors;
                                 List<string> lines = EpItem.SetToPassport(item);
                                 File.WriteAllLines(Path.Combine(newPath, EpItem.p_PassportName), lines);
                             }

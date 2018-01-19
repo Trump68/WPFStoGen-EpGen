@@ -259,6 +259,7 @@ namespace EPCat.Model
             }
         }
         public string Name { get; set; }
+        public string Catalog { get; set; } = "MOV";
         public int LastEdit { get; set; }
         public string AltTitle { get; set; }
         public string Country { get; set; }
@@ -353,6 +354,7 @@ namespace EPCat.Model
 
         static string p_GID = "GID:";
         static string p_Name = "NAME:";
+        static string p_Catalog = "CATALOG:";
         static string p_LastEdit = "LASTEDIT:";
         static string p_AltTitle = "ALTTITLE:";
         static string p_Country = "COUNTRY:";
@@ -460,6 +462,14 @@ namespace EPCat.Model
                     if (!string.IsNullOrWhiteSpace(term))
                     {
                         result.Name = term;
+                    }
+                }
+                else if (term.StartsWith(p_Catalog))
+                {
+                    term = term.Replace(p_Catalog, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.Catalog = term;
                     }
                 }
                 else if (term.StartsWith(p_LastEdit))
@@ -710,6 +720,7 @@ namespace EPCat.Model
             List<string> result = new List<string>();
             result.Add(p_GID + item.GID.ToString());
             result.Add(p_Name + item.Name);
+            result.Add(p_Catalog + item.Catalog);
             result.Add($"{p_LastEdit}{item.LastEdit}");
             result.Add(p_AltTitle + item.AltTitle);
             result.Add(p_Country + item.Country);
