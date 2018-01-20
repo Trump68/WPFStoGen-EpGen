@@ -34,9 +34,9 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            //DoTempWork1();
-            //DoTempwork2(@"d:\Process2+\EroFilms\");
-            //return null;
+            DoTempWork1();
+            DoTempwork2(@"d:\Process2+\EroFilms\");
+            return null;
             EpItem.DictionaryData.Dict_Class.Clear();
             EpItem.DictionaryData.Dict_Name.Clear();
             CapsItem.DictionaryData.Dict_Class.Clear();
@@ -97,6 +97,7 @@ namespace EPCat.Model
         private void DoTempWork1()
         {
             DoTempWork1_OneCountry("JAP");
+            DoTempWork1_OneCountry("CHE");
             DoTempWork1_OneCountry("FRA");
             DoTempWork1_OneCountry("GBR");
             DoTempWork1_OneCountry("TWN");
@@ -116,6 +117,7 @@ namespace EPCat.Model
             DoTempWork1_OneCountry("AUS");
 
             DoTempWork1_OneCountry("$WEB");
+            DoTempWork1_OneCountry("$JAV");
         }
         private void DoTempWork1_OneCountry(string mark)
         {
@@ -123,6 +125,7 @@ namespace EPCat.Model
             string Catalog = "MOV";
             string Studio = string.Empty;
             string Actors = string.Empty;
+            string Serie = string.Empty;
             int Year = 0;
             string fromPath = @"d:\uTorrent\! ToProcess\";
             string toPath = @"d:\Process2+\EroFilms\";
@@ -175,8 +178,23 @@ namespace EPCat.Model
                         int fi = nfm.IndexOf('{') + 1;
                         int si = nfm.IndexOf('}') - 1;
                         Actors = nfm.Substring(fi, si - fi + 1);
+                        nfm = nfm.Replace("{"+Actors+"}", string.Empty).Trim();
                     }
 
+                    if (Catalog == "MOV" && nfm.Contains("[") && nfm.Contains("]"))
+                    {
+                        int fi = nfm.IndexOf('[') + 1;
+                        int si = nfm.IndexOf(']') - 1;
+                        Studio = nfm.Substring(fi, si - fi + 1);
+                    }
+
+                    if (Catalog == "JAV" && nfm.Contains("[") && nfm.Contains("]"))
+                    {
+                        int fi = nfm.IndexOf('[') + 1;
+                        int si = nfm.IndexOf(']') - 1;
+                        Serie = nfm.Substring(fi, si - fi + 1);
+                        nfm = nfm.Replace("[" + Serie + "]", string.Empty).Trim();
+                    }
 
                     if (ok)
                     {
@@ -219,11 +237,12 @@ namespace EPCat.Model
                                 item.Year = Year;
                                 item.Studio = Studio;
                                 item.Star = Actors;
+                                item.Serie = Serie;
                                 List<string> lines = EpItem.SetToPassport(item);
                                 File.WriteAllLines(Path.Combine(newPath, EpItem.p_PassportName), lines);
                             }
 
-                            File.Move(Path.Combine(fromPath, source), Path.Combine(newPath, Name) + ".m4v");
+                            File.Move(source, Path.Combine(newPath, Name) + ".m4v");
                         }
                     }
                 }
@@ -246,10 +265,13 @@ namespace EPCat.Model
                     EpItem item = EpItem.GetFromPassport(passport);
                     string dirname = Path.GetDirectoryName(passportPath);
                     string name = Path.GetFileName(passportPath);
-                    if (!name.StartsWith("["))
+                    if (item.Catalog != "JAV")
                     {
-                        string newdirname = Path.Combine(dirname, $"[{item.Country}] {name}");                    
-                        Directory.Move(passportPath, newdirname);
+                        if (!name.StartsWith("["))
+                        {
+                            string newdirname = Path.Combine(dirname, $"[{item.Country}] {name}");
+                            Directory.Move(passportPath, newdirname);
+                        }
                     }
                 }
                 return;

@@ -269,6 +269,7 @@ namespace EPCat.Model
         public string Rated { get; set; }
         public string XRated { get; set; }
         public string Kind { get; set; }
+        public string Serie { get; set; }
         public string Type { get; set; }
         public string Brand { get; set; }
         public string Star { get; set; }
@@ -316,6 +317,8 @@ namespace EPCat.Model
         {
             this.ItemPath = item.ItemPath;
             this.Name = item.Name;
+            this.Serie = item.Serie;
+            this.Catalog = item.Catalog;
             this.LastEdit = item.LastEdit;
             this.Country = item.Country;
             this.Year = item.Year;
@@ -355,6 +358,7 @@ namespace EPCat.Model
         static string p_GID = "GID:";
         static string p_Name = "NAME:";
         static string p_Catalog = "CATALOG:";
+        static string p_Serie = "SERIE:";
         static string p_LastEdit = "LASTEDIT:";
         static string p_AltTitle = "ALTTITLE:";
         static string p_Country = "COUNTRY:";
@@ -470,6 +474,14 @@ namespace EPCat.Model
                     if (!string.IsNullOrWhiteSpace(term))
                     {
                         result.Catalog = term;
+                    }
+                }
+                else if (term.StartsWith(p_Serie))
+                {
+                    term = term.Replace(p_Serie, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.Serie = term;
                     }
                 }
                 else if (term.StartsWith(p_LastEdit))
@@ -721,6 +733,7 @@ namespace EPCat.Model
             result.Add(p_GID + item.GID.ToString());
             result.Add(p_Name + item.Name);
             result.Add(p_Catalog + item.Catalog);
+            result.Add(p_Serie + item.Serie);
             result.Add($"{p_LastEdit}{item.LastEdit}");
             result.Add(p_AltTitle + item.AltTitle);
             result.Add(p_Country + item.Country);
