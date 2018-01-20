@@ -213,12 +213,15 @@ namespace EPCat.Model
                                 Name = Name.Trim();
                             }
                         }
+                        else if(Catalog == "JAV")
+                        {
+                            newPath = Path.Combine(toPath, Catalog, Serie);
+                        }
                         else
                         {
                             newPath = Path.Combine(toPath, Catalog, Studio);
                         }
 
-                        
 
                         if (!Directory.Exists(newPath))
                         {

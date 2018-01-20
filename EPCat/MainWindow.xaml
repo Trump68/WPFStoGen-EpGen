@@ -160,6 +160,7 @@
                             <dxg:GridColumn FieldName="Brand" IsSmart="True" />
                             <dxg:GridColumn FieldName="Type" IsSmart="True" />
                             <dxg:GridColumn FieldName="Star" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Serie" IsSmart="True" />
                             <dxg:GridColumn FieldName="MyDescr" IsSmart="True" />
                             <dxg:GridColumn FieldName="Director" IsSmart="True" />
                             <dxg:GridColumn FieldName="Studio" IsSmart="True" />
