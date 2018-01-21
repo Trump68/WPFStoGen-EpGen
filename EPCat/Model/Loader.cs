@@ -35,7 +35,7 @@ namespace EPCat.Model
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
             DoTempWork1();
-            DoTempwork2(@"d:\Process2+\EroFilms\");
+            DoTempwork2(@"d:\!CATALOG\MOV\");
             return null;
             EpItem.DictionaryData.Dict_Class.Clear();
             EpItem.DictionaryData.Dict_Name.Clear();
@@ -128,7 +128,8 @@ namespace EPCat.Model
             string Serie = string.Empty;
             int Year = 0;
             string fromPath = @"d:\uTorrent\! ToProcess\";
-            string toPath = @"d:\Process2+\EroFilms\";
+            
+
             var files = Directory.GetFiles(fromPath, "*.m4v", SearchOption.TopDirectoryOnly).ToList();
             foreach (var fn in files)
             {
@@ -172,7 +173,9 @@ namespace EPCat.Model
                             }
                         }
                     }
-                    
+
+                    string toPath = $@"d:\!CATALOG\{Catalog}\";
+
                     if (nfm.Contains("{") && nfm.Contains("}"))
                     {
                         int fi = nfm.IndexOf('{') + 1;
@@ -190,6 +193,7 @@ namespace EPCat.Model
 
                     if (Catalog == "JAV" && nfm.Contains("[") && nfm.Contains("]"))
                     {
+                        Studio = string.Empty;
                         int fi = nfm.IndexOf('[') + 1;
                         int si = nfm.IndexOf(']') - 1;
                         Serie = nfm.Substring(fi, si - fi + 1);
