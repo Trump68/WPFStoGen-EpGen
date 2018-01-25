@@ -96,30 +96,90 @@ namespace EPCat.Model
 
         private void DoTempWork1()
         {
-            DoTempWork1_OneCountry("JAP");
-            DoTempWork1_OneCountry("CHE");
-            DoTempWork1_OneCountry("FRA");
-            DoTempWork1_OneCountry("GBR");
-            DoTempWork1_OneCountry("TWN");
-            DoTempWork1_OneCountry("KOR");
-            DoTempWork1_OneCountry("ITA");
-            DoTempWork1_OneCountry("USA");
-            DoTempWork1_OneCountry("HKG");
-            DoTempWork1_OneCountry("SWZ");
-            DoTempWork1_OneCountry("CAN");
-            DoTempWork1_OneCountry("NLD");
-            DoTempWork1_OneCountry("HSP");
-            DoTempWork1_OneCountry("THA");
-            DoTempWork1_OneCountry("GER");
-            DoTempWork1_OneCountry("CHN");
-            DoTempWork1_OneCountry("PHI");
-            DoTempWork1_OneCountry("BRA");
-            DoTempWork1_OneCountry("AUS");
+            string fromPath = @"d:\uTorrent\! ToProcess\";
+            string toPath = @"d:\!CATALOG\";
+            DoTempWork1_OneCountry("JAP", fromPath, toPath);
+            DoTempWork1_OneCountry("CHE", fromPath, toPath);
+            DoTempWork1_OneCountry("FRA", fromPath, toPath);
+            DoTempWork1_OneCountry("GBR", fromPath, toPath);
+            DoTempWork1_OneCountry("TWN", fromPath, toPath);
+            DoTempWork1_OneCountry("KOR", fromPath, toPath);
+            DoTempWork1_OneCountry("ITA", fromPath, toPath);
+            DoTempWork1_OneCountry("USA", fromPath, toPath);
+            DoTempWork1_OneCountry("HKG", fromPath, toPath);
+            DoTempWork1_OneCountry("SWZ", fromPath, toPath);
+            DoTempWork1_OneCountry("CAN", fromPath, toPath);
+            DoTempWork1_OneCountry("NLD", fromPath, toPath);
+            DoTempWork1_OneCountry("HSP", fromPath, toPath);
+            DoTempWork1_OneCountry("THA", fromPath, toPath);
+            DoTempWork1_OneCountry("GER", fromPath, toPath);
+            DoTempWork1_OneCountry("CHN", fromPath, toPath);
+            DoTempWork1_OneCountry("PHI", fromPath, toPath);
+            DoTempWork1_OneCountry("BRA", fromPath, toPath);
+            DoTempWork1_OneCountry("AUS", fromPath, toPath);
 
-            DoTempWork1_OneCountry("$WEB");
-            DoTempWork1_OneCountry("$JAV");
+            DoTempWork1_OneCountry("$WEB", fromPath, toPath);
+            DoTempWork1_OneCountry("$JAV", fromPath, toPath);
+            DoFOLDER(fromPath, toPath);
         }
-        private void DoTempWork1_OneCountry(string mark)
+        private void DoFOLDER(string fromPath, string toDir)
+        {
+            /* 
+             * $01-Catalog
+             * $02-Star 
+             * $03-Kind
+             * $04-Serie
+             */
+
+            var dirs = Directory.GetDirectories(fromPath, "$*", SearchOption.TopDirectoryOnly).ToList();
+            foreach (var dir in dirs)
+            {
+                string toPath = toDir;
+                EpItem item = new EpItem(0);
+                string dn = Path.GetFileName(dir);
+                List<string> tokens = dn.Split('$').ToList();
+                foreach (string tok in tokens)
+                {
+                    if (string.IsNullOrEmpty(tok.Trim()))
+                        continue;
+                    string mark = tok.Substring(0, 2);
+                    string val = tok.Remove(0,2).Trim();
+                    if (mark == "01")
+                    {
+                        item.Catalog = val;
+                    }
+                    else if (mark == "02")
+                    {
+                        item.Star = val;
+                    }
+                    else if (mark == "03")
+                    {
+                        item.Kind = val;
+                    }
+                    else if (mark == "04")
+                    {
+                        item.Serie = val;
+                    }
+                    else
+                    {
+                        item.Name = tok.Trim();
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(item.Catalog))
+                    toPath = $@"{toPath}\{item.Catalog}";
+                if (!string.IsNullOrEmpty(item.Serie))
+                    toPath = $@"{toPath}\{item.Serie}";
+
+                if (!Directory.Exists(toPath))
+                     Directory.CreateDirectory(toPath);
+                string newname = Path.Combine(toPath, item.Name);
+                Directory.Move(dir, newname);
+                List<string> lines = EpItem.SetToPassport(item);
+                File.WriteAllLines(Path.Combine(newname, EpItem.p_PassportName), lines);
+            }
+        }
+        private void DoTempWork1_OneCountry(string mark,string fromPath, string toPath)
         {
             string Country = mark;
             string Catalog = "MOV";
@@ -127,7 +187,6 @@ namespace EPCat.Model
             string Actors = string.Empty;
             string Serie = string.Empty;
             int Year = 0;
-            string fromPath = @"d:\uTorrent\! ToProcess\";
             
 
             var files = Directory.GetFiles(fromPath, "*.m4v", SearchOption.TopDirectoryOnly).ToList();
@@ -166,15 +225,13 @@ namespace EPCat.Model
                         string yearstr = nfm.Substring(0, 4);
                         if (int.TryParse(yearstr, out Year))
                         {
-                            if (Year > 1949 && Year < 2018)
+                            if (Year > 1949 && Year < 2025)
                             {
                                 nfm = nfm.Remove(0, 4);
                                 ok = true;
                             }
                         }
-                    }
-
-                    string toPath = $@"d:\!CATALOG\{Catalog}\";
+                    }                    
 
                     if (nfm.Contains("{") && nfm.Contains("}"))
                     {
@@ -206,7 +263,7 @@ namespace EPCat.Model
                         string newPath = string.Empty;
                         if (Catalog == "MOV")
                         {
-                            newPath = Path.Combine(toPath, Year.ToString());
+                            newPath = Path.Combine(toPath, Catalog, Year.ToString());
                             if (Name.Contains("-"))
                             {
                                 while (Char.IsDigit(Name.Last()))
