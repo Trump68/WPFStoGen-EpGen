@@ -49,12 +49,21 @@ namespace EPCat.Model
         {
             get
             {
+                // try to get from source dir
                 Uri path = new Uri(PosterPath, UriKind.Absolute);
                 if (File.Exists(path.LocalPath)) return new BitmapImage(path);
                 GetLeastNumImage(Path.GetDirectoryName(ItemPath), PosterPath);
                 if (File.Exists(path.LocalPath)) return new BitmapImage(path);
                 GetLeastNumImage(Path.GetDirectoryName(ItemPath) + @"\EVENTS\", PosterPath);
                 if (File.Exists(path.LocalPath)) return new BitmapImage(path);
+
+
+                // try to get from catalog poster dir
+                string dirPoster = EpItem.CatalogPosterDir;
+                dirPoster = Path.Combine(dirPoster, $"{GID}.jpg");
+                path = new Uri(dirPoster, UriKind.Absolute);
+                if (File.Exists(path.LocalPath)) return new BitmapImage(path);
+
                 return null;
             }
         }
@@ -397,6 +406,8 @@ namespace EPCat.Model
         public static string p_PassportCompositionName = "PASSPORT_COMPOSITION.TXT";
 
         public static string CurrentPassportImage = p_PassportCapsName;
+        internal static string CatalogPosterDir;
+
         internal static void SetCurrentImagePassort(int selectedIndex)
         {
             switch (selectedIndex)
@@ -727,6 +738,14 @@ namespace EPCat.Model
             }
             return result;
         }
+
+        internal static string GetCatalogPosterDir(string itemPath)
+        {
+            string dir = Path.GetDirectoryName(itemPath);
+            string catname = Path.GetFileNameWithoutExtension(itemPath);
+            return $@"{dir}\POSTERS.{catname}";
+        }
+
         internal static List<string> SetToPassport(EpItem item)
         {
             List<string> result = new List<string>();

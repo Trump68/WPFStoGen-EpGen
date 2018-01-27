@@ -34,9 +34,9 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            DoTempWork1();
-            DoTempwork2(@"d:\!CATALOG\MOV\");
-            return null;
+            //DoTempWork1();
+            //DoTempwork2(@"d:\!CATALOG\MOV\");
+            //return null;
             EpItem.DictionaryData.Dict_Class.Clear();
             EpItem.DictionaryData.Dict_Name.Clear();
             CapsItem.DictionaryData.Dict_Class.Clear();
@@ -129,6 +129,7 @@ namespace EPCat.Model
              * $02-Star 
              * $03-Kind
              * $04-Serie
+             * $01 JAV $02  $04  $ 
              */
 
             var dirs = Directory.GetDirectories(fromPath, "$*", SearchOption.TopDirectoryOnly).ToList();
@@ -609,6 +610,12 @@ namespace EPCat.Model
         {
             List<EpItem> list = new List<EpItem>();
             string itemPath = parameters.ToLower();
+            string dir = EpItem.GetCatalogPosterDir(itemPath);
+            EpItem.CatalogPosterDir = dir;
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);               
+            }
             if (File.Exists(itemPath))
             {                
                 System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<EpItem>));
@@ -673,8 +680,12 @@ namespace EPCat.Model
             {
                 EpItem item = EpItem.GetFromPassport(passport);
                 item.ItemPath = passportPath;
-
+                bool copyPoster = false;
                 var existingItem = Source.Where(x => x.GID == item.GID).FirstOrDefault();
+
+                string dirPoster = EpItem.GetCatalogPosterDir(CurrentCatalog);
+                string newname = Path.Combine(dirPoster, $"{item.GID}.jpg");
+
                 if (existingItem == null)
                 {
                     if (string.IsNullOrEmpty(item.Name))
@@ -685,16 +696,28 @@ namespace EPCat.Model
                     }
                     Source.Add(item);
                     UpdateItem(item);
+                    copyPoster = true;
                 }
                 else
                 {
                     if (existingItem.LastEdit < item.LastEdit)
                     {
                         existingItem.UpdateFrom(item);
+                        copyPoster = true;
                     }
                     else
                     {
                         existingItem.ItemPath = item.ItemPath;
+                        copyPoster = !File.Exists(newname);
+                    }
+                }
+                if (copyPoster)
+                {
+                    bool posterExist = File.Exists(item.PosterPath);
+                    if (posterExist)
+                    {
+                                                
+                        File.Copy(item.PosterPath, newname, true);
                     }
                 }
             }
