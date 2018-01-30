@@ -406,6 +406,13 @@
                 </dxlc:DockLayoutControl>
 
             </dx:DXTabItem>
+            <dx:DXTabItem x:Name="tabCaption" Header="Poster">
+                <Grid Background="Transparent">
+                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
+                        <Image Source="{Binding SelectedItem.Poster, ElementName=GV}" Stretch="Uniform" />
+                    </dxlc:LayoutItem>
+                </Grid>
+            </dx:DXTabItem>
         </dx:DXTabControl>
 
 
