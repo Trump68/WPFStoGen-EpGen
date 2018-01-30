@@ -34,9 +34,9 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            //DoTempWork1();
-            //DoTempwork2(@"d:\!CATALOG\MOV\");
-            //return null;
+            DoTempWork1();
+            DoTempwork2(@"d:\!CATALOG\MOV\");
+            return null;
             EpItem.DictionaryData.Dict_Class.Clear();
             EpItem.DictionaryData.Dict_Name.Clear();
             CapsItem.DictionaryData.Dict_Class.Clear();
@@ -129,6 +129,8 @@ namespace EPCat.Model
              * $02-Star 
              * $03-Kind
              * $04-Serie
+             * $05-Country
+             * $06-Year
              * $01 JAV $02  $04  $ 
              */
 
@@ -160,6 +162,14 @@ namespace EPCat.Model
                     else if (mark == "04")
                     {
                         item.Serie = val;
+                    }
+                    else if (mark == "05")
+                    {
+                        item.Country = val;
+                    }
+                    else if (mark == "06")
+                    {
+                        item.Year = Convert.ToInt32(val);
                     }
                     else
                     {
