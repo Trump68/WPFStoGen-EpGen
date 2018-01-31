@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ninject, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\StoGenWPF\packages\Ninject.4.0.0-beta-0134\lib\net45\Ninject.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Injector\DcInjector.cs" />
     <Compile Include="Intellect\BaseIntellect.cs" />
     <Compile Include="Intellect\MotivationTarget.cs" />
     <Compile Include="Location\BaseLocation.cs" />
