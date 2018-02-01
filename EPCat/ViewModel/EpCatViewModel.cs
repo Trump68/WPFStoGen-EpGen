@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -207,7 +208,20 @@ namespace EPCat
         {
             EpItem.SetCurrentImagePassort(selectedIndex);
         }
-       
+
+        internal void CopyJPGNameToClipboard()
+        {
+            if (this.CurrentFolder != null)
+            {
+                Clipboard.Clear();
+                Clipboard.SetText(this.CurrentFolder.GID.ToString()
+                    .Replace("{", string.Empty)
+                    .Replace("}", string.Empty)
+                    +".jpg"
+                    );
+            }
+
+        }
     }
 
 }

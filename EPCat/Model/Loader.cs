@@ -726,8 +726,16 @@ namespace EPCat.Model
                     bool posterExist = File.Exists(item.PosterPath);
                     if (posterExist)
                     {
-                                                
-                        File.Copy(item.PosterPath, newname, true);
+
+                        try
+                        {
+                            File.Copy(item.PosterPath, newname, true);
+                        }
+                        catch (Exception)
+                        {
+
+                        }              
+                        
                     }
                 }
             }

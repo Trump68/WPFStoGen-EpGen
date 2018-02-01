@@ -320,6 +320,11 @@ namespace EPCat
         {
             ViewModel.UpdateGroup();
         }
+
+        private void GidJPGBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.CopyJPGNameToClipboard();
+        }
     }
    
 }

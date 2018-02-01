@@ -15,7 +15,7 @@
         xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
         x:Class="EPCat.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="674.484" Width="1290.694" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="MainWindow" Height="674.484" Width="1290.694" Closing="Window_Closing" Loaded="Window_Loaded" WindowState="Maximized">
 
     <Window.DataContext>
         <local:EpCatViewModel />
@@ -47,8 +47,11 @@
                         <dxlc:LayoutItem HorizontalAlignment="Left">
                             <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" HorizontalAlignment="Left" Click="simpleButton_Click" />
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="100,0,0,0">
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="80,0,0,0">
                             <dx:SimpleButton x:Name="CollapseBtn" Content="Hide" Width="50" HorizontalAlignment="Left" Click="Collapse_Click" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,0,0,0">
+                            <dx:SimpleButton x:Name="GidJPGBtn" Content="JPG" Width="50" HorizontalAlignment="Left" Click="GidJPGBtn_Click"  />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Margin="20,0,0,0" Width="50">
                             <dxe:CheckEdit x:Name="EditAllowed" Content="Edit" />
