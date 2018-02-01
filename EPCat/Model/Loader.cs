@@ -131,7 +131,10 @@ namespace EPCat.Model
              * $04-Serie
              * $05-Country
              * $06-Year
-             * $01 JAV $02  $04  $ 
+             * $07-Studio
+             * $08-XRated
+             * $01 JAV $02  $04  $
+             * $01 WEB $03 WEBCLIP $08 P $07  $ 
              */
 
             var dirs = Directory.GetDirectories(fromPath, "$*", SearchOption.TopDirectoryOnly).ToList();
@@ -171,6 +174,14 @@ namespace EPCat.Model
                     {
                         item.Year = Convert.ToInt32(val);
                     }
+                    else if (mark == "07")
+                    {
+                        item.Studio =val;
+                    }
+                    else if (mark == "08")
+                    {
+                        item.XRated = val;
+                    }
                     else
                     {
                         item.Name = tok.Trim();
@@ -179,8 +190,17 @@ namespace EPCat.Model
 
                 if (!string.IsNullOrEmpty(item.Catalog))
                     toPath = $@"{toPath}\{item.Catalog}";
-                if (!string.IsNullOrEmpty(item.Serie))
-                    toPath = $@"{toPath}\{item.Serie}";
+                if (item.Catalog == "WEB")
+                {
+                    if (!string.IsNullOrEmpty(item.Studio))
+                        toPath = $@"{toPath}\{item.Studio}";
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(item.Serie))
+                        toPath = $@"{toPath}\{item.Serie}";
+                }
+                 
 
                 if (!Directory.Exists(toPath))
                      Directory.CreateDirectory(toPath);
@@ -691,11 +711,12 @@ namespace EPCat.Model
                 EpItem item = EpItem.GetFromPassport(passport);
                 item.ItemPath = passportPath;
                 bool copyPoster = false;
+                bool reversecopyPoster = false;
                 var existingItem = Source.Where(x => x.GID == item.GID).FirstOrDefault();
 
                 string dirPoster = EpItem.GetCatalogPosterDir(CurrentCatalog);
-                string newname = Path.Combine(dirPoster, $"{item.GID}.jpg");
-
+                string newPostername = Path.Combine(dirPoster, $"{item.GID}.jpg");
+                
                 if (existingItem == null)
                 {
                     if (string.IsNullOrEmpty(item.Name))
@@ -718,7 +739,8 @@ namespace EPCat.Model
                     else
                     {
                         existingItem.ItemPath = item.ItemPath;
-                        copyPoster = !File.Exists(newname);
+                        copyPoster = !File.Exists(newPostername);
+                        reversecopyPoster = !copyPoster;
                     }
                 }
                 if (copyPoster)
@@ -726,16 +748,30 @@ namespace EPCat.Model
                     bool posterExist = File.Exists(item.PosterPath);
                     if (posterExist)
                     {
-
                         try
                         {
-                            File.Copy(item.PosterPath, newname, true);
+                            File.Copy(item.PosterPath, newPostername, true);
                         }
                         catch (Exception)
                         {
 
                         }              
                         
+                    }
+                }
+                else if (reversecopyPoster)
+                {
+                    bool posterExist = File.Exists(newPostername);
+                    if (posterExist)
+                    {
+                        try
+                        {
+                            File.Copy(newPostername, item.PosterPath, false);
+                        }
+                        catch (Exception)
+                        {
+
+                        }
                     }
                 }
             }
