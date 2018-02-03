@@ -34,9 +34,9 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            //DoTempWork1();
-            //DoTempwork2(@"d:\!CATALOG\MOV\");
-            //return null;
+            DoTempWork1();
+            DoTempwork2(@"d:\!CATALOG\MOV\");
+            return null;
             EpItem.DictionaryData.Dict_Class.Clear();
             EpItem.DictionaryData.Dict_Name.Clear();
             CapsItem.DictionaryData.Dict_Class.Clear();
@@ -133,6 +133,8 @@ namespace EPCat.Model
              * $06-Year
              * $07-Studio
              * $08-XRated
+             * $09-Type
+             * $10-Director
              * $01 JAV $02  $04  $
              * $01 WEB $03 WEBCLIP $08 P $07  $ 
              */
@@ -182,6 +184,14 @@ namespace EPCat.Model
                     {
                         item.XRated = val;
                     }
+                    else if (mark == "09")
+                    {
+                        item.Type = val;
+                    }
+                    else if (mark == "10")
+                    {
+                        item.Director = val;
+                    }
                     else
                     {
                         item.Name = tok.Trim();
@@ -195,6 +205,10 @@ namespace EPCat.Model
                     if (!string.IsNullOrEmpty(item.Studio))
                         toPath = $@"{toPath}\{item.Studio}";
                 }
+                else if (item.Catalog == "MOV")
+                {                    
+                        toPath = $@"{toPath}\{item.Year}";
+                }
                 else
                 {
                     if (!string.IsNullOrEmpty(item.Serie))
@@ -204,7 +218,14 @@ namespace EPCat.Model
 
                 if (!Directory.Exists(toPath))
                      Directory.CreateDirectory(toPath);
+
                 string newname = Path.Combine(toPath, item.Name);
+                if (item.Catalog == "MOV")
+                {
+                    newname = Path.Combine(toPath, $"[{item.Country}] {item.Name}");
+                }
+                
+
                 Directory.Move(dir, newname);
                 List<string> lines = EpItem.SetToPassport(item);
                 File.WriteAllLines(Path.Combine(newname, EpItem.p_PassportName), lines);
