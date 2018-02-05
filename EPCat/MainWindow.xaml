@@ -15,7 +15,7 @@
         xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
         x:Class="EPCat.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="674.484" Width="1290.694" Closing="Window_Closing" Loaded="Window_Loaded" WindowState="Maximized">
+        Title="MainWindow" Height="593.484" Width="1290.694" Closing="Window_Closing" Loaded="Window_Loaded" WindowState="Maximized">
 
     <Window.DataContext>
         <local:EpCatViewModel />
@@ -23,9 +23,7 @@
     <!--<local:MaximizedElementConverter x:Key="con"/>-->
 
     <Window.Resources>
-        <local:QuickIconSetFormatExExtension x:Key="{local:FormatThemeKeyEx ResourceKey=Arrows3ColoredIconSet2}" 
-                                         Path="pack://application:,,,/Images/" 
-                                             NameEx="Arrows3_" ElementCount="3" XlIconSetType="Arrows3" />
+        
     </Window.Resources>
     <Grid>
 
@@ -74,8 +72,11 @@
                                 <dxe:ListBoxEditItem Content="Parent" />
                             </dxe:ListBoxEdit>
                         </dxlc:LayoutItem>
-
+                        <dxlc:LayoutItem Margin="0,0,0,0" Width="50">
+                            <dxe:TextEdit MaxWidth="35" Text="1982" />
+                        </dxlc:LayoutItem>
                         <dxlc:LayoutItem Margin="0,0,0,0" Width="500">
+                            
                             <dxe:ListBoxEdit x:Name="rgCapsPassport" ShowBorder="True" EditValueChanged="SetCurrentImagePassort" SelectedIndex="0">
                                 <dxe:ListBoxEdit.StyleSettings>
                                     <dxe:RadioListBoxEditStyleSettings />
@@ -106,41 +107,6 @@
 
                                 <dxg:TableView AllowConditionalFormattingMenu="True" AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow">
 
-
-                                    <dxg:TableView.PredefinedIconSetFormats>
-                                        <dxc:FormatInfoCollection>
-                                            <local:StandardIconSetFormatInfoExExtension FormatName="Arrows3ColoredIconSet2" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows3GrayIconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Triangles3IconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows4GrayIconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows4ColoredIconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows5GrayIconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows5ColoredIconSet" Group="DirectionalGroup" />
-
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights3UnrimmedIconSet" Group="ShapesGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights3RimmedIconSet" Group="ShapesGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Signs3IconSet" Group="ShapesGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights4IconSet" Group="ShapesGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="RedToBlackIconSet" Group="ShapesGroup" />
-
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Symbols3CircledIconSet" Group="IndicatorsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Symbols3UncircledIconSet" Group="IndicatorsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Flags3IconSet" Group="IndicatorsGroup" />
-
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Stars3IconSet" Group="RatingsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Ratings4IconSet" Group="RatingsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Quarters5IconSet" Group="RatingsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Ratings5IconSet" Group="RatingsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Boxes5IconSet" Group="RatingsGroup" />
-
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeArrowsColoredIconSet" Group="PositiveNegativeGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeArrowsGrayIconSet" Group="PositiveNegativeGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeTrianglesIconSet" Group="PositiveNegativeGroup" />
-                                        </dxc:FormatInfoCollection>
-                                    </dxg:TableView.PredefinedIconSetFormats>
-
-
-
                                     <dxg:TableView.FormatConditions>
                                         <dxg:ColorScaleFormatCondition Expression="[VideoPresent] = True" FieldName="ItemPath" PredefinedFormatName="YellowGreenColorScale" />
                                     </dxg:TableView.FormatConditions>
@@ -150,15 +116,15 @@
                                 <dxg:GridSummaryItem FieldName="Name" SummaryType="Count"/>
                                 <dxg:GridSummaryItem SummaryType="Count" Alignment="Right"/>
                             </dxg:GridControl.TotalSummary>-->
-                            <dxg:GridColumn FieldName="Catalog" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Catalog" MaxWidth="30" IsSmart="True" />
                             <dxg:GridColumn FieldName="Name" IsSmart="True" />
                             <dxg:GridColumn FieldName="AltTitle" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Country" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Year" IsSmart="True" AllowGrouping="True" />
-                            <dxg:GridColumn FieldName="Month" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Day" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Rated" IsSmart="True" />
-                            <dxg:GridColumn FieldName="XRated" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Country" MaxWidth="35" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Year" MaxWidth="35" IsSmart="True" AllowGrouping="True" />
+                            <dxg:GridColumn FieldName="Month" MaxWidth="35" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Day" MaxWidth="35" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Rated" MaxWidth="35" IsSmart="True" />
+                            <dxg:GridColumn FieldName="XRated" MaxWidth="35" IsSmart="True" />
                             <dxg:GridColumn FieldName="Kind" IsSmart="True" />
                             <dxg:GridColumn FieldName="Brand" IsSmart="True" />
                             <dxg:GridColumn FieldName="Type" IsSmart="True" />
@@ -172,29 +138,28 @@
                             <dxg:GridColumn FieldName="CodesA" IsSmart="True" />
                             <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" Width="20" Header="." />
                         </dxg:GridControl>
-                        <dxlc:LayoutGroup View="Group" Orientation="Vertical">
-                            <dxlc:LayoutGroup x:Name="MainDetail" View="Group" Orientation="Horizontal">
-                                <dxlc:LayoutGroup Header="LayoutGroup" View="Tabs" Height="600">
-                                    <dxlc:LayoutGroup Header="Tab">
-                                        <dxlc:LayoutItem Margin="0" Padding="0" ElementSpace="0" MinHeight="100" VerticalAlignment="Stretch" LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
+                        <dxlc:LayoutGroup View="Group" Orientation="Vertical" Margin="0,0,0,0" Padding="0">
+                            <dxlc:LayoutGroup x:Name="MainDetail" View="Group" Margin="0,0,0,0" Padding="0" Orientation="Horizontal">
+                                <dxlc:LayoutGroup Header="LayoutGroup" View="Tabs" Margin="0,0,0,0">
+                                    <dxlc:LayoutGroup Header="Tab" Margin="0,0,0,0" Padding="0">
+                                        <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0"
+                                                         MinHeight="100"
+                                                         VerticalAlignment="Stretch"
+                                                         LabelHorizontalAlignment="Stretch"
+                                                         LabelVerticalAlignment="Stretch">
                                             <Image Source="{Binding SelectedItem.Poster, ElementName=GV}" Stretch="Uniform" />
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
-                                    <dxlc:LayoutGroup Header="Tab">
+                                    <dxlc:LayoutGroup Header="Tab" RenderTransformOrigin="0.5,0.5" Margin="-3,0,0,32">
                                         <dxlc:LayoutItem Margin="0" Padding="0" ElementSpace="0">
-                                            <ContentPresenter x:Name="DetailView" Grid.Row="0" Grid.Column="1" Content="{Binding SelectedItem, ElementName=GV}" ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch" />
+                                            <ContentPresenter x:Name="DetailView" Grid.Row="0" Grid.Column="1" Content="{Binding SelectedItem, ElementName=GV}"
+                                                              ContentTemplate="{StaticResource rowDetailTemplate}"
+                                                              HorizontalAlignment="Stretch" />
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
                                 </dxlc:LayoutGroup>
 
                             </dxlc:LayoutGroup>
-                            <dxlc:LayoutItem Label="Comments" LabelPosition="Top">
-                                <dxe:TextEdit Text="{Binding SelectedItem.CommentsAsString, ElementName=GV}" 
-                                            TextWrapping="WrapWithOverflow"
-                                            AcceptsReturn="True"
-                                            VerticalContentAlignment="Top" 
-                                            MaxHeight="300" />
-                            </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutControl>
@@ -305,34 +270,6 @@
                             <dxg:GridControl x:Name="GVGroups" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" ItemsSource="{Binding CapsListView}" SelectedItem="{Binding CurrentCapsGroup}" SelectionMode="Cell" SelectedItemChanged="RefreshGroup">
                                 <dxg:GridControl.View>
                                     <dxg:TableView AllowConditionalFormattingMenu="True" AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="False" CellValueChanged="UpdateGroup">
-                                        <dxg:TableView.PredefinedIconSetFormats>
-                                            <dxc:FormatInfoCollection>
-                                                <local:StandardIconSetFormatInfoExExtension FormatName="Arrows3ColoredIconSet2" Group="DirectionalGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows3GrayIconSet" Group="DirectionalGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Triangles3IconSet" Group="DirectionalGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows4GrayIconSet" Group="DirectionalGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows4ColoredIconSet" Group="DirectionalGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows5GrayIconSet" Group="DirectionalGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows5ColoredIconSet" Group="DirectionalGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights3UnrimmedIconSet" Group="ShapesGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights3RimmedIconSet" Group="ShapesGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Signs3IconSet" Group="ShapesGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights4IconSet" Group="ShapesGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="RedToBlackIconSet" Group="ShapesGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Symbols3CircledIconSet" Group="IndicatorsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Symbols3UncircledIconSet" Group="IndicatorsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Flags3IconSet" Group="IndicatorsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Stars3IconSet" Group="RatingsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Ratings4IconSet" Group="RatingsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Quarters5IconSet" Group="RatingsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Ratings5IconSet" Group="RatingsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Boxes5IconSet" Group="RatingsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeArrowsColoredIconSet" Group="PositiveNegativeGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeArrowsGrayIconSet" Group="PositiveNegativeGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeTrianglesIconSet" Group="PositiveNegativeGroup" />
-                                            </dxc:FormatInfoCollection>
-                                        </dxg:TableView.PredefinedIconSetFormats>
-
                                     </dxg:TableView>
                                 </dxg:GridControl.View>
 
