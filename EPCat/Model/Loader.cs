@@ -37,6 +37,7 @@ namespace EPCat.Model
             //DoTempWork1();
             //DoTempwork2(@"d:\!CATALOG\MOV\");
             //return null;
+
             EpItem.DictionaryData.Dict_Class.Clear();
             EpItem.DictionaryData.Dict_Name.Clear();
             CapsItem.DictionaryData.Dict_Class.Clear();
@@ -44,9 +45,20 @@ namespace EPCat.Model
             Source = sourceList;
             CaspSource = capsList;
             CaspSource.Clear();
+
             string commandf = "commandscript.txt";
-            string[] cla = Environment.GetCommandLineArgs();
-            if (cla.Length > 1)                commandf = cla[1];
+            var CommandArgs = System.Environment.GetCommandLineArgs().ToList();
+            if (CommandArgs.Count > 1)
+            {
+                commandf = CommandArgs[1];
+                if (CommandArgs.Count > 2)
+                {
+                    string gridxml = CommandArgs[2];
+                    MainWindow.Instance.RestoreLayout(gridxml);
+                }
+                    
+            }
+
 
             List<string> LogList = new List<string>(File.ReadAllLines(commandf));
             foreach (var item in LogList)
@@ -74,6 +86,7 @@ namespace EPCat.Model
             rootdir.AddRange(Directory.GetDirectories(fromPath, "NLD *", SearchOption.TopDirectoryOnly).ToList());
             rootdir.AddRange(Directory.GetDirectories(fromPath, "CAN *", SearchOption.TopDirectoryOnly).ToList());
             rootdir.AddRange(Directory.GetDirectories(fromPath, "HSP *", SearchOption.TopDirectoryOnly).ToList());
+            rootdir.AddRange(Directory.GetDirectories(fromPath, "CHI *", SearchOption.TopDirectoryOnly).ToList());
             //var rootdir = Directory.GetDirectories(fromPath, "JAP *|BRA *|ITA *|FRA *|USA *|UK *|TWN *|SWZ *|KOR *", SearchOption.TopDirectoryOnly).ToList();
             foreach (var item in rootdir)
             {
@@ -117,6 +130,9 @@ namespace EPCat.Model
             DoTempWork1_OneCountry("PHI", fromPath, toPath);
             DoTempWork1_OneCountry("BRA", fromPath, toPath);
             DoTempWork1_OneCountry("AUS", fromPath, toPath);
+            DoTempWork1_OneCountry("MEX", fromPath, toPath);
+            DoTempWork1_OneCountry("CHI", fromPath, toPath);
+            DoTempWork1_OneCountry("IND", fromPath, toPath);
 
             DoTempWork1_OneCountry("$WEB", fromPath, toPath);
             DoTempWork1_OneCountry("$JAV", fromPath, toPath);

@@ -31,7 +31,7 @@ namespace EPCat
     public partial class MainWindow : Window
     {
 
-       
+        public static MainWindow Instance;
         EpCatViewModel ViewModel
         {
             get
@@ -44,32 +44,29 @@ namespace EPCat
             InitializeComponent();
             (GV.View as GridViewBase).CellValueChanged += MainWindow_CellValueChanged;
             Loaded += new RoutedEventHandler(Serialization_Loaded);
+            Instance = this;
         }
         void Serialization_Loaded(object sender, RoutedEventArgs e)
         {
-            RestoreLayout();
+            if (PathToGridSave != null)
+                RestoreLayout(PathToGridSave);
         }
         void SaveLayout()
         {
-            string commandf = "GridLayout.xml";
-            string[] cla = Environment.GetCommandLineArgs();
-            if (cla.Length > 2) commandf = cla[2];
-
-            this.GV.SaveLayoutToXml(commandf);
+            if (PathToGridSave != null)
+               this.GV.SaveLayoutToXml(PathToGridSave);
         }
-        void RestoreLayout()
+        string PathToGridSave = null;
+        public void RestoreLayout(string path)
         {
             try
             {
-                string commandf = "GridLayout.xml";
-                string[] cla = Environment.GetCommandLineArgs();
-                if (cla.Length > 2) commandf = cla[2];
-                this.GV.RestoreLayoutFromXml(commandf);
+                PathToGridSave = path;
+                this.GV.RestoreLayoutFromXml(PathToGridSave);
             }
             catch (Exception)
             {
             }
-
         }
         private void MainWindow_CellValueChanged(object sender, CellValueChangedEventArgs e)
         {
