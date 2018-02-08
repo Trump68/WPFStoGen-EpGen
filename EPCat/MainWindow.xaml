@@ -366,12 +366,12 @@
             </dx:DXTabItem>
             <dx:DXTabItem Header="Scen data">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
-                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
-                                     LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
+                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0">
                         <dxe:TextEdit 
                                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding ScenDataAsString}" />
+                                          TextWrapping="Wrap" AcceptsReturn="True" 
+                            Text="{Binding SelectedItem.ScenDataAsString, ElementName=GV}" />
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
