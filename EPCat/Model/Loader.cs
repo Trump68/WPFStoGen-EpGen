@@ -34,12 +34,10 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            //DoTempWork1();
-            //DoTempwork2(@"d:\!CATALOG\MOV\");
-            //return null;
+            DoTempWork1();
+            DoTempwork2(@"d:\!CATALOG\MOV\");
+            return null;
 
-            EpItem.DictionaryData.Dict_Class.Clear();
-            EpItem.DictionaryData.Dict_Name.Clear();
             CapsItem.DictionaryData.Dict_Class.Clear();
             CapsItem.DictionaryData.Dict_Name.Clear();
             Source = sourceList;
@@ -459,26 +457,6 @@ namespace EPCat.Model
             {
                 CreatePassport(line.Replace(c_CreatePassport, string.Empty));
             }
-            else if (line.StartsWith(c_AddDict))
-            {
-                AddDict(line.Replace(c_AddDict, string.Empty));
-            }
-            else if (line.StartsWith(c_NameDict))
-            {
-                NameDict(line.Replace(c_NameDict, string.Empty));
-            }
-            else if (line.StartsWith(c_CreatePassport))
-            {
-                CreatePassport(line.Replace(c_CreatePassport, string.Empty));
-            }
-            else if (line.StartsWith(c_AddCapsDict))
-            {
-                AddCapsDict(line.Replace(c_AddCapsDict, string.Empty));
-            }
-            else if (line.StartsWith(c_NameCapsDict))
-            {
-                NameCapsDict(line.Replace(c_NameCapsDict, string.Empty));
-            }
         }
         private void PrepareFolder(string parameters,int CurrentLevel, int ProcessLevel)
         {
@@ -504,40 +482,6 @@ namespace EPCat.Model
             }
         }
 
-        private void NameDict(string parameters)
-        {
-            string[] vals = parameters.Split(';');
-            int dictIndex = Convert.ToInt32(vals[0].Trim());
-            string dictName = vals[1];
-            if (!EpItem.DictionaryData.Dict_Name.ContainsKey(dictIndex)) EpItem.DictionaryData.Dict_Name.Add(dictIndex, string.Empty);
-            EpItem.DictionaryData.Dict_Name[dictIndex] = dictName;
-        }
-        private void AddDict(string parameters)
-        {
-            string[] vals = parameters.Split(';');
-            int dictName = Convert.ToInt32(vals[0].Trim());
-            int dictVal = Convert.ToInt32(vals[1].Trim());
-            string dictDescr = vals[2];
-            if (!EpItem.DictionaryData.Dict_Class.ContainsKey(dictName)) EpItem.DictionaryData.Dict_Class.Add(dictName, new List<ClassItem>());
-            EpItem.DictionaryData.Dict_Class[dictName].Add(new ClassItem() { Val = dictVal, Description = dictDescr });        
-        }
-        private void NameCapsDict(string parameters)
-        {
-            string[] vals = parameters.Split(';');
-            int dictIndex = Convert.ToInt32(vals[0].Trim());
-            string dictName = vals[1];
-            if (!CapsItem.DictionaryData.Dict_Name.ContainsKey(dictIndex)) CapsItem.DictionaryData.Dict_Name.Add(dictIndex, string.Empty);
-            CapsItem.DictionaryData.Dict_Name[dictIndex] = dictName;
-        }
-        private void AddCapsDict(string parameters)
-        {
-            string[] vals = parameters.Split(';');
-            int dictName = Convert.ToInt32(vals[0].Trim());
-            int dictVal = Convert.ToInt32(vals[1].Trim());
-            string dictDescr = vals[2];
-            if (!CapsItem.DictionaryData.Dict_Class.ContainsKey(dictName)) CapsItem.DictionaryData.Dict_Class.Add(dictName, new List<ClassItem>());
-            CapsItem.DictionaryData.Dict_Class[dictName].Add(new ClassItem() { Val = dictVal, Description = dictDescr });
-        }
 
         // create passport
         private void CreatePassport(string parameters)

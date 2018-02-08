@@ -1,6 +1,7 @@
 ﻿using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,17 +10,24 @@ namespace StoGen.Classes.Data.Movie
 {
     public class _ALL__Asian: BaseScene
     {
-        protected override void LoadData()
+        public _ALL__Asian(string filter, string moviePath):base(filter, moviePath)
+        {
+
+        }
+        protected override void LoadData(string loadFilter)
         {
             
             PATH_M = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Music\";
-            string path;
-            string src;
+            string path = this.MoviePath;
+            string src = null;
             string root = @"d:\Process2+\EroFilms\";
-            // Mainstream , drama, bdsm, rape of actress            
-            src = $"Norigae.m4v";               path = $@"{root}2013\Norigae\";
-            AddToGlobalImage(src, src, path);
-            KOR_2013_Norigae();
+
+
+
+            // KOR_2013_Norigae - Mainstream , drama, bdsm, rape of actress   
+            string filter = "KOR_2013_Norigae";
+            AddToGlobalImage(filter, path); KOR_2013_Norigae(filter);
+
             // Ero romantic
             src = $"Lie I Love Sex.m4v";        path = $@"{root}2013\Lie I Love Sex\";
             AddToGlobalImage(src, src, path);
@@ -95,6 +103,7 @@ namespace StoGen.Classes.Data.Movie
 
 
         }
+
         private void KOR_2016_Comic_Stories(string src)
         {
             _ALL__ScenarioText st = new _ALL__ScenarioText();
@@ -551,10 +560,10 @@ namespace StoGen.Classes.Data.Movie
             this.AlignList.AddRange(st.AlignList);
         }
 
-        private void KOR_2013_Norigae()
+        private void KOR_2013_Norigae(string filter)
         {
             _ALL__ScenarioText st = new _ALL__ScenarioText();
-            st.currentGr = "Norigae 2013";
+            st.currentGr = filter;
             int speed = 100;
             List<AP> anims = new List<AP>()
             {                
@@ -904,13 +913,13 @@ namespace StoGen.Classes.Data.Movie
             this.AlignList.AddRange(st.AlignList);
         }
 
-        protected override void DoFilter(string cadregroup)
-        {
-            string[] cd = new string[] {
-                "KOR 2016 Comic Stories.m4v"
-            };
-            base.DoFilter(cd);
-            this.AlignList.Reverse();
-        }
+        //protected override void DoFilter(string cadregroup)
+        //{
+        //    string[] cd = new string[] {
+        //        "KOR 2016 Comic Stories.m4v"
+        //    };
+        //    base.DoFilter(cd);
+        //    this.AlignList.Reverse();
+        //}
     }
 }

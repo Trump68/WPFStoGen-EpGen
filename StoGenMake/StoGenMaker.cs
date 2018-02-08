@@ -14,7 +14,26 @@ namespace StoGenMake
         static List<BaseScene> SceneList = new List<BaseScene>();
         public static void Start(string[] args)
         {
-            GenerateScen();
+            //GenerateScen();
+            GetScene(@"d:\uTorrent\ToConvert\ADN-051.avi", "E82608F1-2DA5-4D4C-ADE7-60E562D8557D", null);
+        }
+        private static void GetScene(string path, string filter, string par)
+        {
+            GameWorldFactory.GameWorld.LoadData();
+
+
+            BaseScene scene = null;
+            if (filter == "E82608F1-2DA5-4D4C-ADE7-60E562D8557D")
+            {
+                scene = new _JAV_Common(filter,path);                
+                scene.Generate(filter);
+            }
+
+            StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
+            window.GlobalMenuCreator = GameWorldFactory.GameWorld;
+            window.Scene = scene;
+            window.Show();
+
         }
         private static void GenerateScen()
         {
@@ -31,7 +50,7 @@ namespace StoGenMake
             //var scen = new _ALL__Mainstream();
             //var scen = new _ALL__WEB();
             //var scen = new _All__USA__PlayerHomeVideo();
-            var scen = new _ALL__Asian();
+            var scen = new _ALL__Asian(null,null);
             //var scen = new _ERO__Best();
             string fn = scen.Generate();
 

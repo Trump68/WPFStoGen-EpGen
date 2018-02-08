@@ -37,13 +37,13 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <dx:DXTabControl Margin="0" SelectionChanged="TabPageChanged">
-            <dx:DXTabItem Name="TabMain" Header="Main">
+        <dx:DXTabControl Margin="0" Padding="0" SelectionChanged="TabPageChanged">
+            <dx:DXTabItem Name="TabMain" Header="Main" Height="22" VerticalAlignment="Top">
 
                 <dxlc:LayoutControl Orientation="Vertical" Margin="0" Padding="0">
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" HorizontalAlignment="Left" Click="simpleButton_Click" />
+                            <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" Margin="10,0,0,0" HorizontalAlignment="Left" Click="simpleButton_Click" />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left" Margin="80,0,0,0">
                             <dx:SimpleButton x:Name="CollapseBtn" Content="Hide" Width="50" HorizontalAlignment="Left" Click="Collapse_Click" />
@@ -72,9 +72,7 @@
                                 <dxe:ListBoxEditItem Content="Parent" />
                             </dxe:ListBoxEdit>
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Margin="0,0,0,0" Width="50">
-                            <dxe:TextEdit MaxWidth="35" Text="1982" />
-                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Margin="0,0,0,0" Width="50"/>
                         <dxlc:LayoutItem Margin="0,0,0,0" Width="500">
                             
                             <dxe:ListBoxEdit x:Name="rgCapsPassport" ShowBorder="True" EditValueChanged="SetCurrentImagePassort" SelectedIndex="0">
@@ -101,21 +99,13 @@
                             <dxg:GridControl.GroupSummary>
                                 <dxg:GridSummaryItem FieldName="Year" SummaryType="Count" ShowInColumn="" DisplayFormat="{}{0}" Alignment="Default" />
                             </dxg:GridControl.GroupSummary>
-
                             <dxg:GridControl.View>
-
-
                                 <dxg:TableView AllowConditionalFormattingMenu="True" AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow">
-
                                     <dxg:TableView.FormatConditions>
                                         <dxg:ColorScaleFormatCondition Expression="[VideoPresent] = True" FieldName="ItemPath" PredefinedFormatName="YellowGreenColorScale" />
                                     </dxg:TableView.FormatConditions>
                                 </dxg:TableView>
                             </dxg:GridControl.View>
-                            <!--<dxg:GridControl.TotalSummary>
-                                <dxg:GridSummaryItem FieldName="Name" SummaryType="Count"/>
-                                <dxg:GridSummaryItem SummaryType="Count" Alignment="Right"/>
-                            </dxg:GridControl.TotalSummary>-->
                             <dxg:GridColumn FieldName="Catalog" MaxWidth="30" IsSmart="True" />
                             <dxg:GridColumn FieldName="Name" IsSmart="True" />
                             <dxg:GridColumn FieldName="AltTitle" IsSmart="True" />
@@ -353,6 +343,39 @@
                     </dxlc:LayoutItem>
                 </Grid>
             </dx:DXTabItem>
+            <dx:DXTabItem Header="Scenario">
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                        <dx:SimpleButton x:Name="ShowVideoBtn" Content="Load" Width="50" Margin="10,0,0,0" HorizontalAlignment="Left" Click="simpleButton_Click" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
+                                     LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
+
+                        <dxg:GridControl x:Name="GVScen" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" ItemsSource="{Binding FolderListView}" SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell">
+                        <dxg:GridControl.View>
+                            <dxg:TableView AllowConditionalFormattingMenu="True" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow">
+                                <dxg:TableView.FormatConditions>
+                                </dxg:TableView.FormatConditions>
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                        <dxg:GridColumn FieldName="Name" IsSmart="True" />
+                    </dxg:GridControl>
+                  </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dx:DXTabItem>
+            <dx:DXTabItem Header="Scen data">
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
+                                     LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
+                        <dxe:TextEdit 
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding ScenDataAsString}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dx:DXTabItem>
+
         </dx:DXTabControl>
 
 

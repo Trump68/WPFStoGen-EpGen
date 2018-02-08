@@ -53,7 +53,7 @@ namespace StoGenMake
             this.SceneList.Add(new SC010_OyariAshito());
             this.SceneList.Add(new SC011_HCG());
 
-            this.SceneList.Add(new A001_Woman());
+            //this.SceneList.Add(new A001_Woman());
             this.SceneList.Add(new SILKYS_SAKURA_OttoNoInuMaNi());
             this.SceneList.Add(new _2011_USA_SRL_Homeland());
 

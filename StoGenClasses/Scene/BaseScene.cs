@@ -146,6 +146,9 @@ namespace StoGenMake.Scenes.Base
     {
         public int EngineHiVer = 0;
         public int EngineLoVer = 0;
+
+        public string MoviePath = null; // path to movie file
+
         #region Sound
         public int SoundPauseNone = 0;
         public int SoundPauseShort = 500;
@@ -366,12 +369,27 @@ namespace StoGenMake.Scenes.Base
         public List<CadreData> AlignList = new List<CadreData>();
         public Guid GID { set; get; }
 
+        public BaseScene(string filter, string moviePath)
+        {
+            this.Name = "Drama scene";
+            this.MoviePath = moviePath;
+            LoadData(filter);
+        }
         public BaseScene()
         {
             this.Name = "Drama scene";
             LoadData();
         }
-        protected virtual void LoadData() { }
+        protected virtual void LoadData(string loadFilter) 
+        {
+            this.currentGr = loadFilter;
+        }
+
+        protected virtual void LoadData()
+        {
+           
+        }
+
 
         private string _TempFileName;
         public string TempFileName
@@ -562,7 +580,11 @@ namespace StoGenMake.Scenes.Base
         }
         public void AddToGlobalImage(string name, string fn, string path)
         {
-            ImageAlignVec newIAV = new ImageAlignVec() { Name = name, File = path + fn };
+            AddToGlobalImage(name, Path.Combine(path, fn));
+        }
+        public void AddToGlobalImage(string name, string fnpath)
+        {
+            ImageAlignVec newIAV = new ImageAlignVec() { Name = name, File = fnpath };
             newIAV.DefaultAlign = new DifData();
             newIAV.DefaultAlign.Name = name;
             GameWorld.ImageStorage.Add(newIAV);

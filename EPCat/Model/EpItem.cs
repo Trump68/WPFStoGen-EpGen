@@ -25,12 +25,6 @@ namespace EPCat.Model
     public class EpItem
     {
 
-        [XmlIgnore]
-        public static DictionaryData DictionaryData = new DictionaryData();
-
-
-        [XmlIgnore]
-        public DictionaryData DicData { get { return EpItem.DictionaryData; } }
 
         public Guid GID { get; set; }
         public bool GroupsEnabled { get { return true; } }
@@ -208,65 +202,6 @@ namespace EPCat.Model
                 return Videos.Any();
             }
         }
-        [XmlIgnore]
-        public string CodesA
-        {
-            get
-            {
-                string result = string.Empty;
-
-                if (this.DicOneVal.ContainsKey(0) && this.DicOneVal[0] > 0) result = $"{result}A{this.DicOneVal[0]}";
-                if (this.DicOneVal.ContainsKey(1) && this.DicOneVal[1] > 0) result = $"{result}B{this.DicOneVal[1]}";
-                if (this.DicOneVal.ContainsKey(2) && this.DicOneVal[2] > 0) result = $"{result}C{this.DicOneVal[2]}";
-                if (this.DicOneVal.ContainsKey(3) && this.DicOneVal[3] > 0) result = $"{result}D{this.DicOneVal[3]}";
-                if (this.DicOneVal.ContainsKey(4) && this.DicOneVal[4] > 0) result = $"{result}E{this.DicOneVal[4]}";
-                if (this.DicMulVal.ContainsKey(5)) DicMulVal[5].ForEach(x => result = $"{result}F{((int)x)}");
-                if (this.DicMulVal.ContainsKey(6)) DicMulVal[6].ForEach(x => result = $"{result}G{((int)x)}");
-                if (this.DicMulVal.ContainsKey(7)) DicMulVal[7].ForEach(x => result = $"{result}H{((int)x)}");
-                if (this.DicMulVal.ContainsKey(8)) DicMulVal[8].ForEach(x => result = $"{result}I{((int)x)}");
-                if (this.DicMulVal.ContainsKey(9)) DicMulVal[9].ForEach(x => result = $"{result}J{((int)x)}");
-                return result;
-            }
-            set
-            {
-                string val = value;
-                if (string.IsNullOrEmpty(val)) return;
-                this.DicOneVal.Clear();
-                this.DicMulVal.Clear();
-                var array = Regex.Matches(val, @"\D+|\d+")
-                 .Cast<Match>()
-                 .Select(m => m.Value)
-                 .ToArray();
-                for (int i = 0; i < (array.Length / 2); i++)
-                {
-                    int pos = -1; 
-                    if (array[i*2] == "A") pos = 0;
-                    else if (array[i*2] == "B") pos = 1;
-                    else if (array[i*2] == "C") pos = 2;
-                    else if (array[i*2] == "D") pos = 3;
-                    else if (array[i*2] == "E") pos = 4;
-                    else if (array[i*2] == "F") pos = 5;
-                    else if (array[i*2] == "G") pos = 6;
-                    else if (array[i*2] == "H") pos = 7;
-                    else if (array[i*2] == "I") pos = 8;
-                    else if (array[i*2] == "J") pos = 9;
-
-                    if (pos < 5)
-                    {
-                        if (!this.DicOneVal.ContainsKey(pos))
-                            this.DicOneVal.Add(pos, Convert.ToInt32(array[i * 2 + 1]));
-                        else
-                            this.DicOneVal[pos] = Convert.ToInt32(array[i * 2 + 1]);
-                    }
-                    else
-                    {                       
-                        if (!this.DicMulVal.ContainsKey(pos))
-                            this.DicMulVal.Add(pos, new List<object>());
-                       this.DicMulVal[pos].Add(Convert.ToInt32(array[i * 2 + 1]));
-                    }
-                }
-            }
-        }
         public string Name { get; set; }
         public string Catalog { get; set; } = "MOV";
         public int LastEdit { get; set; }
@@ -295,16 +230,23 @@ namespace EPCat.Model
             }
             set
             {
-                this.Comments = value.Split(new string[] { Environment.NewLine },StringSplitOptions.None).ToList();
+                this.Comments = value.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+            }
+        }
+        public List<string> ScenData { get; set; } = new List<string>();
+        public string ScenDataAsString
+        {
+            get
+            {
+                return string.Join(Environment.NewLine, this.ScenData.ToArray());
+            }
+            set
+            {
+                this.ScenData = value.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
             }
         }
 
         public List<string> Undefined { get; set; } = new List<string>();
-        [XmlIgnore]
-        public Dictionary<int, int> DicOneVal { get; set; } = new Dictionary<int, int>();
-        [XmlIgnore]
-        public Dictionary<int, List<object>> DicMulVal { get; set; } = new Dictionary<int, List<object>>();
-
 
 
 
@@ -345,20 +287,12 @@ namespace EPCat.Model
             this.Studio = item.Studio;
             this.IMDB = item.IMDB;
 
-            this.DicOneVal.Clear();
-            foreach (var v in item.DicOneVal)
-            {
-                this.DicOneVal.Add(v.Key, v.Value);
-            }
-            this.DicMulVal.Clear();
-            foreach (var v in item.DicMulVal)
-            {
-                this.DicMulVal.Add(v.Key, v.Value);
-            }
-
 
             this.Comments.Clear();
             this.Comments.AddRange(item.Comments);
+
+            this.ScenData.Clear();
+            this.ScenData.AddRange(item.ScenData);
 
             this.Undefined.Clear();
             this.Undefined.AddRange(item.Undefined);
@@ -397,6 +331,8 @@ namespace EPCat.Model
 
         static string p_COMMENTS_BEGIN = "COMMENTS:<";
         static string p_COMMENTS_END = ">";
+        static string p_SCENDATA_BEGIN = "<SCENDATA";
+        static string p_SCENDATA_END = "SCENDATA>";
         public static string p_PassportName = "PASSPORT.TXT";
         public static string p_PassportCapsName = "PASSPORT_CAPS.TXT";
         public static string p_PassportEventsName = "PASSPORT_EVENTS.TXT";
@@ -441,6 +377,7 @@ namespace EPCat.Model
         {
             EpItem result = new EpItem(1);
             bool isComments = false;
+            bool isScenData = false;
             foreach (var line in passport)
             {
                 string term = line.Trim();
@@ -452,6 +389,24 @@ namespace EPCat.Model
                         isComments = false;
                     }
                     result.Comments.Add(term);
+                }
+                if (isScenData)
+                {
+                    if (term.Contains(p_SCENDATA_END))
+                    {
+                        term = term.Replace(p_SCENDATA_END, string.Empty);
+                        isScenData = false;
+                    }
+                    result.ScenData.Add(term);
+                }
+                else if (term.StartsWith(p_SCENDATA_BEGIN))
+                {
+                    term = term.Replace(p_SCENDATA_BEGIN, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.ScenData.Add(term);
+                    }
+                    isScenData = true;
                 }
                 else if (term.StartsWith(p_COMMENTS_BEGIN))
                 {
@@ -626,111 +581,6 @@ namespace EPCat.Model
                         result.IMDB = term;
                     }
                 }
-                else if (term.StartsWith(p_Type00))
-                {
-                    term = term.Replace(p_Type00, string.Empty);
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        result.DicOneVal.Add(0, Convert.ToInt32(term));
-                    }
-                }
-                else if (term.StartsWith(p_Type01))
-                {
-                    term = term.Replace(p_Type01, string.Empty);
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        result.DicOneVal.Add(1, Convert.ToInt32(term));
-                    }
-                }
-                else if (term.StartsWith(p_Type02))
-                {
-                    term = term.Replace(p_Type02, string.Empty);
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        result.DicOneVal.Add(2, Convert.ToInt32(term));
-                    }
-                }
-                else if (term.StartsWith(p_Type03))
-                {
-                    term = term.Replace(p_Type03, string.Empty);
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        result.DicOneVal.Add(3, Convert.ToInt32(term));
-                    }
-                }
-                else if (term.StartsWith(p_Type04))
-                {
-                    term = term.Replace(p_Type04, string.Empty);
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        result.DicOneVal.Add(4, Convert.ToInt32(term));
-                    }
-                }
-                else if (term.StartsWith(p_Type05))
-                {
-                    term = term.Replace(p_Type05, string.Empty);
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        if (!result.DicMulVal.ContainsKey(5)) result.DicMulVal.Add(5, new List<object>());
-                        var dd = term.Split(';').ToList().Select(x => Convert.ToInt32(x)).Where(x => x > 0).ToList();
-                        foreach (var item in dd)
-                        {
-                            result.DicMulVal[5].Add(item);
-                        }
-                    }
-                }
-                else if (term.StartsWith(p_Type06))
-                {
-                    term = term.Replace(p_Type06, string.Empty);
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        if (!result.DicMulVal.ContainsKey(6)) result.DicMulVal.Add(6, new List<object>());
-                        var dd = term.Split(';').ToList().Select(x => Convert.ToInt32(x)).Where(x => x > 0).ToList();
-                        foreach (var item in dd)
-                        {
-                            result.DicMulVal[6].Add(item);
-                        }
-                    }
-                }
-                else if (term.StartsWith(p_Type07))
-                {
-                    term = term.Replace(p_Type07, string.Empty);
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        if (!result.DicMulVal.ContainsKey(7)) result.DicMulVal.Add(7, new List<object>());
-                        var dd = term.Split(';').ToList().Select(x => Convert.ToInt32(x)).Where(x => x > 0).ToList();
-                        foreach (var item in dd)
-                        {
-                            result.DicMulVal[7].Add(item);
-                        }
-                    }
-                }
-                else if (term.StartsWith(p_Type08))
-                {
-                    term = term.Replace(p_Type08, string.Empty);
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        if (!result.DicMulVal.ContainsKey(8)) result.DicMulVal.Add(8, new List<object>());
-                        var dd = term.Split(';').ToList().Select(x => Convert.ToInt32(x)).Where(x => x > 0).ToList();
-                        foreach (var item in dd)
-                        {
-                            result.DicMulVal[8].Add(item);
-                        }
-                    }
-                }
-                else if (term.StartsWith(p_Type09))
-                {
-                    term = term.Replace(p_Type09, string.Empty);
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        if (!result.DicMulVal.ContainsKey(9)) result.DicMulVal.Add(9, new List<object>());
-                        var dd = term.Split(';').ToList().Select(x => Convert.ToInt32(x)).Where(x => x > 0).ToList();
-                        foreach (var item in dd)
-                        {
-                            result.DicMulVal[9].Add(item);
-                        }
-                    }
-                }
                 else if (!string.IsNullOrEmpty(term))
                 {
                     result.Undefined.Add(term);
@@ -770,19 +620,6 @@ namespace EPCat.Model
             result.Add(p_Studio + item.Studio);
             result.Add(p_IMDB + item.IMDB);
 
-            if (item.DicOneVal.ContainsKey(0) && item.DicOneVal[0] > 0) result.Add(p_Type00 + item.DicOneVal[0]);
-            if (item.DicOneVal.ContainsKey(1) && item.DicOneVal[1] > 0) result.Add(p_Type01 + item.DicOneVal[1]);
-            if (item.DicOneVal.ContainsKey(2) && item.DicOneVal[2] > 0) result.Add(p_Type02 + item.DicOneVal[2]);
-            if (item.DicOneVal.ContainsKey(3) && item.DicOneVal[3] > 0) result.Add(p_Type03 + item.DicOneVal[3]);
-            if (item.DicOneVal.ContainsKey(4) && item.DicOneVal[4] > 0) result.Add(p_Type04 + item.DicOneVal[4]);
-
-
-            if (item.DicMulVal.ContainsKey(5) && item.DicMulVal[5].Any()) result.Add(p_Type05 + string.Join(";", item.DicMulVal[5].Select(x => x.ToString()).ToArray()));
-            if (item.DicMulVal.ContainsKey(6) && item.DicMulVal[6].Any()) result.Add(p_Type06 + string.Join(";", item.DicMulVal[6].Select(x => x.ToString()).ToArray()));
-            if (item.DicMulVal.ContainsKey(7) && item.DicMulVal[7].Any()) result.Add(p_Type07 + string.Join(";", item.DicMulVal[7].Select(x => x.ToString()).ToArray()));
-            if (item.DicMulVal.ContainsKey(8) && item.DicMulVal[8].Any()) result.Add(p_Type08 + string.Join(";", item.DicMulVal[8].Select(x => x.ToString()).ToArray()));
-            if (item.DicMulVal.ContainsKey(9) && item.DicMulVal[9].Any()) result.Add(p_Type09 + string.Join(";", item.DicMulVal[9].Select(x => x.ToString()).ToArray()));
-
             if (item.Comments.Count == 1)
             {
                 result.Add(p_COMMENTS_BEGIN + item.Comments.First() + p_COMMENTS_END);
@@ -794,6 +631,19 @@ namespace EPCat.Model
                 ttt[0] = p_COMMENTS_BEGIN + item.Comments.First();
                 ttt[ttt.Count-1] = item.Comments.Last() + p_COMMENTS_END;
                 result.AddRange(ttt);               
+            }
+
+            if (item.ScenData.Count == 1)
+            {
+                result.Add(p_SCENDATA_BEGIN + item.ScenData.First() + p_SCENDATA_END);
+            }
+            else if (item.ScenData.Count > 0)
+            {
+                List<string> ttt = new List<string>();
+                ttt.AddRange(item.ScenData);
+                ttt[0] = p_SCENDATA_BEGIN + item.ScenData.First();
+                ttt[ttt.Count - 1] = item.ScenData.Last() + p_SCENDATA_END;
+                result.AddRange(ttt);
             }
 
 
