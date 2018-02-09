@@ -1,6 +1,7 @@
 ﻿using DevExpress.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace EPCat.Model
         public Dictionary<int, string> Dict_Name { get; set; } = new Dictionary<int, string>();
         public Dictionary<int, List<ClassItem>> Dict_Class { get; set; } = new Dictionary<int, List<ClassItem>>();
     }
+
+    
 
     [Serializable]
     public class EpItem
@@ -248,7 +251,21 @@ namespace EPCat.Model
 
         public List<string> Undefined { get; set; } = new List<string>();
 
-
+        private ObservableCollection<MovieSceneInfo> _Clips = null;
+        [XmlIgnore]
+        public ObservableCollection<MovieSceneInfo> Clips
+        {            
+            get
+            {
+                if (_Clips == null)
+                {
+                    _Clips = new ObservableCollection<MovieSceneInfo>();
+                    MovieSceneInfo defaultClip = new MovieSceneInfo() { Description = "Default", ID = this.GID.ToString() };
+                    _Clips.Add(defaultClip);
+                }
+                return _Clips;
+            }
+        }
 
         public EpItem(int itemType) : this()
         {
@@ -999,5 +1016,11 @@ namespace EPCat.Model
     {
         public string Description { set; get; }
         public int Val { set; get; }
+    }
+
+    public class MovieSceneInfo
+    {
+        public string Description { set; get; }
+        public string ID  { set; get; }
     }
 }

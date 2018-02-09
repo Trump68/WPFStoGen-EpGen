@@ -43,7 +43,8 @@
                 <dxlc:LayoutControl Orientation="Vertical" Margin="0" Padding="0">
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" Margin="10,0,0,0" HorizontalAlignment="Left" Click="simpleButton_Click" />
+                            <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" Margin="10,0,0,0" HorizontalAlignment="Left" 
+                                             Click="simpleButton_Click" />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left" Margin="80,0,0,0">
                             <dx:SimpleButton x:Name="CollapseBtn" Content="Hide" Width="50" HorizontalAlignment="Left" Click="Collapse_Click" />
@@ -95,7 +96,11 @@
 
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup>
-                        <dxg:GridControl x:Name="GV" Width="800" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" ItemsSource="{Binding FolderListView}" SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell">
+                        <dxg:GridControl x:Name="GV" Width="800"
+                                         AutoGenerateColumns="None"
+                                         EnableSmartColumnsGeneration="True"
+                                         ItemsSource="{Binding FolderListView}"
+                                         SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell">
                             <dxg:GridControl.GroupSummary>
                                 <dxg:GridSummaryItem FieldName="Year" SummaryType="Count" ShowInColumn="" DisplayFormat="{}{0}" Alignment="Default" />
                             </dxg:GridControl.GroupSummary>
@@ -343,24 +348,35 @@
                     </dxlc:LayoutItem>
                 </Grid>
             </dx:DXTabItem>
-            <dx:DXTabItem Header="Scenario">
+            <dx:DXTabItem Header="Scenario" Height="22" VerticalAlignment="Bottom">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
                     <dxlc:LayoutItem HorizontalAlignment="Left">
-                        <dx:SimpleButton x:Name="ShowVideoBtn" Content="Load" Width="50" Margin="10,0,0,0" HorizontalAlignment="Left" Click="simpleButton_Click" />
+                        <dx:SimpleButton x:Name="ShowVideoBtn" Content="Play" Width="50" Margin="10,0,0,0" HorizontalAlignment="Left" Click="ShowVideoBtn_Click" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
                                      LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
 
-                        <dxg:GridControl x:Name="GVScen" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" ItemsSource="{Binding FolderListView}" SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell">
-                        <dxg:GridControl.View>
-                            <dxg:TableView AllowConditionalFormattingMenu="True" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow">
-                                <dxg:TableView.FormatConditions>
-                                </dxg:TableView.FormatConditions>
+                        <dxg:GridControl x:Name="GVScen"
+                                         AutoGenerateColumns="None"
+                                         EnableSmartColumnsGeneration="True"
+                                         ItemsSource="{Binding SelectedItem.Clips, ElementName=GV}"
+                                         SelectedItem="{Binding CurrentClip}"
+                                         SelectionMode="Cell">
+                            <!--SelectedItem="{Binding CurrentFolder}"-->
+                            <dxg:GridControl.View>
+                            <dxg:TableView 
+                                AllowPerPixelScrolling="True"
+                                ShowAutoFilterRow="True"
+                                ShowTotalSummary="True"
+                                AutoWidth="True"
+                                ShowDataNavigator="True"
+                                DataNavigatorButtons="DeleteFocusedRow">
                             </dxg:TableView>
                         </dxg:GridControl.View>
-                        <dxg:GridColumn FieldName="Name" IsSmart="True" />
-                    </dxg:GridControl>
+                        <dxg:GridColumn FieldName="Description" IsSmart="True" />
+                        <dxg:GridColumn FieldName="ID" IsSmart="True" />
+                        </dxg:GridControl>
                   </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>

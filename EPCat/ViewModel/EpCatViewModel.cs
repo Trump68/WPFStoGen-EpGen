@@ -3,6 +3,9 @@ using DevExpress.Mvvm.POCO;
 using DevExpress.Xpf.Core;
 using DevExpress.Xpf.LayoutControl;
 using EPCat.Model;
+using StoGen.Classes.Data.Movie;
+using StoGenMake;
+using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -79,9 +82,25 @@ namespace EPCat
             }
             set
             {
-                _CurrentFolder = value;                
+                _CurrentFolder = value;
+                this._CurrentClip = _CurrentFolder.Clips.First();
             }
         }
+
+        MovieSceneInfo _CurrentClip;
+        public MovieSceneInfo CurrentClip
+        {
+            get
+            {
+                return _CurrentClip;
+            }
+            set
+            {
+                _CurrentClip = value;
+            }
+        }
+
+
 
         CapsItem _CurrentCapsGroup;
         public CapsItem CurrentCapsGroup
@@ -221,6 +240,27 @@ namespace EPCat
                     );
             }
 
+        }
+
+        internal void ShowClip()
+        {
+            if (this.CurrentClip == null) return;
+
+            var videos = this.CurrentFolder.Videos;            
+            if (!videos.Any()) return;
+
+            string path = videos.First();
+            
+            GameWorldFactory.GameWorld.LoadData();
+            BaseScene scene = null;
+
+            scene = new _JAV_Common(this.CurrentClip.ID, path);
+            scene.Generate(this.CurrentClip.ID);
+
+            StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
+            window.GlobalMenuCreator = GameWorldFactory.GameWorld;
+            window.Scene = scene;
+            window.Show();            
         }
     }
 

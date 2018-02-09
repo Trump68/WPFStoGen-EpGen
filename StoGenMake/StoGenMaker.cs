@@ -20,8 +20,6 @@ namespace StoGenMake
         private static void GetScene(string path, string filter, string par)
         {
             GameWorldFactory.GameWorld.LoadData();
-
-
             BaseScene scene = null;
             if (filter == "E82608F1-2DA5-4D4C-ADE7-60E562D8557D")
             {

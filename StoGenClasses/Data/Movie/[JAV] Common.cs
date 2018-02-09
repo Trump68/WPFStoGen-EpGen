@@ -15,7 +15,7 @@ namespace StoGen.Classes.Data.Movie
             PATH_M = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Music\";
 
             // Test   
-            string filter = "E82608F1-2DA5-4D4C-ADE7-60E562D8557D";
+            string filter = loadFilter;
             AddToGlobalImage(filter, this.MoviePath); Test(filter);
             if (loadFilter == filter) return;
         }
@@ -33,10 +33,10 @@ namespace StoGen.Classes.Data.Movie
 
             anims = new List<List<AP>>() {
                 new List<AP>() { // shower 
-                new AP(filter) { APS = 0, APE = 1, ALM = 1, ALC = 1 , AR=speed, AV=volume},
-                new AP(filter) { APS = 0, APE = 1, ALM = 1, ALC = 1 , AR=speed},
-                new AP(filter) { APS = 0, APE = 1, ALM = 1, ALC = 1 , AR=speed}, //fuck
-                new AP(filter) { APS = 0, APE = 1, ALM = 1, ALC = 1 , AR=speed},
+                new AP(filter) { APS = 0, APE = 10, ALM = 1, ALC = 1 , AR=speed, AV=volume},
+                new AP(filter) { APS = 0, APE = 10, ALM = 1, ALC = 1 , AR=speed},
+                new AP(filter) { APS = 0, APE = 10, ALM = 1, ALC = 1 , AR=speed}, //fuck
+                new AP(filter) { APS = 0, APE = 10, ALM = 1, ALC = 1 , AR=speed},
                 } }; st.VideoFrame800(anims, music);
             //st.DoFilter(new string[] { st.currentGr });
             this.AlignList.AddRange(st.AlignList);

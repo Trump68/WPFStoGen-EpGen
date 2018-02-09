@@ -322,6 +322,11 @@ namespace EPCat
         {
             ViewModel.CopyJPGNameToClipboard();
         }
+
+        private void ShowVideoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.ShowClip();
+        }
     }
    
 }

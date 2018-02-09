@@ -118,11 +118,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\StoGenClasses\StoGenClasses.csproj">
+      <Project>{16832A49-6465-4C63-8C20-F7DE36ADF10C}</Project>
+      <Name>StoGenClasses</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StoGenWPF\StoGenWPF\StoGenWPF.csproj">
+      <Project>{ad6db9a5-7a96-4a41-bda0-72d01e6e86ac}</Project>
+      <Name>StoGenWPF</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Arrows3_1.png" />
     <Resource Include="Images\Arrows3_2.png" />
     <Resource Include="Images\Arrows3_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
