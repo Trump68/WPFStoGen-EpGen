@@ -10,13 +10,9 @@ namespace StoGen.Classes.Data.Movie
 {
     public class _ALL__Asian: BaseScene
     {
-        public _ALL__Asian(string filter, string moviePath):base(filter, moviePath)
+        public override void LoadData(string loadFilter, string moviePath)
         {
-
-        }
-        protected override void LoadData(string loadFilter)
-        {
-            
+            this.MoviePath = moviePath;
             PATH_M = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Music\";
             string path = this.MoviePath;
             string src = null;

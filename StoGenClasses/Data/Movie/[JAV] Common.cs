@@ -9,8 +9,8 @@ namespace StoGen.Classes.Data.Movie
 {
     public class _JAV_Common : BaseScene
     {
-        public _JAV_Common(string filter, string moviePath) : base(filter, moviePath) { }
-        protected override void LoadData(string loadFilter)
+        //public _JAV_Common(string filter, string moviePath) : base(filter, moviePath) { }
+        public override void LoadData(string loadFilter, string moviePath)
         {
             PATH_M = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Music\";
 

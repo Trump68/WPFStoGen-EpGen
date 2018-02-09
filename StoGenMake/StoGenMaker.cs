@@ -23,7 +23,7 @@ namespace StoGenMake
             BaseScene scene = null;
             if (filter == "E82608F1-2DA5-4D4C-ADE7-60E562D8557D")
             {
-                scene = new _JAV_Common(filter,path);                
+                scene = new _JAV_Common();                
                 scene.Generate(filter);
             }
 
@@ -48,7 +48,7 @@ namespace StoGenMake
             //var scen = new _ALL__Mainstream();
             //var scen = new _ALL__WEB();
             //var scen = new _All__USA__PlayerHomeVideo();
-            var scen = new _ALL__Asian(null,null);
+            var scen = new _ALL__Asian();
             //var scen = new _ERO__Best();
             string fn = scen.Generate();
 

@@ -369,20 +369,21 @@ namespace StoGenMake.Scenes.Base
         public List<CadreData> AlignList = new List<CadreData>();
         public Guid GID { set; get; }
 
-        public BaseScene(string filter, string moviePath)
-        {
-            this.Name = "Drama scene";
-            this.MoviePath = moviePath;
-            LoadData(filter);
-        }
+        //public BaseScene(string filter, string moviePath)
+        //{
+        //    this.Name = "Drama scene";
+        //    this.MoviePath = moviePath;
+        //    //LoadData(filter);
+        //}
         public BaseScene()
         {
             this.Name = "Drama scene";
             LoadData();
         }
-        protected virtual void LoadData(string loadFilter) 
+        public virtual void LoadData(string filter, string moviePath) 
         {
-            this.currentGr = loadFilter;
+            this.currentGr = filter;
+            this.MoviePath = moviePath;
         }
 
         protected virtual void LoadData()

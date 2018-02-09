@@ -254,7 +254,9 @@ namespace EPCat
             GameWorldFactory.GameWorld.LoadData();
             BaseScene scene = null;
 
-            scene = new _JAV_Common(this.CurrentClip.ID, path);
+
+            scene = new _JAV_Common();
+            scene.LoadData(this.CurrentClip.ID, path);
             scene.Generate(this.CurrentClip.ID);
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
