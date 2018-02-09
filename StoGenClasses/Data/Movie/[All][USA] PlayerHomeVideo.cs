@@ -30,7 +30,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void USA_1997_American_Pinup_Girls()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "American Pinup Girls (1997).m4v";
             int speed = 100;
             List<AP> anims = new List<AP>()
@@ -67,7 +67,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void USA_1993_Beverly_Hills_Workout()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "Beverly Hills Workout (1993).m4v";
             int speed = 75;
             List<AP> anims = new List<AP>()
@@ -118,7 +118,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void USA_1995_Biker_Dreams()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "Biker Dreams (1995).m4v";
             int speed = 125;
             List<AP> anims = new List<AP>()
@@ -138,7 +138,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void USA_1994_Biker_Fantasies()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "Biker Fantasies (1994).m4v";
             int speed = 100;
             List<AP> anims = new List<AP>()

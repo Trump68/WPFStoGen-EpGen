@@ -28,7 +28,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void Scene1()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "Scene1";
 
             List<AP> anims = new List<AP>()

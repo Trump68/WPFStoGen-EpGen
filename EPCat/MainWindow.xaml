@@ -43,13 +43,17 @@
                 <dxlc:LayoutControl Orientation="Vertical" Margin="0" Padding="0">
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" Margin="10,0,0,0" HorizontalAlignment="Left" 
+                            <dx:SimpleButton x:Name="ShowVideoBtnGlobal" Content="Play" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ShowVideoBtn_Click" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" 
                                              Click="simpleButton_Click" />
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="80,0,0,0">
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="80,4,0,0">
                             <dx:SimpleButton x:Name="CollapseBtn" Content="Hide" Width="50" HorizontalAlignment="Left" Click="Collapse_Click" />
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,0,0,0">
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
                             <dx:SimpleButton x:Name="GidJPGBtn" Content="JPG" Width="50" HorizontalAlignment="Left" Click="GidJPGBtn_Click"  />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Margin="20,0,0,0" Width="50">
@@ -351,7 +355,7 @@
             <dx:DXTabItem Header="Scenario" Height="22" VerticalAlignment="Bottom">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
                     <dxlc:LayoutItem HorizontalAlignment="Left">
-                        <dx:SimpleButton x:Name="ShowVideoBtn" Content="Play" Width="50" Margin="10,0,0,0" HorizontalAlignment="Left" Click="ShowVideoBtn_Click" />
+                        <dx:SimpleButton x:Name="ShowVideoBtn" Content="Play" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ShowVideoBtn_Click" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 

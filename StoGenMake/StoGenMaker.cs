@@ -23,7 +23,7 @@ namespace StoGenMake
             BaseScene scene = null;
             if (filter == "E82608F1-2DA5-4D4C-ADE7-60E562D8557D")
             {
-                scene = new _JAV_Common();                
+                scene = new _Clip_Default();                
                 scene.Generate(filter);
             }
 

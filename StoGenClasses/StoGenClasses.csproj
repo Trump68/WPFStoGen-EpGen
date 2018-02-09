@@ -92,7 +92,7 @@
     <Compile Include="Data\Movie\[ALL] WEB.cs" />
     <Compile Include="Data\Movie\[All][USA] PlayerHomeVideo.cs" />
     <Compile Include="Data\Movie\[ERO] Best.cs" />
-    <Compile Include="Data\Movie\[JAV] Common.cs" />
+    <Compile Include="Data\Movie\ClipDefault.cs" />
     <Compile Include="Data\SC000-TestTran.cs" />
     <Compile Include="Data\SC000-Various.cs" />
     <Compile Include="Data\SC001-Fools Art.cs" />

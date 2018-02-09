@@ -1420,27 +1420,7 @@ namespace StoGen.Classes.Data.Movie
         }
 
 
-        public void VideoFrame800(List<AP> anims,List<string> music)
-        {
-            List<List<AP>> anims2 = new List<List<AP>>();
-            anims2.Add(anims);
-            VideoFrame800(anims2, music);
-        }
-        public void VideoFrame800(List<List<AP>> anims, List<string> music, List<DifData> pics = null)
-        {
-            AddMusic(music[0]);            
-            foreach (var item in anims)
-            {
-                List<DifData> itl = new List<DifData>();
-                DifData size = new DifData() { S = 800 };
-                size.Name = item[0].File;
-                size.AL.AddRange(item);
-                if (pics == null) pics = new List<DifData>();
-                itl.AddRange(pics);
-                itl.Insert(0, size);
-                AddAnim(item[0].File, string.Empty, itl, item.ToArray());
-            }
-        }
+  
         protected override void DoFilter(string cadregroup)
         {
             string[] cd = new string[] {

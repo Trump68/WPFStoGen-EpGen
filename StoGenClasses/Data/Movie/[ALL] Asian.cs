@@ -10,7 +10,7 @@ namespace StoGen.Classes.Data.Movie
 {
     public class _ALL__Asian: BaseScene
     {
-        public override void LoadData(string loadFilter, string moviePath)
+        public override bool LoadData(string loadFilter, string moviePath)
         {
             this.MoviePath = moviePath;
             PATH_M = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Music\";
@@ -97,12 +97,12 @@ namespace StoGen.Classes.Data.Movie
             AddToGlobalImage(src, src, path);
             JAP_1985_Beautiful_Teacher_Torture_Hell(src);
 
-
+            return true;
         }
 
         private void KOR_2016_Comic_Stories(string src)
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = src;
             List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
             List<List<AP>> anims;
@@ -137,7 +137,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void KOR_2016_Angel_Ladies(string src)
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = src;
             List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
             List<List<AP>> anims;
@@ -157,7 +157,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void KOR_2016_Additional_Package(string src)
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = src;
             List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
             List<List<AP>> anims;
@@ -177,7 +177,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void KOR_2016_Affair(string src)
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = src;
             List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
             List<List<AP>> anims;
@@ -290,7 +290,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void JAP_1985_Beautiful_Teacher_Torture_Hell(string src)
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = src;
             List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
             List<List<AP>> anims;
@@ -558,7 +558,7 @@ namespace StoGen.Classes.Data.Movie
 
         private void KOR_2013_Norigae(string filter)
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = filter;
             int speed = 100;
             List<AP> anims = new List<AP>()
@@ -586,7 +586,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void KOR_2013_Lie_I_Love_Sex()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "Lie I Love Sex.m4v";
             int speed = 100;
             int volume = 1;
@@ -615,7 +615,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void KOR_2013_Taste()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "Taste.m4v";
             int speed = 100;
             int volume = 1;
@@ -639,7 +639,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void KOR_2014_Love_Match()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "Love Match.m4v";
             int speed = 100;
             int volume = 1;
@@ -655,7 +655,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void KOR_2014_Paradise_In_Service()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "Paradise In Service.m4v";
             int speed = 100;
             int volume = 1;
@@ -673,7 +673,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void THA_2014_Spell()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "Spell.m4v";
             int speed = 100;
             int volume = 1;
@@ -690,7 +690,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void KOR_2015_7_Princess()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "7 Princess.m4v";
             int speed = 100;
             int volume = 1;
@@ -710,7 +710,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void KOR_2015_Female_War_Lousy_Deal()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "Female War – Lousy Deal.m4v";
             int speed = 100;
             int volume = 1;
@@ -771,7 +771,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void KOR_2015_Female_Workers_Romance_At_Work()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "Female Workers Romance At Work.m4v";
             int speed = 100;
             int volume = 1;
@@ -804,7 +804,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void THA_2015_Long_Ping_Ha_Rak()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "Long Ping Ha Rak.m4v";
             int speed = 100;
             int volume = 1;
@@ -823,7 +823,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void THA_2015_Mae_Bia()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "Mae Bia.m4v";
             int speed = 100;
             int volume = 1;
@@ -847,7 +847,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void KOR_2015_My_Friends_Wife_Cast()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "My Friend's Wife Cast.m4v";
             int speed = 100;
             int volume = 1;
@@ -869,7 +869,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void KOR_2015_New_Folder_2()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "New Folder 2.m4v";
             int speed = 100;
             int volume = 1;
@@ -893,7 +893,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void KOR_2015_No_soo_Ram_Others_Bad_Class()
         {
-            _ALL__ScenarioText st = new _ALL__ScenarioText();
+            _Clip_Default st = new _Clip_Default();
             st.currentGr = "No-soo Ram & Others - Bad Class.m4v";
             int speed = 100;
             int volume = 1;

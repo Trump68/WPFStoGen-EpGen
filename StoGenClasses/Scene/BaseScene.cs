@@ -380,10 +380,11 @@ namespace StoGenMake.Scenes.Base
             this.Name = "Drama scene";
             LoadData();
         }
-        public virtual void LoadData(string filter, string moviePath) 
+        public virtual bool LoadData(string filter, string moviePath) 
         {
             this.currentGr = filter;
             this.MoviePath = moviePath;
+            return true;
         }
 
         protected virtual void LoadData()

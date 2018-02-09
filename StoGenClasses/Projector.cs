@@ -73,6 +73,20 @@ namespace StoGen.ModelClasses
 
         public static Window Owner { get; set; }
 
+        private static bool _MovieCtrlVisible = false;
+        public static bool MovieCtrlVisible
+        {
+            get
+            {
+                return _MovieCtrlVisible;
+            }
+            set
+            {
+                _MovieCtrlVisible = value;
+                
+            }
+        }
+
         public static void Clear()
         {
             //Projector.PicContainer.Lci.Parent.Visibility = LayoutVisibility.Never;

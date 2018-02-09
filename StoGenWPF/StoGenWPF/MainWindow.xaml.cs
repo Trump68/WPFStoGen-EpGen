@@ -110,6 +110,19 @@ namespace StoGenWPF
                 Projector.EditorMode = !Projector.EditorMode;
                 PictureCadreDS.Visibility = Projector.EditorMode ? Visibility.Visible : Visibility.Hidden;
             }
+            else if (e.Key == Key.OemPeriod)
+            {
+                var p = Projector.PicContainer.Clip.Position;
+                p = p.Add(new TimeSpan(0, 0, 20));
+                Projector.PicContainer.Clip.Position = p;
+
+            }
+            else if (e.Key == Key.OemComma)
+            {
+                var p = Projector.PicContainer.Clip.Position;
+                p = p.Subtract(new TimeSpan(0, 0, 20));
+                Projector.PicContainer.Clip.Position = p;
+            }
             else if (e.Key == Key.Q)
             {
                 
