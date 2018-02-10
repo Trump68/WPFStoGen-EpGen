@@ -34,9 +34,9 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            //DoTempWork1();
-            //DoTempwork2(@"d:\!CATALOG\MOV\");
-            //return null;
+            DoTempWork1();
+            DoTempwork2(@"d:\!CATALOG\MOV\");
+            return null;
 
             CapsItem.DictionaryData.Dict_Class.Clear();
             CapsItem.DictionaryData.Dict_Name.Clear();
@@ -131,6 +131,7 @@ namespace EPCat.Model
             DoTempWork1_OneCountry("MEX", fromPath, toPath);
             DoTempWork1_OneCountry("CHI", fromPath, toPath);
             DoTempWork1_OneCountry("IND", fromPath, toPath);
+            DoTempWork1_OneCountry("SWE", fromPath, toPath);
 
             DoTempWork1_OneCountry("$WEB", fromPath, toPath);
             DoTempWork1_OneCountry("$JAV", fromPath, toPath);
