@@ -31,7 +31,9 @@ namespace EPCat.Model
 
         public Guid GID { get; set; }
         public bool GroupsEnabled { get { return true; } }
+
         public string ItemPath { get; set; }
+
         public readonly int _itemType;//0-Folder
         public int ItemType { get { return _itemType; } }
         public int ParentID { get; set; }
@@ -267,6 +269,9 @@ namespace EPCat.Model
             }
         }
 
+        [XmlIgnore]
+        public bool SourceFolderExist { get; set; } = false;
+
         public EpItem(int itemType) : this()
         {
             _itemType = itemType;
@@ -303,7 +308,7 @@ namespace EPCat.Model
             this.Director = item.Director;
             this.Studio = item.Studio;
             this.IMDB = item.IMDB;
-
+            this.SourceFolderExist = item.SourceFolderExist;
 
             this.Comments.Clear();
             this.Comments.AddRange(item.Comments);

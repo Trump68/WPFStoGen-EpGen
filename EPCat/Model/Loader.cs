@@ -34,9 +34,9 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            DoTempWork1();
-            DoTempwork2(@"d:\!CATALOG\MOV\");
-            return null;
+            //DoTempWork1();
+            //DoTempwork2(@"d:\!CATALOG\MOV\");
+            //return null;
 
             CapsItem.DictionaryData.Dict_Class.Clear();
             CapsItem.DictionaryData.Dict_Name.Clear();
@@ -692,6 +692,8 @@ namespace EPCat.Model
             {
                 EpItem item = EpItem.GetFromPassport(passport);
                 item.ItemPath = passportPath;
+                item.SourceFolderExist = true;
+
                 bool copyPoster = false;
                 bool reversecopyPoster = false;
                 var existingItem = Source.Where(x => x.GID == item.GID).FirstOrDefault();
@@ -721,6 +723,7 @@ namespace EPCat.Model
                     else
                     {
                         existingItem.ItemPath = item.ItemPath;
+                        existingItem.SourceFolderExist = item.SourceFolderExist;
                         copyPoster = !File.Exists(newPostername);
                         reversecopyPoster = !copyPoster;
                     }

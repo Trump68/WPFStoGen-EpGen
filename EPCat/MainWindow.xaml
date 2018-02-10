@@ -136,6 +136,7 @@
                             <dxg:GridColumn FieldName="ItemPath" IsSmart="True" />
                             <dxg:GridColumn FieldName="CodesA" IsSmart="True" />
                             <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" Width="20" Header="." />
+                            <dxg:GridColumn FieldName="SourceFolderExist" IsSmart="True" />
                         </dxg:GridControl>
                         <dxlc:LayoutGroup View="Group" Orientation="Vertical" Margin="0,0,0,0" Padding="0">
                             <dxlc:LayoutGroup x:Name="MainDetail" View="Group" Margin="0,0,0,0" Padding="0" Orientation="Horizontal">

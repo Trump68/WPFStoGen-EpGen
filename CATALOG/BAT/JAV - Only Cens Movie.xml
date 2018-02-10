@@ -19,7 +19,7 @@
         <property name="MergeWithPreviousGroup">false</property>
       </property>
     </property>
-    <property name="Columns" iskey="true" value="21">
+    <property name="Columns" iskey="true" value="22">
       <property name="Item1" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Catalog</property>
@@ -164,14 +164,24 @@
         <property name="Width">20</property>
         <property name="ActualWidth">8.5725087335896291</property>
       </property>
+      <property name="Item22" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">SourceFolderExist</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">8</property>
+        <property name="ActualWidth">NaN</property>
+      </property>
     </property>
     <property name="View" isnull="true" iskey="true">
       <property name="FormatConditions" iskey="true" value="1">
         <property name="Item1" isnull="true" iskey="true">
-          <property name="FieldName">ItemPath</property>
-          <property name="Expression">[VideoPresent] = True</property>
-          <property name="PredefinedFormatName">YellowGreenColorScale</property>
-          <property name="TypeName">ColorScaleFormatCondition</property>
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFD4FCD4</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Name</property>
+          <property name="Expression">[SourceFolderExist] = True</property>
+          <property name="TypeName">FormatCondition</property>
         </property>
       </property>
       <property name="ColumnChooserState" isnull="true" iskey="true">
@@ -180,46 +190,42 @@
       </property>
     </property>
     <property name="TotalSummary" iskey="true" value="0" />
-    <property name="MRUFilters" iskey="true" value="10">
+    <property name="MRUFilters" iskey="true" value="9">
       <property name="Item1" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'adn')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'adn')</property>
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'idbd')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'idbd')</property>
       </property>
       <property name="Item2" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'ad')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'ad')</property>
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'idb')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'idb')</property>
       </property>
       <property name="Item3" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'a')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'a')</property>
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'id')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'id')</property>
       </property>
       <property name="Item4" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'rbd')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'rbd')</property>
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'i')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'i')</property>
       </property>
       <property name="Item5" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'rb')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'rb')</property>
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'midd')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'midd')</property>
       </property>
       <property name="Item6" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'r')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'r')</property>
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'mid')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'mid')</property>
       </property>
       <property name="Item7" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'shkd')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'shkd')</property>
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'mi')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'mi')</property>
       </property>
       <property name="Item8" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'shk')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'shk')</property>
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'm')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'm')</property>
       </property>
       <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'sh')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'sh')</property>
-      </property>
-      <property name="Item10" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 's')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 's')</property>
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'mide')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'mide')</property>
       </property>
     </property>
     <property name="FilterString">IsNullOrEmpty([Kind])</property>
