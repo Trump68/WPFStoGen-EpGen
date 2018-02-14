@@ -114,9 +114,6 @@ namespace MVVMApp.Views
             }
             
         }
-     
-     
-
         private void btnSetPosition_Click(object sender, RoutedEventArgs e)
         {
             TimeSpan timespan = TimeSpan.FromSeconds(double.Parse(txtPosition.Text));
@@ -152,7 +149,7 @@ namespace MVVMApp.Views
             sbarSeek.Minimum = 0;
             sbarSeek.Maximum = (this.DataContext as ECadreListViewModel).ScrollFactor1;
             sbarSeek.Value = (int)(sbarSeek.Maximum / 2);
-
+            
 
         }
         private void sbarScale_PreviewMouseUp(object sender,

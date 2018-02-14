@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:c="clr-namespace:MVVMApp.Commands"
         xmlns:views="clr-namespace:MVVMApp.Views"
-        Title="Ep Gen" Height="800" Width="1400" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" KeyDown="Window_KeyDown">
+        Title="Ep Gen" Height="800" Width="1400" WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600"/>
@@ -175,15 +176,15 @@
                     <Button x:Name="btnPlay" Click="btnPlay_Click" Opacity ="0.5">
                         <Image Source="/EpGen;component/play.png"/>
                     </Button>
-                    
+
                     <Label Content="Factor1:" Margin="5,0,0,0" VerticalAlignment="Center"/>
                     <TextBox Text="{Binding ScrollFactor1}" Width="50" Height="24" 
                              HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-                    
+
                     <Label Content="Factor2:" Margin="5,0,0,0" VerticalAlignment="Center"/>
                     <TextBox Text="{Binding ScrollFactor2}" Width="50" Height="24" 
                              HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-                    
+
                     <Label Content="Position:" Margin="5,0,0,0" VerticalAlignment="Center"/>
                     <TextBox Name="txtPosition" Width="65" Height="24" Text="0.0"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
@@ -208,9 +209,6 @@
                 </StackPanel>
 
             </StackPanel>
-
-
-
         </StackPanel>
     </Grid>
 </Window>

@@ -136,6 +136,18 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="back.png" />
+    <Resource Include="faster.png" />
+    <Content Include="minions.mp4" />
+    <Resource Include="next.png" />
+    <Resource Include="pause.png" />
+    <Resource Include="play.png" />
+    <Resource Include="previous.png" />
+    <Resource Include="restart.png" />
+    <Resource Include="slower.png" />
+    <Resource Include="stop.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

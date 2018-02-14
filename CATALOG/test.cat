@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfEpItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <EpItem>
+    <CapsPassportData />
+    <GID>f03777e3-4bc6-4405-b750-b2ed448f66fd</GID>
+    <ItemPath>d:\!catalog\test\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Videos>
+      <string>d:\!catalog\test\09.m4v</string>
+    </Videos>
+    <Name>TEST-01</Name>
+    <Catalog>TEST</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Serie>TEST</Serie>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <ScenData>
+      <string />
+    </ScenData>
+    <ScenDataAsString />
+    <Undefined />
+  </EpItem>
+</ArrayOfEpItem>

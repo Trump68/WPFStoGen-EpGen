@@ -17,6 +17,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace EPCat
 {
@@ -87,6 +88,20 @@ namespace EPCat
             }
         }
 
+
+        string _ClipToProcess;
+        public string ClipToProcess
+        {
+            get
+            {
+                return _ClipToProcess;
+            }
+            set
+            {
+                _ClipToProcess = value;
+            }
+        }
+
         MovieSceneInfo _CurrentClip;
         public MovieSceneInfo CurrentClip
         {
@@ -115,6 +130,23 @@ namespace EPCat
                 RaisePropertyChanged(() => this.CurrentCapsForGroup);
             }
         }
+
+
+        MovieSceneInfo _ClipTemplate = new MovieSceneInfo();
+        public MovieSceneInfo ClipTemplate
+        {
+            get
+            {
+                return _ClipTemplate;
+            }
+            set
+            {              
+                _ClipTemplate = value;
+            }
+        }
+
+        
+
         public List<CapsItem> CurrentCapsForGroup
         {
             get
@@ -245,24 +277,39 @@ namespace EPCat
         internal void ShowClip()
         {
             if (this.CurrentClip == null) return;
-
             var videos = this.CurrentFolder.Videos;            
             if (!videos.Any()) return;
-
-            string path = videos.First();
-            
+            string path = videos.First();            
             GameWorldFactory.GameWorld.LoadData();
             BaseScene scene = null;
-
-
             scene = new _Clip_Default();
             if (scene.LoadData(this.CurrentClip.ID, path))
                  scene.Generate(this.CurrentClip.ID);
-
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
             window.GlobalMenuCreator = GameWorldFactory.GameWorld;
             window.Scene = scene;
             window.Show();            
+        }
+        internal void EditClip()
+        {
+            if (this.CurrentClip == null) return;
+            var videos = this.CurrentFolder.Videos;
+            if (!videos.Any()) return;
+            string path = videos.First();
+        }
+
+        internal void SaveClipTemplate()
+        {
+            MovieSceneInfo newclipinfo = new MovieSceneInfo();
+            newclipinfo.ID = Guid.NewGuid().ToString();
+            newclipinfo.PositionStart = this.ClipTemplate.PositionStart;
+            newclipinfo.PositionEnd = this.ClipTemplate.PositionEnd;
+            newclipinfo.File = this.ClipTemplate.File;
+
+            this.CurrentFolder.Clips.Add(newclipinfo);
+
+            this.ClipTemplate.PositionEnd = 0;
+            this.ClipTemplate.PositionStart = 0;
         }
     }
 

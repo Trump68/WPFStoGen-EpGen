@@ -238,18 +238,6 @@ namespace EPCat.Model
                 this.Comments = value.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
             }
         }
-        public List<string> ScenData { get; set; } = new List<string>();
-        public string ScenDataAsString
-        {
-            get
-            {
-                return string.Join(Environment.NewLine, this.ScenData.ToArray());
-            }
-            set
-            {
-                this.ScenData = value.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
-            }
-        }
 
         public List<string> Undefined { get; set; } = new List<string>();
 
@@ -262,10 +250,45 @@ namespace EPCat.Model
                 if (_Clips == null)
                 {
                     _Clips = new ObservableCollection<MovieSceneInfo>();
-                    MovieSceneInfo defaultClip = new MovieSceneInfo() { Description = "Default", ID = this.GID.ToString() };
-                    _Clips.Add(defaultClip);
+                    //MovieSceneInfo defaultClip = new MovieSceneInfo() { Description = "Default", ID = this.GID.ToString() };
+                    //_Clips.Add(defaultClip);
                 }
                 return _Clips;
+            }
+        }
+
+        public void UpdateScenDataFromClipInfoList()
+        {
+            this.ScenData.Clear();
+            foreach (var item in Clips)
+            {
+                this.ScenData.Add(item.GenerateString());
+            } 
+        }
+
+        List<string> _ScenData = new List<string>();
+        public List<string> ScenData
+        {
+            get
+            {
+                return _ScenData;
+            }
+            set
+            {
+                _ScenData = value;
+            }
+        }
+
+
+        public string ScenDataAsString
+        {
+            get
+            {
+                return string.Join(Environment.NewLine, this.ScenData.ToArray());
+            }
+            set
+            {
+                this.ScenData = value.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
             }
         }
 
@@ -1026,6 +1049,14 @@ namespace EPCat.Model
     public class MovieSceneInfo
     {
         public string Description { set; get; }
+        public string File { set; get; }
         public string ID  { set; get; }
+        public decimal PositionStart { set; get; } = 0;
+        public decimal PositionEnd { set; get; } = 0;
+
+        internal string GenerateString()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -15,7 +15,10 @@
         xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
         x:Class="EPCat.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="593.484" Width="1290.694" Closing="Window_Closing" Loaded="Window_Loaded" WindowState="Maximized">
+        Title="MainWindow" Height="593.484" Width="1290.694" Closing="Window_Closing" 
+        Loaded="Window_Loaded"
+        KeyDown="Window_KeyDown"
+        WindowState="Maximized">
 
     <Window.DataContext>
         <local:EpCatViewModel />
@@ -47,7 +50,11 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" 
+                            <dx:SimpleButton x:Name="EditVideoBtnGlobal" Content="Edit" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnLoad_Click" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" Margin="100,4,0,0" HorizontalAlignment="Left" 
                                              Click="simpleButton_Click" />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left" Margin="80,4,0,0">
@@ -396,6 +403,86 @@
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
+            <dx:DXTabItem Header="Edit">
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0">
+
+                        <StackPanel>
+                            <MediaElement x:Name="minionPlayer" Margin="5"                         
+                             ScrubbingEnabled="True"
+                             MaxHeight="500"
+                             LoadedBehavior="Manual" 
+                             
+                                          />
+                            <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarPosition"
+                            VerticalAlignment="Center" Scroll="sbarPosition_Scroll"
+                             PreviewMouseDown="sbarPosition_PreviewMouseDown" Margin="0,5"/>
+                            <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarSeek"
+                            VerticalAlignment="Center"  Scroll="sbarSeek_Scroll"
+                             PreviewMouseUp="sbarSeek_PreviewMouseUp"
+                             PreviewMouseDown="sbarSeek_PreviewMouseDown" Margin="0,5"/>
+                            <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarScale"
+                            VerticalAlignment="Center"  Scroll="sbarScale_Scroll"
+                             PreviewMouseUp="sbarScale_PreviewMouseUp"
+                             PreviewMouseDown="sbarScale_PreviewMouseDown" Margin="0,5"/>
+                            <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                                <StackPanel.Resources>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Margin" Value="2"/>
+                                    </Style>
+                                </StackPanel.Resources>
+
+                                <Button x:Name="btnPlay" Click="btnPlay_Click" Opacity ="0.5">
+                                    <Image Source="/EPCat;component/play.png"/>
+                                </Button>
+
+                                <Button Margin="5,0,0,0" Content="Save" Height="30"
+                                  Name="btnSetPositionSave" Click="btnSetPositionSave_Click"/>
+
+                                <Button Margin="5,0,0,0" Content="Reset" Height="30"
+                                  Name="btnSetPositionReset" Click="btnSetPositionReset_Click"/>
+
+                                <Button Margin="5,0,0,0" Content="Start" Height="30"
+                                  Name="btnSetPositionStart" Click="btnSetPositionStart_Click"/>
+                                <TextBox Name="txtPositionStart" Width="65" Height="24" Text="{Binding ClipTemplate.PositionStart, UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+
+                                <Button Margin="5,0,0,0" Content="End" Height="30"
+                                  Name="btnSetPositionEnd" Click="btnSetPositionEnd_Click"/>
+                                <TextBox Name="txtPositionEnd" Width="65" Height="24" Text="{Binding ClipTemplate.PositionEnd, UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+
+                                <Label Content="Position:" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                <TextBox Name="txtPosition" Width="65" Height="24" Text="0.0"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                                <Button Margin="5,0,0,0" Content="Set Position" Height="30"
+                                  Name="btnSetPosition" Click="btnSetPosition_Click"/>
+                            </StackPanel>
+                            <TextBlock Text="File"/>
+                            <TextBox Text="{Binding ClipToProcess, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" TextWrapping="Wrap"/>
+                            <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Button Margin="0,0,50,0" Content="Save Start" Height="30" Width="100"
+                                  Name="btnSaveStart" Click="btnSaveStart_Click"/>
+                                <Button Margin="5,0,0,0" Content="Load" Height="30" Width="100"
+                                  Name="btnLoad" Click="btnLoad_Click"/>
+                                <Button Margin="50,0,0,0" Content="Save End" Height="30" Width="100"
+                                  Name="btnSaveEnd" Click="btnSaveEnd_Click"/>
+                                <Button Margin="10,0,0,0" Content="Save End + Add" Height="30" Width="100"
+                                  Name="btnSaveEndAndAdd" Click="btnSaveEndAndAdd_Click"/>
+                                <Button Margin="10,0,0,0" Content="Screenshot" Height="30" Width="100"
+                                  Name="btnScreenshot" Click="btnScreenshot_Click"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+            </dx:DXTabItem>
+
+            
 
         </dx:DXTabControl>
 

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPCat", "..\EPCat\EPCat.csp
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CATALOG", "..\CATALOG\CATALOG.shproj", "{321118E6-2C22-4073-AF28-A95146EF0540}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpGen", "..\EpGen\EpGen\EpGen.csproj", "{607A3E09-58E4-48D1-95A0-5DBA6D2BED05}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\CATALOG\CATALOG.projitems*{321118e6-2c22-4073-af28-a95146ef0540}*SharedItemsImports = 13
@@ -44,6 +46,10 @@ Global
 		{C2DEA8FF-42FE-425B-82AB-209138F3F8DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2DEA8FF-42FE-425B-82AB-209138F3F8DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2DEA8FF-42FE-425B-82AB-209138F3F8DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{607A3E09-58E4-48D1-95A0-5DBA6D2BED05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{607A3E09-58E4-48D1-95A0-5DBA6D2BED05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{607A3E09-58E4-48D1-95A0-5DBA6D2BED05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{607A3E09-58E4-48D1-95A0-5DBA6D2BED05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -20,10 +20,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace EPCat
 {
-    
+
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -54,7 +55,7 @@ namespace EPCat
         void SaveLayout()
         {
             if (PathToGridSave != null)
-               this.GV.SaveLayoutToXml(PathToGridSave);
+                this.GV.SaveLayoutToXml(PathToGridSave);
         }
         string PathToGridSave = null;
         public void RestoreLayout(string path)
@@ -92,7 +93,33 @@ namespace EPCat
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            timerVideoTime = new DispatcherTimer();
+            timerVideoTime.Interval = TimeSpan.FromSeconds(0.1);
+            timerVideoTime.Tick += new EventHandler(timer_Tick);
+            minionPlayer.MediaOpened += minionPlayer_MediaOpened;
+            if ((this.DataContext as EpCatViewModel).ClipToProcess != null)
+            {
+                minionPlayer.Source = new Uri((this.DataContext as EpCatViewModel).ClipToProcess);
+                minionPlayer.Play();
+            }
+            //(this.DataContext as ECadreListViewModel).RefreshStart = RefreshStart;
+        }
+        private void minionPlayer_MediaOpened(object sender, RoutedEventArgs e)
+        {
+            minionPlayer.Volume = 0;
+            sbarSeek.Minimum = 0;
+            sbarSeek.Maximum = ScrollFactor1;
+            sbarSeek.Value = (int)(sbarSeek.Maximum / 2);
 
+            sbarScale.Minimum = 0;
+            sbarScale.Maximum = ScrollFactor2;
+            sbarScale.Value = (int)(sbarScale.Maximum / 2);
+            sbarScale.Visibility = Visibility.Visible;
+
+            sbarPosition.Minimum = 0;
+            sbarPosition.Maximum = minionPlayer.NaturalDuration.TimeSpan.TotalSeconds;
+            sbarPosition.Visibility = Visibility.Visible;
+            minionPlayer.Pause();
         }
 
         private void Collapse_Click(object sender, RoutedEventArgs e)
@@ -120,7 +147,7 @@ namespace EPCat
             FlowLayoutControl flc = (groupBox.Parent as FlowLayoutControl);
 
 
-            
+
 
             //var itempos = (flc.ItemsSource as ObservableCollection<CapsItem>).Where(x=>x.Id==item.Id).First();
             var pos = (flc.ItemsSource as ObservableCollection<CapsItem>).IndexOf(item);
@@ -130,7 +157,7 @@ namespace EPCat
 
             if (Keyboard.Modifiers == ModifierKeys.Shift)
             {
-                CLPitem = item;               
+                CLPitem = item;
                 e.Handled = true;
                 return;
             }
@@ -158,9 +185,9 @@ namespace EPCat
             else if (Keyboard.Modifiers == ModifierKeys.Alt)
             {
                 if (!item.ChildList.Any())
-                {                           
-                    item.ParentId = null;                    
-                    item.Parent = null;                                        
+                {
+                    item.ParentId = null;
+                    item.Parent = null;
                     //
                     if (item.Owner != null)
                     {
@@ -169,13 +196,14 @@ namespace EPCat
                             item.Name = null;
                         }
                     }
-                }                                              
+                }
             }
             else
-            {                
+            {
                 groupBox.State = groupBox.State == GroupBoxState.Normal ? GroupBoxState.Maximized : GroupBoxState.Normal;
                 e.Handled = true;
-                Dispatcher.BeginInvoke(new Action(() => {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
                     flc.Children[pos + 1].Focus();
                 }), System.Windows.Threading.DispatcherPriority.Render);
             }
@@ -183,7 +211,6 @@ namespace EPCat
 
             RepaintGroupBox(groupBox, true);
         }
-
         private void GroupBox_NaximizeMinimize(object sender, MouseButtonEventArgs e)
         {
             var im = (sender as System.Windows.Controls.Image);
@@ -218,7 +245,7 @@ namespace EPCat
         private void SetCurrentImagePassort(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
         {
             ViewModel.SetCurrentImagePassort(rgCapsPassport.SelectedIndex);
-            
+
         }
 
 
@@ -250,7 +277,7 @@ namespace EPCat
             {
                 if (gb.DataContext != null)
                 {
-                    if (string.IsNullOrEmpty(item.Name))                    
+                    if (string.IsNullOrEmpty(item.Name))
                     {
                         gb.TitleBackground = new SolidColorBrush(Colors.White);
                     }
@@ -258,7 +285,7 @@ namespace EPCat
                     {
                         gb.TitleBackground = new SolidColorBrush(Colors.OrangeRed);
                     }
-                    
+
                     if (isHidingAvalible) gb.Visibility = Visibility.Visible;
                 }
             }
@@ -266,7 +293,7 @@ namespace EPCat
 
         private void ShowHideChildCaps(object sender, KeyEventArgs e)
         {
-           if (e.Key == Key.Space)
+            if (e.Key == Key.Space)
             {
                 if (this.rgCapsMode.SelectedIndex == 0) this.rgCapsMode.SelectedIndex = 1;
                 else this.rgCapsMode.SelectedIndex = 0;
@@ -279,10 +306,10 @@ namespace EPCat
             if (!ViewModel.CurrentCapsForGroup.Any()) return;
             foreach (FrameworkElement elem in layoutGroupCaps.Children)
             {
-                
+
                 if (elem.DataContext == ViewModel.CurrentCapsForGroup.First())
                 {
-                    layoutGroupCaps.MaximizedElement= elem;
+                    layoutGroupCaps.MaximizedElement = elem;
                 }
             }
 
@@ -327,6 +354,280 @@ namespace EPCat
         {
             ViewModel.ShowClip();
         }
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
+        {
+            if ((this.DataContext as EpCatViewModel).CurrentClip == null) return;
+            var videos = (this.DataContext as EpCatViewModel).CurrentFolder.Videos;
+            if (!videos.Any()) return;
+            string path = videos.First();
+            (this.DataContext as EpCatViewModel).ClipToProcess = path;
+
+            if (!string.IsNullOrEmpty((this.DataContext as EpCatViewModel).ClipToProcess))
+            {
+                minionPlayer.Stop();
+                minionPlayer.Source = new Uri((this.DataContext as EpCatViewModel).ClipToProcess);
+                minionPlayer.Play();
+                minionPlayer.Pause();
+            }
+        }
+
+
+        #region Video element
+
+        public double CurrentPosition;
+        public int ScrollFactor1 { get; set; } = 200;
+        public int ScrollFactor2 { get; set; } = 200;
+
+        private void sbarSeek_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+            TimeSpan timespan = TimeSpan.FromSeconds((sbarSeek.Maximum / 2) - sbarSeek.Value);
+            minionPlayer.Position = TimeSpan.FromMilliseconds(CurrentPosition).Add(-timespan);
+            ShowPosition();
+        }
+        private void ShowPosition()
+        {
+            sbarPosition.Value = minionPlayer.Position.TotalSeconds;
+            txtPosition.Text = minionPlayer.Position.TotalSeconds.ToString("0.0");
+        }
+        private void sbarScale_PreviewMouseDown(object sender,
+   MouseButtonEventArgs e)
+        {
+            CurrentPosition = minionPlayer.Position.TotalMilliseconds;
+            sbarScale.Minimum = 0;
+            sbarScale.Maximum = ScrollFactor2;
+            sbarScale.Value = (int)(sbarScale.Maximum / 2);
+        }
+        private void sbarSeek_PreviewMouseDown(object sender,
+         MouseButtonEventArgs e)
+        {
+            CurrentPosition = minionPlayer.Position.TotalMilliseconds;
+            sbarSeek.Minimum = 0;
+            sbarSeek.Maximum = ScrollFactor1;
+            sbarSeek.Value = (int)(sbarSeek.Maximum / 2);
+
+        }
+        private void sbarScale_PreviewMouseUp(object sender,
+        MouseButtonEventArgs e)
+        {
+            CurrentPosition = minionPlayer.Position.TotalMilliseconds;
+            sbarScale.Value = (int)(sbarScale.Maximum / 2);
+        }
+        private void sbarSeek_PreviewMouseUp(object sender,
+       MouseButtonEventArgs e)
+        {
+            CurrentPosition = minionPlayer.Position.TotalMilliseconds;
+            sbarSeek.Value = (int)(sbarSeek.Maximum / 2);
+        }
+        private void sbarPosition_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+            RefreshClipPosition();
+        }
+        private void RefreshClipPosition()
+        {
+            TimeSpan timespan = TimeSpan.FromSeconds(sbarPosition.Value);
+            minionPlayer.Position = timespan;
+            ShowPosition();
+        }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            ShowPosition();
+        }
+
+        private void sbarScale_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+            TimeSpan timespan = TimeSpan.FromSeconds(((sbarScale.Maximum / 2) - sbarScale.Value) / 10);
+            minionPlayer.Position = TimeSpan.FromMilliseconds(CurrentPosition).Add(-timespan);
+            ShowPosition();
+        }
+        private void sbarPosition_PreviewMouseDown(object sender,
+        MouseButtonEventArgs e)
+        {
+        }
+
+
+        private void btnPlay_Click(object sender, RoutedEventArgs e)
+        {
+            if (btnPlay.Opacity == 1)
+            {
+                minionPlayer.Pause();
+                EnableButtons(false);
+            }
+            else
+            {
+                minionPlayer.Play();
+                EnableButtons(true);
+            }
+        }
+
+
+        private void EnableButtons(bool is_playing)
+        {
+            if (!is_playing)
+            {
+                btnPlay.Opacity = 0.5;
+            }
+            else
+            {
+                btnPlay.Opacity = 1.0;
+            }
+            timerVideoTime.IsEnabled = is_playing;
+        }
+        private DispatcherTimer timerVideoTime;
+
+        private void btnSetPosition_Click(object sender, RoutedEventArgs e)
+        {
+            TimeSpan timespan = TimeSpan.FromSeconds(double.Parse(txtPosition.Text));
+            minionPlayer.Position = timespan;
+            ShowPosition();
+        }
+        
+        private void btnSaveStart_Click(object sender, RoutedEventArgs e)
+        {
+        }
+        private void btnSaveEnd_Click(object sender, RoutedEventArgs e)
+        {
+        }
+        private void btnSaveEndAndAdd_Click(object sender, RoutedEventArgs e)
+        {
+        }
+        private void btnScreenshot_Click(object sender, RoutedEventArgs e)
+        {
+            this.MadeShot();
+        }
+        private void MadeShot()
+        {
+            string path = System.IO.Path.GetDirectoryName(this.minionPlayer.Source.LocalPath) + System.IO.Path.DirectorySeparatorChar.ToString() + "CAPS";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            path = path + System.IO.Path.DirectorySeparatorChar.ToString() + "SC";
+
+            int num = 0;
+            string str2 = num.ToString("D4");
+            string str3 = $"{path}-{str2}.jpg";
+            while (File.Exists(str3))
+            {
+                num++;
+                str2 = num.ToString("D4");
+                str3 = $"{path}-{str2}.jpg";
+            }
+            this.ImportMedia(str3);
+        }
+        private void ImportMedia(string path)
+        {
+            RenderTargetBitmap source = new RenderTargetBitmap(Convert.ToInt32(this.minionPlayer.RenderSize.Width), Convert.ToInt32(this.minionPlayer.RenderSize.Height), 96.0, 96.0, PixelFormats.Pbgra32);
+            source.Render(this.minionPlayer);
+            using (FileStream stream = new FileStream(path, FileMode.Create))
+            {
+                new JpegBitmapEncoder
+                {
+                    QualityLevel = 100,
+                    Frames = { BitmapFrame.Create(source) }
+                }.Save(stream);
+            }
+        }
+        private bool isNavigationByKey = true;
+        #endregion
+
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (this.isNavigationByKey)
+            {
+                TimeSpan ts = new TimeSpan(0, 0, 0, 0, 0);
+                if (e.Key == Key.Q)
+                {
+                    ts = new TimeSpan(0, 0, 0, 0, 0x3e8);
+                    TimeSpan span2 = this.minionPlayer.Position.Add(-ts);
+                    if (span2 >= TimeSpan.MinValue)
+                    {
+                        this.minionPlayer.Position = span2;
+                    }
+                    else
+                    {
+                        this.minionPlayer.Position = new TimeSpan(0L);
+                    }
+                }
+                else if (e.Key == Key.W)
+                {
+                    ts = new TimeSpan(0, 0, 0, 0, 0x3e8);
+                    TimeSpan span4 = this.minionPlayer.Position.Add(ts);
+                    if (span4 < this.minionPlayer.NaturalDuration)
+                    {
+                        this.minionPlayer.Position = span4;
+                    }
+                    else
+                    {
+                        this.minionPlayer.Position = this.minionPlayer.NaturalDuration.TimeSpan;
+                    }
+                }
+                else if (e.Key == Key.A)
+                {
+                    ts = new TimeSpan(0, 0, 0, 0, 50);
+                    TimeSpan span5 = this.minionPlayer.Position.Add(-ts);
+                    if (span5 >= TimeSpan.MinValue)
+                    {
+                        this.minionPlayer.Position = span5;
+                    }
+                    else
+                    {
+                        this.minionPlayer.Position = new TimeSpan(0L);
+                    }
+                }
+                else if (e.Key == Key.S)
+                {
+                    ts = new TimeSpan(0, 0, 0, 0, 50);
+                    TimeSpan span6 = this.minionPlayer.Position.Add(ts);
+                    if (span6 < this.minionPlayer.NaturalDuration)
+                    {
+                        this.minionPlayer.Position = span6;
+                    }
+                    else
+                    {
+                        this.minionPlayer.Position = this.minionPlayer.NaturalDuration.TimeSpan;
+                    }
+                }
+                else if (e.Key == Key.M)
+                {
+                    this.MadeShot();
+                }
+                else
+                {
+                    return;
+                }
+                e.Handled = true;
+                this.ShowPosition();
+            }
+        }
+
+        private void btnSetPositionStart_Click(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as EpCatViewModel).ClipTemplate.PositionStart = Decimal.Parse(txtPosition.Text);
+            txtPositionStart.Text = (this.DataContext as EpCatViewModel).ClipTemplate.PositionStart.ToString();
+        }
+
+        private void btnSetPositionEnd_Click(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as EpCatViewModel).ClipTemplate.PositionEnd = Decimal.Parse(txtPosition.Text);
+            txtPositionEnd.Text = (this.DataContext as EpCatViewModel).ClipTemplate.PositionEnd.ToString();
+        }
+
+        private void btnSetPositionReset_Click(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as EpCatViewModel).ClipTemplate.PositionStart = 0;
+            txtPositionStart.Text = (this.DataContext as EpCatViewModel).ClipTemplate.PositionStart.ToString();
+
+            (this.DataContext as EpCatViewModel).ClipTemplate.PositionEnd = 0;
+            txtPositionEnd.Text = (this.DataContext as EpCatViewModel).ClipTemplate.PositionEnd.ToString();
+        }
+
+        private void btnSetPositionSave_Click(object sender, RoutedEventArgs e)
+        {
+            //save
+            (this.DataContext as EpCatViewModel).SaveClipTemplate();
+            // reset
+            btnSetPositionReset_Click(null, null);
+        }
     }
-   
 }
