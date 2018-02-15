@@ -40,7 +40,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <dx:DXTabControl Margin="0" Padding="0" SelectionChanged="TabPageChanged">
+        <dx:DXTabControl Name="NavTabGroup" Margin="0" Padding="0" SelectionChanged="TabPageChanged">
             <dx:DXTabItem Name="TabMain" Header="Main" Height="22" VerticalAlignment="Top">
 
                 <dxlc:LayoutControl Orientation="Vertical" Margin="0" Padding="0">
@@ -403,7 +403,7 @@
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
-            <dx:DXTabItem Header="Edit">
+            <dx:DXTabItem Name ="EditTab" Header="Edit">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
                     <dxlc:LayoutItem Margin="0,0,0,0" Padding="0">
 

@@ -250,8 +250,12 @@ namespace EPCat.Model
                 if (_Clips == null)
                 {
                     _Clips = new ObservableCollection<MovieSceneInfo>();
-                    //MovieSceneInfo defaultClip = new MovieSceneInfo() { Description = "Default", ID = this.GID.ToString() };
-                    //_Clips.Add(defaultClip);
+                    foreach (var item in this.ScenData)
+                    {
+                        MovieSceneInfo sd = new MovieSceneInfo();
+                        sd.LoadFromString(item);
+                        _Clips.Add(sd);
+                    }
                 }
                 return _Clips;
             }
@@ -280,6 +284,7 @@ namespace EPCat.Model
         }
 
 
+        [XmlIgnore]
         public string ScenDataAsString
         {
             get
@@ -1056,7 +1061,41 @@ namespace EPCat.Model
 
         internal string GenerateString()
         {
-            throw new NotImplementedException();
+            List<string> rez = new List<string>();
+            rez.Add($"ID={ID}");
+            rez.Add($"FILE={File}");
+            rez.Add($"START={PositionStart}");
+            rez.Add($"END={PositionStart}");
+            rez.Add($"DSC={Description}");
+            return string.Join(";", rez.ToArray());
+        }
+
+        internal void LoadFromString(string item)
+        {
+            List<string> data = item.Split(';').ToList();
+            foreach (var str in data)
+            {
+                if (str.StartsWith("ID="))
+                {
+                    this.ID = str.Replace("ID=", string.Empty);
+                }
+                else if (str.StartsWith("FILE="))
+                {
+                    this.File = str.Replace("FILE=", string.Empty);
+                }
+                else if (str.StartsWith("START="))
+                {
+                    this.PositionStart = Convert.ToDecimal(str.Replace("START=", string.Empty));
+                }
+                else if (str.StartsWith("END="))
+                {
+                    this.PositionEnd = Convert.ToDecimal(str.Replace("END=", string.Empty));
+                }
+                else if (str.StartsWith("DSC="))
+                {
+                    this.Description = str.Replace("DSC=", string.Empty);
+                }
+            }
         }
     }
 }

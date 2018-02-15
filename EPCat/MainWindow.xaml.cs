@@ -533,7 +533,7 @@ namespace EPCat
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (this.isNavigationByKey)
+            if (this.NavTabGroup.SelectedTabItem == this.EditTab)
             {
                 TimeSpan ts = new TimeSpan(0, 0, 0, 0, 0);
                 if (e.Key == Key.Q)

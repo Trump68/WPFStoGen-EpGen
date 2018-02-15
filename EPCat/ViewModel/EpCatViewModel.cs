@@ -84,7 +84,14 @@ namespace EPCat
             set
             {
                 _CurrentFolder = value;
-                this._CurrentClip = _CurrentFolder.Clips.First();
+                if (_CurrentFolder.Clips.Any())
+                {
+                    this._CurrentClip = _CurrentFolder.Clips.First();
+                }
+                else
+                {
+                    this._CurrentClip = new MovieSceneInfo() { Description = "Default", ID = _CurrentFolder.ToString() };
+                }
             }
         }
 
@@ -307,6 +314,8 @@ namespace EPCat
             newclipinfo.File = this.ClipTemplate.File;
 
             this.CurrentFolder.Clips.Add(newclipinfo);
+            this.CurrentFolder.UpdateScenDataFromClipInfoList();
+            RaisePropertyChanged(() => this.CurrentFolder);
 
             this.ClipTemplate.PositionEnd = 0;
             this.ClipTemplate.PositionStart = 0;
