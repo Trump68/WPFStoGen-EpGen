@@ -352,10 +352,12 @@ namespace EPCat
 
         private void ShowVideoBtn_Click(object sender, RoutedEventArgs e)
         {
+            
             ViewModel.ShowClip();
         }
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
+            this.NavTabGroup.SelectedContainer = this.EditTab;
             if ((this.DataContext as EpCatViewModel).CurrentClip == null) return;
             var videos = (this.DataContext as EpCatViewModel).CurrentFolder.Videos;
             if (!videos.Any()) return;

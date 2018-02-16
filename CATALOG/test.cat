@@ -21,8 +21,9 @@
     <CommentsAsString />
     <Undefined />
     <ScenData>
-      <string>ID=d053b330-ccf0-4191-92ea-8f04ce8b8404;FILE=;START=0.3;END=0.3;DSC=asd</string>
-      <string>ID=236e076e-0b24-4982-a7db-078f93eab084;FILE=;START=0.7;END=0.7;DSC=dasqqdfcasd</string>
+      <string>ID=d053b330-ccf0-4191-92ea-8f04ce8b8404;FILE=;START=20.3;END=40.3;DSC=asd</string>
+      <string>ID=236e076e-0b24-4982-a7db-078f93eab084;FILE=;START=0.7;END=10.7;DSC=dasqqdfcasd</string>
+      <string>ID=236e076e-0b24-4982-a7db-078f93eab083;FILE=;START=50;END=55;DSC=ffff</string>
     </ScenData>
   </EpItem>
 </ArrayOfEpItem>

@@ -18,6 +18,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Controls;
+using StoGen.Classes;
 
 namespace EPCat
 {
@@ -289,9 +290,11 @@ namespace EPCat
             string path = videos.First();            
             GameWorldFactory.GameWorld.LoadData();
             BaseScene scene = null;
+
             scene = new _Clip_Default();
-            if (scene.LoadData(this.CurrentClip.ID, path))
+            if (scene.LoadData(this.CurrentClip, path))
                  scene.Generate(this.CurrentClip.ID);
+
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
             window.GlobalMenuCreator = GameWorldFactory.GameWorld;
             window.Scene = scene;

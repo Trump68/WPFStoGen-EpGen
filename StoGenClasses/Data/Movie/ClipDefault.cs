@@ -9,12 +9,12 @@ namespace StoGen.Classes.Data.Movie
 {
     public class _Clip_Default : BaseScene
     {
-        public override bool LoadData(string loadFilter, string moviePath)
+        public override bool LoadData(MovieSceneInfo minfo, string moviePath)
         {
-            base.LoadData(loadFilter, moviePath);
+            base.LoadData(minfo, moviePath);
             PATH_M = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Music\";
 
-            string filter = loadFilter;
+            string filter = minfo.ID;
             AddToGlobalImage(filter, this.MoviePath);
             ShowClip(filter);
             return true;
@@ -25,6 +25,15 @@ namespace StoGen.Classes.Data.Movie
             currentGr = filter;
             List<string> music = new List<string>();// { $"{PATH_M}music.arc_000005.wav" };
             List<List<AP>> anims;
+
+            double posStart = 0;
+            double posEnd = 60000;
+            if (this.MoviewInfo != null && this.MoviewInfo.ID == filter)
+            {
+                posStart = Convert.ToDouble(this.MoviewInfo.PositionStart);
+                posEnd = Convert.ToDouble(this.MoviewInfo.PositionEnd);
+            }
+
             int speed = 100;
             int volume = 100;
             VOLUME_M = 0;
@@ -32,7 +41,7 @@ namespace StoGen.Classes.Data.Movie
 
             anims = new List<List<AP>>() {
                 new List<AP>() { // shower 
-                new AP(filter) { APS = 0, APE = 60000, ALM = 1, ALC = 1 , AR=speed, AV=volume},
+                new AP(filter) { APS = posStart, APE = posEnd, ALM = 1, ALC = 1 , AR=speed, AV=volume},
                 } };
             VideoFrame800(anims, music);
             this.AlignList.AddRange(AlignList);

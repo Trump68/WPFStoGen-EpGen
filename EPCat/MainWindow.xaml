@@ -380,6 +380,7 @@
                             <dxg:TableView 
                                 AllowPerPixelScrolling="True"
                                 ShowAutoFilterRow="True"
+                                AllowEditing= "False"
                                 ShowTotalSummary="True"
                                 AutoWidth="True"
                                 ShowDataNavigator="True"

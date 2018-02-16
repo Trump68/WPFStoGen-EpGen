@@ -386,6 +386,14 @@ namespace StoGenMake.Scenes.Base
             this.MoviePath = moviePath;
             return true;
         }
+        public MovieSceneInfo MoviewInfo;
+        public virtual bool LoadData(MovieSceneInfo minfo, string moviePath)
+        {
+            this.MoviewInfo = minfo;
+            this.currentGr = minfo.ID;
+            this.MoviePath = moviePath;
+            return true;
+        }
 
         protected virtual void LoadData()
         {

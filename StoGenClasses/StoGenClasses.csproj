@@ -120,6 +120,7 @@
       <DependentUpon>PicPropsEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IMenuCreator.cs" />
+    <Compile Include="MovieSceneInfo.cs" />
     <Compile Include="PictureClasses.cs" />
     <Compile Include="ProcedureBase\CycleProc.cs" />
     <Compile Include="ProcedureBase\ProcedureBase.cs" />
