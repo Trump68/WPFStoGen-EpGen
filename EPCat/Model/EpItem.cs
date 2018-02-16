@@ -255,6 +255,7 @@ namespace EPCat.Model
                     {
                         MovieSceneInfo sd = new MovieSceneInfo();
                         sd.LoadFromString(item);
+                        sd.Path = Path.GetDirectoryName(this.ItemPath);
                         _Clips.Add(sd);
                     }
                 }
@@ -673,20 +674,24 @@ namespace EPCat.Model
 
             if (item.Comments.Count == 1)
             {
-                result.Add(p_COMMENTS_BEGIN + item.Comments.First() + p_COMMENTS_END);
+                if (!string.IsNullOrEmpty(item.Comments.First()))
+                    result.Add(p_COMMENTS_BEGIN + item.Comments.First() + p_COMMENTS_END);
             }
             else if (item.Comments.Count > 0)
             {
                 List<string> ttt = new List<string>();
                 ttt.AddRange(item.Comments);
+
                 ttt[0] = p_COMMENTS_BEGIN + item.Comments.First();
+
                 ttt[ttt.Count-1] = item.Comments.Last() + p_COMMENTS_END;
                 result.AddRange(ttt);               
             }
 
             if (item.ScenData.Count == 1)
             {
-                result.Add(p_SCENDATA_BEGIN + item.ScenData.First() + p_SCENDATA_END);
+                if (!string.IsNullOrEmpty(item.ScenData.First()))
+                    result.Add(p_SCENDATA_BEGIN + item.ScenData.First() + p_SCENDATA_END);
             }
             else if (item.ScenData.Count > 0)
             {

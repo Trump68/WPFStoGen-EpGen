@@ -498,22 +498,41 @@ namespace EPCat
         }
         private void MadeShot()
         {
-            string path = System.IO.Path.GetDirectoryName(this.minionPlayer.Source.LocalPath) + System.IO.Path.DirectorySeparatorChar.ToString() + "CAPS";
+            string path = 
+                System.IO.Path.GetDirectoryName(this.minionPlayer.Source.LocalPath)
+                + System.IO.Path.DirectorySeparatorChar.ToString() + "CLIPCAPS";
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
-            path = path + System.IO.Path.DirectorySeparatorChar.ToString() + "SC";
-
-            int num = 0;
-            string str2 = num.ToString("D4");
-            string str3 = $"{path}-{str2}.jpg";
-            while (File.Exists(str3))
+            string str3 = string.Empty;
+            if ((this.DataContext as EpCatViewModel).CurrentClip != null)
             {
-                num++;
-                str2 = num.ToString("D4");
-                str3 = $"{path}-{str2}.jpg";
+                int num = 0;
+                string str2 = num.ToString("D4");
+                str3 = System.IO.Path.Combine(path,$"{str2}.{(this.DataContext as EpCatViewModel).CurrentClip.ID}.jpg");
+                while (File.Exists(str3))
+                {
+                    num++;
+                    str2 = num.ToString("D4");
+                    str3 = System.IO.Path.Combine(path, $"{str2}.{(this.DataContext as EpCatViewModel).CurrentClip.ID}.jpg");
+                }
             }
+            else
+            {
+                path = path + System.IO.Path.DirectorySeparatorChar.ToString() + "SC";
+
+                int num = 0;
+                string str2 = num.ToString("D4");
+                 str3 = $"{path}-{str2}.jpg";
+                while (File.Exists(str3))
+                {
+                    num++;
+                    str2 = num.ToString("D4");
+                    str3 = $"{path}-{str2}.jpg";
+                }
+            }
+
             this.ImportMedia(str3);
         }
         private void ImportMedia(string path)
@@ -630,6 +649,15 @@ namespace EPCat
             (this.DataContext as EpCatViewModel).SaveClipTemplate();
             // reset
             btnSetPositionReset_Click(null, null);
+        }
+
+        private void EditVideoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavTabGroup.SelectedContainer = this.EditTab;
+            btnLoad_Click(null, null);
+            txtPosition.Text = (this.DataContext as EpCatViewModel).CurrentClip.PositionStart.ToString();
+            btnSetPosition_Click(null, null);
+            btnSetPositionStart_Click(null, null);
         }
     }
 }

@@ -26,7 +26,7 @@
     <!--<local:MaximizedElementConverter x:Key="con"/>-->
 
     <Window.Resources>
-        
+
     </Window.Resources>
     <Grid>
 
@@ -86,7 +86,7 @@
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Margin="0,0,0,0" Width="50"/>
                         <dxlc:LayoutItem Margin="0,0,0,0" Width="500">
-                            
+
                             <dxe:ListBoxEdit x:Name="rgCapsPassport" ShowBorder="True" EditValueChanged="SetCurrentImagePassort" SelectedIndex="0">
                                 <dxe:ListBoxEdit.StyleSettings>
                                     <dxe:RadioListBoxEditStyleSettings />
@@ -355,29 +355,41 @@
             </dx:DXTabItem>
             <dx:DXTabItem x:Name="tabCaption" Header="Poster">
                 <Grid Background="Transparent">
-                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="170*"/>
+                        <ColumnDefinition Width="62*"/>
+                        <ColumnDefinition Width="1049*"/>
+                    </Grid.ColumnDefinitions>
+                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch" Grid.ColumnSpan="3">
                         <Image Source="{Binding SelectedItem.Poster, ElementName=GV}" Stretch="Uniform" />
                     </dxlc:LayoutItem>
                 </Grid>
             </dx:DXTabItem>
             <dx:DXTabItem Header="Scenario" Height="22" VerticalAlignment="Bottom">
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
-                    <dxlc:LayoutItem HorizontalAlignment="Left">
-                        <dx:SimpleButton x:Name="ShowVideoBtn" Content="Play" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ShowVideoBtn_Click" />
-                    </dxlc:LayoutItem>
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
 
-                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="ShowVideoBtn" Content="Play" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ShowVideoBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="EditVideoBtn" Content="Edit" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="EditVideoBtn_Click" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
                                      LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
-
-                        <dxg:GridControl x:Name="GVScen"
+                            <dxg:GridControl x:Name="GVScen"
                                          AutoGenerateColumns="None"
                                          EnableSmartColumnsGeneration="True"
                                          ItemsSource="{Binding SelectedItem.Clips, ElementName=GV}"
                                          SelectedItem="{Binding CurrentClip}"
                                          SelectionMode="Cell">
-                            <!--SelectedItem="{Binding CurrentFolder}"-->
-                            <dxg:GridControl.View>
-                            <dxg:TableView 
+                                <!--SelectedItem="{Binding CurrentFolder}"-->
+                                <dxg:GridControl.View>
+                                    <dxg:TableView 
+                                Name= "ScenGV"
                                 AllowPerPixelScrolling="True"
                                 ShowAutoFilterRow="True"
                                 AllowEditing= "False"
@@ -385,12 +397,17 @@
                                 AutoWidth="True"
                                 ShowDataNavigator="True"
                                 DataNavigatorButtons="DeleteFocusedRow">
-                            </dxg:TableView>
-                        </dxg:GridControl.View>
-                        <dxg:GridColumn FieldName="Description" IsSmart="True" />
-                        <dxg:GridColumn FieldName="ID" IsSmart="True" />
-                        </dxg:GridControl>
-                  </dxlc:LayoutItem>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                                <dxg:GridColumn FieldName="Description" IsSmart="True" />
+                                <dxg:GridColumn FieldName="PositionStart" IsSmart="True" AllowResizing="False"  Width="100" MaxWidth="100" />
+                                <dxg:GridColumn FieldName="PositionEnd" IsSmart="True" AllowResizing="False" Width="100" MaxWidth="100"/>
+                            </dxg:GridControl>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0">
+                        <Image Source="{Binding SelectedItem.Poster, ElementName=GVScen}" Stretch="Uniform" />
+                    </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
             <dx:DXTabItem Header="Scen data">
@@ -483,7 +500,7 @@
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
 
-            
+
 
         </dx:DXTabControl>
 

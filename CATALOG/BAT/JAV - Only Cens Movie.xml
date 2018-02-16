@@ -192,43 +192,43 @@
     <property name="TotalSummary" iskey="true" value="0" />
     <property name="MRUFilters" iskey="true" value="9">
       <property name="Item1" isnull="true" iskey="true">
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Star], 'h')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Star], 'h')</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="FilterString">IsNullOrEmpty([Kind])</property>
+        <property name="FilterText">Is null or empty([Kind])</property>
+      </property>
+      <property name="Item3" isnull="true" iskey="true">
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Star], 'y')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Star], 'y')</property>
+      </property>
+      <property name="Item4" isnull="true" iskey="true">
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Star], 'yu')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Star], 'yu')</property>
+      </property>
+      <property name="Item5" isnull="true" iskey="true">
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Star], 'yun')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Star], 'yun')</property>
+      </property>
+      <property name="Item6" isnull="true" iskey="true">
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Star], 'yuna')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Star], 'yuna')</property>
+      </property>
+      <property name="Item7" isnull="true" iskey="true">
+        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Star], 'ya')</property>
+        <property name="FilterText">Is null or empty([Kind]) And Starts with([Star], 'ya')</property>
+      </property>
+      <property name="Item8" isnull="true" iskey="true">
         <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'w')</property>
         <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'w')</property>
       </property>
-      <property name="Item2" isnull="true" iskey="true">
+      <property name="Item9" isnull="true" iskey="true">
         <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'wa')</property>
         <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'wa')</property>
       </property>
-      <property name="Item3" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'wan')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'wan')</property>
-      </property>
-      <property name="Item4" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'wanz')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'wanz')</property>
-      </property>
-      <property name="Item5" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'wp')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'wp')</property>
-      </property>
-      <property name="Item6" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Serie], 'wpe')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Serie], 'wpe')</property>
-      </property>
-      <property name="Item7" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Star], 'otsu')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Star], 'otsu')</property>
-      </property>
-      <property name="Item8" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Star], 'ots')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Star], 'ots')</property>
-      </property>
-      <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Star], 'ot')</property>
-        <property name="FilterText">Is null or empty([Kind]) And Starts with([Star], 'ot')</property>
-      </property>
     </property>
-    <property name="FilterString">IsNullOrEmpty([Kind])</property>
+    <property name="FilterString">IsNullOrEmpty([Kind]) And StartsWith([Star], 'ha')</property>
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>
