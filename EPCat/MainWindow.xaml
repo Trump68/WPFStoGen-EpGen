@@ -374,8 +374,12 @@
                                 <dx:SimpleButton x:Name="ShowVideoBtn" Content="Play" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ShowVideoBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="EditVideoBtn" Content="Edit" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="EditVideoBtn_Click" />
+                                <dx:SimpleButton x:Name="EditStartVideoBtn" Content="Go Start" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="EditVideoBtn_Click" />
                             </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="EditEndVideoBtn" Content="Go End" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="EditEndVideoBtn_Click" />
+                            </dxlc:LayoutItem>
+
                         </dxlc:LayoutGroup>
 
                         <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
@@ -391,27 +395,34 @@
                                     <dxg:TableView 
                                 Name= "ScenGV"
                                 AllowPerPixelScrolling="True"
-                                ShowAutoFilterRow="True"
+                                ShowAutoFilterRow="False"
                                 AllowEditing= "False"
-                                ShowTotalSummary="True"
-                                AutoWidth="True"
+                                ShowTotalSummary="False"
+                                AutoWidth="False"
                                 ShowDataNavigator="True"
                                 DataNavigatorButtons="DeleteFocusedRow">
                                     </dxg:TableView>
                                 </dxg:GridControl.View>
-                                <dxg:GridColumn FieldName="Description" IsSmart="True" />
-                                <dxg:GridColumn FieldName="PositionStart" IsSmart="True" AllowResizing="False"  Width="100" MaxWidth="100" />
-                                <dxg:GridColumn FieldName="PositionEnd" IsSmart="True" AllowResizing="False" Width="100" MaxWidth="100"/>
+                                <dxg:GridColumn FieldName="Description" IsSmart="True" Width="600"/>
+                                <dxg:GridColumn FieldName="PositionStart" IsSmart="True" AllowResizing="False"  Width="50" MaxWidth="100" />
+                                <dxg:GridColumn FieldName="PositionEnd" IsSmart="True" AllowResizing="False" Width="50" MaxWidth="100"/>
+                                <dxg:GridColumn FieldName="LoopMode" IsSmart="True" AllowResizing="False" Width="50" MaxWidth="100"/>
+                                <dxg:GridColumn FieldName="LoopCount" IsSmart="True" AllowResizing="False" Width="50" MaxWidth="100"/>
                             </dxg:GridControl>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
-                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0">
+                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" MaxWidth="500">
                         <Image Source="{Binding SelectedItem.Poster, ElementName=GVScen}" Stretch="Uniform" />
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
             <dx:DXTabItem Header="Scen data">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="UpdateScenDataBtn" Content="Update" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="UpdateScenDataBtn_Click" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
                     <dxlc:LayoutItem Margin="0,0,0,0" Padding="0">
                         <dxe:TextEdit 
                                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
@@ -420,18 +431,17 @@
                             Text="{Binding SelectedItem.ScenDataAsString, ElementName=GV}" />
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
+                
             </dx:DXTabItem>
             <dx:DXTabItem Name ="EditTab" Header="Edit">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
-                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0">
-
+                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" >
                         <StackPanel>
-                            <MediaElement x:Name="minionPlayer" Margin="5"                         
+                            <MediaElement x:Name="minionPlayer" Margin="0"                         
                              ScrubbingEnabled="True"
                              MaxHeight="500"
-                             LoadedBehavior="Manual" 
-                             
-                                          />
+                             LoadedBehavior="Manual"
+                             HorizontalAlignment="Left"/>
                             <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarPosition"
                             VerticalAlignment="Center" Scroll="sbarPosition_Scroll"
                              PreviewMouseDown="sbarPosition_PreviewMouseDown" Margin="0,5"/>

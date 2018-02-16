@@ -263,6 +263,18 @@ namespace EPCat.Model
             }
         }
 
+        public void UpdateScenData()
+        {
+            _Clips = new ObservableCollection<MovieSceneInfo>();
+            foreach (var item in this.ScenData)
+            {
+                MovieSceneInfo sd = new MovieSceneInfo();
+                sd.LoadFromString(item);
+                sd.Path = Path.GetDirectoryName(this.ItemPath);
+                _Clips.Add(sd);
+            }
+        }
+
         public void UpdateScenDataFromClipInfoList()
         {
             this.ScenData.Clear();

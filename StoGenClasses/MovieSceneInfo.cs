@@ -15,6 +15,9 @@ namespace StoGen.Classes
         public string Path;
 
         public string Description { set; get; }
+        public int LoopMode { set; get; } = 1;
+        public int LoopCount { set; get; } = 1;
+        public int Speed { set; get; } = 100;
         public string File { set; get; }
         public string ID { set; get; }
         public decimal PositionStart { set; get; } = 0;
@@ -43,9 +46,12 @@ namespace StoGen.Classes
             List<string> rez = new List<string>();
             rez.Add($"ID={ID}");
             rez.Add($"FILE={File}");
+            rez.Add($"LM={this.LoopMode}");
+            rez.Add($"LC={this.LoopCount}");
             rez.Add($"START={PositionStart}");
             rez.Add($"END={PositionEnd}");
             rez.Add($"DSC={Description}");
+            rez.Add($"SPD={Speed}");
             return string.Join(";", rez.ToArray());
         }
 
@@ -73,6 +79,18 @@ namespace StoGen.Classes
                 else if (str.StartsWith("DSC="))
                 {
                     this.Description = str.Replace("DSC=", string.Empty);
+                }
+                else if (str.StartsWith("LM="))
+                {
+                    this.LoopMode = Convert.ToInt32(str.Replace("LM=", string.Empty));
+                }
+                else if (str.StartsWith("LC="))
+                {
+                    this.LoopCount = Convert.ToInt32(str.Replace("LC=", string.Empty));
+                }
+                else if (str.StartsWith("SPD="))
+                {
+                    this.LoopCount = Convert.ToInt32(str.Replace("SPD=", string.Empty));
                 }
             }
         }

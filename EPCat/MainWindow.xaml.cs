@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -537,7 +538,13 @@ namespace EPCat
         }
         private void ImportMedia(string path)
         {
-            RenderTargetBitmap source = new RenderTargetBitmap(Convert.ToInt32(this.minionPlayer.RenderSize.Width), Convert.ToInt32(this.minionPlayer.RenderSize.Height), 96.0, 96.0, PixelFormats.Pbgra32);
+            RenderTargetBitmap source = 
+                new RenderTargetBitmap(
+                    Convert.ToInt32(this.minionPlayer.RenderSize.Width),
+                    Convert.ToInt32(this.minionPlayer.RenderSize.Height),
+                    96.0,
+                    96.0,
+                    PixelFormats.Pbgra32);
             source.Render(this.minionPlayer);
             using (FileStream stream = new FileStream(path, FileMode.Create))
             {
@@ -649,15 +656,31 @@ namespace EPCat
             (this.DataContext as EpCatViewModel).SaveClipTemplate();
             // reset
             btnSetPositionReset_Click(null, null);
+            (this.DataContext as EpCatViewModel).RefreshFolder();
         }
 
         private void EditVideoBtn_Click(object sender, RoutedEventArgs e)
         {
             this.NavTabGroup.SelectedContainer = this.EditTab;
-            btnLoad_Click(null, null);
+            btnLoad_Click(null, null);        
             txtPosition.Text = (this.DataContext as EpCatViewModel).CurrentClip.PositionStart.ToString();
-            btnSetPosition_Click(null, null);
-            btnSetPositionStart_Click(null, null);
+            while (TimeSpan.FromSeconds(double.Parse(txtPosition.Text)) != minionPlayer.Position)
+                btnSetPosition_Click(null, null);
+        }
+        private void EditEndVideoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavTabGroup.SelectedContainer = this.EditTab;
+
+            btnLoad_Click(null, null);
+            txtPosition.Text = (this.DataContext as EpCatViewModel).CurrentClip.PositionEnd.ToString();
+            while ( TimeSpan.FromSeconds(double.Parse(txtPosition.Text)) != minionPlayer.Position)
+                btnSetPosition_Click(null, null);
+        }
+
+        private void UpdateScenDataBtn_Click(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as EpCatViewModel).CurrentFolder.UpdateScenData();
+            (this.DataContext as EpCatViewModel).RefreshFolder();
         }
     }
 }

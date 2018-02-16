@@ -28,20 +28,26 @@ namespace StoGen.Classes.Data.Movie
 
             double posStart = 0;
             double posEnd = 60000;
+            int loopMode = 1;
+            int loopCount = 1;
+            int speed = 100;
             if (this.MoviewInfo != null && this.MoviewInfo.ID == filter)
             {
                 posStart = Convert.ToDouble(this.MoviewInfo.PositionStart);
                 posEnd = Convert.ToDouble(this.MoviewInfo.PositionEnd);
+                loopMode = this.MoviewInfo.LoopMode;
+                loopCount = this.MoviewInfo.LoopCount;
+                speed = this.MoviewInfo.Speed;
             }
 
-            int speed = 100;
+            
             int volume = 100;
             VOLUME_M = 0;
             this.VOLUME_M = 0;
 
             anims = new List<List<AP>>() {
                 new List<AP>() { // shower 
-                new AP(filter) { APS = posStart, APE = posEnd, ALM = 1, ALC = 1 , AR=speed, AV=volume},
+                new AP(filter) { APS = posStart, APE = posEnd, ALM = loopMode, ALC = loopCount , AR=speed, AV=volume},
                 } };
             VideoFrame800(anims, music);
             this.AlignList.AddRange(AlignList);

@@ -93,6 +93,7 @@ namespace EPCat
                 {
                     this._CurrentClip = new MovieSceneInfo() { Description = "Default", ID = _CurrentFolder.ToString() };
                 }
+                
             }
         }
 
@@ -218,6 +219,11 @@ namespace EPCat
         {
             RaisePropertyChanged(() => this.CurrentCaps);            
         }
+        public void RefreshFolder()
+        {
+            RaisePropertyChanged(() => this.CurrentFolder);
+            RaisePropertyChanged(() => this.CurrentClip);
+        }
 
         public void UpdateCapsFile()
         {
@@ -319,6 +325,7 @@ namespace EPCat
             this.CurrentFolder.Clips.Add(newclipinfo);
             this.CurrentFolder.UpdateScenDataFromClipInfoList();
             RaisePropertyChanged(() => this.CurrentFolder);
+            RaisePropertyChanged(() => this.CurrentClip);
 
             this.ClipTemplate.PositionEnd = 0;
             this.ClipTemplate.PositionStart = 0;
