@@ -365,6 +365,25 @@
                     </dxlc:LayoutItem>
                 </Grid>
             </dx:DXTabItem>
+           
+            <!--<dx:DXTabItem Header="Scen data">
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="UpdateScenDataBtn" Content="Update" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="UpdateScenDataBtn_Click" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0">
+                        <dxe:TextEdit 
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                          TextWrapping="Wrap" AcceptsReturn="True" 
+                            Text="{Binding SelectedItem.ScenDataAsString, ElementName=GV}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                
+            </dx:DXTabItem>-->
+            
             <dx:DXTabItem Header="Scenario" Height="22" VerticalAlignment="Bottom">
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
 
@@ -396,7 +415,7 @@
                                 Name= "ScenGV"
                                 AllowPerPixelScrolling="True"
                                 ShowAutoFilterRow="False"
-                                AllowEditing= "False"
+                                AllowEditing= "True"
                                 ShowTotalSummary="False"
                                 AutoWidth="False"
                                 ShowDataNavigator="True"
@@ -415,23 +434,6 @@
                         <Image Source="{Binding SelectedItem.Poster, ElementName=GVScen}" Stretch="Uniform" />
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
-            </dx:DXTabItem>
-            <dx:DXTabItem Header="Scen data">
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
-                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
-                        <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="UpdateScenDataBtn" Content="Update" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="UpdateScenDataBtn_Click" />
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
-                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0">
-                        <dxe:TextEdit 
-                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
-                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                          TextWrapping="Wrap" AcceptsReturn="True" 
-                            Text="{Binding SelectedItem.ScenDataAsString, ElementName=GV}" />
-                    </dxlc:LayoutItem>
-                </dxlc:LayoutGroup>
-                
             </dx:DXTabItem>
             <dx:DXTabItem Name ="EditTab" Header="Edit">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">

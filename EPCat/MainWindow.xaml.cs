@@ -677,10 +677,6 @@ namespace EPCat
                 btnSetPosition_Click(null, null);
         }
 
-        private void UpdateScenDataBtn_Click(object sender, RoutedEventArgs e)
-        {
-            (this.DataContext as EpCatViewModel).CurrentFolder.UpdateScenData();
-            (this.DataContext as EpCatViewModel).RefreshFolder();
-        }
+    
     }
 }

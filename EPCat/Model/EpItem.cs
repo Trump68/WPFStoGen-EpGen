@@ -263,17 +263,17 @@ namespace EPCat.Model
             }
         }
 
-        public void UpdateScenData()
-        {
-            _Clips = new ObservableCollection<MovieSceneInfo>();
-            foreach (var item in this.ScenData)
-            {
-                MovieSceneInfo sd = new MovieSceneInfo();
-                sd.LoadFromString(item);
-                sd.Path = Path.GetDirectoryName(this.ItemPath);
-                _Clips.Add(sd);
-            }
-        }
+        //public void UpdateScenData()
+        //{
+        //    _Clips = new ObservableCollection<MovieSceneInfo>();
+        //    foreach (var item in this.ScenData)
+        //    {
+        //        MovieSceneInfo sd = new MovieSceneInfo();
+        //        sd.LoadFromString(item);
+        //        sd.Path = Path.GetDirectoryName(this.ItemPath);
+        //        _Clips.Add(sd);
+        //    }
+        //}
 
         public void UpdateScenDataFromClipInfoList()
         {
@@ -281,7 +281,7 @@ namespace EPCat.Model
             foreach (var item in Clips)
             {
                 this.ScenData.Add(item.GenerateString());
-            } 
+            }
         }
 
         List<string> _ScenData = new List<string>();
