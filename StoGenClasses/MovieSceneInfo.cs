@@ -13,11 +13,16 @@ namespace StoGen.Classes
     {
         [XmlIgnore]
         public string Path;
-
+        
         public string Description { set; get; }
+        public string Protogonist { set; get; }
+        public string Antagonist { set; get; }
         public int LoopMode { set; get; } = 1;
+        public string Grade { set; get; }
         public int LoopCount { set; get; } = 1;
         public int Speed { set; get; } = 100;
+        [XmlIgnore]
+        public int N { set; get; } = 0;
         public string File { set; get; }
         public string ID { set; get; }
         public decimal PositionStart { set; get; } = 0;
@@ -45,13 +50,21 @@ namespace StoGen.Classes
         {
             List<string> rez = new List<string>();
             rez.Add($"ID={ID}");
-            rez.Add($"FILE={File}");
+            if (!string.IsNullOrEmpty(File))
+                  rez.Add($"FILE={File}");
             rez.Add($"LM={this.LoopMode}");
             rez.Add($"LC={this.LoopCount}");
             rez.Add($"START={PositionStart}");
             rez.Add($"END={PositionEnd}");
-            rez.Add($"DSC={Description}");
+            if (!string.IsNullOrEmpty(Description))
+                rez.Add($"DSC={Description}");
             rez.Add($"SPD={Speed}");
+            if (!string.IsNullOrEmpty(Protogonist))
+                rez.Add($"PRT={Protogonist}");
+            if (!string.IsNullOrEmpty(Antagonist))
+                rez.Add($"ANT={Antagonist}");
+            if (!string.IsNullOrEmpty(Grade))
+                rez.Add($"GRD={Grade}");
             return string.Join(";", rez.ToArray());
         }
 
@@ -91,6 +104,18 @@ namespace StoGen.Classes
                 else if (str.StartsWith("SPD="))
                 {
                     this.LoopCount = Convert.ToInt32(str.Replace("SPD=", string.Empty));
+                }
+                else if (str.StartsWith("GRD="))
+                {
+                    this.Grade = str.Replace("GRD=", string.Empty);
+                }
+                else if (str.StartsWith("PRT="))
+                {
+                    this.Protogonist = str.Replace("PRT=", string.Empty);
+                }
+                else if (str.StartsWith("ANT="))
+                {
+                    this.Antagonist = str.Replace("ANT=", string.Empty);
                 }
             }
         }

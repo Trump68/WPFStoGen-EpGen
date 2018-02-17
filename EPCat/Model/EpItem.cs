@@ -243,7 +243,6 @@ namespace EPCat.Model
         public List<string> Undefined { get; set; } = new List<string>();
 
         private ObservableCollection<MovieSceneInfo> _Clips = null;
-        [XmlIgnore]
         public ObservableCollection<MovieSceneInfo> Clips
         {            
             get
@@ -251,17 +250,19 @@ namespace EPCat.Model
                 if (_Clips == null)
                 {
                     _Clips = new ObservableCollection<MovieSceneInfo>();
-                    foreach (var item in this.ScenData)
-                    {
-                        MovieSceneInfo sd = new MovieSceneInfo();
-                        sd.LoadFromString(item);
-                        sd.Path = Path.GetDirectoryName(this.ItemPath);
-                        _Clips.Add(sd);
-                    }
+
+                }
+                foreach (var item in _Clips)
+                {
+                    item.Path = Path.GetDirectoryName(this.ItemPath);
+                    item.N = _Clips.IndexOf(item) + 1;
                 }
                 return _Clips;
             }
         }
+
+        //[XmlIgnore]
+        //public List<string> ScenDataList = new List<string>();
 
         //public void UpdateScenData()
         //{
@@ -275,41 +276,41 @@ namespace EPCat.Model
         //    }
         //}
 
-        public void UpdateScenDataFromClipInfoList()
-        {
-            this.ScenData.Clear();
-            foreach (var item in Clips)
-            {
-                this.ScenData.Add(item.GenerateString());
-            }
-        }
+        //public void UpdateScenDataFromClipInfoList()
+        //{
+        //    this.ScenData.Clear();
+        //    foreach (var item in Clips)
+        //    {
+        //        this.ScenData.Add(item.GenerateString());
+        //    }
+        //}
 
-        List<string> _ScenData = new List<string>();
-        public List<string> ScenData
-        {
-            get
-            {
-                return _ScenData;
-            }
-            set
-            {
-                _ScenData = value;
-            }
-        }
+        //List<string> _ScenData = new List<string>();
+        //public List<string> ScenData
+        //{
+        //    get
+        //    {
+        //        return _ScenData;
+        //    }
+        //    set
+        //    {
+        //        _ScenData = value;
+        //    }
+        //}
 
 
-        [XmlIgnore]
-        public string ScenDataAsString
-        {
-            get
-            {
-                return string.Join(Environment.NewLine, this.ScenData.ToArray());
-            }
-            set
-            {
-                this.ScenData = value.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
-            }
-        }
+        //[XmlIgnore]
+        //public string ScenDataAsString
+        //{
+        //    get
+        //    {
+        //        return string.Join(Environment.NewLine, this.ScenData.ToArray());
+        //    }
+        //    set
+        //    {
+        //        this.ScenData = value.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+        //    }
+        //}
 
         [XmlIgnore]
         public bool SourceFolderExist { get; set; } = false;
@@ -355,8 +356,12 @@ namespace EPCat.Model
             this.Comments.Clear();
             this.Comments.AddRange(item.Comments);
 
-            this.ScenData.Clear();
-            this.ScenData.AddRange(item.ScenData);
+            this.Clips.Clear();
+            foreach (var it in item.Clips)
+            {
+                this.Clips.Add(it);
+            }
+           
 
             this.Undefined.Clear();
             this.Undefined.AddRange(item.Undefined);
@@ -461,14 +466,18 @@ namespace EPCat.Model
                         term = term.Replace(p_SCENDATA_END, string.Empty);
                         isScenData = false;
                     }
-                    result.ScenData.Add(term);
+                       MovieSceneInfo sd = new MovieSceneInfo();
+                       sd.LoadFromString(term);                      
+                       result.Clips.Add(sd);
                 }
                 else if (term.StartsWith(p_SCENDATA_BEGIN))
                 {
                     term = term.Replace(p_SCENDATA_BEGIN, string.Empty);
                     if (!string.IsNullOrWhiteSpace(term))
                     {
-                        result.ScenData.Add(term);
+                        MovieSceneInfo sd = new MovieSceneInfo();
+                        sd.LoadFromString(term);
+                        result.Clips.Add(sd);
                     }
                     isScenData = true;
                 }
@@ -700,17 +709,20 @@ namespace EPCat.Model
                 result.AddRange(ttt);               
             }
 
-            if (item.ScenData.Count == 1)
+            if (item.Clips.Count == 1)
             {
-                if (!string.IsNullOrEmpty(item.ScenData.First()))
-                    result.Add(p_SCENDATA_BEGIN + item.ScenData.First() + p_SCENDATA_END);
+                    result.Add(p_SCENDATA_BEGIN + item.Clips.First().GenerateString() + p_SCENDATA_END);
             }
-            else if (item.ScenData.Count > 0)
+            else if (item.Clips.Count > 0)
             {
                 List<string> ttt = new List<string>();
-                ttt.AddRange(item.ScenData);
-                ttt[0] = p_SCENDATA_BEGIN + item.ScenData.First();
-                ttt[ttt.Count - 1] = item.ScenData.Last() + p_SCENDATA_END;
+                foreach (var it in item.Clips)
+                {
+                    ttt.Add(it.GenerateString());
+                }
+                
+                ttt[0] = p_SCENDATA_BEGIN + ttt.First();
+                ttt[ttt.Count - 1] = ttt.Last() + p_SCENDATA_END;
                 result.AddRange(ttt);
             }
 

@@ -323,11 +323,9 @@ namespace EPCat
             newclipinfo.File = this.ClipTemplate.File;
 
             this.CurrentFolder.Clips.Add(newclipinfo);
-            this.CurrentFolder.UpdateScenDataFromClipInfoList();
             RaisePropertyChanged(() => this.CurrentFolder);
             RaisePropertyChanged(() => this.CurrentClip);
             RaisePropertyChanged(() => this.CurrentFolder.Clips);
-            RaisePropertyChanged(() => this.CurrentFolder.ScenData);
 
             this.ClipTemplate.PositionEnd = 0;
             this.ClipTemplate.PositionStart = 0;
