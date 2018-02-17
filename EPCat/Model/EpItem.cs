@@ -209,6 +209,14 @@ namespace EPCat.Model
             }
         }
         public string Name { get; set; }
+        [XmlIgnore]
+        public int Scenes
+        {
+            get
+            {
+                return this.Clips.Count;
+            }
+        }
         public string Catalog { get; set; } = "MOV";
         public int LastEdit { get; set; }
         public string AltTitle { get; set; }

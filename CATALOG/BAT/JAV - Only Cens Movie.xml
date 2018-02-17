@@ -19,7 +19,7 @@
         <property name="MergeWithPreviousGroup">false</property>
       </property>
     </property>
-    <property name="Columns" iskey="true" value="22">
+    <property name="Columns" iskey="true" value="23">
       <property name="Item1" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Catalog</property>
@@ -31,14 +31,14 @@
         <property name="GridRow">0</property>
         <property name="FieldName">Name</property>
         <property name="VisibleIndex">1</property>
-        <property name="ActualWidth">137.38137230333922</property>
+        <property name="ActualWidth">124.32263623937919</property>
       </property>
       <property name="Item3" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">AltTitle</property>
         <property name="Visible">true</property>
         <property name="VisibleIndex">5</property>
-        <property name="ActualWidth">132.50610710073349</property>
+        <property name="ActualWidth">119.92829067384109</property>
       </property>
       <property name="Item4" isnull="true" iskey="true">
         <property name="GridRow">0</property>
@@ -52,111 +52,118 @@
         <property name="FieldName">Year</property>
         <property name="Visible">true</property>
         <property name="VisibleIndex">6</property>
-        <property name="ActualWidth">53.168119017500167</property>
+        <property name="ActualWidth">47</property>
       </property>
       <property name="Item6" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Scenes</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">6</property>
+        <property name="ActualWidth">36</property>
+      </property>
+      <property name="Item7" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Month</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">12</property>
         <property name="ActualWidth">35.997601918465193</property>
       </property>
-      <property name="Item7" isnull="true" iskey="true">
+      <property name="Item8" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Day</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">12</property>
         <property name="ActualWidth">35.997601918465193</property>
       </property>
-      <property name="Item8" isnull="true" iskey="true">
+      <property name="Item9" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Rated</property>
         <property name="Visible">true</property>
         <property name="VisibleIndex">4</property>
-        <property name="ActualWidth">37</property>
+        <property name="ActualWidth">33.843365899779386</property>
       </property>
-      <property name="Item9" isnull="true" iskey="true">
+      <property name="Item10" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">XRated</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">12</property>
         <property name="ActualWidth">35.997601918465193</property>
       </property>
-      <property name="Item10" isnull="true" iskey="true">
+      <property name="Item11" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Kind</property>
         <property name="Visible">true</property>
         <property name="VisibleIndex">2</property>
-        <property name="ActualWidth">31.949708897020059</property>
+        <property name="ActualWidth">29.291259831540298</property>
       </property>
-      <property name="Item11" isnull="true" iskey="true">
+      <property name="Item12" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Brand</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">13</property>
         <property name="ActualWidth">35.997601918465193</property>
       </property>
-      <property name="Item12" isnull="true" iskey="true">
+      <property name="Item13" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Type</property>
         <property name="Visible">true</property>
         <property name="VisibleIndex">3</property>
-        <property name="ActualWidth">86.425370171011338</property>
-      </property>
-      <property name="Item13" isnull="true" iskey="true">
-        <property name="GridRow">0</property>
-        <property name="FieldName">Star</property>
-        <property name="VisibleIndex">7</property>
-        <property name="ActualWidth">127.53922193244652</property>
+        <property name="ActualWidth">78.393179542733179</property>
       </property>
       <property name="Item14" isnull="true" iskey="true">
         <property name="GridRow">0</property>
-        <property name="FieldName">Serie</property>
-        <property name="VisibleIndex">0</property>
-        <property name="ActualWidth">47.929645482734067</property>
+        <property name="FieldName">Star</property>
+        <property name="VisibleIndex">7</property>
+        <property name="ActualWidth">151.67178850356834</property>
       </property>
       <property name="Item15" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Serie</property>
+        <property name="VisibleIndex">0</property>
+        <property name="ActualWidth">43.694858518947193</property>
+      </property>
+      <property name="Item16" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">MyDescr</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">11</property>
         <property name="ActualWidth">25</property>
       </property>
-      <property name="Item16" isnull="true" iskey="true">
+      <property name="Item17" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Director</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">15</property>
         <property name="ActualWidth">32.389233624187113</property>
       </property>
-      <property name="Item17" isnull="true" iskey="true">
+      <property name="Item18" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Studio</property>
         <property name="VisibleIndex">8</property>
-        <property name="ActualWidth">111.10045509521515</property>
+        <property name="ActualWidth">136.8546207902113</property>
       </property>
-      <property name="Item18" isnull="true" iskey="true">
+      <property name="Item19" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">IMDB</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">16</property>
         <property name="ActualWidth">32.389233624187113</property>
       </property>
-      <property name="Item19" isnull="true" iskey="true">
+      <property name="Item20" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">ItemPath</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">8</property>
         <property name="ActualWidth">159</property>
       </property>
-      <property name="Item20" isnull="true" iskey="true">
+      <property name="Item21" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">CodesA</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">16</property>
         <property name="ActualWidth">32.389233624187113</property>
       </property>
-      <property name="Item21" isnull="true" iskey="true">
+      <property name="Item22" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">VideoPresent</property>
         <property name="Visible">false</property>
@@ -164,7 +171,7 @@
         <property name="Width">20</property>
         <property name="ActualWidth">8.5725087335896291</property>
       </property>
-      <property name="Item22" isnull="true" iskey="true">
+      <property name="Item23" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">SourceFolderExist</property>
         <property name="Visible">false</property>
@@ -173,7 +180,7 @@
       </property>
     </property>
     <property name="View" isnull="true" iskey="true">
-      <property name="FormatConditions" iskey="true" value="1">
+      <property name="FormatConditions" iskey="true" value="2">
         <property name="Item1" isnull="true" iskey="true">
           <property name="Format" isnull="true" iskey="true">
             <property name="Background">#FFD4FCD4</property>
@@ -183,9 +190,18 @@
           <property name="Expression">[SourceFolderExist] = True</property>
           <property name="TypeName">FormatCondition</property>
         </property>
+        <property name="Item2" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="TextDecorations">None</property>
+            <property name="Icon">pack://application:,,,/DevExpress.Xpf.Core.v17.1;component/Core/ConditionalFormatting/Images/IconSets/Flags3_1.png</property>
+          </property>
+          <property name="FieldName">Name</property>
+          <property name="Expression">[Scenes] &gt; 0</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
       </property>
       <property name="ColumnChooserState" isnull="true" iskey="true">
-        <property name="Location">411,120</property>
+        <property name="Location">643,101</property>
         <property name="Size">220,250</property>
       </property>
     </property>

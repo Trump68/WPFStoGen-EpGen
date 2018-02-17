@@ -129,6 +129,7 @@
                             <dxg:GridColumn FieldName="AltTitle" IsSmart="True" />
                             <dxg:GridColumn FieldName="Country" MaxWidth="35" IsSmart="True" />
                             <dxg:GridColumn FieldName="Year" MaxWidth="35" IsSmart="True" AllowGrouping="True" />
+                            <dxg:GridColumn FieldName="Scenes" MaxWidth="35" IsSmart="True" AllowGrouping="True" />
                             <dxg:GridColumn FieldName="Month" MaxWidth="35" IsSmart="True" />
                             <dxg:GridColumn FieldName="Day" MaxWidth="35" IsSmart="True" />
                             <dxg:GridColumn FieldName="Rated" MaxWidth="35" IsSmart="True" />
@@ -367,7 +368,7 @@
                     </dxlc:LayoutItem>
                 </Grid>
             </dx:DXTabItem>
-           
+
             <!--<dx:DXTabItem Header="Scen data">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
@@ -385,7 +386,7 @@
                 </dxlc:LayoutGroup>
                 
             </dx:DXTabItem>-->
-            
+
             <dx:DXTabItem Header="Scenario" Height="22" VerticalAlignment="Bottom">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
 
@@ -476,10 +477,11 @@
                                     <Image Source="/EPCat;component/play.png"/>
                                 </Button>
 
-                                <Button Margin="5,0,0,0" Content="Save" Height="30"
-                                  Name="btnSetPositionSave" Click="btnSetPositionSave_Click"/>
-
-                                <Button Margin="5,0,0,0" Content="Reset" Height="30"
+                                <Button Margin="5,0,0,0" Content="Load" Height="30" Width="50"
+                                  x:Name="btnLoad" Click="btnLoad_Click"/>
+                                <Button Margin="20,0,0,0" Content="ScrShot" Height="30" Width="50"
+                                  x:Name="btnScreenshot" Click="btnScreenshot_Click"/>
+                                <Button Margin="25,0,0,0" Content="Reset" Height="30"
                                   Name="btnSetPositionReset" Click="btnSetPositionReset_Click"/>
 
                                 <Button Margin="5,0,0,0" Content="Start" Height="30"
@@ -491,28 +493,20 @@
                                   Name="btnSetPositionEnd" Click="btnSetPositionEnd_Click"/>
                                 <TextBox Name="txtPositionEnd" Width="65" Height="24" Text="{Binding ClipTemplate.PositionEnd, UpdateSourceTrigger=PropertyChanged}"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-
+                                <Button Margin="5,0,0,0" Content="Set Position" Height="30"
+                                  Name="btnSetPosition" Click="btnSetPosition_Click"/>
+                                <Button Margin="40,0,0,0" Content="Save" Height="30"
+                                  Name="btnSetPositionSave" Click="btnSetPositionSave_Click"/>
                                 <Label Content="Position:" Margin="5,0,0,0" VerticalAlignment="Center"/>
                                 <TextBox Name="txtPosition" Width="65" Height="24" Text="0.0"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-                                <Button Margin="5,0,0,0" Content="Set Position" Height="30"
-                                  Name="btnSetPosition" Click="btnSetPosition_Click"/>
+
+
+                              
                             </StackPanel>
                             <TextBlock Text="File"/>
                             <TextBox Text="{Binding ClipToProcess, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" TextWrapping="Wrap"/>
-                            <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Button Margin="0,0,50,0" Content="Save Start" Height="30" Width="100"
-                                  Name="btnSaveStart" Click="btnSaveStart_Click"/>
-                                <Button Margin="5,0,0,0" Content="Load" Height="30" Width="100"
-                                  Name="btnLoad" Click="btnLoad_Click"/>
-                                <Button Margin="50,0,0,0" Content="Save End" Height="30" Width="100"
-                                  Name="btnSaveEnd" Click="btnSaveEnd_Click"/>
-                                <Button Margin="10,0,0,0" Content="Save End + Add" Height="30" Width="100"
-                                  Name="btnSaveEndAndAdd" Click="btnSaveEndAndAdd_Click"/>
-                                <Button Margin="10,0,0,0" Content="Screenshot" Height="30" Width="100"
-                                  Name="btnScreenshot" Click="btnScreenshot_Click"/>
-                            </StackPanel>
+
 
                         </StackPanel>
                     </dxlc:LayoutItem>

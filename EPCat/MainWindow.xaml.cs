@@ -654,11 +654,13 @@ namespace EPCat
 
         private void btnSetPositionSave_Click(object sender, RoutedEventArgs e)
         {
+            
             //save
             (this.DataContext as EpCatViewModel).SaveClipTemplate();
             // reset
             btnSetPositionReset_Click(null, null);
             (this.DataContext as EpCatViewModel).RefreshFolder();
+            MadeShot();
         }
 
         private void EditVideoBtn_Click(object sender, RoutedEventArgs e)

@@ -323,12 +323,15 @@ namespace EPCat
             newclipinfo.File = this.ClipTemplate.File;
 
             this.CurrentFolder.Clips.Add(newclipinfo);
+            this.CurrentClip = this.CurrentFolder.Clips.Last();
             RaisePropertyChanged(() => this.CurrentFolder);
             RaisePropertyChanged(() => this.CurrentClip);
             RaisePropertyChanged(() => this.CurrentFolder.Clips);
+            this.CurrentClip = this.CurrentFolder.Clips.Last();
 
             this.ClipTemplate.PositionEnd = 0;
             this.ClipTemplate.PositionStart = 0;
+
         }
     }
 
