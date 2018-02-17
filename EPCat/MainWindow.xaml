@@ -116,7 +116,9 @@
                                 <dxg:GridSummaryItem FieldName="Year" SummaryType="Count" ShowInColumn="" DisplayFormat="{}{0}" Alignment="Default" />
                             </dxg:GridControl.GroupSummary>
                             <dxg:GridControl.View>
-                                <dxg:TableView AllowConditionalFormattingMenu="True" AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow">
+                                <dxg:TableView 
+                                    AllowConditionalFormattingMenu="True" 
+                                    AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow">
                                     <dxg:TableView.FormatConditions>
                                         <dxg:ColorScaleFormatCondition Expression="[VideoPresent] = True" FieldName="ItemPath" PredefinedFormatName="YellowGreenColorScale" />
                                     </dxg:TableView.FormatConditions>
@@ -418,6 +420,7 @@
                                 AllowEditing= "True"
                                 ShowTotalSummary="False"
                                 AutoWidth="False"
+                                        ShowGroupPanel="false"
                                 ShowDataNavigator="True"
                                 DataNavigatorButtons="DeleteFocusedRow">
                                     </dxg:TableView>

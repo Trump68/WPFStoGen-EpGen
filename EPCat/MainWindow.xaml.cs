@@ -97,7 +97,7 @@ namespace EPCat
             timerVideoTime = new DispatcherTimer();
             timerVideoTime.Interval = TimeSpan.FromSeconds(0.1);
             timerVideoTime.Tick += new EventHandler(timer_Tick);
-            minionPlayer.MediaOpened += minionPlayer_MediaOpened;
+            
             if ((this.DataContext as EpCatViewModel).ClipToProcess != null)
             {
                 minionPlayer.Source = new Uri((this.DataContext as EpCatViewModel).ClipToProcess);
@@ -107,6 +107,7 @@ namespace EPCat
         }
         private void minionPlayer_MediaOpened(object sender, RoutedEventArgs e)
         {
+            minionPlayer.MediaOpened -= minionPlayer_MediaOpened;
             minionPlayer.Volume = 0;
             sbarSeek.Minimum = 0;
             sbarSeek.Maximum = ScrollFactor1;
@@ -364,7 +365,8 @@ namespace EPCat
             if (!videos.Any()) return;
             string path = videos.First();
             (this.DataContext as EpCatViewModel).ClipToProcess = path;
-
+            minionPlayer.MediaOpened -= minionPlayer_MediaOpened;
+            minionPlayer.MediaOpened += minionPlayer_MediaOpened;
             if (!string.IsNullOrEmpty((this.DataContext as EpCatViewModel).ClipToProcess))
             {
                 minionPlayer.Stop();
@@ -662,19 +664,28 @@ namespace EPCat
         private void EditVideoBtn_Click(object sender, RoutedEventArgs e)
         {
             this.NavTabGroup.SelectedContainer = this.EditTab;
-            btnLoad_Click(null, null);        
+            //btnLoad_Click(null, null);        
             txtPosition.Text = (this.DataContext as EpCatViewModel).CurrentClip.PositionStart.ToString();
-            while (TimeSpan.FromSeconds(double.Parse(txtPosition.Text)) != minionPlayer.Position)
-                btnSetPosition_Click(null, null);
+            //while (TimeSpan.FromSeconds(double.Parse(txtPosition.Text)) != minionPlayer.Position)
+            //    btnSetPosition_Click(null, null);
+            //System.Threading.Thread.Sleep(2000);
+            //btnSetPosition_Click(null, null);
+            //System.Threading.Thread.Sleep(2000);
+            //btnSetPosition_Click(null, null);
+            
         }
         private void EditEndVideoBtn_Click(object sender, RoutedEventArgs e)
         {
             this.NavTabGroup.SelectedContainer = this.EditTab;
 
-            btnLoad_Click(null, null);
+            //btnLoad_Click(null, null);
             txtPosition.Text = (this.DataContext as EpCatViewModel).CurrentClip.PositionEnd.ToString();
-            while ( TimeSpan.FromSeconds(double.Parse(txtPosition.Text)) != minionPlayer.Position)
-                btnSetPosition_Click(null, null);
+            //while ( TimeSpan.FromSeconds(double.Parse(txtPosition.Text)) != minionPlayer.Position)
+            //    btnSetPosition_Click(null, null);
+            //System.Threading.Thread.Sleep(2000);
+            //btnSetPosition_Click(null, null);
+            //System.Threading.Thread.Sleep(2000);
+            //btnSetPosition_Click(null, null);
         }
 
     
