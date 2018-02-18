@@ -622,6 +622,10 @@ namespace EPCat
                 {
                     this.MadeShot();
                 }
+                else if (e.Key == Key.LeftShift)
+                {
+                    this.ProcessSpace();
+                }
                 else
                 {
                     return;
@@ -630,6 +634,8 @@ namespace EPCat
                 this.ShowPosition();
             }
         }
+
+       
 
         private void btnSetPositionStart_Click(object sender, RoutedEventArgs e)
         {
@@ -660,36 +666,33 @@ namespace EPCat
             // reset
             btnSetPositionReset_Click(null, null);
             (this.DataContext as EpCatViewModel).RefreshFolder();
-            MadeShot();
+           // MadeShot();
         }
 
         private void EditVideoBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.NavTabGroup.SelectedContainer = this.EditTab;
-            //btnLoad_Click(null, null);        
-            txtPosition.Text = (this.DataContext as EpCatViewModel).CurrentClip.PositionStart.ToString();
-            //while (TimeSpan.FromSeconds(double.Parse(txtPosition.Text)) != minionPlayer.Position)
-            //    btnSetPosition_Click(null, null);
-            //System.Threading.Thread.Sleep(2000);
-            //btnSetPosition_Click(null, null);
-            //System.Threading.Thread.Sleep(2000);
-            //btnSetPosition_Click(null, null);
-            
+            this.NavTabGroup.SelectedContainer = this.EditTab;      
+            txtPosition.Text = (this.DataContext as EpCatViewModel).CurrentClip.PositionStart.ToString();     
         }
         private void EditEndVideoBtn_Click(object sender, RoutedEventArgs e)
         {
             this.NavTabGroup.SelectedContainer = this.EditTab;
-
-            //btnLoad_Click(null, null);
             txtPosition.Text = (this.DataContext as EpCatViewModel).CurrentClip.PositionEnd.ToString();
-            //while ( TimeSpan.FromSeconds(double.Parse(txtPosition.Text)) != minionPlayer.Position)
-            //    btnSetPosition_Click(null, null);
-            //System.Threading.Thread.Sleep(2000);
-            //btnSetPosition_Click(null, null);
-            //System.Threading.Thread.Sleep(2000);
-            //btnSetPosition_Click(null, null);
         }
 
-    
+
+        private void ProcessSpace()
+        {
+           if ((this.DataContext as EpCatViewModel).ClipTemplate.PositionStart == 0)
+            {
+                btnSetPositionStart_Click(null,null);
+            }
+           else if ((this.DataContext as EpCatViewModel).ClipTemplate.PositionEnd == 0)
+            {
+                btnSetPositionEnd_Click(null, null);
+                btnSetPositionSave_Click(null, null);
+                MadeShot();
+            }
+        }
     }
 }
