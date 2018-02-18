@@ -13,7 +13,11 @@ namespace StoGen.Classes
     {
         [XmlIgnore]
         public string Path;
-        
+        [XmlIgnore]
+        public decimal Length
+        {
+            get { return this.PositionEnd - this.PositionStart; }
+        }
         public string Description { set; get; }
         public string Protogonist { set; get; }
         public string Antagonist { set; get; }

@@ -316,11 +316,33 @@ namespace EPCat
 
         internal void SaveClipTemplate()
         {
+            var last = this.CurrentFolder.Clips.Last();
+            
+
             MovieSceneInfo newclipinfo = new MovieSceneInfo();
             newclipinfo.ID = Guid.NewGuid().ToString();
             newclipinfo.PositionStart = this.ClipTemplate.PositionStart;
             newclipinfo.PositionEnd = this.ClipTemplate.PositionEnd;
             newclipinfo.File = this.ClipTemplate.File;
+            if (last != null)
+            {
+                newclipinfo.Antagonist = last.Antagonist;
+                newclipinfo.Protogonist = last.Protogonist;
+                string desc = last.Description;
+                if (!string.IsNullOrEmpty(desc))
+                {
+                    int n;
+                    if (int.TryParse(desc.Substring(0,3),out n))
+                    {
+                        newclipinfo.Description = $"{(n+1).ToString("D3")}.00 {new string(last.Description.Skip(7).ToArray())}";
+                    }
+                    else
+                    {
+                        newclipinfo.Description = last.Description;
+                    }
+                }
+            }
+
 
             this.CurrentFolder.Clips.Add(newclipinfo);
             this.CurrentClip = this.CurrentFolder.Clips.Last();

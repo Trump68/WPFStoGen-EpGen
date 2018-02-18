@@ -431,6 +431,7 @@
                                 <dxg:GridColumn FieldName="Protogonist" IsSmart="True" Width="250"/>
                                 <dxg:GridColumn FieldName="Antagonist" IsSmart="True" Width="250"/>
                                 <dxg:GridColumn FieldName="Grade" IsSmart="True" AllowResizing="False" Width="30" MaxWidth="30"/>
+                                <dxg:GridColumn FieldName="Length" IsSmart="True" AllowResizing="False"  Width="50" MaxWidth="100" />
                                 <dxg:GridColumn FieldName="PositionStart" IsSmart="True" AllowResizing="False"  Width="50" MaxWidth="100" />
                                 <dxg:GridColumn FieldName="PositionEnd" IsSmart="True" AllowResizing="False" Width="50" MaxWidth="100"/>
                                 <dxg:GridColumn FieldName="LoopMode" Header="Mode" IsSmart="True" AllowResizing="False" Width="30" MaxWidth="30"/>
