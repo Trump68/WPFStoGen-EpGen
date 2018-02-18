@@ -457,8 +457,41 @@ namespace EPCat.Model
             bool isScenData = false;
             foreach (var line in passport)
             {
-                string term = line.Trim();
-                if (isComments)
+                string term = line.Trim();                       
+                if (term.StartsWith(p_SCENDATA_BEGIN))
+                {
+                    term = term.Replace(p_SCENDATA_BEGIN, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        MovieSceneInfo sd = new MovieSceneInfo();
+                        sd.LoadFromString(term);
+                        if (!string.IsNullOrEmpty(sd.ID))
+                        result.Clips.Add(sd);
+                    }
+                    isScenData = true;
+                }
+                else if (isScenData)
+                {
+                    if (term.Contains(p_SCENDATA_END))
+                    {
+                        term = term.Replace(p_SCENDATA_END, string.Empty);
+                        isScenData = false;
+                    }
+                    MovieSceneInfo sd = new MovieSceneInfo();
+                    sd.LoadFromString(term);
+                    result.Clips.Add(sd);
+                }
+                else if (term.StartsWith(p_COMMENTS_BEGIN))
+                {
+                    term = term.Replace(p_COMMENTS_BEGIN, string.Empty);
+                    term = term.Replace(p_COMMENTS_END, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.Comments.Add(term);
+                    }
+                    isComments = true;
+                }
+                else if (isComments)
                 {
                     if (term.Contains(p_COMMENTS_END))
                     {
@@ -466,37 +499,6 @@ namespace EPCat.Model
                         isComments = false;
                     }
                     result.Comments.Add(term);
-                }
-                if (isScenData)
-                {
-                    if (term.Contains(p_SCENDATA_END))
-                    {
-                        term = term.Replace(p_SCENDATA_END, string.Empty);
-                        isScenData = false;
-                    }
-                       MovieSceneInfo sd = new MovieSceneInfo();
-                       sd.LoadFromString(term);                      
-                       result.Clips.Add(sd);
-                }
-                else if (term.StartsWith(p_SCENDATA_BEGIN))
-                {
-                    term = term.Replace(p_SCENDATA_BEGIN, string.Empty);
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        MovieSceneInfo sd = new MovieSceneInfo();
-                        sd.LoadFromString(term);
-                        result.Clips.Add(sd);
-                    }
-                    isScenData = true;
-                }
-                else if (term.StartsWith(p_COMMENTS_BEGIN))
-                {
-                    term = term.Replace(p_COMMENTS_BEGIN, string.Empty);
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        result.Comments.Add(term);
-                    }
-                    isComments = true;
                 }
                 else if (term.StartsWith(p_GID))
                 {

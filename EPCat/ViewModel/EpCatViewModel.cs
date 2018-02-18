@@ -316,7 +316,7 @@ namespace EPCat
 
         internal void SaveClipTemplate()
         {
-            var last = this.CurrentFolder.Clips.Last();
+            var last = this.CurrentFolder.Clips.LastOrDefault();
             
 
             MovieSceneInfo newclipinfo = new MovieSceneInfo();
@@ -341,6 +341,10 @@ namespace EPCat
                         newclipinfo.Description = last.Description;
                     }
                 }
+            }
+            else
+            {
+                newclipinfo.Description = "001.00";
             }
 
 
