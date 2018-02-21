@@ -132,6 +132,7 @@ namespace EPCat.Model
             DoTempWork1_OneCountry("CHI", fromPath, toPath);
             DoTempWork1_OneCountry("IND", fromPath, toPath);
             DoTempWork1_OneCountry("SWE", fromPath, toPath);
+            DoTempWork1_OneCountry("SNG", fromPath, toPath);
 
             DoTempWork1_OneCountry("$WEB", fromPath, toPath);
             DoTempWork1_OneCountry("$JAV", fromPath, toPath);

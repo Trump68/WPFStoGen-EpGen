@@ -108,7 +108,7 @@ namespace EPCat
         private void minionPlayer_MediaOpened(object sender, RoutedEventArgs e)
         {
             minionPlayer.MediaOpened -= minionPlayer_MediaOpened;
-            minionPlayer.Volume = 0;
+            minionPlayer.Volume = 100;
             sbarSeek.Minimum = 0;
             sbarSeek.Maximum = ScrollFactor1;
             sbarSeek.Value = (int)(sbarSeek.Maximum / 2);

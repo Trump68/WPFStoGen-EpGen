@@ -69,13 +69,7 @@ namespace StoGenWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-           
-            PictureCadreDS.Visibility = Visibility.Hidden;
-            PictureCadreDS.DataContext = Projector.ImageCadre;
-
-            SGManager.StartMainProc(Scene, GlobalMenuCreator);
-            
-            
+            this.Start();           
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -142,7 +136,8 @@ namespace StoGenWPF
             }
             else if (e.Key == Key.Escape)
             {
-                this.Close();
+                this.Hide();
+                this.Stop();             
             }
             else if (
                 e.Key == Key.NumPad1 || e.Key == Key.NumPad2 || e.Key == Key.NumPad3 || e.Key == Key.NumPad4 
@@ -162,5 +157,22 @@ namespace StoGenWPF
                 e.Handled = false;
             }
         }
+
+        private void Stop()
+        {
+            Projector.ClipSound.Stop();
+            Projector.PicContainer.Clip.Stop();
+            foreach (var item in Projector.Sound)
+            {
+                item.Stop();
+            }
+        }
+        public void Start()
+        {
+            PictureCadreDS.Visibility = Visibility.Hidden;
+            PictureCadreDS.DataContext = Projector.ImageCadre;
+            SGManager.StartMainProc(Scene, GlobalMenuCreator);
+        }
+
     }
 }

@@ -167,6 +167,7 @@ namespace StoGen.Classes
 
         internal void SetData(seTe data)
         {
+            if (string.IsNullOrEmpty(data.Text)) return;
             this.TextList.AddRange(data.Text.Split('~').ToList());
             //this.BackColor = data.BackColor;
             this.FontName = data.FontName;

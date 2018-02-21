@@ -288,6 +288,8 @@ namespace EPCat
 
         }
 
+
+        StoGenWPF.MainWindow projector = null;
         internal void ShowClip()
         {
             if (this.CurrentClip == null) return;
@@ -301,10 +303,12 @@ namespace EPCat
             if (scene.LoadData(this.CurrentClip, path))
                  scene.Generate(this.CurrentClip.ID);
 
-            StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
-            window.GlobalMenuCreator = GameWorldFactory.GameWorld;
-            window.Scene = scene;
-            window.Show();            
+            if (projector == null)
+                    projector = new StoGenWPF.MainWindow();
+            projector.GlobalMenuCreator = GameWorldFactory.GameWorld;
+            projector.Scene = scene;
+            projector.Show();
+            projector.Start();
         }
         internal void EditClip()
         {

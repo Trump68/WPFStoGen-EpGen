@@ -41,7 +41,7 @@
         <property name="GridRow">0</property>
         <property name="FieldName">Name</property>
         <property name="VisibleIndex">0</property>
-        <property name="ActualWidth">226</property>
+        <property name="ActualWidth">184</property>
       </property>
       <property name="Item3" isnull="true" iskey="true">
         <property name="GridRow">0</property>
@@ -87,13 +87,13 @@
         <property name="GridRow">0</property>
         <property name="FieldName">Rated</property>
         <property name="VisibleIndex">1</property>
-        <property name="ActualWidth">32</property>
+        <property name="ActualWidth">44.642983723215544</property>
       </property>
       <property name="Item10" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">XRated</property>
         <property name="VisibleIndex">2</property>
-        <property name="ActualWidth">27.939694415696874</property>
+        <property name="ActualWidth">40.223739679536386</property>
       </property>
       <property name="Item11" isnull="true" iskey="true">
         <property name="GridRow">0</property>
@@ -120,11 +120,12 @@
         <property name="GridRow">0</property>
         <property name="FieldName">Star</property>
         <property name="VisibleIndex">3</property>
-        <property name="ActualWidth">148.15546695990355</property>
+        <property name="ActualWidth">171.06680696641786</property>
       </property>
       <property name="Item15" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Serie</property>
+        <property name="Visible">false</property>
         <property name="VisibleIndex">7</property>
         <property name="ActualWidth">54.743417477809182</property>
       </property>
@@ -132,19 +133,19 @@
         <property name="GridRow">0</property>
         <property name="FieldName">MyDescr</property>
         <property name="VisibleIndex">4</property>
-        <property name="ActualWidth">110.67458619097221</property>
+        <property name="ActualWidth">130.27254760567143</property>
       </property>
       <property name="Item17" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Director</property>
         <property name="VisibleIndex">5</property>
-        <property name="ActualWidth">54.743417477809153</property>
+        <property name="ActualWidth">69.3969610125794</property>
       </property>
       <property name="Item18" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Studio</property>
         <property name="VisibleIndex">6</property>
-        <property name="ActualWidth">54.743417477809153</property>
+        <property name="ActualWidth">69.3969610125794</property>
       </property>
       <property name="Item19" isnull="true" iskey="true">
         <property name="GridRow">0</property>
@@ -184,7 +185,7 @@
       </property>
     </property>
     <property name="View" isnull="true" iskey="true">
-      <property name="FormatConditions" iskey="true" value="2">
+      <property name="FormatConditions" iskey="true" value="8">
         <property name="Item1" isnull="true" iskey="true">
           <property name="Format" isnull="true" iskey="true">
             <property name="Background">#FFB8F2B8</property>
@@ -197,10 +198,64 @@
         <property name="Item2" isnull="true" iskey="true">
           <property name="Format" isnull="true" iskey="true">
             <property name="TextDecorations">None</property>
-            <property name="Icon">pack://application:,,,/DevExpress.Xpf.Core.v17.1;component/Core/ConditionalFormatting/Images/IconSets/Flags3_1.png</property>
+            <property name="Icon">pack://application:,,,/DevExpress.Xpf.Core.v17.1;component/Core/ConditionalFormatting/Images/IconSets/Symbols3_1.png</property>
           </property>
           <property name="FieldName">Name</property>
           <property name="Expression">[Scenes] &gt; 0</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item3" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="TextDecorations">None</property>
+            <property name="Icon">pack://application:,,,/DevExpress.Xpf.Core.v17.1;component/Core/ConditionalFormatting/Images/IconSets/TrafficLights4_1.png</property>
+          </property>
+          <property name="FieldName">Rated</property>
+          <property name="Expression">[Rated] &gt; '4'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item4" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="TextDecorations">None</property>
+            <property name="Icon">pack://application:,,,/DevExpress.Xpf.Core.v17.1;component/Core/ConditionalFormatting/Images/IconSets/TrafficLights4_2.png</property>
+          </property>
+          <property name="FieldName">Rated</property>
+          <property name="Expression">[Rated] = '4'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item5" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="TextDecorations">None</property>
+            <property name="Icon">pack://application:,,,/DevExpress.Xpf.Core.v17.1;component/Core/ConditionalFormatting/Images/IconSets/TrafficLights4_3.png</property>
+          </property>
+          <property name="FieldName">Rated</property>
+          <property name="Expression">[Rated] = '3'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item6" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="TextDecorations">None</property>
+            <property name="Icon">pack://application:,,,/DevExpress.Xpf.Core.v17.1;component/Core/ConditionalFormatting/Images/IconSets/Rating5_4.png</property>
+          </property>
+          <property name="FieldName">Rated</property>
+          <property name="Expression">[Rated] = '2'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item7" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="TextDecorations">None</property>
+            <property name="Icon">pack://application:,,,/DevExpress.Xpf.Core.v17.1;component/Core/ConditionalFormatting/Images/IconSets/Rating5_5.png</property>
+          </property>
+          <property name="FieldName">Rated</property>
+          <property name="Expression">[Rated] = '1'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item8" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="TextDecorations">None</property>
+            <property name="Icon">pack://application:,,,/DevExpress.Xpf.Core.v17.1;component/Core/ConditionalFormatting/Images/IconSets/TrafficLights4_4.png</property>
+          </property>
+          <property name="FieldName">Rated</property>
+          <property name="Expression">[Rated] Between('1', '2')</property>
           <property name="TypeName">FormatCondition</property>
         </property>
       </property>

@@ -19,6 +19,7 @@ namespace StoGen.Classes
             get { return this.PositionEnd - this.PositionStart; }
         }
         public string Description { set; get; }
+        public string Story { set; get; }
         public string Protogonist { set; get; }
         public string Antagonist { set; get; }
         public int LoopMode { set; get; } = 1;
@@ -69,11 +70,14 @@ namespace StoGen.Classes
                 rez.Add($"ANT={Antagonist}");
             if (!string.IsNullOrEmpty(Grade))
                 rez.Add($"GRD={Grade}");
+            if (!string.IsNullOrEmpty(Story))
+                rez.Add($"STR={Story}");
             return string.Join(";", rez.ToArray());
         }
 
         public void LoadFromString(string item)
         {
+            item = item.Replace("SCENDATA>", string.Empty);
             List<string> data = item.Split(';').ToList();
             foreach (var str in data)
             {
@@ -120,6 +124,10 @@ namespace StoGen.Classes
                 else if (str.StartsWith("ANT="))
                 {
                     this.Antagonist = str.Replace("ANT=", string.Empty);
+                }
+                else if (str.StartsWith("STR="))
+                {
+                    this.Antagonist = str.Replace("STR=", string.Empty);
                 }
             }
         }
