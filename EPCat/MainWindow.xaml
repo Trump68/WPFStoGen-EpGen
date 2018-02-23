@@ -430,7 +430,7 @@
                                 <dxg:GridColumn FieldName="Description" IsSmart="True" Width="300"/>
                                 <dxg:GridColumn FieldName="Protogonist" IsSmart="True" Width="150"/>
                                 <dxg:GridColumn FieldName="Antagonist" IsSmart="True" Width="150"/>
-                                <dxg:GridColumn FieldName="Story" IsSmart="True" Width="450"/>
+                                <dxg:GridColumn FieldName="Story" IsSmart="True" Width="350"/>
                                 <dxg:GridColumn FieldName="Grade" IsSmart="True" AllowResizing="False" Width="30" MaxWidth="30"/>
                                 <dxg:GridColumn FieldName="Length" IsSmart="True" AllowResizing="False"  Width="50" MaxWidth="100" />
                                 <dxg:GridColumn FieldName="PositionStart" IsSmart="True" AllowResizing="False"  Width="50" MaxWidth="100" />
@@ -446,7 +446,7 @@
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
-            <dx:DXTabItem Name ="EditTab" Header="Edit">
+            <dx:DXTabItem Name ="EditTab" Header="Edit" Height="22" VerticalAlignment="Top">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
                     <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" >
                         <StackPanel>
