@@ -153,6 +153,7 @@ namespace EPCat.Model
              * $10-Director
              * $01 JAV $02  $04  $
              * $01 WEB $03 WEBCLIP $08 P $07  $ 
+             * $01 HEN $03 COMIX $08 P $10 Kaos $ 
              */
 
             var dirs = Directory.GetDirectories(fromPath, "$*", SearchOption.TopDirectoryOnly).ToList();

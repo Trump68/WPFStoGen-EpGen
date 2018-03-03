@@ -54,8 +54,8 @@ namespace EPCat.Model
                 if (File.Exists(path.LocalPath)) return new BitmapImage(path);
                 GetLeastNumImage(Path.GetDirectoryName(ItemPath), PosterPath);
                 if (File.Exists(path.LocalPath)) return new BitmapImage(path);
-                GetLeastNumImage(Path.GetDirectoryName(ItemPath) + @"\EVENTS\", PosterPath);
-                if (File.Exists(path.LocalPath)) return new BitmapImage(path);
+                //GetLeastNumImage(Path.GetDirectoryName(ItemPath) + @"\EVENTS\", PosterPath);
+                //if (File.Exists(path.LocalPath)) return new BitmapImage(path);
 
 
                 // try to get from catalog poster dir
