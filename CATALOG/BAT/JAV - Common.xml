@@ -14,7 +14,7 @@
     </property>
     <property name="SortInfo" iskey="true" value="1">
       <property name="Item1" isnull="true" iskey="true">
-        <property name="FieldName">Kind</property>
+        <property name="FieldName">Star</property>
         <property name="SortOrder">Ascending</property>
         <property name="MergeWithPreviousGroup">false</property>
       </property>
@@ -192,30 +192,46 @@
       </property>
     </property>
     <property name="TotalSummary" iskey="true" value="0" />
-    <property name="MRUFilters" iskey="true" value="6">
+    <property name="MRUFilters" iskey="true" value="10">
       <property name="Item1" isnull="true" iskey="true">
-        <property name="FilterString">[Kind] &lt;&gt; 'PhotoSet'</property>
-        <property name="FilterText">[Kind] &lt;&gt; 'PhotoSet'</property>
+        <property name="FilterString">Contains([Star], 'miura')</property>
+        <property name="FilterText">Contains([Star], 'miura')</property>
       </property>
       <property name="Item2" isnull="true" iskey="true">
-        <property name="FilterString">[Kind] = 'PhotoSet'</property>
-        <property name="FilterText">[Kind] = 'PhotoSet'</property>
+        <property name="FilterString">StartsWith([Star], 'miu')</property>
+        <property name="FilterText">Starts with([Star], 'miu')</property>
       </property>
       <property name="Item3" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'SERIE DESCRIPTION')</property>
-        <property name="FilterText">Starts with([Name], 'SERIE DESCRIPTION')</property>
+        <property name="FilterString">StartsWith([Star], 'mi')</property>
+        <property name="FilterText">Starts with([Star], 'mi')</property>
       </property>
       <property name="Item4" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Studio], 's')</property>
-        <property name="FilterText">Starts with([Studio], 's')</property>
+        <property name="FilterString">StartsWith([Star], 'm')</property>
+        <property name="FilterText">Starts with([Star], 'm')</property>
       </property>
       <property name="Item5" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Studio], 'sy')</property>
-        <property name="FilterText">Starts with([Studio], 'sy')</property>
+        <property name="FilterString">StartsWith([Star], 'aika')</property>
+        <property name="FilterText">Starts with([Star], 'aika')</property>
       </property>
       <property name="Item6" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Studio], 'sys')</property>
-        <property name="FilterText">Starts with([Studio], 'sys')</property>
+        <property name="FilterString">StartsWith([Star], 'aik')</property>
+        <property name="FilterText">Starts with([Star], 'aik')</property>
+      </property>
+      <property name="Item7" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Star], 'ai')</property>
+        <property name="FilterText">Starts with([Star], 'ai')</property>
+      </property>
+      <property name="Item8" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Star], 'a')</property>
+        <property name="FilterText">Starts with([Star], 'a')</property>
+      </property>
+      <property name="Item9" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Serie], 'jux')</property>
+        <property name="FilterText">Starts with([Serie], 'jux')</property>
+      </property>
+      <property name="Item10" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Serie], 'ju')</property>
+        <property name="FilterText">Starts with([Serie], 'ju')</property>
       </property>
     </property>
     <property name="FilterString" />

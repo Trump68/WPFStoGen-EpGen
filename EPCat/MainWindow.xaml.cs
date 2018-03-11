@@ -357,6 +357,11 @@ namespace EPCat
             
             ViewModel.ShowClip();
         }
+        private void ShowSceneBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            ViewModel.ShowScene();
+        }
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
             this.NavTabGroup.SelectedContainer = this.EditTab;
@@ -658,16 +663,7 @@ namespace EPCat
             txtPositionEnd.Text = (this.DataContext as EpCatViewModel).ClipTemplate.PositionEnd.ToString();
         }
 
-        private void btnSetPositionSave_Click(object sender, RoutedEventArgs e)
-        {
-            
-            //save
-            (this.DataContext as EpCatViewModel).SaveClipTemplate();
-            // reset
-            btnSetPositionReset_Click(null, null);
-            (this.DataContext as EpCatViewModel).RefreshFolder();
-           // MadeShot();
-        }
+      
 
         private void EditVideoBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -693,6 +689,25 @@ namespace EPCat
                 btnSetPositionSave_Click(null, null);
                 MadeShot();
             }
+        }
+
+        private void AddSceneBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //save
+            (this.DataContext as EpCatViewModel).AddCombinedScene();
+            // reset
+            (this.DataContext as EpCatViewModel).RefreshFolder();
+        }
+
+        private void btnSetPositionSave_Click(object sender, RoutedEventArgs e)
+        {
+
+            //save
+            (this.DataContext as EpCatViewModel).SaveClipTemplate();
+            // reset
+            btnSetPositionReset_Click(null, null);
+            (this.DataContext as EpCatViewModel).RefreshFolder();
+            // MadeShot();
         }
     }
 }

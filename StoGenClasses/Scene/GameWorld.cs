@@ -7,6 +7,7 @@ using StoGenMake.Scenes;
 using StoGen.Classes.Data;
 using StoGen.Classes.Data.Games;
 using StoGen.Classes.Data.Movie;
+using System;
 
 namespace StoGenMake
 {
@@ -23,6 +24,13 @@ namespace StoGenMake
                 }
                 return _GameWorld;
             }
+        }
+
+        public static BaseScene GetScene(List<CombinedSceneInfo> infolist)
+        {
+            CommonGameCG scene = new CommonGameCG();
+            scene.SetInfo(infolist);
+            return scene;
         }
     }
     public class GameWorld : IMenuCreator

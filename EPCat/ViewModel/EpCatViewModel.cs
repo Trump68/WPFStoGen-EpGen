@@ -85,15 +85,21 @@ namespace EPCat
             set
             {
                 _CurrentFolder = value;
-                if (_CurrentFolder.Clips.Any())
+                if (_CurrentFolder != null)
                 {
-                    this._CurrentClip = _CurrentFolder.Clips.First();
+                    if (_CurrentFolder.Clips.Any())
+                    {
+                        this._CurrentClip = _CurrentFolder.Clips.First();
+                    }
+                    else
+                    {
+                        this._CurrentClip = new MovieSceneInfo() { Description = "Default", ID = _CurrentFolder.ToString() };
+                    }
+                    if (_CurrentFolder.CombinedScenes.Any())
+                    {
+                        this._CurrentCombinedScene = _CurrentFolder.CombinedScenes.First();
+                    }
                 }
-                else
-                {
-                    this._CurrentClip = new MovieSceneInfo() { Description = "Default", ID = _CurrentFolder.ToString() };
-                }
-                
             }
         }
 
@@ -124,7 +130,26 @@ namespace EPCat
             }
         }
 
-
+        CombinedSceneInfo _CurrentCombinedScene;
+        public CombinedSceneInfo CurrentCombinedScene
+        {
+            get
+            {
+                if (this.CurrentFolder != null)
+                {
+                    if (_CurrentCombinedScene == null)
+                    {
+                        if (this.CurrentFolder.CombinedScenes.Any())
+                            _CurrentCombinedScene = this.CurrentFolder.CombinedScenes.First();
+                    }
+                }
+                return _CurrentCombinedScene;
+            }
+            set
+            {
+                _CurrentCombinedScene = value;
+            }
+        }
 
         CapsItem _CurrentCapsGroup;
         public CapsItem CurrentCapsGroup
@@ -223,6 +248,7 @@ namespace EPCat
         {
             RaisePropertyChanged(() => this.CurrentFolder);
             RaisePropertyChanged(() => this.CurrentClip);
+            RaisePropertyChanged(() => this.CurrentCombinedScene);
         }
 
         public void UpdateCapsFile()
@@ -358,10 +384,67 @@ namespace EPCat
             RaisePropertyChanged(() => this.CurrentClip);
             RaisePropertyChanged(() => this.CurrentFolder.Clips);
             this.CurrentClip = this.CurrentFolder.Clips.Last();
+            this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
 
             this.ClipTemplate.PositionEnd = 0;
             this.ClipTemplate.PositionStart = 0;
 
+        }
+        internal void AddCombinedScene()
+        {
+           // var last = this.CurrentFolder.CombinedScenes.LastOrDefault();
+            CombinedSceneInfo newclipinfo = new CombinedSceneInfo();
+            newclipinfo.ID = Guid.NewGuid().ToString();
+            //if (last != null)
+            //{
+            //    newclipinfo.Antagonist = last.Antagonist;
+            //    newclipinfo.Protogonist = last.Protogonist;
+            //    string desc = last.Description;
+            //    if (!string.IsNullOrEmpty(desc))
+            //    {
+            //        int n;
+            //        if (int.TryParse(desc.Substring(0, 3), out n))
+            //        {
+            //            newclipinfo.Description = $"{(n + 1).ToString("D3")}.00 {new string(last.Description.Skip(7).ToArray())}";
+            //        }
+            //        else
+            //        {
+            //            newclipinfo.Description = last.Description;
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    newclipinfo.Description = "001.00";
+            //}
+
+
+            this.CurrentFolder.CombinedScenes.Add(newclipinfo);
+            this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
+
+            RaisePropertyChanged(() => this.CurrentFolder);
+            RaisePropertyChanged(() => this.CurrentCombinedScene);
+            RaisePropertyChanged(() => this.CurrentFolder.CombinedScenes);
+            this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
+
+        }
+
+        internal void ShowScene()
+        {
+            if (this.CurrentCombinedScene == null) return;
+            GameWorldFactory.GameWorld.LoadData();
+            BaseScene scene = null;
+            var infolist = this.CurrentFolder.CombinedScenes.Where(x => x.Group == this.CurrentCombinedScene.Group).ToList();
+
+            scene = GameWorldFactory.GetScene(infolist);
+
+
+            if (projector == null)
+                projector = new StoGenWPF.MainWindow();
+            projector.GlobalMenuCreator = GameWorldFactory.GameWorld;
+            projector.Scene = scene;
+            projector.Show();
+            projector.Start();
         }
     }
 

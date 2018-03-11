@@ -268,57 +268,25 @@ namespace EPCat.Model
                 return _Clips;
             }
         }
+        private ObservableCollection<CombinedSceneInfo> _CombinedScenes = null;
+        public ObservableCollection<CombinedSceneInfo> CombinedScenes
+        {
+            get
+            {
+                if (_CombinedScenes == null)
+                {
+                    _CombinedScenes = new ObservableCollection<CombinedSceneInfo>();
 
-        //[XmlIgnore]
-        //public List<string> ScenDataList = new List<string>();
+                }
+                foreach (var item in _CombinedScenes)
+                {
+                    item.Path = Path.GetDirectoryName(this.ItemPath);
+                    item.N = _CombinedScenes.IndexOf(item) + 1;
+                }
+                return _CombinedScenes;
+            }
+        }
 
-        //public void UpdateScenData()
-        //{
-        //    _Clips = new ObservableCollection<MovieSceneInfo>();
-        //    foreach (var item in this.ScenData)
-        //    {
-        //        MovieSceneInfo sd = new MovieSceneInfo();
-        //        sd.LoadFromString(item);
-        //        sd.Path = Path.GetDirectoryName(this.ItemPath);
-        //        _Clips.Add(sd);
-        //    }
-        //}
-
-        //public void UpdateScenDataFromClipInfoList()
-        //{
-        //    this.ScenData.Clear();
-        //    foreach (var item in Clips)
-        //    {
-        //        this.ScenData.Add(item.GenerateString());
-        //    }
-        //}
-
-        //List<string> _ScenData = new List<string>();
-        //public List<string> ScenData
-        //{
-        //    get
-        //    {
-        //        return _ScenData;
-        //    }
-        //    set
-        //    {
-        //        _ScenData = value;
-        //    }
-        //}
-
-
-        //[XmlIgnore]
-        //public string ScenDataAsString
-        //{
-        //    get
-        //    {
-        //        return string.Join(Environment.NewLine, this.ScenData.ToArray());
-        //    }
-        //    set
-        //    {
-        //        this.ScenData = value.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
-        //    }
-        //}
 
         [XmlIgnore]
         public bool SourceFolderExist { get; set; } = false;
@@ -369,7 +337,12 @@ namespace EPCat.Model
             {
                 this.Clips.Add(it);
             }
-           
+
+            this.CombinedScenes.Clear();
+            foreach (var it in item.CombinedScenes)
+            {
+                this.CombinedScenes.Add(it);
+            }
 
             this.Undefined.Clear();
             this.Undefined.AddRange(item.Undefined);
@@ -410,6 +383,8 @@ namespace EPCat.Model
         static string p_COMMENTS_END = ">";
         static string p_SCENDATA_BEGIN = "<SCENDATA";
         static string p_SCENDATA_END = "SCENDATA>";
+        static string p_COMBDATA_BEGIN = "<COMBDATA";
+        static string p_COMBDATA_END = "COMBDATA>";
         public static string p_PassportName = "PASSPORT.TXT";
         public static string p_PassportCapsName = "PASSPORT_CAPS.TXT";
         public static string p_PassportEventsName = "PASSPORT_EVENTS.TXT";
@@ -455,9 +430,11 @@ namespace EPCat.Model
             EpItem result = new EpItem(1);
             bool isComments = false;
             bool isScenData = false;
+            bool isCombData = false;
             foreach (var line in passport)
             {
-                string term = line.Trim();                       
+                string term = line.Trim();
+                // clipdata                       
                 if (term.StartsWith(p_SCENDATA_BEGIN))
                 {
                     term = term.Replace(p_SCENDATA_BEGIN, string.Empty);
@@ -481,6 +458,31 @@ namespace EPCat.Model
                     sd.LoadFromString(term);
                     result.Clips.Add(sd);
                 }
+                //comb data
+                else if (term.StartsWith(p_COMBDATA_BEGIN))
+                {
+                    term = term.Replace(p_COMBDATA_BEGIN, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        CombinedSceneInfo sd = new CombinedSceneInfo();
+                        sd.LoadFromString(term);
+                        if (!string.IsNullOrEmpty(sd.ID))
+                            result.CombinedScenes.Add(sd);
+                    }
+                    isCombData = true;
+                }
+                else if (isCombData)
+                {
+                    if (term.Contains(p_COMBDATA_END))
+                    {
+                        term = term.Replace(p_COMBDATA_END, string.Empty);
+                        isCombData = false;
+                    }
+                    CombinedSceneInfo sd = new CombinedSceneInfo();
+                    sd.LoadFromString(term);
+                    result.CombinedScenes.Add(sd);
+                }
+
                 else if (term.StartsWith(p_COMMENTS_BEGIN))
                 {
                     term = term.Replace(p_COMMENTS_BEGIN, string.Empty);
@@ -736,6 +738,23 @@ namespace EPCat.Model
                 result.AddRange(ttt);
             }
 
+            // combined scenes
+            if (item.CombinedScenes.Count == 1)
+            {
+                result.Add(p_COMBDATA_BEGIN + item.CombinedScenes.First().GenerateString() + p_COMBDATA_END);
+            }
+            else if (item.CombinedScenes.Count > 0)
+            {
+                List<string> ttt = new List<string>();
+                foreach (var it in item.CombinedScenes)
+                {
+                    ttt.Add(it.GenerateString());
+                }
+
+                ttt[0] = p_COMBDATA_BEGIN + ttt.First();
+                ttt[ttt.Count - 1] = ttt.Last() + p_COMBDATA_END;
+                result.AddRange(ttt);
+            }
 
             foreach (var s in item.Undefined)
             {
