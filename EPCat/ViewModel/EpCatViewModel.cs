@@ -435,7 +435,7 @@ namespace EPCat
             if (this.CurrentCombinedScene == null) return;
             GameWorldFactory.GameWorld.LoadData();
             BaseScene scene = null;
-            var infolist = this.CurrentFolder.CombinedScenes.Where(x => x.Group == this.CurrentCombinedScene.Group).ToList();
+            var infolist = this.CurrentFolder.CombinedScenes.Where(x => x.Group == this.CurrentCombinedScene.Group && x.Queue == this.CurrentCombinedScene.Queue).ToList();
 
             scene = GameWorldFactory.GetScene(infolist);
 

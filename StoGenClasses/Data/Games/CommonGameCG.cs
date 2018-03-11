@@ -35,7 +35,8 @@ namespace StoGen.Classes.Data.Games
             var infopictures = InfoList.Where(x => x.Kind == 0);
             foreach (var item in infopictures)
             {
-                AddToGlobalImage(item.File, item.File, moviePath);
+                if (!string.IsNullOrEmpty(item.File))
+                    AddToGlobalImage(item.File, item.File, moviePath);
             }
 
             Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();

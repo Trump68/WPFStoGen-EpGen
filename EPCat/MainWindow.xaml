@@ -552,13 +552,13 @@
                                 AutoWidth="False"
                                 ShowGroupPanel="True"
                                 ShowDataNavigator="True"
-                                DataNavigatorButtons="DeleteFocusedRow" ShowGroupedColumns="False">
+                                DataNavigatorButtons="DeleteFocusedRow" ShowGroupedColumns="True">
                                     </dxg:TableView>
                                 </dxg:GridControl.View>
                                 <dxg:GridColumn FieldName="N" IsSmart="True" AllowResizing="False" Width="30" MaxWidth="30"/>
                                 <dxg:GridColumn FieldName="Kind" IsSmart="True" Width="35"/>
                                 <dxg:GridColumn FieldName="Group" IsSmart="True" Width="100"/>
-                                <dxg:GridColumn FieldName="Queue" IsSmart="True" Width="100"/>
+                                <dxg:GridColumn FieldName="Queue" IsSmart="True" Width="100" GroupIndex="0"/>
                                 <dxg:GridColumn FieldName="File" IsSmart="True" Width="300"/>
                                 <dxg:GridColumn FieldName="Description" IsSmart="True" Width="300"/>
                                 <dxg:GridColumn FieldName="Story" IsSmart="True" Width="350"/>

@@ -1984,16 +1984,17 @@
       <CombinedSceneInfo>
         <ID>6ffcbf37-72b5-430c-95fe-4b0a7eb1f6e0</ID>
         <Kind>1</Kind>
-        <Description>001</Description>
-        <Story>"Но в парной могут быть только двое.~Поэтому сейчас пойдем мы с Оксаночкой.~А потом уже - ты." </Story>
+        <Story>"В парной тесно, там могут быть только двое.~Поэтому сейчас пойдем мы с Оксаночкой.~А потом уже - ты." </Story>
         <Group>001</Group>
+        <Queue>001</Queue>
       </CombinedSceneInfo>
       <CombinedSceneInfo>
         <ID>09516330-5796-4de1-8edd-0ac3651c69fe</ID>
         <File>0010.ad0797c28dcd41af9bceb4c521c0e0d3.png</File>
         <Kind>0</Kind>
-        <Description>GF 001</Description>
+        <Description>GF 001-1</Description>
         <Group>001</Group>
+        <Queue>001</Queue>
         <X>-150</X>
       </CombinedSceneInfo>
       <CombinedSceneInfo>
@@ -2002,6 +2003,105 @@
         <Kind>0</Kind>
         <Description>ТОЛСТЯК 001</Description>
         <Group>001</Group>
+        <Queue>001</Queue>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>338f8746-94b1-48bb-897c-24dcfcc8d8e5</ID>
+        <Kind>1</Kind>
+        <Story>"В парной тесно, там могут быть только двое.~Поэтому сейчас пойдем мы с Оксаночкой.~А потом уже - ты." </Story>
+        <Group>001</Group>
+        <Queue>002</Queue>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>81b14654-32f5-4eee-a906-a4196c06121a</ID>
+        <File>0420.7c407cfed7a74d15b0ce743e0a5942ef.png</File>
+        <Kind>0</Kind>
+        <Description>ТОЛСТЯК 002</Description>
+        <Group>001</Group>
+        <Queue>002</Queue>
+        <X>50</X>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>f21545c1-00a9-4c5a-91df-b01ea08587e2</ID>
+        <File>0038.ea75599c6f1246178a264e2f9a4c3f7f.png</File>
+        <Kind>0</Kind>
+        <Description>GF 001-2</Description>
+        <Group>001</Group>
+        <Queue>002</Queue>
+        <X>-100</X>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>84b0d46d-c332-4057-a9aa-2933ba3142f2</ID>
+        <Kind>1</Kind>
+        <Story>"В парной тесно, там могут быть только двое.~Поэтому сейчас пойдем мы с Оксаночкой.~А потом уже - ты." </Story>
+        <Group>001</Group>
+        <Queue>003</Queue>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>c44e0dcc-1265-4d26-ac97-144fe0187631</ID>
+        <File>0053.c1ce283d2b5f423d8d2ce3984ab9341b.png</File>
+        <Kind>0</Kind>
+        <Description>GF 002-1</Description>
+        <Group>001</Group>
+        <Queue>003</Queue>
+        <X>-200</X>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>359a003e-be6f-45fb-978b-a91b017f3907</ID>
+        <File>0423.7b0627214e70498e819c375d4005ac79.png</File>
+        <Kind>0</Kind>
+        <Description>ТОЛСТЯК 001</Description>
+        <Group>001</Group>
+        <Queue>003</Queue>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>acd1cf53-f580-47d1-ba8f-cfbd3de99c2d</ID>
+        <Kind>1</Kind>
+        <Story>"В парной тесно, там могут быть только двое.~Сначала пойдут я и Оксаночка." </Story>
+        <Group>001</Group>
+        <Queue>004</Queue>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>fef9faaa-0c0b-4ddf-a807-41a735f60dda</ID>
+        <File>0420.7c407cfed7a74d15b0ce743e0a5942ef.png</File>
+        <Kind>0</Kind>
+        <Description>ТОЛСТЯК 002</Description>
+        <Group>001</Group>
+        <Queue>004</Queue>
+        <X>-150</X>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>41c06910-9d6a-4ec6-afab-c74656d6ec9f</ID>
+        <File>0063.949153c064894dd6a21793561e20aa32.png</File>
+        <Kind>0</Kind>
+        <Description>GF 002-1</Description>
+        <Group>001</Group>
+        <Queue>004</Queue>
+        <X>50</X>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>8dedd64c-6362-44d6-b60d-f74fd5780693</ID>
+        <Kind>1</Kind>
+        <Story>"В парной тесно, там могут быть только двое.~Сначала пойдут я и Оксаночка." </Story>
+        <Group>001</Group>
+        <Queue>005</Queue>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>29117788-27da-4877-88e7-0e0192a8f4fb</ID>
+        <File>0012.07af92df4c2f418a9739ef5c6c8347a7.png</File>
+        <Kind>0</Kind>
+        <Description>GF 001-1</Description>
+        <Group>001</Group>
+        <Queue>005</Queue>
+        <X>-150</X>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>92bd9702-85ec-4f24-8a76-c4a738228667</ID>
+        <File>0423.7b0627214e70498e819c375d4005ac79.png</File>
+        <Kind>0</Kind>
+        <Description>ТОЛСТЯК 001</Description>
+        <Group>001</Group>
+        <Queue>005</Queue>
       </CombinedSceneInfo>
     </CombinedScenes>
   </EpItem>
