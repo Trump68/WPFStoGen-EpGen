@@ -592,6 +592,18 @@
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                                 </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                            <dxlc:LayoutItem Label="Story" LabelPosition="Left">
+                            <dxe:TextEdit 
+                                MaxHeight="320"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding SelectedItem.StoryAsString, ElementName=GVCombScen}" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+
+
                     </dxlc:LayoutGroup>
                     
                     

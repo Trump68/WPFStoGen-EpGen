@@ -13,6 +13,24 @@ namespace StoGen.Classes
         public string File { set; get; }
         public int Kind { set; get; } = 0;
         public string Description { set; get; }
+        [XmlIgnore]
+        public string StoryAsString
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(this.Story))
+                    return this.Story.Replace("~", Environment.NewLine);
+                else
+                    return this.Story;
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                    this.Story = value.Replace(Environment.NewLine, "~");
+                else
+                    this.Story = value;
+            }
+        }
         public string Story { set; get; }
         public string Group { set; get; }
 

@@ -16,7 +16,7 @@ namespace StoGen.Classes.Data.Games
             EngineHiVer = 1;
             EngineLoVer = 0;
 
-            this.DefaultSceneText.Size = 200;
+            this.DefaultSceneText.Size = 150;
             this.DefaultSceneText.Width = 1000;
             this.DefaultSceneText.FontSize = 32;
             this.DefaultSceneText.Shift = 250;
