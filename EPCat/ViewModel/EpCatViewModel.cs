@@ -392,27 +392,28 @@ namespace EPCat
         }
         internal void AddCombinedScene()
         {
-           // var last = this.CurrentFolder.CombinedScenes.LastOrDefault();
+            var last = this.CurrentFolder.CombinedScenes.LastOrDefault();
             CombinedSceneInfo newclipinfo = new CombinedSceneInfo();
             newclipinfo.ID = Guid.NewGuid().ToString();
-            //if (last != null)
-            //{
-            //    newclipinfo.Antagonist = last.Antagonist;
-            //    newclipinfo.Protogonist = last.Protogonist;
-            //    string desc = last.Description;
-            //    if (!string.IsNullOrEmpty(desc))
-            //    {
-            //        int n;
-            //        if (int.TryParse(desc.Substring(0, 3), out n))
-            //        {
-            //            newclipinfo.Description = $"{(n + 1).ToString("D3")}.00 {new string(last.Description.Skip(7).ToArray())}";
-            //        }
-            //        else
-            //        {
-            //            newclipinfo.Description = last.Description;
-            //        }
-            //    }
-            //}
+            if (last != null)
+            {
+                newclipinfo.Group = last.Group;
+                newclipinfo.Queue = last.Queue;
+                //    newclipinfo.Protogonist = last.Protogonist;
+                //    string desc = last.Description;
+                //    if (!string.IsNullOrEmpty(desc))
+                //    {
+                //        int n;
+                //        if (int.TryParse(desc.Substring(0, 3), out n))
+                //        {
+                //            newclipinfo.Description = $"{(n + 1).ToString("D3")}.00 {new string(last.Description.Skip(7).ToArray())}";
+                //        }
+                //        else
+                //        {
+                //            newclipinfo.Description = last.Description;
+                //        }
+                //    }
+            }
             //else
             //{
             //    newclipinfo.Description = "001.00";

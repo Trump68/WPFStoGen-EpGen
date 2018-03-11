@@ -33,6 +33,7 @@ namespace StoGen.Classes
         }
         public string Story { set; get; }
         public string Group { set; get; }
+        public string Queue { set; get; }
 
         //PictureProps
         public string X { set; get; }
@@ -61,6 +62,8 @@ namespace StoGen.Classes
                 rez.Add($"Y={Y}");
             if (!string.IsNullOrEmpty(Group))
                 rez.Add($"GROUP={Group}");
+            if (!string.IsNullOrEmpty(Queue))
+                rez.Add($"QUEUE={Queue}");
             return string.Join(";", rez.ToArray());
         }
 
@@ -97,6 +100,10 @@ namespace StoGen.Classes
                 else if (str.StartsWith("GROUP="))
                 {
                     this.Group = str.Replace("GROUP=", string.Empty);
+                }
+                else if (str.StartsWith("QUEUE="))
+                {
+                    this.Queue = str.Replace("QUEUE=", string.Empty);
                 }
             }
         }
