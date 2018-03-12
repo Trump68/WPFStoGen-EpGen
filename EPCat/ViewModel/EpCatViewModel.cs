@@ -40,10 +40,6 @@ namespace EPCat
 
         //bool updateenabled = false;
 
-        internal void Close()
-        {
-            _Loader.SaveCatalog();           
-        }
         
 
         private ObservableCollection<EpItem> _FolderListView = new ObservableCollection<EpItem>();
@@ -390,35 +386,34 @@ namespace EPCat
             this.ClipTemplate.PositionStart = 0;
 
         }
+
+        string CopiedCombinedScene = null;
+        internal void CopyCombinedScene()
+        {
+            if (this.CurrentCombinedScene == null)
+                return;            
+            CopiedCombinedScene = this.CurrentCombinedScene.GenerateString();
+        }
+
         internal void AddCombinedScene()
         {
             var last = this.CurrentFolder.CombinedScenes.LastOrDefault();
             CombinedSceneInfo newclipinfo = new CombinedSceneInfo();
-            newclipinfo.ID = Guid.NewGuid().ToString();
-            if (last != null)
+            if (CopiedCombinedScene != null)
             {
-                newclipinfo.Group = last.Group;
-                newclipinfo.Queue = last.Queue;
-                //    newclipinfo.Protogonist = last.Protogonist;
-                //    string desc = last.Description;
-                //    if (!string.IsNullOrEmpty(desc))
-                //    {
-                //        int n;
-                //        if (int.TryParse(desc.Substring(0, 3), out n))
-                //        {
-                //            newclipinfo.Description = $"{(n + 1).ToString("D3")}.00 {new string(last.Description.Skip(7).ToArray())}";
-                //        }
-                //        else
-                //        {
-                //            newclipinfo.Description = last.Description;
-                //        }
-                //    }
+                newclipinfo.LoadFromString(CopiedCombinedScene);
+                CopiedCombinedScene = null;
             }
-            //else
-            //{
-            //    newclipinfo.Description = "001.00";
-            //}
+            else
+            {
+                if (last != null)
+                {
+                    newclipinfo.Group = last.Group;
+                    newclipinfo.Queue = last.Queue;
+                }
+            }
 
+            newclipinfo.ID = Guid.NewGuid().ToString();
 
             this.CurrentFolder.CombinedScenes.Add(newclipinfo);
             this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
@@ -435,7 +430,25 @@ namespace EPCat
             if (this.CurrentCombinedScene == null) return;
             GameWorldFactory.GameWorld.LoadData();
             BaseScene scene = null;
-            var infolist = this.CurrentFolder.CombinedScenes.Where(x => x.Group == this.CurrentCombinedScene.Group && x.Queue == this.CurrentCombinedScene.Queue).ToList();
+            var infolist = this.CurrentFolder.CombinedScenes.Where(x => x.Queue == this.CurrentCombinedScene.Queue).ToList();
+            foreach (var item in infolist)
+            {
+                if (string.IsNullOrEmpty(item.Path))
+                {
+                    if (item.Kind == 2)
+                    {
+                        var it = this._FolderList.Where(x => x.CombinedScenes.Where(z => z.ID != item.ID && z.File == item.File).Any()).FirstOrDefault();
+                        if (it != null)
+                        {                         
+                            item.Path = it.ItemDirectory;
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
 
             scene = GameWorldFactory.GetScene(infolist);
 
@@ -447,6 +460,14 @@ namespace EPCat
             projector.Show();
             projector.Start();
         }
+
+        internal void Close()
+        {
+            _Loader.SaveCatalog();
+            if (projector != null)
+                projector.Close();
+        }
+
     }
 
 }

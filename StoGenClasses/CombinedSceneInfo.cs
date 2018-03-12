@@ -38,6 +38,12 @@ namespace StoGen.Classes
         //PictureProps
         public string X { set; get; }
         public string Y { set; get; }
+        public string R { set; get; } //rotation
+        public string O { set; get; } //opacity
+        public string F { set; get; } //flip
+        public string S { set; get; } //size
+        public string T { set; get; } //transition
+        public string Z { set; get; } //ZOrder
 
         [XmlIgnore]
         public int N { set; get; } = 0;
@@ -60,13 +66,26 @@ namespace StoGen.Classes
                 rez.Add($"X={X}");
             if (!string.IsNullOrEmpty(Y))
                 rez.Add($"Y={Y}");
+            if (!string.IsNullOrEmpty(O))
+                rez.Add($"O={O}");
+            if (!string.IsNullOrEmpty(S))
+                rez.Add($"S={S}");
+            if (!string.IsNullOrEmpty(Z))
+                rez.Add($"Z={Z}");
+            if (!string.IsNullOrEmpty(F))
+                rez.Add($"F={F}");
+            if (!string.IsNullOrEmpty(R))
+                rez.Add($"R={R}");
+            if (!string.IsNullOrEmpty(T))
+                rez.Add($"T={T}");
+
+
             if (!string.IsNullOrEmpty(Group))
                 rez.Add($"GROUP={Group}");
             if (!string.IsNullOrEmpty(Queue))
                 rez.Add($"QUEUE={Queue}");
             return string.Join(";", rez.ToArray());
         }
-
         public void LoadFromString(string item)
         {
             item = item.Replace("SCENDATA>", string.Empty);
@@ -97,6 +116,32 @@ namespace StoGen.Classes
                 {
                     this.X = str.Replace("Y=", string.Empty);
                 }
+                else if (str.StartsWith("O="))
+                {
+                    this.O = str.Replace("O=", string.Empty);
+                }
+                else if (str.StartsWith("R="))
+                {
+                    this.R = str.Replace("R=", string.Empty);
+                }
+                else if (str.StartsWith("S="))
+                {
+                    this.S = str.Replace("S=", string.Empty);
+                }
+                else if (str.StartsWith("F="))
+                {
+                    this.F = str.Replace("F=", string.Empty);
+                }
+                else if (str.StartsWith("Z="))
+                {
+                    this.Z = str.Replace("Z=", string.Empty);
+                }
+                else if (str.StartsWith("T="))
+                {
+                    this.T = str.Replace("T=", string.Empty);
+                }
+
+
                 else if (str.StartsWith("GROUP="))
                 {
                     this.Group = str.Replace("GROUP=", string.Empty);

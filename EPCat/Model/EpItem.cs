@@ -106,6 +106,7 @@ namespace EPCat.Model
                 return Path.GetDirectoryName(ItemPath);
             }
         }
+
         public List<string> Videos
         {
             get
@@ -279,9 +280,10 @@ namespace EPCat.Model
 
                 }
                 foreach (var item in _CombinedScenes)
-                {
-                    item.Path = Path.GetDirectoryName(this.ItemPath);
+                {                    
                     item.N = _CombinedScenes.IndexOf(item) + 1;
+                    if (item.Kind != 2)
+                        item.Path = Path.GetDirectoryName(this.ItemPath);
                 }
                 return _CombinedScenes;
             }
@@ -805,6 +807,20 @@ namespace EPCat.Model
                 return Id.Substring(0, 4);
             }
         }
+        //private string _File = null;
+        //public string File
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(_File))
+        //        {
+        //            if (!string.IsNullOrEmpty(ItemPath))
+        //                _File = Path.GetFileName(ItemPath);
+        //        }
+        //        return _File;
+        //    }
+        //}
+
         public bool GroupsEnabled { get { return string.IsNullOrEmpty(this.ParentId); } }
         // public string FileName { set; get; }
 
@@ -914,29 +930,6 @@ namespace EPCat.Model
         }
 
 
-        Dictionary<int, int> _DicOneVal = new Dictionary<int, int>();
-        [XmlIgnore]
-        public Dictionary<int, int> DicOneVal
-        {
-            get
-            {
-                if (Parent != null) return Parent.DicOneVal;
-                return _DicOneVal;
-            }
-        }
-
-
-        Dictionary<int, List<object>> _DicMulVal = new Dictionary<int, List<object>>();
-        [XmlIgnore]
-        public Dictionary<int, List<object>> DicMulVal
-        {
-            get
-            {
-                if (Parent != null) return Parent.DicMulVal;
-                return _DicMulVal;
-            }
-        }
-
         CapsItem _Parent;
 
         [XmlIgnore]
@@ -953,20 +946,6 @@ namespace EPCat.Model
             set
             {
                 _Parent = value;
-                /*
-                if (_Parent == null)
-                {
-                    if (!string.IsNullOrEmpty(this._ParentId))
-                    {
-                        this._ParentId = null;
-                    }
-                }                    
-                else if (this._ParentId != value.ParentId)
-                {
-                    this._ParentId = value.ParentId;
-                    if (!value.ChildList.Contains(this)) value.ChildList.Add(this);
-                }
-                */
             }
             get { return _Parent; }
         }
@@ -985,22 +964,6 @@ namespace EPCat.Model
             if (!string.IsNullOrEmpty(item._Description)) result.Add(p_Descr + item._Description);
             if (!string.IsNullOrEmpty(item._Star)) result.Add(p_Star + item._Star);
 
-            if (string.IsNullOrEmpty(item.ParentId))
-            {
-                foreach (var it in item.DicOneVal)
-                {
-                    result.Add(p_DV + it.Key.ToString() + "=" + it.Value);
-                }
-
-                foreach (var it in item.DicMulVal)
-                {
-                    if (it.Value != null)
-                    {
-                        var dd = it.Value.Where(x => x != null).Select(x => (int)x);
-                        result.Add(p_DV + it.Key.ToString() + "=" + string.Join("|", dd));
-                    }
-                }
-            }
 
             return string.Join(";", result.ToArray());
         }
@@ -1051,27 +1014,6 @@ namespace EPCat.Model
                     if (string.IsNullOrEmpty(result.ParentId))
                     {
                         result.Star = terms[1];
-                    }
-                }
-                else if (terms[0].StartsWith(p_DV))
-                {
-                    if (string.IsNullOrEmpty(result.ParentId))
-                    {
-                        var s = mark.Replace(p_DV, string.Empty).Replace("=", string.Empty);
-                        int si = Convert.ToInt32(s);
-                        List<string> dd = terms[1].Split('|').ToList();
-                        if (si < 5 || (si > 9 && si < 50))
-                        {
-                            result.DicOneVal[si] = Convert.ToInt32(dd[0]);
-                        }
-                        else
-                        {
-                            foreach (var item in dd)
-                            {
-                                if (!result.DicMulVal.ContainsKey(si)) result.DicMulVal.Add(si, new List<object>());
-                                result.DicMulVal[si].Add(Convert.ToInt32(item));
-                            }
-                        }
                     }
                 }
             }

@@ -698,6 +698,11 @@ namespace EPCat
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
+        private void CopySceneBtn_Click(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as EpCatViewModel).CopyCombinedScene();
+        }
+
 
         private void btnSetPositionSave_Click(object sender, RoutedEventArgs e)
         {
@@ -709,5 +714,6 @@ namespace EPCat
             (this.DataContext as EpCatViewModel).RefreshFolder();
             // MadeShot();
         }
+
     }
 }
