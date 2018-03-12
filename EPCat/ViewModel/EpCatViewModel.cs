@@ -437,7 +437,12 @@ namespace EPCat
                 {
                     if (item.Kind == 2)
                     {
-                        var it = this._FolderList.Where(x => x.CombinedScenes.Where(z => z.ID != item.ID && z.File == item.File).Any()).FirstOrDefault();
+                        var it = this._FolderList.Where(x => x.CombinedScenes.Where(
+                            z => 
+                            z.File == item.File
+                            &&
+                            z.Kind == 0
+                            ).Any()).FirstOrDefault();
                         if (it != null)
                         {                         
                             item.Path = it.ItemDirectory;

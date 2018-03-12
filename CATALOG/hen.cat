@@ -1031,13 +1031,16 @@
       </CombinedSceneInfo>
       <CombinedSceneInfo>
         <ID>082db42a-dfa0-4f64-8fb5-d057a50b3337</ID>
-        <File>0423.7b0627214e70498e819c375d4005ac79.png</File>
+        <File>0431.bf0c538868a54f3593acb01cb63587b3.png</File>
         <Kind>2</Kind>
         <Description>ТОЛСТЯК 001</Description>
         <Group>001</Group>
         <Queue>001</Queue>
-        <Y>-185</Y>
-        <S>945</S>
+        <X>35</X>
+        <Y>-110</Y>
+        <O />
+        <F />
+        <S>855</S>
         <Z>3</Z>
       </CombinedSceneInfo>
     </CombinedScenes>
@@ -1086,7 +1089,34 @@
     <CommentsAsString />
     <Undefined />
     <Clips />
-    <CombinedScenes />
+    <CombinedScenes>
+      <CombinedSceneInfo>
+        <ID>67a3d4a2-5241-4522-9da3-b0ab4b395fca</ID>
+        <Kind>1</Kind>
+        <Group>001</Group>
+        <Queue>001</Queue>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>66a20645-1862-4e31-8c73-edc8eb3fc07e</ID>
+        <File>0002.90b422bc5c364577aaa98fd375d2fab8.jpg</File>
+        <Kind>0</Kind>
+        <Description>gf</Description>
+        <Group>001</Group>
+        <Queue>001</Queue>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>b8411af9-04aa-4024-93f2-684a26e5b202</ID>
+        <File>0431.bf0c538868a54f3593acb01cb63587b3.png</File>
+        <Kind>2</Kind>
+        <Description>ТОЛСТЯК 001</Description>
+        <Group>001</Group>
+        <Queue>001</Queue>
+        <X>100</X>
+        <Y>-175</Y>
+        <S>930</S>
+        <Z>3</Z>
+      </CombinedSceneInfo>
+    </CombinedScenes>
   </EpItem>
   <EpItem>
     <CapsPassportData />
@@ -2202,6 +2232,14 @@
         <Description>ТОЛСТЯК 001</Description>
         <Group>001</Group>
         <Queue>004</Queue>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>df9bc1c7-5ede-4e35-aa01-c931b2014332</ID>
+        <File>0431.bf0c538868a54f3593acb01cb63587b3.png</File>
+        <Kind>0</Kind>
+        <Description>ТОЛСТЯК 001</Description>
+        <Group>001</Group>
+        <Queue>Толстяк</Queue>
       </CombinedSceneInfo>
     </CombinedScenes>
   </EpItem>
