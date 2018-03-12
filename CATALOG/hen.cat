@@ -1015,12 +1015,30 @@
     <Clips />
     <CombinedScenes>
       <CombinedSceneInfo>
-        <ID>7d1418f6-de66-453f-a7cb-ef01c03494d2</ID>
+        <ID>3b29b5ca-7d1e-4973-a3c0-bf019f4ec14b</ID>
+        <Kind>1</Kind>
+        <Group>001</Group>
+        <Queue>001</Queue>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>408a4bb1-2aa8-4833-b7ca-ce59402f247a</ID>
+        <File>0001.fee70b3ba14048b5a8df75d3d5431fa5.jpg</File>
+        <Kind>0</Kind>
+        <Description>gf1</Description>
+        <Group>001</Group>
+        <Queue>001</Queue>
+        <Z>2</Z>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>082db42a-dfa0-4f64-8fb5-d057a50b3337</ID>
         <File>0423.7b0627214e70498e819c375d4005ac79.png</File>
         <Kind>2</Kind>
         <Description>ТОЛСТЯК 001</Description>
         <Group>001</Group>
         <Queue>001</Queue>
+        <Y>-185</Y>
+        <S>945</S>
+        <Z>3</Z>
       </CombinedSceneInfo>
     </CombinedScenes>
   </EpItem>

@@ -47,7 +47,7 @@ namespace StoGen.Classes.Data.Games
             {
                 if (!string.IsNullOrEmpty(item.File))
                 {
-                    string moviePath = Path.Combine(InfoList.First().Path, "EVENTS");
+                    string moviePath = Path.Combine(item.Path, "EVENTS");
                     AddToGlobalImage(item.File, item.File, moviePath);
                 }
             }
