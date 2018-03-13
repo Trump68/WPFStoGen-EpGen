@@ -289,7 +289,7 @@ namespace StoGen.Classes
                 PictureItem pi = Pics[i];
                 string fn = pi.Props.FileName;
 
-                if (pi.Props.FileName.EndsWith("WHITE"))
+                if (pi.Props.FileName.EndsWith("$$WHITE$$"))
                 {
                     Projector.Owner.Background = new SolidColorBrush(Colors.White);
                     continue;

@@ -11,6 +11,10 @@ namespace StoGen.Classes
     {
         public string ID { set; get; }
         public string File { set; get; }
+        // 0 - standart image
+        // 1- header ($$WHITE$$  in file - white background)
+        // 2- external image (from another set)
+        // 3- repeat prev group 
         public int Kind { set; get; } = 0;
         public string Description { set; get; }
         [XmlIgnore]

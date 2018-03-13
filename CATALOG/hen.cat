@@ -1066,7 +1066,21 @@
     <CommentsAsString />
     <Undefined />
     <Clips />
-    <CombinedScenes />
+    <CombinedScenes>
+      <CombinedSceneInfo>
+        <ID>fab938b8-2712-4ad6-9f8b-c25e7b1ed624</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Story>Привет Негодяи!~Дайте еще французских булок, плиз...~</Story>
+        <Group>001</Group>
+        <Queue>001</Queue>
+        <X>500</X>
+        <Y>700</Y>
+        <F>40</F>
+        <S>900</S>
+        <Z>Black</Z>
+      </CombinedSceneInfo>
+    </CombinedScenes>
   </EpItem>
   <EpItem>
     <CapsPassportData />
@@ -1185,7 +1199,35 @@
     <CommentsAsString />
     <Undefined />
     <Clips />
-    <CombinedScenes />
+    <CombinedScenes>
+      <CombinedSceneInfo>
+        <ID>8bb329c0-7b41-44ae-915c-610f7d2e2a9f</ID>
+        <Kind>1</Kind>
+        <Group>001</Group>
+        <Queue>001</Queue>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>89b78a4a-d4a1-4d26-bc6f-ff1bc277ff0d</ID>
+        <File>0011.16cde78bf0e24627bf292b4de0f5d811.jpg</File>
+        <Kind>0</Kind>
+        <Description>gf</Description>
+        <Group>001</Group>
+        <Queue>001</Queue>
+      </CombinedSceneInfo>
+      <CombinedSceneInfo>
+        <ID>1d325df3-58c6-47b2-9d9e-e1df4e954e4f</ID>
+        <File>0431.bf0c538868a54f3593acb01cb63587b3.png</File>
+        <Kind>2</Kind>
+        <Description>ТОЛСТЯК 001</Description>
+        <Group>001</Group>
+        <Queue>001</Queue>
+        <X>55</X>
+        <Y>-210</Y>
+        <S>975</S>
+        <T />
+        <Z>3</Z>
+      </CombinedSceneInfo>
+    </CombinedScenes>
   </EpItem>
   <EpItem>
     <CapsPassportData />
@@ -2242,5 +2284,27 @@
         <Queue>Толстяк</Queue>
       </CombinedSceneInfo>
     </CombinedScenes>
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>bbd75f18-9343-4dc9-a0b9-8282c5f35900</GID>
+    <ItemPath>d:\!catalog\hen\! comix artists\yair\the mayor 3\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Videos />
+    <Name>The mayor 3</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>Comix Artist</Kind>
+    <Director>Yair</Director>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Undefined />
+    <Clips />
+    <CombinedScenes />
   </EpItem>
 </ArrayOfEpItem>

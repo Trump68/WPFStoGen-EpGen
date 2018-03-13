@@ -29,20 +29,84 @@ namespace StoGen.Classes.Data.Games
             this.LoadData(string.Empty, string.Empty);
             this.Generate(InfoList.First().ID);
         }
+
+        List<List<CombinedSceneInfo>> data = new List<List<CombinedSceneInfo>>();
         public override bool LoadData(string filter, string moviePath)
         {
+            data.Clear();
             this.currentGr = InfoList.First().ID;
-            var grupedlist = InfoList.GroupBy(x => x.Group);
-            foreach (var group in grupedlist)
+            var grupedlist = InfoList.GroupBy(x => x.Group).ToList();
+
+            for (int i = 0; i < grupedlist.Count; i++)
+            {
+                var nl = grupedlist[i].ToList();
+                data.Add(nl);
+            }
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                if (i > 0)
+                {
+                    var prevgroup = data[i - 1];
+                    var curgroup = data[i];
+                    CalculateGroup(prevgroup, ref curgroup);
+                }
+
+            }
+
+            foreach (var group in data)
             {
                 DoGroup(group);
             }
            return true;
         }
 
-        private void DoGroup(IGrouping<string, CombinedSceneInfo> group)
+        private void CalculateGroup(List<CombinedSceneInfo> prevgroup, ref List<CombinedSceneInfo> curgroup)
+        {
+            if (curgroup.Where(x=>x.Kind == 3).Any())
+            {
+                curgroup.Where(x => x.Kind == 3).First().Kind = 1;
+                foreach (var pg in prevgroup)
+                {
+                    if (!curgroup.Where(z=>z.Description == pg.Description).Any())
+                    {
+                        string ngs = pg.GenerateString();
+                        CombinedSceneInfo ng = new CombinedSceneInfo();
+                        ng.LoadFromString(ngs);
+                        ng.Group = curgroup.First().Group;
+                        curgroup.Add(ng);
+                    }
+                }
+            }
+        }
+
+        private void DoGroup(List<CombinedSceneInfo> group)
         {       
             var infopictures = group.Where(x => x.Kind == 0 || x.Kind == 2);
+            Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
+
+            string story = string.Empty;
+            var title = InfoList.Where(x => x.Kind == 1).FirstOrDefault();
+            if (title != null)
+            {
+                story = title.Story;
+                if (title.File == "$$WHITE$$") // white background
+                {
+                    AddToGlobalImage("$$WHITE$$", "$$WHITE$$",string.Empty);
+                    Pictures.Add("$$WHITE$$", new DifData("$$WHITE$$") { });
+                }
+                if (!string.IsNullOrEmpty(title.Y))
+                    this.DefaultSceneText.Size = Convert.ToInt32(title.Y);
+                if (!string.IsNullOrEmpty(title.X))
+                    this.DefaultSceneText.Width = Convert.ToInt32(title.X);
+                if (!string.IsNullOrEmpty(title.F))
+                    this.DefaultSceneText.FontSize = Convert.ToInt32(title.F);
+                if (!string.IsNullOrEmpty(title.S))
+                    this.DefaultSceneText.Shift = Convert.ToInt32(title.S);
+                if (!string.IsNullOrEmpty(title.Z))
+                    this.DefaultSceneText.FontColor = title.Z;
+            }
+
             foreach (var item in infopictures)
             {
                 if (!string.IsNullOrEmpty(item.File))
@@ -52,7 +116,6 @@ namespace StoGen.Classes.Data.Games
                 }
             }
 
-            Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
 
             foreach (var item in infopictures)
             {
@@ -86,10 +149,7 @@ namespace StoGen.Classes.Data.Games
 
             }
 
-            string story = string.Empty;
-            var title = InfoList.Where(x => x.Kind == 1).FirstOrDefault();
-            if (title != null)
-                story = title.Story;
+            
             DoC2($"{story}", Pictures.Values.ToList());
         }
        

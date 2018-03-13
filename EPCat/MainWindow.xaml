@@ -563,6 +563,9 @@
                                             <dxg:FormatCondition ApplyToRow="True" Expression="[Kind] = '2'" FieldName="N">
                                                 <dx:Format Background="#FFFCD4D4"/>
                                             </dxg:FormatCondition>
+                                            <dxg:FormatCondition Expression="[Kind] = '3'" FieldName="N" ApplyToRow="True">
+                                                <dx:Format Background="#FFD8D6CB" FontStyle="Italic" TextDecorations="{x:Null}"/>
+                                            </dxg:FormatCondition>
                                         </dxg:TableView.FormatConditions>
                                     </dxg:TableView>
                                 </dxg:GridControl.View>
@@ -595,28 +598,28 @@
                                 <TextBox Name="txtKind" Text="{Binding SelectedItem.Kind, ElementName=GVCombScen}"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                             </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="X" MaxWidth="50">
+                            <dxlc:LayoutItem Label="X (Text Width)" MaxWidth="130">
                                 <TextBox Name="txtPosX" Text="{Binding SelectedItem.X, ElementName=GVCombScen}"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                             </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="Y" MaxWidth="50">
+                            <dxlc:LayoutItem Label="Y (Text Size)" MaxWidth="130">
                                 <TextBox Name="txtPosY" Text="{Binding SelectedItem.Y, ElementName=GVCombScen}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="S (Text Shift)" MaxWidth="130">
+                                <TextBox Name="txtSize" Text="{Binding SelectedItem.S, ElementName=GVCombScen}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="F (FontSize)" MaxWidth="130">
+                                <TextBox Name="txtFlip" Text="{Binding SelectedItem.F, ElementName=GVCombScen}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Z (FontColor)" MaxWidth="130">
+                                <TextBox Name="txtZOrder" Text="{Binding SelectedItem.Z, ElementName=GVCombScen}"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem Label="O" MaxWidth="50">
                                 <TextBox Name="txtOpacity" Text="{Binding SelectedItem.O, ElementName=GVCombScen}"
-                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="S" MaxWidth="50">
-                                <TextBox Name="txtSize" Text="{Binding SelectedItem.S, ElementName=GVCombScen}"
-                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="F" MaxWidth="50">
-                                <TextBox Name="txtFlip" Text="{Binding SelectedItem.F, ElementName=GVCombScen}"
-                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="Z" MaxWidth="50">
-                                <TextBox Name="txtZOrder" Text="{Binding SelectedItem.Z, ElementName=GVCombScen}"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem Label="R" MaxWidth="50">
