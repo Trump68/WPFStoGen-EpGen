@@ -408,7 +408,16 @@ namespace EPCat
             {
                 if (last != null)
                 {
-                    newclipinfo.Group = last.Group;
+                    int r;
+                    if (Int32.TryParse(last.Group, out r))
+                    {
+                        newclipinfo.Group = $"{++r}";
+                    }
+                    else
+                    {
+                        newclipinfo.Group = last.Group;
+                    }
+                    
                     newclipinfo.Queue = last.Queue;
                     newclipinfo.Kind = last.Kind;
                     newclipinfo.Description = last.Description;
