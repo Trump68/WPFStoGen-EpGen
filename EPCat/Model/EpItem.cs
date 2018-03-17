@@ -16,25 +16,14 @@ using System.Xml.Serialization;
 
 namespace EPCat.Model
 {
-
-    public class DictionaryData
-    {
-        public Dictionary<int, string> Dict_Name { get; set; } = new Dictionary<int, string>();
-        public Dictionary<int, List<ClassItem>> Dict_Class { get; set; } = new Dictionary<int, List<ClassItem>>();
-    }
-
     
 
     [Serializable]
     public class EpItem
     {
-
-
         public Guid GID { get; set; }
         public bool GroupsEnabled { get { return true; } }
-
         public string ItemPath { get; set; }
-
         public readonly int _itemType;//0-Folder
         public int ItemType { get { return _itemType; } }
         public int ParentID { get; set; }
@@ -106,7 +95,6 @@ namespace EPCat.Model
                 return Path.GetDirectoryName(ItemPath);
             }
         }
-
         public List<string> Videos
         {
             get
@@ -116,7 +104,6 @@ namespace EPCat.Model
                 return Directory.GetFiles(ItemDirectory, "*.m4v").ToList();
             }
         }
-
         List<CapsItem> _Caps = null;
         [XmlIgnore]
         public List<CapsItem> Caps
@@ -183,8 +170,6 @@ namespace EPCat.Model
 
             }
         }
-
-
         public void SaveImagePassport()
         {
             if (_Caps != null)
@@ -200,8 +185,6 @@ namespace EPCat.Model
             }
         }
         public List<CapsItem> CapsPassportData = new List<CapsItem>();
-
-
         public bool VideoPresent
         {
             get
@@ -236,6 +219,16 @@ namespace EPCat.Model
         public string Director { get; set; }
         public string Studio { get; set; }
         public string IMDB { get; set; }
+        // Virt Persons
+        public string PersonName { get; set; }
+        public string PersonAge { get; set; }
+        public string PersonSex { get; set; }
+        public string PersonType { get; set; }
+        public string PersonKind { get; set; }
+
+
+
+        //
         public List<string> Comments { get; set; } = new List<string>();
         public string CommentsAsString
         {
@@ -249,7 +242,7 @@ namespace EPCat.Model
             }
         }
 
-        public List<string> Undefined { get; set; } = new List<string>();
+        
 
         private ObservableCollection<MovieSceneInfo> _Clips = null;
         public ObservableCollection<MovieSceneInfo> Clips
@@ -282,7 +275,7 @@ namespace EPCat.Model
                 foreach (var item in _CombinedScenes)
                 {                    
                     item.N = _CombinedScenes.IndexOf(item) + 1;
-                    if (item.Kind != 2)
+                    if (item.Kind != 2 && item.Kind != 4)
                         item.Path = Path.GetDirectoryName(this.ItemPath);
                 }
                 return _CombinedScenes;
@@ -329,6 +322,13 @@ namespace EPCat.Model
             this.Director = item.Director;
             this.Studio = item.Studio;
             this.IMDB = item.IMDB;
+
+            this.PersonName = item.PersonName;
+            this.PersonAge = item.PersonAge;
+            this.PersonSex = item.PersonSex;
+            this.PersonType = item.PersonType;
+            this.PersonKind = item.PersonKind;
+
             this.SourceFolderExist = item.SourceFolderExist;
 
             this.Comments.Clear();
@@ -346,8 +346,6 @@ namespace EPCat.Model
                 this.CombinedScenes.Add(it);
             }
 
-            this.Undefined.Clear();
-            this.Undefined.AddRange(item.Undefined);
         }
 
         static string p_GID = "GID:";
@@ -370,6 +368,14 @@ namespace EPCat.Model
         static string p_Director = "Director:";
         static string p_Studio = "Studio:";
         static string p_IMDB = "IMDB:";
+
+        static string p_PersonName = "PersonName:";
+        static string p_PersonAge = "PersonAge:";
+        static string p_PersonSex = "PersonSex:";
+        static string p_PersonType = "PersonType:";
+        static string p_PersonKind = "PersonKind:";
+        
+
         static string p_Type00 = "TYPE00:";
         static string p_Type01 = "TYPE01:";
         static string p_Type02 = "TYPE02:";
@@ -427,6 +433,120 @@ namespace EPCat.Model
         }
 
 
+       
+        internal static string GetCatalogPosterDir(string itemPath)
+        {
+            string dir = Path.GetDirectoryName(itemPath);
+            string catname = Path.GetFileNameWithoutExtension(itemPath);
+            return $@"{dir}\POSTERS.{catname}";
+        }
+
+        internal static List<string> SetToPassport(EpItem item)
+        {
+            List<string> result = new List<string>();
+            result.Add(p_GID + item.GID.ToString());
+            result.Add(p_Name + item.Name);
+            result.Add(p_Catalog + item.Catalog);
+            result.Add($"{p_LastEdit}{item.LastEdit}");
+
+            if (!string.IsNullOrEmpty(item.Serie))
+                result.Add(p_Serie + item.Serie);
+            if (!string.IsNullOrEmpty(item.AltTitle))
+                result.Add(p_AltTitle + item.AltTitle);
+            if (!string.IsNullOrEmpty(item.Country))
+                result.Add(p_Country + item.Country);
+            if (item.Year > 0)
+                result.Add(p_Year + (item.Year > 0 ? item.Year.ToString() : string.Empty));
+            if (item.Month > 0)
+                result.Add(p_Month + (item.Month > 0 ? item.Month.ToString() : string.Empty));
+            if (item.Day > 0)
+                result.Add(p_Day + (item.Day > 0 ? item.Day.ToString() : string.Empty));
+            if (!string.IsNullOrEmpty(item.Rated))
+                result.Add(p_Rated + item.Rated);
+            if (!string.IsNullOrEmpty(item.XRated))
+                result.Add(p_XRated + item.XRated);
+            if (!string.IsNullOrEmpty(item.Kind))
+                result.Add(p_Kind + item.Kind);
+            if (!string.IsNullOrEmpty(item.Type))
+                result.Add(p_Type + item.Type);
+            if (!string.IsNullOrEmpty(item.Brand))
+                result.Add(p_Brand + item.Brand);
+            if (!string.IsNullOrEmpty(item.Star))
+                result.Add(p_Star + item.Star);
+            if (!string.IsNullOrEmpty(item.MyDescr))
+                result.Add(p_MyDescr + item.MyDescr);
+            if (!string.IsNullOrEmpty(item.Director))
+                result.Add(p_Director + item.Director);
+            if (!string.IsNullOrEmpty(item.Studio))
+                result.Add(p_Studio + item.Studio);
+            if (!string.IsNullOrEmpty(item.IMDB))
+                result.Add(p_IMDB + item.IMDB);
+
+            if (!string.IsNullOrEmpty(item.PersonName))
+                result.Add(p_PersonName + item.PersonName);
+            if (!string.IsNullOrEmpty(item.PersonAge))
+                result.Add(p_PersonAge + item.PersonAge);
+            if (!string.IsNullOrEmpty(item.PersonSex))
+                result.Add(p_PersonSex + item.PersonSex);
+            if (!string.IsNullOrEmpty(item.PersonType))
+                result.Add(p_PersonType + item.PersonType);
+            if (!string.IsNullOrEmpty(item.PersonKind))
+                result.Add(p_PersonKind + item.PersonKind);
+
+
+            if (item.Comments.Count == 1)
+            {
+                if (!string.IsNullOrEmpty(item.Comments.First()))
+                    result.Add(p_COMMENTS_BEGIN + item.Comments.First() + p_COMMENTS_END);
+            }
+            else if (item.Comments.Count > 0)
+            {
+                List<string> ttt = new List<string>();
+                ttt.AddRange(item.Comments);
+
+                ttt[0] = p_COMMENTS_BEGIN + item.Comments.First();
+
+                ttt[ttt.Count-1] = item.Comments.Last() + p_COMMENTS_END;
+                result.AddRange(ttt);               
+            }
+
+            if (item.Clips.Count == 1)
+            {
+                    result.Add(p_SCENDATA_BEGIN + item.Clips.First().GenerateString() + p_SCENDATA_END);
+            }
+            else if (item.Clips.Count > 0)
+            {
+                List<string> ttt = new List<string>();
+                foreach (var it in item.Clips)
+                {
+                    ttt.Add(it.GenerateString());
+                }
+                
+                ttt[0] = p_SCENDATA_BEGIN + ttt.First();
+                ttt[ttt.Count - 1] = ttt.Last() + p_SCENDATA_END;
+                result.AddRange(ttt);
+            }
+
+            // combined scenes
+            if (item.CombinedScenes.Count == 1)
+            {
+                result.Add(p_COMBDATA_BEGIN + item.CombinedScenes.First().GenerateString() + p_COMBDATA_END);
+            }
+            else if (item.CombinedScenes.Count > 0)
+            {
+                List<string> ttt = new List<string>();
+                foreach (var it in item.CombinedScenes)
+                {
+                    ttt.Add(it.GenerateString());
+                }
+
+                ttt[0] = p_COMBDATA_BEGIN + ttt.First();
+                ttt[ttt.Count - 1] = ttt.Last() + p_COMBDATA_END;
+                result.AddRange(ttt);
+            }
+
+            return result;
+        }
         internal static EpItem GetFromPassport(List<string> passport)
         {
             EpItem result = new EpItem(1);
@@ -445,7 +565,7 @@ namespace EPCat.Model
                         MovieSceneInfo sd = new MovieSceneInfo();
                         sd.LoadFromString(term);
                         if (!string.IsNullOrEmpty(sd.ID))
-                        result.Clips.Add(sd);
+                            result.Clips.Add(sd);
                     }
                     isScenData = true;
                 }
@@ -668,388 +788,52 @@ namespace EPCat.Model
                         result.IMDB = term;
                     }
                 }
-                else if (!string.IsNullOrEmpty(term))
+
+                else if (term.StartsWith(p_PersonName))
                 {
-                    result.Undefined.Add(term);
-                }
-            }
-            return result;
-        }
-
-        internal static string GetCatalogPosterDir(string itemPath)
-        {
-            string dir = Path.GetDirectoryName(itemPath);
-            string catname = Path.GetFileNameWithoutExtension(itemPath);
-            return $@"{dir}\POSTERS.{catname}";
-        }
-
-        internal static List<string> SetToPassport(EpItem item)
-        {
-            List<string> result = new List<string>();
-            result.Add(p_GID + item.GID.ToString());
-            result.Add(p_Name + item.Name);
-            result.Add(p_Catalog + item.Catalog);
-            result.Add(p_Serie + item.Serie);
-            result.Add($"{p_LastEdit}{item.LastEdit}");
-            result.Add(p_AltTitle + item.AltTitle);
-            result.Add(p_Country + item.Country);
-            result.Add(p_Year + (item.Year > 0 ? item.Year.ToString() : string.Empty));
-            result.Add(p_Month + (item.Month > 0 ? item.Month.ToString() : string.Empty));
-            result.Add(p_Day + (item.Day > 0 ? item.Day.ToString() : string.Empty));
-            result.Add(p_Rated + item.Rated);
-            result.Add(p_XRated + item.XRated);
-            result.Add(p_Kind + item.Kind);
-            result.Add(p_Type + item.Type);
-            result.Add(p_Brand + item.Brand);
-            result.Add(p_Star + item.Star);
-            result.Add(p_MyDescr + item.MyDescr);
-            result.Add(p_Director + item.Director);
-            result.Add(p_Studio + item.Studio);
-            result.Add(p_IMDB + item.IMDB);
-
-            if (item.Comments.Count == 1)
-            {
-                if (!string.IsNullOrEmpty(item.Comments.First()))
-                    result.Add(p_COMMENTS_BEGIN + item.Comments.First() + p_COMMENTS_END);
-            }
-            else if (item.Comments.Count > 0)
-            {
-                List<string> ttt = new List<string>();
-                ttt.AddRange(item.Comments);
-
-                ttt[0] = p_COMMENTS_BEGIN + item.Comments.First();
-
-                ttt[ttt.Count-1] = item.Comments.Last() + p_COMMENTS_END;
-                result.AddRange(ttt);               
-            }
-
-            if (item.Clips.Count == 1)
-            {
-                    result.Add(p_SCENDATA_BEGIN + item.Clips.First().GenerateString() + p_SCENDATA_END);
-            }
-            else if (item.Clips.Count > 0)
-            {
-                List<string> ttt = new List<string>();
-                foreach (var it in item.Clips)
-                {
-                    ttt.Add(it.GenerateString());
-                }
-                
-                ttt[0] = p_SCENDATA_BEGIN + ttt.First();
-                ttt[ttt.Count - 1] = ttt.Last() + p_SCENDATA_END;
-                result.AddRange(ttt);
-            }
-
-            // combined scenes
-            if (item.CombinedScenes.Count == 1)
-            {
-                result.Add(p_COMBDATA_BEGIN + item.CombinedScenes.First().GenerateString() + p_COMBDATA_END);
-            }
-            else if (item.CombinedScenes.Count > 0)
-            {
-                List<string> ttt = new List<string>();
-                foreach (var it in item.CombinedScenes)
-                {
-                    ttt.Add(it.GenerateString());
-                }
-
-                ttt[0] = p_COMBDATA_BEGIN + ttt.First();
-                ttt[ttt.Count - 1] = ttt.Last() + p_COMBDATA_END;
-                result.AddRange(ttt);
-            }
-
-            foreach (var s in item.Undefined)
-            {
-                result.Add(s);
-            }
-            return result;
-        }
-
-    }
-
-
-
-    public class CapsItem : INotifyPropertyChanged
-    {
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
-
-        [XmlIgnore]
-        public static DictionaryData DictionaryData = new DictionaryData();
-
-
-        [XmlIgnore]
-        public DictionaryData DicData { get { return CapsItem.DictionaryData; } }
-
-        //public static string p_FN = "FN=";
-        public static string p_Parent = "Parent=";
-        public static string p_Id = "Id=";
-
-        public static string p_Name = "Name=";
-        public static string p_Star = "Star=";
-        public static string p_Descr = "Descr=";
-
-        public static string p_DV = "DV_";
-
-        public string ItemPath { set; get; }
-        public string GroupName { set; get; }
-        public string Id { set; get; }
-
-        public string ShortId
-        {
-            get
-            {
-                return Id.Substring(0, 4);
-            }
-        }
-        //private string _File = null;
-        //public string File
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(_File))
-        //        {
-        //            if (!string.IsNullOrEmpty(ItemPath))
-        //                _File = Path.GetFileName(ItemPath);
-        //        }
-        //        return _File;
-        //    }
-        //}
-
-        public bool GroupsEnabled { get { return string.IsNullOrEmpty(this.ParentId); } }
-        // public string FileName { set; get; }
-
-        private string _ParentId;
-        internal List<CapsItem> Owner;
-        public string ParentId
-        {
-            set
-            {
-                _ParentId = value;
-                OnPropertyChanged("ParentId");
-            }
-            get { return _ParentId; }
-        }
-        public ImageSource Thumb
-        {
-            set { }
-            get
-            {
-                if (string.IsNullOrEmpty(ItemPath)) return null;
-                Uri path = new Uri(ItemPath, UriKind.Absolute);
-                if (File.Exists(path.LocalPath))
-                {
-
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = path;
-                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmap.DecodePixelHeight = 150;
-                    bitmap.EndInit();
-                    return bitmap;
-
-                }
-                return null;
-            }
-        }
-        public ImageSource Picture
-        {
-            set { }
-            get
-            {
-                Uri path = new Uri(ItemPath, UriKind.Absolute);
-                if (File.Exists(path.LocalPath))
-                {
-
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = path;
-                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmap.EndInit();
-                    return bitmap;
-                }
-
-                return null;
-            }
-        }
-        private string _Description;
-        public string Description
-        {
-            set
-            {
-                if ((Parent == null))
-                {
-                    _Description = value;
-                }
-                OnPropertyChanged("Description");
-            }
-            get
-            {
-                if (Parent != null) return Parent.Description;
-                return _Description;
-            }
-        }
-        private string _Name;
-        public string Name
-        {
-            set
-            {
-                if ((Parent == null))
-                {
-                    _Name = value;
-                }
-                OnPropertyChanged("Name");
-            }
-            get
-            {
-                if (Parent != null) return Parent.Name;
-                return _Name;
-            }
-        }
-        private string _Star;
-        public string Star
-        {
-            set
-            {
-                if ((Parent == null))
-                {
-                    _Star = value;
-                }
-                OnPropertyChanged("Star");
-            }
-            get
-            {
-                if (Parent != null) return Parent.Star;
-                return _Star;
-            }
-        }
-
-
-        CapsItem _Parent;
-
-        [XmlIgnore]
-        public List<CapsItem> ChildList { set; get; } = new List<CapsItem>();
-
-
-        public int ChildCount { set; get; } = 0;
-        public string ShortIdChildCount
-        {
-            get { return $"{ShortId} / {ChildCount}"; }
-        }
-        public CapsItem Parent
-        {
-            set
-            {
-                _Parent = value;
-            }
-            get { return _Parent; }
-        }
-
-        public string PassportPath { get; set; }
-
-        internal static string SetToPassport(CapsItem item)
-        {
-            if (!item.IsNotEmpty()) return null;
-            List<string> result = new List<string>();
-            result.Add(p_Id + item.Id);
-
-            if (!string.IsNullOrEmpty(item.ParentId)) result.Add(p_Parent + item.ParentId);
-
-            if (!string.IsNullOrEmpty(item._Name)) result.Add(p_Name + item._Name);
-            if (!string.IsNullOrEmpty(item._Description)) result.Add(p_Descr + item._Description);
-            if (!string.IsNullOrEmpty(item._Star)) result.Add(p_Star + item._Star);
-
-
-            return string.Join(";", result.ToArray());
-        }
-
-        private bool IsNotEmpty()
-        {
-            return (
-                (!string.IsNullOrEmpty(this.ParentId))
-                || !string.IsNullOrEmpty(this.Description)
-                || !string.IsNullOrEmpty(this.Name)
-                || !string.IsNullOrEmpty(this.Star)
-                );
-        }
-
-        internal static CapsItem GetFromPassport(string passport)
-        {
-            CapsItem result = new CapsItem();
-            List<string> vals = passport.Split(';').ToList();
-            foreach (var val in vals)
-            {
-                string[] terms = val.Split('=');
-
-                string mark = terms[0] + "=";
-                if (mark == p_Id)
-                {
-                    result.Id = terms[1];
-                }
-                else if (mark == p_Parent)
-                {
-                    result.ParentId = terms[1];
-                }
-                else if (mark == p_Name)
-                {
-                    if (string.IsNullOrEmpty(result.ParentId))
+                    term = term.Replace(p_PersonName, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
                     {
-                        result.Name = terms[1];
+                        result.PersonName = term;
                     }
                 }
-                else if (mark == p_Descr)
+                else if (term.StartsWith(p_PersonAge))
                 {
-                    if (string.IsNullOrEmpty(result.ParentId))
+                    term = term.Replace(p_PersonAge, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
                     {
-                        result.Description = terms[1];
+                        result.PersonAge = term;
                     }
                 }
-                else if (mark == p_Star)
+                else if (term.StartsWith(p_PersonSex))
                 {
-                    if (string.IsNullOrEmpty(result.ParentId))
+                    term = term.Replace(p_PersonSex, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
                     {
-                        result.Star = terms[1];
+                        result.PersonSex = term;
                     }
                 }
-            }
-            return result;
-        }
-        internal static List<CapsItem> GetListFromPassport(List<string> passport)
-        {
-            List<CapsItem> result = new List<CapsItem>();
-            foreach (var line in passport)
-            {
-                string term = line.Trim();
-                CapsItem item = GetFromPassport(term);
-                if (item != null) result.Add(item);
+                else if (term.StartsWith(p_PersonType))
+                {
+                    term = term.Replace(p_PersonType, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.PersonType = term;
+                    }
+                }
+                else if (term.StartsWith(p_PersonKind))
+                {
+                    term = term.Replace(p_PersonKind, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.PersonKind = term;
+                    }
+                }
+
             }
             return result;
         }
 
-        internal static string ConvertRenameFilename(string f, int pos)
-        {
-            //"0001.AD33A40B681D4A70846CE20EC7F16EEE"
-            string fn = Path.GetFileNameWithoutExtension(f);
-            if (fn.Length != 37 || fn.Substring(4, 1) != ".")
-            {
-                string path = Path.GetDirectoryName(f);
-                string newf = Path.Combine(path, $"{pos.ToString("D4")}.{Guid.NewGuid().ToString("N")}{Path.GetExtension(f)}");
-                File.Move(f, newf);
-                f = newf;
-            }
-            return f;
-        }
-    }
-
-    public class ClassItem
-    {
-        public string Description { set; get; }
-        public int Val { set; get; }
     }
 
 

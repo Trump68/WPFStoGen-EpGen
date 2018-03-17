@@ -82,7 +82,7 @@ namespace StoGen.Classes.Data.Games
 
         private void DoGroup(List<CombinedSceneInfo> group)
         {       
-            var infopictures = group.Where(x => x.Kind == 0 || x.Kind == 2);
+            var infopictures = group.Where(x => x.Kind == 0 || x.Kind == 2 || x.Kind == 4);
             Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
 
             string story = string.Empty;
@@ -119,6 +119,10 @@ namespace StoGen.Classes.Data.Games
 
             foreach (var item in infopictures)
             {
+                if (Pictures.ContainsKey(item.Description))
+                {
+                    item.Description = $"{item.Description}{item.File}";
+                }
                 Pictures.Add(item.Description, new DifData(item.File) { });
                 Pictures[item.Description].X = Convert.ToInt32(item.X);
                 Pictures[item.Description].Y = Convert.ToInt32(item.Y);

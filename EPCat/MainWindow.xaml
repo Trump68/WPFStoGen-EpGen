@@ -144,7 +144,11 @@
                             <dxg:GridColumn FieldName="Studio" IsSmart="True" />
                             <dxg:GridColumn FieldName="IMDB" IsSmart="True" />
                             <dxg:GridColumn FieldName="ItemPath" IsSmart="True" />
-                            <dxg:GridColumn FieldName="CodesA" IsSmart="True" />
+                            <dxg:GridColumn FieldName="PersonName" IsSmart="True" />
+                            <dxg:GridColumn FieldName="PersonAge" IsSmart="True" />
+                            <dxg:GridColumn FieldName="PersonSex" IsSmart="True" />
+                            <dxg:GridColumn FieldName="PersonType" IsSmart="True" />
+                            <dxg:GridColumn FieldName="PersonKind" IsSmart="True" />
                             <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" Width="20" Header="." />
                             <dxg:GridColumn FieldName="SourceFolderExist" IsSmart="True" />
                         </dxg:GridControl>
@@ -565,6 +569,9 @@
                                             </dxg:FormatCondition>
                                             <dxg:FormatCondition Expression="[Kind] = '3'" FieldName="N" ApplyToRow="True">
                                                 <dx:Format Background="#FFD8D6CB" FontStyle="Italic" TextDecorations="{x:Null}"/>
+                                            </dxg:FormatCondition>
+                                            <dxg:FormatCondition Expression="[Kind] = '4'" FieldName="N" ApplyToRow="True">
+                                                <dx:Format Background="#FFE3CFFA"/>
                                             </dxg:FormatCondition>
                                         </dxg:TableView.FormatConditions>
                                     </dxg:TableView>

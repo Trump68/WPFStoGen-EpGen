@@ -38,8 +38,6 @@ namespace EPCat.Model
             //DoTempwork2(@"d:\!CATALOG\MOV\");
             //return null;
 
-            CapsItem.DictionaryData.Dict_Class.Clear();
-            CapsItem.DictionaryData.Dict_Name.Clear();
             Source = sourceList;
             CaspSource = capsList;
             CaspSource.Clear();

@@ -28,6 +28,7 @@
                             <dxlc:LayoutItem Label="Rate" LabelPosition="Left">
                                 <dxe:TextEdit MaxWidth="35" Text="{Binding Rate}" />
                             </dxlc:LayoutItem>
+                            
                         </dxlc:LayoutGroup>
 
                         <dxlc:LayoutItem Label="Name" LabelPosition="Left">
@@ -55,6 +56,23 @@
                         <dxlc:LayoutItem Label="Kind" LabelPosition="Left">
                             <dxe:TextEdit TextWrapping="Wrap" Text="{Binding Kind}" />
                         </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="P Name" LabelPosition="Left">
+                            <dxe:TextEdit TextWrapping="Wrap" Text="{Binding PersonName}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="P Sex" LabelPosition="Left">
+                            <dxe:TextEdit TextWrapping="Wrap" Text="{Binding PersonSex}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="P Age" LabelPosition="Left">
+                            <dxe:TextEdit TextWrapping="Wrap" Text="{Binding PersonAge}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="P Type" LabelPosition="Left">
+                            <dxe:TextEdit TextWrapping="Wrap" Text="{Binding PersonType}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="P Kind" LabelPosition="Left">
+                            <dxe:TextEdit TextWrapping="Wrap" Text="{Binding PersonKind}" />
+                        </dxlc:LayoutItem>
+
+
                         <dxlc:LayoutItem Label="MyDescr" LabelPosition="Left">
                             <dxe:TextEdit TextWrapping="Wrap" Text="{Binding MyDescr}" />
                         </dxlc:LayoutItem>
