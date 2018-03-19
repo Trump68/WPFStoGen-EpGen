@@ -387,29 +387,47 @@ namespace EPCat
 
         }
 
-        string CopiedCombinedScene = null;
+        List<string> CopiedCombinedScene = new List<string>();
         internal void CopyCombinedScene()
         {
             if (this.CurrentCombinedScene == null)
-                return;            
-            CopiedCombinedScene = this.CurrentCombinedScene.GenerateString();
+                return;
+            CopiedCombinedScene.Clear();
+            if (this.CurrentCombinedScene.Kind == 1)
+            {
+                var col = this.CurrentFolder.CombinedScenes.Where(x => x.Group == this.CurrentCombinedScene.Group);
+                foreach (var item in col)
+                {
+                    CopiedCombinedScene.Add(item.GenerateString());
+                }
+            }
+            else
+            {                
+                CopiedCombinedScene.Add(this.CurrentCombinedScene.GenerateString());
+            }
         }
 
         internal void AddCombinedScene()
         {
             var last = this.CurrentFolder.CombinedScenes.LastOrDefault();
-            CombinedSceneInfo newclipinfo = new CombinedSceneInfo();
-            if (CopiedCombinedScene != null)
+            
+            if (CopiedCombinedScene != null && CopiedCombinedScene.Any())
             {
-                newclipinfo.LoadFromString(CopiedCombinedScene);
-                CopiedCombinedScene = null;
+                foreach (var item in CopiedCombinedScene)
+                {
+                    CombinedSceneInfo newclipinfo = new CombinedSceneInfo();
+                    newclipinfo.LoadFromString(item);
+                    addNewComb(newclipinfo);
+                }
+                CopiedCombinedScene.Clear();
             }
             else
             {
+                CombinedSceneInfo newclipinfo = new CombinedSceneInfo();
                 if (last != null)
                 {
                     int r;
-                    if (Int32.TryParse(last.Group, out r))
+                    if (newclipinfo.Kind == 4 && Int32.TryParse(last.Group, out r))
                     {
                         newclipinfo.Group = $"{++r}";
                     }
@@ -421,7 +439,7 @@ namespace EPCat
                     newclipinfo.Queue = last.Queue;
                     newclipinfo.Kind = last.Kind;
                     newclipinfo.Description = last.Description;
-                    if (last.File.Contains(";"))
+                    if (!string.IsNullOrEmpty(last.File) && last.File.Contains(";"))
                     {
                         string[] vals = last.File.Split(';');
                         newclipinfo.File = vals[0] + ";";
@@ -432,8 +450,12 @@ namespace EPCat
                         newclipinfo.File = $"{newclipinfo.File}{clpb}";
                     }
                 }
+                addNewComb(newclipinfo);
             }
 
+        }
+        private void addNewComb(CombinedSceneInfo newclipinfo)
+        {
             newclipinfo.ID = Guid.NewGuid().ToString();
 
             this.CurrentFolder.CombinedScenes.Add(newclipinfo);
@@ -443,7 +465,6 @@ namespace EPCat
             RaisePropertyChanged(() => this.CurrentCombinedScene);
             RaisePropertyChanged(() => this.CurrentFolder.CombinedScenes);
             this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
-
         }
 
         internal void ShowScene()

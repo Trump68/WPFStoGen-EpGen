@@ -2,7 +2,7 @@
   <property name="#LayoutVersion" isnull="true" />
   <property name="$GridControl" iskey="true" value="GridControl">
     <property name="UseFieldNameForSerialization">true</property>
-    <property name="GroupCount">0</property>
+    <property name="GroupCount">1</property>
     <property name="GroupSummary" iskey="true" value="1">
       <property name="Item1" isnull="true" iskey="true">
         <property name="SummaryType">Count</property>
@@ -12,8 +12,13 @@
         <property name="Alignment">Default</property>
       </property>
     </property>
-    <property name="SortInfo" iskey="true" value="1">
+    <property name="SortInfo" iskey="true" value="2">
       <property name="Item1" isnull="true" iskey="true">
+        <property name="FieldName">PersonSex</property>
+        <property name="SortOrder">Ascending</property>
+        <property name="MergeWithPreviousGroup">false</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
         <property name="FieldName">Catalog</property>
         <property name="SortOrder">Descending</property>
         <property name="MergeWithPreviousGroup">false</property>
@@ -187,7 +192,7 @@
       <property name="Item25" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">PersonKind</property>
-        <property name="VisibleIndex">5</property>
+        <property name="VisibleIndex">4</property>
         <property name="ActualWidth">299.6216414147604</property>
       </property>
       <property name="Item26" isnull="true" iskey="true">
@@ -224,13 +229,17 @@
       </property>
     </property>
     <property name="TotalSummary" iskey="true" value="0" />
-    <property name="MRUFilters" iskey="true" value="1">
+    <property name="MRUFilters" iskey="true" value="2">
       <property name="Item1" isnull="true" iskey="true">
+        <property name="FilterString">[Catalog] = 'PRS'</property>
+        <property name="FilterText">[Catalog] = 'PRS'</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'HEN'</property>
         <property name="FilterText">[Catalog] = 'HEN'</property>
       </property>
     </property>
-    <property name="FilterString">[Catalog] = 'PRS'</property>
+    <property name="FilterString">[Catalog] = 'PRS' And [PersonName] = 'Mari Vashigton'</property>
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>

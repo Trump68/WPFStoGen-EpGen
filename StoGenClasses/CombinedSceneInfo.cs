@@ -113,13 +113,17 @@ namespace StoGen.Classes
                 {
                     this.Kind = Convert.ToInt32(str.Replace("KIND=", string.Empty));
                 }
+                else if (str.StartsWith("STR="))
+                {
+                    this.Story = str.Replace("STR=", string.Empty);
+                }
                 else if (str.StartsWith("X="))
                 {
                     this.X = str.Replace("X=", string.Empty);
                 }
                 else if (str.StartsWith("Y="))
                 {
-                    this.X = str.Replace("Y=", string.Empty);
+                    this.Y = str.Replace("Y=", string.Empty);
                 }
                 else if (str.StartsWith("O="))
                 {
