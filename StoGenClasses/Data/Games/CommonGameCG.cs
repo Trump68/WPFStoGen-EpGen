@@ -86,7 +86,7 @@ namespace StoGen.Classes.Data.Games
             Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
 
             string story = string.Empty;
-            var title = InfoList.Where(x => x.Kind == 1).FirstOrDefault();
+            var title = group.Where(x => x.Kind == 1).FirstOrDefault();
             if (title != null)
             {
                 story = title.Story;
