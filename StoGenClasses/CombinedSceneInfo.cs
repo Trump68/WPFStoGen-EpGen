@@ -16,6 +16,7 @@ namespace StoGen.Classes
         // 2- external image (from another set)
         // 3- repeat prev group 
         // 4- 1+2 
+        // 5- transform prev picture
         public int Kind { set; get; } = 0;
         public string Description { set; get; }
         [XmlIgnore]
@@ -59,8 +60,28 @@ namespace StoGen.Classes
         {
             List<string> rez = new List<string>();
             rez.Add($"ID={ID}");
+
             if (!string.IsNullOrEmpty(File))
+            {
+                if (File.Contains(";"))
+                {
+                    string[] vals = File.Split(';');
+                    if (vals[1].Contains("."))
+                    {
+                        string[] parts = vals[1].Split('.');
+                        vals[1] = parts[1];
+                    }
+                    File = $"{vals[0]}@{vals[1]}";
+                }
+                else if (File.Contains("."))
+                {
+                    string[] parts = File.Split('.');
+                    File = parts[1];
+                }
                 rez.Add($"FILE={File}");
+            }
+                
+
             if (Kind!=0)
                 rez.Add($"KIND={Kind}");
             if (!string.IsNullOrEmpty(Description))

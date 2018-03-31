@@ -439,10 +439,10 @@ namespace EPCat
                     newclipinfo.Queue = last.Queue;
                     newclipinfo.Kind = last.Kind;
                     newclipinfo.Description = last.Description;
-                    if (!string.IsNullOrEmpty(last.File) && last.File.Contains(";"))
+                    if (!string.IsNullOrEmpty(last.File) && last.File.Contains("@"))
                     {
-                        string[] vals = last.File.Split(';');
-                        newclipinfo.File = vals[0] + ";";
+                        string[] vals = last.File.Split('@');
+                        newclipinfo.File = vals[0] + "@";
                     }
                     string clpb = Clipboard.GetText();
                     if (clpb.EndsWith(".png") || clpb.EndsWith(".jpg"))
@@ -458,13 +458,16 @@ namespace EPCat
         {
             newclipinfo.ID = Guid.NewGuid().ToString();
 
-            this.CurrentFolder.CombinedScenes.Add(newclipinfo);
-            this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
+            //this.CurrentFolder.CombinedScenes.Add(newclipinfo);
+            int index = this.CurrentFolder.CombinedScenes.IndexOf(this.CurrentCombinedScene);
+            this.CurrentFolder.CombinedScenes.Insert(index + 1, newclipinfo);
+
+            this.CurrentCombinedScene = newclipinfo;
 
             RaisePropertyChanged(() => this.CurrentFolder);
             RaisePropertyChanged(() => this.CurrentCombinedScene);
             RaisePropertyChanged(() => this.CurrentFolder.CombinedScenes);
-            this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
+            //this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
         }
 
         internal void ShowScene()
@@ -489,9 +492,9 @@ namespace EPCat
                 {
                     if (itn.Kind == 2 || itn.Kind == 4)
                     {
-                        if (itn.File.Contains(";"))
+                        if (itn.File.Contains("@"))
                         {
-                            string[] vals = itn.File.Split(';');
+                            string[] vals = itn.File.Split('@');
                             Guid id = Guid.Parse(vals[0]);
                             if (id != null)
                             {
@@ -500,6 +503,27 @@ namespace EPCat
                                 {
                                     itn.Path = it.ItemDirectory;
                                     itn.File = vals[1];
+                                    string fn = null;
+                                    string path = Path.Combine(itn.Path,"PARTS");
+                                    if (Directory.Exists(path))
+                                       fn = Directory.GetFiles(path, $"*{vals[1]}*").ToList().FirstOrDefault();
+                                    if (fn == null)
+                                    {
+                                        path = Path.Combine(itn.Path, "FIGURE");
+                                        if (Directory.Exists(path))
+                                            fn = Directory.GetFiles(path, $"*{vals[1]}*").ToList().FirstOrDefault();
+                                        if (fn == null)
+                                        {
+                                            path = Path.Combine(itn.Path, "EVENTS");
+                                            if (Directory.Exists(path))
+                                                fn = Directory.GetFiles(path, $"*{vals[1]}*").ToList().FirstOrDefault();
+                                        }
+                                    }
+                                    if (!string.IsNullOrEmpty(fn))
+                                    {
+                                        itn.File = Path.GetFileName(fn);
+                                        itn.Path = path;
+                                    }                                                                        
                                 }
                             }
                         }
@@ -537,9 +561,13 @@ namespace EPCat
 
         internal void Close()
         {
-            _Loader.SaveCatalog();
+            Save();
             if (projector != null)
                 projector.Close();
+        }
+        internal void Save()
+        {
+            _Loader.SaveCatalog();
         }
 
     }

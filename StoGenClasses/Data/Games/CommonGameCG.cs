@@ -1,4 +1,5 @@
-﻿using StoGenMake.Scenes.Base;
+﻿using StoGen.Classes.Transition;
+using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,11 @@ namespace StoGen.Classes.Data.Games
             Name = "CommonGameCG";
             EngineHiVer = 1;
             EngineLoVer = 0;
+            setDefaultTextAttribs();
+        }
 
+        private void setDefaultTextAttribs()
+        {
             this.DefaultSceneText.Size = 150;
             this.DefaultSceneText.Width = 1000;
             this.DefaultSceneText.FontSize = 32;
@@ -68,11 +73,13 @@ namespace StoGen.Classes.Data.Games
                 curgroup.Where(x => x.Kind == 3).First().Kind = 1;
                 foreach (var pg in prevgroup)
                 {
-                    if (!curgroup.Where(z=>z.Description == pg.Description).Any())
+                    if (!curgroup.Where(z=>z.Kind !=1 && z.Description == pg.Description).Any())
                     {
                         string ngs = pg.GenerateString();
                         CombinedSceneInfo ng = new CombinedSceneInfo();
                         ng.LoadFromString(ngs);
+                        ng.File = pg.File;
+                        ng.Path = pg.Path;
                         ng.Group = curgroup.First().Group;
                         curgroup.Add(ng);
                     }
@@ -81,7 +88,9 @@ namespace StoGen.Classes.Data.Games
         }
 
         private void DoGroup(List<CombinedSceneInfo> group)
-        {       
+        {
+
+            setDefaultTextAttribs();
             var infopictures = group.Where(x => x.Kind == 0 || x.Kind == 2 || x.Kind == 4);
             Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
 
@@ -111,14 +120,38 @@ namespace StoGen.Classes.Data.Games
             {
                 if (!string.IsNullOrEmpty(item.File))
                 {
-                    string moviePath = Path.Combine(item.Path, "EVENTS");
-                    AddToGlobalImage(item.File, item.File, moviePath);
+                    AddToGlobalImage(item.File, item.File, item.Path);
                 }
             }
 
 
+            List<OpEf> trans = new List<OpEf>();
+            var prevtranpictures = group.Where(x => x.Kind == 5);
+            foreach (var item in prevtranpictures)
+            {
+                int z = 1;
+
+                int opacity = 100;
+                if (!string.IsNullOrEmpty(item.O))
+                {
+                    opacity = Convert.ToInt32(item.O);
+                }
+                if (!string.IsNullOrEmpty(item.Z))
+                {
+                    z = Convert.ToInt32(item.Z);
+                }
+                if (!string.IsNullOrEmpty(item.T))
+                {
+                    trans.Add(new OpEf(z, true, opacity, item.T));
+                    //trans.Add(OpEf.HidePrev(1));
+                }
+            }
+
+
+            int i = 1;
             foreach (var item in infopictures)
             {
+                int opacity = 100;
                 if (Pictures.ContainsKey(item.Description))
                 {
                     item.Description = $"{item.Description}{item.File}";
@@ -129,6 +162,7 @@ namespace StoGen.Classes.Data.Games
                 if (!string.IsNullOrEmpty(item.O))
                 {
                     Pictures[item.Description].O = Convert.ToInt32(item.O);
+                    opacity = Pictures[item.Description].O.Value;
                 }
                 if (!string.IsNullOrEmpty(item.S))
                 {
@@ -148,13 +182,17 @@ namespace StoGen.Classes.Data.Games
                 }
                 if (!string.IsNullOrEmpty(item.T))
                 {
-                    Pictures[item.Description].T = item.T;
+                    Pictures[item.Description].T = item.T;                                        
+                    trans.Add(new OpEf(i,false,opacity, item.T));
                 }
-
+                i++;
             }
 
-            
-            DoC2($"{story}", Pictures.Values.ToList());
+            //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100*W..0>X.B.400.300")); //--appear+move from left
+            //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100"));                  //--appear
+
+
+            DoC2($"{story}", Pictures.Values.ToList(),trans);
         }
        
 

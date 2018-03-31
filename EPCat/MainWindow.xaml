@@ -111,14 +111,14 @@
                                          AutoGenerateColumns="None"
                                          EnableSmartColumnsGeneration="True"
                                          ItemsSource="{Binding FolderListView}"
-                                         SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell">
+                                         SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell" AutoExpandAllGroups="True">
                             <dxg:GridControl.GroupSummary>
                                 <dxg:GridSummaryItem FieldName="Year" SummaryType="Count" ShowInColumn="" DisplayFormat="{}{0}" Alignment="Default" />
                             </dxg:GridControl.GroupSummary>
                             <dxg:GridControl.View>
-                                <dxg:TableView 
+                                <dxg:TableView Name="MainGridView"
                                     AllowConditionalFormattingMenu="True" 
-                                    AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow">
+                                    AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow" AllowGrouping="True" AllowPartialGrouping="True" AllowFixedGroups="True" ShowGroupedColumns="True">
                                     <dxg:TableView.FormatConditions>
                                         <dxg:ColorScaleFormatCondition Expression="[VideoPresent] = True" FieldName="ItemPath" PredefinedFormatName="YellowGreenColorScale" />
                                     </dxg:TableView.FormatConditions>
@@ -524,7 +524,7 @@
 
 
 
-            <dx:DXTabItem Header="Scenes" Height="22" VerticalAlignment="Bottom">
+            <dx:DXTabItem Header="Scenes" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="54">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
 
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
@@ -538,6 +538,9 @@
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopySceneBtn" Content="Copy" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopySceneBtn_Click" />
                             </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <dx:SimpleButton x:Name="SaveBtn" Content="Save" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="SaveBtn_Click" />
+                            </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
 
                         <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
@@ -547,7 +550,7 @@
                                          EnableSmartColumnsGeneration="True"
                                          ItemsSource="{Binding SelectedItem.CombinedScenes, ElementName=GV}"
                                          SelectedItem="{Binding CurrentCombinedScene}"
-                                         SelectionMode="Cell">
+                                         SelectionMode="Cell" AutoExpandAllGroups="False">
                                 <!--SelectedItem="{Binding CurrentFolder}"-->
                                 <dxg:GridControl.View>
                                     <dxg:TableView 
@@ -559,7 +562,7 @@
                                 AutoWidth="False"
                                 ShowGroupPanel="True"
                                 ShowDataNavigator="True"
-                                DataNavigatorButtons="DeleteFocusedRow" ShowGroupedColumns="True">
+                                DataNavigatorButtons="DeleteFocusedRow" ShowGroupedColumns="True" AllowPartialGrouping="True" AllowFixedGroups="True">
                                         <dxg:TableView.FormatConditions>
                                             <dxg:FormatCondition ApplyToRow="True" Expression="[Kind] = '1'" FieldName="N">
                                                 <dx:Format Background="#FFB6FAB6" FontWeight="Bold" TextDecorations="{x:Null}"/>
@@ -573,6 +576,9 @@
                                             <dxg:FormatCondition Expression="[Kind] = '4'" FieldName="N" ApplyToRow="True">
                                                 <dx:Format Background="#FFE3CFFA"/>
                                             </dxg:FormatCondition>
+                                            <dxg:FormatCondition ApplyToRow="True" Expression="[Kind] = '5'" FieldName="N">
+                                                <dx:Format Background="#FF5CDCFF"/>
+                                            </dxg:FormatCondition>
                                         </dxg:TableView.FormatConditions>
                                     </dxg:TableView>
                                 </dxg:GridControl.View>
@@ -580,8 +586,8 @@
                                 <dxg:GridColumn FieldName="Kind" IsSmart="True" Width="35"/>
                                 <dxg:GridColumn FieldName="Queue" IsSmart="True" Width="90" GroupIndex="0"/>
                                 <dxg:GridColumn FieldName="Group" IsSmart="True" Width="90"/>
-                                <dxg:GridColumn FieldName="File" IsSmart="True" Width="300"/>
-                                <dxg:GridColumn FieldName="Description" IsSmart="True" Width="300"/>
+                                <dxg:GridColumn FieldName="File" IsSmart="True" Width="450"/>
+                                <dxg:GridColumn FieldName="Description" IsSmart="True" Width="250"/>
                                 <dxg:GridColumn FieldName="Story" IsSmart="True" Width="350"/>
                             </dxg:GridControl>
                         </dxlc:LayoutItem>

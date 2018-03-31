@@ -70,6 +70,7 @@
     </ApplicationDefinition>
     <Compile Include="ConditionaFormattingEx.cs" />
     <Compile Include="Model\CapsItem.cs" />
+    <Compile Include="Model\InterfaceLayout.cs" />
     <Compile Include="Model\Loader.cs" />
     <Compile Include="CurrentDataRowTemplates.xaml.cs" />
     <Compile Include="ViewModel\EpCatViewModel.cs" />

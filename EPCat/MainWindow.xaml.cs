@@ -52,11 +52,18 @@ namespace EPCat
         {
             if (PathToGridSave != null)
                 RestoreLayout(PathToGridSave);
+            var CommandArgs = System.Environment.GetCommandLineArgs().ToList();
+            if (CommandArgs.Where(x=>x.ToUpper() == "LOAD").Any())
+            {
+                    ViewModel.ProcessScriptFile();
+            }
         }
         void SaveLayout()
         {
             if (PathToGridSave != null)
                 this.GV.SaveLayoutToXml(PathToGridSave);
+            
+            
         }
         string PathToGridSave = null;
         public void RestoreLayout(string path)
@@ -715,5 +722,9 @@ namespace EPCat
             // MadeShot();
         }
 
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Save();
+        }
     }
 }

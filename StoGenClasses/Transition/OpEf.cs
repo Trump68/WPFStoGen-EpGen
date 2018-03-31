@@ -53,7 +53,7 @@ namespace StoGen.Classes.Transition
         public bool P = false; // false - current, true - previous
         public int T = 500; //speed time, ms
         public int W = 500; //wait time, ms
-        public bool D = true;//direction, true - dissapeared, false - appeared
+        public bool D = true;//direction, true - dissapeared, false - appeared (optional, T can be used instead)
 
         public int O { get; set; } = 100;
     }

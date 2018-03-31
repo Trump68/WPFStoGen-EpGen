@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -150,7 +151,7 @@ namespace EPCat.Model
              * $09-Type
              * $10-Director
              * $01 JAV $02  $04  $
-             * $01 WEB $03 WEBCLIP $08 P $07  $ 
+             * $01 WEB $03 WEBCLIP $08 P $07 $ 
              * $01 HEN $03 COMIX $08 P $10 Kaos $ 
              */
 
@@ -411,7 +412,9 @@ namespace EPCat.Model
         private string CurrentCatalog;
         internal void SaveCatalog()
         {
-            if (string.IsNullOrEmpty(CurrentCatalog)) return;            
+            if (string.IsNullOrEmpty(CurrentCatalog)) return;    
+            if (File.Exists(CurrentCatalog))        
+                 File.Copy(CurrentCatalog,Path.ChangeExtension(CurrentCatalog,"bak"),true);
             System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<EpItem>));
             using (var writer = new StreamWriter(CurrentCatalog))
             {
@@ -425,6 +428,9 @@ namespace EPCat.Model
                     File.WriteAllLines(Path.Combine(item.ItemDirectory, EpItem.p_PassportName), lines);
                 }
             }
+
+//            int frh = this.MainGridView.FocusedRowHandle;
+
         }
 
         internal void ParseLine(string line)
@@ -691,8 +697,51 @@ namespace EPCat.Model
             if (passport != null)
             {
                 EpItem item = EpItem.GetFromPassport(passport);
+                if (item.GID == null || Guid.Empty.Equals(item.GID))
+                    item.GID = Guid.NewGuid();
                 item.ItemPath = passportPath;
+                if (string.IsNullOrEmpty(item.Name))
+                {
+                    item.Catalog = "HEN";
+                    item.Kind = "Hentai Artist";
+
+                    string dirname = Path.GetDirectoryName(passportPath);
+                    item.Name = Path.GetFileName(dirname);
+                    string eventsdir = Path.Combine(dirname, "EVENTS");
+                    if (!Directory.Exists(eventsdir))
+                    {
+                        Directory.CreateDirectory(eventsdir);
+                        var filesjpg = Directory.GetFiles(dirname, "*.jpg").ToList();
+                        var i = 0;
+                        foreach(string fn in filesjpg)
+                        {
+                            i++;
+                            string filename = Path.GetFileName(fn);
+                            if (filename.Length > 100)
+                                filename = filename.Substring(0, 100) +i.ToString()+ ".jpg";
+                            string newpath = Path.Combine(eventsdir, filename);                            
+                            File.Move(fn, newpath);
+                        }
+                        var filespng = Directory.GetFiles(dirname, "*.png").ToList();
+                        i = 0;
+                        foreach (string fn in filespng)
+                        {
+                            i++;
+                            string filename = Path.GetFileName(fn);
+                            if (filename.Length > 100)
+                                filename = filename.Substring(0, 100) + i.ToString() +".png";
+                            string newpath = Path.Combine(eventsdir, filename);
+                            File.Move(fn, newpath);
+                        }
+                        string newcaption = Path.Combine(eventsdir, "1.jpg");
+                        if (File.Exists(newcaption))
+                        {
+                            File.Copy(newcaption, Path.Combine(dirname, "POSTER.jpg"), false);
+                        }
+                    }
+                }
                 item.SourceFolderExist = true;
+
 
                 bool copyPoster = false;
                 bool reversecopyPoster = false;
