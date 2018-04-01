@@ -746,11 +746,21 @@ namespace EPCat.Model
                             string newpath = Path.Combine(eventsdir, filename);
                             File.Move(fn, newpath);
                         }
-                        string newcaption = Path.Combine(eventsdir, "1.jpg");
-                        if (File.Exists(newcaption))
-                        {
-                            File.Copy(newcaption, Path.Combine(dirname, "POSTER.jpg"), false);
+                        List<String> cpslist = new List<string>();
+                        cpslist.Add(Path.Combine(eventsdir, "1.jpg"));
+                        cpslist.Add(Path.Combine(eventsdir, "01.jpg"));
+                        cpslist.Add(Path.Combine(eventsdir, "001.jpg"));
+                        cpslist.Add(Path.Combine(eventsdir, "0001.jpg"));
+                        cpslist.Add(Path.Combine(eventsdir, "00001.jpg"));
+                        foreach (var newcaption in cpslist)
+                        {                            
+                            if (File.Exists(newcaption))
+                            {
+                                File.Copy(newcaption, Path.Combine(dirname, "POSTER.jpg"), false);
+                                break;
+                            }
                         }
+
                     }
                 }
                 item.SourceFolderExist = true;
