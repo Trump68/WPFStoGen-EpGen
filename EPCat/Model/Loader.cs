@@ -702,8 +702,21 @@ namespace EPCat.Model
                 item.ItemPath = passportPath;
                 if (string.IsNullOrEmpty(item.Name))
                 {
-                    item.Catalog = "HEN";
-                    item.Kind = "Hentai Artist";
+                    if (passportPath.Contains(@"/HEN/"))
+                            item.Catalog = "HEN";
+                    else if (passportPath.Contains(@"/MOV/"))
+                        item.Catalog = "MOV";
+                    else if (passportPath.Contains(@"/AMA/"))
+                        item.Catalog = "AMA";
+                    else if (passportPath.Contains(@"/JAV/"))
+                        item.Catalog = "JAV";
+                    else if (passportPath.Contains(@"/WEB/"))
+                        item.Catalog = "WEB";
+                    else if (passportPath.Contains(@"/PTD/"))
+                        item.Catalog = "PTD";
+                    else if (passportPath.Contains(@"/PRS/"))
+                        item.Catalog = "PRS";
+                    //item.Kind = "Hentai Artist";
 
                     string dirname = Path.GetDirectoryName(passportPath);
                     item.Name = Path.GetFileName(dirname);

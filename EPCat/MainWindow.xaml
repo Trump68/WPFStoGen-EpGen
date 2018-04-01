@@ -111,7 +111,7 @@
                                          AutoGenerateColumns="None"
                                          EnableSmartColumnsGeneration="True"
                                          ItemsSource="{Binding FolderListView}"
-                                         SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell" AutoExpandAllGroups="True">
+                                         SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell" AutoExpandAllGroups="False">
                             <dxg:GridControl.GroupSummary>
                                 <dxg:GridSummaryItem FieldName="Year" SummaryType="Count" ShowInColumn="" DisplayFormat="{}{0}" Alignment="Default" />
                             </dxg:GridControl.GroupSummary>
