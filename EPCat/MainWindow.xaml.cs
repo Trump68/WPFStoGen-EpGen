@@ -701,10 +701,32 @@ namespace EPCat
         private void AddSceneBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene();
+            (this.DataContext as EpCatViewModel).AddCombinedScene(null);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
+        private void AddSceneSoundBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //save
+            (this.DataContext as EpCatViewModel).AddCombinedScene(6);
+            // reset
+            (this.DataContext as EpCatViewModel).RefreshFolder();
+        }
+        private void AddSceneSoundPlusBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //save
+            (this.DataContext as EpCatViewModel).AddCombinedScene(7);
+            // reset
+            (this.DataContext as EpCatViewModel).RefreshFolder();
+        }
+        private void AddSceneHeaderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //save
+            (this.DataContext as EpCatViewModel).AddCombinedScene(1);
+            // reset
+            (this.DataContext as EpCatViewModel).RefreshFolder();
+        }
+
         private void CopySceneBtn_Click(object sender, RoutedEventArgs e)
         {
             (this.DataContext as EpCatViewModel).CopyCombinedScene();
@@ -727,6 +749,11 @@ namespace EPCat
             ViewModel.Save();
         }
 
+        private void AdMediaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.AddMedia();
+        }
 
+       
     }
 }

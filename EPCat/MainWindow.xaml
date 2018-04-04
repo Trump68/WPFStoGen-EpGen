@@ -112,13 +112,16 @@
                                          EnableSmartColumnsGeneration="True"
                                          ItemsSource="{Binding FolderListView}"
                                          SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell" AutoExpandAllGroups="False">
+                            <dxg:GridControl.TotalSummary>
+                                <dxg:GridSummaryItem DisplayFormat="{}{0}" FieldName="Name" SummaryType="Count" ShowInColumn="Name"/>
+                            </dxg:GridControl.TotalSummary>
                             <dxg:GridControl.GroupSummary>
                                 <dxg:GridSummaryItem FieldName="Year" SummaryType="Count" ShowInColumn="" DisplayFormat="{}{0}" Alignment="Default" />
                             </dxg:GridControl.GroupSummary>
                             <dxg:GridControl.View>
                                 <dxg:TableView Name="MainGridView"
                                     AllowConditionalFormattingMenu="True" 
-                                    AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow" AllowGrouping="True" AllowPartialGrouping="True" AllowFixedGroups="True" ShowGroupedColumns="True">
+                                    AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow" AllowGrouping="True" AllowPartialGrouping="True" AllowFixedGroups="True" ShowGroupedColumns="True" ShowFixedTotalSummary="True">
                                     <dxg:TableView.FormatConditions>
                                         <dxg:ColorScaleFormatCondition Expression="[VideoPresent] = True" FieldName="ItemPath" PredefinedFormatName="YellowGreenColorScale" />
                                     </dxg:TableView.FormatConditions>
@@ -149,6 +152,7 @@
                             <dxg:GridColumn FieldName="PersonSex" IsSmart="True" />
                             <dxg:GridColumn FieldName="PersonType" IsSmart="True" />
                             <dxg:GridColumn FieldName="PersonKind" IsSmart="True" />
+                            <dxg:GridColumn FieldName="LastCheck" IsSmart="True" />
                             <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" Width="20" Header="." />
                             <dxg:GridColumn FieldName="SourceFolderExist" IsSmart="True" />
                         </dxg:GridControl>
@@ -405,7 +409,9 @@
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="EditEndVideoBtn" Content="Go End" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="EditEndVideoBtn_Click" />
                             </dxlc:LayoutItem>
-
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="AddMediaBtn" Content="Add" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AdMediaBtn_Click" />
+                            </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
 
                         <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
@@ -445,6 +451,29 @@
                             </dxg:GridControl>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
+
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                            <dxlc:LayoutItem Label="File">
+                                <TextBox Name="txtFile2" Text="{Binding SelectedItem.File, ElementName=GVScen}"
+                                 HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                            <dxlc:LayoutItem Label="Story" LabelPosition="Left">
+                                <dxe:TextEdit 
+                                MaxHeight="320"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding SelectedItem.Story, ElementName=GVScen}" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+
+
+                    </dxlc:LayoutGroup>
+
                     <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" MaxWidth="700" MaxHeight="200" Height="200">
                         <Image Source="{Binding SelectedItem.Poster, ElementName=GVScen}" Stretch="Uniform" />
                     </dxlc:LayoutItem>
@@ -534,6 +563,15 @@
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="AddSceneBtn" Content="Add" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton  Content="Add Header" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneHeaderBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton  Content="Add Sound" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneSoundBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton  Content="Add Sound+" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneSoundPlusBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopySceneBtn" Content="Copy" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopySceneBtn_Click" />

@@ -132,6 +132,8 @@ namespace EPCat.Model
             DoTempWork1_OneCountry("IND", fromPath, toPath);
             DoTempWork1_OneCountry("SWE", fromPath, toPath);
             DoTempWork1_OneCountry("SNG", fromPath, toPath);
+            DoTempWork1_OneCountry("HOL", fromPath, toPath);
+            DoTempWork1_OneCountry("PRT", fromPath, toPath);
 
             DoTempWork1_OneCountry("$WEB", fromPath, toPath);
             DoTempWork1_OneCountry("$JAV", fromPath, toPath);
@@ -720,6 +722,25 @@ namespace EPCat.Model
 
                     string dirname = Path.GetDirectoryName(passportPath);
                     item.Name = Path.GetFileName(dirname);
+                    string sounddir = Path.Combine(dirname, "SOUND");
+                    if (Directory.Exists(sounddir))
+                    {
+                        var filesmp3 = Directory.GetFiles(sounddir, "*.mp3").ToList();
+                        var i = 0;
+                        foreach (string fn in filesmp3)
+                        {
+                            i++;
+                            string filename = Path.GetFileName(fn);
+                            if (filename.Length != 41)//string.len"0001.a9da9cd436174c35aa1a0fa0d33636b0.mp3")
+                            {
+                                string gid = Guid.NewGuid().ToString();
+                                string newpath = Path.GetFileNameWithoutExtension(filename);
+                                newpath = $"{newpath}.{gid}.mp3";
+                                newpath = Path.Combine(sounddir, newpath);
+                                File.Move(fn, newpath);
+                            }
+                        }
+                    }
                     string eventsdir = Path.Combine(dirname, "EVENTS");
                     if (!Directory.Exists(eventsdir))
                     {

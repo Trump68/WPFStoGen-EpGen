@@ -34,6 +34,7 @@ namespace EPCat.Model
                 return Path.Combine(Path.GetDirectoryName(ItemPath), "POSTER.JPG");
             }
         }
+      
         public ImageSource Poster
         {
             get
@@ -95,13 +96,54 @@ namespace EPCat.Model
                 return Path.GetDirectoryName(ItemPath);
             }
         }
+        private string _SoundDirectory;
+        [XmlIgnore]
+        public string SoundDirectory
+        {
+            get
+            {
+                if (_SoundDirectory == null)
+                {
+                    if (string.IsNullOrEmpty(ItemPath)) return string.Empty;
+                    _SoundDirectory =  Path.Combine(Path.GetDirectoryName(ItemPath), "SOUND");
+                }
+                return _SoundDirectory;
+            }
+        }
+
+        public List<string> _Videos = null;
+       [XmlIgnore]
         public List<string> Videos
         {
             get
             {
-                if (string.IsNullOrEmpty(ItemDirectory)) return new List<string>();
-                if (!Directory.Exists(ItemDirectory)) return new List<string>();
-                return Directory.GetFiles(ItemDirectory, "*.m4v").ToList();
+                if (_Videos == null)
+                {
+                    if (string.IsNullOrEmpty(ItemDirectory)) _Videos =  new List<string>();
+                    else if (!Directory.Exists(ItemDirectory)) _Videos =  new List<string>();
+                    else _Videos =  Directory.GetFiles(ItemDirectory, "*.m4v").ToList();
+                }
+                List<string> rez = new List<string>();
+                rez.AddRange(_Videos);
+                rez.AddRange(Sounds);
+                return rez;
+            }
+        }
+
+
+        private List<string> _Sounds = null;
+        [XmlIgnore]
+        public List<string> Sounds
+        {
+            get
+            {
+                if (_Sounds == null)
+                {
+                    if (string.IsNullOrEmpty(SoundDirectory)) _Sounds =  new List<string>();
+                    else if (!Directory.Exists(SoundDirectory)) _Sounds = new List<string>();
+                    else _Sounds = Directory.GetFiles(SoundDirectory, "*.mp3").ToList();
+                }
+                return _Sounds;
             }
         }
         List<CapsItem> _Caps = null;
@@ -225,6 +267,7 @@ namespace EPCat.Model
         public string PersonSex { get; set; }
         public string PersonType { get; set; }
         public string PersonKind { get; set; }
+        public string LastCheck { get; set; }
 
 
 
@@ -322,6 +365,7 @@ namespace EPCat.Model
             this.Director = item.Director;
             this.Studio = item.Studio;
             this.IMDB = item.IMDB;
+            this.LastCheck = item.LastCheck;
 
             this.PersonName = item.PersonName;
             this.PersonAge = item.PersonAge;
@@ -368,6 +412,7 @@ namespace EPCat.Model
         static string p_Director = "Director:";
         static string p_Studio = "Studio:";
         static string p_IMDB = "IMDB:";
+        static string p_LastCheck = "LastCheck:";
 
         static string p_PersonName = "PersonName:";
         static string p_PersonAge = "PersonAge:";
@@ -492,7 +537,8 @@ namespace EPCat.Model
                 result.Add(p_PersonType + item.PersonType);
             if (!string.IsNullOrEmpty(item.PersonKind))
                 result.Add(p_PersonKind + item.PersonKind);
-
+            if (!string.IsNullOrEmpty(item.LastCheck))
+                result.Add(p_LastCheck + item.LastCheck);
 
             if (item.Comments.Count == 1)
             {
@@ -829,7 +875,14 @@ namespace EPCat.Model
                         result.PersonKind = term;
                     }
                 }
-
+                else if (term.StartsWith(p_LastCheck))
+                {
+                    term = term.Replace(p_LastCheck, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.LastCheck = term;
+                    }
+                }
             }
             return result;
         }

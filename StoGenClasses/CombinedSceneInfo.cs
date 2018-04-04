@@ -17,6 +17,8 @@ namespace StoGen.Classes
         // 3- repeat prev group 
         // 4- 1+2 
         // 5- transform prev picture
+        // 6 - sound
+        // 7 -1+6
         public int Kind { set; get; } = 0;
         public string Description { set; get; }
         [XmlIgnore]

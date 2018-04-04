@@ -386,7 +386,53 @@ namespace EPCat
             this.ClipTemplate.PositionStart = 0;
 
         }
+        internal void AddMedia()
+        {
+            var last = this.CurrentFolder.Clips.LastOrDefault();
 
+
+            MovieSceneInfo newclipinfo = new MovieSceneInfo();
+            newclipinfo.ID = Guid.NewGuid().ToString();
+            //newclipinfo.PositionStart = this.ClipTemplate.PositionStart;
+            //newclipinfo.PositionEnd = this.ClipTemplate.PositionEnd;
+            //newclipinfo.File = this.ClipTemplate.File;
+            if (last != null)
+            {
+                //    newclipinfo.Antagonist = last.Antagonist;
+                //    newclipinfo.Protogonist = last.Protogonist;
+                string desc = last.Description;
+                if (!string.IsNullOrEmpty(desc))
+                {
+                    int n;
+                    if (int.TryParse(desc.Substring(0, 3), out n))
+                    {
+                        newclipinfo.Description = $"{(n + 1).ToString("D3")}.00 {new string(last.Description.Skip(7).ToArray())}";
+                    }
+                    else
+                    {
+                        newclipinfo.Description = last.Description;
+                    }
+                }
+
+            }
+            else
+            {
+                newclipinfo.Description = "001.00";
+            }
+
+
+            this.CurrentFolder.Clips.Add(newclipinfo);
+            this.CurrentClip = this.CurrentFolder.Clips.Last();
+            RaisePropertyChanged(() => this.CurrentFolder);
+            RaisePropertyChanged(() => this.CurrentClip);
+            RaisePropertyChanged(() => this.CurrentFolder.Clips);
+            this.CurrentClip = this.CurrentFolder.Clips.Last();
+            //this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
+
+            //this.ClipTemplate.PositionEnd = 0;
+            //this.ClipTemplate.PositionStart = 0;
+
+        }
         List<string> CopiedCombinedScene = new List<string>();
         internal void CopyCombinedScene()
         {
@@ -407,8 +453,9 @@ namespace EPCat
             }
         }
 
-        internal void AddCombinedScene()
+        internal void AddCombinedScene(int? kind)
         {
+            if (this.CurrentFolder == null) return;
             var last = this.CurrentFolder.CombinedScenes.LastOrDefault();
             
             if (CopiedCombinedScene != null && CopiedCombinedScene.Any())
@@ -437,7 +484,10 @@ namespace EPCat
                     }
                     
                     newclipinfo.Queue = last.Queue;
-                    newclipinfo.Kind = last.Kind;
+                    if (kind.HasValue)
+                        newclipinfo.Kind = kind.Value;
+                    else
+                        newclipinfo.Kind = last.Kind;
                     newclipinfo.Description = last.Description;
                     if (!string.IsNullOrEmpty(last.File) && last.File.Contains("@"))
                     {
@@ -454,6 +504,7 @@ namespace EPCat
             }
 
         }
+        
         private void addNewComb(CombinedSceneInfo newclipinfo)
         {
             newclipinfo.ID = Guid.NewGuid().ToString();

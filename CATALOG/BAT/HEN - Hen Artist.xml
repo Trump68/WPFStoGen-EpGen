@@ -231,45 +231,49 @@
       </property>
     </property>
     <property name="TotalSummary" iskey="true" value="0" />
-    <property name="MRUFilters" iskey="true" value="9">
+    <property name="MRUFilters" iskey="true" value="10">
       <property name="Item1" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Director], 'oy')</property>
+        <property name="FilterText">Starts with([Director], 'oy')</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Director], 'o')</property>
+        <property name="FilterText">Starts with([Director], 'o')</property>
+      </property>
+      <property name="Item3" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Director], 'ols')</property>
+        <property name="FilterText">Starts with([Director], 'ols')</property>
+      </property>
+      <property name="Item4" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Director], 'ol')</property>
+        <property name="FilterText">Starts with([Director], 'ol')</property>
+      </property>
+      <property name="Item5" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Director], 'od')</property>
+        <property name="FilterText">Starts with([Director], 'od')</property>
+      </property>
+      <property name="Item6" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Director], 'Nyuu Koubou')</property>
+        <property name="FilterText">Starts with([Director], 'Nyuu Koubou')</property>
+      </property>
+      <property name="Item7" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Director], 'Magaki Ryouta')</property>
+        <property name="FilterText">Starts with([Director], 'Magaki Ryouta')</property>
+      </property>
+      <property name="Item8" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Director], 'araku')</property>
         <property name="FilterText">Starts with([Director], 'araku')</property>
       </property>
-      <property name="Item2" isnull="true" iskey="true">
+      <property name="Item9" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Director], 'arak')</property>
         <property name="FilterText">Starts with([Director], 'arak')</property>
       </property>
-      <property name="Item3" isnull="true" iskey="true">
+      <property name="Item10" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Director], 'ara')</property>
         <property name="FilterText">Starts with([Director], 'ara')</property>
       </property>
-      <property name="Item4" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Director], 'ar')</property>
-        <property name="FilterText">Starts with([Director], 'ar')</property>
-      </property>
-      <property name="Item5" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Director], 'a')</property>
-        <property name="FilterText">Starts with([Director], 'a')</property>
-      </property>
-      <property name="Item6" isnull="true" iskey="true">
-        <property name="FilterString">[Kind] = 'Hentai Artist' And StartsWith([Director], 'arai')</property>
-        <property name="FilterText">[Kind] = 'Hentai Artist' And Starts with([Director], 'arai')</property>
-      </property>
-      <property name="Item7" isnull="true" iskey="true">
-        <property name="FilterString">[Kind] = 'Hentai Artist' And StartsWith([Director], 'ara')</property>
-        <property name="FilterText">[Kind] = 'Hentai Artist' And Starts with([Director], 'ara')</property>
-      </property>
-      <property name="Item8" isnull="true" iskey="true">
-        <property name="FilterString">[Kind] = 'Hentai Artist' And StartsWith([Director], 'ar')</property>
-        <property name="FilterText">[Kind] = 'Hentai Artist' And Starts with([Director], 'ar')</property>
-      </property>
-      <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">[Kind] = 'Hentai Artist' And StartsWith([Director], 'a')</property>
-        <property name="FilterText">[Kind] = 'Hentai Artist' And Starts with([Director], 'a')</property>
-      </property>
     </property>
-    <property name="FilterString">StartsWith([Director], 'Magaki Ryouta')</property>
+    <property name="FilterString" />
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>
