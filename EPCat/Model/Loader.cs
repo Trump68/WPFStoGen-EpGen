@@ -396,7 +396,7 @@ namespace EPCat.Model
                 List<string> passport = new List<string>(File.ReadAllLines(pass));
                 if (passport != null)
                 {
-                    EpItem item = EpItem.GetFromPassport(passport);
+                    EpItem item = EpItem.GetFromPassport(passport, passportPath);
                     string dirname = Path.GetDirectoryName(passportPath);
                     string name = Path.GetFileName(passportPath);
                     if (item.Catalog != "JAV")
@@ -698,10 +698,10 @@ namespace EPCat.Model
             List<string> passport = new List<string>(File.ReadAllLines(passportPath));
             if (passport != null)
             {
-                EpItem item = EpItem.GetFromPassport(passport);
+                EpItem item = EpItem.GetFromPassport(passport, passportPath);
                 if (item.GID == null || Guid.Empty.Equals(item.GID))
                     item.GID = Guid.NewGuid();
-                item.ItemPath = passportPath;
+               
                 if (string.IsNullOrEmpty(item.Name))
                 {
                     if (passportPath.Contains(@"/HEN/"))
@@ -721,27 +721,33 @@ namespace EPCat.Model
                     //item.Kind = "Hentai Artist";
 
                     string dirname = Path.GetDirectoryName(passportPath);
-                    item.Name = Path.GetFileName(dirname);
-                    string sounddir = Path.Combine(dirname, "SOUND");
-                    if (Directory.Exists(sounddir))
+                    item.Name = UppercaseWords(Path.GetFileName(dirname));
+                    if (string.IsNullOrEmpty(item.Director))
                     {
-                        var filesmp3 = Directory.GetFiles(sounddir, "*.mp3").ToList();
-                        var i = 0;
-                        foreach (string fn in filesmp3)
-                        {
-                            i++;
-                            string filename = Path.GetFileName(fn);
-                            if (filename.Length != 41)//string.len"0001.a9da9cd436174c35aa1a0fa0d33636b0.mp3")
-                            {
-                                string gid = Guid.NewGuid().ToString();
-                                string newpath = Path.GetFileNameWithoutExtension(filename);
-                                newpath = $"{newpath}.{gid}.mp3";
-                                newpath = Path.Combine(sounddir, newpath);
-                                File.Move(fn, newpath);
-                            }
-                        }
+                       string director =  Directory.GetParent(dirname).Name;
+                        item.Director = UppercaseWords(director);
                     }
-                    string eventsdir = Path.Combine(dirname, "EVENTS");
+
+                        //string sounddir = Path.Combine(dirname, "SOUND");
+                        //if (Directory.Exists(sounddir))
+                        //{
+                        //    var filesmp3 = Directory.GetFiles(sounddir, "*.mp3").ToList();
+                        //    var i = 0;
+                        //    foreach (string fn in filesmp3)
+                        //    {
+                        //        i++;
+                        //        string filename = Path.GetFileName(fn);
+                        //        if (filename.Length < 45)//string.len"0001.a9da9cd436174c35aa1a0fa0d33636b0.mp3")
+                        //        {
+                        //            string gid = Guid.NewGuid().ToString();
+                        //            string newpath = Path.GetFileNameWithoutExtension(filename);
+                        //            newpath = $"{newpath}.{gid}.mp3";
+                        //            newpath = Path.Combine(sounddir, newpath);
+                        //            File.Move(fn, newpath);
+                        //        }
+                        //    }
+                        //}
+                        string eventsdir = Path.Combine(dirname, "EVENTS");
                     if (!Directory.Exists(eventsdir))
                     {
                         Directory.CreateDirectory(eventsdir);
@@ -854,7 +860,31 @@ namespace EPCat.Model
                 }
             }
         }
-
+        static string UppercaseWords(string value)
+        {
+            char[] array = value.ToCharArray();
+            // Handle the first letter in the string.
+            if (array.Length >= 1)
+            {
+                if (char.IsLower(array[0]))
+                {
+                    array[0] = char.ToUpper(array[0]);
+                }
+            }
+            // Scan through the letters, checking for spaces.
+            // ... Uppercase the lowercase letters following spaces.
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i - 1] == ' ')
+                {
+                    if (char.IsLower(array[i]))
+                    {
+                        array[i] = char.ToUpper(array[i]);
+                    }
+                }
+            }
+            return new string(array);
+        }
         private void CreateUpdateCapsFromPassort(string passportPath)
         {
             List<string> passport = new List<string>(File.ReadAllLines(passportPath));

@@ -320,6 +320,23 @@ namespace EPCat.Model
                     item.N = _CombinedScenes.IndexOf(item) + 1;
                     if (item.Kind != 2 && item.Kind != 4)
                         item.Path = Path.GetDirectoryName(this.ItemPath);
+                    if (item.Kind == 7)
+                    {
+                        if (string.IsNullOrEmpty(item.File) && !string.IsNullOrEmpty(item.Description))
+                        {
+                            string filename = Path.Combine(this.SoundDirectory, item.Description + ".mp3");
+                            if (File.Exists(filename))
+                            {
+                                string gid = Guid.NewGuid().ToString();
+                                string newpath = Path.GetFileNameWithoutExtension(filename);
+                                newpath = $"{newpath}.{gid}.mp3";
+                                newpath = Path.Combine(this.SoundDirectory, newpath);
+                                File.Move(filename, newpath);
+                                item.File = gid;
+                            }
+                            
+                        }
+                    }
                 }
                 return _CombinedScenes;
             }
@@ -593,9 +610,10 @@ namespace EPCat.Model
 
             return result;
         }
-        internal static EpItem GetFromPassport(List<string> passport)
+        internal static EpItem GetFromPassport(List<string> passport, string path)
         {
             EpItem result = new EpItem(1);
+            result.ItemPath = path;
             bool isComments = false;
             bool isScenData = false;
             bool isCombData = false;
