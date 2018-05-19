@@ -35,9 +35,9 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            //DoTempWork1();
-            //DoTempwork2(@"d:\!CATALOG\MOV\");
-            //return null;
+            DoTempWork1();
+            DoTempwork2(@"d:\!CATALOG\MOV\");
+            return null;
 
             Source = sourceList;
             CaspSource = capsList;
@@ -722,12 +722,15 @@ namespace EPCat.Model
 
                     string dirname = Path.GetDirectoryName(passportPath);
                     item.Name = UppercaseWords(Path.GetFileName(dirname));
-                    if (string.IsNullOrEmpty(item.Director))
+                    if (string.IsNullOrEmpty(item.Director) && item.Catalog =="HEN" && item.Kind=="Hentai Artist")
                     {
                        string director =  Directory.GetParent(dirname).Name;
-                        item.Director = UppercaseWords(director);
+                       item.Director = UppercaseWords(director);
+                    } else if (string.IsNullOrEmpty(item.Studio) && item.Catalog == "HEN" && item.Kind == "GameCG")
+                    {
+                        string studio = Directory.GetParent(dirname).Name;
+                        item.Studio = studio.ToUpper();
                     }
-
                         //string sounddir = Path.Combine(dirname, "SOUND");
                         //if (Directory.Exists(sounddir))
                         //{

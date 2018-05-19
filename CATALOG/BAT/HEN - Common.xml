@@ -12,7 +12,7 @@
         <property name="Alignment">Default</property>
       </property>
     </property>
-    <property name="SortInfo" iskey="true" value="3">
+    <property name="SortInfo" iskey="true" value="2">
       <property name="Item1" isnull="true" iskey="true">
         <property name="FieldName">Kind</property>
         <property name="SortOrder">Ascending</property>
@@ -20,11 +20,6 @@
       </property>
       <property name="Item2" isnull="true" iskey="true">
         <property name="FieldName">Studio</property>
-        <property name="SortOrder">Ascending</property>
-        <property name="MergeWithPreviousGroup">false</property>
-      </property>
-      <property name="Item3" isnull="true" iskey="true">
-        <property name="FieldName">Director</property>
         <property name="SortOrder">Ascending</property>
         <property name="MergeWithPreviousGroup">false</property>
       </property>
@@ -144,13 +139,13 @@
       <property name="Item17" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Director</property>
-        <property name="VisibleIndex">2</property>
+        <property name="VisibleIndex">1</property>
         <property name="ActualWidth">74.999999999999972</property>
       </property>
       <property name="Item18" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Studio</property>
-        <property name="VisibleIndex">1</property>
+        <property name="VisibleIndex">2</property>
         <property name="ActualWidth">93.6006643167812</property>
       </property>
       <property name="Item19" isnull="true" iskey="true">
@@ -244,44 +239,44 @@
     <property name="TotalSummary" iskey="true" value="0" />
     <property name="MRUFilters" iskey="true" value="10">
       <property name="Item1" isnull="true" iskey="true">
-        <property name="FilterString">Contains([Director], 'Jeff')</property>
-        <property name="FilterText">Contains([Director], 'Jeff')</property>
+        <property name="FilterString">Contains([Studio], 'LUNE')</property>
+        <property name="FilterText">Contains([Studio], 'LUNE')</property>
       </property>
       <property name="Item2" isnull="true" iskey="true">
-        <property name="FilterString">Contains([Director], 'jeff')</property>
-        <property name="FilterText">Contains([Director], 'jeff')</property>
+        <property name="FilterString">StartsWith([Studio], 'LUNE')</property>
+        <property name="FilterText">Starts with([Studio], 'LUNE')</property>
       </property>
       <property name="Item3" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Director], 'jeff')</property>
-        <property name="FilterText">Starts with([Director], 'jeff')</property>
+        <property name="FilterString">StartsWith([Studio], 'LUN')</property>
+        <property name="FilterText">Starts with([Studio], 'LUN')</property>
       </property>
       <property name="Item4" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Director], 'jef')</property>
-        <property name="FilterText">Starts with([Director], 'jef')</property>
+        <property name="FilterString">StartsWith([Studio], 'LU')</property>
+        <property name="FilterText">Starts with([Studio], 'LU')</property>
       </property>
       <property name="Item5" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Director], 'je')</property>
-        <property name="FilterText">Starts with([Director], 'je')</property>
+        <property name="FilterString">StartsWith([Studio], 'L')</property>
+        <property name="FilterText">Starts with([Studio], 'L')</property>
       </property>
       <property name="Item6" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Director], 'j')</property>
-        <property name="FilterText">Starts with([Director], 'j')</property>
+        <property name="FilterString">StartsWith([Studio], 'l')</property>
+        <property name="FilterText">Starts with([Studio], 'l')</property>
       </property>
       <property name="Item7" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Director], 'da')</property>
-        <property name="FilterText">Starts with([Director], 'da')</property>
+        <property name="FilterString">StartsWith([Studio], 'lu')</property>
+        <property name="FilterText">Starts with([Studio], 'lu')</property>
       </property>
       <property name="Item8" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Director], 'd')</property>
-        <property name="FilterText">Starts with([Director], 'd')</property>
+        <property name="FilterString">StartsWith([Studio], 'lun')</property>
+        <property name="FilterText">Starts with([Studio], 'lun')</property>
       </property>
       <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Director], 'cho')</property>
-        <property name="FilterText">Starts with([Director], 'cho')</property>
+        <property name="FilterString">StartsWith([Studio], 'lune')</property>
+        <property name="FilterText">Starts with([Studio], 'lune')</property>
       </property>
       <property name="Item10" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Director], 'ch')</property>
-        <property name="FilterText">Starts with([Director], 'ch')</property>
+        <property name="FilterString">StartsWith([Director], 'firol')</property>
+        <property name="FilterText">Starts with([Director], 'firol')</property>
       </property>
     </property>
     <property name="FilterString" />

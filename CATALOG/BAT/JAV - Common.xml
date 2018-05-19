@@ -228,7 +228,7 @@
       </property>
     </property>
     <property name="TotalSummary" iskey="true" value="0" />
-    <property name="MRUFilters" iskey="true" value="10">
+    <property name="MRUFilters" iskey="true" value="9">
       <property name="Item1" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Serie], 'ju')</property>
         <property name="FilterText">Starts with([Serie], 'ju')</property>
@@ -264,10 +264,6 @@
       <property name="Item9" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Serie], 'hodv')</property>
         <property name="FilterText">Starts with([Serie], 'hodv')</property>
-      </property>
-      <property name="Item10" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'hod')</property>
-        <property name="FilterText">Starts with([Serie], 'hod')</property>
       </property>
     </property>
     <property name="FilterString">StartsWith([Serie], 'jux')</property>
