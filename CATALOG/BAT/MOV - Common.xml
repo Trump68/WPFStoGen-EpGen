@@ -299,7 +299,7 @@
       </property>
     </property>
     <property name="TotalSummary" iskey="true" value="0" />
-    <property name="MRUFilters" iskey="true" value="10">
+    <property name="MRUFilters" iskey="true" value="9">
       <property name="Item1" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'female')</property>
         <property name="FilterText">Starts with([Name], 'female')</property>
@@ -336,13 +336,9 @@
         <property name="FilterString">StartsWith([Name], 'war')</property>
         <property name="FilterText">Starts with([Name], 'war')</property>
       </property>
-      <property name="Item10" isnull="true" iskey="true">
-        <property name="FilterString">Contains([Name], 'Blutjunge')</property>
-        <property name="FilterText">Contains([Name], 'Blutjunge')</property>
-      </property>
     </property>
     <property name="FilterString">StartsWith([Star], 'Sun-young Kim')</property>
-    <property name="IsFilterEnabled">true</property>
+    <property name="IsFilterEnabled">false</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>
 </XtraSerializer>

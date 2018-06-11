@@ -51707,4 +51707,29 @@ My dad starts a double life with a Japanese mother who should never know.</Comme
     <Clips />
     <CombinedScenes />
   </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>448708f0-65a5-475d-8294-b0459a9ce52a</GID>
+    <ItemPath>d:\!catalog\mov\2013\[kor] wish taxi\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Wish Taxi</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <AltTitle>Secret Travel,</AltTitle>
+    <Country>KOR</Country>
+    <Year>2013</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Rated>5</Rated>
+    <XRated>M</XRated>
+    <Star>Sun-young Kim</Star>
+    <MyDescr>Великолепная Sun-young Kim</MyDescr>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+  </EpItem>
 </ArrayOfEpItem>
