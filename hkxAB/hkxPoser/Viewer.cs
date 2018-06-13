@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 using SharpDX;
@@ -244,14 +244,16 @@ namespace hkxPoser
                 skeleton.bones[i].local = pose.transforms[i];
             }            
         }
-        public void ApplyPoseData(hkaPoseData data, int pose_i, bool all)
+        public void ApplyPoseData(hkaPoseData data, int pose_i, bool all, bool fromRoot)
         {
             hkaPose pose = anim.pose[pose_i];
             foreach (var item in data.transformList)
             {
+                if (!fromRoot && item.Key.Contains("NPC Root")) continue;
                 int index = skeleton.FindBoneIndex(item.Key);
                 if (index > -1)
                 {
+                    if (anim.pose[pose_i].transforms.Length <= index) continue;
                     anim.pose[pose_i].transforms[index] = item.Value;
                     if (all)
                     {
@@ -262,7 +264,8 @@ namespace hkxPoser
                     }
                     skeleton.bones[index].local = anim.pose[pose_i].transforms[index];
                 }
-            }           
+            }
+            AssignAnimationPose(pose_i);       
         }
 
         public void ApplyPoseData2(hkaPoseData data, int pose_i, bool all)
@@ -274,6 +277,9 @@ namespace hkxPoser
                 if (index > -1)
                 {
                     skeleton.bones[index].patch.rotation = getQuaternionDff(skeleton.bones[index].local.rotation, item.Value.rotation);
+                    skeleton.bones[index].patch.translation.X = item.Value.translation.X - skeleton.bones[index].local.translation.X;
+                    skeleton.bones[index].patch.translation.Z = item.Value.translation.Z - skeleton.bones[index].local.translation.Z;
+                    skeleton.bones[index].patch.translation.Y = item.Value.translation.Y - skeleton.bones[index].local.translation.Y;
                 }
             }
         }
@@ -304,7 +310,9 @@ namespace hkxPoser
 
             // 2. Have the formatter use our surrogate selector
             bf.SurrogateSelector = ss;
-            
+
+            ApplyPosePatchForcadre(anim.pose[current_pose_i], true);
+            AssignAnimationPose(pose_i);
             hkaPoseData data = GetBoneData(findname);
             FileStream stream = File.Create(@"c:\temp\savedpose.tmp");
             bf.Serialize(stream, data);
@@ -332,8 +340,11 @@ namespace hkxPoser
 
             if (!data.transformList.ContainsKey(bone.name))
             {
+
                 if (!bone.hide)
-                    data.transformList.Add(bone.name, bone.local);
+                {
+                    data.transformList.Add(bone.name, bone.local);                    
+                }
             }
             foreach (hkaBone b in bone.children)
             {
@@ -341,9 +352,10 @@ namespace hkxPoser
             }
         }
 
-        public void DeserializatePose(int pose_i)
+        public void DeserializatePose(int pose_i, bool all, bool fromRoot)
         {
-            ApplyPoseData(DeserializePoseData(), pose_i, false);
+            var posedata = DeserializePoseData();
+            ApplyPoseData(posedata, pose_i, all, fromRoot);
         }
         public void DeserializatePose2(int pose_i)
         {
@@ -373,22 +385,25 @@ namespace hkxPoser
             stream.Close();
             return v;
         }
-        public void ApplyPatchToAnimation()
+        bool wasExpanded = false;
+        public void ApplyPatchToAnimation(bool clearpatch)
         {
+            if (wasExpanded) return;
             foreach (hkaPose pose in anim.pose)
             {
-                ApplyPosePatchForcadre(pose);
+                ApplyPosePatchForcadre(pose, clearpatch);
             }
             ClearPatch();
             ClearCommands();
         }
-        public void ApplyPosePatchForcadre(hkaPose pose)
+        public void ApplyPosePatchForcadre(hkaPose pose, bool clearpatch)
         {
             int nbones = System.Math.Min(skeleton.bones.Length, pose.transforms.Length);
             for (int i = 0; i < nbones; i++)
             {
                 pose.transforms[i] *= skeleton.bones[i].patch;
-                //skeleton.bones[i].patch = new Transform();
+                if (clearpatch)
+                  skeleton.bones[i].patch = new Transform();
             }
             
         }
@@ -396,7 +411,7 @@ namespace hkxPoser
         public void ApplyPatchForcadre(int num)
         {
             var pose = anim.pose[num];
-            ApplyPosePatchForcadre(pose);
+            ApplyPosePatchForcadre(pose,true);
             AssignAnimationPose(num);
         }
 
@@ -453,15 +468,15 @@ namespace hkxPoser
             AssignAnimationPose(0);
         }
 
-        public void SaveAnimation(string dest_file)
+        public void SaveAnimation(string dest_file, int speed)
         {
             string file = CreateTempFileName(dest_file);
 
-            ApplyPatchToAnimation();
+            ApplyPatchToAnimation(false);
 
             //anim.numOriginalFrames = 1;
             //anim.duration = 1.0f/30.0f;
-            anim.Save(file);
+            anim.Save(file, speed);
 
             ProcessStartInfo info = new ProcessStartInfo(
                     Path.Combine(Application.StartupPath, @"bin\hkconv.exe"),
@@ -931,10 +946,13 @@ namespace hkxPoser
             hkaPose poseEnd = this.anim.pose[end];
             hkaPose pose1 = this.anim.pose[pos1];
             hkaPose pose2 = this.anim.pose[pos2];
+
             hkaPose currPose = null;
             for (int i = start+1; i < end ; i++)
             {
+               
                 currPose = this.anim.pose[i];
+
                 float weight = Weight(start, end, i);
 
                 interpolatePose(poseStart, pose1, pose2, poseEnd, currPose, weight);
@@ -953,15 +971,18 @@ namespace hkxPoser
                 int index = skeleton.FindBoneIndex(item.Key);
                 if (index > -1)
                 {
+                    if (pose.transforms.Length <= index) continue;
                     pose.transforms[index].rotation =
                     Quaternion.Slerp(
                         poseStart.transforms[index].rotation,
-                        //pose1.transforms[i].rotation,
-                        //pose2.transforms[i].rotation,
                         poseEnd.transforms[index].rotation,
                         weight);
                     //skeleton.bones[i].local = pose.transforms[i];
-
+                    pose.transforms[index].translation =
+                    Vector3.Lerp(
+                        poseStart.transforms[index].translation,
+                        poseEnd.transforms[index].translation,
+                        weight);
                 }
             }
 
@@ -999,6 +1020,65 @@ namespace hkxPoser
             result = (curr - start) / (end - start);
             return result;
         }
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Clipping +++++++++++++++++++++++++++++++
+        public void Clip(int numToClip, bool fromBegin)
+        {
+            if (!fromBegin)
+            {
+                anim.pose = anim.pose.Take(anim.pose.Length - numToClip).ToArray();
+            }
+            else
+            {
+                anim.pose = anim.pose.Skip(numToClip).ToArray();
+            }
+            anim.duration = anim.pose.Sum(x => x.time);
+            anim.Refresh();
+        }
 
+        public void Add(int numToClip, bool fromBegin)
+        {
+            
+            var animlist = anim.pose.ToList();
+            if (!fromBegin)
+            {
+                for (int i = 0; i < numToClip; i++)
+                {
+                    var np = new hkaPose();
+                    np.transforms = animlist.Last().transforms;
+                    np.floats = animlist.Last().floats;
+                    animlist.Add(np);
+                }
+            }
+            else
+            {
+
+                for (int i = 0; i < numToClip; i++)
+                {
+                    var np = new hkaPose();
+                    np.transforms = animlist.First().transforms;
+                    np.floats = animlist.First().floats;
+                    animlist.Insert(0, np);
+                }
+            }
+
+            var step = 0.03333333F;
+            int ist = 0;
+            foreach (var item in animlist)
+            {
+                if (item != null)
+                {
+                    item.time = step * ist;
+                    ist++;
+                }
+            }
+            anim.pose = animlist.ToArray();
+            if (anim.pose.Last() != null)
+            {
+                anim.duration = anim.pose.Last().time + step;
+            }
+
+            wasExpanded = true;
+            anim.Refresh();
+        }
     }
 }

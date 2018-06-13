@@ -78,7 +78,8 @@ namespace hkxPoser
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 string dest_file = dialog.FileName;
-                viewer.SaveAnimation(dest_file);
+                int speed = (int)numSpeed.Value;
+                viewer.SaveAnimation(dest_file, speed);
             }
         }
 
@@ -114,19 +115,19 @@ namespace hkxPoser
         int direction = 1;
         private void DoWork()
         {
-            string tofind = null;
-            if (openedAnimationFile == "rape_A1_S1")
-            {
-                tofind = "NPC Neck [Neck]";
-                viewer.FindBoneByName(tofind.Trim().ToLower());
-                RotationZ(0.10F);
-                tofind = "NPC Head [Head]";
-                viewer.FindBoneByName(tofind.Trim().ToLower());
-                RotationZ(0.10F);
+            //string tofind = null;
+            //if (openedAnimationFile == "rape_A1_S1")
+            //{
+            //    tofind = "NPC Neck [Neck]";
+            //    viewer.FindBoneByName(tofind.Trim().ToLower());
+            //    RotationZ(0.10F);
+            //    tofind = "NPC Head [Head]";
+            //    viewer.FindBoneByName(tofind.Trim().ToLower());
+            //    RotationZ(0.10F);
 
-                string dest_file = Path.Combine(this.openedAnimationFilePath, $"AB001-{openedAnimationFile}.hkx");
-                viewer.SaveAnimation(dest_file);
-            }
+            //    string dest_file = Path.Combine(this.openedAnimationFilePath, $"AB001-{openedAnimationFile}.hkx");
+            //    viewer.SaveAnimation(dest_file,100);
+            //}
         }
 
         private void RotationZ(float val)
@@ -152,13 +153,13 @@ namespace hkxPoser
 
         private void serializeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.viewer.SerializatePose(trackBar1.Value, this.InputBox.Text);
+            string nodetofind = this.InputBox.Text;
+            if (nodetofind.Contains("NPC COM"))
+                nodetofind = null;
+            this.viewer.SerializatePose(trackBar1.Value, nodetofind);
         }
 
-        private void restorePoseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.viewer.DeserializatePose(trackBar1.Value);
-        }
+      
 
         private void setRotationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -215,6 +216,57 @@ namespace hkxPoser
         private void button1_Click_1(object sender, EventArgs e)
         {
             this.viewer.isRunAnimation = !this.viewer.isRunAnimation;
+        }
+
+        private void btnTrimStart_Click(object sender, EventArgs e)
+        {
+            int n = (int)numTrim.Value;
+            if (n < 1) return;
+            this.viewer.Clip(n, true);
+            trackBar1.Maximum = viewer.GetNumFrames() - 1;
+            trackBar1.Value = 0;
+
+        }
+
+        private void btnTrimEnd_Click(object sender, EventArgs e)
+        {
+            int n = (int)numTrim.Value;
+            if (n < 1) return;
+            this.viewer.Clip(n, false);
+            trackBar1.Maximum = viewer.GetNumFrames() - 1;
+            trackBar1.Value = 0;
+        }
+
+        private void btnAddStart_Click(object sender, EventArgs e)
+        {
+            int n = (int)numTrim.Value;
+            if (n < 1) return;
+            this.viewer.Add(n, true);
+            trackBar1.Maximum = viewer.GetNumFrames() - 1;
+            trackBar1.Value = 0;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int n = (int)numTrim.Value;
+            if (n < 1) return;
+            this.viewer.Add(n, false);
+            trackBar1.Maximum = viewer.GetNumFrames() - 1;
+            trackBar1.Value = 0;
+        }
+
+        private void restoreAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.viewer.DeserializatePose(trackBar1.Value, true, false);
+        }
+        private void restorePoseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.viewer.DeserializatePose(trackBar1.Value, false, false);
+        }
+
+        private void restoreFullToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.viewer.DeserializatePose(trackBar1.Value, false, true);
         }
     }
 }

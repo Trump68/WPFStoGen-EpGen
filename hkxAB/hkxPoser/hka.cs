@@ -4,7 +4,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 using System.IO;
 
 using SharpDX;
@@ -203,7 +203,7 @@ public class hkaSkeleton
         }
 
         // hide NPC Root
-        this.bones[0].hide = true;
+        this.bones[0].hide = false;
 
 #if false
         // hide since Camera3rd
@@ -318,7 +318,10 @@ public class hkaAnimation
 
     public int numTransforms { get { return pose[0].transforms.Length; } }
     public int numFloats { get { return pose[0].floats.Length; } }
-
+    public void Refresh()
+    {
+        numOriginalFrames = pose.Length;
+    }
     /// load anim.bin
     public bool Load(string filename)
     {
@@ -352,6 +355,7 @@ public class hkaAnimation
             }
             Read(reader);
         }
+
         return true;
     }
 
@@ -385,14 +389,30 @@ public class hkaAnimation
     }
 
     /// save anim.bin
-    public void Save(string filename)
+    public void Save(string filename, int speed)
     {
         using (Stream stream = File.Create(filename))
-            Save(stream);
+            Save(stream, speed);
     }
 
-    public void Save(Stream stream)
+    public void Save(Stream stream, int speed)
     {
+        if (speed != 100)
+        {
+            //0.03333333F
+            //var step = pose[1].time * speed / 100;
+            var step = 0.03333333F * (float)speed / 100F;
+            int ist = 0;
+            foreach (var item in pose)
+            {
+                if (item != null)
+                {
+                    item.time = step * ist;
+                    ist++;
+                }
+            }
+            duration = pose.Last().time + step;
+        }
         using (BinaryWriter writer = new BinaryWriter(stream, System.Text.Encoding.Default))
         {
             string head = "hkdump File Format, Version 1.0.0.0";

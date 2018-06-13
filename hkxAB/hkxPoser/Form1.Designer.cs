@@ -41,9 +41,9 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miFindBone = new System.Windows.Forms.ToolStripMenuItem();
-            this.oWorkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serializeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restorePoseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restoreAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setRotationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.InputBox = new System.Windows.Forms.TextBox();
@@ -60,6 +60,13 @@
             this.btnPoint1 = new System.Windows.Forms.Button();
             this.btnPoint2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.numTrim = new System.Windows.Forms.NumericUpDown();
+            this.btnTrimStart = new System.Windows.Forms.Button();
+            this.btnTrimEnd = new System.Windows.Forms.Button();
+            this.btnAddStart = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.numSpeed = new System.Windows.Forms.NumericUpDown();
+            this.restoreFullToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCurrent)).BeginInit();
@@ -67,6 +74,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPoint1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPoint2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTrim)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -80,13 +89,14 @@
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.miFindBone,
-            this.oWorkToolStripMenuItem,
             this.serializeToolStripMenuItem,
             this.restorePoseToolStripMenuItem,
+            this.restoreFullToolStripMenuItem,
+            this.restoreAllToolStripMenuItem,
             this.setRotationsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(778, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(987, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -147,41 +157,41 @@
             this.miFindBone.Text = "Find bone";
             this.miFindBone.Click += new System.EventHandler(this.miFindBone_Click);
             // 
-            // oWorkToolStripMenuItem
-            // 
-            this.oWorkToolStripMenuItem.Name = "oWorkToolStripMenuItem";
-            this.oWorkToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.oWorkToolStripMenuItem.Text = "Do Work";
-            this.oWorkToolStripMenuItem.Click += new System.EventHandler(this.oWorkToolStripMenuItem_Click);
-            // 
             // serializeToolStripMenuItem
             // 
             this.serializeToolStripMenuItem.Name = "serializeToolStripMenuItem";
-            this.serializeToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
-            this.serializeToolStripMenuItem.Text = "SavePose";
+            this.serializeToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.serializeToolStripMenuItem.Text = "SaveP";
             this.serializeToolStripMenuItem.Click += new System.EventHandler(this.serializeToolStripMenuItem_Click);
             // 
             // restorePoseToolStripMenuItem
             // 
             this.restorePoseToolStripMenuItem.Name = "restorePoseToolStripMenuItem";
-            this.restorePoseToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
-            this.restorePoseToolStripMenuItem.Text = "RestorePose";
+            this.restorePoseToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.restorePoseToolStripMenuItem.Text = "RestoreP";
             this.restorePoseToolStripMenuItem.Click += new System.EventHandler(this.restorePoseToolStripMenuItem_Click);
+            // 
+            // restoreAllToolStripMenuItem
+            // 
+            this.restoreAllToolStripMenuItem.Name = "restoreAllToolStripMenuItem";
+            this.restoreAllToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.restoreAllToolStripMenuItem.Text = "RestoreAll";
+            this.restoreAllToolStripMenuItem.Click += new System.EventHandler(this.restoreAllToolStripMenuItem_Click);
             // 
             // setRotationsToolStripMenuItem
             // 
             this.setRotationsToolStripMenuItem.Name = "setRotationsToolStripMenuItem";
-            this.setRotationsToolStripMenuItem.Size = new System.Drawing.Size(111, 20);
-            this.setRotationsToolStripMenuItem.Text = "ApplayPosePatch";
+            this.setRotationsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.setRotationsToolStripMenuItem.Text = "Applay";
             this.setRotationsToolStripMenuItem.Click += new System.EventHandler(this.setRotationsToolStripMenuItem_Click);
             // 
             // trackBar1
             // 
             this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBar1.Location = new System.Drawing.Point(12, 653);
+            this.trackBar1.Location = new System.Drawing.Point(12, 704);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(754, 45);
+            this.trackBar1.Size = new System.Drawing.Size(963, 45);
             this.trackBar1.TabIndex = 1;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
@@ -190,21 +200,21 @@
             // 
             this.InputBox.Location = new System.Drawing.Point(0, 27);
             this.InputBox.Name = "InputBox";
-            this.InputBox.Size = new System.Drawing.Size(338, 20);
+            this.InputBox.Size = new System.Drawing.Size(301, 20);
             this.InputBox.TabIndex = 2;
             // 
             // CadreN
             // 
             this.CadreN.Location = new System.Drawing.Point(0, 79);
             this.CadreN.Name = "CadreN";
-            this.CadreN.Size = new System.Drawing.Size(338, 20);
+            this.CadreN.Size = new System.Drawing.Size(301, 20);
             this.CadreN.TabIndex = 3;
             // 
             // tRotations
             // 
             this.tRotations.Location = new System.Drawing.Point(0, 53);
             this.tRotations.Name = "tRotations";
-            this.tRotations.Size = new System.Drawing.Size(338, 20);
+            this.tRotations.Size = new System.Drawing.Size(301, 20);
             this.tRotations.TabIndex = 4;
             // 
             // numCurrent
@@ -328,12 +338,94 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // numTrim
+            // 
+            this.numTrim.Location = new System.Drawing.Point(12, 409);
+            this.numTrim.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numTrim.Name = "numTrim";
+            this.numTrim.Size = new System.Drawing.Size(67, 20);
+            this.numTrim.TabIndex = 16;
+            // 
+            // btnTrimStart
+            // 
+            this.btnTrimStart.Location = new System.Drawing.Point(12, 444);
+            this.btnTrimStart.Name = "btnTrimStart";
+            this.btnTrimStart.Size = new System.Drawing.Size(67, 23);
+            this.btnTrimStart.TabIndex = 17;
+            this.btnTrimStart.Text = "Trim start";
+            this.btnTrimStart.UseVisualStyleBackColor = true;
+            this.btnTrimStart.Click += new System.EventHandler(this.btnTrimStart_Click);
+            // 
+            // btnTrimEnd
+            // 
+            this.btnTrimEnd.Location = new System.Drawing.Point(12, 473);
+            this.btnTrimEnd.Name = "btnTrimEnd";
+            this.btnTrimEnd.Size = new System.Drawing.Size(67, 23);
+            this.btnTrimEnd.TabIndex = 18;
+            this.btnTrimEnd.Text = "Trim end";
+            this.btnTrimEnd.UseVisualStyleBackColor = true;
+            this.btnTrimEnd.Click += new System.EventHandler(this.btnTrimEnd_Click);
+            // 
+            // btnAddStart
+            // 
+            this.btnAddStart.Location = new System.Drawing.Point(12, 502);
+            this.btnAddStart.Name = "btnAddStart";
+            this.btnAddStart.Size = new System.Drawing.Size(67, 23);
+            this.btnAddStart.TabIndex = 19;
+            this.btnAddStart.Text = "Add start";
+            this.btnAddStart.UseVisualStyleBackColor = true;
+            this.btnAddStart.Click += new System.EventHandler(this.btnAddStart_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(12, 531);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(67, 23);
+            this.button2.TabIndex = 20;
+            this.button2.Text = "Add end";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // numSpeed
+            // 
+            this.numSpeed.Location = new System.Drawing.Point(665, 4);
+            this.numSpeed.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numSpeed.Name = "numSpeed";
+            this.numSpeed.Size = new System.Drawing.Size(67, 20);
+            this.numSpeed.TabIndex = 21;
+            this.numSpeed.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // restoreFullToolStripMenuItem
+            // 
+            this.restoreFullToolStripMenuItem.Name = "restoreFullToolStripMenuItem";
+            this.restoreFullToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.restoreFullToolStripMenuItem.Text = "RestoreFull";
+            this.restoreFullToolStripMenuItem.Click += new System.EventHandler(this.restoreFullToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(778, 698);
+            this.ClientSize = new System.Drawing.Size(987, 749);
+            this.Controls.Add(this.numSpeed);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnAddStart);
+            this.Controls.Add(this.btnTrimEnd);
+            this.Controls.Add(this.btnTrimStart);
+            this.Controls.Add(this.numTrim);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnPoint2);
             this.Controls.Add(this.btnPoint1);
@@ -364,6 +456,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numEnd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPoint1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPoint2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTrim)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,7 +476,6 @@
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.ToolStripMenuItem miFindBone;
         private System.Windows.Forms.TextBox InputBox;
-        private System.Windows.Forms.ToolStripMenuItem oWorkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serializeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restorePoseToolStripMenuItem;
         private System.Windows.Forms.TextBox CadreN;
@@ -399,6 +492,14 @@
         private System.Windows.Forms.Button btnPoint1;
         private System.Windows.Forms.Button btnPoint2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.NumericUpDown numTrim;
+        private System.Windows.Forms.Button btnTrimStart;
+        private System.Windows.Forms.Button btnTrimEnd;
+        private System.Windows.Forms.Button btnAddStart;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripMenuItem restoreAllToolStripMenuItem;
+        private System.Windows.Forms.NumericUpDown numSpeed;
+        private System.Windows.Forms.ToolStripMenuItem restoreFullToolStripMenuItem;
     }
 }
 
