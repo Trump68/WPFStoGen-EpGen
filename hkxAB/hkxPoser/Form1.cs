@@ -61,7 +61,7 @@ namespace hkxPoser
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 string source_file = dialog.FileName;
-                viewer.LoadAnimation(source_file);
+                viewer.LoadAnimation(source_file,1);
                 openedAnimationFile = Path.GetFileNameWithoutExtension(source_file);
                 openedAnimationFilePath = Path.GetDirectoryName(source_file);
                 CadreN.Text = $"{viewer.anim.numOriginalFrames}-{viewer.anim.duration}";
@@ -94,7 +94,7 @@ namespace hkxPoser
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 foreach (string source_file in (string[])e.Data.GetData(DataFormats.FileDrop))
-                    viewer.LoadAnimation(source_file);
+                    viewer.LoadAnimation(source_file,1);
             }
         }
 
@@ -159,24 +159,7 @@ namespace hkxPoser
             this.viewer.SerializatePose(trackBar1.Value, nodetofind);
         }
 
-      
-
-        private void setRotationsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.viewer.DeserializatePose2(trackBar1.Value);
-            ////"X: 0.452433, Y: 0.452433, Z: -0.017144"
-            //string val = this.tRotations.Text;
-            //if (string.IsNullOrEmpty(val)) return;
-            //string[] vals = val.Split(',');
-            //if (vals.Length < 4) return;
-            //float x = Convert.ToSingle(vals[0]);
-            //float y = Convert.ToSingle(vals[1]);
-            //float z = Convert.ToSingle(vals[2]);
-            //float w = Convert.ToSingle(vals[3]);
-            //viewer.SetRotationBone(x, y, z, w);
-        }
-
-     
+           
         private void button1_Click(object sender, EventArgs e)
         {           
             this.numStart.Value = trackBar1.Value;
@@ -189,10 +172,7 @@ namespace hkxPoser
             this.viewer.ApplyPatchForcadre(trackBar1.Value);
         }       
 
-        private void btnInterpolate_Click(object sender, EventArgs e)
-        {
-            viewer.Interpolate(Convert.ToInt32(this.numStart.Value), Convert.ToInt32(this.numPoint1.Value), Convert.ToInt32(this.numPoint2.Value), Convert.ToInt32(this.numEnd.Value));
-        }
+     
 
         private void numCurrent_ValueChanged(object sender, EventArgs e)
         {
@@ -268,5 +248,35 @@ namespace hkxPoser
         {
             this.viewer.DeserializatePose(trackBar1.Value, false, true);
         }
+
+        private void openSecondToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "hkx files|*.hkx";
+            dialog.FilterIndex = 0;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string source_file = dialog.FileName;
+                viewer.LoadSecondSkeleton();
+                viewer.LoadAnimation(source_file,2);
+            }
+        }
+
+        private void setRotationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.viewer.DeserializatePose2(trackBar1.Value, false);
+        }
+
+        private void applyFullToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.viewer.DeserializatePose2(trackBar1.Value, true);
+        }
+
+        private void btnInterpolate_Click(object sender, EventArgs e)
+        {
+            viewer.Interpolate(Convert.ToInt32(this.numStart.Value), Convert.ToInt32(this.numPoint1.Value), Convert.ToInt32(this.numPoint2.Value), Convert.ToInt32(this.numEnd.Value));
+        }
+
+      
     }
 }

@@ -313,23 +313,29 @@ public class hkaAnimation
 {
     public int numOriginalFrames;
     public float duration;
+    public int numOriginalFrames2;
+    public float duration2;
 
     public hkaPose[] pose;
+    public hkaPose[] pose2;
 
     public int numTransforms { get { return pose[0].transforms.Length; } }
     public int numFloats { get { return pose[0].floats.Length; } }
+    public int numTransforms2 { get { return pose2[0].transforms.Length; } }
+    public int numFloats2 { get { return pose2[0].floats.Length; } }
+
     public void Refresh()
     {
         numOriginalFrames = pose.Length;
     }
     /// load anim.bin
-    public bool Load(string filename)
+    public bool Load(string filename, int skeletonnum)
     {
         using (Stream stream = File.OpenRead(filename))
-            return Load(stream);
+            return Load(stream, skeletonnum);
     }
 
-    public bool Load(Stream stream)
+    public bool Load(Stream stream, int skeletonnum)
     {
         using (BinaryReader reader = new BinaryReader(stream, System.Text.Encoding.Default))
         {
@@ -338,27 +344,28 @@ public class hkaAnimation
             uint version = reader.ReadUInt32();
             if (version != 0x01000000)
             {
-		Console.WriteLine("Error: version mismatch! Abort.");
+		       Console.WriteLine("Error: version mismatch! Abort.");
                 return false;
             }
             int nskeletons = reader.ReadInt32();
             if (nskeletons != 0)
             {
-		Console.WriteLine("Error: #skeletons should be 0 but {0}! Abort.", nskeletons);
+		         Console.WriteLine("Error: #skeletons should be 0 but {0}! Abort.", nskeletons);
                 return false;
             }
             int nanimations = reader.ReadInt32();
             if (nanimations != 1)
             {
-		Console.WriteLine("Error: #animations should be 1 but {0}! Abort.", nanimations);
+		        Console.WriteLine("Error: #animations should be 1 but {0}! Abort.", nanimations);
                 return false;
             }
-            Read(reader);
+            if (skeletonnum == 1)
+                Read(reader);
+            else if (skeletonnum == 2)
+                Read2(reader);
         }
-
         return true;
     }
-
     public void Read(BinaryReader reader)
     {
         /// Returns the number of original samples / frames of animation.
@@ -386,6 +393,34 @@ public class hkaAnimation
             readed++;
         }
         numOriginalFrames = readed;
+    }
+    public void Read2(BinaryReader reader)
+    {
+        /// Returns the number of original samples / frames of animation.
+        this.numOriginalFrames2 = reader.ReadInt32();
+        // for idle 
+        //this.numOriginalFrames = 1; 
+        /// The length of the animation cycle in seconds
+    	this.duration2 = reader.ReadSingle();
+        /// The number of bone tracks to be animated.
+        int numTransforms2 = reader.ReadInt32();
+        /// The number of float tracks to be animated
+        int numFloats2 = reader.ReadInt32();
+
+        /// Get a subset of the first 'maxNumTracks' transform tracks (all tracks from 0 to maxNumTracks-1 inclusive), and the first 'maxNumFloatTracks' float tracks of a pose at a given time.
+
+        this.pose2 = new hkaPose[numOriginalFrames2];
+        int readed = 0;
+        for (int i = 0; i < numOriginalFrames2; i++)
+        {
+            this.pose2[i] = new hkaPose();
+            if (!this.pose2[i].Read(reader, numTransforms2, numFloats2))
+            {
+                break;
+            }
+            readed++;
+        }
+        numOriginalFrames2 = readed;
     }
 
     /// save anim.bin

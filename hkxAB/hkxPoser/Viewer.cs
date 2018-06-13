@@ -33,6 +33,7 @@ namespace hkxPoser
 
         SolidColorBrush textBrush;
         SolidColorBrush boneLineBrush;
+        SolidColorBrush boneLineBrush2;
         SolidColorBrush selectedBoneLineBrush;
         SolidColorBrush xaxisBrush;
         SolidColorBrush yaxisBrush;
@@ -41,7 +42,8 @@ namespace hkxPoser
         TextFormat textFormat;
 
         Color textColor = Color.Black;
-        Color boneLineColor = new ColorBGRA(100, 100, 230, 255);
+        Color boneLineColor = new ColorBGRA(100, 100, 230, 255);              
+        Color boneLineColor2 = Color.Lavender;
         Color selectedBoneLineColor = new ColorBGRA(255, 0, 0, 255);
         Color xaxisColor = new ColorBGRA(255, 0, 0, 255);
         Color yaxisColor = new ColorBGRA(0, 255, 0, 255);
@@ -66,6 +68,7 @@ namespace hkxPoser
 
                 textBrush = new SolidColorBrush(renderTarget, textColor);
                 boneLineBrush = new SolidColorBrush(renderTarget, boneLineColor);
+                boneLineBrush2 = new SolidColorBrush(renderTarget, boneLineColor2);
                 selectedBoneLineBrush = new SolidColorBrush(renderTarget, selectedBoneLineColor);
                 xaxisBrush = new SolidColorBrush(renderTarget, xaxisColor);
                 yaxisBrush = new SolidColorBrush(renderTarget, yaxisColor);
@@ -87,6 +90,7 @@ namespace hkxPoser
                 xaxisBrush?.Dispose();
                 selectedBoneLineBrush?.Dispose();
                 boneLineBrush?.Dispose();
+                boneLineBrush2?.Dispose();
                 textBrush?.Dispose();
 
                 renderTarget.Dispose();
@@ -157,6 +161,7 @@ namespace hkxPoser
         Matrix wvp;
 
         hkaSkeleton skeleton;
+        hkaSkeleton skeleton2;
         public hkaAnimation anim;
 
         public event EventHandler LoadAnimationEvent;
@@ -216,16 +221,29 @@ namespace hkxPoser
             skeleton = new hkaSkeleton();
             skeleton.Load(skel_file);
 
+
             string anim_file = Path.Combine(Application.StartupPath, @"resources\idle.bin");
             anim = new hkaAnimation();
-            if (anim.Load(anim_file))
+            if (anim.Load(anim_file,1))
             {
-                LoadAnimationSuccessful(Path.ChangeExtension(anim_file, ".hkx"));
+                LoadAnimationSuccessful(Path.ChangeExtension(anim_file, ".hkx"),1);
             }
-
             CreateDeviceIndependentResources();
 
             return true;
+        }
+        public void LoadSecondSkeleton()
+        {
+            if (skeleton2 != null) return;
+            string skel_file = Path.Combine(Application.StartupPath, @"resources\skeleton-bbp.bin");
+            // 2nd skeleton
+            skeleton2 = new hkaSkeleton();
+            skeleton2.Load(skel_file);
+            string anim_file = Path.Combine(Application.StartupPath, @"resources\idle.bin");
+            if (anim.Load(anim_file, 2))
+            {
+                LoadAnimationSuccessful(Path.ChangeExtension(anim_file, ".hkx"), 2);
+            }
         }
 
         internal void SetRotationBone(float x, float y, float z, float w)
@@ -234,16 +252,27 @@ namespace hkxPoser
             this.selected_bone.patch.rotation.Z = z;
         }
 
-        public void AssignAnimationPose(int pose_i)
-        {
+        public void AssignAnimationPose(int pose_i, int selNum)
+        {            
+            var skelRef = skeleton;
             pose_i %= anim.numOriginalFrames;
             hkaPose pose = anim.pose[pose_i];
-            int nbones = System.Math.Min(skeleton.bones.Length, pose.transforms.Length);
+            if (selNum == 2)
+            {
+                if (skeleton2 == null)
+                    return;
+                skelRef = skeleton2;
+                pose_i %= anim.numOriginalFrames2;
+                pose = anim.pose2[pose_i];
+            }
+
+            int nbones = System.Math.Min(skelRef.bones.Length, pose.transforms.Length);
             for (int i = 0; i < nbones; i++)
             {
-                skeleton.bones[i].local = pose.transforms[i];
+                skelRef.bones[i].local = pose.transforms[i];
             }            
         }
+
         public void ApplyPoseData(hkaPoseData data, int pose_i, bool all, bool fromRoot)
         {
             hkaPose pose = anim.pose[pose_i];
@@ -265,14 +294,15 @@ namespace hkxPoser
                     skeleton.bones[index].local = anim.pose[pose_i].transforms[index];
                 }
             }
-            AssignAnimationPose(pose_i);       
+            AssignAnimationPose(pose_i,1);       
         }
 
-        public void ApplyPoseData2(hkaPoseData data, int pose_i, bool all)
+        public void ApplyPoseData2(hkaPoseData data, int pose_i, bool all, bool fromRoot)
         {
             hkaPose pose = anim.pose[pose_i];
             foreach (var item in data.transformList)
             {
+                if (!fromRoot && item.Key.Contains("NPC Root")) continue;
                 int index = skeleton.FindBoneIndex(item.Key);
                 if (index > -1)
                 {
@@ -312,7 +342,7 @@ namespace hkxPoser
             bf.SurrogateSelector = ss;
 
             ApplyPosePatchForcadre(anim.pose[current_pose_i], true);
-            AssignAnimationPose(pose_i);
+            AssignAnimationPose(pose_i,1);
             hkaPoseData data = GetBoneData(findname);
             FileStream stream = File.Create(@"c:\temp\savedpose.tmp");
             bf.Serialize(stream, data);
@@ -357,9 +387,9 @@ namespace hkxPoser
             var posedata = DeserializePoseData();
             ApplyPoseData(posedata, pose_i, all, fromRoot);
         }
-        public void DeserializatePose2(int pose_i)
+        public void DeserializatePose2(int pose_i, bool fromRoot)
         {
-            ApplyPoseData2(DeserializePoseData(), pose_i, false);
+            ApplyPoseData2(DeserializePoseData(), pose_i, false, fromRoot);
         }
         public hkaPoseData DeserializePoseData()
         {
@@ -412,7 +442,7 @@ namespace hkxPoser
         {
             var pose = anim.pose[num];
             ApplyPosePatchForcadre(pose,true);
-            AssignAnimationPose(num);
+            AssignAnimationPose(num,1);
         }
 
         public void ClearPatch()
@@ -434,7 +464,7 @@ namespace hkxPoser
             return Path.Combine(Application.StartupPath, @"tmp\" + basename + ".bin");
         }
 
-        public void LoadAnimation(string source_file)
+        public void LoadAnimation(string source_file, int skelNum)
         {
             string file = CreateTempFileName(source_file);
 
@@ -449,23 +479,23 @@ namespace hkxPoser
             process.WaitForExit();
             if (process.ExitCode == 0) // successful
             {
-                if (anim.Load(file))
+                if (anim.Load(file, skelNum))
                 {
-                    LoadAnimationSuccessful(source_file);
+                    LoadAnimationSuccessful(source_file, skelNum);
                 }
             }
         }
 
         string anim_filename = "idle.hkx";
 
-        void LoadAnimationSuccessful(string source_file)
+        void LoadAnimationSuccessful(string source_file, int skelNum)
         {
             this.anim_filename = Path.GetFileName(source_file);
 
             if (LoadAnimationEvent != null)
                 LoadAnimationEvent(this, EventArgs.Empty);
 
-            AssignAnimationPose(0);
+            AssignAnimationPose(0, skelNum);
         }
 
         public void SaveAnimation(string dest_file, int speed)
@@ -501,7 +531,8 @@ namespace hkxPoser
         public void SetCurrentPose(int pose_i)
         {
             current_pose_i = pose_i;
-            AssignAnimationPose(pose_i);
+            AssignAnimationPose(pose_i, 1);
+            AssignAnimationPose(pose_i, 2);
         }
 
         public void Update()
@@ -515,7 +546,7 @@ namespace hkxPoser
             if (isRunAnimation)
             {
                 //current_pose_i = anim.pose
-                AssignAnimationPose(current_pose_i);
+                AssignAnimationPose(current_pose_i,1);
                 current_pose_i++;
                 current_pose_i %= anim.numOriginalFrames;
             }
@@ -534,7 +565,8 @@ namespace hkxPoser
 
             DrawCenterAxis();
 
-            DrawBoneTree();
+            DrawBoneTree(1);
+            if (skeleton2 != null)  DrawBoneTree(2);
             DrawSelectedBone();
 
             DrawText(ref size);
@@ -614,9 +646,16 @@ namespace hkxPoser
             return WorldToScreen(t.translation);
         }
 
-        public void DrawBoneTree()
+        public void DrawBoneTree(int skelNum)
         {
-            foreach (hkaBone bone in skeleton.bones)
+            var skelRef = skeleton;
+            var brushRef = boneLineBrush;
+            if (skelNum == 2)
+            {
+                skelRef = skeleton2;
+                brushRef = boneLineBrush2;
+            }
+            foreach (hkaBone bone in skelRef.bones)
             {
                 if (bone.hide)
                     continue;
@@ -639,12 +678,12 @@ namespace hkxPoser
                     vertices[0] = new RawVector2(p3.X, p3.Y);
                     vertices[1] = new RawVector2(p0.X, p0.Y);
                     vertices[2] = new RawVector2(p4.X, p4.Y);
-                    renderTarget.DrawLine(vertices[0], vertices[1], boneLineBrush);
-                    renderTarget.DrawLine(vertices[1], vertices[2], boneLineBrush);
+                    renderTarget.DrawLine(vertices[0], vertices[1], brushRef);
+                    renderTarget.DrawLine(vertices[1], vertices[2], brushRef);
                 }
             }
 
-            foreach (hkaBone bone in skeleton.bones)
+            foreach (hkaBone bone in skelRef.bones)
             {
                 if (bone.hide)
                     continue;
@@ -652,8 +691,8 @@ namespace hkxPoser
                 Vector3 p0 = GetBonePositionOnScreen(bone);
                 p0.Z = 0.0f;
 
-                renderTarget.DrawEllipse(new Ellipse(new Vector2(p0.X, p0.Y), 4, 4), boneLineBrush);
-                renderTarget.FillEllipse(new Ellipse(new Vector2(p0.X, p0.Y), 2, 2), boneLineBrush);
+                renderTarget.DrawEllipse(new Ellipse(new Vector2(p0.X, p0.Y), 4, 4), brushRef);
+                renderTarget.FillEllipse(new Ellipse(new Vector2(p0.X, p0.Y), 2, 2), brushRef);
             }
 
             //DrawBoneAxis(bone);
@@ -936,7 +975,7 @@ namespace hkxPoser
 
         /////////////////////// INTERPOLATION ///////////////////////
 
-        public void Interpolate(int start,int pos1, int pos2, int end)
+        public void Interpolate(int start,int pos1, int pos2, int end, bool rootOnly = false)
         {
             if (pos1 < start) pos1 = start;
             if (pos2 < pos1)  pos2 = pos1;
@@ -955,11 +994,11 @@ namespace hkxPoser
 
                 float weight = Weight(start, end, i);
 
-                interpolatePose(poseStart, pose1, pose2, poseEnd, currPose, weight);
+                interpolatePose(poseStart, pose1, pose2, poseEnd, currPose, weight, rootOnly);
             }
 
         }
-        private void interpolatePose(hkaPose poseStart, hkaPose pose1, hkaPose pose2, hkaPose poseEnd, hkaPose pose, float weight)
+        private void interpolatePose(hkaPose poseStart, hkaPose pose1, hkaPose pose2, hkaPose poseEnd, hkaPose pose, float weight, bool rootOnly = false)
         {
             string tofind = null;
             if (selected_bone != null)
@@ -968,21 +1007,37 @@ namespace hkxPoser
             hkaPoseData data = GetBoneData(tofind, true);
             foreach (var item in data.transformList)
             {
+                if (rootOnly && !item.Key.Contains("NPC Root")) continue;
+                
+
                 int index = skeleton.FindBoneIndex(item.Key);
                 if (index > -1)
                 {
                     if (pose.transforms.Length <= index) continue;
-                    pose.transforms[index].rotation =
-                    Quaternion.Slerp(
-                        poseStart.transforms[index].rotation,
-                        poseEnd.transforms[index].rotation,
-                        weight);
-                    //skeleton.bones[i].local = pose.transforms[i];
-                    pose.transforms[index].translation =
-                    Vector3.Lerp(
-                        poseStart.transforms[index].translation,
-                        poseEnd.transforms[index].translation,
-                        weight);
+
+                    if (rootOnly)
+                    {
+                        //var vec = 
+                        //Vector3.Lerp(
+                        //   poseStart.transforms[index].rotation.Axis,
+                        //   poseEnd.transforms[index].rotation.Axis,
+                        //   weight);
+                        //pose.transforms[index].rotation = new Quaternion(vec, pose.transforms[index].rotation.Angle);
+                        
+                    }
+                    else
+                    {
+                        pose.transforms[index].rotation =
+                        Quaternion.Slerp(
+                            poseStart.transforms[index].rotation,
+                            poseEnd.transforms[index].rotation,
+                            weight);
+                        pose.transforms[index].translation =
+                        Vector3.Lerp(
+                            poseStart.transforms[index].translation,
+                            poseEnd.transforms[index].translation,
+                            weight);
+                    }
                 }
             }
 

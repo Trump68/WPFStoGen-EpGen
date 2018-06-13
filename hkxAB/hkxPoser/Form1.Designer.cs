@@ -37,12 +37,14 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openSecondToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miFindBone = new System.Windows.Forms.ToolStripMenuItem();
             this.serializeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restorePoseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restoreFullToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setRotationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
@@ -66,7 +68,7 @@
             this.btnAddStart = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.numSpeed = new System.Windows.Forms.NumericUpDown();
-            this.restoreFullToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.applyFullToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCurrent)).BeginInit();
@@ -93,7 +95,8 @@
             this.restorePoseToolStripMenuItem,
             this.restoreFullToolStripMenuItem,
             this.restoreAllToolStripMenuItem,
-            this.setRotationsToolStripMenuItem});
+            this.setRotationsToolStripMenuItem,
+            this.applyFullToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(987, 24);
@@ -104,7 +107,8 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
-            this.saveToolStripMenuItem});
+            this.saveToolStripMenuItem,
+            this.openSecondToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
@@ -124,6 +128,13 @@
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // openSecondToolStripMenuItem
+            // 
+            this.openSecondToolStripMenuItem.Name = "openSecondToolStripMenuItem";
+            this.openSecondToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.openSecondToolStripMenuItem.Text = "Open Second";
+            this.openSecondToolStripMenuItem.Click += new System.EventHandler(this.openSecondToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -171,6 +182,13 @@
             this.restorePoseToolStripMenuItem.Text = "RestoreP";
             this.restorePoseToolStripMenuItem.Click += new System.EventHandler(this.restorePoseToolStripMenuItem_Click);
             // 
+            // restoreFullToolStripMenuItem
+            // 
+            this.restoreFullToolStripMenuItem.Name = "restoreFullToolStripMenuItem";
+            this.restoreFullToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.restoreFullToolStripMenuItem.Text = "RestoreFull";
+            this.restoreFullToolStripMenuItem.Click += new System.EventHandler(this.restoreFullToolStripMenuItem_Click);
+            // 
             // restoreAllToolStripMenuItem
             // 
             this.restoreAllToolStripMenuItem.Name = "restoreAllToolStripMenuItem";
@@ -181,8 +199,8 @@
             // setRotationsToolStripMenuItem
             // 
             this.setRotationsToolStripMenuItem.Name = "setRotationsToolStripMenuItem";
-            this.setRotationsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.setRotationsToolStripMenuItem.Text = "Applay";
+            this.setRotationsToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.setRotationsToolStripMenuItem.Text = "Apply";
             this.setRotationsToolStripMenuItem.Click += new System.EventHandler(this.setRotationsToolStripMenuItem_Click);
             // 
             // trackBar1
@@ -407,12 +425,12 @@
             0,
             0});
             // 
-            // restoreFullToolStripMenuItem
+            // applyFullToolStripMenuItem
             // 
-            this.restoreFullToolStripMenuItem.Name = "restoreFullToolStripMenuItem";
-            this.restoreFullToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
-            this.restoreFullToolStripMenuItem.Text = "RestoreFull";
-            this.restoreFullToolStripMenuItem.Click += new System.EventHandler(this.restoreFullToolStripMenuItem_Click);
+            this.applyFullToolStripMenuItem.Name = "applyFullToolStripMenuItem";
+            this.applyFullToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.applyFullToolStripMenuItem.Text = "ApplyFull";
+            this.applyFullToolStripMenuItem.Click += new System.EventHandler(this.applyFullToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -500,6 +518,8 @@
         private System.Windows.Forms.ToolStripMenuItem restoreAllToolStripMenuItem;
         private System.Windows.Forms.NumericUpDown numSpeed;
         private System.Windows.Forms.ToolStripMenuItem restoreFullToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openSecondToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem applyFullToolStripMenuItem;
     }
 }
 
