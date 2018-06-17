@@ -278,8 +278,8 @@ state Making
 			Fatal("AddActor("+ActorRef.GetLeveledActorBase().GetName()+") -- Failed to add actor -- They have been already added to this thread", "AddActor("+ActorRef.GetLeveledActorBase().GetName()+")")
 			return -1
 		elseIf ActorLib.ValidateActor(ActorRef) < 0
-			Fatal("AddActor("+ActorRef.GetLeveledActorBase().GetName()+") -- Failed to add actor -- They are not a valid target for animation", "AddActor("+ActorRef.GetLeveledActorBase().GetName()+")")
-			return -1
+			;Fatal("AddActor("+ActorRef.GetLeveledActorBase().GetName()+") -- Failed to add actor -- They are not a valid target for animation", "AddActor("+ActorRef.GetLeveledActorBase().GetName()+")")
+			;return -1
 		endIf
 		sslActorAlias Slot = PickAlias(ActorRef)
 		if !Slot || !Slot.SetActor(ActorRef)
@@ -472,6 +472,36 @@ state Making
 		return self as sslThreadController
 	endFunction
 
+	
+	sslThreadController function AB_StartThread()
+		GoToState("Starting")
+		UnregisterForUpdate()
+		int i
+
+		SendThreadEvent("AnimationStarting")
+
+
+		; ------------------------- ;
+		; --    Locate Center    -- ;
+		; ------------------------- ;
+
+		; Search location marker near player or first position
+		if !CenterRef
+			if HasPlayer
+				CenterOnObject(Game.FindClosestReferenceOfTypeFromRef(Config.LocationMarker, PlayerRef, 750.0))
+			else
+				CenterOnObject(Game.FindClosestReferenceOfTypeFromRef(Config.LocationMarker, Positions[0], 750.0))
+			endIf
+		endIf		
+		
+		; ------------------------- ;
+		; --  Start Controller   -- ;
+		; ------------------------- ;
+
+		Action("Prepare")
+		return self as sslThreadController
+	endFunction
+	
 endState
 
 ; ------------------------------------------------------- ;
@@ -681,65 +711,65 @@ int function GetLowestPresentRelationshipRank(Actor ActorRef)
 endFunction
 
 function ChangeActors(Actor[] NewPositions)
-	int[] NewGenders = ActorLib.GenderCount(NewPositions)
-	if HasCreature || NewGenders[2] > 0 || PapyrusUtil.AddIntValues(NewGenders) == 0
-		return
-	endIf
-	; Enter making state for alterations
-	SendThreadEvent("ActorChangeStart")
-	UnregisterforUpdate()
-	; Remove actors no longer present
-	int i = ActorCount
-	while i
-		i -= 1
-		if NewPositions.Find(Positions[i]) == -1
-			ActorAlias(Positions[i]).ClearAlias()
-		else
-			ActorAlias(Positions[i]).StopAnimating(true)
-		endIf
-	endWhile
-	; Save new positions information
-	Genders    = NewGenders
-	Positions  = NewPositions
-	ActorCount = NewPositions.Length
-	HasPlayer  = NewPositions.Find(PlayerRef) != -1
-	ActorAlias[0].GetPositionInfo()
-	ActorAlias[1].GetPositionInfo()
-	ActorAlias[2].GetPositionInfo()
-	ActorAlias[3].GetPositionInfo()
-	ActorAlias[4].GetPositionInfo()
-	; Select new animations for changed actor count
-	if PrimaryAnimations[0].PositionCount != ActorCount
-		SetAnimations(AnimSlots.GetByDefault(NewGenders[0], NewGenders[1], IsAggressive, (BedRef != none), Config.RestrictAggressive))
-		SetAnimation()
-	endIf
-	; End lead in if thread was in it and can't be now
-	if LeadIn && NewPositions.Length != 2
-		Stage  = 1
-		LeadIn = false
-		QuickEvent("Strip")
-		SendThreadEvent("LeadInEnd")
-	endIf
-	; Prepare actors who weren't present before
-	i = ActorCount
-	while i
-		i -= 1
-		if FindSlot(Positions[i]) == -1
-			; Slot into alias
-			sslActorAlias Slot = PickAlias(Positions[i])
-			if !Slot || !Slot.SetActor(Positions[i])
-				Log("ChangeActors("+NewPositions+") -- Failed to add new actor '"+Positions[i].GetLeveledActorBase().GetName()+"' -- They were unable to fill an actor alias", "FATAL")
-				return
-			endIf
-			Slot.DoUndress = false
-			Slot.PrepareActor()
-			Slot.StartAnimating()
-		endIf
-	endWhile
-	; Reposition actors
-	RealignActors()
-	RegisterForSingleUpdate(0.1)
-	SendThreadEvent("ActorChangeEnd")
+	; int[] NewGenders = ActorLib.GenderCount(NewPositions)
+	; if HasCreature || NewGenders[2] > 0 || PapyrusUtil.AddIntValues(NewGenders) == 0
+		; return
+	; endIf
+	; ; Enter making state for alterations
+	; SendThreadEvent("ActorChangeStart")
+	; UnregisterforUpdate()
+	; ; Remove actors no longer present
+	; int i = ActorCount
+	; while i
+		; i -= 1
+		; if NewPositions.Find(Positions[i]) == -1
+			; ActorAlias(Positions[i]).ClearAlias()
+		; else
+			; ActorAlias(Positions[i]).StopAnimating(true)
+		; endIf
+	; endWhile
+	; ; Save new positions information
+	; Genders    = NewGenders
+	; Positions  = NewPositions
+	; ActorCount = NewPositions.Length
+	; HasPlayer  = NewPositions.Find(PlayerRef) != -1
+	; ActorAlias[0].GetPositionInfo()
+	; ActorAlias[1].GetPositionInfo()
+	; ActorAlias[2].GetPositionInfo()
+	; ActorAlias[3].GetPositionInfo()
+	; ActorAlias[4].GetPositionInfo()
+	; ; Select new animations for changed actor count
+	; if PrimaryAnimations[0].PositionCount != ActorCount
+		; SetAnimations(AnimSlots.GetByDefault(NewGenders[0], NewGenders[1], IsAggressive, (BedRef != none), Config.RestrictAggressive))
+		; SetAnimation()
+	; endIf
+	; ; End lead in if thread was in it and can't be now
+	; if LeadIn && NewPositions.Length != 2
+		; Stage  = 1
+		; LeadIn = false
+		; QuickEvent("Strip")
+		; SendThreadEvent("LeadInEnd")
+	; endIf
+	; ; Prepare actors who weren't present before
+	; i = ActorCount
+	; while i
+		; i -= 1
+		; if FindSlot(Positions[i]) == -1
+			; ; Slot into alias
+			; sslActorAlias Slot = PickAlias(Positions[i])
+			; if !Slot || !Slot.SetActor(Positions[i])
+				; Log("ChangeActors("+NewPositions+") -- Failed to add new actor '"+Positions[i].GetLeveledActorBase().GetName()+"' -- They were unable to fill an actor alias", "FATAL")
+				; return
+			; endIf
+			; Slot.DoUndress = false
+			; Slot.PrepareActor()
+			; Slot.StartAnimating()
+		; endIf
+	; endWhile
+	; ; Reposition actors
+	; RealignActors()
+	; RegisterForSingleUpdate(0.1)
+	; SendThreadEvent("ActorChangeEnd")
 endFunction
 
 ; ------------------------------------------------------- ;
@@ -1362,6 +1392,10 @@ sslThreadController function StartThread()
 	Log("Cannot start thread while not in a Making state", "StartThread() ERROR")
 	return none
 endFunction
+sslThreadController function AB_StartThread()
+	Log("Cannot start thread while not in a Making state", "StartThread() ERROR")
+	return none
+endFunction
 int function AddActor(Actor ActorRef, bool IsVictim = false, sslBaseVoice Voice = none, bool ForceSilent = false)
 	Log("Cannot add an actor to a locked thread", "AddActor() ERROR")
 	return -1
@@ -1372,6 +1406,8 @@ bool function AddActors(Actor[] ActorList, Actor VictimActor = none)
 endFunction
 ; State varied
 function FireAction()
+endFunction
+function AB_FireAction()
 endFunction
 function EndAction()
 endFunction
@@ -1394,7 +1430,7 @@ endFunction
 ; Animating
 event OnKeyDown(int keyCode)
 endEvent
-function EnableHotkeys(bool forced = false)
+function EnableHotkeys(bool forced = true)
 endFunction
 function RealignActors()
 endFunction

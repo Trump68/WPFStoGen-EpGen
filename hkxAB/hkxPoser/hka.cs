@@ -267,12 +267,15 @@ public class hkaPose
     {
         if (reader.BaseStream.Length <= reader.BaseStream.Position)  return false;
         this.time = reader.ReadSingle();
-
-            this.transforms = new Transform[numTransforms]; 
-            for (int i = 0; i < numTransforms; i++)
+        // 
+        //this.transforms = new Transform[numTransforms];
+        //int numbones = 129;
+        int numbones = numTransforms;
+        this.transforms = new Transform[numbones];
+        for (int i = 0; i < numbones; i++)
             {
                 Transform t = new Transform();
-                t.Read(reader);
+                if (i < numTransforms)  t.Read(reader);
                 this.transforms[i] = t;
             }
 
@@ -281,6 +284,8 @@ public class hkaPose
             {
                 this.floats[i] = reader.ReadSingle();
             }
+
+
         return true;
 
 

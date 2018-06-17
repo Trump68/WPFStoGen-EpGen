@@ -4,14 +4,14 @@ function LoadExpressions()
 	; Prepare factory resources
 	PrepareFactory()
 	; Regsiter expressions
-	RegisterExpression("Pleasure")
-	RegisterExpression("Happy")
-	RegisterExpression("Joy")
-	RegisterExpression("Shy")
-	RegisterExpression("Sad")
-	RegisterExpression("Afraid")
-	RegisterExpression("Pained")
-	RegisterExpression("Angry")
+	; RegisterExpression("Pleasure")
+	; RegisterExpression("Happy")
+	; RegisterExpression("Joy")
+	; RegisterExpression("Shy")
+	; RegisterExpression("Sad")
+	; RegisterExpression("Afraid")
+	; RegisterExpression("Pained")
+	; RegisterExpression("Angry")
 
 	; Empty customizable expressions
 	RegisterExpression("AB_Pleasure01")
@@ -26,19 +26,41 @@ function LoadExpressions()
 	RegisterExpression("AB_FuckDisgust01")
 	RegisterExpression("AB_FuckReluctant01")
 	RegisterExpression("AB_FuckPleasured01")
-	
-	
-	
-	
-	 ;RegisterExpression("Custom1")
-	 ;RegisterExpression("Custom2")
-	 ;RegisterExpression("Custom3")
-	 ;RegisterExpression("Custom4")
-	 ;RegisterExpression("Custom5")
+	; RegisterExpression("AB_F01")
+	; RegisterExpression("AB_F02")
+	; RegisterExpression("AB_F03")
+	; RegisterExpression("AB_F04")
+	; RegisterExpression("AB_F05")
+	; RegisterExpression("AB_F06")
+	; RegisterExpression("AB_F07")
+	; RegisterExpression("AB_F08")
+	; RegisterExpression("AB_F09")
+	; RegisterExpression("AB_F10")
+	; RegisterExpression("AB_F11")
+	; RegisterExpression("AB_F12")
+	; RegisterExpression("AB_F13")
+	; RegisterExpression("AB_F14")
+	; RegisterExpression("AB_F15")
+	; RegisterExpression("AB_F16")
+	; RegisterExpression("AB_F17")
+	; RegisterExpression("AB_F18")
+	; RegisterExpression("AB_F19")
+	; RegisterExpression("AB_F20")
+	; RegisterExpression("AB_F21")
+	; RegisterExpression("AB_F22")
 
+	RegisterExpression("AB_BJ01")
 	
-    
-
+	RegisterExpression("AB_Naughty01")
+    RegisterExpression("AB_Naughty02")
+    RegisterExpression("AB_Naughty03")
+    RegisterExpression("AB_Naughty04")
+    RegisterExpression("AB_Naughty05")
+    RegisterExpression("AB_Naughty06")
+	
+	RegisterExpression("AB_Worried01")
+	RegisterExpression("AB_Worried02")
+	RegisterExpression("AB_Worried03")
 endFunction
 
 function Pleasure(int id)
@@ -1156,14 +1178,9 @@ function AB_FuckReluctant01(int id)
 endFunction
 
 function AB_FuckPleasured01(int id)
-
 	sslBaseExpression Base = Create(id)
-
 	Base.Name = "AB_FuckPleasured01"
 	Base.SetTags("Normal,Victim")
-
-
-;pleasured1
 
 	; Male + Female
 	Base.SetMood(1, MaleFemale, 2, 60)
@@ -1206,5 +1223,634 @@ function AB_FuckPleasured01(int id)
 	Base.SetModifier(3, MaleFemale, 5, 100)
 	Base.SetModifier(3, MaleFemale, 9, 100)
 	
+	Base.Save(id)
+endFunction
+
+function AB_BJ01(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_BJ01"
+	Base.SetTags("Normal,Victim")
+;oral01
+	; Male + Female
+	Base.SetMood(1, MaleFemale, 6, 70)
+	Base.SetPhoneme(1, MaleFemale, 0, 100)
+	Base.SetPhoneme(1, MaleFemale, 2, 100)
+	Base.SetPhoneme(1, MaleFemale, 6, 100)
+	Base.SetModifier(1, MaleFemale, 0, 50)
+    Base.SetModifier(1, MaleFemale, 1, 50)
+	Base.SetModifier(1, MaleFemale, 4, 100)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+	Base.SetModifier(1, MaleFemale, 6, 100)
+	Base.SetModifier(1, MaleFemale, 10, 50)
+	Base.SetModifier(1, MaleFemale, 11, 100)
+	Base.SetModifier(1, MaleFemale, 12, 50)
+	Base.SetModifier(1, MaleFemale, 13, 50)
+
+	Base.Save(id)
+endFunction
+
+
+function AB_F01(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F01"
+	Base.SetTags("Normal,Victim")
+	Base.SetMood(1, MaleFemale, 9, 10)
+	Base.SetMood(1, MaleFemale, 10, 10)	
+	Base.Save(id)
+endFunction
+
+function AB_F02(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F02"
+	Base.SetTags("Normal,Victim")
+;tongue mfg modifier 10 70	
+	Base.SetMood(1, MaleFemale, 10, 10)
+	Base.SetPhoneme(1, MaleFemale, 0, 5)	
+	Base.SetPhoneme(1, MaleFemale, 2, 50)	
+    Base.SetPhoneme(1, MaleFemale, 14, 30)	
+	Base.Save(id)
+endFunction
+
+function AB_F03(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F03"
+	Base.SetTags("Normal,Victim")
+;tongue mfg modifier 10 -70	
+	Base.SetMood(1, MaleFemale, 10, 40)
+	Base.SetPhoneme(1, MaleFemale, 0, 5)	
+	Base.SetPhoneme(1, MaleFemale, 2, 80)	
+    Base.SetPhoneme(1, MaleFemale, 4, 20)	
+    Base.SetPhoneme(1, MaleFemale, 5, 20)	
+    Base.SetPhoneme(1, MaleFemale, 7, 5)	
+    Base.SetPhoneme(1, MaleFemale, 14, 40)	
+	Base.SetModifier(1, MaleFemale, 1, 99)
+	Base.SetModifier(1, MaleFemale, 3, 90)
+	Base.SetModifier(1, MaleFemale, 8, 10)
+	Base.SetModifier(1, MaleFemale, 12, 10)
+	Base.Save(id)
+endFunction
+
+function AB_F04(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F04"
+	Base.SetTags("Normal,Victim")
+;tongue mfg modifier 10 -40	
+	Base.SetMood(1, MaleFemale, 10, 40)
+	Base.SetPhoneme(1, MaleFemale, 0, 5)	
+	Base.SetPhoneme(1, MaleFemale, 2, 80)	
+    Base.SetPhoneme(1, MaleFemale, 4, 20)	
+    Base.SetPhoneme(1, MaleFemale, 5, 20)	
+    Base.SetPhoneme(1, MaleFemale, 7, 5)	
+    Base.SetPhoneme(1, MaleFemale, 14, 40)	
+	Base.SetModifier(1, MaleFemale, 0, 99)
+	Base.SetModifier(1, MaleFemale, 3, 90)
+	Base.SetModifier(1, MaleFemale, 7, 10)
+	Base.SetModifier(1, MaleFemale, 12, 10)
+	Base.SetModifier(1, MaleFemale, 10, 70)
+	Base.Save(id)
+endFunction
+
+function AB_F05(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F05"
+	Base.SetTags("Normal,Victim")
+;tongue mfg modifier 10 70	
+;tongue mfg modifier 10 -40
+	Base.SetMood(1, MaleFemale, 12, 40)
+	Base.SetPhoneme(1, MaleFemale, 0, 5)	
+	Base.SetPhoneme(1, MaleFemale, 2, 80)	
+    Base.SetPhoneme(1, MaleFemale, 4, 20)	
+    Base.SetPhoneme(1, MaleFemale, 5, 20)	
+    Base.SetPhoneme(1, MaleFemale, 7, 5)	
+    Base.SetPhoneme(1, MaleFemale, 14, 40)	
+	Base.SetModifier(1, MaleFemale, 3, 90)
+	Base.SetModifier(1, MaleFemale, 12, 10)
+	Base.Save(id)
+endFunction
+
+function AB_F06(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F06"
+	Base.SetTags("Normal,Victim")
+    Base.SetMood(1, MaleFemale, 10, 40)
+	Base.SetPhoneme(1, MaleFemale, 0, 10)	
+	Base.SetPhoneme(1, MaleFemale, 5, 30)
+	Base.SetPhoneme(1, MaleFemale, 11, 20)
+	Base.SetModifier(1, MaleFemale, 6, 30)
+	Base.SetModifier(1, MaleFemale, 7, 30)
+	Base.SetModifier(1, MaleFemale, 8, 20)
+	Base.SetModifier(1, MaleFemale, 10, 50)
+	Base.SetModifier(1, MaleFemale, 11, 25)
+	Base.SetModifier(1, MaleFemale, 12, 60)
+	Base.SetModifier(1, MaleFemale, 13, 60)	
+	Base.Save(id)
+endFunction
+
+function AB_F07(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F07"
+	Base.SetTags("Normal,Victim")
+    Base.SetMood(1, MaleFemale, 10, 30)
+	Base.SetPhoneme(1, MaleFemale, 0, 5)	
+	Base.SetPhoneme(1, MaleFemale, 2, 80)
+	Base.SetPhoneme(1, MaleFemale, 4, 20)
+	Base.SetPhoneme(1, MaleFemale, 5, 20)
+	Base.SetPhoneme(1, MaleFemale, 7, 5)
+	Base.SetPhoneme(1, MaleFemale, 11, 20)
+	Base.SetPhoneme(1, MaleFemale, 14, 20)
+	Base.SetModifier(1, MaleFemale, 6, 20)
+	Base.SetModifier(1, MaleFemale, 7, 20)
+	Base.SetModifier(1, MaleFemale, 8, 40)
+	Base.SetModifier(1, MaleFemale, 9, 40)
+	Base.SetModifier(1, MaleFemale, 11, 40)
+	Base.SetModifier(1, MaleFemale, 12, 40)
+	Base.SetModifier(1, MaleFemale, 14, 60)	
+	Base.Save(id)
+endFunction
+
+function AB_F08(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F08"
+	Base.SetTags("Normal,Victim")
+    Base.SetMood(1, MaleFemale, 10, 30)
+	Base.SetPhoneme(1, MaleFemale, 0, 5)	
+	Base.SetPhoneme(1, MaleFemale, 4, 10)
+	Base.SetPhoneme(1, MaleFemale, 5, 20)
+	Base.SetPhoneme(1, MaleFemale, 7, 5)
+	Base.SetPhoneme(1, MaleFemale, 11, 30)
+	Base.SetPhoneme(1, MaleFemale, 14, 10)
+	Base.SetModifier(1, MaleFemale, 6, 20)
+	Base.SetModifier(1, MaleFemale, 7, 20)
+	Base.SetModifier(1, MaleFemale, 8, 40)
+	Base.SetModifier(1, MaleFemale, 9, 40)
+	Base.SetModifier(1, MaleFemale, 11, 40)
+	Base.SetModifier(1, MaleFemale, 12, 60)
+	Base.SetModifier(1, MaleFemale, 14, 60)	
+	Base.Save(id)
+endFunction
+
+function AB_F09(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F09"
+	Base.SetTags("Normal,Victim")
+    Base.SetMood(1, MaleFemale, 10, 50)
+	Base.SetPhoneme(1, MaleFemale, 0, 5)	
+	Base.SetPhoneme(1, MaleFemale, 4, 10)
+	Base.SetPhoneme(1, MaleFemale, 5, 20)
+	Base.SetPhoneme(1, MaleFemale, 7, 5)
+	Base.SetPhoneme(1, MaleFemale, 11, 30)
+	Base.SetPhoneme(1, MaleFemale, 14, 10)
+
+	Base.SetModifier(1, MaleFemale, 0, 20)
+	Base.SetModifier(1, MaleFemale, 1, 20)
+	Base.SetModifier(1, MaleFemale, 6, 20)
+	Base.SetModifier(1, MaleFemale, 7, 20)
+	Base.SetModifier(1, MaleFemale, 8, 40)
+	Base.SetModifier(1, MaleFemale, 9, 40)
+	Base.SetModifier(1, MaleFemale, 11, 40)	
+	Base.SetModifier(1, MaleFemale, 12, 60)	
+	Base.SetModifier(1, MaleFemale, 14, 60)	
+	Base.Save(id)
+endFunction
+
+function AB_F10(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F10"
+	Base.SetTags("Normal,Victim")
+    Base.SetMood(1, MaleFemale, 10, 15)
+	Base.SetPhoneme(1, MaleFemale, 0, 5)	
+	Base.SetPhoneme(1, MaleFemale, 4, 10)
+	Base.SetPhoneme(1, MaleFemale, 5, 50)
+	Base.SetPhoneme(1, MaleFemale, 7, 5)
+	Base.SetPhoneme(1, MaleFemale, 11, 10)
+	Base.SetPhoneme(1, MaleFemale, 14, 10)
+	Base.SetModifier(1, MaleFemale, 6, 20)
+	Base.SetModifier(1, MaleFemale, 7, 20)
+	Base.SetModifier(1, MaleFemale, 8, 50)
+	Base.SetModifier(1, MaleFemale, 9, 40)
+	Base.SetModifier(1, MaleFemale, 11, 40)	
+	Base.SetModifier(1, MaleFemale, 12, 80)	
+	Base.SetModifier(1, MaleFemale, 13, 80)	
+	Base.Save(id)
+endFunction
+
+function AB_F11(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F11"
+	Base.SetTags("Normal,Victim")
+    Base.SetMood(1, MaleFemale, 0, 80)
+	Base.SetPhoneme(1, MaleFemale, 8, 30)	
+	Base.SetPhoneme(1, MaleFemale, 9, 100)
+	Base.SetPhoneme(1, MaleFemale, 12, 30)
+	Base.SetPhoneme(1, MaleFemale, 13, 30)
+	Base.Save(id)
+endFunction
+
+function AB_F12(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F12"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 2, 30)
+	
+	Base.SetPhoneme(1, MaleFemale, 0, 30)	
+	Base.SetPhoneme(1, MaleFemale, 4, 10)
+	Base.SetPhoneme(1, MaleFemale, 5, 30)
+	Base.SetPhoneme(1, MaleFemale, 6, 10)
+	Base.SetPhoneme(1, MaleFemale, 7, 30)
+	Base.SetPhoneme(1, MaleFemale, 11, 80)
+	
+	Base.SetModifier(1, MaleFemale, 6, 30)
+	Base.SetModifier(1, MaleFemale, 7, 30)
+	Base.SetModifier(1, MaleFemale, 9, 50)
+	Base.SetModifier(1, MaleFemale, 12, 30)
+	Base.SetModifier(1, MaleFemale, 13, 30)
+	
+	Base.Save(id)
+endFunction
+
+function AB_F13(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F13"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 0, 50)
+	
+	Base.SetPhoneme(1, MaleFemale, 2, 80)	
+	Base.SetPhoneme(1, MaleFemale, 4, 20)
+	Base.SetPhoneme(1, MaleFemale, 5, 20)
+	Base.SetPhoneme(1, MaleFemale, 7, 5)
+	Base.SetPhoneme(1, MaleFemale, 14, 40)
+
+	Base.SetModifier(1, MaleFemale, 2, 50)
+	Base.SetModifier(1, MaleFemale, 3, 50)
+	Base.SetModifier(1, MaleFemale, 8, -30)
+	Base.SetModifier(1, MaleFemale, 9, 60)
+	Base.SetModifier(1, MaleFemale, 12, 20)
+	Base.SetModifier(1, MaleFemale, 13, 20)
+	
+	Base.Save(id)
+endFunction
+
+function AB_F14(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F14"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 0, 80)
+	
+	Base.SetPhoneme(1, MaleFemale, 4, 50)
+	Base.SetPhoneme(1, MaleFemale, 5, 40)
+	Base.SetPhoneme(1, MaleFemale, 6, 20)
+	Base.SetPhoneme(1, MaleFemale, 14, 40)
+
+	Base.SetModifier(1, MaleFemale, 2, 60)
+	Base.SetModifier(1, MaleFemale, 3, 60)
+	Base.SetModifier(1, MaleFemale, 8, 30)
+	Base.SetModifier(1, MaleFemale, 12, 40)
+	Base.SetModifier(1, MaleFemale, 13, 40)
+	
+	Base.Save(id)
+endFunction
+
+function AB_F15(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F15"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 5, 50)
+	
+	Base.SetPhoneme(1, MaleFemale, 3, 30)
+	Base.SetPhoneme(1, MaleFemale, 9, 30)
+	Base.SetPhoneme(1, MaleFemale, 11, 30)
+
+	Base.SetModifier(1, MaleFemale, 0, 10)
+	Base.SetModifier(1, MaleFemale, 1, 10)
+	Base.SetModifier(1, MaleFemale, 6, 20)
+	Base.SetModifier(1, MaleFemale, 7, 20)
+	Base.SetModifier(1, MaleFemale, 8, -70)
+	Base.SetModifier(1, MaleFemale, 9, -40)
+	Base.SetModifier(1, MaleFemale, 12, 10)
+	Base.SetModifier(1, MaleFemale, 13, 10)
+	
+	Base.Save(id)
+endFunction
+
+function AB_F16(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F16"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 3, 30)
+	
+	Base.SetPhoneme(1, MaleFemale, 0, 5)
+	Base.SetPhoneme(1, MaleFemale, 2, 80)
+	Base.SetPhoneme(1, MaleFemale, 4, 20)
+	Base.SetPhoneme(1, MaleFemale, 5, 20)
+	Base.SetPhoneme(1, MaleFemale, 7, 5)
+    Base.SetPhoneme(1, MaleFemale, 14, 20)
+
+	Base.SetModifier(1, MaleFemale, 10, 70)
+	Base.SetModifier(1, MaleFemale, 12, 10)
+	Base.SetModifier(1, MaleFemale, 13, 10)
+
+	Base.Save(id)
+endFunction
+
+function AB_F17(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F17"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 3, 30)
+	
+	Base.SetPhoneme(1, MaleFemale, 0, 5)
+	Base.SetPhoneme(1, MaleFemale, 2, 80)
+	Base.SetPhoneme(1, MaleFemale, 4, 20)
+	Base.SetPhoneme(1, MaleFemale, 5, 20)
+	Base.SetPhoneme(1, MaleFemale, 7, 5)
+    Base.SetPhoneme(1, MaleFemale, 14, 20)
+
+	Base.SetModifier(1, MaleFemale, 1, 100)
+	Base.SetModifier(1, MaleFemale, 3, 40)
+	Base.SetModifier(1, MaleFemale, 6, 40)
+	Base.SetModifier(1, MaleFemale, 10, 70)
+    Base.SetModifier(1, MaleFemale, 12, 10)
+    Base.SetModifier(1, MaleFemale, 13, 10)
+	
+	Base.Save(id)
+endFunction
+
+function AB_F18(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F18"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 2, 50)
+	
+	Base.SetPhoneme(1, MaleFemale, 6, 20)
+	Base.SetPhoneme(1, MaleFemale, 7, 30)
+
+	Base.SetModifier(1, MaleFemale, 0, 5)
+	Base.SetModifier(1, MaleFemale, 1, 5)
+	Base.SetModifier(1, MaleFemale, 6, 40)
+    Base.SetModifier(1, MaleFemale, 12, 20)
+    Base.SetModifier(1, MaleFemale, 13, 20)
+	
+	Base.Save(id)
+endFunction
+
+
+function AB_F19(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F19"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 2, 20)
+	
+	Base.SetPhoneme(1, MaleFemale, 2, 5)
+	Base.SetPhoneme(1, MaleFemale, 4, 40)
+	Base.SetPhoneme(1, MaleFemale, 5, 20)
+	Base.SetPhoneme(1, MaleFemale, 7, 10)
+    Base.SetPhoneme(1, MaleFemale, 11, 20)
+
+	Base.SetModifier(1, MaleFemale, 0, 25)
+	Base.SetModifier(1, MaleFemale, 1, 25)
+	Base.SetModifier(1, MaleFemale, 2, 40)
+	Base.SetModifier(1, MaleFemale, 3, 40)
+    Base.SetModifier(1, MaleFemale, 8, 20)
+    Base.SetModifier(1, MaleFemale, 9, 20)
+    Base.SetModifier(1, MaleFemale, 12, 20)
+    Base.SetModifier(1, MaleFemale, 13, 20)
+	
+	Base.Save(id)
+endFunction
+
+
+function AB_F20(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F20"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 2, 30)
+	
+	Base.SetPhoneme(1, MaleFemale, 2, 80)
+	Base.SetPhoneme(1, MaleFemale, 3, 30)
+	Base.SetPhoneme(1, MaleFemale, 4, 20)
+	Base.SetPhoneme(1, MaleFemale, 5, 50)
+
+	Base.SetModifier(1, MaleFemale, 0, 10)
+	Base.SetModifier(1, MaleFemale, 1, 10)
+	Base.SetModifier(1, MaleFemale, 2, 30)
+	Base.SetModifier(1, MaleFemale, 3, 10)
+    Base.SetModifier(1, MaleFemale, 6, 20)
+    Base.SetModifier(1, MaleFemale, 7, 20)
+    Base.SetModifier(1, MaleFemale, 8, 10)
+    Base.SetModifier(1, MaleFemale, 9, 40)
+    Base.SetModifier(1, MaleFemale, 12, 60)
+	Base.SetModifier(1, MaleFemale, 13, 60)
+	
+	Base.Save(id)
+endFunction
+
+function AB_F21(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F21"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 7, 50)
+
+	Base.SetModifier(1, MaleFemale, 0, 10)
+	Base.SetModifier(1, MaleFemale, 1, 10)
+    Base.SetModifier(1, MaleFemale, 8, -10)
+    Base.SetModifier(1, MaleFemale, 9, 60)
+    Base.SetModifier(1, MaleFemale, 12, 1)
+	Base.SetModifier(1, MaleFemale, 13, 1)
+	
+	Base.Save(id)
+endFunction
+
+
+function AB_F22(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_F22"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 2, 50)
+	
+	Base.SetPhoneme(1, MaleFemale, 0, 20)
+	Base.SetPhoneme(1, MaleFemale, 2, 35)
+	Base.SetPhoneme(1, MaleFemale, 4, 20)
+	Base.SetPhoneme(1, MaleFemale, 5, 20)
+    Base.SetPhoneme(1, MaleFemale, 7, 5)
+    Base.SetPhoneme(1, MaleFemale, 11, 10)
+    Base.SetPhoneme(1, MaleFemale, 14, 50)
+
+	Base.SetModifier(1, MaleFemale, 0, 30)
+	Base.SetModifier(1, MaleFemale, 1, 30)
+	Base.SetModifier(1, MaleFemale, 3, 90)
+	Base.SetModifier(1, MaleFemale, 6, 20)
+    Base.SetModifier(1, MaleFemale, 7, 10)
+    Base.SetModifier(1, MaleFemale, 8, 20)
+    Base.SetModifier(1, MaleFemale, 9, 60)
+    Base.SetModifier(1, MaleFemale, 9, 40)
+    Base.SetModifier(1, MaleFemale, 12, 10)
+	Base.SetModifier(1, MaleFemale, 13, 0)
+	
+	Base.Save(id)
+endFunction
+
+function AB_Naughty01(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_Naughty01"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 2, 60)
+	
+	Base.SetModifier(1, MaleFemale, 0, 20)
+	Base.SetModifier(1, MaleFemale, 2, 50)
+	Base.SetModifier(1, MaleFemale, 4, 40)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+    Base.SetModifier(1, MaleFemale, 7, 50)
+    Base.SetModifier(1, MaleFemale, 9, 100)
+    Base.SetModifier(1, MaleFemale, 11, 50)
+
+	Base.Save(id)
+endFunction
+function AB_Naughty02(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_Naughty02"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 2, 60)
+
+	Base.SetModifier(1, MaleFemale, 2, 50)
+	Base.SetModifier(1, MaleFemale, 4, 40)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+    Base.SetModifier(1, MaleFemale, 7, 50)
+    Base.SetModifier(1, MaleFemale, 9, 100)
+    Base.SetModifier(1, MaleFemale, 11, 50)
+
+	Base.Save(id)
+endFunction
+function AB_Naughty03(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_Naughty03"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 2, 60)
+
+	Base.SetModifier(1, MaleFemale, 2, 50)
+	Base.SetModifier(1, MaleFemale, 4, 40)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+    Base.SetModifier(1, MaleFemale, 7, 50)
+    Base.SetModifier(1, MaleFemale, 9, 100)
+
+	Base.Save(id)
+endFunction
+function AB_Naughty04(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_Naughty04"
+	Base.SetTags("Normal,Victim")
+    
+	Base.SetMood(1, MaleFemale, 2, 60)
+	Base.SetModifier(1, MaleFemale, 0, 30)
+	Base.SetModifier(1, MaleFemale, 2, 50)
+	Base.SetModifier(1, MaleFemale, 4, 40)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+    Base.SetModifier(1, MaleFemale, 7, 50)
+    Base.SetModifier(1, MaleFemale, 9, 100)
+
+	Base.Save(id)
+endFunction
+function AB_Naughty05(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_Naughty05"
+	Base.SetTags("Normal,Victim")
+	Base.SetMood(1, MaleFemale, 2, 60)
+	Base.SetModifier(1, MaleFemale, 0, 60)
+	Base.SetModifier(1, MaleFemale, 1, 60)
+	Base.SetModifier(1, MaleFemale, 2, 50)
+	Base.SetModifier(1, MaleFemale, 4, 40)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+    Base.SetModifier(1, MaleFemale, 7, 50)
+    Base.SetModifier(1, MaleFemale, 9, 100)
+    Base.SetModifier(1, MaleFemale, 12, 40)
+	Base.SetModifier(1, MaleFemale, 13, 40)
+	Base.Save(id)
+endFunction
+function AB_Naughty06(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_Naughty06"
+	Base.SetTags("Normal,Victim")
+	Base.SetMood(1, MaleFemale, 2, 50)
+	Base.SetPhoneme(1, MaleFemale, 5, 50)
+    Base.SetModifier(1, MaleFemale, 9, 100)
+    Base.SetModifier(1, MaleFemale, 12, 50)
+	Base.SetModifier(1, MaleFemale, 13, 50)
+	Base.Save(id)
+endFunction
+function AB_NaughtyKiss01(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_NaughtyKiss01"
+	Base.SetTags("Normal,Victim")
+	Base.SetMood(1, MaleFemale, 2, 50)
+	Base.SetPhoneme(1, MaleFemale, 8, 100)	
+    Base.SetModifier(1, MaleFemale, 9, 100)
+    Base.SetModifier(1, MaleFemale, 12, 50)
+	Base.SetModifier(1, MaleFemale, 13, 50)
+	Base.Save(id)
+endFunction
+function AB_NaughtyKiss02(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_NaughtyKiss02"
+	Base.SetTags("Normal,Victim")
+	Base.SetMood(1, MaleFemale, 2, 50)
+	Base.SetPhoneme(1, MaleFemale, 2, 100)	
+    Base.SetModifier(1, MaleFemale, 9, 100)
+    Base.SetModifier(1, MaleFemale, 12, 50)
+	Base.SetModifier(1, MaleFemale, 13, 50)
+	Base.Save(id)
+endFunction
+function AB_Worried01(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_Worried01"
+	Base.SetTags("Normal,Victim")  
+	Base.SetMood(1, MaleFemale, 9, 100)
+	Base.SetPhoneme(1, MaleFemale, 0, 30)
+	Base.SetPhoneme(1, MaleFemale, 2, 30)	
+	Base.SetModifier(1, MaleFemale, 2, 100)
+	Base.SetModifier(1, MaleFemale, 3, 100)
+	Base.SetModifier(1, MaleFemale, 4, 100)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+	Base.SetModifier(1, MaleFemale, 9, 100)
+    Base.SetModifier(1, MaleFemale, 11, 90)
+	Base.Save(id)
+endFunction
+function AB_Worried02(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_Worried02"
+	Base.SetTags("Normal,Victim")   
+	Base.SetMood(1, MaleFemale, 9, 100)
+	Base.SetPhoneme(1, MaleFemale, 2, 30)	
+	Base.SetModifier(1, MaleFemale, 2, 100)
+	Base.SetModifier(1, MaleFemale, 3, 100)
+	Base.SetModifier(1, MaleFemale, 4, 100)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+	Base.SetModifier(1, MaleFemale, 9, 100)
+    Base.SetModifier(1, MaleFemale, 11, 90)
+	Base.Save(id)
+endFunction
+function AB_Worried03(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_Worried03"
+	Base.SetTags("Normal,Victim")    
+	Base.SetMood(1, MaleFemale, 9, 100)
+	Base.SetModifier(1, MaleFemale, 2, 100)
+	Base.SetModifier(1, MaleFemale, 3, 100)
+	Base.SetModifier(1, MaleFemale, 4, 100)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+	Base.SetModifier(1, MaleFemale, 9, 100)
+    Base.SetModifier(1, MaleFemale, 11, 90)
 	Base.Save(id)
 endFunction

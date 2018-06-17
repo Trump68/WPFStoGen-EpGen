@@ -47,6 +47,7 @@
             this.restoreFullToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setRotationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.applyFullToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.InputBox = new System.Windows.Forms.TextBox();
             this.CadreN = new System.Windows.Forms.TextBox();
@@ -68,7 +69,6 @@
             this.btnAddStart = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.numSpeed = new System.Windows.Forms.NumericUpDown();
-            this.applyFullToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCurrent)).BeginInit();
@@ -202,6 +202,13 @@
             this.setRotationsToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.setRotationsToolStripMenuItem.Text = "Apply";
             this.setRotationsToolStripMenuItem.Click += new System.EventHandler(this.setRotationsToolStripMenuItem_Click);
+            // 
+            // applyFullToolStripMenuItem
+            // 
+            this.applyFullToolStripMenuItem.Name = "applyFullToolStripMenuItem";
+            this.applyFullToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.applyFullToolStripMenuItem.Text = "SaveOrig";
+            this.applyFullToolStripMenuItem.Click += new System.EventHandler(this.applyFullToolStripMenuItem_Click);
             // 
             // trackBar1
             // 
@@ -424,13 +431,6 @@
             0,
             0,
             0});
-            // 
-            // applyFullToolStripMenuItem
-            // 
-            this.applyFullToolStripMenuItem.Name = "applyFullToolStripMenuItem";
-            this.applyFullToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.applyFullToolStripMenuItem.Text = "ApplyFull";
-            this.applyFullToolStripMenuItem.Click += new System.EventHandler(this.applyFullToolStripMenuItem_Click);
             // 
             // Form1
             // 

@@ -269,6 +269,10 @@ namespace hkxPoser
             int nbones = System.Math.Min(skelRef.bones.Length, pose.transforms.Length);
             for (int i = 0; i < nbones; i++)
             {
+                if (skelRef.bones[i].name == "NPC L PreBreast")
+                {
+                    bool ok = true;
+                }
                 skelRef.bones[i].local = pose.transforms[i];
             }            
         }
@@ -427,10 +431,23 @@ namespace hkxPoser
             ClearCommands();
         }
         public void ApplyPosePatchForcadre(hkaPose pose, bool clearpatch)
-        {
+        {       
+            if (skeleton.referencePose.Length > pose.transforms.Length)
+            {
+                var ss = pose.transforms.ToList();
+                while (skeleton.referencePose.Length > ss.Count)
+                {
+                    ss.Add(skeleton.referencePose[ss.Count]);
+                }
+                pose.transforms = ss.ToArray();
+            }
             int nbones = System.Math.Min(skeleton.bones.Length, pose.transforms.Length);
             for (int i = 0; i < nbones; i++)
             {
+                if (skeleton.bones[i].name == "NPC L PreBreast")
+                {
+                    bool ok = true;
+                }                
                 pose.transforms[i] *= skeleton.bones[i].patch;
                 if (clearpatch)
                   skeleton.bones[i].patch = new Transform();
@@ -517,6 +534,7 @@ namespace hkxPoser
             Process process = Process.Start(info);
             Console.WriteLine(process.StandardOutput.ReadToEnd());
             process.WaitForExit();
+            SetCurrentPose(0);
         }
 
         SimpleCamera camera = new SimpleCamera();
@@ -659,6 +677,10 @@ namespace hkxPoser
             {
                 if (bone.hide)
                     continue;
+                if (bone.idx == 99)
+                {
+                    bool ok = true;
+                }
 
                 Vector3 p0 = GetBonePositionOnScreen(bone);
                 p0.Z = 0.0f;

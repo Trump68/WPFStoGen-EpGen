@@ -53,6 +53,7 @@ namespace hkxPoser
         }
         private string openedAnimationFile;
         private string openedAnimationFilePath;
+        string source_file;
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -60,7 +61,7 @@ namespace hkxPoser
             dialog.FilterIndex = 0;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                string source_file = dialog.FileName;
+                source_file = dialog.FileName;
                 viewer.LoadAnimation(source_file,1);
                 openedAnimationFile = Path.GetFileNameWithoutExtension(source_file);
                 openedAnimationFilePath = Path.GetDirectoryName(source_file);
@@ -269,7 +270,8 @@ namespace hkxPoser
 
         private void applyFullToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.viewer.DeserializatePose2(trackBar1.Value, true);
+                int speed = (int)numSpeed.Value;
+                viewer.SaveAnimation(source_file, speed);
         }
 
         private void btnInterpolate_Click(object sender, EventArgs e)

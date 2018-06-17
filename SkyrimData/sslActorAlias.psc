@@ -104,7 +104,8 @@ bool property MalePosition hidden
 		return Flags[4] == 0
 	endFunction
 endProperty
-
+function FastPose()	  
+endFunction
 ; ------------------------------------------------------- ;
 ; --- Load/Clear Alias For Use                        --- ;
 ; ------------------------------------------------------- ;
@@ -305,7 +306,7 @@ state Ready
 			; Strip actor
 			;Strip()
 			ResolveStrapon()
-			Debug.SendAnimationEvent(ActorRef, "SOSFastErect")
+			;Debug.SendAnimationEvent(ActorRef, "SOSFastErect")
 			; Suppress High Heels
 			if IsFemale && Config.RemoveHeelEffect && ActorRef.GetWornForm(0x00000080)
 				; Remove NiOverride High Heels
@@ -421,7 +422,7 @@ state Prepare
 		ActorRef.SetPosition(Loc[0], Loc[1], Loc[2])
 		ActorRef.SetAngle(Loc[3], Loc[4], Loc[5])
 		AttachMarker()
-		Debug.SendAnimationEvent(ActorRef, "SOSFastErect")
+		;Debug.SendAnimationEvent(ActorRef, "SOSFastErect")
 		; Notify thread prep is done
 		if Thread.GetState() == "Prepare"
 			Thread.SyncEventDone(kPrepareActor)
@@ -491,25 +492,30 @@ state Animating
 	function SendAnimation()
 		; Reenter SA - On stage 1 while animation hasn't changed since last call
 		if Stage == 1 && PlayingSA == CurrentSA
-			Debug.SendAnimationEvent(ActorRef, "IdleForceDefaultState")
+			;Debug.SendAnimationEvent(ActorRef, "IdleForceDefaultState")
 			Utility.WaitMenuMode(0.2)
 			Debug.SendAnimationEvent(ActorRef, Animation.FetchPositionStage(Position, 1))
-			; Debug.SendAnimationEvent(ActorRef, Animation.FetchPositionStage(Position, 1)+"_REENTER")
+			
 		else
 			; Enter a new SA - Not necessary on stage 1 since both events would be the same
 			if Stage != 1 && PlayingSA != CurrentSA
 				Debug.SendAnimationEvent(ActorRef, Animation.FetchPositionStage(Position, 1))
-				Utility.WaitMenuMode(0.2)
-				; Log("NEW SA - "+Animation.FetchPositionStage(Position, 1))
+				Utility.WaitMenuMode(0.2)				
 			endIf
-			; Play the primary animation
-		 	Debug.SendAnimationEvent(ActorRef, AnimEvents[Position])
-		 	; Log(AnimEvents[Position])
+			
+			  Debug.SendAnimationEvent(ActorRef, AnimEvents[Position])			  
+	 
 		endIf
 		; Save id of last SA played
 		PlayingSA = Animation.Registry
 	endFunction
-
+	
+	function FastPose()
+	          Debug.SendAnimationEvent(ActorRef, AnimEvents[Position+1])
+			  Utility.WaitMenuMode(1.2)
+			  Debug.SendAnimationEvent(ActorRef, AnimEvents[Position])			  
+	endFunction
+	
 	event OnUpdate()
 		; Pause further updates if in menu
 		while Utility.IsInMenuMode()
@@ -523,12 +529,12 @@ state Animating
 			return
 		endIf
 		; Trigger orgasm
-		GetEnjoyment()
-		if Enjoyment >= 100 && Stage < StageCount && SeparateOrgasms && (RealTime[0] - LastOrgasm) > 10.0
-			OrgasmEffect()
-		endIf
+		; GetEnjoyment()
+		; if Enjoyment >= 100 && Stage < StageCount && SeparateOrgasms && (RealTime[0] - LastOrgasm) > 10.0
+			; OrgasmEffect()
+		; endIf
 		; Lip sync and refresh expression
-		if LoopDelay >= VoiceDelay
+		if UseLipSync && LoopDelay >= VoiceDelay
 			LoopDelay = 0.0
 			if (!IsSilent)
 				Voice.PlayMoan(ActorRef, Enjoyment, IsVictim, UseLipSync)
@@ -557,8 +563,9 @@ state Animating
 			ResolveStrapon()
 			RefreshExpression()
 		endIf
-
-		Debug.SendAnimationEvent(ActorRef, "SOSBend"+Schlong)	
+        
+		
+		;Debug.SendAnimationEvent(ActorRef, "SOSBend"+Schlong)	
 
 		; SyncLocation(false)
 	endFunction
@@ -699,9 +706,9 @@ state Animating
 		GoToState("Resetting")
 		Log("Resetting!")
 		; Clear TFC
-		if IsPlayer
-			MiscUtil.SetFreeCameraState(false)
-		endIf
+		; if IsPlayer
+			; MiscUtil.SetFreeCameraState(false)
+		; endIf
 		; Update stats
 		if IsSkilled
 			Actor VictimRef = Thread.VictimRef
@@ -720,7 +727,7 @@ state Animating
 		TrackedEvent("End")
 		StopAnimating(Thread.FastEnd, EndAnimEvent)
 		RestoreActorDefaults()
-		UnlockActor()
+		;UnlockActor()
 		; Unstrip items in storage, if any
 		if !IsCreature && !ActorRef.IsDead()
 			Unstrip()
@@ -787,10 +794,10 @@ function StopAnimating(bool Quick = false, string ResetAnim = "IdleForceDefaultS
 		Debug.SendAnimationEvent(ActorRef, ResetAnim)
 		Utility.Wait(0.1)
 		; Ragdoll NPC/PC if enabled and not in TFC
-		if !Quick && ResetAnim != "" && DoRagdoll && (!IsPlayer || (IsPlayer && Game.GetCameraState() != 3))
-			ActorRef.Moveto(ActorRef)
-			ActorRef.PushActorAway(ActorRef, 0.1)
-		endIf
+		; if !Quick && ResetAnim != "" && DoRagdoll && (!IsPlayer || (IsPlayer && Game.GetCameraState() != 3))
+			; ActorRef.Moveto(ActorRef)
+			; ActorRef.PushActorAway(ActorRef, 0.1)
+		; endIf
 	endIf
 	PlayingSA = "SexLabSequenceExit1"
 endFunction
@@ -821,19 +828,20 @@ function LockActor()
 			Game.ForceThirdPerson()
 		endIf
 		; abMovement = true, abFighting = true, abCamSwitch = false, abLooking = false, abSneaking = false, abMenu = true, abActivate = true, abJournalTabs = false, aiDisablePOVType = 0
-		Game.DisablePlayerControls(true, true, false, false, false, false, false, false, 0)
+		;Game.DisablePlayerControls(true, true, false, false, false, false, false, false, 0)
 		Game.SetPlayerAIDriven()
 		; Enable hotkeys if needed, and disable autoadvance if not needed
 		if IsVictim && Config.DisablePlayer
 			Thread.AutoAdvance = true
 		else
 			Thread.AutoAdvance = Config.AutoAdvance
-			Thread.EnableHotkeys()
+			
 		endIf
 	else
 		ActorRef.SetRestrained(true)
 		ActorRef.SetDontMove(true)
 	endIf
+	Thread.EnableHotkeys()
 	; Attach positioning marker
 	if !MarkerRef
 		MarkerRef = ActorRef.PlaceAtMe(Config.BaseMarker)
@@ -868,7 +876,7 @@ function UnlockActor()
 	; Enable movement
 	if IsPlayer
 		Thread.DisableHotkeys()
-		MiscUtil.SetFreeCameraState(false)
+		;MiscUtil.SetFreeCameraState(false)
 		Game.EnablePlayerControls(true, true, false, false, false, false, false, false, 0)
 		Game.SetPlayerAIDriven(false)
 	else
@@ -914,9 +922,10 @@ function RestoreActorDefaults()
 	ActorRef.SetFactionRank(AnimatingFaction, -1)
 	ActorRef.RemoveFromFaction(AnimatingFaction)
 	ActorUtil.RemovePackageOverride(ActorRef, Config.DoNothing)
-	ActorRef.EvaluatePackage()
+	;ActorRef.EvaluatePackage()
 	; Remove SOS erection
-	Debug.SendAnimationEvent(ActorRef, "SOSFlaccid")
+	;Debug.SendAnimationEvent(ActorRef, "SOSFlaccid")
+	FloppySOS.toggleFloppiness(ActorRef,"LowArousal",false)
 endFunction
 
 function RefreshActor()
@@ -1262,9 +1271,9 @@ endFunction
 function ClearEffects()
 	if IsPlayer && GetState() != "Animating"
 		; MiscUtil.SetFreeCameraState(false)
-		if Game.GetCameraState() == 0
-			Game.ForceThirdPerson()
-		endIf
+		 if Game.GetCameraState() == 0
+			 Game.ForceThirdPerson()
+		 endIf
 	endIf
 	if ActorRef.IsInCombat()
 		ActorRef.StopCombat()
@@ -1494,7 +1503,14 @@ string property AB_Name hidden
 		return ActorName
 	endFunction
 endProperty
-
+bool property AB_UseLipSync hidden
+	bool function get()
+		return UseLipSync
+	endFunction
+	function set(bool value)
+		UseLipSync = value
+	endFunction
+endProperty
 string property AB_IsFemale hidden
 	string function get()
 		return IsFemale
@@ -1503,8 +1519,12 @@ endProperty
 
 function AB_ExpressionApply(Actor ac, int strength, int acgender)
     ;Log("!!!!!!!! "+Expression.Name+" - " + strength)	
-	Expression.ApplyPhase(ac, strength, acgender)
-	
+	Expression.ApplyPhase(ac, strength, acgender)	
 endFunction
 
-
+function AB_SchlongApply()
+  ;FloppySOS.toggleFloppiness(ActorRef,"MedArousal",false)
+  FloppySOS.toggleFloppiness(ActorRef,"BallsOnly",false)
+  
+  Debug.SendAnimationEvent(ActorRef, "SOSBend"+Schlong)	  
+endFunction

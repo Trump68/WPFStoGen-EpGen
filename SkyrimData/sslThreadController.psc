@@ -53,6 +53,31 @@ state Prepare
 		SyncEvent(kPrepareActor, 30.0)
 	endFunction
 
+	function AB_FireAction()
+		Prepared = false
+		; Ensure center is set
+		if !CenterRef
+			CenterOnObject(Positions[0], false)
+		endIf
+		if CenterAlias.GetReference() != CenterRef
+			CenterAlias.TryToClear()
+			CenterAlias.ForceRefTo(CenterRef)
+		endIf
+		; Set important vars needed for actor prep
+		UpdateAdjustKey()
+		; if StartingAnimation && Animations.Find(StartingAnimation) != -1
+			; SetAnimation(Animations.Find(StartingAnimation))
+		; else
+			; SetAnimation()
+			; StartingAnimation = none
+		; endIf
+		AB_SetAnimation()
+		; Log(AdjustKey, "Adjustment Profile")
+		; Begin actor prep
+		SyncEvent(kPrepareActor, 30.0)
+	endFunction
+	
+	
 	function PrepareDone()
 		RegisterForSingleUpdate(0.1)
 	endFunction
@@ -131,12 +156,12 @@ state Advancing
 		Action("Animating")
 		SendThreadEvent("StageStart")
 		string mess = Animation.Name+", "+Stage
-		
+         		
 		If Acycle[Stage]
 		  mess = mess + "-ac"
 		endif
 		Notification(mess)
-
+        ActorAlias(Positions[1]).AB_SchlongApply()
 	endEvent
 endState
 
@@ -172,7 +197,7 @@ state Animating
 			endWhile
 		endIf
 		if (Stage == AB_RestartStage)
-		   GoToStage(2)
+		   GoToStage(1)
 		   return
 		endif
 		; Advance stage on timer		
@@ -180,10 +205,10 @@ state Animating
 		   GoToStage((Stage + 1))
 		   return
 		else
-		  if (AutoAdvance || TimedStage) && StageTimer < RealTime[0]
-			GoToStage((Stage + 1))
-			return
-		  endIf
+		  ; if (AutoAdvance || TimedStage) && StageTimer < RealTime[0]
+			; GoToStage((Stage + 1))
+			; return
+		  ; endIf
 		endIf
 		; Play SFX
 		if SoundFX && SFXTimer < RealTime[0]
@@ -221,10 +246,10 @@ state Animating
 	endFunction
 
 	function ChangeAnimation(bool backwards = false)
-		UnregisterForUpdate()
-		SetAnimation(sslUtility.IndexTravel(Animations.Find(Animation), Animations.Length, backwards))
-		SendThreadEvent("AnimationChange")
-		RegisterForSingleUpdate(0.2)
+		 UnregisterForUpdate()
+		 SetAnimation(sslUtility.IndexTravel(Animations.Find(Animation), Animations.Length, backwards))
+		 SendThreadEvent("AnimationChange")
+		 RegisterForSingleUpdate(0.2)
 	endFunction
 
 	function ChangePositions(bool backwards = false)
@@ -259,49 +284,117 @@ state Animating
 
 	function AdjustForward(bool backwards = false, bool AdjustStage = false)
 		UnregisterforUpdate()
-		float Amount = SignFloat(backwards, 0.50)
-		Adjusted = true
-		PlayHotkeyFX(0, backwards)
-		Animation.AdjustForward(AdjustKey, AdjustPos, Stage, Amount, AdjustStage)
-		int k = Config.AdjustForward
-		while Input.IsKeyPressed(k)
-			PlayHotkeyFX(0, backwards)
-			Animation.AdjustForward(AdjustKey, AdjustPos, Stage, Amount, Config.AdjustStagePressed())
-			AdjustAlias.RefreshLoc()
-		endWhile
-		RegisterForSingleUpdate(0.1)
+		; float Amount = SignFloat(backwards, 0.50)
+		; Adjusted = true
+		; PlayHotkeyFX(0, backwards)
+		; Animation.AdjustForward(AdjustKey, AdjustPos, Stage, Amount, AdjustStage)
+		; int k = Config.AdjustForward
+		; while Input.IsKeyPressed(k)
+			; PlayHotkeyFX(0, backwards)
+			; Animation.AdjustForward(AdjustKey, AdjustPos, Stage, Amount, Config.AdjustStagePressed())
+			; AdjustAlias.RefreshLoc()
+		; endWhile
+		
+		; sslActorAlias ac =  ActorAlias[0]
+		; ac.AB_UseLipSync = false;
+		; ac.ActorRef.ClearExpressionOverride()
+		; ac.FastPose()
+		; Utility.Wait(2.2)
+		
+        sslActorAlias ac1 =  ActorAlias[1]		
+        ChangeAnimation(false)
+		ChangeAnimation(true)				
+		ac1.AB_UseLipSync = false
+		ac1.ActorRef.ClearExpressionOverride()
 	endFunction
 
 	function AdjustSideways(bool backwards = false, bool AdjustStage = false)
-		UnregisterforUpdate()
-		float Amount = SignFloat(backwards, 0.50)
-		Adjusted = true
-		PlayHotkeyFX(0, backwards)
-		Animation.AdjustSideways(AdjustKey, AdjustPos, Stage, Amount, AdjustStage)
-		AdjustAlias.RefreshLoc()
-		int k = Config.AdjustSideways
-		while Input.IsKeyPressed(k)
-			PlayHotkeyFX(0, backwards)
-			Animation.AdjustSideways(AdjustKey, AdjustPos, Stage, Amount, Config.AdjustStagePressed())
-			AdjustAlias.RefreshLoc()
-		endWhile
+		 UnregisterforUpdate()
+		; float Amount = SignFloat(backwards, 0.50)
+		; Adjusted = true
+		; PlayHotkeyFX(0, backwards)
+		; Animation.AdjustSideways(AdjustKey, AdjustPos, Stage, Amount, AdjustStage)
+		; AdjustAlias.RefreshLoc()
+		; int k = Config.AdjustSideways
+		; while Input.IsKeyPressed(k)
+			; PlayHotkeyFX(0, backwards)
+			; Animation.AdjustSideways(AdjustKey, AdjustPos, Stage, Amount, Config.AdjustStagePressed())
+			; AdjustAlias.RefreshLoc()
+		; endWhile
+		; 
+
+		sslActorAlias ac =  ActorAlias[0]
+		ac.AB_UseLipSync = false;
+		ac.ActorRef.ClearExpressionOverride()
+		MfgConsoleFunc.SetPhonemeModifier(ac.ActorRef, -1, 0, 0)
+		
+		if (backwards)
+		   if (ac.AB_EmotionLevel == 1)
+		    ac.AB_EmotionLevel = 5
+		   else
+		    ac.AB_EmotionLevel = ac.AB_EmotionLevel - 1		
+		   endif		
+		else
+		   if (ac.AB_EmotionLevel == 5)
+		    ac.AB_EmotionLevel = 1
+		   else
+		    ac.AB_EmotionLevel = ac.AB_EmotionLevel + 1		
+		   endif
+		endif
+      		
+		ac.RefreshExpression()
+		Debug.Notification("Expression: " + ac.GetExpression().Name + ", " + ac.AB_EmotionLevel)
 		RegisterForSingleUpdate(0.1)
 	endFunction
 
 	function AdjustUpward(bool backwards = false, bool AdjustStage = false)
-		float Amount = SignFloat(backwards, 0.50)
-		UnregisterforUpdate()
-		Adjusted = true
-		PlayHotkeyFX(2, backwards)
-		Animation.AdjustUpward(AdjustKey, AdjustPos, Stage, Amount, AdjustStage)
-		AdjustAlias.RefreshLoc()
-		int k = Config.AdjustUpward
-		while Input.IsKeyPressed(k)
-			PlayHotkeyFX(2, backwards)
-			Animation.AdjustUpward(AdjustKey, AdjustPos, Stage, Amount, Config.AdjustStagePressed())
-			AdjustAlias.RefreshLoc()
-		endWhile
+	    UnregisterforUpdate()
+		sslActorAlias ac =  ActorAlias[0]
+		ac.AB_UseLipSync = false;
+		ac.ActorRef.ClearExpressionOverride()
+		MfgConsoleFunc.SetPhonemeModifier(ac.ActorRef, -1, 0, 0)
+				
+		int eis = Config.ExpressionSlots.FindByName(ac.GetExpression().Name) 
+        
+		if (backwards)
+    		if (eis == 0)
+			   int tot = Config.ExpressionSlots.Slotted
+	    	   eis = tot - 1
+		    else
+		       eis = eis - 1
+		    endif				
+		else
+			int tot = Config.ExpressionSlots.Slotted
+     		if (eis == (tot - 1))
+	    	   eis = 0
+		    else
+		       eis = eis + 1
+		    endif		
+		endIf
+		
+		
+		sslBaseExpression expression = Config.ExpressionSlots.GetBySlot(eis)
+	
+		ac.SetExpression(expression)
+		ac.AB_EmotionLevel = 1        		
+		ac.RefreshExpression()
+		Debug.Notification("Expression: " + ac.GetExpression().Name + ", " + ac.AB_EmotionLevel)
 		RegisterForSingleUpdate(0.1)
+		
+		; float Amount = SignFloat(backwards, 0.50)
+		; UnregisterforUpdate()
+		; Adjusted = true
+		; PlayHotkeyFX(2, backwards)
+		; Animation.AdjustUpward(AdjustKey, AdjustPos, Stage, Amount, AdjustStage)
+		; AdjustAlias.RefreshLoc()
+		; int k = Config.AdjustUpward
+		; while Input.IsKeyPressed(k)
+			; PlayHotkeyFX(2, backwards)
+			; Animation.AdjustUpward(AdjustKey, AdjustPos, Stage, Amount, Config.AdjustStagePressed())
+			; AdjustAlias.RefreshLoc()
+		; endWhile
+		; RegisterForSingleUpdate(0.1)
+
 	endFunction
 
 	function RotateScene(bool backwards = false)
@@ -353,16 +446,16 @@ state Animating
 
 	function AdjustChange(bool backwards = false)
 		UnregisterForUpdate()
-		if ActorCount > 1
-			AdjustPos = sslUtility.IndexTravel(Positions.Find(AdjustAlias.ActorRef), ActorCount, backwards)
-			AdjustAlias = ActorAlias(Positions[AdjustPos])
-			Actor AdjustActor = AdjustAlias.ActorRef
-			Config.SelectedSpell.Cast(AdjustActor, AdjustActor)
-			PlayHotkeyFX(0, !backwards)
-			string msg = "Adjusting Position For: "+AdjustActor.GetLeveledActorBase().GetName()
-			Debug.Notification(msg)
-			SexLabUtil.PrintConsole(msg)
-		endIf
+		; if ActorCount > 1
+			; AdjustPos = sslUtility.IndexTravel(Positions.Find(AdjustAlias.ActorRef), ActorCount, backwards)
+			; AdjustAlias = ActorAlias(Positions[AdjustPos])
+			; Actor AdjustActor = AdjustAlias.ActorRef
+			; Config.SelectedSpell.Cast(AdjustActor, AdjustActor)
+			; PlayHotkeyFX(0, !backwards)
+			; string msg = "Adjusting Position For: "+AdjustActor.GetLeveledActorBase().GetName()
+			; Debug.Notification(msg)
+			; SexLabUtil.PrintConsole(msg)
+		; endIf		
 		RegisterForSingleUpdate(0.2)
 	endFunction
 
@@ -414,7 +507,6 @@ state Animating
 	endFunction
 
 	event OnKeyDown(int KeyCode)
-		; StateCheck()
 		if hkReady && !Utility.IsInMenuMode() ; || UI.IsMenuOpen("Console") || UI.IsMenuOpen("Loading Menu")
 			hkReady = false
 			int i = Hotkeys.Find(KeyCode)
@@ -543,13 +635,13 @@ function SetAnimation(int aid = -1)
 	; Set active animation
 	Animation = Animations[aid]
 	; Inform player of animation being played now
-	if HasPlayer
+	;if HasPlayer
 		string msg = "Playing Animation: " + Animation.Name
 		SexLabUtil.PrintConsole(msg)
 		if DebugMode
 			Debug.Notification(msg)
 		endIf
-	endIf
+	;endIf
 	; Update animation info
 	RecordSkills()
 	string[] Tags = Animation.GetRawTags()
@@ -581,6 +673,26 @@ function SetAnimation(int aid = -1)
 		endIf
 	endIf
 endFunction
+
+function AB_SetAnimation(int aid = -1)
+	StageCount = 500;
+	if Stage >= StageCount
+		GoToStage((StageCount - 1))
+	else
+		if Stage == 1
+			ResetPositions()
+		else
+			ActorAlias[0].SyncAll(true)
+			ActorAlias[1].SyncAll(true)
+			ActorAlias[2].SyncAll(true)
+			ActorAlias[3].SyncAll(true)
+			ActorAlias[4].SyncAll(true)
+			Utility.WaitMenuMode(0.2)
+			PlayStageAnimations()
+		endIf
+	endIf
+endFunction
+
 
 float function GetTimer()
 	; Custom acyclic stage timer
@@ -615,20 +727,20 @@ function UpdateTimer(float AddSeconds = 0.0)
 endFunction
 
 function EndLeadIn()
-	if LeadIn
-		UnregisterForUpdate()
-		; Swap to non lead in animations
-		Stage  = 1
-		LeadIn = false
-		SetAnimation()
-		; Add runtime to foreplay skill xp
-		SkillXP[0] = SkillXP[0] + (TotalTime / 10.0)
-		; Restrip with new strip options
-		QuickEvent("Strip")
-		; Start primary animations at stage 1
-		SendThreadEvent("LeadInEnd")
-		Action("Advancing")
-	endIf
+	; if LeadIn
+		; UnregisterForUpdate()
+		; ; Swap to non lead in animations
+		; Stage  = 1
+		; LeadIn = false
+		; SetAnimation()
+		; ; Add runtime to foreplay skill xp
+		; SkillXP[0] = SkillXP[0] + (TotalTime / 10.0)
+		; ; Restrip with new strip options
+		; QuickEvent("Strip")
+		; ; Start primary animations at stage 1
+		; SendThreadEvent("LeadInEnd")
+		; Action("Advancing")
+	; endIf
 endFunction
 
 function EndAnimation(bool Quickly = false)
@@ -732,8 +844,9 @@ function SetBonuses()
 	endIf
 endFunction
 
-function EnableHotkeys(bool forced = false)
-	if HasPlayer || forced
+function EnableHotkeys(bool forced = true)
+
+	;if HasPlayer || forced
 		; Prepare bound keys
 		Hotkeys = new int[13]
 		Hotkeys[kAdvanceAnimation] = Config.AdvanceAnimation
@@ -759,7 +872,7 @@ function EnableHotkeys(bool forced = false)
 		HotkeyDown = Config.HotkeyDown
 		; Ready
 		hkReady = true
-	endIf
+	;endIf
 endFunction
 
 function DisableHotkeys()
@@ -861,6 +974,7 @@ endFunction
 
 event OnKeyDown(int keyCode)
 	; StateCheck()
+	Debug.Notification("Key code pressed.."+keyCode)
 endEvent
 
 ;/ function StateCheck()
