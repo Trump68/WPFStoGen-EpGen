@@ -44,8 +44,8 @@ string AbAnimationDescription
 
 
 function DoAnim(Actor TargetRef, Actor CasterRef) 
-  ;DoAnim_PlayerSolo() 
-  DoAnim_FM_Belenthor() 
+  DoAnim_PlayerSolo() 
+  ;DoAnim_FM_Belenthor() 
   ;DoAnim_FM_Ulfbear() 
   ;DoAnim_FFNihel() 
   
@@ -79,7 +79,7 @@ endFunction
 function DoAnim_FM_Belenthor() 
 	Actor Anna = Game.GetPlayer();	
 	ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")	
-	actor Belenthor   = GetActor(Anna,    "Belethor",  "Smurf Average",  20)
+	actor Belenthor   = GetActor(Anna,    "Belethor",  "Smurf Average",  16)
 	actor[] positions = sexlabutil.makeactorarray(Anna,Belenthor)	
 	SetAnimationMovie0001()
 	DoSceneInLocation( Anna, positions, centerOn, "AB01_Fuck");	
@@ -246,6 +246,11 @@ function SetAnimationMovie0001()
 	SetAnimationScene0003(3)
 	SetAnimationScene0004(4)
 	SetAnimationScene0005(5)
+	Erection[1] = 4;
+	Erection[2] = 4;
+	Erection[3] = 4;
+	Erection[4] = 4;
+	Erection[5] = 4;
 EndFunction
 function SetAnimationScene0001(int stage)
     SetAnimationF0001a("AB01_Fuck_A1_S1", stage)

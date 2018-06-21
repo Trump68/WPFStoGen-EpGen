@@ -35,9 +35,9 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            DoTempWork1();
-            DoTempwork2(@"d:\!CATALOG\MOV\");
-            return null;
+            //DoTempWork1();
+            //DoTempwork2(@"d:\!CATALOG\MOV\");
+            //return null;
 
             Source = sourceList;
             CaspSource = capsList;

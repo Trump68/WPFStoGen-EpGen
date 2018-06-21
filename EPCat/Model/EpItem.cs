@@ -252,6 +252,8 @@ namespace EPCat.Model
         public int Day { get; set; }
         public string Rated { get; set; }
         public string XRated { get; set; }
+        public string Stage { get; set; }
+        public string Variant { get; set; }
         public string Kind { get; set; }
         public string Serie { get; set; }
         public string Type { get; set; }
@@ -341,8 +343,19 @@ namespace EPCat.Model
                 return _CombinedScenes;
             }
         }
-
-
+        
+        private ObservableCollection<PosePositionInfo> _PosePositions = null;
+        public ObservableCollection<PosePositionInfo> PosePositions
+        {
+            get
+            {
+                if (_PosePositions == null)
+                {
+                    _PosePositions = new ObservableCollection<PosePositionInfo>();
+                }
+                return _PosePositions;
+            }
+        }
         [XmlIgnore]
         public bool SourceFolderExist { get; set; } = false;
 
@@ -376,6 +389,8 @@ namespace EPCat.Model
             this.XRated = item.XRated;
             this.Kind = item.Kind;
             this.Type = item.Type;
+            this.Stage = item.Stage;
+            this.Variant = item.Variant;
             this.Brand = item.Brand;
             this.Star = item.Star;
             this.MyDescr = item.MyDescr;
@@ -423,6 +438,8 @@ namespace EPCat.Model
         static string p_XRated = "XRATED:";
         static string p_Kind = "KIND:";
         static string p_Type = "TYPE:";
+        static string p_Stage = "STAGE:";
+        static string p_Variant = "VARIANT:";
         static string p_Brand = "BRAND:";
         static string p_Star = "STAR:";
         static string p_MyDescr = "MYCOMMENTS:";
@@ -455,6 +472,9 @@ namespace EPCat.Model
         static string p_SCENDATA_END = "SCENDATA>";
         static string p_COMBDATA_BEGIN = "<COMBDATA";
         static string p_COMBDATA_END = "COMBDATA>";
+        static string p_POSEPOSITION_BEGIN = "<POSEPOSITION";
+        static string p_POSEPOSITION_END = "POSEPOSITION>";
+
         public static string p_PassportName = "PASSPORT.TXT";
         public static string p_PassportCapsName = "PASSPORT_CAPS.TXT";
         public static string p_PassportEventsName = "PASSPORT_EVENTS.TXT";
@@ -535,6 +555,10 @@ namespace EPCat.Model
                 result.Add(p_Brand + item.Brand);
             if (!string.IsNullOrEmpty(item.Star))
                 result.Add(p_Star + item.Star);
+            if (!string.IsNullOrEmpty(item.Stage))
+                result.Add(p_Stage + item.Stage);
+            if (!string.IsNullOrEmpty(item.Variant))
+                result.Add(p_Variant + item.Variant);
             if (!string.IsNullOrEmpty(item.MyDescr))
                 result.Add(p_MyDescr + item.MyDescr);
             if (!string.IsNullOrEmpty(item.Director))
@@ -608,6 +632,24 @@ namespace EPCat.Model
                 result.AddRange(ttt);
             }
 
+            // pose positions
+            if (item.PosePositions.Count == 1)
+            {
+                result.Add(p_POSEPOSITION_BEGIN + item.PosePositions.First().GenerateString() + p_POSEPOSITION_END);
+            }
+            else if (item.PosePositions.Count > 0)
+            {
+                List<string> ttt = new List<string>();
+                foreach (var it in item.PosePositions)
+                {
+                    ttt.Add(it.GenerateString());
+                }
+                ttt[0] = p_POSEPOSITION_BEGIN + ttt.First();
+                ttt[ttt.Count - 1] = ttt.Last() + p_POSEPOSITION_END;
+                result.AddRange(ttt);
+            }
+
+
             return result;
         }
         internal static EpItem GetFromPassport(List<string> passport, string path)
@@ -617,6 +659,7 @@ namespace EPCat.Model
             bool isComments = false;
             bool isScenData = false;
             bool isCombData = false;
+            bool isPosePosition = false;
             foreach (var line in passport)
             {
                 string term = line.Trim();
@@ -644,6 +687,7 @@ namespace EPCat.Model
                     sd.LoadFromString(term);
                     result.Clips.Add(sd);
                 }
+
                 //comb data
                 else if (term.StartsWith(p_COMBDATA_BEGIN))
                 {
@@ -668,6 +712,32 @@ namespace EPCat.Model
                     sd.LoadFromString(term);
                     result.CombinedScenes.Add(sd);
                 }
+
+                //pose position
+                else if (term.StartsWith(p_POSEPOSITION_BEGIN))
+                {
+                    term = term.Replace(p_POSEPOSITION_BEGIN, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        PosePositionInfo sd = new PosePositionInfo();
+                        sd.LoadFromString(term);
+                        if (!string.IsNullOrEmpty(sd.ID))
+                            result.PosePositions.Add(sd);
+                    }
+                    isPosePosition = true;
+                }
+                else if (isPosePosition)
+                {
+                    if (term.Contains(p_POSEPOSITION_END))
+                    {
+                        term = term.Replace(p_POSEPOSITION_END, string.Empty);
+                        isPosePosition = false;
+                    }
+                    PosePositionInfo sd = new PosePositionInfo();
+                    sd.LoadFromString(term);
+                    result.PosePositions.Add(sd);
+                }
+
 
                 else if (term.StartsWith(p_COMMENTS_BEGIN))
                 {
@@ -794,6 +864,22 @@ namespace EPCat.Model
                     if (!string.IsNullOrWhiteSpace(term))
                     {
                         result.Kind = term;
+                    }
+                }
+                else if (term.StartsWith(p_Stage))
+                {
+                    term = term.Replace(p_Stage, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.Stage = term;
+                    }
+                }
+                else if (term.StartsWith(p_Variant))
+                {
+                    term = term.Replace(p_Variant, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.Variant = term;
                     }
                 }
                 else if (term.StartsWith(p_Type))

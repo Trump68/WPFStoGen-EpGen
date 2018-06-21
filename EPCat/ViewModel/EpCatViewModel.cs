@@ -147,6 +147,29 @@ namespace EPCat
             }
         }
 
+
+        PosePositionInfo _CurrentPosePosition;
+        public PosePositionInfo CurrentPosePosition
+        {
+            get
+            {
+                if (this.CurrentFolder != null)
+                {
+                    if (_CurrentPosePosition == null)
+                    {
+                        if (this.CurrentFolder.CombinedScenes.Any())
+                            _CurrentPosePosition = this.CurrentFolder.PosePositions.First();
+                    }
+                }
+                return _CurrentPosePosition;
+            }
+            set
+            {
+                _CurrentPosePosition = value;
+            }
+        }
+
+
         CapsItem _CurrentCapsGroup;
         public CapsItem CurrentCapsGroup
         {
@@ -216,15 +239,40 @@ namespace EPCat
 
         public void ProcessScriptFile()
         {
+
             this._FolderList = _Loader.ProcessScriptFile(this._FolderList, this._CapsList);
+            
             if (this._FolderList == null) return;
+
+            FillPosePositions();
+
             this.FolderListView = new ObservableCollection<EpItem>(this._FolderList);
             this.CapsListView = new ObservableCollection<CapsItem>(this._CapsList.Where(x=>string.IsNullOrEmpty(x.ParentId)));
             RaisePropertyChanged(() => this.FolderListView);
             RaisePropertyChanged(() => this.CapsListView);
 
         }
-
+        public void FillPosePositions()
+        {
+            foreach (var item in _FolderList)
+            {
+                foreach (var pp in item.PosePositions)
+                {
+                    Guid gid = Guid.Parse(pp.ID);
+                    var si = _FolderList.Where(x => x.GID.Equals(gid)).FirstOrDefault();
+                    if (si != null)
+                    {
+                        pp.Name    = si.Name;
+                        pp.Stage   = si.Stage;
+                        pp.Serie   = si.Serie;
+                        pp.Sex     = si.PersonSex;
+                        pp.Variant = si.Variant;
+                        pp.XRate   = si.XRated;
+                        pp.Path    = si.ItemPath;
+                    }
+                }
+            } 
+        }
         public void UpdateCurrentItem()
         {
             //if (updateenabled)
@@ -307,7 +355,14 @@ namespace EPCat
                     +".jpg"
                     );
             }
-
+        }
+        internal void CopyGidToClipboard()
+        {
+            if (this.CurrentFolder != null)
+            {
+                Clipboard.Clear();
+                Clipboard.SetText(this.CurrentFolder.GID.ToString());
+            }
         }
 
 
@@ -621,6 +676,136 @@ namespace EPCat
             _Loader.SaveCatalog();
         }
 
+        public void CopyItem()
+        {
+            copiedItem = this.CurrentFolder;
+        }
+
+        #region Pose positions
+        EpItem copiedItem = null; 
+        internal void AddPosePosition()
+        {
+            if (this.copiedItem == null) return;
+            PosePositionInfo newpp = new PosePositionInfo();
+            this.CurrentPosePosition = newpp;
+            newpp.ID = copiedItem.GID.ToString();
+            newpp.Name = copiedItem.Name;
+            newpp.Serie = copiedItem.Serie;
+            newpp.Sex = copiedItem.PersonSex;
+            newpp.Stage = copiedItem.Stage;
+            newpp.Variant = copiedItem.Variant;
+            newpp.XRate = copiedItem.XRated;
+
+            this.CurrentFolder.PosePositions.Add(newpp);
+
+            RaisePropertyChanged(() => this.CurrentFolder);
+            RaisePropertyChanged(() => this.CurrentPosePosition);
+            RaisePropertyChanged(() => this.CurrentFolder.PosePositions);
+
+            this.copiedItem = null;
+        }
+        internal void AddPosePositionToCopied()
+        {
+            if (this.copiedItem == null) return;
+            PosePositionInfo newpp = new PosePositionInfo();
+            this.CurrentPosePosition = newpp;
+            newpp.ID = CurrentFolder.GID.ToString();
+            newpp.Name = CurrentFolder.Name;
+            newpp.Serie = CurrentFolder.Serie;
+            newpp.Sex = CurrentFolder.PersonSex;
+            newpp.Stage = CurrentFolder.Stage;
+            newpp.Variant = CurrentFolder.Variant;
+            newpp.XRate = CurrentFolder.XRated;
+
+            copiedItem.PosePositions.Add(newpp);
+
+            RaisePropertyChanged(() => this.CurrentFolder);
+            RaisePropertyChanged(() => this.CurrentPosePosition);
+            RaisePropertyChanged(() => this.CurrentFolder.PosePositions);
+
+        }
+
+        
+        public void GenerateMotion()
+        {
+            List<PosePositionInfo> valid = new List<PosePositionInfo>();
+            foreach (var item in this.CurrentFolder.PosePositions)
+            {
+                if (!item.Active) continue;
+                if (string.IsNullOrEmpty(item.Path)) continue;
+                valid.Add(item);
+            }
+            List<PosePositionInfo> valid0 = valid.Where(x => x.Position == 0).ToList();
+            List<PosePositionInfo> valid1 = valid.Where(x => x.Position == 1).ToList();
+            List<PosePositionInfo> valid2 = valid.Where(x => x.Position == 2).ToList();
+            //Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo> possible
+            //    = new Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo>(null, null, null);
+            List<Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo>> possible =
+                new List<Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo>>();
+            foreach (var item0 in valid0)
+            {
+                if (valid1.Any())
+                {
+                    foreach (var item1 in valid1)
+                    {
+                        if (valid2.Any())
+                        {
+                            foreach (var item2 in valid2)
+                            {
+                                possible.Add(new Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo>(item0, item1, item2));
+                            }
+                        }
+                        else
+                        {
+                            possible.Add(new Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo>(item0, item1, null));
+                        }
+                    }
+                }
+                else
+                {
+                    possible.Add(new Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo>(item0, null, null));
+                }
+            }
+
+
+            int stage = 0;
+            string destinationPath = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\Meshes\actors\character\animations\ABAnims01\";
+            //"C:\Program Files (x86)\Steam\steamapps\common\skyrim\Papyrus Compiler\ScriptCompile.bat" "$(FILE_NAME)" "$(CURRENT_DIRECTORY)"
+            foreach (var item in possible)
+            {
+                stage++;
+                if (item.Item1 != null)
+                {
+                    docopyfile(item.Item1.Path, destinationPath, stage, 1);
+                }
+                if (item.Item2 != null)
+                {
+                    docopyfile(item.Item2.Path, destinationPath, stage, 2);
+                }
+                if (item.Item3 != null)
+                {
+                    docopyfile(item.Item3.Path, destinationPath, stage, 3);
+                }
+            }
+        }
+        private void docopyfile(string path, string destpath,int stage, int position)
+        {
+            string dest = Path.GetDirectoryName(path);
+            if (!string.IsNullOrEmpty(dest))
+            {
+                string file = Directory.GetFiles(dest, "*.hkx").FirstOrDefault();
+                if (!string.IsNullOrEmpty(file))
+                {
+                    File.Copy(file, Path.Combine(destpath, $"AB01_Fuck_A{position}_S{stage}.hkx"), true);
+                }
+            }
+        }
+        internal void DeletePosePosition()
+        {
+            this.CurrentFolder.PosePositions.Remove(CurrentPosePosition);
+        }
+        private void 
+        #endregion
     }
 
 }

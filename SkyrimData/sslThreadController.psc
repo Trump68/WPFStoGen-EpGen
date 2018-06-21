@@ -304,7 +304,7 @@ state Animating
         sslActorAlias ac1 =  ActorAlias[1]		
         ChangeAnimation(false)
 		ChangeAnimation(true)				
-		ac1.AB_UseLipSync = false
+		;ac1.AB_UseLipSync = false
 		ac1.ActorRef.ClearExpressionOverride()
 	endFunction
 
@@ -324,7 +324,7 @@ state Animating
 		; 
 
 		sslActorAlias ac =  ActorAlias[0]
-		ac.AB_UseLipSync = false;
+		;ac.AB_UseLipSync = false;
 		ac.ActorRef.ClearExpressionOverride()
 		MfgConsoleFunc.SetPhonemeModifier(ac.ActorRef, -1, 0, 0)
 		
@@ -350,7 +350,7 @@ state Animating
 	function AdjustUpward(bool backwards = false, bool AdjustStage = false)
 	    UnregisterforUpdate()
 		sslActorAlias ac =  ActorAlias[0]
-		ac.AB_UseLipSync = false;
+		;ac.AB_UseLipSync = false;
 		ac.ActorRef.ClearExpressionOverride()
 		MfgConsoleFunc.SetPhonemeModifier(ac.ActorRef, -1, 0, 0)
 				
@@ -399,34 +399,41 @@ state Animating
 
 	function RotateScene(bool backwards = false)
 		UnregisterForUpdate()
-		float Amount = SignFloat(backwards, 15.0)
-		PlayHotkeyFX(1, !backwards)
-		CenterLocation[5] = CenterLocation[5] + Amount
-		if CenterLocation[5] >= 360.0
-			CenterLocation[5] = CenterLocation[5] - 360.0
-		elseIf CenterLocation[5] < 0.0
-			CenterLocation[5] = CenterLocation[5] + 360.0
-		endIf
-		ActorAlias[0].RefreshLoc()
-		ActorAlias[1].RefreshLoc()
-		ActorAlias[2].RefreshLoc()
-		ActorAlias[3].RefreshLoc()
-		ActorAlias[4].RefreshLoc()
-		int k = Config.RotateScene
-		while Input.IsKeyPressed(k)
-			PlayHotkeyFX(1, !backwards)
-			CenterLocation[5] = CenterLocation[5] + Amount
-			if CenterLocation[5] >= 360.0
-				CenterLocation[5] = CenterLocation[5] - 360.0
-			elseIf CenterLocation[5] < 0.0
-				CenterLocation[5] = CenterLocation[5] + 360.0
-			endIf
-			ActorAlias[0].RefreshLoc()
-			ActorAlias[1].RefreshLoc()
-			ActorAlias[2].RefreshLoc()
-			ActorAlias[3].RefreshLoc()
-			ActorAlias[4].RefreshLoc()
-		endWhile
+		sslActorAlias ac =  ActorAlias[0]
+		if (ac.AB_UseLipSync)
+		    ac.AB_UseLipSync = false;
+		else
+		    ac.AB_UseLipSync = true;
+		endif
+		
+		; float Amount = SignFloat(backwards, 15.0)
+		; PlayHotkeyFX(1, !backwards)
+		; CenterLocation[5] = CenterLocation[5] + Amount
+		; if CenterLocation[5] >= 360.0
+			; CenterLocation[5] = CenterLocation[5] - 360.0
+		; elseIf CenterLocation[5] < 0.0
+			; CenterLocation[5] = CenterLocation[5] + 360.0
+		; endIf
+		; ActorAlias[0].RefreshLoc()
+		; ActorAlias[1].RefreshLoc()
+		; ActorAlias[2].RefreshLoc()
+		; ActorAlias[3].RefreshLoc()
+		; ActorAlias[4].RefreshLoc()
+		; int k = Config.RotateScene
+		; while Input.IsKeyPressed(k)
+			; PlayHotkeyFX(1, !backwards)
+			; CenterLocation[5] = CenterLocation[5] + Amount
+			; if CenterLocation[5] >= 360.0
+				; CenterLocation[5] = CenterLocation[5] - 360.0
+			; elseIf CenterLocation[5] < 0.0
+				; CenterLocation[5] = CenterLocation[5] + 360.0
+			; endIf
+			; ActorAlias[0].RefreshLoc()
+			; ActorAlias[1].RefreshLoc()
+			; ActorAlias[2].RefreshLoc()
+			; ActorAlias[3].RefreshLoc()
+			; ActorAlias[4].RefreshLoc()
+		; endWhile
 		RegisterForSingleUpdate(0.2)
 	endFunction
 

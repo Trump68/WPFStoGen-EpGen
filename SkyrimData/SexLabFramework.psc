@@ -143,7 +143,7 @@ int function AB_StartSex(string abSceneName = "",int abSceneVariant = 0,Actor[] 
 	Thread.SetHook("")	
 	; Set AB prepare
 	Thread.Acycle = acycle;
-	Thread.Erection = erection;
+	Thread.Erection = AB_GetErection();
 	Thread.AbFemaleExpressionList = AbFemaleExpressionList;
 	Thread.AbFemaleExpressionIndex = AbFemaleExpressionIndex;
 	Thread.AbMaleExpressionList = AbMaleExpressionList;
@@ -3078,3 +3078,12 @@ state Enabled
 	endEvent
 endState
 
+int[] function AB_GetErection()
+	int[] erection = new int[128];
+		int i
+		while i < erection.Length
+			erection[i]=0
+			i += 1
+		endwhile
+	return erection;
+endFunction
