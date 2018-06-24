@@ -248,7 +248,7 @@ namespace EPCat
         }
         private void RefreshCapsMode()
         {
-            ViewModel.SetCapsViewMode(rgCapsMode.SelectedIndex);
+           // ViewModel.SetCapsViewMode(rgCapsMode.SelectedIndex);
         }
 
         private void SetCurrentImagePassort(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
@@ -302,12 +302,12 @@ namespace EPCat
 
         private void ShowHideChildCaps(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Space)
-            {
-                if (this.rgCapsMode.SelectedIndex == 0) this.rgCapsMode.SelectedIndex = 1;
-                else this.rgCapsMode.SelectedIndex = 0;
-                RefreshCapsMode();
-            }
+            //if (e.Key == Key.Space)
+            //{
+            //    if (this.rgCapsMode.SelectedIndex == 0) this.rgCapsMode.SelectedIndex = 1;
+            //    else this.rgCapsMode.SelectedIndex = 0;
+            //    RefreshCapsMode();
+            //}
         }
 
         private void RefreshGroup(object sender, SelectedItemChangedEventArgs e)

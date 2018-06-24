@@ -19,7 +19,7 @@
         <property name="MergeWithPreviousGroup">false</property>
       </property>
       <property name="Item2" isnull="true" iskey="true">
-        <property name="FieldName">Stage</property>
+        <property name="FieldName">Name</property>
         <property name="SortOrder">Ascending</property>
         <property name="MergeWithPreviousGroup">false</property>
       </property>

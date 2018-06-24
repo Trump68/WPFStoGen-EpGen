@@ -344,18 +344,31 @@ namespace EPCat.Model
             }
         }
         
-        private ObservableCollection<PosePositionInfo> _PosePositions = null;
-        public ObservableCollection<PosePositionInfo> PosePositions
+        private ObservableCollection<SkyrimPosePositionInfo> _PosePositions = null;
+        public ObservableCollection<SkyrimPosePositionInfo> PosePositions
         {
             get
             {
                 if (_PosePositions == null)
                 {
-                    _PosePositions = new ObservableCollection<PosePositionInfo>();
+                    _PosePositions = new ObservableCollection<SkyrimPosePositionInfo>();
                 }
                 return _PosePositions;
             }
         }
+        private ObservableCollection<SkyrimMotionInfo> _Motions = null;
+        public ObservableCollection<SkyrimMotionInfo> Motions
+        {
+            get
+            {
+                if (_Motions == null)
+                {
+                    _Motions = new ObservableCollection<SkyrimMotionInfo>();
+                }
+                return _Motions;
+            }
+        }
+
         [XmlIgnore]
         public bool SourceFolderExist { get; set; } = false;
 
@@ -474,6 +487,8 @@ namespace EPCat.Model
         static string p_COMBDATA_END = "COMBDATA>";
         static string p_POSEPOSITION_BEGIN = "<POSEPOSITION";
         static string p_POSEPOSITION_END = "POSEPOSITION>";
+        static string p_MOTION_BEGIN = "<MOTION";
+        static string p_MOTION_END = "MOTION>";
 
         public static string p_PassportName = "PASSPORT.TXT";
         public static string p_PassportCapsName = "PASSPORT_CAPS.TXT";
@@ -649,6 +664,22 @@ namespace EPCat.Model
                 result.AddRange(ttt);
             }
 
+            // motions
+            if (item.Motions.Count == 1)
+            {
+                result.Add(p_MOTION_BEGIN + item.Motions.First().GenerateString() + p_MOTION_END);
+            }
+            else if (item.Motions.Count > 0)
+            {
+                List<string> ttt = new List<string>();
+                foreach (var it in item.Motions)
+                {
+                    ttt.Add(it.GenerateString());
+                }
+                ttt[0] = p_MOTION_BEGIN + ttt.First();
+                ttt[ttt.Count - 1] = ttt.Last() + p_MOTION_END;
+                result.AddRange(ttt);
+            }
 
             return result;
         }
@@ -660,6 +691,7 @@ namespace EPCat.Model
             bool isScenData = false;
             bool isCombData = false;
             bool isPosePosition = false;
+            bool isMotion = false;
             foreach (var line in passport)
             {
                 string term = line.Trim();
@@ -719,7 +751,7 @@ namespace EPCat.Model
                     term = term.Replace(p_POSEPOSITION_BEGIN, string.Empty);
                     if (!string.IsNullOrWhiteSpace(term))
                     {
-                        PosePositionInfo sd = new PosePositionInfo();
+                        SkyrimPosePositionInfo sd = new SkyrimPosePositionInfo();
                         sd.LoadFromString(term);
                         if (!string.IsNullOrEmpty(sd.ID))
                             result.PosePositions.Add(sd);
@@ -733,11 +765,35 @@ namespace EPCat.Model
                         term = term.Replace(p_POSEPOSITION_END, string.Empty);
                         isPosePosition = false;
                     }
-                    PosePositionInfo sd = new PosePositionInfo();
+                    SkyrimPosePositionInfo sd = new SkyrimPosePositionInfo();
                     sd.LoadFromString(term);
                     result.PosePositions.Add(sd);
                 }
 
+                //motion
+                else if (term.StartsWith(p_MOTION_BEGIN))
+                {
+                    term = term.Replace(p_MOTION_BEGIN, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        SkyrimMotionInfo sd = new SkyrimMotionInfo();
+                        sd.LoadFromString(term);
+                        if (!string.IsNullOrEmpty(sd.ID))
+                            result.Motions.Add(sd);
+                    }
+                    isMotion = true;
+                }
+                else if (isMotion)
+                {
+                    if (term.Contains(p_MOTION_END))
+                    {
+                        term = term.Replace(p_MOTION_END, string.Empty);
+                        isMotion = false;
+                    }
+                    SkyrimMotionInfo sd = new SkyrimMotionInfo();
+                    sd.LoadFromString(term);
+                    result.Motions.Add(sd);
+                }
 
                 else if (term.StartsWith(p_COMMENTS_BEGIN))
                 {

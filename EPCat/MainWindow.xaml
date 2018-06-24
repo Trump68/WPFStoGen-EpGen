@@ -40,7 +40,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <dx:DXTabControl Name="NavTabGroup" Margin="0" Padding="0" SelectionChanged="TabPageChanged">
+        <dx:DXTabControl Name="NavTabGroup" Margin="0,0,0,0" Padding="0" SelectionChanged="TabPageChanged" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <dx:DXTabItem Name="TabMain" Header="Main" Height="22" VerticalAlignment="Top">
 
                 <dxlc:LayoutControl Orientation="Vertical" Margin="0" Padding="0">
@@ -60,10 +60,10 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" Margin="100,4,0,0" HorizontalAlignment="Left" 
+                            <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" 
                                              Click="simpleButton_Click" />
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="80,4,0,0">
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
                             <dx:SimpleButton x:Name="CollapseBtn" Content="Hide" Width="50" HorizontalAlignment="Left" Click="Collapse_Click" />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
@@ -76,22 +76,9 @@
                             <dxe:CheckEdit x:Name="DeletingAllowed" Content="Delete" IsChecked="{Binding IsDeletingAllowed}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Margin="0,0,0,0" Width="140">
-                            <dxe:ListBoxEdit x:Name="rgCapsMode" ShowBorder="True" EditValueChanged="SetCapsMode" SelectedIndex="0">
-                                <dxe:ListBoxEdit.StyleSettings>
-                                    <dxe:RadioListBoxEditStyleSettings />
-                                </dxe:ListBoxEdit.StyleSettings>
-                                <dxe:ListBoxEdit.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal" />
-                                    </ItemsPanelTemplate>
-                                </dxe:ListBoxEdit.ItemsPanel>
-                                <dxe:ListBoxEditItem Content="All" />
-                                <dxe:ListBoxEditItem Content="Parent" />
-                            </dxe:ListBoxEdit>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Margin="0,0,0,0" Width="50"/>
-                        <dxlc:LayoutItem Margin="0,0,0,0" Width="500">
+
+
+                        <dxlc:LayoutItem Margin="0,0,0,0" Width="400">
 
                             <dxe:ListBoxEdit x:Name="rgCapsPassport" ShowBorder="True" EditValueChanged="SetCurrentImagePassort" SelectedIndex="0">
                                 <dxe:ListBoxEdit.StyleSettings>
@@ -732,7 +719,7 @@
                             </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
- 
+
                     <!--pose position grid-->
                     <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
                                      LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
@@ -764,9 +751,12 @@
                             <dxg:GridColumn FieldName="Sex" IsSmart="True" AllowResizing="True" Width="50"/>
                             <dxg:GridColumn FieldName="Variant" IsSmart="True" AllowResizing="True" Width="50"/>
                             <dxg:GridColumn FieldName="XRate" IsSmart="True" AllowResizing="True"/>
+                            <dxg:GridColumn FieldName="SOS" IsSmart="True" AllowResizing="True" Width="50"/>
+                            <dxg:GridColumn FieldName="ACYC" IsSmart="True" AllowResizing="True" Width="50"/>
+                            <dxg:GridColumn FieldName="EXP" IsSmart="True" AllowResizing="True" Width="50"/>
                         </dxg:GridControl>
                     </dxlc:LayoutItem>
- 
+
                     <!--PosePosition editing-->
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">

@@ -19,6 +19,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Controls;
 using StoGen.Classes;
+using System.Diagnostics;
 
 namespace EPCat
 {
@@ -148,8 +149,8 @@ namespace EPCat
         }
 
 
-        PosePositionInfo _CurrentPosePosition;
-        public PosePositionInfo CurrentPosePosition
+        SkyrimPosePositionInfo _CurrentPosePosition;
+        public SkyrimPosePositionInfo CurrentPosePosition
         {
             get
             {
@@ -245,6 +246,7 @@ namespace EPCat
             if (this._FolderList == null) return;
 
             FillPosePositions();
+            //FillMotions();
 
             this.FolderListView = new ObservableCollection<EpItem>(this._FolderList);
             this.CapsListView = new ObservableCollection<CapsItem>(this._CapsList.Where(x=>string.IsNullOrEmpty(x.ParentId)));
@@ -272,6 +274,26 @@ namespace EPCat
                     }
                 }
             } 
+        }
+        public void FillMotions()
+        {
+            foreach (var item in _FolderList)
+            {
+                foreach (var pp in item.Motions)
+                {
+                    Guid gid = Guid.Parse(pp.ID);
+                    var si = _FolderList.Where(x => x.GID.Equals(gid)).FirstOrDefault();
+                    if (si != null)
+                    {
+                        pp.Name = si.Name;
+                        pp.Stage = si.Stage;
+                        pp.Serie = si.Serie;
+                        pp.Sex = si.PersonSex;
+                        pp.Variant = si.Variant;
+                        pp.XRate = si.XRated;                       
+                    }
+                }
+            }
         }
         public void UpdateCurrentItem()
         {
@@ -686,7 +708,7 @@ namespace EPCat
         internal void AddPosePosition()
         {
             if (this.copiedItem == null) return;
-            PosePositionInfo newpp = new PosePositionInfo();
+            SkyrimPosePositionInfo newpp = new SkyrimPosePositionInfo();
             this.CurrentPosePosition = newpp;
             newpp.ID = copiedItem.GID.ToString();
             newpp.Name = copiedItem.Name;
@@ -707,7 +729,7 @@ namespace EPCat
         internal void AddPosePositionToCopied()
         {
             if (this.copiedItem == null) return;
-            PosePositionInfo newpp = new PosePositionInfo();
+            SkyrimPosePositionInfo newpp = new SkyrimPosePositionInfo();
             this.CurrentPosePosition = newpp;
             newpp.ID = CurrentFolder.GID.ToString();
             newpp.Name = CurrentFolder.Name;
@@ -728,20 +750,22 @@ namespace EPCat
         
         public void GenerateMotion()
         {
-            List<PosePositionInfo> valid = new List<PosePositionInfo>();
+            List<SkyrimPosePositionInfo> valid = new List<SkyrimPosePositionInfo>();
             foreach (var item in this.CurrentFolder.PosePositions)
             {
                 if (!item.Active) continue;
                 if (string.IsNullOrEmpty(item.Path)) continue;
                 valid.Add(item);
             }
-            List<PosePositionInfo> valid0 = valid.Where(x => x.Position == 0).ToList();
-            List<PosePositionInfo> valid1 = valid.Where(x => x.Position == 1).ToList();
-            List<PosePositionInfo> valid2 = valid.Where(x => x.Position == 2).ToList();
+            List<SkyrimPosePositionInfo> valid0 = valid.Where(x => x.Position == 0).ToList();
+            List<SkyrimPosePositionInfo> valid1 = valid.Where(x => x.Position == 1).ToList();
+            List<SkyrimPosePositionInfo> valid2 = valid.Where(x => x.Position == 2).ToList();
             //Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo> possible
             //    = new Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo>(null, null, null);
-            List<Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo>> possible =
-                new List<Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo>>();
+            List<Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>> possible =
+                new List<Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>>();
+
+            
             foreach (var item0 in valid0)
             {
                 if (valid1.Any())
@@ -752,41 +776,47 @@ namespace EPCat
                         {
                             foreach (var item2 in valid2)
                             {
-                                possible.Add(new Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo>(item0, item1, item2));
+                                possible.Add(new Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>(item0, item1, item2));
+                                
                             }
                         }
                         else
                         {
-                            possible.Add(new Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo>(item0, item1, null));
+                            possible.Add(new Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>(item0, item1, null));
                         }
                     }
                 }
                 else
                 {
-                    possible.Add(new Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo>(item0, null, null));
+                    possible.Add(new Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>(item0, null, null));
                 }
             }
 
 
             int stage = 0;
             string destinationPath = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\Meshes\actors\character\animations\ABAnims01\";
-            //"C:\Program Files (x86)\Steam\steamapps\common\skyrim\Papyrus Compiler\ScriptCompile.bat" "$(FILE_NAME)" "$(CURRENT_DIRECTORY)"
+
+            List<int> erections = new List<int>();
             foreach (var item in possible)
             {
                 stage++;
                 if (item.Item1 != null)
                 {
                     docopyfile(item.Item1.Path, destinationPath, stage, 1);
+                    erections.Add(item.Item1.SOS);
                 }
                 if (item.Item2 != null)
                 {
                     docopyfile(item.Item2.Path, destinationPath, stage, 2);
+                    erections.Add(item.Item2.SOS);
                 }
                 if (item.Item3 != null)
                 {
                     docopyfile(item.Item3.Path, destinationPath, stage, 3);
+                    erections.Add(item.Item3.SOS);
                 }
             }
+            RebuildSkript(erections);
         }
         private void docopyfile(string path, string destpath,int stage, int position)
         {
@@ -804,7 +834,49 @@ namespace EPCat
         {
             this.CurrentFolder.PosePositions.Remove(CurrentPosePosition);
         }
-        private void 
+        private void RebuildSkript(List<int> erections)
+        {
+            string sourceFile = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\_SexLabFramework.psc";
+            string destFile = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\SexLabFramework.psc";
+            List<string> source = new List<string>(File.ReadAllLines(sourceFile));
+
+            source.Add(@"int[] function AB_GetErection()");
+            source.Add(@"     int[] Erection = new int[128]");
+            //source.Add(@"     int i");
+            //source.Add(@"     while i < erection.Length");
+            int i = 0;
+            foreach (var item in erections)
+            {
+                if (item != 0)
+                {
+                    source.Add($@"     erection[{i}] = {item}");
+                    //source.Add($@"     i += 1");
+                }
+                i++;
+            }
+            //source.Add(@"     endwhile");
+            source.Add(@"     return erection");
+            source.Add(@"endFunction");
+
+            File.WriteAllLines(destFile, source);
+            //"C:\Program Files (x86)\Steam\steamapps\common\skyrim\Papyrus Compiler\ScriptCompile.bat" "$(FILE_NAME)" "$(CURRENT_DIRECTORY)"
+            runBuild();
+        }
+        void runBuild()
+        {
+            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
+            pProcess.StartInfo.FileName = @"d:\SteamLibrary\steamapps\common\Skyrim\Papyrus Compiler\ScriptCompileAdv.bat"; 
+            pProcess.StartInfo.Arguments = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\SexLabFramework.psc"; //argument
+            pProcess.StartInfo.UseShellExecute = false;
+            pProcess.StartInfo.RedirectStandardOutput = true;
+            //pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
+            pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
+            pProcess.Start();
+            string output = pProcess.StandardOutput.ReadToEnd(); //The output result
+            pProcess.WaitForExit();
+            MessageBox.Show(output);
+        }
         #endregion
     }
 

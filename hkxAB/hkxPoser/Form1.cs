@@ -265,7 +265,8 @@ namespace hkxPoser
 
         private void setRotationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.viewer.DeserializatePose2(trackBar1.Value, false);
+            //this.viewer.DeserializatePose2(trackBar1.Value, false);
+            this.viewer.DeserializatePose2(trackBar1.Value, true);
         }
 
         private void applyFullToolStripMenuItem_Click(object sender, EventArgs e)
