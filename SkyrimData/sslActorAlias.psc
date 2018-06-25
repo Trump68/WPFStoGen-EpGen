@@ -45,9 +45,12 @@ sslBaseExpression Expression
 
 ; Positioning
 ObjectReference MarkerRef
-float[] Offsets
+;float[] Offsets
 float[] Center
-float[] Loc
+float[] AB_Loc
+float[] Rot
+float[] AB_Offsets
+
 
 ; Storage
 int[] Flags
@@ -92,8 +95,11 @@ bool property UseStrapon hidden
 endProperty
 int property Schlong hidden
 	int function get()
-	      if (Thread.AB_Tag == 1 && IsMale)		    
-			return Thread.Erection[Stage]		    
+	if (Thread.AB_Tag == 1)
+            int Index = ((Stage - 1 ) * Thread.ActorCount) + Position;
+			int sch = Thread.Erection[Index]
+			;Debug.Notification("Stage: " + Stage + ", Thread.ActorCount:"+ Thread.ActorCount+ ", Position:"+ Position+ ", Index="+Index+",Shlong ="+sch)	
+			return sch		    
 		  else
 		    return Flags[3]
 		  endif
@@ -106,6 +112,8 @@ bool property MalePosition hidden
 endProperty
 function FastPose()	  
 endFunction
+
+
 ; ------------------------------------------------------- ;
 ; --- Load/Clear Alias For Use                        --- ;
 ; ------------------------------------------------------- ;
@@ -156,8 +164,17 @@ bool function SetActor(Actor ProspectRef)
 	VoiceDelay = BaseDelay
 	; Init some needed arrays
 	Flags   = new int[5]
-	Offsets = new float[4]
-	Loc     = new float[6]
+	;Offsets = new float[4]
+	AB_Offsets = new float[4]
+	AB_Offsets[0] = 0
+	AB_Offsets[1] = 0
+	AB_Offsets[2] = 0
+	AB_Offsets[3] = 0
+	AB_Loc     = new float[6]
+	Rot     = new float[3]
+	Rot[0] = 0
+	Rot[1] = 0
+	Rot[2] = 0
 	; Ready
 	RegisterEvents()
 	TrackedEvent("Added")
@@ -416,11 +433,14 @@ state Prepare
 		ClearEffects()
 		GetPositionInfo()
 		; Starting position
-		OffsetCoords(Loc, Center, Offsets)
-		MarkerRef.SetPosition(Loc[0], Loc[1], Loc[2])
-		MarkerRef.SetAngle(Loc[3], Loc[4], Loc[5])
-		ActorRef.SetPosition(Loc[0], Loc[1], Loc[2])
-		ActorRef.SetAngle(Loc[3], Loc[4], Loc[5])
+		;OffsetCoords(Loc, Center, Offsets)
+		OffsetCoords(AB_Loc, Center, AB_Offsets)
+		MarkerRef.SetPosition(AB_Loc[0], AB_Loc[1], AB_Loc[2])
+		MarkerRef.SetAngle(AB_Loc[3], AB_Loc[4], AB_Loc[5])
+		;MarkerRef.SetAngle(0, 0, 0)
+		ActorRef.SetPosition(AB_Loc[0], AB_Loc[1], AB_Loc[2])
+		;ActorRef.SetAngle(0, 0, 0)
+		ActorRef.SetAngle(AB_Loc[3], AB_Loc[4], AB_Loc[5])
 		AttachMarker()
 		;Debug.SendAnimationEvent(ActorRef, "SOSFastErect")
 		; Notify thread prep is done
@@ -444,7 +464,9 @@ state Prepare
 		PlayingSA = Animation.Registry
 		CurrentSA = Animation.Registry
 		; Debug.SendAnimationEvent(ActorRef, Animation.FetchPositionStage(Position, 1))
-		Debug.SendAnimationEvent(ActorRef, "IdleForceDefaultState")
+		
+		;Debug.SendAnimationEvent(ActorRef, "IdleForceDefaultState")
+		
 		; If enabled, start Auto TFC for player
 		;if IsPlayer && Config.AutoTFC - AB!!!!
 			MiscUtil.SetFreeCameraState(true)
@@ -478,7 +500,7 @@ function GetPositionInfo()
 		Animation  = Thread.Animation
 		StageCount = Animation.StageCount
 		Flags      = Animation.PositionFlags(Flags, AdjustKey, Position, Stage)
-		Offsets    = Animation.PositionOffsets(Offsets, AdjustKey, Position, Stage, BedStatus[1])
+		;Offsets    = Animation.PositionOffsets(Offsets, AdjustKey, Position, Stage, BedStatus[1])
 		CurrentSA  = Animation.Registry
 		; AnimEvents[Position] = Animation.FetchPositionStage(Position, Stage)
 	endIf
@@ -491,18 +513,25 @@ state Animating
 
 	function SendAnimation()
 		; Reenter SA - On stage 1 while animation hasn't changed since last call
+		;Debug.Notification("Stage::"+ Stage)	
+		
 		if Stage == 1 && PlayingSA == CurrentSA
+		     ;Debug.Notification("SendAnimation path 1!!")	
 			;Debug.SendAnimationEvent(ActorRef, "IdleForceDefaultState")
 			Utility.WaitMenuMode(0.2)
 			Debug.SendAnimationEvent(ActorRef, Animation.FetchPositionStage(Position, 1))
 			
 		else
+		    
 			; Enter a new SA - Not necessary on stage 1 since both events would be the same
 			if Stage != 1 && PlayingSA != CurrentSA
-				Debug.SendAnimationEvent(ActorRef, Animation.FetchPositionStage(Position, 1))
+			    string anim =  Animation.FetchPositionStage(Position, 1);
+				;Debug.Notification("anim:"+ anim)	
+				Debug.SendAnimationEvent(ActorRef, anim)
 				Utility.WaitMenuMode(0.2)				
 			endIf
-			
+			  string anim =  AnimEvents[Position];
+			  ;Debug.Notification("anim:"+ anim)	
 			  Debug.SendAnimationEvent(ActorRef, AnimEvents[Position])			  
 	 
 		endIf
@@ -528,11 +557,7 @@ state Animating
 			Thread.EndAnimation(true)
 			return
 		endIf
-		; Trigger orgasm
-		; GetEnjoyment()
-		; if Enjoyment >= 100 && Stage < StageCount && SeparateOrgasms && (RealTime[0] - LastOrgasm) > 10.0
-			; OrgasmEffect()
-		; endIf
+
 		; Lip sync and refresh expression
 		if UseLipSync && LoopDelay >= VoiceDelay
 			LoopDelay = 0.0
@@ -601,23 +626,30 @@ state Animating
 		Thread.SyncEventDone(kRefreshActor)
 	endFunction
 
-	function RefreshLoc()
-		Offsets = Animation.PositionOffsets(Offsets, AdjustKey, Position, Stage, BedStatus[1])
+	function RefreshLoc()		
+		AB_Offsets = Animation.PositionOffsets(AB_Offsets, AdjustKey, Position, Stage, BedStatus[1])
 		SyncLocation(true)
 	endFunction
 
 	function SyncLocation(bool Force = false)
-		OffsetCoords(Loc, Center, Offsets)
-		MarkerRef.SetPosition(Loc[0], Loc[1], Loc[2])
-		MarkerRef.SetAngle(Loc[3], Loc[4], Loc[5])
+		OffsetCoords(AB_Loc, Center, AB_Offsets)
+		;OffsetCoords(Loc, Center, Offsets)
+		MarkerRef.SetPosition(AB_Loc[0], AB_Loc[1], AB_Loc[2])		
+		;MarkerRef.SetAngle(Rot[0], Rot[1], Rot[2])
+		MarkerRef.SetAngle(AB_Loc[3], AB_Loc[4], AB_Loc[5])
+		;MarkerRef.SetAngle(0, 0, 0)
 		; Avoid forcibly setting on player coords if avoidable - causes annoying graphical flickering
 		if Force && IsPlayer && IsInPosition(ActorRef, MarkerRef, 40.0)
 			AttachMarker()
-			ActorRef.TranslateTo(Loc[0], Loc[1], Loc[2], Loc[3], Loc[4], Loc[5], 50000, 0)
+			;ActorRef.TranslateTo(AB_Loc[0], AB_Loc[1], AB_Loc[2], 0, 0, 0, 50000, 0)
+			ActorRef.TranslateTo(AB_Loc[0], AB_Loc[1], AB_Loc[2], AB_Loc[3], AB_Loc[4], AB_Loc[5], 50000, 0)
+			;ActorRef.TranslateTo(AB_Loc[0], AB_Loc[1], AB_Loc[2], Rot[0], Rot[1], Rot[2], 50000, 0)
 			return ; OnTranslationComplete() will take over when in place
 		elseIf Force
-			ActorRef.SetPosition(Loc[0], Loc[1], Loc[2])
-			ActorRef.SetAngle(Loc[3], Loc[4], Loc[5])
+			ActorRef.SetPosition(AB_Loc[0], AB_Loc[1], AB_Loc[2])
+			ActorRef.SetAngle(AB_Loc[3], AB_Loc[4], AB_Loc[5])
+		    ;ActorRef.SetAngle(0, 0, 0)
+			;ActorRef.SetAngle(Rot[0], Rot[1], Rot[2])			
 		endIf
 		AttachMarker()
 		Snap()
@@ -627,15 +659,21 @@ state Animating
 		; Quickly move into place and angle if actor is off by a lot
 		float distance = ActorRef.GetDistance(MarkerRef)
 		if distance > 125.0 || !IsInPosition(ActorRef, MarkerRef, 75.0)
-			ActorRef.SetPosition(Loc[0], Loc[1], Loc[2])
-			ActorRef.SetAngle(Loc[3], Loc[4], Loc[5])
+			ActorRef.SetPosition(AB_Loc[0], AB_Loc[1], AB_Loc[2])
+			;ActorRef.SetAngle(0, 0, 0)
+			ActorRef.SetAngle(AB_Loc[3], AB_Loc[4], AB_Loc[5])
+			;ActorRef.SetAngle(Rot[0], Rot[1], Rot[2])
 			AttachMarker()
 		elseIf distance > 2.0
-			ActorRef.TranslateTo(Loc[0], Loc[1], Loc[2], Loc[3], Loc[4], Loc[5], 50000, 0.0)
+		     ;ActorRef.TranslateTo(AB_Loc[0], AB_Loc[1], AB_Loc[2], 0, 0, 0, 50000, 0)
+			ActorRef.TranslateTo(AB_Loc[0], AB_Loc[1], AB_Loc[2], AB_Loc[3], AB_Loc[4], AB_Loc[5], 50000, 0.0)
+			;ActorRef.TranslateTo(AB_Loc[0], AB_Loc[1], AB_Loc[2], Rot[0], Rot[1], Rot[2], 50000, 0.0)
 			return ; OnTranslationComplete() will take over when in place
 		endIf
 		; Begin very slowly rotating a small amount to hold position
-		ActorRef.TranslateTo(Loc[0], Loc[1], Loc[2], Loc[3], Loc[4], Loc[5]+0.01, 500.0, 0.0001)
+		;ActorRef.TranslateTo(AB_Loc[0], AB_Loc[1], AB_Loc[2], 0, 0, 0.01, 500.0, 0.0001)
+		ActorRef.TranslateTo(AB_Loc[0], AB_Loc[1], AB_Loc[2], AB_Loc[3], AB_Loc[4], AB_Loc[5]+0.01, 500.0, 0.0001)
+		;ActorRef.TranslateTo(AB_Loc[0], AB_Loc[1], AB_Loc[2], Rot[0], Rot[1], Rot[2]+0.01, 500.0, 0.0001)
 	endFunction
 
 	event OnTranslationComplete()
@@ -803,7 +841,7 @@ function StopAnimating(bool Quick = false, string ResetAnim = "IdleForceDefaultS
 endFunction
 
 function AttachMarker()
-	ActorRef.SetVehicle(MarkerRef)
+	;ActorRef.SetVehicle(MarkerRef)
 	if UseScale
 		ActorRef.SetScale(AnimScale)
 	endIf
@@ -907,8 +945,8 @@ function RestoreActorDefaults()
 			ActorRef.RemoveItem(Strapon, 1, true)
 		endIf
 		; Reset expression
-		ActorRef.ClearExpressionOverride()
-		MfgConsoleFunc.SetPhonemeModifier(ActorRef, -1, 0, 0)
+		;ActorRef.ClearExpressionOverride()
+		;MfgConsoleFunc.SetPhonemeModifier(ActorRef, -1, 0, 0)
 	endIf
 	; Player specific actions
 	if IsPlayer
@@ -1516,10 +1554,26 @@ string property AB_IsFemale hidden
 		return IsFemale
 	endFunction
 endProperty
+ float[] property AB_Rot hidden
+	 float[] function get()
+		 return Rot
+	 endFunction
+ endProperty
+float[] property AB_Offset hidden
+	float[] function get()
+		return AB_Offsets
+	endFunction
+endProperty
+float[] property AB_Location hidden
+	float[] function get()
+		return AB_Loc
+	endFunction
+endProperty
 
 function AB_ExpressionApply(Actor ac, int strength, int acgender)
     ;Log("!!!!!!!! "+Expression.Name+" - " + strength)	
-	Expression.ApplyPhase(ac, strength, acgender)	
+	;Expression.ApplyPhase(ac, strength, acgender)	
+	UseLipSync = false
 endFunction
 
 function AB_SchlongApply()

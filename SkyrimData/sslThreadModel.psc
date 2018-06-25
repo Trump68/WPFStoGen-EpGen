@@ -1475,6 +1475,7 @@ int property AB_RestartStage auto hidden
 
 function AB_Prepare()
    AB_UpdateActorsEmotion()
+   ActorAlias[0].AB_UseLipSync = false;
 endFunction
 
 ; calc actor expression a and emotion level

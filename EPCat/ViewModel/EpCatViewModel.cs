@@ -816,7 +816,7 @@ namespace EPCat
                     erections.Add(item.Item3.SOS);
                 }
             }
-            RebuildSkript(erections);
+            RebuildSkript(erections, possible);
         }
         private void docopyfile(string path, string destpath,int stage, int position)
         {
@@ -834,7 +834,7 @@ namespace EPCat
         {
             this.CurrentFolder.PosePositions.Remove(CurrentPosePosition);
         }
-        private void RebuildSkript(List<int> erections)
+        private void RebuildSkript(List<int> erections, List<Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>> possible)
         {
             string sourceFile = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\_SexLabFramework.psc";
             string destFile = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\SexLabFramework.psc";
@@ -855,6 +855,8 @@ namespace EPCat
                 i++;
             }
             //source.Add(@"     endwhile");
+            source.Add($@"     AB_RestartStage = {possible.Count}");
+            
             source.Add(@"     return erection");
             source.Add(@"endFunction");
 

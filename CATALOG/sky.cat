@@ -499,6 +499,7 @@
     <Variant>01a</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -526,6 +527,7 @@
     <Variant>01a1</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -553,6 +555,7 @@
     <Variant>01a2</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -580,6 +583,7 @@
     <Variant>01a3</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -607,6 +611,7 @@
     <Variant>02a1</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -634,6 +639,7 @@
     <Variant>02a2</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -661,6 +667,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -688,6 +695,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -715,6 +723,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -742,6 +751,7 @@
     <Variant>02</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -769,6 +779,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -796,6 +807,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>M</PersonSex>
     <Comments>
       <string />
@@ -823,6 +835,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>M</PersonSex>
     <Comments>
       <string />
@@ -850,6 +863,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>M</PersonSex>
     <Comments>
       <string />
@@ -877,6 +891,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>M</PersonSex>
     <Comments>
       <string />
@@ -904,6 +919,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>M</PersonSex>
     <Comments>
       <string />
@@ -931,6 +947,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -958,6 +975,7 @@
     <Variant>01a</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -985,6 +1003,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -1012,6 +1031,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -1039,6 +1059,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -1066,6 +1087,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />
@@ -1093,6 +1115,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>M</PersonSex>
     <Comments>
       <string />
@@ -1120,6 +1143,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>M</PersonSex>
     <Comments>
       <string />
@@ -1147,6 +1171,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>M</PersonSex>
     <Comments>
       <string />
@@ -1174,6 +1199,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>M</PersonSex>
     <Comments>
       <string />
@@ -1201,6 +1227,7 @@
     <Variant>01</Variant>
     <Kind>POSE</Kind>
     <Serie>Animations By Leito</Serie>
+    <Type>a</Type>
     <PersonSex>M</PersonSex>
     <Comments>
       <string />
@@ -1225,9 +1252,585 @@
     <Day>0</Day>
     <XRated>Solo Stand</XRated>
     <Stage>1</Stage>
-    <Variant>01-03</Variant>
     <Kind>POSE</Kind>
     <Serie>AMKPoser</Serie>
+    <Type>p</Type>
+    <MyDescr>original pose</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>1f911d74-a66a-475c-9403-04ded35c07c9</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p12-a\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P12</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>a</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>a</Type>
+    <MyDescr>breath animation</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>f9a088ba-ab63-4461-ac47-afb3d471228e</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p12-b\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P12</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>b</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>a</Type>
+    <MyDescr>slow breath animation</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>bd8b45b4-c2a4-4cbb-9f5e-b1a8088c8e14</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p03\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P03</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>p</Type>
+    <MyDescr>original pose</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>ea939d85-5e08-4226-ae83-eb41f9823282</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p03-a\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P03</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>a</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>a</Type>
+    <MyDescr>breath animation</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>8c28fd24-1979-4cb6-902e-15666e3c461d</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p03-b\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P03</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>b</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>a</Type>
+    <MyDescr>slow breath animation</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>bc6e945c-e908-48a7-a3dc-68de483ad897</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p03-01\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P03</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>01</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>p</Type>
+    <MyDescr>head pos 1 pose</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>a131ce4b-be68-4096-8f2d-77dc208b86af</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p03-a01\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P03</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>a01</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>a</Type>
+    <MyDescr>head pos 1 anim</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>6320c7b2-59bd-4b59-b8b9-326279ea8edb</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p03-b01\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P03</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>b01</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>a</Type>
+    <MyDescr>head pos 1 anim</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>c2e7ac71-cbac-450c-889c-63efe0ba75cf</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p12-01\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P12</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>01</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>p</Type>
+    <MyDescr>head pos 1 pose</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>e8c1a5c0-aaf7-4763-a554-bce88b7f4940</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p09\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P09</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>p</Type>
+    <MyDescr>original pose</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>4e5470be-ffa5-4add-8caa-9ae11f6c7b8d</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p09-01\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P09</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>01</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>p</Type>
+    <MyDescr>head pos 1 pose</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>c36236f5-1d42-4ca4-b90a-6cfe898c9d14</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p09-a01\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P09</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>a01</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>a</Type>
+    <MyDescr>head pos 1, breath</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>ccb2b931-5436-45da-bdea-8809bf9fafb5</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p09-b01\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P09</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>b01</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>a</Type>
+    <MyDescr>head pos 1, breath slw</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>a35d151a-3b62-475c-824f-24d5c8217325</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p12-a01\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P12</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>a01</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>a</Type>
+    <MyDescr>head pos 1, breath</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>17473841-03ce-457b-97fa-3396fec43437</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p12-b01\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P12</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>b01</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>a</Type>
+    <MyDescr>head pos 1, breath slw</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>368aa0ef-df75-4d0f-aa50-e94d38d46ad7</GID>
+    <ItemPath>d:\!catalog\sky\motion\mkposer\mk1p12\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P12</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>01</Variant>
+    <Kind>MOTION</Kind>
+    <Serie>MKPoser</Serie>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions>
+      <SkyrimPosePositionInfo>
+        <ID>b60fd303-83c4-479f-8afd-35fdb5bc7f82</ID>
+        <SOS>0</SOS>
+        <ACYC>0</ACYC>
+        <EXP>0</EXP>
+        <Position>0</Position>
+      </SkyrimPosePositionInfo>
+      <SkyrimPosePositionInfo>
+        <ID>1f911d74-a66a-475c-9403-04ded35c07c9</ID>
+        <SOS>0</SOS>
+        <ACYC>0</ACYC>
+        <EXP>0</EXP>
+        <Position>0</Position>
+      </SkyrimPosePositionInfo>
+      <SkyrimPosePositionInfo>
+        <ID>f9a088ba-ab63-4461-ac47-afb3d471228e</ID>
+        <SOS>0</SOS>
+        <ACYC>0</ACYC>
+        <EXP>0</EXP>
+        <Position>0</Position>
+      </SkyrimPosePositionInfo>
+      <SkyrimPosePositionInfo>
+        <ID>c2e7ac71-cbac-450c-889c-63efe0ba75cf</ID>
+        <SOS>0</SOS>
+        <ACYC>0</ACYC>
+        <EXP>0</EXP>
+        <Position>0</Position>
+      </SkyrimPosePositionInfo>
+      <SkyrimPosePositionInfo>
+        <ID>a35d151a-3b62-475c-824f-24d5c8217325</ID>
+        <SOS>0</SOS>
+        <ACYC>0</ACYC>
+        <EXP>0</EXP>
+        <Position>0</Position>
+      </SkyrimPosePositionInfo>
+      <SkyrimPosePositionInfo>
+        <ID>17473841-03ce-457b-97fa-3396fec43437</ID>
+        <SOS>0</SOS>
+        <ACYC>0</ACYC>
+        <EXP>0</EXP>
+        <Position>0</Position>
+      </SkyrimPosePositionInfo>
+      <SkyrimPosePositionInfo>
+        <ID>fcd967e0-844b-4744-be49-c8bd5f555eef</ID>
+        <SOS>0</SOS>
+        <ACYC>0</ACYC>
+        <EXP>0</EXP>
+        <Position>0</Position>
+      </SkyrimPosePositionInfo>
+      <SkyrimPosePositionInfo>
+        <ID>02bc0760-c075-4368-a4e5-65a9eb9cde6c</ID>
+        <SOS>0</SOS>
+        <ACYC>0</ACYC>
+        <EXP>0</EXP>
+        <Position>0</Position>
+      </SkyrimPosePositionInfo>
+    </PosePositions>
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>fcd967e0-844b-4744-be49-c8bd5f555eef</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p12-a02\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P12</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>a02</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>a</Type>
+    <MyDescr>head pos 2, breath</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>02bc0760-c075-4368-a4e5-65a9eb9cde6c</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p12-b02\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P12</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>b02</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>a</Type>
+    <MyDescr>head pos 2, breath slw</MyDescr>
     <PersonSex>F</PersonSex>
     <Comments>
       <string />

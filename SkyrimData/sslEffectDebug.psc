@@ -37,25 +37,28 @@ int[] AbFemaleExpressionIndex
 string[] AbMaleExpressionList
 int[] AbMaleExpressionIndex
 int[] Erection
-int RestartStage
 string AbAnimationName
 string AbAnimationDescription
 
 
 
 function DoAnim(Actor TargetRef, Actor CasterRef) 
-  DoAnim_PlayerSolo() 
-  ;DoAnim_FM_Belenthor() 
+  
+  ;DoAnim_PlayerSolo() 
+  DoAnim_FM_Belenthor() 
   ;DoAnim_FM_Ulfbear() 
   ;DoAnim_FFNihel() 
+  ;DoAnim_FM_TEST() 
   
   ;DoAnim_FemSolo("RBD_F000012CB") 
   ;DoAnim_FemSolo("RBD_F0000126AD") 
   ;DoAnim_FemSolo("Iris") 
+  ;DoAnim_FemSolo("Nihel") 
 endFunction
 function DoAnim_PlayerSolo() 
-	Actor Anna = Game.GetPlayer();	
-	ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")	
+	Actor Anna = Game.GetPlayer();		
+	;AddClothing(Anna, "Veil Solid White")
+	ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")		
 	actor[] positions = sexlabutil.makeactorarray(Anna)	
 	SetAnimationMovie0001()
 	DoSceneInLocation( Anna, positions, centerOn, "AB01_Shy_Stand");	
@@ -78,11 +81,25 @@ function DoAnim_FFNihel()
 endFunction
 function DoAnim_FM_Belenthor() 
 	Actor Anna = Game.GetPlayer();	
+	;AddClothing(Anna, "Veil Solid White")
+	;AddClothing(Anna, "Veil Of Cyan")
+	
 	ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")	
 	actor Belenthor   = GetActor(Anna,    "Belethor",  "Smurf Average",  16)
 	actor[] positions = sexlabutil.makeactorarray(Anna,Belenthor)	
 	SetAnimationMovie0001()
 	DoSceneInLocation( Anna, positions, centerOn, "AB01_Fuck");	
+endFunction
+function DoAnim_FM_TEST() 
+	Actor Anna = Game.GetPlayer();	
+	;AddClothing(Anna, "Veil Solid White")
+	AddClothing(Anna, "Veil Of Cyan")
+	
+	ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")	
+	actor Belenthor   = GetActor(Anna,    "Belethor",  "Smurf Average",  16)
+	actor[] positions = sexlabutil.makeactorarray(Anna)	
+	SetAnimationMovie0001()
+	DoSceneInLocation( Anna, positions, centerOn, "AB01_Shy_Stand");	
 endFunction
 function DoAnim_FM_Ulfbear() 
 	Actor Anna = Game.GetPlayer();	
@@ -101,11 +118,13 @@ function DoSceneInLocation(actor victim, actor[]positions, ObjectReference cente
 	  anims[0] = anim 
 	  sexlab.Config.InDebugMode = True
 	  int scenevar = 1	  
-	  sexlab.AB_StartSex("", scenevar, positions, anims, none, centerOn ,RestartStage, Acycle, Erection, AbFemaleExpressionList,AbFemaleExpressionIndex,AbMaleExpressionList,AbMaleExpressionIndex) 
+	  sexlab.AB_StartSex("", scenevar, positions, anims, none, centerOn ) 
 
 EndFunction
 
+
 actor function GetActor(actor player, string acName,string schlong, int sossize = 0, float height = 0.0)
+        
 		actor result = none
 		Actorbase an = none
 		if     (acName == "Ulfbear")
@@ -113,8 +132,7 @@ actor function GetActor(actor player, string acName,string schlong, int sossize 
 				 result = player.PlaceActorAtMe(an)	
 		elseIf (acName == "Belethor")
 		         result = FindActor(acName)
-				 if (result == none)
-				     Debug.Notification("Not found " + acName)
+				 if (result == none)				     
 		             an = Game.GetFormFromFile(0x00013ba1,"Skyrim.esm") as Actorbase
 					 result = player.PlaceActorAtMe(an)	
                  else
@@ -152,6 +170,41 @@ actor function GetActor(actor player, string acName,string schlong, int sossize 
 		endif		
 		return result
 EndFunction
+
+function AddClothing(actor npc, string clothName)
+		Form cloth
+        If     (clothName   == "Veil Solid Black")
+		        cloth = Game.GetFormFromFile(0x00003DDB,"Veil Recoloring.esp")	
+        ElseIf (clothName   == "Veil Of Black")
+		        cloth = Game.GetFormFromFile(0x00004E0A,"Veil Recoloring.esp")					
+        ElseIf (clothName   == "Veil Solid White")
+		        cloth = Game.GetFormFromFile(0x00005E4B,"Veil Recoloring.esp")
+		ElseIf (clothName   == "Veil Of White")
+		        cloth = Game.GetFormFromFile(0x00004E06,"Veil Recoloring.esp")		
+	    ElseIf (clothName   == "Veil Of Emerald")
+		        cloth = Game.GetFormFromFile(0x000058E4,"Veil Recoloring.esp")
+		ElseIf (clothName   == "Veil Of Purple")
+		        cloth = Game.GetFormFromFile(0x00005E50,"Veil Recoloring.esp")
+		ElseIf (clothName   == "Veil Of Lavender")
+		        cloth = Game.GetFormFromFile(0x000063B7,"Veil Recoloring.esp")
+		ElseIf (clothName   == "Veil Of Cyan")
+		        cloth = Game.GetFormFromFile(0x00000D63,"Veil Recoloring.esp")
+		ElseIf (clothName   == "Veil Of Royal Blue")
+		        cloth = Game.GetFormFromFile(0x00005372,"Veil Recoloring.esp")		
+		ElseIf (clothName   == "Veil Of Baby Blue")
+		        cloth = Game.GetFormFromFile(0x00005378,"Veil Recoloring.esp")	
+		ElseIf (clothName   == "Veil Of Red")
+		        cloth = Game.GetFormFromFile(0x0000058F,"Veil Recoloring.esp")					
+		endIf		
+		if (cloth == none)
+		             Debug.Notification("Not found "+clothName)
+		else
+					 npc.AddItem(cloth, 1, true)
+                     ;Utility.Wait(1)
+                     npc.EquipItem(cloth)
+		endif
+EndFunction
+
 
 actor function FindActor(string name)
 Cell kCell = Game.GetPlayer().GetParentCell()
@@ -524,7 +577,7 @@ function Resetscene()
 	AbMaleExpressionIndex[8] = 1
 	AbMaleExpressionIndex[9] = 1
 	AbMaleExpressionIndex[10] = 1
-	RestartStage = 500
+	
 endFunction
 		  ;expression = Config.ExpressionSlots.GetByName("AB_Pained01")		  		  
 		  ;expression = Config.ExpressionSlots.GetByName("AB_Silly01") 

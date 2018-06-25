@@ -145,7 +145,8 @@ int function AB_StartSex(string abSceneName = "",int abSceneVariant = 0,Actor[] 
 	Thread.SetHook("")	
 	; Set AB prepare
 	;Thread.Acycle = AB_Get();
-	Thread.AB_SetParams();
+	Thread.Erection = AB_GetErection();
+    Thread
 	Thread.AB_RestartStage = AB_RestartStage
 	Thread.AB_Prepare()
 	; Start the animation
@@ -3075,5 +3076,4 @@ state Enabled
 		endIf
 	endEvent
 endState
-
 

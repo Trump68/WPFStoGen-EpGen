@@ -3,17 +3,17 @@ scriptname sslExpressionDefaults extends sslExpressionFactory
 function LoadExpressions()
 	; Prepare factory resources
 	PrepareFactory()
-	; Regsiter expressions
-	; RegisterExpression("Pleasure")
-	; RegisterExpression("Happy")
-	; RegisterExpression("Joy")
-	; RegisterExpression("Shy")
-	; RegisterExpression("Sad")
-	; RegisterExpression("Afraid")
-	; RegisterExpression("Pained")
-	; RegisterExpression("Angry")
+	RegisterExpression("AB_FuckDisgust01")        ;1
+	RegisterExpression("AB_FuckDisgust02")        ;2
+	RegisterExpression("AB_FuckDisgust03")        ;3
+	RegisterExpression("AB_Fucksnuffground01")    ;4
+	RegisterExpression("AB_Fucksnufffear01")      ;5
+	RegisterExpression("AB_Fucksnuffed01")        ;6
+	RegisterExpression("AB_Fuckhitbelow01")       ;7
+	
 
-	; Empty customizable expressions
+
+	; Regsiter expressions
 	RegisterExpression("AB_Pleasure01")
 	RegisterExpression("AB_Happy01")
 	RegisterExpression("AB_Joy01")
@@ -23,7 +23,6 @@ function LoadExpressions()
 	RegisterExpression("AB_Pained01")
 	RegisterExpression("AB_Angry01")
 	RegisterExpression("AB_Silly01")
-	RegisterExpression("AB_FuckDisgust01")
 	RegisterExpression("AB_FuckReluctant01")
 	RegisterExpression("AB_FuckPleasured01")
 	; RegisterExpression("AB_F01")
@@ -62,6 +61,105 @@ function LoadExpressions()
 	RegisterExpression("AB_Worried02")
 	RegisterExpression("AB_Worried03")
 endFunction
+
+
+function AB_FuckDisgust01(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_FuckDisgust01"
+	Base.SetTags("Normal,Victim")
+	Base.SetMood(1, MaleFemale, 6, 70)
+	Base.SetModifier(1, MaleFemale, 4, 100)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+	Base.SetModifier(1, MaleFemale, 9, 100)
+	Base.Save(id)
+endFunction
+function AB_FuckDisgust02(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_FuckDisgust02"
+	Base.SetTags("Normal,Victim")
+	Base.SetMood(1, MaleFemale, 6, 70)
+	Base.SetModifier(1, MaleFemale, 4, 100)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+	Base.Save(id)
+endFunction
+function AB_FuckDisgust03(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_FuckDisgust03"
+	Base.SetTags("Normal,Victim")
+	Base.SetMood(1, MaleFemale, 6, 70)
+	Base.SetPhoneme(1, MaleFemale, 0, 20)
+	Base.SetPhoneme(1, MaleFemale, 2, 30)
+	Base.SetPhoneme(1, MaleFemale, 5, 30)	
+	Base.SetModifier(1, MaleFemale, 4, 100)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+	Base.SetModifier(1, MaleFemale, 9, 100)
+	Base.Save(id)
+endFunction
+
+function AB_Fucksnuffground01(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_Fucksnuffground01"
+	Base.SetTags("Normal,Victim")
+	Base.SetMood(1, MaleFemale, 7, 50)
+	Base.SetPhoneme(1, MaleFemale, 0, 80)
+	Base.SetPhoneme(1, MaleFemale, 2, 40)
+	Base.SetPhoneme(1, MaleFemale, 11, 50)	
+	Base.SetModifier(1, MaleFemale, 1, 40)
+	Base.SetModifier(1, MaleFemale, 2, 100)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+	Base.SetModifier(1, MaleFemale, 7, 100)
+	Base.SetModifier(1, MaleFemale, 9, 100)
+	Base.SetModifier(1, MaleFemale, 11, 100)
+	Base.Save(id)
+endFunction
+
+function AB_Fucksnufffear01(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_Fucksnufffear01"
+	Base.SetTags("Normal,Victim")
+	Base.SetMood(1, MaleFemale, 3, 30)
+	Base.SetPhoneme(1, MaleFemale, 0, 75)
+	Base.SetPhoneme(1, MaleFemale, 11, 30)	
+	Base.SetModifier(1, MaleFemale, 1, 30)
+	Base.SetModifier(1, MaleFemale, 2, 10)
+	Base.SetModifier(1, MaleFemale, 3, 100)
+	Base.SetModifier(1, MaleFemale, 4, 100)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+	Base.SetModifier(1, MaleFemale, 10, 100)
+	Base.Save(id)
+endFunction
+
+function AB_Fucksnuffed01(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_Fucksnuffed01"
+	Base.SetTags("Normal,Victim")
+	Base.SetMood(1, MaleFemale, 3, 30)
+	Base.SetPhoneme(1, MaleFemale, 0, 75)
+	Base.SetPhoneme(1, MaleFemale, 11, 30)		
+	Base.SetModifier(1, MaleFemale, 1, 30)
+	Base.SetModifier(1, MaleFemale, 2, 10)
+	Base.SetModifier(1, MaleFemale, 3, 100)
+	Base.SetModifier(1, MaleFemale, 4, 100)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+	Base.SetModifier(1, MaleFemale, 11, 100)
+	Base.Save(id)
+endFunction
+
+function AB_Fuckhitbelow01(int id)
+	sslBaseExpression Base = Create(id)
+	Base.Name = "AB_Fuckhitbelow01"
+	Base.SetTags("Normal,Victim")
+	Base.SetMood(1, MaleFemale, 7, 50)
+	Base.SetPhoneme(1, MaleFemale, 1, 80)
+	Base.SetModifier(1, MaleFemale, 0, 50)
+	Base.SetModifier(1, MaleFemale, 2, 100)
+	Base.SetModifier(1, MaleFemale, 4, 100)
+	Base.SetModifier(1, MaleFemale, 5, 100)
+	Base.SetModifier(1, MaleFemale, 8, 100)
+	Base.Save(id)
+endFunction
+
+
 
 function Pleasure(int id)
 	sslBaseExpression Base = Create(id)
@@ -141,6 +239,9 @@ function Pleasure(int id)
 
 	Base.Save(id)
 endFunction
+
+
+
 
 function Shy(int id)
 	sslBaseExpression Base = Create(id)
@@ -518,26 +619,6 @@ function AB_Pleasure01(int id)
 	Base.SetPhoneme(5, Female, 5, 20)
 	Base.SetPhoneme(5, Female, 12, 80)
 	Base.SetPhoneme(5, Female, 15, 20)
-
-	; Male
-	Base.SetMood(1, Male, 13, 40)
-	Base.SetModifier(1, Male, 6, 20)
-	Base.SetModifier(1, Male, 7, 20)
-	Base.SetPhoneme(1, Male, 5, 20)
-
-	Base.SetMood(2, Male, 8, 40)
-	Base.SetModifier(2, Male, 12, 40)
-	Base.SetModifier(2, Male, 13, 40)
-	Base.SetPhoneme(2, Male, 2, 50)
-	Base.SetPhoneme(2, Male, 13, 20)
-
-	Base.SetMood(3, Male, 13, 80)
-	Base.SetModifier(3, Male, 6, 80)
-	Base.SetModifier(3, Male, 7, 80)
-	Base.SetModifier(3, Male, 12, 30)
-	Base.SetModifier(3, Male, 13, 30)
-	Base.SetPhoneme(3, Male, 0, 30)
-
 	Base.Save(id)
 endFunction
 
@@ -837,13 +918,6 @@ function AB_Silly01(int id)
 	Base.SetTags("Normal,Victim")
 
 ; Silly
-; mfg phoneme 0 40
-; mfg modifier 0 20
-; mfg modifier 2 100
-; mfg modifier 7 100
-; mfg modifier 11 100
-; mfg modifier 13 20
-
 	; Male + Female
 	Base.SetPhoneme(1,  MaleFemale, 0, 40)
 	Base.SetModifier(1, MaleFemale, 0, 20)
@@ -854,14 +928,6 @@ function AB_Silly01(int id)
 	
 		
 ;fucksilly
-; mfg phoneme 14 30
-; mfg modifier 3 50
-; mfg modifier 5 100
-; mfg modifier 6 100
-; mfg modifier 11 100
-; mfg modifier 13 30
-; mfg expression  5 100
-	
 	; Male + Female
 	Base.SetMood(2, MaleFemale, 5, 100)
 	Base.SetPhoneme(2, MaleFemale, 14, 50)	
@@ -872,15 +938,7 @@ function AB_Silly01(int id)
 	Base.SetModifier(2, MaleFemale, 13, 30)
 
 ;fucksilly2
-; mfg phoneme 5 100
-; mfg phoneme 14 30
-; mfg modifier 3 50
-; mfg modifier 5 100
-; mfg modifier 6 100
-; mfg modifier 11 100
-; mfg modifier 13 30
-; mfg expression  2 100
-	
+
 	; Male + Female
 	Base.SetMood(3, MaleFemale, 2, 100)
 	Base.SetPhoneme(3, MaleFemale, 5, 100)	
@@ -945,107 +1003,6 @@ function AB_Silly01(int id)
 endFunction
 
 
-function AB_FuckDisgust01(int id)
-
-	sslBaseExpression Base = Create(id)
-
-	Base.Name = "AB_FuckDisgust01"
-	Base.SetTags("Normal,Victim")
-
-
-;fuckdisgust
-
-	; Male + Female
-	Base.SetMood(1, MaleFemale, 6, 70)
-	Base.SetPhoneme(1, MaleFemale, 0, 20)
-	Base.SetPhoneme(1, MaleFemale, 2, 30)
-	Base.SetPhoneme(1, MaleFemale, 5, 30)	
-	Base.SetModifier(1, MaleFemale, 4, 100)
-	Base.SetModifier(1, MaleFemale, 5, 100)
-	Base.SetModifier(1, MaleFemale, 9, 100)
-
-;fucksnuffground
-
-	
-	; Male + Female
-	Base.SetMood(2, MaleFemale, 7, 50)
-	Base.SetPhoneme(2, MaleFemale, 0, 80)
-	Base.SetPhoneme(2, MaleFemale, 2, 40)
-	Base.SetPhoneme(2, MaleFemale, 11, 50)	
-	Base.SetModifier(2, MaleFemale, 1, 40)
-	Base.SetModifier(2, MaleFemale, 2, 100)
-	Base.SetModifier(2, MaleFemale, 5, 100)
-	Base.SetModifier(2, MaleFemale, 7, 100)
-	Base.SetModifier(2, MaleFemale, 9, 100)
-	Base.SetModifier(2, MaleFemale, 11, 100)
-
-;fucksnufffear
-; mfg phoneme 0 75
-; mfg phoneme 11 30
-; mfg modifier 1 30
-; mfg modifier 2 10
-; mfg modifier 3 100
-; mfg modifier 4 100
-; mfg modifier 5 100
-; mfg modifier 10 100
-; mfg expression  3 30
-	
-	; Male + Female
-	Base.SetMood(3, MaleFemale, 3, 30)
-	Base.SetPhoneme(3, MaleFemale, 0, 75)
-	Base.SetPhoneme(3, MaleFemale, 11, 30)	
-	Base.SetModifier(3, MaleFemale, 1, 30)
-	Base.SetModifier(3, MaleFemale, 2, 10)
-	Base.SetModifier(3, MaleFemale, 3, 100)
-	Base.SetModifier(3, MaleFemale, 4, 100)
-	Base.SetModifier(3, MaleFemale, 5, 100)
-	Base.SetModifier(3, MaleFemale, 10, 100)
-
-
-;fucksnuffed
-; mfg phoneme 0 75
-; mfg phoneme 11 30
-; mfg modifier 1 30
-; mfg modifier 2 10
-; mfg modifier 3 100
-; mfg modifier 4 100
-; mfg modifier 5 100
-; mfg modifier 11 100
-; mfg expression  3 30
-	
-	; Male + Female
-	Base.SetMood(4, MaleFemale, 3, 30)
-	Base.SetPhoneme(4, MaleFemale, 0, 75)
-	Base.SetPhoneme(4, MaleFemale, 11, 30)	
-	
-	Base.SetModifier(4, MaleFemale, 1, 30)
-	Base.SetModifier(4, MaleFemale, 2, 10)
-	Base.SetModifier(4, MaleFemale, 3, 100)
-	Base.SetModifier(4, MaleFemale, 4, 100)
-	Base.SetModifier(4, MaleFemale, 5, 100)
-	Base.SetModifier(4, MaleFemale, 11, 100)
-
-;fuckhitbelow
-; mfg phoneme 1 80
-; mfg modifier 0 50
-; mfg modifier 2 100
-; mfg modifier 4 100
-; mfg modifier 5 100
-; mfg modifier 8 100
-; mfg expression  7 50
-
-	
-	; Male + Female
-	Base.SetMood(5, MaleFemale, 7, 50)
-	Base.SetPhoneme(5, MaleFemale, 1, 80)
-	Base.SetModifier(5, MaleFemale, 0, 50)
-	Base.SetModifier(5, MaleFemale, 2, 100)
-	Base.SetModifier(5, MaleFemale, 4, 100)
-	Base.SetModifier(5, MaleFemale, 5, 100)
-	Base.SetModifier(5, MaleFemale, 8, 100)
-	
-	Base.Save(id)
-endFunction
 
 
 function AB_FuckReluctant01(int id)
