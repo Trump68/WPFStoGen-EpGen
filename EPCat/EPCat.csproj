@@ -73,6 +73,8 @@
     <Compile Include="Model\InterfaceLayout.cs" />
     <Compile Include="Model\Loader.cs" />
     <Compile Include="CurrentDataRowTemplates.xaml.cs" />
+    <Compile Include="Model\Skyrim.cs" />
+    <Compile Include="Model\SkyrimActorPose.cs" />
     <Compile Include="ViewModel\EpCatViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

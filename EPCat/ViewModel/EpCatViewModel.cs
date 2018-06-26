@@ -747,137 +747,13 @@ namespace EPCat
 
         }
 
-        
         public void GenerateMotion()
         {
-            List<SkyrimPosePositionInfo> valid = new List<SkyrimPosePositionInfo>();
-            foreach (var item in this.CurrentFolder.PosePositions)
-            {
-                if (!item.Active) continue;
-                if (string.IsNullOrEmpty(item.Path)) continue;
-                valid.Add(item);
-            }
-            List<SkyrimPosePositionInfo> valid0 = valid.Where(x => x.Position == 0).ToList();
-            List<SkyrimPosePositionInfo> valid1 = valid.Where(x => x.Position == 1).ToList();
-            List<SkyrimPosePositionInfo> valid2 = valid.Where(x => x.Position == 2).ToList();
-            //Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo> possible
-            //    = new Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo>(null, null, null);
-            List<Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>> possible =
-                new List<Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>>();
-
-            
-            foreach (var item0 in valid0)
-            {
-                if (valid1.Any())
-                {
-                    foreach (var item1 in valid1)
-                    {
-                        if (valid2.Any())
-                        {
-                            foreach (var item2 in valid2)
-                            {
-                                possible.Add(new Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>(item0, item1, item2));
-                                
-                            }
-                        }
-                        else
-                        {
-                            possible.Add(new Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>(item0, item1, null));
-                        }
-                    }
-                }
-                else
-                {
-                    possible.Add(new Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>(item0, null, null));
-                }
-            }
-
-
-            int stage = 0;
-            string destinationPath = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\Meshes\actors\character\animations\ABAnims01\";
-
-            List<int> erections = new List<int>();
-            foreach (var item in possible)
-            {
-                stage++;
-                if (item.Item1 != null)
-                {
-                    docopyfile(item.Item1.Path, destinationPath, stage, 1);
-                    erections.Add(item.Item1.SOS);
-                }
-                if (item.Item2 != null)
-                {
-                    docopyfile(item.Item2.Path, destinationPath, stage, 2);
-                    erections.Add(item.Item2.SOS);
-                }
-                if (item.Item3 != null)
-                {
-                    docopyfile(item.Item3.Path, destinationPath, stage, 3);
-                    erections.Add(item.Item3.SOS);
-                }
-            }
-            RebuildSkript(erections, possible);
-        }
-        private void docopyfile(string path, string destpath,int stage, int position)
-        {
-            string dest = Path.GetDirectoryName(path);
-            if (!string.IsNullOrEmpty(dest))
-            {
-                string file = Directory.GetFiles(dest, "*.hkx").FirstOrDefault();
-                if (!string.IsNullOrEmpty(file))
-                {
-                    File.Copy(file, Path.Combine(destpath, $"AB01_Fuck_A{position}_S{stage}.hkx"), true);
-                }
-            }
+            Skyrim.GenerateMotion(this.CurrentFolder, this.FolderListView);
         }
         internal void DeletePosePosition()
         {
             this.CurrentFolder.PosePositions.Remove(CurrentPosePosition);
-        }
-        private void RebuildSkript(List<int> erections, List<Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>> possible)
-        {
-            string sourceFile = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\_SexLabFramework.psc";
-            string destFile = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\SexLabFramework.psc";
-            List<string> source = new List<string>(File.ReadAllLines(sourceFile));
-
-            source.Add(@"int[] function AB_GetErection()");
-            source.Add(@"     int[] Erection = new int[128]");
-            //source.Add(@"     int i");
-            //source.Add(@"     while i < erection.Length");
-            int i = 0;
-            foreach (var item in erections)
-            {
-                if (item != 0)
-                {
-                    source.Add($@"     erection[{i}] = {item}");
-                    //source.Add($@"     i += 1");
-                }
-                i++;
-            }
-            //source.Add(@"     endwhile");
-            source.Add($@"     AB_RestartStage = {possible.Count}");
-            
-            source.Add(@"     return erection");
-            source.Add(@"endFunction");
-
-            File.WriteAllLines(destFile, source);
-            //"C:\Program Files (x86)\Steam\steamapps\common\skyrim\Papyrus Compiler\ScriptCompile.bat" "$(FILE_NAME)" "$(CURRENT_DIRECTORY)"
-            runBuild();
-        }
-        void runBuild()
-        {
-            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
-            pProcess.StartInfo.FileName = @"d:\SteamLibrary\steamapps\common\Skyrim\Papyrus Compiler\ScriptCompileAdv.bat"; 
-            pProcess.StartInfo.Arguments = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\SexLabFramework.psc"; //argument
-            pProcess.StartInfo.UseShellExecute = false;
-            pProcess.StartInfo.RedirectStandardOutput = true;
-            //pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
-            pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-            pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
-            pProcess.Start();
-            string output = pProcess.StandardOutput.ReadToEnd(); //The output result
-            pProcess.WaitForExit();
-            MessageBox.Show(output);
         }
         #endregion
     }
