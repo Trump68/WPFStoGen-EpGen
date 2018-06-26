@@ -156,8 +156,11 @@ state Advancing
 		  mess = mess + "-ac"
 		endif
 		Debug.Notification(mess)
-				
-		AB_SetParams()
+		
+		ActorAlias(Positions[0]).AB_SchlongApply()
+        ActorAlias(Positions[1]).AB_SchlongApply()
+		ActorAlias(Positions[2]).AB_SchlongApply()
+		ActorAlias(Positions[3]).AB_SchlongApply()
 	endEvent
 endState
 
@@ -1067,16 +1070,11 @@ endEvent
 endFunction /;
 
 ;++++++++++++++++++++++++++++++++ AB SECTION ++++++++++++++++++++++++++++++++++++++++++++
+
 function AB_SetParams()
-    If       (Stage == 0)
-    ElseIf   (Stage == 1)
-      ActorAlias(Positions[1]).AB_SetSchlong(1)
-    ElseIf   (Stage == 2)
-      ActorAlias(Positions[1]).AB_SetSchlong(1)
-    ElseIf   (Stage == 3)
-      ActorAlias(Positions[1]).AB_SetSchlong(1)
-    ElseIf   (Stage == 4)
-      ActorAlias(Positions[1]).AB_SetSchlong(1)
-    Endif
-    AB_RestartStage = 8
+     int[] Erection = new int[128]
+     Erection[1] = 1
+     Erection[3] = 1
+     Erection[5] = 1
+     Erection[7] = 1
 endFunction

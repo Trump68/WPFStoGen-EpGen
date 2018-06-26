@@ -1466,7 +1466,6 @@ string property AB_SceneName auto hidden
 int property AB_SceneVariant auto hidden
 
 bool[] property Acycle auto hidden
-int[] property Erection auto hidden
 string[] property AbFemaleExpressionList auto hidden
 int[] property AbFemaleExpressionIndex auto hidden
 string[] property AbMaleExpressionList auto hidden
@@ -1507,3 +1506,5 @@ function AB_UpdateActorsEmotion()
 		endWhile
 endFunction
 
+function AB_SetParams()
+endFunction
