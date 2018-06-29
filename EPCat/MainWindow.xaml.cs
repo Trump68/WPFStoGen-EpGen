@@ -754,29 +754,11 @@ namespace EPCat
             ViewModel.AddMedia();
         }
 
-        private void btnCopy_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.CopyItem();
-        }
-
-        private void PasteposePosition(object sender, RoutedEventArgs e)
-        {
-            ViewModel.AddPosePosition();
-        }
 
         private void MothionGenerate(object sender, RoutedEventArgs e)
         {
             ViewModel.GenerateMotion();
         }
 
-        private void btnAddPose(object sender, RoutedEventArgs e)
-        {
-            ViewModel.AddPosePositionToCopied();
-        }
-
-        private void DeleteposePosition(object sender, RoutedEventArgs e)
-        {
-            ViewModel.DeletePosePosition();
-        }
     }
 }

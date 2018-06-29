@@ -149,26 +149,26 @@ namespace EPCat
         }
 
 
-        SkyrimPosePositionInfo _CurrentPosePosition;
-        public SkyrimPosePositionInfo CurrentPosePosition
-        {
-            get
-            {
-                if (this.CurrentFolder != null)
-                {
-                    if (_CurrentPosePosition == null)
-                    {
-                        if (this.CurrentFolder.CombinedScenes.Any())
-                            _CurrentPosePosition = this.CurrentFolder.PosePositions.First();
-                    }
-                }
-                return _CurrentPosePosition;
-            }
-            set
-            {
-                _CurrentPosePosition = value;
-            }
-        }
+        //SkyrimPosePositionInfo _CurrentPosePosition;
+        //public SkyrimPosePositionInfo CurrentPosePosition
+        //{
+        //    get
+        //    {
+        //        if (this.CurrentFolder != null)
+        //        {
+        //            if (_CurrentPosePosition == null)
+        //            {
+        //                if (this.CurrentFolder.CombinedScenes.Any())
+        //                    _CurrentPosePosition = this.CurrentFolder.PosePositions.First();
+        //            }
+        //        }
+        //        return _CurrentPosePosition;
+        //    }
+        //    set
+        //    {
+        //        _CurrentPosePosition = value;
+        //    }
+        //}
 
 
         CapsItem _CurrentCapsGroup;
@@ -698,62 +698,11 @@ namespace EPCat
             _Loader.SaveCatalog();
         }
 
-        public void CopyItem()
-        {
-            copiedItem = this.CurrentFolder;
-        }
 
         #region Pose positions
-        EpItem copiedItem = null; 
-        internal void AddPosePosition()
-        {
-            if (this.copiedItem == null) return;
-            SkyrimPosePositionInfo newpp = new SkyrimPosePositionInfo();
-            this.CurrentPosePosition = newpp;
-            newpp.ID = copiedItem.GID.ToString();
-            newpp.Name = copiedItem.Name;
-            newpp.Serie = copiedItem.Serie;
-            newpp.Sex = copiedItem.PersonSex;
-            newpp.Stage = copiedItem.Stage;
-            newpp.Variant = copiedItem.Variant;
-            newpp.XRate = copiedItem.XRated;
-
-            this.CurrentFolder.PosePositions.Add(newpp);
-
-            RaisePropertyChanged(() => this.CurrentFolder);
-            RaisePropertyChanged(() => this.CurrentPosePosition);
-            RaisePropertyChanged(() => this.CurrentFolder.PosePositions);
-
-            this.copiedItem = null;
-        }
-        internal void AddPosePositionToCopied()
-        {
-            if (this.copiedItem == null) return;
-            SkyrimPosePositionInfo newpp = new SkyrimPosePositionInfo();
-            this.CurrentPosePosition = newpp;
-            newpp.ID = CurrentFolder.GID.ToString();
-            newpp.Name = CurrentFolder.Name;
-            newpp.Serie = CurrentFolder.Serie;
-            newpp.Sex = CurrentFolder.PersonSex;
-            newpp.Stage = CurrentFolder.Stage;
-            newpp.Variant = CurrentFolder.Variant;
-            newpp.XRate = CurrentFolder.XRated;
-
-            copiedItem.PosePositions.Add(newpp);
-
-            RaisePropertyChanged(() => this.CurrentFolder);
-            RaisePropertyChanged(() => this.CurrentPosePosition);
-            RaisePropertyChanged(() => this.CurrentFolder.PosePositions);
-
-        }
-
         public void GenerateMotion()
         {
             Skyrim.GenerateMotion(this.CurrentFolder, this.FolderListView);
-        }
-        internal void DeletePosePosition()
-        {
-            this.CurrentFolder.PosePositions.Remove(CurrentPosePosition);
         }
         #endregion
     }
