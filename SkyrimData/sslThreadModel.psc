@@ -620,12 +620,12 @@ Form function GetStrapon(Actor ActorRef)
 endfunction
 
 ; Expressions
-function SetExpression(Actor ActorRef, sslBaseExpression Expression)
-	ActorAlias(ActorRef).SetExpression(Expression)
-endFunction
-sslBaseExpression function GetExpression(Actor ActorRef)
-	return ActorAlias(ActorRef).GetExpression()
-endFunction
+; function SetExpression(Actor ActorRef, sslBaseExpression Expression)
+	; ActorAlias(ActorRef).SetExpression(Expression)
+; endFunction
+; sslBaseExpression function GetExpression(Actor ActorRef)
+	; return ActorAlias(ActorRef).GetExpression()
+; endFunction
 
 ; Enjoyment/Pain
 int function GetEnjoyment(Actor ActorRef)
@@ -1472,39 +1472,6 @@ string[] property AbMaleExpressionList auto hidden
 int[] property AbMaleExpressionIndex auto hidden
 int property AB_RestartStage auto hidden
 
-function AB_Prepare()
-   AB_UpdateActorsEmotion()
-   ActorAlias[0].AB_UseLipSync = false;
-endFunction
-
-; calc actor expression a and emotion level
-function AP_UpdateActorEmotion(sslActorAlias actAlias)     
-    ;Log("!!!!!!!!! Set DEBUG"+AbFemaleExpressionList[Stage])           		
-    sslBaseExpression expression	
-	
-	if (actAlias.AB_IsFemale)
-	  Log("Set female epression "+AbFemaleExpressionList[Stage]+ " for stage " + Stage +" for " + actAlias.AB_Name)
-      expression = Config.ExpressionSlots.GetByName(AbFemaleExpressionList[Stage]) 	
-      actAlias.AB_EmotionLevel = AbFemaleExpressionIndex[Stage]		
-    else
-	  Log("Set male epression "+AbFemaleExpressionList[Stage]+ " for stage " + Stage +" for " + actAlias.AB_Name)
-      expression = Config.ExpressionSlots.GetByName(AbMaleExpressionList[Stage]) 	
-      actAlias.AB_EmotionLevel = AbMaleExpressionIndex[Stage]			
-	endif
-	
-	actAlias.SetExpression(expression)	
-
-endFunction
-
-function AB_UpdateActorsEmotion()
-        ; Prepare actors
-		int Count = ActorAlias.Length
-		int i
-		while i < Count
-			AP_UpdateActorEmotion(ActorAlias[i])
-			i += 1
-		endWhile
-endFunction
 
 function AB_SetParams()
 endFunction

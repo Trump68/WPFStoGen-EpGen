@@ -53,30 +53,6 @@ state Prepare
 		SyncEvent(kPrepareActor, 30.0)
 	endFunction
 
-	function AB_FireAction()
-		Prepared = false
-		; Ensure center is set
-		if !CenterRef
-			CenterOnObject(Positions[0], false)
-		endIf
-		if CenterAlias.GetReference() != CenterRef
-			CenterAlias.TryToClear()
-			CenterAlias.ForceRefTo(CenterRef)
-		endIf
-		; Set important vars needed for actor prep
-		UpdateAdjustKey()
-		; if StartingAnimation && Animations.Find(StartingAnimation) != -1
-			; SetAnimation(Animations.Find(StartingAnimation))
-		; else
-			; SetAnimation()
-			; StartingAnimation = none
-		; endIf
-		AB_SetAnimation()
-		; Log(AdjustKey, "Adjustment Profile")
-		; Begin actor prep
-		SyncEvent(kPrepareActor, 30.0)
-	endFunction
-	
 	
 	function PrepareDone()
 		RegisterForSingleUpdate(0.1)
@@ -89,16 +65,16 @@ state Prepare
 	event OnUpdate()
 		if !Prepared
 			Prepared = true
-			; Reset loc, incase actor type center has moved during prep
+			 ;Reset loc, incase actor type center has moved during prep
 			;/ if CenterRef && CenterRef.Is3DLoaded() && SexLabUtil.IsActor(CenterRef) && Positions.Find(CenterRef as Actor) != -1
 				
 				; TEMPORARY DISABLED!
-				;CenterLocation[0] = CenterRef.GetPositionX()
-				;CenterLocation[1] = CenterRef.GetPositionY()
-				;CenterLocation[2] = CenterRef.GetPositionZ()
-				;CenterLocation[3] = CenterRef.GetAngleX()
-				;CenterLocation[4] = CenterRef.GetAngleY()
-				;CenterLocation[5] = CenterRef.GetAngleZ()
+				CenterLocation[0] = CenterRef.GetPositionX()
+				CenterLocation[1] = CenterRef.GetPositionY()
+				CenterLocation[2] = CenterRef.GetPositionZ()
+				CenterLocation[3] = CenterRef.GetAngleX()
+				CenterLocation[4] = CenterRef.GetAngleY()
+				CenterLocation[5] = CenterRef.GetAngleZ()
 			endIf /;
 			; Set starting adjusted actor
 			AdjustPos   = (ActorCount > 1) as int
@@ -114,8 +90,14 @@ state Prepare
 			RealTime[0] = Utility.GetCurrentRealTime()
 			SkillTime = RealTime[0]
 			StartedAt = RealTime[0]
+			AB_SetParams()
+			; RefreshEmotion0()
+			; RefreshEmotion1()
+			; RefreshEmotion2()
+			; RefreshEmotion3()
 			; Start actor loops
 			SyncEvent(kStartup, 10.0)
+			
 		else
 			; Start animating
 			Action("Advancing")
@@ -142,13 +124,14 @@ state Advancing
 		if (Stage < 1) 
 			Stage = 1
 		endIf
+		AB_SetParams()
 		SyncEvent(kSyncActor, 10.0)
 	endFunction
 	function SyncDone()
 		RegisterForSingleUpdate(0.1)
 	endFunction
 	event OnUpdate()
-		Action("Animating")
+    	Action("Animating")
 		SendThreadEvent("StageStart")
 		string mess = Animation.Name+", "+Stage
          		
@@ -157,7 +140,6 @@ state Advancing
 		endif
 		Debug.Notification(mess)
 				
-		AB_SetParams()
 	endEvent
 endState
 
@@ -170,7 +152,6 @@ state Animating
 		SoundFX  = Animation.GetSoundFX(Stage)
 		SFXDelay = ClampFloat(BaseDelay - ((Stage * 0.3) * ((Stage != 1) as int)), 0.5, 30.0)
 		ResolveTimers()
-		AB_UpdateActorsEmotion()
 		PlayStageAnimations()
 		; Send events
 		
@@ -187,16 +168,11 @@ state Animating
 				Utility.WaitMenuMode(1.5)
 				StageTimer += 1.2
 			endWhile
-		endIf
-		if ( (Stage == AB_RestartStage) || (Stage == StageCount + 1) )
-		   Debug.Notification("Restart!!!! ")
-		   GoToStage(1)
-		   return
-		endif
+		endIf		
 		; Advance stage on timer		
 		if (Acycle[Stage] == True)
             ;Debug.Notification("Acycle!!!! ")		
-		   GoToStage((Stage + 1))
+		   GoToStage(Stage + 1)
 		   return
 		else
 		  ; if (AutoAdvance || TimedStage) && StageTimer < RealTime[0]
@@ -221,8 +197,13 @@ state Animating
 
 	function GoToStage(int ToStage)
 		UnregisterForUpdate()
-		;Debug.Notification("Going to Stage: " + ToStage)						
-		Stage = ToStage
+		;Debug.Notification("Going to Stage: " + ToStage)			
+        if ( (AB_RestartStage > 0) && (ToStage > AB_RestartStage))
+		   Debug.Notification("!!Restart to " + AB_RestartTo)	
+           Stage = AB_RestartTo		   
+		else
+		   Stage = ToStage		
+		endif		
 		Action("Advancing")
 	endFunction
 
@@ -234,7 +215,7 @@ state Animating
 		if !backwards
 			GoToStage((Stage + 1))
 		elseIf backwards && Stage > 1
-		    ;Debug.Notification("backward stage!!")	
+		    Debug.Notification("backward stage!!")	
 			GoToStage((Stage - 1))
 		endIf
 	endFunction
@@ -278,28 +259,28 @@ state Animating
 
 	function AdjustForward(bool backwards = false, bool AdjustStage = false)
 		UnregisterforUpdate()		
-		float Amount = SignFloat(backwards, 0.50)
-		if (AdjustStage)
-     		Amount = SignFloat(backwards, 5.00)
-		endIf
+		; float Amount = SignFloat(backwards, 0.50)
+		; if (AdjustStage)
+     		; Amount = SignFloat(backwards, 5.00)
+		; endIf
 		
-		 Adjusted = true
-		; PlayHotkeyFX(0, backwards)
-		 ;Animation.AdjustForward(AdjustKey, AdjustPos, Stage, Amount, AdjustStage)
-		 AdjustAlias.AB_Offset[0] = AdjustAlias.AB_Offset[0] + Amount;
-		 int k = Config.AdjustForward
-		 while Input.IsKeyPressed(k)
-			; PlayHotkeyFX(0, backwards)
-			 ;Animation.AdjustForward(AdjustKey, AdjustPos, Stage, Amount, Config.AdjustStagePressed())
-			 AdjustAlias.AB_Offset[0] = AdjustAlias.AB_Offset[0] + Amount;
-			 AdjustAlias.RefreshLoc()
-		 endWhile
+		 ; Adjusted = true
+		; ; PlayHotkeyFX(0, backwards)
+		 ; ;Animation.AdjustForward(AdjustKey, AdjustPos, Stage, Amount, AdjustStage)
+		 ; AdjustAlias.AB_Offset[0] = AdjustAlias.AB_Offset[0] + Amount;
+		 ; int k = Config.AdjustForward
+		 ; while Input.IsKeyPressed(k)
+			; ; PlayHotkeyFX(0, backwards)
+			 ; ;Animation.AdjustForward(AdjustKey, AdjustPos, Stage, Amount, Config.AdjustStagePressed())
+			 ; AdjustAlias.AB_Offset[0] = AdjustAlias.AB_Offset[0] + Amount;
+			 ; AdjustAlias.RefreshLoc()
+		 ; endWhile
 		
-		; sslActorAlias ac =  ActorAlias[0]
-		; ac.AB_UseLipSync = false;
-		; ac.ActorRef.ClearExpressionOverride()
-		; ac.FastPose()
-		; Utility.Wait(2.2)
+		 sslActorAlias ac =  ActorAlias[0]
+		 ac.AB_UseLipSync = false;
+		 ac.ActorRef.ClearExpressionOverride()
+		 ac.FastPose()
+		 Utility.Wait(2.2)
 		
         ;sslActorAlias ac1 =  ActorAlias[1]		
         ;ChangeAnimation(false)
@@ -1066,17 +1047,151 @@ endEvent
 	endIf
 endFunction /;
 
+int AB_RestartTo = 1;
 ;++++++++++++++++++++++++++++++++ AB SECTION ++++++++++++++++++++++++++++++++++++++++++++
 function AB_SetParams()
     If       (Stage == 0)
     ElseIf   (Stage == 1)
-      ActorAlias(Positions[1]).AB_SetSchlong(1)
+    Acycle[1] = False
+      ActorAlias(Positions[0]).AB_SetSchlong(0)
+      ActorAlias(Positions[1]).AB_SetSchlong(0)
     ElseIf   (Stage == 2)
-      ActorAlias(Positions[1]).AB_SetSchlong(1)
+    Acycle[2] = False
+      ActorAlias(Positions[0]).AB_SetSchlong(0)
+      ActorAlias(Positions[1]).AB_SetSchlong(0)
     ElseIf   (Stage == 3)
-      ActorAlias(Positions[1]).AB_SetSchlong(1)
+    Acycle[3] = False
+      ActorAlias(Positions[0]).AB_SetSchlong(0)
+      ActorAlias(Positions[1]).AB_SetSchlong(0)
     ElseIf   (Stage == 4)
-      ActorAlias(Positions[1]).AB_SetSchlong(1)
+    Acycle[4] = False
+      ActorAlias(Positions[0]).AB_SetSchlong(0)
+      ActorAlias(Positions[1]).AB_SetSchlong(0)
+    ElseIf   (Stage == 5)
+    Acycle[5] = False
+      ActorAlias(Positions[0]).AB_SetSchlong(0)
+      ActorAlias(Positions[1]).AB_SetSchlong(0)
+    ElseIf   (Stage == 6)
+    Acycle[6] = False
+      ActorAlias(Positions[0]).AB_SetSchlong(0)
+      ActorAlias(Positions[1]).AB_SetSchlong(0)
     Endif
-    AB_RestartStage = 8
+    AB_RestartStage = 6
+    AB_RestartTo = 2
+endFunction
+function RefreshEmotion0()
+    If       (Stage == 0)
+    ElseIf   (Stage == 1)
+      ActorAlias(Positions[0]).AB_SetExpression(0,0)
+      ActorAlias(Positions[0]).AB_SetUseLipSync(True)
+    ElseIf   (Stage == 2)
+      ActorAlias(Positions[0]).AB_SetModifier(8,100)
+      ActorAlias(Positions[0]).AB_SetModifier(9,100)
+      ActorAlias(Positions[0]).AB_SetModifier(10,0)
+      ActorAlias(Positions[0]).AB_SetModifier(11,0)
+      ActorAlias(Positions[0]).AB_SetExpression(0,0)
+      ActorAlias(Positions[0]).AB_SetUseLipSync(True)
+    ElseIf   (Stage == 3)
+      ActorAlias(Positions[0]).AB_SetModifier(8,0)
+      ActorAlias(Positions[0]).AB_SetModifier(9,100)
+      ActorAlias(Positions[0]).AB_SetModifier(10,0)
+      ActorAlias(Positions[0]).AB_SetModifier(11,0)
+      ActorAlias(Positions[0]).AB_SetExpression(0,0)
+      ActorAlias(Positions[0]).AB_SetUseLipSync(True)
+    ElseIf   (Stage == 4)
+      ActorAlias(Positions[0]).AB_SetModifier(8,0)
+      ActorAlias(Positions[0]).AB_SetModifier(9,0)
+      ActorAlias(Positions[0]).AB_SetModifier(10,0)
+      ActorAlias(Positions[0]).AB_SetModifier(11,0)
+      ActorAlias(Positions[0]).AB_SetExpression(0,0)
+      ActorAlias(Positions[0]).AB_SetUseLipSync(True)
+    ElseIf   (Stage == 5)
+      ActorAlias(Positions[0]).AB_SetExpression(0,0)
+      ActorAlias(Positions[0]).AB_SetUseLipSync(True)
+    ElseIf   (Stage == 6)
+      ActorAlias(Positions[0]).AB_SetExpression(0,0)
+      ActorAlias(Positions[0]).AB_SetUseLipSync(True)
+    Endif
+endFunction
+function RefreshEmotion1()
+    If       (Stage == 0)
+    ElseIf   (Stage == 1)
+      ActorAlias(Positions[1]).AB_SetExpression(0,0)
+      ActorAlias(Positions[1]).AB_SetUseLipSync(True)
+    ElseIf   (Stage == 2)
+      ActorAlias(Positions[1]).AB_SetExpression(0,0)
+      ActorAlias(Positions[1]).AB_SetUseLipSync(True)
+    ElseIf   (Stage == 3)
+      ActorAlias(Positions[1]).AB_SetExpression(0,0)
+      ActorAlias(Positions[1]).AB_SetUseLipSync(True)
+    ElseIf   (Stage == 4)
+      ActorAlias(Positions[1]).AB_SetExpression(0,0)
+      ActorAlias(Positions[1]).AB_SetUseLipSync(True)
+    ElseIf   (Stage == 5)
+      ActorAlias(Positions[1]).AB_SetExpression(0,0)
+      ActorAlias(Positions[1]).AB_SetUseLipSync(True)
+    ElseIf   (Stage == 6)
+      ActorAlias(Positions[1]).AB_SetExpression(0,0)
+      ActorAlias(Positions[1]).AB_SetUseLipSync(True)
+    Endif
+endFunction
+function RefreshEmotion2()
+    If       (Stage == 0)
+    ElseIf   (Stage == 1)
+    ElseIf   (Stage == 2)
+    ElseIf   (Stage == 3)
+    ElseIf   (Stage == 4)
+    ElseIf   (Stage == 5)
+    ElseIf   (Stage == 6)
+    Endif
+endFunction
+function RefreshEmotion3()
+    If       (Stage == 0)
+    ElseIf   (Stage == 1)
+    ElseIf   (Stage == 2)
+    ElseIf   (Stage == 3)
+    ElseIf   (Stage == 4)
+    ElseIf   (Stage == 5)
+    ElseIf   (Stage == 6)
+    Endif
+endFunction
+function RefreshCloth0()
+    If       (Stage == 0)
+    ElseIf   (Stage == 1)
+    ElseIf   (Stage == 2)
+    ElseIf   (Stage == 3)
+    ElseIf   (Stage == 4)
+    ElseIf   (Stage == 5)
+    ElseIf   (Stage == 6)
+    Endif
+endFunction
+function RefreshCloth1()
+    If       (Stage == 0)
+    ElseIf   (Stage == 1)
+    ElseIf   (Stage == 2)
+    ElseIf   (Stage == 3)
+    ElseIf   (Stage == 4)
+    ElseIf   (Stage == 5)
+    ElseIf   (Stage == 6)
+    Endif
+endFunction
+function RefreshCloth2()
+    If       (Stage == 0)
+    ElseIf   (Stage == 1)
+    ElseIf   (Stage == 2)
+    ElseIf   (Stage == 3)
+    ElseIf   (Stage == 4)
+    ElseIf   (Stage == 5)
+    ElseIf   (Stage == 6)
+    Endif
+endFunction
+function RefreshCloth3()
+    If       (Stage == 0)
+    ElseIf   (Stage == 1)
+    ElseIf   (Stage == 2)
+    ElseIf   (Stage == 3)
+    ElseIf   (Stage == 4)
+    ElseIf   (Stage == 5)
+    ElseIf   (Stage == 6)
+    Endif
 endFunction

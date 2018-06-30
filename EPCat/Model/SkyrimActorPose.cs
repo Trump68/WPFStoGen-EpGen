@@ -12,7 +12,7 @@ namespace EPCat.Model
         public string ID;
         private string sourcePath;
         public int Position = 1;
-        public int Stage = 1;
+        //public int Stage = 1;
         public string Label;
         public int SOS = 0;
         public SkyrimEmotion Emotion = new SkyrimEmotion();
@@ -38,16 +38,45 @@ namespace EPCat.Model
             sourcePath = Path.GetDirectoryName((p.ItemPath));
             return true;
         }
-        public void CopyToDestination()
+        public void CopyToDestination(int stage)
         {           
             if (!string.IsNullOrEmpty(sourcePath))
             {
                 string file = Directory.GetFiles(sourcePath, "*.hkx").FirstOrDefault();
                 if (!string.IsNullOrEmpty(file))
                 {
-                    File.Copy(file, Path.Combine(Skyrim.destinationPath, $"AB01_Fuck_A{Position}_S{Stage}.hkx"), true);
+                    File.Copy(file, Path.Combine(Skyrim.destinationPath, $"AB01_Fuck_A{Position}_S{stage}.hkx"), true);
                 }
             }
+        }
+    }
+    public class SkyrimScene
+    {
+        public int Stage = 1;
+        public bool Acycle = false;
+        public bool Repeatable = true;
+        public int MaxCount = 0; // 0 == not limited
+        public List<SkyrimActorPose> Poses = new List<SkyrimActorPose>();
+        public SkyrimActorPose Actor(int i)
+        {
+            return Poses.Where(x => x.Position == i+1).FirstOrDefault();
+        }
+        public SkyrimScene(int stage, string[] posArray)
+        {
+            Stage = stage;
+            int i = 1;
+            foreach (var item in posArray)
+            {
+                var pose = new SkyrimActorPose(item) { Position = i, SOS = 0 };
+                //if (sosArray != null && sosArray.Count() > i) pose.SOS = sosArray[i];
+                Poses.Add(pose);
+                i++;
+            }
+        }
+
+        internal void CopyToDestination()
+        {
+            Poses.ForEach(x => x.CopyToDestination(Stage));
         }
     }
     public class SkyrimEmotion

@@ -40,8 +40,6 @@ float VoiceDelay
 bool IsForcedSilent
 bool UseLipSync
 
-; Expression
-sslBaseExpression Expression
 
 ; Positioning
 ObjectReference MarkerRef
@@ -97,13 +95,7 @@ endProperty
 int AB_Schlong
 int property Schlong hidden
 	int function get()
-	if (Thread.AB_Tag == 1)
-            ;int Index = ((Stage - 1 ) * Thread.ActorCount) + Position;
-			;int sch = Thread.Erection[Index]
 			return AB_Schlong		    
-		  else
-		    return Flags[3]
-		  endif
 	endFunction
 endProperty
 
@@ -346,55 +338,47 @@ state Ready
 				endIf
 			endIf
 			; Pick an expression if needed			
-			if !Expression && Config.UseExpressions							  
-				  Expression = Config.ExpressionSlots.PickByStatus(ActorRef, IsVictim, IsType[0] && !IsVictim)				
-			endIf
-			
-			if Expression
-				LogInfo += "Expression["+Expression.Name+"] "
-			else 
-				LogInfo += "Expression not found"
-			endIf
-		endIf
-		IsSkilled = !IsCreature || sslActorStats.IsSkilled(ActorRef)
-		if IsSkilled
-			; Always use players stats for NPCS if present, so players stats mean something more
-			Actor SkilledActor = ActorRef
-			if !IsPlayer && Thread.HasPlayer 
-				SkilledActor = PlayerRef
-			; If a non-creature couple, base skills off partner
-			elseIf Thread.ActorCount > 1 && !Thread.HasCreature
-				SkilledActor = Thread.Positions[sslUtility.IndexTravel(Position, Thread.ActorCount)]
-			endIf
-			; Get sex skills of partner/player
-			Skills       = Stats.GetSkillLevels(SkilledActor)
-			BestRelation = Thread.GetHighestPresentRelationshipRank(ActorRef)
-			if IsVictim
-				BaseEnjoyment = Utility.RandomFloat(BestRelation, ((Skills[Stats.kLewd]*1.1) as int)) as int
-			elseIf IsAggressor
-				float OwnLewd = Stats.GetSkillLevel(ActorRef, Stats.kLewd)
-				BaseEnjoyment = Utility.RandomFloat(OwnLewd, ((Skills[Stats.kLewd]*1.3) as int) + (OwnLewd*1.7)) as int
-			else
-				BaseEnjoyment = Utility.RandomFloat(BestRelation, ((Skills[Stats.kLewd]*1.5) as int) + (BestRelation*1.5)) as int
-			endIf
-			if BaseEnjoyment < 0
-				BaseEnjoyment = 0
-			elseIf BaseEnjoyment > 25
-				BaseEnjoyment = 25
-			endIf
-		else
-			BaseEnjoyment = Utility.RandomInt(0, 10)
-		endIf
-		LogInfo += "BaseEnjoyment["+BaseEnjoyment+"]"
-		Log(LogInfo)
-		; Play custom starting animation event
-		if StartAnimEvent != ""
-			Debug.SendAnimationEvent(ActorRef, StartAnimEvent)
-		endIf
+			;AB_RefreshEmotion()
+			EndIf
+		; IsSkilled = !IsCreature || sslActorStats.IsSkilled(ActorRef)
+		; if IsSkilled
+			; ; Always use players stats for NPCS if present, so players stats mean something more
+			; Actor SkilledActor = ActorRef
+			; if !IsPlayer && Thread.HasPlayer 
+				; SkilledActor = PlayerRef
+			; ; If a non-creature couple, base skills off partner
+			; elseIf Thread.ActorCount > 1 && !Thread.HasCreature
+				; SkilledActor = Thread.Positions[sslUtility.IndexTravel(Position, Thread.ActorCount)]
+			; endIf
+			; ; Get sex skills of partner/player
+			; Skills       = Stats.GetSkillLevels(SkilledActor)
+			; BestRelation = Thread.GetHighestPresentRelationshipRank(ActorRef)
+			; if IsVictim
+				; BaseEnjoyment = Utility.RandomFloat(BestRelation, ((Skills[Stats.kLewd]*1.1) as int)) as int
+			; elseIf IsAggressor
+				; float OwnLewd = Stats.GetSkillLevel(ActorRef, Stats.kLewd)
+				; BaseEnjoyment = Utility.RandomFloat(OwnLewd, ((Skills[Stats.kLewd]*1.3) as int) + (OwnLewd*1.7)) as int
+			; else
+				; BaseEnjoyment = Utility.RandomFloat(BestRelation, ((Skills[Stats.kLewd]*1.5) as int) + (BestRelation*1.5)) as int
+			; endIf
+			; if BaseEnjoyment < 0
+				; BaseEnjoyment = 0
+			; elseIf BaseEnjoyment > 25
+				; BaseEnjoyment = 25
+			; endIf
+		; else
+			; BaseEnjoyment = Utility.RandomInt(0, 10)
+		; endIf
+        
+		
+        
 		if StartWait < 0.1
 			StartWait = 0.1
 		endIf
-
+        
+		;FloppySOS.toggleFloppiness(ActorRef,"BallsOnly",false)
+		;Utility.Wait(0.5)
+		
 		GoToState("Prepare")
 		RegisterForSingleUpdate(StartWait)
 	endFunction
@@ -441,7 +425,7 @@ state Prepare
 		ActorRef.SetPosition(Loc[0], Loc[1], Loc[2])
 		ActorRef.SetAngle(Loc[3], Loc[4], Loc[5])
 		AttachMarker()
-		Debug.SendAnimationEvent(ActorRef, "SOSFastErect")
+		; Debug.SendAnimationEvent(ActorRef, "SOSFastErect")
 		; Notify thread prep is done
 		if Thread.GetState() == "Prepare"
 			Thread.SyncEventDone(kPrepareActor)
@@ -463,12 +447,13 @@ state Prepare
 		PlayingSA = Animation.Registry
 		CurrentSA = Animation.Registry
 		; Debug.SendAnimationEvent(ActorRef, Animation.FetchPositionStage(Position, 1))
+		Debug.Notification("start Aninmation!!!! ")
 		Debug.SendAnimationEvent(ActorRef, "IdleForceDefaultState")
 		; If enabled, start Auto TFC for player
-		if IsPlayer && Config.AutoTFC
+		;if IsPlayer && Config.AutoTFC
 			MiscUtil.SetFreeCameraState(true)
 			MiscUtil.SetFreeCameraSpeed(Config.AutoSUCSM)
-		endIf
+		;endIf
 		; Start update loop
 		if Thread.GetState() == "Prepare"
 			Thread.SyncEventDone(kStartup)
@@ -511,21 +496,21 @@ state Animating
 	function SendAnimation()
 		; Reenter SA - On stage 1 while animation hasn't changed since last call
 		;Debug.Notification("Stage::"+ Stage)	
-		
-		if Stage == 1 && PlayingSA == CurrentSA		    
+        AB_RefreshCloth()		
+		if Stage == 1 && PlayingSA == CurrentSA		
+            Debug.Notification("STAGE 1 IDLE !!!!!!!!!!!")		
 			Debug.SendAnimationEvent(ActorRef, "IdleForceDefaultState")
 			Utility.WaitMenuMode(0.2)
 			Debug.SendAnimationEvent(ActorRef, Animation.FetchPositionStage(Position, 1))			
 		else		    
 			; Enter a new SA - Not necessary on stage 1 since both events would be the same
 			if Stage != 1 && PlayingSA != CurrentSA
+			    Debug.Notification("WRONG!!!!!!!!!!!")
 			    string anim =  Animation.FetchPositionStage(Position, 1);
-				;Debug.Notification("anim:"+ anim)	
 				Debug.SendAnimationEvent(ActorRef, anim)
 				Utility.WaitMenuMode(0.2)				
 			endIf
 			  string anim =  AnimEvents[Position];
-			  ;Debug.Notification("anim:"+ anim)	
 			  Debug.SendAnimationEvent(ActorRef, AnimEvents[Position])			  
 	 
 		endIf
@@ -555,10 +540,10 @@ state Animating
 		; Lip sync and refresh expression
 		if UseLipSync && LoopDelay >= VoiceDelay
 			LoopDelay = 0.0
-			if (!IsSilent)
+			;if (!IsSilent)
 				Voice.PlayMoan(ActorRef, Enjoyment, IsVictim, UseLipSync)
-			endIf
-			RefreshExpression()
+			;endIf
+			AB_RefreshEmotion()
 		endIf
 		; Loop
 		LoopDelay += (VoiceDelay * 0.35)
@@ -580,12 +565,10 @@ state Animating
 		; Sync status
 		if !IsCreature
 			ResolveStrapon()
-			RefreshExpression()
+			;AB_RefreshEmotion()
 		endIf
-        
-		
-		;Debug.SendAnimationEvent(ActorRef, "SOSBend"+Schlong)	
-
+        		
+		Debug.SendAnimationEvent(ActorRef, "SOSBend"+Schlong)	
 		; SyncLocation(false)
 	endFunction
 
@@ -602,9 +585,10 @@ state Animating
 
 	function RefreshActor()
 		UnregisterForUpdate()
+		Debug.Notification("RefreshActor !!!! ")
 		SyncThread()
 		StopAnimating(true)
-		SyncLocation(true)
+		SyncLocation(true)		
 		Debug.SendAnimationEvent(ActorRef, "SexLabSequenceExit1")
 		Debug.SendAnimationEvent(ActorRef, "IdleForceDefaultState")
 		Utility.WaitMenuMode(0.1)
@@ -645,8 +629,8 @@ state Animating
 	function Snap()
 		; Quickly move into place and angle if actor is off by a lot
 		float distance = ActorRef.GetDistance(MarkerRef)
-		if distance > 125.0 || !IsInPosition(ActorRef, MarkerRef, 75.0)
-			ActorRef.SetPosition(Loc[0], Loc[1], Loc[2])
+		if distance > 125.0 || !IsInPosition(ActorRef, MarkerRef, 75.0)				
+     		ActorRef.SetPosition(Loc[0], Loc[1], Loc[2])
 			ActorRef.SetAngle(Loc[3], Loc[4], Loc[5])
 			AttachMarker()
 		elseIf distance > 2.0
@@ -744,6 +728,7 @@ state Animating
 		endIf /;
 		; Tracked events
 		TrackedEvent("End")
+		Debug.Notification("STOP ANIMATION!!!!!")
 		StopAnimating(Thread.FastEnd, EndAnimEvent)
 		RestoreActorDefaults()
 		;UnlockActor()
@@ -786,6 +771,7 @@ endFunction
 ; ------------------------------------------------------- ;
 
 function StopAnimating(bool Quick = false, string ResetAnim = "IdleForceDefaultState")
+    Debug.Notification("STOP ANIMATION!!!!")
 	if !ActorRef
 		return
 	endIf
@@ -810,6 +796,7 @@ function StopAnimating(bool Quick = false, string ResetAnim = "IdleForceDefaultS
 		endIf
 	else
 		; Reset NPC/PC Idle Quickly
+		
 		Debug.SendAnimationEvent(ActorRef, ResetAnim)
 		Utility.Wait(0.1)
 		; Ragdoll NPC/PC if enabled and not in TFC
@@ -822,7 +809,7 @@ function StopAnimating(bool Quick = false, string ResetAnim = "IdleForceDefaultS
 endFunction
 
 function AttachMarker()
-	;ActorRef.SetVehicle(MarkerRef)
+	ActorRef.SetVehicle(MarkerRef)
 	if UseScale
 		ActorRef.SetScale(AnimScale)
 	endIf
@@ -944,7 +931,7 @@ function RestoreActorDefaults()
 	;ActorRef.EvaluatePackage()
 	; Remove SOS erection
 	;Debug.SendAnimationEvent(ActorRef, "SOSFlaccid")
-	FloppySOS.toggleFloppiness(ActorRef,"LowArousal",false)
+	;FloppySOS.toggleFloppiness(ActorRef,"LowArousal",false)
 endFunction
 
 function RefreshActor()
@@ -1045,16 +1032,6 @@ endFunction
 
 sslBaseVoice function GetVoice()
 	return Voice
-endFunction
-
-function SetExpression(sslBaseExpression ToExpression)
-	if ToExpression
-		Expression = ToExpression
-	endIf
-endFunction
-
-sslBaseExpression function GetExpression()
-	return Expression
 endFunction
 
 function SetStartAnimationEvent(string EventName, float PlayTime)
@@ -1260,19 +1237,20 @@ endProperty
 function RefreshExpression()
 	if !ActorRef || IsCreature
 		; Do nothing
-	elseIf OpenMouth
-		sslBaseExpression.OpenMouth(ActorRef)
+	;elseIf OpenMouth
+		;sslBaseExpression.OpenMouth(ActorRef)
 	else
-		if Expression
-			sslBaseExpression.CloseMouth(ActorRef)
-			if (Thread.AB_Tag == 1)
-			   AB_ExpressionApply(ActorRef, AB_EmotionLevel, BaseSex);
-			else
-			   Expression.Apply(ActorRef, Enjoyment, BaseSex)
-			endif
-		elseIf sslBaseExpression.IsMouthOpen(ActorRef)
-			sslBaseExpression.CloseMouth(ActorRef)			
-		endIf
+		; if Expression
+			; sslBaseExpression.CloseMouth(ActorRef)
+			; if (Thread.AB_Tag == 1)
+			   ; AB_ExpressionApply(ActorRef, AB_EmotionLevel, BaseSex);
+			; else
+			   ; Expression.Apply(ActorRef, Enjoyment, BaseSex)
+			; endif
+		; elseIf sslBaseExpression.IsMouthOpen(ActorRef)
+			; sslBaseExpression.CloseMouth(ActorRef)			
+		; endIf
+		
 	endIf
 endFunction
 
@@ -1367,8 +1345,6 @@ function Initialize()
 	Voice          = none
 	ActorVoice     = none
 	IsForcedSilent = false
-	; Expression
-	Expression     = none
 	; Flags
 	NoRagdoll      = false
 	NoUndress      = false
@@ -1489,7 +1465,6 @@ endfunction
 ; function OffsetBed(float[] Output, float[] BedOffsets, float CenterRot) global native
 
 ; bool function _SetActor(Actor ProspectRef) native
-; function _ApplyExpression(Actor ProspectRef, int[] Presets) global native
 
 
 ; function GetVars()
@@ -1551,15 +1526,58 @@ float[] property AB_Location hidden
 	endFunction
 endProperty
 
-function AB_ExpressionApply(Actor ac, int strength, int acgender)
-    ;Log("!!!!!!!! "+Expression.Name+" - " + strength)	
-	;Expression.ApplyPhase(ac, strength, acgender)	
-	UseLipSync = false
-endFunction
-
 function AB_SetSchlong(int vol)
-  AB_Schlong = vol
   ;FloppySOS.toggleFloppiness(ActorRef,"MedArousal",false)
   FloppySOS.toggleFloppiness(ActorRef,"BallsOnly",false)
+  AB_Schlong = vol
   Debug.SendAnimationEvent(ActorRef, "SOSBend"+Schlong)	  
-endFunction
+EndFunction
+
+; ===============================Expressions=================================
+function AB_RefreshEmotion()
+            if (Position == 0)
+			   Thread.RefreshEmotion0()
+			elseif (Position == 1)
+			   Thread.RefreshEmotion1()
+			elseif (Position == 2)
+			   Thread.RefreshEmotion2()
+			elseif (Position == 3)
+			   Thread.RefreshEmotion3()
+			EndIf
+			;Debug.Notification("Refresh emotion")	
+EndFunction
+
+function AB_RefreshCloth()
+            if (Position == 0)
+			   Thread.RefreshCloth0()
+			elseif (Position == 1)
+			   Thread.RefreshCloth1()
+			elseif (Position == 2)
+			   Thread.RefreshCloth2()
+			elseif (Position == 3)
+			   Thread.RefreshCloth3()
+			EndIf
+EndFunction
+
+			
+function AB_ClearExpression()
+	ActorRef.ClearExpressionOverride()
+	MfgConsoleFunc.SetPhonemeModifier(ActorRef, -1, 0, 0)
+EndFunction
+
+function AB_SetPhoneme(int p, int val)
+		MfgConsoleFunc.SetPhonemeModifier(ActorRef, 0, p, val)
+EndFunction
+
+function AB_SetModifier(int p, int val)
+		MfgConsoleFunc.SetPhonemeModifier(ActorRef, 1, p, val)
+EndFunction
+
+function AB_SetExpression(int p, int val)
+	ActorRef.SetExpressionOverride(p, val)
+EndFunction
+
+function AB_SetUseLipSync(bool val)
+	UseLipSync = val
+EndFunction
+

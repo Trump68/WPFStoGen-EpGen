@@ -164,6 +164,9 @@ actor function GetActor(actor player, string acName,string schlong, int sossize 
 		   result.RemoveAllItems()
 		   Utility.Wait(2.0)
 		   SetSchlong(result, schlong, sossize)
+           FloppySOS.toggleFloppiness(result,"BallsOnly",false)
+           Debug.SendAnimationEvent(result, "SOSBend0")		
+		
 		   if (height > 0)
 		      ;result.SetHei
 		   endif
@@ -272,7 +275,6 @@ function SetSchlong(Actor NPCActor, string schlong, int size)
 	endif
     if (sos.GetSize(NPCActor) != size)
 	    sos.SetSize(NPCActor, size)		
-		Debug.Notification("set size: " + size)
 	endif
 	Game.UpdateHairColor()
 

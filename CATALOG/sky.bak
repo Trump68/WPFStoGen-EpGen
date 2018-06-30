@@ -11984,4 +11984,32 @@
     <PosePositions />
     <Motions />
   </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>2932ceaf-10b5-4a56-a4de-3f115aa8e863</GID>
+    <ItemPath>d:\!catalog\sky\pose\pinupposer\pinupsm_stand1\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>PinupsM_Stand1</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Kind>POSE</Kind>
+    <Serie>PinupPoser</Serie>
+    <Type>p</Type>
+    <MyDescr>original pose</MyDescr>
+    <PersonSex>M</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
 </ArrayOfEpItem>
