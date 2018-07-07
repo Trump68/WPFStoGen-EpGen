@@ -143,12 +143,6 @@ int function AB_StartSex(string abSceneName = "",int abSceneVariant = 0,Actor[] 
 	Thread.CenterOnObject(CenterOn)
 	Thread.DisableBedUse(!true)
 	Thread.SetHook("")	
-	; Set AB prepare
-	;Thread.Acycle = AB_Get();
-	;Thread.AB_SetParams();
-	;Thread.AB_RestartStage = AB_RestartStage
-	;Thread.AB_Prepare()
-	; Start the animation
 	if Thread.StartThread()
 		return Thread.tid
 	endIf

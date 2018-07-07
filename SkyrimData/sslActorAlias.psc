@@ -447,7 +447,6 @@ state Prepare
 		PlayingSA = Animation.Registry
 		CurrentSA = Animation.Registry
 		; Debug.SendAnimationEvent(ActorRef, Animation.FetchPositionStage(Position, 1))
-		Debug.Notification("start Aninmation!!!! ")
 		Debug.SendAnimationEvent(ActorRef, "IdleForceDefaultState")
 		; If enabled, start Auto TFC for player
 		;if IsPlayer && Config.AutoTFC
@@ -495,17 +494,14 @@ state Animating
 
 	function SendAnimation()
 		; Reenter SA - On stage 1 while animation hasn't changed since last call
-		;Debug.Notification("Stage::"+ Stage)	
         AB_RefreshCloth()		
 		if Stage == 1 && PlayingSA == CurrentSA		
-            Debug.Notification("STAGE 1 IDLE !!!!!!!!!!!")		
 			Debug.SendAnimationEvent(ActorRef, "IdleForceDefaultState")
 			Utility.WaitMenuMode(0.2)
 			Debug.SendAnimationEvent(ActorRef, Animation.FetchPositionStage(Position, 1))			
 		else		    
 			; Enter a new SA - Not necessary on stage 1 since both events would be the same
 			if Stage != 1 && PlayingSA != CurrentSA
-			    Debug.Notification("WRONG!!!!!!!!!!!")
 			    string anim =  Animation.FetchPositionStage(Position, 1);
 				Debug.SendAnimationEvent(ActorRef, anim)
 				Utility.WaitMenuMode(0.2)				
@@ -611,6 +607,15 @@ state Animating
 
 	function SyncLocation(bool Force = false)
 		OffsetCoords(Loc, Center, Offsets)
+
+		float[] rez = Thread.AB_GetCoord(Position)
+		Loc[0] = Loc[0] + rez[0]
+		Loc[1] = Loc[1] + rez[1]
+		Loc[2] = Loc[2] + rez[2]
+		Loc[3] = Loc[3] + rez[3]
+		Loc[4] = Loc[4] + rez[4]
+		Loc[5] = Loc[5] + rez[5]
+
 		MarkerRef.SetPosition(Loc[0], Loc[1], Loc[2])
 		MarkerRef.SetAngle(Loc[3], Loc[4], Loc[5])
 		; Avoid forcibly setting on player coords if avoidable - causes annoying graphical flickering
@@ -728,7 +733,6 @@ state Animating
 		endIf /;
 		; Tracked events
 		TrackedEvent("End")
-		Debug.Notification("STOP ANIMATION!!!!!")
 		StopAnimating(Thread.FastEnd, EndAnimEvent)
 		RestoreActorDefaults()
 		;UnlockActor()

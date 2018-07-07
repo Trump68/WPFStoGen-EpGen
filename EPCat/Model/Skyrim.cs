@@ -15,144 +15,6 @@ namespace EPCat.Model
         public static ObservableCollection<EpItem> Items;
         public static string destinationPath = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\Meshes\actors\character\animations\ABAnims01\";
 
-        #region Old logic
-        //private static void GenerateMotionOld(EpItem epitem, ObservableCollection<EpItem> items)
-        //{
-        //    Items = items;
-
-        //    List<SkyrimPosePositionInfo> valid = new List<SkyrimPosePositionInfo>();
-        //    foreach (var item in epitem.PosePositions)
-        //    {
-        //        if (!item.Active) continue;
-        //        if (string.IsNullOrEmpty(item.Path)) continue;
-        //        valid.Add(item);
-        //    }
-        //    List<SkyrimPosePositionInfo> valid0 = valid.Where(x => x.Position == 0).ToList();
-        //    List<SkyrimPosePositionInfo> valid1 = valid.Where(x => x.Position == 1).ToList();
-        //    List<SkyrimPosePositionInfo> valid2 = valid.Where(x => x.Position == 2).ToList();
-        //    //Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo> possible
-        //    //    = new Tuple<PosePositionInfo, PosePositionInfo, PosePositionInfo>(null, null, null);
-        //    List<Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>> possible =
-        //        new List<Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>>();
-
-
-        //    foreach (var item0 in valid0)
-        //    {
-        //        if (valid1.Any())
-        //        {
-        //            foreach (var item1 in valid1)
-        //            {
-        //                if (valid2.Any())
-        //                {
-        //                    foreach (var item2 in valid2)
-        //                    {
-        //                        possible.Add(new Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>(item0, item1, item2));
-
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    possible.Add(new Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>(item0, item1, null));
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            possible.Add(new Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>(item0, null, null));
-        //        }
-        //    }
-
-
-        //    int stage = 0;
-        //    string destinationPath = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\Meshes\actors\character\animations\ABAnims01\";
-
-        //    List<int> erections = new List<int>();
-        //    foreach (var item in possible)
-        //    {
-        //        stage++;
-        //        if (item.Item1 != null)
-        //        {
-        //            docopyfile(item.Item1.Path, destinationPath, stage, 1);
-        //            erections.Add(item.Item1.SOS);
-        //        }
-        //        if (item.Item2 != null)
-        //        {
-        //            docopyfile(item.Item2.Path, destinationPath, stage, 2);
-        //            erections.Add(item.Item2.SOS);
-        //        }
-        //        if (item.Item3 != null)
-        //        {
-        //            docopyfile(item.Item3.Path, destinationPath, stage, 3);
-        //            erections.Add(item.Item3.SOS);
-        //        }
-        //    }
-        //    RebuildSkript(erections, possible);
-        //}
-        //private static void docopyfile(string path, string destpath, int stage, int position)
-        //{
-        //    string dest = Path.GetDirectoryName(path);
-        //    if (!string.IsNullOrEmpty(dest))
-        //    {
-        //        string file = Directory.GetFiles(dest, "*.hkx").FirstOrDefault();
-        //        if (!string.IsNullOrEmpty(file))
-        //        {
-        //            File.Copy(file, Path.Combine(destpath, $"AB01_Fuck_A{position}_S{stage}.hkx"), true);
-        //        }
-        //    }
-        //}
-        //private static void runBuild()
-        //{
-        //    System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
-        //    pProcess.StartInfo.FileName = @"d:\SteamLibrary\steamapps\common\Skyrim\Papyrus Compiler\ScriptCompileAdv.bat";
-        //    pProcess.StartInfo.Arguments = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\SexLabFramework.psc"; //argument
-        //    pProcess.StartInfo.UseShellExecute = false;
-        //    pProcess.StartInfo.RedirectStandardOutput = true;
-        //    //pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
-        //    pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-        //    pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
-        //    pProcess.Start();
-        //    string output = pProcess.StandardOutput.ReadToEnd(); //The output result
-        //    pProcess.WaitForExit();
-        //    MessageBox.Show(output);
-        //}
-        //private static void RebuildSkript(List<int> erections, List<Tuple<SkyrimPosePositionInfo, SkyrimPosePositionInfo, SkyrimPosePositionInfo>> possible)
-        //{
-        //    string sourceFile = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\sslThreadController.psc";
-        //    //string destFile = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\SexLabFramework.psc";
-        //    List<string> raw = new List<string>(File.ReadAllLines(sourceFile));
-
-        //    List<string> source = new List<string>();
-        //    foreach (var item in raw)
-        //    {
-        //        source.Add(item);
-        //        if (item.Contains("; ++++++++++++++++++++++++++++++++AB SECTION++++++++++++++++++++++++++++++++++++++++++++"))
-        //        {
-        //            break;
-        //        }
-        //    }
-        //    source.Add(@"function AB_SetParams()");
-        //    source.Add(@"     Erection = new int[128]");
-
-        //    int i = 0;
-        //    foreach (var item in erections)
-        //    {
-        //        if (item != 0)
-        //        {
-        //            source.Add($@"     Erection[{i}] = {item}");
-
-        //        }
-        //        i++;
-        //    }
-
-        //    source.Add($@"     AB_RestartStage = {possible.Count}");
-        //    source.Add(@"endFunction");
-
-        //    File.WriteAllLines(sourceFile, source);
-
-        //    runBuild();
-        //}
-        #endregion
-
         #region New logic
 
         public static void GenerateMotion(EpItem epitem, ObservableCollection<EpItem> items)
@@ -163,17 +25,17 @@ namespace EPCat.Model
             Items = items;
             string sgid = epitem.GID.ToString();
             // Leito_69 S1
-            if (sgid == "f34fe029-737e-47b6-8a9a-b7a578db3950") ScenGenerate_Leito_Leito_69_stage_01(true, 1);
+            if (sgid == "f34fe029-737e-47b6-8a9a-b7a578db3950") LeitoAnimations_Leito_69_stage_01(true, 1, Emotion.Shy01);
             // Leito_69 S2
-            else if (sgid == "06ca88ef-9d82-4f89-b0c2-75488fa6536e") ScenGenerate_Leito_Leito_69_stage_02(true, 1);
+            else if (sgid == "06ca88ef-9d82-4f89-b0c2-75488fa6536e") LeitoAnimations_Leito_69_stage_02(true, 1);
             // Leito_69 S3
-            else if (sgid == "722fac8f-0596-4c12-b323-449467b1980c") ScenGenerate_Leito_Leito_69_stage_03(true, 1);
+            else if (sgid == "722fac8f-0596-4c12-b323-449467b1980c") LeitoAnimations_Leito_69_stage_03(true, 1);
             // Leito_69 S4
-            else if (sgid == "e934d4ee-5f7c-4ce3-acb3-be5ca3f68cdd") ScenGenerate_Leito_Leito_69_stage_04(true, 1);
+            else if (sgid == "e934d4ee-5f7c-4ce3-acb3-be5ca3f68cdd") LeitoAnimations_Leito_69_stage_04(true, 1);
             // Leito_69 S5
-            else if (sgid == "3869be1c-978e-4180-8b3c-a891a4f4b1cd") ScenGenerate_Leito_Leito_69_stage_05(true, 1);
+            else if (sgid == "3869be1c-978e-4180-8b3c-a891a4f4b1cd") LeitoAnimations_Leito_69_stage_05(true, 1);
             // Leito_69 Movie
-            else if (sgid == "f7e0e8b5-2518-47ed-becc-50d006e5ac5d") Movie_Leito_69();
+            else if (sgid == "f7e0e8b5-2518-47ed-becc-50d006e5ac5d") LeitiAnimations_Leito_69();
 
             // Anal_Doggy_2 S1
             else if (sgid == "7546245a-f333-49b1-bb84-d5a77b3031dc") ScenGenerate_Leito_AnalDoggy2_stage_01(true, 1);
@@ -552,15 +414,16 @@ namespace EPCat.Model
             foreach (var item in scenes)
             {
                 source.Add($@"    ElseIf   (Stage == {item.Stage})");
-                source.Add($@"    Acycle[{item.Stage}] = {item.Acycle}");
+                source.Add($@"      AB_Timers[{item.Stage}] = {item.Timer}");
+                source.Add($@"      TimedStage = {item.Acycle}");
                 foreach (var pose in item.Poses)
                 {
                     source.Add($@"      ActorAlias(Positions[{pose.Position - 1}]).AB_SetSchlong({pose.SOS})");
                 }
             }
             source.Add(@"    Endif");
-            source.Add($@"    AB_RestartStage = {scenes.Count() + 1}");
-            source.Add($@"    AB_RestartTo = {scenes.IndexOf(scenes.Where(x=>x.Repeatable).FirstOrDefault())}");
+            source.Add($@"    AB_RestartStage = {scenes.Count()}");
+            source.Add($@"    AB_RestartTo = {scenes.IndexOf(scenes.Where(x=>x.Repeatable).FirstOrDefault()) + 1}");
 
             source.Add(@"endFunction");
             for (int i = 0; i < 4; i++)
@@ -596,6 +459,34 @@ namespace EPCat.Model
                 source.Add(@"    Endif");
                 source.Add(@"endFunction");
             }
+
+            source.Add($@"float[] function AB_GetCoord(int position)");
+            source.Add(@"float[] result = new float[6]");
+            source.Add(@"    If       (Stage == 0)");
+
+                int ii = 1;
+                foreach (var scen in scenes)
+                {
+                    source.Add($@"    ElseIf (Stage == {ii})");
+                    foreach (var pose in scen.Poses)
+                    {
+                        if (pose.Position == 1)
+                            source.Add($@"        If     (position == {pose.Position - 1})");
+                        else
+                            source.Add($@"        Elseif (position == {pose.Position - 1})");
+                        if (pose.X != 0)    source.Add($@"           result[0]={pose.X}");
+                        if (pose.Y != 0)    source.Add($@"           result[1]={pose.Y}");
+                        if (pose.Z != 0)    source.Add($@"           result[2]={pose.Z}");
+                        if (pose.rotX != 0) source.Add($@"           result[3]={pose.rotX}");
+                        if (pose.rotY != 0) source.Add($@"           result[4]={pose.rotY}");
+                        if (pose.rotZ != 0) source.Add($@"           result[5]={pose.rotZ}");
+                    }
+                    source.Add($@"        EndIf");
+                    ii++;
+                }
+            source.Add(@"    Endif");
+            source.Add($@"    return result");
+            source.Add(@"endFunction");
 
             File.WriteAllLines(sourceFile, source);
             reBuild();

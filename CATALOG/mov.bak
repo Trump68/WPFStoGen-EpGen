@@ -51708,6 +51708,7 @@ My dad starts a double life with a Japanese mother who should never know.</Comme
     <CombinedScenes />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>448708f0-65a5-475d-8294-b0459a9ce52a</GID>
     <ItemPath>d:\!catalog\mov\2013\[kor] wish taxi\PASSPORT.TXT</ItemPath>
@@ -51724,7 +51725,9 @@ My dad starts a double life with a Japanese mother who should never know.</Comme
     <XRated>M</XRated>
     <Star>Sun-young Kim</Star>
     <MyDescr>Великолепная Sun-young Kim</MyDescr>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />

@@ -9,12 +9,18 @@ namespace EPCat.Model
 {
     public class SkyrimActorPose
     {
-        public string ID;
+        public string ID;        
         private string sourcePath;
         public int Position = 1;
         //public int Stage = 1;
         public string Label;
         public int SOS = 0;
+        public float X;
+        public float Y;
+        public float Z;
+        public float rotX;
+        public float rotY;
+        public float rotZ;
         public SkyrimEmotion Emotion = new SkyrimEmotion();
         public Cloth Cloth = new Cloth();
         public List<string> GetEmotionData()
@@ -54,6 +60,7 @@ namespace EPCat.Model
     {
         public int Stage = 1;
         public bool Acycle = false;
+        public decimal Timer = 0;
         public bool Repeatable = true;
         public int MaxCount = 0; // 0 == not limited
         public List<SkyrimActorPose> Poses = new List<SkyrimActorPose>();
@@ -105,6 +112,11 @@ namespace EPCat.Model
             result.Add($"      ActorAlias(Positions[{pos}]).AB_SetUseLipSync({LipSynch})");
             return result;
         }
+        public void SetMood(int i, int v)
+        {
+            Mood.I = i;
+            Mood.V = v;
+        }
         private void CleanEyes()
         {
             SetModifier(8, 0);
@@ -122,6 +134,9 @@ namespace EPCat.Model
             if (clear) CleanEyes();
             SetModifier(10, vol);           
         }
+
+
+
         public void EyesUp(bool clear, int vol = 100)
         {
             if (clear) CleanEyes();
@@ -184,7 +199,55 @@ namespace EPCat.Model
 
         internal void CloseEyes()
         {
-
+            SetModifier(0, 80);
+            SetModifier(1, 80);
+            SetModifier(12, 20);
+            SetModifier(13, 20);
+        }
+        internal void OpenEyes()
+        {
+            SetModifier(0, 0);
+            SetModifier(1, 0);
+            SetModifier(12, 0);
+            SetModifier(13, 0);
+        }
+        internal void SetEmotion_Disgust01()
+        {
+            SetMood(6, 70);
+            SetModifier(4, 100);
+            SetModifier(5, 100);
+        }
+        internal void SetEmotion_SnuffGround01()
+        {
+            SetMood(7, 50);
+            SetModifier(1, 40);
+            SetModifier(2, 100);
+            SetModifier(5, 100);
+            SetModifier(7, 100);
+        }
+        internal void SetEmotion_Naughty01()
+        {
+            SetMood(2, 60);
+            SetModifier(0, 20);
+            SetModifier(2, 50);
+            SetModifier(4, 40);
+            SetModifier(5, 100);
+            SetModifier(7, 50);
+        }
+        internal void SetEmotion_Shy01() 
+        {
+            SetMood(4, 90);
+            SetModifier(11, 20);
+            SetPhoneme(1, 10);
+            SetPhoneme(11, 10);
+        }
+        internal void SetEmotion(Emotion emotion)
+        {
+            OpenEyes();
+            if      (emotion == Emotion.Disgust01) SetEmotion_Disgust01();
+            else if (emotion == Emotion.Naughty01) SetEmotion_Naughty01();
+            else if (emotion == Emotion.SnuffGround01) SetEmotion_SnuffGround01();
+            else if (emotion == Emotion.Shy01) SetEmotion_Shy01();
         }
     }
     public class EmoD
@@ -242,4 +305,13 @@ namespace EPCat.Model
             return result;
         }
     }
+    public enum Emotion
+    {
+        None,
+        Disgust01,
+        SnuffGround01,
+        Naughty01,
+        Shy01 // standart Shy 1
+    }
+
 }

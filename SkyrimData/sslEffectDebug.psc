@@ -43,7 +43,12 @@ string AbAnimationDescription
 
 
 function DoAnim(Actor TargetRef, Actor CasterRef) 
-  
+  Utility.SetINIFloat("fDefaultWorldFOV:Display", 45.0)
+  		MiscUtil.SetFreeCameraState(true)
+		;if Game.GetCameraState() == 0
+		;	Game.ForceThirdPerson()
+		;endIf
+
   ;DoAnim_PlayerSolo() 
   DoAnim_FM_Belenthor() 
   ;DoAnim_FM_Ulfbear() 
@@ -295,17 +300,11 @@ endEvent
 
 
 function SetAnimationMovie0001()
-    Resetscene()
     SetAnimationScene0001(1)
     SetAnimationScene0002(2)
 	SetAnimationScene0003(3)
 	SetAnimationScene0004(4)
 	SetAnimationScene0005(5)
-	Erection[1] = 4;
-	Erection[2] = 4;
-	Erection[3] = 4;
-	Erection[4] = 4;
-	Erection[5] = 4;
 EndFunction
 function SetAnimationScene0001(int stage)
     SetAnimationF0001a("AB01_Fuck_A1_S1", stage)
@@ -522,65 +521,7 @@ function UnlockActor(actor ActorRef)
 	ActorRef.SetVehicle(none)
 endFunction
 
-function Resetscene()
-	Acycle = new bool[128];
-    Erection = new int[128];
-	Erection[1] = 0;
-	Erection[2] = 0;
-	Erection[3] = 0;
-	Erection[4] = 0;
-	Erection[5] = 0;
-	Erection[6] = 0;
-	Erection[7] = 0;
-	Erection[8] = 0;
-	Erection[9] = 0;
-	Erection[10] = 0;
-	AbFemaleExpressionList = new string[128];
-    AbFemaleExpressionList[1] = "AB_FuckDisgust01"
-	AbFemaleExpressionList[2] = "AB_FuckDisgust01"
-    AbFemaleExpressionList[3] = "AB_FuckDisgust01"
-    AbFemaleExpressionList[4] = "AB_FuckDisgust01"
-    AbFemaleExpressionList[5] = "AB_FuckDisgust01"
-    AbFemaleExpressionList[6] = "AB_FuckDisgust01"
-    AbFemaleExpressionList[7] = "AB_FuckDisgust01"
-    AbFemaleExpressionList[8] = "AB_FuckDisgust01"
-    AbFemaleExpressionList[9] = "AB_FuckDisgust01"
-    AbFemaleExpressionList[10] = "AB_FuckDisgust01"
-    AbFemaleExpressionIndex = new int[128];
-    AbFemaleExpressionIndex[1] = 1
-	AbFemaleExpressionIndex[2] = 1
-	AbFemaleExpressionIndex[3] = 1
-	AbFemaleExpressionIndex[4] = 1
-	AbFemaleExpressionIndex[5] = 1	
-	AbFemaleExpressionIndex[6] = 1
-	AbFemaleExpressionIndex[7] = 1
-	AbFemaleExpressionIndex[8] = 1
-	AbFemaleExpressionIndex[9] = 1
-	AbFemaleExpressionIndex[10] = 1
-	AbMaleExpressionList = new string[128];
-    AbMaleExpressionList[1] = "Pained"
-	AbMaleExpressionList[2] = "Pained"
-    AbMaleExpressionList[3] = "Pained"
-    AbMaleExpressionList[4] = "Pained"
-    AbMaleExpressionList[5] = "Pained"
-    AbMaleExpressionList[6] = "Pained"
-    AbMaleExpressionList[7] = "Pained"
-    AbMaleExpressionList[8] = "Pained"
-    AbMaleExpressionList[9] = "Pained"
-    AbMaleExpressionList[10] = "Pained"
-    AbMaleExpressionIndex = new int[128];
-    AbMaleExpressionIndex[1] = 1
-	AbMaleExpressionIndex[2] = 1
-	AbMaleExpressionIndex[3] = 1
-	AbMaleExpressionIndex[4] = 1
-	AbMaleExpressionIndex[5] = 1	
-	AbMaleExpressionIndex[6] = 1
-	AbMaleExpressionIndex[7] = 1
-	AbMaleExpressionIndex[8] = 1
-	AbMaleExpressionIndex[9] = 1
-	AbMaleExpressionIndex[10] = 1
-	
-endFunction
+
 		  ;expression = Config.ExpressionSlots.GetByName("AB_Pained01")		  		  
 		  ;expression = Config.ExpressionSlots.GetByName("AB_Silly01") 
 		  ;actAlias.AB_EmotionLevel = 1		;Silly		  
