@@ -60,124 +60,122 @@ function DoAnim(Actor TargetRef, Actor CasterRef)
   ;DoAnim_FemSolo("Iris") 
   ;DoAnim_FemSolo("Nihel") 
 endFunction
-function DoAnim_PlayerSolo() 
-	Actor Anna = Game.GetPlayer();		
-	;AddClothing(Anna, "Veil Solid White")
-	ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")		
-	actor[] positions = sexlabutil.makeactorarray(Anna)	
-	SetAnimationMovie0001()
-	DoSceneInLocation( Anna, positions, centerOn, "AB01_Shy_Stand");	
-endFunction
-function DoAnim_FemSolo(string name) 
-	Actor Anna = Game.GetPlayer();	
-	ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")	
-	actor fem   = GetActor(Anna,  name,  "Pubic Hair for Females",  1)	
-	actor[] positions = sexlabutil.makeactorarray(fem)	
-	SetAnimationMovie0001()
-	DoSceneInLocation( Anna, positions, centerOn, "AB01_Shy_Stand");	
-endFunction
-function DoAnim_FFNihel() 
-	Actor Anna = Game.GetPlayer();
-	ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")		
-	actor Nihel   = GetActor(Anna,    "Nihel",  "VectorPlexus Regular",  0)
-    actor[] positions = sexlabutil.makeactorarray(Anna,Nihel)	
-	SetAnimationMovie0001()
-	DoSceneInLocation( Anna, positions, centerOn, "AB01_Fuck");	
-endFunction
+; function DoAnim_PlayerSolo() 
+	; Actor Anna = Game.GetPlayer();		
+	; ;AddClothing(Anna, "Veil Solid White")
+	; ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")		
+	; actor[] positions = sexlabutil.makeactorarray(Anna)	
+	; SetAnimationMovie0001()
+	; DoSceneInLocation( Anna, positions, centerOn, "AB01_Shy_Stand");	
+; endFunction
+; function DoAnim_FemSolo(string name) 
+	; Actor Anna = Game.GetPlayer();	
+	; ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")	
+	; actor fem   = GetActor(Anna,  name,  "Pubic Hair for Females",  1)	
+	; actor[] positions = sexlabutil.makeactorarray(fem)	
+	; SetAnimationMovie0001()
+	; DoSceneInLocation( Anna, positions, centerOn, "AB01_Shy_Stand");	
+; endFunction
+; function DoAnim_FFNihel() 
+	; Actor Anna = Game.GetPlayer();
+	; ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")		
+	; actor Nihel   = GetActor(Anna,    "Nihel",  "VectorPlexus Regular",  0)
+    ; actor[] positions = sexlabutil.makeactorarray(Anna,Nihel)	
+	; SetAnimationMovie0001()
+	; DoSceneInLocation( Anna, positions, centerOn, "AB01_Fuck");	
+; endFunction
 function DoAnim_FM_Belenthor() 
-	Actor Anna = Game.GetPlayer();	
-	;AddClothing(Anna, "Veil Solid White")
-	;AddClothing(Anna, "Veil Of Cyan")
+	; ;Actor Anna = Game.GetPlayer();	
+	; ;AddClothing(Anna, "Veil Solid White")
+	; ;AddClothing(Anna, "Veil Of Cyan")
 	
-	ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")	
-	actor Belenthor   = GetActor(Anna,    "Belethor",  "Smurf Average",  16)
-	actor[] positions = sexlabutil.makeactorarray(Anna,Belenthor)	
-	SetAnimationMovie0001()
-	DoSceneInLocation( Anna, positions, centerOn, "AB01_Fuck");	
-endFunction
-function DoAnim_FM_TEST() 
-	Actor Anna = Game.GetPlayer();	
-	;AddClothing(Anna, "Veil Solid White")
-	AddClothing(Anna, "Veil Of Cyan")
+	; ;ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")	
+	; ;actor Belenthor   = GetActor(Anna,    "Belethor",  "Smurf Average",  16)
+	; ;actor[] positions = sexlabutil.makeactorarray(Anna,Belenthor)	
+	; ;SetAnimationMovie0001()
+	 DoSceneInLocation("AB01_Fuck");	
+ endFunction
+; function DoAnim_FM_TEST() 
+	; Actor Anna = Game.GetPlayer();	
+	; ;AddClothing(Anna, "Veil Solid White")
+	; AddClothing(Anna, "Veil Of Cyan")
 	
-	ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")	
-	actor Belenthor   = GetActor(Anna,    "Belethor",  "Smurf Average",  16)
-	actor[] positions = sexlabutil.makeactorarray(Anna)	
-	SetAnimationMovie0001()
-	DoSceneInLocation( Anna, positions, centerOn, "AB01_Shy_Stand");	
-endFunction
-function DoAnim_FM_Ulfbear() 
-	Actor Anna = Game.GetPlayer();	
-	ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")	
-	actor Ulfbear     = GetActor(Anna,     "Ulfbear",  "VectorPlexus Muscular",  10)
-	actor[] positions = sexlabutil.makeactorarray(Anna,Ulfbear)	
-	SetAnimationMovie0001()
-	DoSceneInLocation( Anna, positions, centerOn, "AB01_Fuck");	
-endFunction
+	; ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")	
+	; actor Belenthor   = GetActor(Anna,    "Belethor",  "Smurf Average",  16)
+	; actor[] positions = sexlabutil.makeactorarray(Anna)	
+	; SetAnimationMovie0001()
+	; DoSceneInLocation( Anna, positions, centerOn, "AB01_Shy_Stand");	
+; endFunction
+; function DoAnim_FM_Ulfbear() 
+	; Actor Anna = Game.GetPlayer();	
+	; ObjectReference centerOn =  MoveAndPrepareLocation(Anna, "WhiterunWarmaidens")	
+	; actor Ulfbear     = GetActor(Anna,     "Ulfbear",  "VectorPlexus Muscular",  10)
+	; actor[] positions = sexlabutil.makeactorarray(Anna,Ulfbear)	
+	; SetAnimationMovie0001()
+	; DoSceneInLocation( Anna, positions, centerOn, "AB01_Fuck");	
+; endFunction
 
-function DoSceneInLocation(actor victim, actor[]positions, ObjectReference centerOn, string animid)     
+function DoSceneInLocation(string animid)     
 	  ; play animation
 	  sslbaseanimation anim = sexlab.GetAnimationByRegistry(animid)
-	  anim.AB_Tag="Test01"
 	  sslbaseanimation[] anims = new sslbaseanimation[1]	
 	  anims[0] = anim 
-	  sexlab.Config.InDebugMode = True
-	  int scenevar = 1	  
-	  sexlab.AB_StartSex("", scenevar, positions, anims, none, centerOn ) 
+	  sexlab.Config.InDebugMode = True  
+	  sexlab.AB_StartSex(anims) 
 
 EndFunction
 
 
-actor function GetActor(actor player, string acName,string schlong, int sossize = 0, float height = 0.0)
+; actor function GetActor(actor player, string acName,string schlong, int sossize = 0, float height = 0.0)
         
-		actor result = none
-		Actorbase an = none
-		if     (acName == "Ulfbear")
-		         an = Game.GetFormFromFile(0x00013b9f,"Skyrim.esm") as Actorbase
-				 result = player.PlaceActorAtMe(an)	
-		elseIf (acName == "Belethor")
-		         result = FindActor(acName)
-				 if (result == none)				     
-		             an = Game.GetFormFromFile(0x00013ba1,"Skyrim.esm") as Actorbase
-					 result = player.PlaceActorAtMe(an)	
-                 else
-				     return result
-				 endif		
+		; actor result = none
+		; Actorbase an = none
+		; if     (acName == "Ulfbear")
+		         ; an = Game.GetFormFromFile(0x00013b9f,"Skyrim.esm") as Actorbase
+				 ; result = player.PlaceActorAtMe(an)	
+		; elseIf (acName == "Belethor")
+		         ; result = FindActor(acName)
+				 ; if (result == none)				     
+		             ; an = Game.GetFormFromFile(0x00013ba1,"Skyrim.esm") as Actorbase
+					 ; result = player.PlaceActorAtMe(an)	
+                 ; else
+				     ; return result
+				 ; endif		
 				 
-		elseIf (acName == "RBD_F000012CB")
-		         an = Game.GetFormFromFile(0x000012CB,"[kiki]kkFollowers2.esp") as Actorbase
-				 result = player.PlaceActorAtMe(an)	
-		elseIf (acName == "RBD_F0000126AD")
-		         an = Game.GetFormFromFile(0x0000126AD,"[kiki]kkFollowers2.esp") as Actorbase
-				 result = player.PlaceActorAtMe(an)					 
+		; elseIf (acName == "RBD_F000012CB")
+		         ; an = Game.GetFormFromFile(0x000012CB,"[kiki]kkFollowers2.esp") as Actorbase
+				 ; result = player.PlaceActorAtMe(an)	
+		; elseIf (acName == "RBD_F0000126AD")
+		         ; an = Game.GetFormFromFile(0x0000126AD,"[kiki]kkFollowers2.esp") as Actorbase
+				 ; result = player.PlaceActorAtMe(an)					 
 				 
 				 
 				 
-		elseIf (acName == "Iris")
-		         an = Game.GetFormFromFile(0x00003890,"R.B Standalone Follower.esp") as Actorbase	
-                 result = player.PlaceActorAtMe(an)					 
-				 result.GetActorBase().SetHeight(0.96)
-		elseIf (acName == "Nihel")
-		         an = Game.GetFormFromFile(0x00000D70,"Nihel.esp") as Actorbase
-                 result = player.PlaceActorAtMe(an)	
-		endIf		
-		if (an != none)		   
+		; elseIf (acName == "Iris")
+		         ; an = Game.GetFormFromFile(0x00003890,"R.B Standalone Follower.esp") as Actorbase	
+                 ; result = player.PlaceActorAtMe(an)					 
+				 ; result.GetActorBase().SetHeight(0.96)
+		; elseIf (acName == "Nihel")
+		         ; an = Game.GetFormFromFile(0x00000D70,"Nihel.esp") as Actorbase
+                 ; result = player.PlaceActorAtMe(an)	
+		; endIf		
+		; if (an != none)		   
 		   
 		   
-		   LockActor(result)
-		   Utility.Wait(2.0)
-		   result.RemoveAllItems()
-		   Utility.Wait(2.0)
-		   SetSchlong(result, schlong, sossize)
-           FloppySOS.toggleFloppiness(result,"BallsOnly",false)
-           Debug.SendAnimationEvent(result, "SOSBend0")		
+		   ; LockActor(result)
+		   ; Utility.Wait(2.0)
+		   ; result.RemoveAllItems()
+		   ; Utility.Wait(2.0)
+		   ; SetSchlong(result, schlong, sossize)
+           ; FloppySOS.toggleFloppiness(result,"BallsOnly",false)
+           ; Debug.SendAnimationEvent(result, "SOSBend0")		
 		
-		   if (height > 0)
-		      ;result.SetHei
-		   endif
-		endif		
-		return result
-EndFunction
+		   ; if (height > 0)
+		      ; ;result.SetHei
+		   ; endif
+		; endif		
+		; return result
+; EndFunction
 
 function AddClothing(actor npc, string clothName)
 		Form cloth

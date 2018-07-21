@@ -122,14 +122,15 @@ int function StartSex(Actor[] Positions, sslBaseAnimation[] Anims, Actor Victim 
 endFunction
 
 int AB_RestartStage = -1
-int function AB_StartSex(string abSceneName = "",int abSceneVariant = 0,Actor[] Positions,sslBaseAnimation[] Anims,Actor Victim = none,ObjectReference CenterOn = none)
-	 
+int function AB_StartSex(sslBaseAnimation[] Anims)
+	 Actor[] Positions = AB_GetActorList()
+	 actor Victim = Positions[0]
+	 ObjectReference  centerOn = AB_PrepareLocation()
 	; Claim a thread
 	sslThreadModel Thread = NewThread()
 	; Set AB
 	Thread.AB_Tag = 1;
-	Thread.AB_SceneName = abSceneName;
-	Thread.AB_SceneVariant = abSceneVariant;
+
 	if !Thread
 		Log("StartSex() - Failed to claim an available thread")
 		return -1
@@ -138,8 +139,9 @@ int function AB_StartSex(string abSceneName = "",int abSceneVariant = 0,Actor[] 
 		Log("StartSex() - Failed to add some actors to thread")
 		return -1
 	endIf
-	; Configure our thread with passed arguments
+	
 	Thread.SetAnimations(Anims)
+
 	Thread.CenterOnObject(CenterOn)
 	Thread.DisableBedUse(!true)
 	Thread.SetHook("")	
@@ -148,6 +150,65 @@ int function AB_StartSex(string abSceneName = "",int abSceneVariant = 0,Actor[] 
 	endIf
 	return -1
 endFunction
+
+
+function SetSchlong(Actor NPCActor, string schlong, int size)
+	;Form cock = sos.FindSchlongByName("VectorPlexus Regular")
+	;Form cock = sos.FindSchlongByName("VectorPlexus Muscular")
+	;Form cock = sos.FindSchlongByName("Smurf Average")  
+    if (size < 1)
+	   return
+    endif	
+    SOS_API sos = SOS_API.Get()
+	Form cock = sos.GetSchlong(NPCActor);
+	if (cock == none)
+	   cock = sos.FindSchlongByName(schlong)
+       if (cock == none)	   
+	         Debug.Notification("Cock not found: " + schlong)
+	   endif
+	endif
+    if (sos.GetSize(NPCActor) != size)
+	    sos.SetSize(NPCActor, size)		
+	endif
+	Game.UpdateHairColor()
+EndFunction
+
+
+
+Function AB_SetActorSchlong(actor an, string schlong, int sossize = 0)        
+		if (an != none)		   		   		   
+		   LockActor(an)
+		   Utility.Wait(2.0)
+		   an.RemoveAllItems()
+		   Utility.Wait(2.0)
+		   SetSchlong(an, schlong, sossize)
+           FloppySOS.toggleFloppiness(an,"BallsOnly",false)
+           Debug.SendAnimationEvent(an, "SOSBend0")		
+		
+		   ;if (height > 0)
+		      ;result.SetHei
+		   ;endif
+		endif		
+EndFunction
+
+function LockActor(actor ActorRef)
+	ActorRef.StopCombat()
+	; Disable movement
+	if ActorRef == PlayerRef
+		Game.DisablePlayerControls(false, false, false, false, false, false, true, false, 0)
+		Game.ForceThirdPerson()
+		; Game.SetPlayerAIDriven()
+	else
+		ActorRef.SetRestrained(true)
+		ActorRef.SetDontMove(true)
+	endIf
+	; Start DoNothing package
+	ActorUtil.AddPackageOverride(ActorRef, ActorLib.DoNothing, 100)
+	ActorRef.SetFactionRank(Config.AnimatingFaction, 1)
+	ActorRef.EvaluatePackage()
+endFunction
+
+
 
 ;/* QuickStart 
 * * This is a very easy and quick function to start a Sexlab animation without requiring more than a single line of code.
@@ -984,12 +1045,7 @@ int function FindAnimationByName(string FindName)
 	return AnimSlots.FindByName(FindName)
 endFunction
 
-;/* GetAnimationCount
-* * Get the number of registered animations.
-* * 
-* * @param: bool IgnoreDisabled {OPTIONAL true by default] - If TRUE, only count animations that are enabled in the SexLab MCM, otherwise count all.
-* * @return: int - The total number of animations.
-*/;
+
 int function GetAnimationCount(bool IgnoreDisabled = true)
 	return AnimSlots.GetCount(IgnoreDisabled)
 endFunction
@@ -3070,4 +3126,26 @@ state Enabled
 	endEvent
 endState
 
+;++++++++++++++++++++++++++++++++ AB SECTION ++++++++++++++++++++++++++++++++++++++++++++
 
+Actor[] function AB_GetActorList()
+  Actor player = Game.GetPlayer()
+  Actorbase Ulfbearbase = Game.GetFormFromFile(0x00013b9f, "Skyrim.esm") as Actorbase
+  Actor Ulfbear = Player.PlaceActorAtMe(Ulfbearbase)
+  AB_SetActorSchlong(Ulfbear, "VectorPlexus Muscular", 10)
+  Actor[] positions = SexLabUtil.MakeActorArray(player,Ulfbear)
+  Log("!!!!  positions length " + positions.Length)
+  return positions
+EndFunction
+
+ObjectReference function AB_PrepareLocation()
+  ObjectReference obstacle
+  obstacle = Game.GetForm(0x000bbb27) as ObjectReference
+  obstacle.Disable(false)
+  obstacle = Game.GetForm(0x0001a67c) as ObjectReference
+  obstacle.Disable(false)
+  obstacle = Game.GetForm(0x000d15b0) as ObjectReference
+  obstacle.Disable(false)
+  ObjectReference centerOn = Game.GetForm(0x000bbb49) as ObjectReference
+  return centerOn
+EndFunction

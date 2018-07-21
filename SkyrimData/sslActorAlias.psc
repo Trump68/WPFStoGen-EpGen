@@ -340,36 +340,6 @@ state Ready
 			; Pick an expression if needed			
 			;AB_RefreshEmotion()
 			EndIf
-		; IsSkilled = !IsCreature || sslActorStats.IsSkilled(ActorRef)
-		; if IsSkilled
-			; ; Always use players stats for NPCS if present, so players stats mean something more
-			; Actor SkilledActor = ActorRef
-			; if !IsPlayer && Thread.HasPlayer 
-				; SkilledActor = PlayerRef
-			; ; If a non-creature couple, base skills off partner
-			; elseIf Thread.ActorCount > 1 && !Thread.HasCreature
-				; SkilledActor = Thread.Positions[sslUtility.IndexTravel(Position, Thread.ActorCount)]
-			; endIf
-			; ; Get sex skills of partner/player
-			; Skills       = Stats.GetSkillLevels(SkilledActor)
-			; BestRelation = Thread.GetHighestPresentRelationshipRank(ActorRef)
-			; if IsVictim
-				; BaseEnjoyment = Utility.RandomFloat(BestRelation, ((Skills[Stats.kLewd]*1.1) as int)) as int
-			; elseIf IsAggressor
-				; float OwnLewd = Stats.GetSkillLevel(ActorRef, Stats.kLewd)
-				; BaseEnjoyment = Utility.RandomFloat(OwnLewd, ((Skills[Stats.kLewd]*1.3) as int) + (OwnLewd*1.7)) as int
-			; else
-				; BaseEnjoyment = Utility.RandomFloat(BestRelation, ((Skills[Stats.kLewd]*1.5) as int) + (BestRelation*1.5)) as int
-			; endIf
-			; if BaseEnjoyment < 0
-				; BaseEnjoyment = 0
-			; elseIf BaseEnjoyment > 25
-				; BaseEnjoyment = 25
-			; endIf
-		; else
-			; BaseEnjoyment = Utility.RandomInt(0, 10)
-		; endIf
-        
 		
         
 		if StartWait < 0.1
@@ -528,7 +498,6 @@ state Animating
 		endWhile
 		; Check if still among the living and able.
 		if !ActorRef.Is3DLoaded() || ActorRef.IsDisabled() || (ActorRef.IsDead() && ActorRef.GetActorValue("Health") < 1.0)
-			Log("Actor is out of cell, disabled, or has no health - Unable to continue animating")
 			Thread.EndAnimation(true)
 			return
 		endIf
@@ -581,7 +550,6 @@ state Animating
 
 	function RefreshActor()
 		UnregisterForUpdate()
-		Debug.Notification("RefreshActor !!!! ")
 		SyncThread()
 		StopAnimating(true)
 		SyncLocation(true)		
@@ -678,7 +646,6 @@ state Animating
 		ModEvent.PushInt(eid, Orgasms)
 		ModEvent.Send(eid)
 		TrackedEvent("Orgasm")
-		Log("Orgasms["+Orgasms+"] Enjoyment ["+Enjoyment+"] BaseEnjoyment["+BaseEnjoyment+"] FullEnjoyment["+FullEnjoyment+"]")
 		if Config.OrgasmEffects
 			; Shake camera for player
 			if IsPlayer && Game.GetCameraState() >= 8
@@ -712,7 +679,6 @@ state Animating
 	event ResetActor()
 		ClearEvents()
 		GoToState("Resetting")
-		Log("Resetting!")
 		; Clear TFC
 		; if IsPlayer
 			; MiscUtil.SetFreeCameraState(false)
@@ -775,7 +741,6 @@ endFunction
 ; ------------------------------------------------------- ;
 
 function StopAnimating(bool Quick = false, string ResetAnim = "IdleForceDefaultState")
-    Debug.Notification("STOP ANIMATION!!!!")
 	if !ActorRef
 		return
 	endIf

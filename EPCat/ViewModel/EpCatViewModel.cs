@@ -368,23 +368,38 @@ namespace EPCat
 
         internal void CopyJPGNameToClipboard()
         {
-            if (this.CurrentFolder != null)
+            try
             {
-                Clipboard.Clear();
-                Clipboard.SetText(this.CurrentFolder.GID.ToString()
-                    .Replace("{", string.Empty)
-                    .Replace("}", string.Empty)
-                    +".jpg"
-                    );
+                if (this.CurrentFolder != null)
+                {
+                    Clipboard.Clear();
+                    Clipboard.SetText(this.CurrentFolder.GID.ToString()
+                        .Replace("{", string.Empty)
+                        .Replace("}", string.Empty)
+                        + ".jpg"
+                        );
+                }
+            }
+            catch (Exception)
+            {
+
+               
             }
         }
         internal void CopyGidToClipboard()
         {
-            if (this.CurrentFolder != null)
+            try
             {
-                Clipboard.Clear();
-                Clipboard.SetText(this.CurrentFolder.GID.ToString());
+                if (this.CurrentFolder != null)
+                {
+                    Clipboard.Clear();
+                    Clipboard.SetText(this.CurrentFolder.GID.ToString());
+                }
             }
+            catch (Exception)
+            {
+            }
+
         }
 
 
@@ -571,11 +586,19 @@ namespace EPCat
                         string[] vals = last.File.Split('@');
                         newclipinfo.File = vals[0] + "@";
                     }
-                    string clpb = Clipboard.GetText();
-                    if (clpb.EndsWith(".png") || clpb.EndsWith(".jpg"))
+                    try
                     {
-                        newclipinfo.File = $"{newclipinfo.File}{clpb}";
+                        string clpb = Clipboard.GetText();
+                        if (clpb.EndsWith(".png") || clpb.EndsWith(".jpg"))
+                        {
+                            newclipinfo.File = $"{newclipinfo.File}{clpb}";
+                        }
                     }
+                    catch (Exception)
+                    {
+
+                    }
+                   
                 }
                 addNewComb(newclipinfo);
             }

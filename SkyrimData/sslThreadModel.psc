@@ -1475,3 +1475,9 @@ int property AB_RestartStage auto hidden
 
 function AB_SetParams()
 endFunction
+function AB_SetThread()
+EndFunction
+Actor[] function AB_GetActorList()
+EndFunction
+ObjectReference function AB_PrepareLocation()
+EndFunction

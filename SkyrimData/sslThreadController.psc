@@ -1036,6 +1036,30 @@ endEvent
 endFunction /;
 
 int AB_RestartTo = 1;
+function AB_SetSchlong(Actor NPCActor, string schlong, int size)
+	;Form cock = sos.FindSchlongByName("VectorPlexus Regular")
+	;Form cock = sos.FindSchlongByName("VectorPlexus Muscular")
+	;Form cock = sos.FindSchlongByName("Smurf Average")  
+    if (size < 1)
+	   return
+    endif	
+    SOS_API sos = SOS_API.Get()
+	Form cock = sos.GetSchlong(NPCActor);
+	if (cock == none)
+	   cock = sos.FindSchlongByName(schlong)
+       if (cock == none)	   
+	         Debug.Notification("Cock not found: " + schlong)
+	   endif
+	endif
+    if (sos.GetSize(NPCActor) != size)
+	    sos.SetSize(NPCActor, size)		
+	endif
+	Game.UpdateHairColor()
+EndFunction
+
+
+
+
 ;++++++++++++++++++++++++++++++++ AB SECTION ++++++++++++++++++++++++++++++++++++++++++++
 function AB_SetParams()
     If       (Stage == 0)
@@ -1240,7 +1264,7 @@ float[] result = new float[6]
         If     (position == 0)
         Elseif (position == 1)
            result[0]=-100
-		   result[5]=180
+           result[5]=180
         EndIf
     ElseIf (Stage == 2)
         If     (position == 0)
@@ -1269,3 +1293,4 @@ float[] result = new float[6]
     Endif
     return result
 endFunction
+

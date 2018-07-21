@@ -487,7 +487,13 @@ namespace EPCat.Model
             source.Add(@"    Endif");
             source.Add($@"    return result");
             source.Add(@"endFunction");
-
+            // Prepare location
+            source.AddRange(GenerateCell(CellEnumeration.WhiterunWarmaidens, 0));
+            // set Actors
+            List<ActorEnumeration> actorList = new List<ActorEnumeration>();
+            actorList.Add(ActorEnumeration.Player);
+            actorList.Add(ActorEnumeration.Ulfbear);
+            source.AddRange(GetActorList(actorList));
             File.WriteAllLines(sourceFile, source);
             reBuild();
         }
@@ -528,7 +534,76 @@ namespace EPCat.Model
             RebuildScript(scenes);
             return true;
         }
+        private static List<string> GenerateCell(CellEnumeration cell, int centerOnIdx = 0)
+        {
+            List<string> result = new List<string>();
+            List<string> obstacles = new List<string>();
+            string centerOn;
+            result.Add("ObjectReference function AB_PrepareLocation()");
+            result.Add("  ObjectReference obstacle");
+            if (cell == CellEnumeration.WhiterunWarmaidens)  obstacles = PrepareLocation_WhiterunWarmaidens(centerOnIdx, out centerOn);            
+            else centerOn = null;
+            foreach (var item in obstacles)
+            {
+                result.Add($"  obstacle = Game.GetForm({item}) as ObjectReference");
+                result.Add($"  obstacle.Disable(false)");
+            }
+            result.Add($"  ObjectReference centerOn = Game.GetForm({centerOn}) as ObjectReference");
+            result.Add($"  return centerOn");
+            result.Add($"EndFunction");
+            return result;
+        }
+        private static List<string> GetActorList(List<ActorEnumeration> actorList)
+        {
+            List<string> result = new List<string>();                                    
+            result.Add($"Actor[] function AB_GetActorList()");
+            List<SkyrimActor> actors = new List<SkyrimActor>();
+            var victim = ActorFactory.Get(actorList.First());
+            actors.Add(victim);            
+            result.AddRange(SkyrimActor.GetPlayer());
+            foreach (var actor in actorList)
+            {
+                if (actor != ActorEnumeration.Player)
+                {
+                    var ac = ActorFactory.Get(actor);
+                    if (ac != null)
+                    {
+                        actors.Add(ac);
+                        result.AddRange(ac.Game_PlaceAtMe(victim.Name));
+                    }
+                }
+            }
+            List<string> actornames = new List<string>();            
+            actornames.AddRange(actors.Select(x => x.Name).ToList());
+            
+            result.Add($@"  Actor[] positions = sexlabutil.makeactorarray({string.Join(",", actornames)})");
+            result.Add($"  return positions");
+            result.Add($"EndFunction");
+            return result;
+        }
+        private static List<string> PrepareLocation_WhiterunWarmaidens(int centerOnIdx, out string centerOn)
+        {
+            centerOn = null;
+            if      (centerOnIdx == 0) centerOn = "0x000bbb49";// Ковер в центре на 1 этаже
+            else if (centerOnIdx == 1) centerOn = "0x0001db55";// Кровать на 2 этаже
 
+
+            List<string> obstacles = new List<string>();
+            obstacles.Add("0x000bbb27"); //char
+            obstacles.Add("0x0001a67c"); //local woman
+            obstacles.Add("0x000d15b0"); //local Ulfbear
+            return obstacles;
+        }
+        private static void ClearCell()
+        {
+ //victim.MoveTo(LocRef)
+ //Cell kCell = player.GetParentCell()
+ //Int iIndex = kCell.GetNumRefs(62); kCharacter = 62
+ //While iIndex
+ //   iIndex -= 1
+ //   kCell.GetNthRef(iIndex, 62).Disable(false)
+ //EndWhile
+        }
         #endregion
 
         #region Code generation
@@ -639,4 +714,9 @@ namespace EPCat.Model
         #endregion
 
     }
+    public enum CellEnumeration
+    {
+        WhiterunWarmaidens //0001DB4E
+    }
+
 }
