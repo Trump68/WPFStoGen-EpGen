@@ -35,9 +35,9 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            //DoTempWork1();
-            //DoTempwork2(@"d:\!CATALOG\MOV\");
-            //return null;
+            DoTempWork1();
+            DoTempwork2(@"d:\!CATALOG\MOV\");
+            return null;
 
             Source = sourceList;
             CaspSource = capsList;
@@ -134,12 +134,13 @@ namespace EPCat.Model
             DoTempWork1_OneCountry("SNG", fromPath, toPath);
             DoTempWork1_OneCountry("HOL", fromPath, toPath);
             DoTempWork1_OneCountry("PRT", fromPath, toPath);
+            DoTempWork1_OneCountry("GRE", fromPath, toPath);
 
             DoTempWork1_OneCountry("$WEB", fromPath, toPath);
             DoTempWork1_OneCountry("$JAV", fromPath, toPath);
-            DoFOLDER(fromPath, toPath);
+            DoFOLDER(fromPath, toPath, null);
         }
-        private void DoFOLDER(string fromPath, string toDir)
+        private void DoFOLDER(string fromPath, string toDir, List<string> parentokens)
         {
             /* 
              * $01-Catalog
@@ -152,19 +153,74 @@ namespace EPCat.Model
              * $08-XRated
              * $09-Type
              * $10-Director
+             *
              * $01 JAV $02  $04  $
              * $01 JAV $04  $
-             * $01 WEB $03 WEBCLIP $08 P $07 $ 
-             * $01 HEN $03 COMIX $08 P $10 Kaos $ 
+             * $01 JAV $!!!JAV Movies!!!
+             * 
+             * * $01 WEB $03 WEBCLIP $08 P $07 $
+             *  
+             * $01 HEN $03 COMIX PRINTED $04 Top Model $Top Model 01
+             * $01 HEN $03 ARTIST COMIX $10 Georges Levis $Coco 
+             * $01 HEN $03 ARTIST BOARD $10 Zumi $Zumi Art             
+             * $01 HEN $03 ARTIST PINUP $10 Luis Royo $Luis Royo Art
+             * 
+             * $01 R3D $03 ARTIST 3D $10 Smerinka $!!!IMAGE SETS!!!
+             * 
+             * $01 MGZ $03 ERO MAGAZIN $04 Cancans de Paris $!!!IMAGE SETS!!!
              */
 
-            var dirs = Directory.GetDirectories(fromPath, "$*", SearchOption.TopDirectoryOnly).ToList();
+
+            List<string> dirs;
+            if (parentokens != null)
+            {
+                dirs = Directory.GetDirectories(fromPath, "*", SearchOption.TopDirectoryOnly).ToList();
+            }
+            else
+            {
+                dirs = Directory.GetDirectories(fromPath, "$*", SearchOption.TopDirectoryOnly).ToList();
+            }
+
             foreach (var dir in dirs)
             {
                 string toPath = toDir;
                 EpItem item = new EpItem(0);
                 string dn = Path.GetFileName(dir);
+                bool marked = dn.Contains("$");
                 List<string> tokens = dn.Split('$').ToList();
+                if (!marked)
+                {
+                    item.Name = dn;
+                    tokens = new List<string>();
+                }                
+                if (parentokens != null)
+                {
+                    tokens.AddRange(parentokens);
+                }
+
+                if (tokens.Last() == "!!!IMAGE SETS!!!")
+                {
+                    tokens.Remove(tokens.Last());
+                    DoFOLDER(dir, toDir, tokens);
+                    Directory.Delete(dir);
+                    continue;
+                }
+                else if (tokens.Last() == "!!!JAV Movies!!!")
+                {
+                    var javfiles = Directory.GetFiles(dir, "*", SearchOption.TopDirectoryOnly).ToList();
+                    foreach (var jf in javfiles)
+                    {
+                        string fn = Path.GetFileNameWithoutExtension(jf);
+                        string[] vals = fn.Split('-');
+                        string jserie = vals[0];
+                        string fullname = $"$01 JAV $04 {jserie.ToUpper()} ${fn.ToUpper()}";
+                        fullname = Path.Combine(dir, fullname);
+                        Directory.CreateDirectory(fullname);
+                        File.Move(jf, Path.Combine(fullname, Path.GetFileName(jf)));
+                    }
+                    DoFOLDER(dir, toDir, null);
+                    continue;
+                }
                 foreach (string tok in tokens)
                 {
                     if (string.IsNullOrEmpty(tok.Trim()))
@@ -216,38 +272,64 @@ namespace EPCat.Model
                         item.Name = tok.Trim();
                     }
                 }
-
-                if (!string.IsNullOrEmpty(item.Catalog))
-                    toPath = $@"{toPath}\{item.Catalog}";
-                if (item.Catalog == "WEB")
+                if (!string.IsNullOrEmpty(item.Name))
                 {
-                    if (!string.IsNullOrEmpty(item.Studio))
-                        toPath = $@"{toPath}\{item.Studio}";
-                }
-                else if (item.Catalog == "MOV")
-                {                    
+                    if (!string.IsNullOrEmpty(item.Catalog))
+                        toPath = $@"{toPath}\{item.Catalog}";
+
+                    if (item.Catalog == "WEB")
+                    {
+                        if (!string.IsNullOrEmpty(item.Studio))
+                            toPath = $@"{toPath}\{item.Studio}";
+                    }
+                    else if (item.Catalog == "MOV")
+                    {
                         toPath = $@"{toPath}\{item.Year}";
-                }
-                else
-                {
-                    if (!string.IsNullOrEmpty(item.Serie))
-                        toPath = $@"{toPath}\{item.Serie}";
-                }
-                 
+                    }
+                    else if (item.Catalog == "HEN" 
+                        || item.Catalog == "R3D"
+                        || item.Catalog == "MGZ")
+                    {
+                        if (!string.IsNullOrEmpty(item.Kind))
+                            toPath = $@"{toPath}\{item.Kind}";
+                        if (!string.IsNullOrEmpty(item.Director))
+                            toPath = $@"{toPath}\{item.Director}";
+                        if (!string.IsNullOrEmpty(item.Serie))
+                            toPath = $@"{toPath}\{item.Serie}";
+                        if (item.Year>0)
+                            toPath = $@"{toPath}\{item.Year}";
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(item.Serie))
+                            toPath = $@"{toPath}\{item.Serie}";
+                    }
 
-                if (!Directory.Exists(toPath))
-                     Directory.CreateDirectory(toPath);
 
-                string newname = Path.Combine(toPath, item.Name);
-                if (item.Catalog == "MOV")
-                {
-                    newname = Path.Combine(toPath, $"[{item.Country}] {item.Name}");
+                    if (!Directory.Exists(toPath))
+                        Directory.CreateDirectory(toPath);
+
+                    string newname = Path.Combine(toPath, item.Name);
+                    if (item.Catalog == "MOV")
+                    {
+                        newname = Path.Combine(toPath, $"[{item.Country}] {item.Name}");
+                    }
+
+                    if ((item.Catalog == "HEN" 
+                        || item.Catalog == "R3D"
+                        || item.Catalog == "MGZ"
+                        )
+                        && parentokens != null)
+                    {
+                        string eventsdir = Path.Combine(dir, "EVENTS");
+                        Directory.CreateDirectory(eventsdir);
+                        var files = Directory.GetFiles(dir, "*", SearchOption.TopDirectoryOnly).ToList();
+                        files.ForEach(x => File.Move(x, Path.Combine(eventsdir, Path.GetFileName(x))));
+                    }
+                    Directory.Move(dir, newname);
+                    List<string> lines = EpItem.SetToPassport(item);
+                    File.WriteAllLines(Path.Combine(newname, EpItem.p_PassportName), lines);
                 }
-                
-
-                Directory.Move(dir, newname);
-                List<string> lines = EpItem.SetToPassport(item);
-                File.WriteAllLines(Path.Combine(newname, EpItem.p_PassportName), lines);
             }
         }
         private void DoTempWork1_OneCountry(string mark,string fromPath, string toPath)

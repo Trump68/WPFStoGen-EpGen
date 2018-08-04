@@ -51467,6 +51467,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>5af18faa-3ba4-4ca8-ba00-ce2d1f6c1779</GID>
     <ItemPath>d:\!catalog\hen\! game cg\junkin\camera ni utsuru watashi wa dare\PASSPORT.TXT</ItemPath>
@@ -51478,6 +51479,315 @@ asdas444</CommentsAsString>
     <Month>0</Month>
     <Day>0</Day>
     <Kind>Game CG</Kind>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>1fff058c-8e25-415c-8be7-0e95a910d03c</GID>
+    <ItemPath>d:\!catalog\hen\! artists\hoobamon art\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Hoobamon Art</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>BOARD ARTIST</Kind>
+    <Director>Hoobamon</Director>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>683ff5e4-6926-4d7d-ba96-667ccd42ec40</GID>
+    <ItemPath>d:\!catalog\hen\! artists\incase art\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Incase Art</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>BOARD ARTIST</Kind>
+    <Director>Incase</Director>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>05741ff6-5695-4e61-9e0d-3e3a68339594</GID>
+    <ItemPath>d:\!catalog\hen\! artists\kairuhentai art\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>KairuHentai Art</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>BOARD ARTIST</Kind>
+    <Director>KairuHentai</Director>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>45575d18-c6f8-45d8-9478-1999f4292b7e</GID>
+    <ItemPath>d:\!catalog\hen\! artists\logancure art\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure Art</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>BOARD ARTIST</Kind>
+    <Director>LoganCure</Director>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>e58b5a2d-4692-47ce-b5f8-9e209877735a</GID>
+    <ItemPath>d:\!catalog\hen\! artists\personalami art\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Personalami Art</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>BOARD ARTIST</Kind>
+    <Director>Personalami</Director>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>b5b5061f-57f7-416b-990b-03df35b4389e</GID>
+    <ItemPath>d:\!catalog\hen\! artists\supersatanson art\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Supersatanson Art</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>BOARD ARTIST</Kind>
+    <Director>Supersatanson</Director>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>8833f839-1bcb-4f01-afcf-f8864899d7b8</GID>
+    <ItemPath>d:\!catalog\hen\! artists\tarakanovichi art\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Tarakanovichi Art</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>BOARD ARTIST</Kind>
+    <Director>Tarakanovich</Director>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>762d611e-ab78-4257-8b91-126e296d69c7</GID>
+    <ItemPath>d:\!catalog\hen\! artists\zumi art\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Art</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>BOARD ARTIST</Kind>
+    <Director>Zumi</Director>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>b4388d20-05a4-46a8-aa24-d1756b4f91c3</GID>
+    <ItemPath>d:\!catalog\hen\art by ayyasap\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Art of AyyaSAP</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>BOARD ARTIST</Kind>
+    <Director>AyyaSAP</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>c65f5dd4-76a8-4a3b-8275-69d988d08e07</GID>
+    <ItemPath>d:\!catalog\hen\art by metalhed13\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Art of Metalhed13</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>BOARD ARTIST</Kind>
+    <Director>Metalhed13</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>0206f149-c4db-4429-9319-41e6e919df20</GID>
+    <ItemPath>d:\!catalog\hen\art of sakura1981\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Art of Sakura1981</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>BOARD ARTIST</Kind>
+    <Director>Sakura1981</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>f45161b5-7691-40b5-93c6-41c4477d27e2</GID>
+    <ItemPath>d:\!catalog\hen\top model\top model 01\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Top Model 01</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>COMIX</Kind>
+    <Serie>Top Model</Serie>
+    <Type>Ero Comix</Type>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>148fb52a-cc53-4044-993e-873ee6899fab</GID>
+    <ItemPath>d:\!catalog\hen\top model\top model 02\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Top Model 02</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>COMIX</Kind>
+    <Serie>Top Model</Serie>
+    <Type>Ero Comix</Type>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>b049ccaa-4bb8-46b9-921e-00c6fbe708ba</GID>
+    <ItemPath>d:\!catalog\hen\top model\top model 11\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Top Model 11</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>COMIX</Kind>
+    <Serie>Top Model</Serie>
+    <Type>Ero Comix</Type>
     <Comments />
     <CommentsAsString />
     <Clips />

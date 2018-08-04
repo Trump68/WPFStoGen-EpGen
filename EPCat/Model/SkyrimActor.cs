@@ -9,7 +9,8 @@ namespace EPCat.Model
     public enum ActorEnumeration
     {
         Player,
-        Ulfbear //0x00013b9f,"Skyrim.esm"
+        Ulfbear, //0x00013b9f,"Skyrim.esm"
+        Belentor, //0x00013ba1,"Skyrim.esm"
     }
 
     public class SkyrimActor
@@ -130,6 +131,7 @@ namespace EPCat.Model
         {
             if (actorbase == ActorEnumeration.Player) return Player;
             else if (actorbase == ActorEnumeration.Ulfbear) return Ulfbear;
+            else if (actorbase == ActorEnumeration.Belentor) return Belentor;
             return null;
         }
         static SkyrimActor _Ulfbear;
@@ -139,9 +141,30 @@ namespace EPCat.Model
             {
                 if (_Ulfbear == null)
                 {
-                    _Ulfbear = new SkyrimActor(ActorEnumeration.Ulfbear, "0x00013b9f", "Skyrim.esm","Ulfbear", "VectorPlexus Muscular",10);
+                    _Ulfbear = new SkyrimActor(
+                        ActorEnumeration.Ulfbear,
+                        "0x00013b9f",
+                        "Skyrim.esm",
+                        "Ulfbear",
+                        "VectorPlexus Regular", 13);
                 }
                 return _Ulfbear;
+            }
+        }
+        static SkyrimActor _Belentor;
+        public static SkyrimActor Belentor
+        {
+            get
+            {
+                if (_Belentor == null)
+                {
+                    _Belentor = new SkyrimActor(ActorEnumeration.Belentor,
+                        "0x00013ba1",
+                        "Skyrim.esm",
+                        "Belentor",
+                        "Smurf Average", 14);
+                }
+                return _Belentor;
             }
         }
         static SkyrimActor _Player;

@@ -1,0 +1,3163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfEpItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <EpItem>
+    <CapsPassportData />
+    <GID>0046d6ac-9f4f-4966-b6eb-c7cbf77604c4</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\3dzen\intolerance\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Intolerance</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>3DZen</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>b555f03a-2a43-40cf-a99f-9e2200a8c10d</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\3dzen\mave &amp; brianna - a barbarian’s reward\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Mave &amp; Brianna - A Barbarian’s Reward</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>3DZen</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>d281013f-cd9e-420d-b877-0f418a010209</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\3dzen\your wish is her desire 2 ashley's turn\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Your Wish Is Her Desire 2 Ashley's Turn</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>3DZen</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>15138f39-519e-40be-84dc-3010970f5ddc</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\amusteven\cold assassin\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Cold Assassin</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Amusteven</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>27f72e47-7a66-4755-96c6-bebf5272d1de</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\amusteven\mad alyss 2 - captured\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Mad Alyss 2 - Captured</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Amusteven</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>6275d053-c498-4d27-8f9b-1d1f8a673ff4</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\amusteven\mad alyss 3 - twin brothers\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Mad Alyss 3 - Twin Brothers</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Amusteven</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>76e24cbb-ac58-4dd6-b025-1b00c6980a77</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\amusteven\mad alyss 4\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Mad Alyss 4</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Amusteven</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>c23fc60b-2a88-4169-a427-1a57cabbe787</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\amusteven\mad alyss 5 - dark passage\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Mad Alyss 5 - Dark Passage</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Amusteven</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>269b52d4-2575-4f71-8478-e9d7d2d386da</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\amusteven\mad alyss 6 - dream's end\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Mad Alyss 6 - Dream's End</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Amusteven</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>9aaaf707-af39-48e5-827f-342f17a081e5</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\amusteven\night at the studio\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Night at the Studio</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Amusteven</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>ce0a02e6-925a-4064-9826-1409a2d74503</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\amusteven\sudden invasion\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sudden Invasion</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Amusteven</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>25a7d0aa-2772-4a5a-86ca-56c362817312</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\amusteven\tanya &amp; the succubus\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Tanya &amp; The Succubus</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Amusteven</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>4be3be8e-8358-4842-b004-b36e77d58746</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\amusteven\tanya &amp; the succubus 2\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Tanya &amp; The Succubus 2</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Amusteven</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>acb80434-2e7f-419e-9ffa-6d3b74d07e02</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\amusteven\tanya &amp; the succubus 3\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Tanya &amp; The Succubus 3</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Amusteven</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>a64d85e7-dee2-4c9b-b791-547a81c4bb68</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\amusteven\velna\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Velna</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Amusteven</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>887ed4eb-6bee-4b8e-a569-440f8221ad94</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\25th june bus\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>25th June Bus</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>b715c469-0ab2-4216-9532-7e0d9b3eb927</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\an eye opening father's day\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>An Eye Opening Father's Day</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>d328da17-dd2e-4b16-a3d8-0a396e02f721</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\army\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Army</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>0d296ff7-0042-4241-aa6b-77ef31b72f82</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\catherine\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Catherine</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>2b41d534-72bf-46c4-96b3-e59acb3969c0</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\catherine dreams\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Catherine Dreams</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>8fa5c662-766a-45d2-9d0d-6e6de04425c9</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\catherine dreams 1\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Catherine Dreams 1</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>c0a659e5-f559-46d2-a4ea-ca138bcab3b3</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\catherine dreams 2\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Catherine Dreams 2</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>74b8b61d-c73e-4189-8cf7-364d68c0bded</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\catherine dreams_rus\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Catherine Dreams_Rus</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>0130746d-0fa2-4334-a3fb-13e0c345c7a7</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\christian knockers rus\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Christian Knockers rus</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>6efba22f-3793-4fdd-a309-8b68d0a9a4b1</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\co-worker's daughter\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Co-worker's daughter</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>12aa5417-7493-4ddf-9dd3-48d025c74cdc</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\cowgirl\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Cowgirl</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>e0d152d8-4335-46ed-b4c3-da020552a182</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\darklord art\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>DarkLord Art</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>fa628ea1-bdd2-4d1c-93fa-7941b3b6efd9</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\elise\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Elise</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>6198dde5-b92f-4561-9c71-74c601c028e3</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\elise dreams\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Elise Dreams</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>d40b4fce-6c36-4087-8bae-bcdac4bf2472</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\evie's internship at daddy's office\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Evie's Internship At Daddy's Office</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>eaf1d63c-6c0a-46c6-9dfe-daf8c2829afc</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\exclusive interview rus\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Exclusive Interview rus</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>5e39bf36-3cc3-4a2e-b8dd-50b0188bb9b9</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\gym slut\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Gym Slut</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>c6b47e52-fea5-43aa-8a5a-26a19b9c2425</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\halloween surpise\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Halloween Surpise</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>f46db03e-f120-4bb1-bfd6-029986823d34</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\happy holidays\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Happy Holidays</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>e8818aa7-c426-45f3-8aae-9db42a9fae09</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\happy thankgiving\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Happy Thankgiving</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>86783d0b-3047-4f16-9d2e-064009f604d9</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\heroe's exclusive interview\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Heroe's Exclusive Interview</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>fd165f9b-f9d9-48fd-8bf1-00bc7c99276f</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\hot daughter elsa\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Hot Daughter Elsa</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>c9b7d0b2-d17f-4311-bf8d-3bd028f658d4</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\hot daughters\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Hot Daughters</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>1bc80b25-5267-4c86-be08-d680535df564</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\hot daughters_rus\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Hot Daughters_Rus</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>d8c7069b-92c4-462c-91f2-52ba71c8c743</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\lollipop\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Lollipop</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>d3c61529-1471-46c5-a138-0495d2f270e5</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\maggie\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Maggie</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>e9c79448-ca36-4789-9fc1-82e0ca587bab</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\maggie and friends\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Maggie and Friends</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>87bebef5-1133-4ad5-9625-28aabc89e566</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\momma's day\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Momma's Day</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>ae3b5a2b-53b9-4343-a314-f17fc301d289</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\other\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Other</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>f321e4e6-2f9c-42bd-b438-f7cc16eef4f6</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\slut slave\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Slut Slave</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>a37f3c59-a697-4e02-833a-8d15f270771d</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\song  in new year's eve\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Song  in New Year's Eve</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>3b50ee39-1f5f-4bef-b442-b781d3052745</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\the night club\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>The Night Club</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>7668877f-70fd-4de2-862e-f3fbad4ed16a</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\valentine's day 2012\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Valentine's Day 2012</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>779482b7-2715-4f97-9059-16edaef67e52</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\valentine's day 2015\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Valentine's Day 2015</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>e6cb718e-db4e-4020-a7a1-e5839b51757b</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\darklord\welcome to summer\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Welcome to Summer</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>DarkLord</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>091c92b9-84a9-4232-be99-7b93b7da60e5</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\!caption\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>!Caption</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>990d7a87-79a1-4b23-b1d4-c11747593f3c</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\aliens_vs_ladies\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Aliens_VS_Ladies</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>e605aa03-1e24-4eb1-98bf-ac7be7448775</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\a_littlebitofeverything\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>A_LittleBitOfEverything</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>e93c6ecd-938e-452e-b427-3239c33ef9d6</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\bd_set\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>BD_Set</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>4e2fda4b-b7c8-4ad1-82a2-aec5170133e0</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\bonusimages\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>BonusImages</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>0fcb09a9-f31d-43a4-9091-0b40db53bb48</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\camelshow\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>CamelShow</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>cf396ae7-5980-4148-9996-53bba7db3680</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\cassidy\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Cassidy</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>ac38e21c-b507-47b9-b621-6ada7d827acf</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\cassidyorigin\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>CassidyOrigin</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>3b694946-f438-4c5c-baa0-d4040649cc18</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\dg_commish\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>DG_Commish</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>d0fd353e-1eb0-474a-a3a7-2d4fabdbc48c</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\dizzyanimpack1\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>DizzyAnimPack1</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>0048b799-9318-4209-a05c-5bd738896420</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\dizzyskyrim\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>DizzySkyrim</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>553dd1a9-7cc4-408f-b792-12600b612c19</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\dizzys_aprilmisc\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Dizzys_AprilMisc</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>4467c75a-08a0-4db1-a2db-f845718d0819</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\dnn_1sted\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>DNN_1stED</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>242422ac-6a6e-4b21-8744-bb381fabbed0</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\dogdays\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>DogDays</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>6346f3de-a780-4e61-b3ef-17b6cb09c2d5</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\episode_03\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Episode_03</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>14866dbc-a8da-4875-8d5f-a95a7deb153e</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\episode_04\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Episode_04</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>58c36e76-f152-4d39-8eb2-15871403f201</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\gwen\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Gwen</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>9141f7c1-d354-4bf2-bf70-d57132787d99</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\gwenset\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>GwenSet</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>f3623070-a8a4-4791-89b6-422d26bc90b0</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\gwen_wolf\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Gwen_Wolf</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>5d5a47a9-2938-407c-bf96-35cf7ad9ac0f</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\halloween set\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Halloween set</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>b180a784-4c84-4525-811a-2d9242fe1ed4</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\halloween2\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Halloween2</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>ee37caea-e012-4cb9-81f8-e11664b57e26</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\juli\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Juli</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>792869e5-fc44-47f2-b324-c48a7c142b42</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\juli&amp;flyingcreature\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Juli&amp;FlyingCreature</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>0fbdf66d-5ae6-40b1-ba5b-1f5f92d775ff</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\juli&amp;spacebug\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Juli&amp;SpaceBug</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>919f2416-5dfe-4123-9cda-9d0d7ebc5fba</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\juli&amp;spacewarm\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Juli&amp;SpaceWarm</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>3e3b1831-1a99-4431-bee0-617307d28e21</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\juli&amp;yellowcreature\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Juli&amp;YellowCreature</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>c6ffa5dd-3b32-446f-8bbf-56a5a486533f</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\julia\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>JuliA</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>71c3b3b1-1ec8-4fd6-8014-dc589b7de20d</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\juli_backstory\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Juli_BackStory</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>8115eb98-ceaf-4d66-994c-701398440c2e</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\newwombraider\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>NewWombRaider</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>896e3dbf-c1f0-4147-a8dc-2ffbad8b5a6a</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sasha\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sasha</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>46b00a5f-ea99-445c-9798-cbb8a5cceccb</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sasha&amp;alien\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sasha&amp;Alien</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>765c0130-74cb-4366-a73a-134d3a63dcdb</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sasha&amp;juli_inspace\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sasha&amp;Juli_inSpace</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>c273cd7b-b45e-4615-ad3f-dad22349f5ce</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sasha&amp;twofriends\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sasha&amp;TwoFriends</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>6e58dfed-bf35-4d11-b9d0-4f45c11087e6</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sasha&amp;violetcreature\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sasha&amp;VioletCreature</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>337b58da-e146-4c37-87a3-4ef7d4e911fb</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sasha_blob\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sasha_Blob</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>3f0218e8-46cc-4c30-902c-87b0885cf069</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\secrets of the pharaon\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Secrets of the Pharaon</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>679ed0a7-3e27-412f-89a4-dd42493e52ba</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sharedcomissions\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>SharedComissions</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>85de32bc-29cb-4e6b-ab59-3f2e7700fac6</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\stockingstufer\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>StockingStufer</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>95c5e6ed-319a-478e-9f66-79e1db09e0df</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\summermusings\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>SummerMusings</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>2ea18009-84bc-464d-acd1-6ce1b00e630c</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\superfan set acf\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Superfan Set ACF</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>66e9111a-75f5-49ca-9637-227487c8f1b7</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\superfan_set_01\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>SuperFan_Set_01</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>be10aa56-ef32-4f47-8cf1-fe7fc8d8aca4</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sylvia\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sylvia</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>3da1941e-d0e1-4543-b272-62d0900cdb9c</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sylvia&amp;alien\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sylvia&amp;Alien</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>d50ea588-c3e2-4913-8328-a3ccb73ddb86</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sylvia&amp;mrtaylor\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sylvia&amp;MrTaylor</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>d52a3da4-9d80-4baa-880e-fe512a652e3a</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sylvia&amp;spacecreature\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sylvia&amp;SpaceCreature</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>4ee022ea-d5bb-46b0-a310-22796494fb24</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sylvia&amp;theplant\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sylvia&amp;ThePlant</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>44142ee9-965f-480d-a01d-1d95d19751fc</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sylviaa\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>SylviaA</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>c0e98f34-35dd-4729-9f43-dbc411ac655d</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sylviagif\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>SylviaGIF</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>27c6cd70-c05d-4ed3-abfb-9abc7049c5ab</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sylvia_episode_02\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sylvia_Episode_02</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>089f29ab-1798-47a4-a52b-b1d99e548999</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sylvia_tentatwo\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sylvia_Tentatwo</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>b3ee6e8a-ad03-4b7f-97d9-92f8c088204e</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\sylvia_xenosonly\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Sylvia_XenosOnly</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>33065fee-55b3-477d-b105-6e4d6cd38d01</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\toqa\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>ToQA</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>f143a485-6e03-4740-9445-63dfbffbce68</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\trio\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Trio</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>b9b2b1da-2deb-4737-b97e-aaf4f40615cd</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\update_12_29_14\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Update_12_29_14</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>c9ffcb4f-d222-4a4d-887d-d0470119bf1c</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\dizzy`srenders\update_12_30_14\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Update_12_30_14</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Dizzy`sRenders</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>51742845-13ce-4930-857b-99f94630fb68</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\eclesi4stik\triss's summer\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Triss's Summer</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Eclesi4stik</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>2412fa1f-bd12-41fa-b119-7689b947a38f</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\hibbli3d\knight elayne game of mischief\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Knight Elayne Game Of Mischief</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Hibbli3D</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>f57f331f-339e-490c-a35e-7d4ae018c1fa</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\kadwyn\secretary promotion\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Secretary Promotion</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Kadwyn</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>cea657d9-7653-428e-9a50-da4a9287cdf9</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\lord-kvento\naura the strange place\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Naura The Strange Place</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Lord-Kvento</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>10d6f6d0-3f22-4ff4-8144-a4c347491799</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\lord-kvento\world of orgasm golems awakening\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>World Of Orgasm Golems Awakening</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Lord-Kvento</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>0490eed1-0fbe-41fb-98de-cbc857c0120c</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\maxsmeagol\the cloud temple\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>The Cloud Temple</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>MaxSmeagol</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>971fd881-48aa-42e4-bb79-f95536dc427d</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\miki3dx\all i want for christmas is you\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>All I Want For Christmas is You</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Miki3DX</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>043934b5-1871-4afb-ba1f-726d05077d19</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\miki3dx\bimbo training\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Bimbo Training</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Miki3DX</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>3ad553f5-632a-4229-b89f-daa44984cfcf</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\miki3dx\introducing janine\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Introducing Janine</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Miki3DX</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>a3e3b51e-ca4d-4b0a-a23e-1552d8de1b69</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\naama\alchemist's apprentice 1\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Alchemist's Apprentice 1</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Naama</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>df4865d2-2f26-4ed8-8219-7484cd9cd442</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\naama\alchemist's apprentice 2\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Alchemist's Apprentice 2</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Naama</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>1e876a39-3dab-4cb6-a3e1-ccee5a1069ee</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\naama\artifact\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Artifact</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Naama</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>315106b7-bf2c-4ad3-8d96-0f4173028ade</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\naama\lucky bandits\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Lucky Bandits</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Naama</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>e212ecb1-995c-4b6b-b691-b9a8440c366c</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\naama\lucky bandits 3\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Lucky Bandits 3</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Naama</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>35c7363e-9514-44fe-922e-e36965506ca6</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\naama\lucky bandits ep.1\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Lucky Bandits Ep.1</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Naama</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>a0b4aedf-15a2-436a-a69e-ca972dab6149</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\naama\lucky bandits ep.2\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Lucky Bandits Ep.2</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Naama</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>9c42dda0-e104-4c85-baa8-2eacebcabfcf</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\naama\lucky bandits ep.2 - double pleasure\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Lucky Bandits Ep.2 - Double pleasure</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Naama</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>f7314db2-4bc8-4be2-bf7c-f9c784779969</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\naama\lucky bandits ep.3\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Lucky Bandits Ep.3</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Naama</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>30d50f4e-a171-46f0-b511-bd158a984261</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\naama\lucky bandits ep.4\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Lucky Bandits Ep.4</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Naama</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>f2a4caf1-6296-4cea-bbf6-722bf9752ef0</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\namijr\gargoyle dare\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Gargoyle Dare</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Namijr</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>6f7b7812-a527-4abf-9938-9df81e07a059</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\nerddesig\tales from hekaria - schwestern\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Tales from Hekaria - Schwestern</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Nerddesig</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>deab748d-5ad4-4236-86d8-47a7a5d92ad2</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\nlt media\family vacation\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Family Vacation</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>NLT Media</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>b92e0432-9aa7-4971-a732-bd238bb99931</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\nlt media\for my son\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>For My Son</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>NLT Media</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>be377e34-dae3-4704-b3a0-380192eb503e</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\nlt media\mother's sleepover\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Mother's Sleepover</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>NLT Media</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>63d22d90-dcad-4fa4-8bc3-8f32167367c8</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\nlt media\mothers gangbang\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Mothers Gangbang</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>NLT Media</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>da1285b1-51a0-41c6-ae51-c66673811fd9</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\nlt media\the family hike\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>The Family Hike</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>NLT Media</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>377b22e5-5e8f-4c5c-9d24-438962021350</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\nonsane3dx\futa yoga mini set\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Futa Yoga mini Set</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Nonsane3DX</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>f90b1ebb-dbea-44d1-8329-1f668c060d3e</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\pixelme\longstocking\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LONGSTOCKING</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Pixelme</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>66c75cc9-d0b3-4b45-80b8-0bfed5ad8d6e</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\pixelme\mary poppins\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Mary Poppins</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Pixelme</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>5831f692-030d-4e2d-b95f-a95f0fd9b8da</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\serumsfm\louis and egyptian ladies\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Louis and Egyptian Ladies</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>SerumSFM</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>4e06871e-b086-4c27-ac19-85373bc58a9e</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\sezqya\art by sezqya\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Art by Sezqya</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Sezqya</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>b804bc17-0591-4b25-9c0c-196fbf1ab316</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\smerinka\erected city\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Erected City</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Smerinka</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>846f6abc-d2fd-4739-aeb5-6f82721b3abc</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\smerinka\gifs\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Gifs</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Smerinka</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>33b6f34d-4aba-4864-ad3e-ca46112457ed</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\smerinka\no limits - 2\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>No Limits - 2</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Smerinka</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>0d2de4bc-c876-46a1-9e87-d359fc9ff3dd</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\smerinka\no limits - 3\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>No Limits - 3</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Smerinka</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>5b3e8f37-a581-40c6-af38-7c57c0e85301</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\smerinka\other\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Other</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Smerinka</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>302409ee-4e43-457c-8b50-42243cf72ad6</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\smerinka\roman holiday - 1\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Roman Holiday - 1</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Smerinka</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>2e432f48-a0fd-4a01-8236-ebda4e336dd1</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\smerinka\roman holiday - 2\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Roman Holiday - 2</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Smerinka</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>8aed9981-271f-439b-b9fc-0910bc3d1d7c</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\smerinka\the big snatch\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>The Big Snatch</Name>
+    <Catalog>HEN</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Smerinka</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>5d17683f-9a12-48d5-be96-5a569ec5e5a7</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\squarepeg3d\after the bell - fox season\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>After the Bell - Fox Season</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>SquarePeg3D</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>74875eb0-2787-4c5c-bcc1-f0156698096b</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\squarepeg3d\the f.u.t.a. - bunny markes vs queen cobra\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>The F.U.T.A. - Bunny Markes vs Queen Cobra</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>SquarePeg3D</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>9591b44f-fbe8-4625-b77d-ef91ea863698</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\squarepeg3d\the new prison bitch\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>The New Prison Bitch</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>SquarePeg3D</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>58469713-895e-4b54-be15-34b4aa2d4f4d</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\squarepeg3d\unconventional\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Unconventional</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>SquarePeg3D</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>bb066c5e-c9f8-4aea-b2f6-14e5dc0b5ce8</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\supro\workout 2\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Workout 2</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Supro</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>06cb3a79-5659-4a1d-a726-890e05dc196b</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\thedude3dx\lust unleashed - a girl can dream\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Lust Unleashed - A Girl Can Dream</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>TheDude3DX</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>6f77f6b5-7930-4962-ae3c-c895ea5fe456</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\thedude3dx\lust unleashed - glam gone wild\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Lust Unleashed - Glam Gone Wild</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>TheDude3DX</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>93912b06-cabf-4565-8eac-7db49a68499e</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\x3z\elven desires - undercover part 3\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Elven Desires - Undercover Part 3</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>X3Z</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>a99a579d-3eeb-4530-8208-2cde32e80eda</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\x3z\elven desires 6 - undercover part 2\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Elven Desires 6 - Undercover Part 2</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>X3Z</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>e1a60162-857b-4683-a92b-d0ead89d5a4d</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\x3z\iris hunt the monsters lair 2\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Iris Hunt The Monsters Lair 2</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>X3Z</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>ed574366-db66-4198-b67a-e51854bd968a</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\x3z\lost innocence 3\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Lost Innocence 3</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>X3Z</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>371167fa-97ea-4a0d-bcd6-4509e3db7877</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\y3df\strangers in a strangeland\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Strangers in a StrangeLand</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>Y3DF</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>175c406e-bdb7-470f-aed5-5e107e6b87c6</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\zz2tommy\american summer\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>American Summer</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>ZZ2Tommy</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>c1689784-4203-4a46-af19-a6d937533db6</GID>
+    <ItemPath>d:\!catalog\r3d\artist 3d\zz2tommy\hunting for fun\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Hunting for Fun</Name>
+    <Catalog>R3D</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ARTIST 3D</Kind>
+    <Director>ZZ2Tommy</Director>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+</ArrayOfEpItem>

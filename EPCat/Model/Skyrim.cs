@@ -10,6 +10,37 @@ using System.Windows;
 
 namespace EPCat.Model
 {
+    public static class Pose
+    {
+        public static class Leito
+        {
+            public static string SixNine_M01              = "4ba48803-5ed6-411b-b371-249c5e27a461";
+            public static string SixNine_M02              = "4d6f3ea2-8583-495d-b2cd-fa9099ab39cd";
+            public static string SixNine_M03              = "33ec28cf-add3-42a8-bcaf-495b29d825c2";
+            public static string SixNine_M04              = "dc6d9c94-b6f2-4cfd-b68e-c00891363e63";
+            public static string SixNine_M05              = "9a8d3d91-bc47-480c-b1e2-233c875fd78a";
+            public static string AnalDoggy2_M01           = "2d82a3f4-a4d4-48ba-9dcd-e73cd70ba04c";
+            public static string SixNine_F01_v01          = "9af61c9a-936a-4b5a-a9fa-8fbd5cd16f55";
+            public static string SixNine_F01_v02          = "3d3d4161-0bbf-44d3-bab0-2c57686b2aa9";
+            public static string SixNine_F01_v03          = "e7f77544-57b5-4cf6-9653-1f42ad3cfffd";
+            public static string SixNine_F01_v04          = "5543ebca-e4d3-42e7-bea1-109f11b2aea5";
+            public static string SixNine_F01_v05          = "7bcd82f0-9ee5-4d5f-bded-68ffb335fc5f";
+            public static string SixNine_F02_v01          = "e44eadc6-e0b2-40e5-9dee-05ca8f1c6c60";
+            public static string SixNine_F03_v01          = "f7236838-96e9-4f40-ae24-b9df56f43ffd";
+            public static string SixNine_F03_v02          = "241d5f1b-d839-49c4-8da5-5b1e319bc786";
+            public static string SixNine_F04_v01          = "e656a5f1-6fe9-42b5-af24-8c95b3649c95";
+            public static string SixNine_F05_v01          = "9e63d179-35b4-4804-b7be-841526c8c0c7";
+        }
+        public static class PinupPoser
+        {
+            public static string M01_PinupsMStand1 = "2932ceaf-10b5-4a56-a4de-3f115aa8e863";
+        }
+        public static class MKPoser
+        {
+            public static string F01_MK1P03_a = "ea939d85-5e08-4226-ae83-eb41f9823282";
+        }
+
+    }
     public static partial class Skyrim
     {
         public static ObservableCollection<EpItem> Items;
@@ -51,39 +82,41 @@ namespace EPCat.Model
             else if (sgid == "f7e0e8b5-2518-47ed-becc-50d006e5ac5d") Movie_Leito_AnalDoggy2();
 
             // Leito_Anal_Missionary_A2_S1
-            else if (sgid == "50019b6a-fcd7-4ef7-981f-5c444a206fa3") SceneGenerate(true, 1, new string[] { "3fad1d78-c644-4ff6-970d-30eabe10550a", "7b843aea-2251-4fbc-b0d5-76c666e7a842" });
+            else if (sgid == "50019b6a-fcd7-4ef7-981f-5c444a206fa3") LeitoAnimations_Leito_Anal_Missionary_stage_01(true, 1);// SceneGenerate(true, 1, new string[] { "3fad1d78-c644-4ff6-970d-30eabe10550a", "7b843aea-2251-4fbc-b0d5-76c666e7a842" });
             // Leito_Anal_Missionary_A2_S2
-            else if (sgid == "5b04d121-3683-4c84-8836-a7cc1cf62d66") SceneGenerate(true, 1, new string[] { "2b7229f7-6dc8-4204-80dd-49ea6bbf9256", "9f7e918c-6418-44b8-ae51-010e6c96562a" });
+            else if (sgid == "5b04d121-3683-4c84-8836-a7cc1cf62d66") LeitoAnimations_Leito_Anal_Missionary_stage_02(true, 1);//SceneGenerate(true, 1, new string[] { "2b7229f7-6dc8-4204-80dd-49ea6bbf9256", "9f7e918c-6418-44b8-ae51-010e6c96562a" });
             // Leito_Anal_Missionary_A2_S3
-            else if (sgid == "103eac4a-38a5-4a4a-89a3-b44cb0a7e986") SceneGenerate(true, 1, new string[] { "b58e6b82-20a5-44c8-b1de-9da3014ba26a", "cb17f2f2-d0ae-4e42-9a2f-c606228f9c33" });
+            else if (sgid == "103eac4a-38a5-4a4a-89a3-b44cb0a7e986") LeitoAnimations_Leito_Anal_Missionary_stage_03(true, 1); //SceneGenerate(true, 1, new string[] { "b58e6b82-20a5-44c8-b1de-9da3014ba26a", "cb17f2f2-d0ae-4e42-9a2f-c606228f9c33" });
             // Leito_Anal_Missionary_A2_S4
-            else if (sgid == "3d425661-e0cb-4db8-98ca-095b2786a363") SceneGenerate(true, 1, new string[] { "c178dbb3-6705-4c2e-bc91-397431cf3715", "f4414fcc-f348-4cb4-9620-c6166a3cafdf" });
+            else if (sgid == "3d425661-e0cb-4db8-98ca-095b2786a363") LeitoAnimations_Leito_Anal_Missionary_stage_04(true, 1);  //SceneGenerate(true, 1, new string[] { "c178dbb3-6705-4c2e-bc91-397431cf3715", "f4414fcc-f348-4cb4-9620-c6166a3cafdf" });
             // Leito_Anal_Missionary_A2_S5
-            else if (sgid == "ab2bed66-09d0-447b-961b-8e2dea3424e0") SceneGenerate(true, 1, new string[] { "75536ca4-6c8d-4617-9b52-03af7f5b7f46", "bab68dd5-9e0d-4578-8a4c-3776a5698d5e" });
+            else if (sgid == "ab2bed66-09d0-447b-961b-8e2dea3424e0") LeitoAnimations_Leito_Anal_Missionary_stage_05(true, 1); //SceneGenerate(true, 1, new string[] { "75536ca4-6c8d-4617-9b52-03af7f5b7f46", "bab68dd5-9e0d-4578-8a4c-3776a5698d5e" });
             // Leito_Anal_Missionary Movie
             else if (sgid == "48abaaa3-4a3c-4c28-8b21-7b29e8720c15") MoviewGenerate(new List<List<string>>() { new List<string>() { "3fad1d78-c644-4ff6-970d-30eabe10550a", "7b843aea-2251-4fbc-b0d5-76c666e7a842" }, new List<string>() { "2b7229f7-6dc8-4204-80dd-49ea6bbf9256", "9f7e918c-6418-44b8-ae51-010e6c96562a" }, new List<string>() { "b58e6b82-20a5-44c8-b1de-9da3014ba26a", "cb17f2f2-d0ae-4e42-9a2f-c606228f9c33" }, new List<string>() { "c178dbb3-6705-4c2e-bc91-397431cf3715", "f4414fcc-f348-4cb4-9620-c6166a3cafdf" }, new List<string>() { "75536ca4-6c8d-4617-9b52-03af7f5b7f46", "bab68dd5-9e0d-4578-8a4c-3776a5698d5e" } });
+            
             // Leito_Anal_Missionary_2_A2_S1
-            else if (sgid == "8e258ab7-b63e-40f4-9a9d-1b94f1147a5c") SceneGenerate(true, 1, new string[] { "55115332-2981-41f9-bd90-25fedeffc099", "57abbbdf-88f6-4bd1-ba92-887e5c31a034" });
+            else if (sgid == "8e258ab7-b63e-40f4-9a9d-1b94f1147a5c") LeitoAnimations_Leito_Anal_Missionary2_stage_01(true, 1);//SceneGenerate(true, 1, new string[] { "55115332-2981-41f9-bd90-25fedeffc099", "57abbbdf-88f6-4bd1-ba92-887e5c31a034" });
             // Leito_Anal_Missionary_2_A2_S2
-            else if (sgid == "cfab52be-b06f-4832-81e9-fda132e3460e") SceneGenerate(true, 1, new string[] { "c10f53be-3654-43f0-b5a8-17ee7a5bb09c", "08c9dff4-930a-4426-ae76-c4711bb3df05" });
+            else if (sgid == "cfab52be-b06f-4832-81e9-fda132e3460e") LeitoAnimations_Leito_Anal_Missionary2_stage_02(true, 1);//SceneGenerate(true, 1, new string[] { "c10f53be-3654-43f0-b5a8-17ee7a5bb09c", "08c9dff4-930a-4426-ae76-c4711bb3df05" });
             // Leito_Anal_Missionary_2_A2_S3
-            else if (sgid == "b1862ec4-ee89-4e67-a0c0-2a3ea1887f24") SceneGenerate(true, 1, new string[] { "cbaf2f46-3c70-4d65-bea3-ad326ad660ad", "2df40ea0-9d17-4859-95c0-315bcffbcfd9" });
+            else if (sgid == "b1862ec4-ee89-4e67-a0c0-2a3ea1887f24") LeitoAnimations_Leito_Anal_Missionary2_stage_03(true, 1); //SceneGenerate(true, 1, new string[] { "cbaf2f46-3c70-4d65-bea3-ad326ad660ad", "2df40ea0-9d17-4859-95c0-315bcffbcfd9" });
             // Leito_Anal_Missionary_2_A2_S4
-            else if (sgid == "378b1595-73b6-4ded-9485-98ec7114afe5") SceneGenerate(true, 1, new string[] { "56917e59-1ce2-49c9-8493-324d020301db", "f209ebf8-0d19-4f7e-8456-3db983f4b581" });
+            else if (sgid == "378b1595-73b6-4ded-9485-98ec7114afe5") LeitoAnimations_Leito_Anal_Missionary2_stage_04(true, 1);//SceneGenerate(true, 1, new string[] { "56917e59-1ce2-49c9-8493-324d020301db", "f209ebf8-0d19-4f7e-8456-3db983f4b581" });
             // Leito_Anal_Missionary_2_A2_S5
-            else if (sgid == "81e08bec-f4ff-4330-a2d9-6a08b5745357") SceneGenerate(true, 1, new string[] { "cab3d358-1b9a-4772-a68a-505e5d08e558", "b905a26d-d594-4a6c-8dda-e75d752ede58" });
+            else if (sgid == "81e08bec-f4ff-4330-a2d9-6a08b5745357") LeitoAnimations_Leito_Anal_Missionary2_stage_05(true, 1); // SceneGenerate(true, 1, new string[] { "cab3d358-1b9a-4772-a68a-505e5d08e558", "b905a26d-d594-4a6c-8dda-e75d752ede58" });
             // Leito_Anal_Missionary_2 Movie
             else if (sgid == "c1500eca-eed6-480f-97a1-062a4d279c3b") MoviewGenerate(new List<List<string>>() { new List<string>() { "55115332-2981-41f9-bd90-25fedeffc099", "57abbbdf-88f6-4bd1-ba92-887e5c31a034" }, new List<string>() { "c10f53be-3654-43f0-b5a8-17ee7a5bb09c", "08c9dff4-930a-4426-ae76-c4711bb3df05" }, new List<string>() { "cbaf2f46-3c70-4d65-bea3-ad326ad660ad", "2df40ea0-9d17-4859-95c0-315bcffbcfd9" }, new List<string>() { "56917e59-1ce2-49c9-8493-324d020301db", "f209ebf8-0d19-4f7e-8456-3db983f4b581" }, new List<string>() { "cab3d358-1b9a-4772-a68a-505e5d08e558", "b905a26d-d594-4a6c-8dda-e75d752ede58" } });
+            
             // Leito_Anal_Powerbomb_A2_S1
-            else if (sgid == "f9683719-471b-4c99-9d76-9688a389d21b") SceneGenerate(true, 1, new string[] { "7161d04b-c8b2-47d1-826a-51b164ff9a97", "cfec8971-1db8-47fc-9d43-605badd0d465" });
+            else if (sgid == "f9683719-471b-4c99-9d76-9688a389d21b") LeitoAnimations_Leito_Anal_Powerbomb_stage_01(true, 1); //SceneGenerate(true, 1, new string[] { "7161d04b-c8b2-47d1-826a-51b164ff9a97", "cfec8971-1db8-47fc-9d43-605badd0d465" });
             // Leito_Anal_Powerbomb_A2_S2
-            else if (sgid == "9a5c630d-c4b3-4510-b6cd-c68a2ac66c79") SceneGenerate(true, 1, new string[] { "b6711b4f-2f5a-4c10-a8a6-43c5a59beea7", "028af9a2-6176-4667-8f87-63b77ca5c5f2" });
+            else if (sgid == "9a5c630d-c4b3-4510-b6cd-c68a2ac66c79") LeitoAnimations_Leito_Anal_Powerbomb_stage_02(true, 1); //SceneGenerate(true, 1, new string[] { "b6711b4f-2f5a-4c10-a8a6-43c5a59beea7", "028af9a2-6176-4667-8f87-63b77ca5c5f2" });
             // Leito_Anal_Powerbomb_A2_S3
-            else if (sgid == "0a91c24a-e189-41d9-a795-057a149eb22a") SceneGenerate(true, 1, new string[] { "2629c136-914d-4886-bad7-2b82a15d3eb7", "40060b25-1f7d-43cf-bccd-3f9ebe929839" });
+            else if (sgid == "0a91c24a-e189-41d9-a795-057a149eb22a") LeitoAnimations_Leito_Anal_Powerbomb_stage_03(true, 1); //SceneGenerate(true, 1, new string[] { "2629c136-914d-4886-bad7-2b82a15d3eb7", "40060b25-1f7d-43cf-bccd-3f9ebe929839" });
             // Leito_Anal_Powerbomb_A2_S4
-            else if (sgid == "7d8c2fcc-376f-4d9b-9f75-f6889fa835d0") SceneGenerate(true, 1, new string[] { "4947dca4-3726-4348-860e-b92addbf6c8c", "0134626b-bf7b-47d6-97db-56b97c72a5f8" });
+            else if (sgid == "7d8c2fcc-376f-4d9b-9f75-f6889fa835d0") LeitoAnimations_Leito_Anal_Powerbomb_stage_04(true, 1); //SceneGenerate(true, 1, new string[] { "4947dca4-3726-4348-860e-b92addbf6c8c", "0134626b-bf7b-47d6-97db-56b97c72a5f8" });
             // Leito_Anal_Powerbomb_A2_S5
-            else if (sgid == "3392419e-518e-42f1-b7dd-d4b1ea26171d") SceneGenerate(true, 1, new string[] { "1ac6b17a-b5ce-464d-ab17-24572e216c9e", "3113209c-21e3-42e3-a4ce-c9d27ec7bd32" });
+            else if (sgid == "3392419e-518e-42f1-b7dd-d4b1ea26171d") LeitoAnimations_Leito_Anal_Powerbomb_stage_04(true, 1); //SceneGenerate(true, 1, new string[] { "1ac6b17a-b5ce-464d-ab17-24572e216c9e", "3113209c-21e3-42e3-a4ce-c9d27ec7bd32" });
             // Leito_Anal_Powerbomb Movie
             else if (sgid == "684b943c-a57e-43e4-a17b-181864ef5e17") MoviewGenerate(new List<List<string>>() { new List<string>() { "7161d04b-c8b2-47d1-826a-51b164ff9a97", "cfec8971-1db8-47fc-9d43-605badd0d465" }, new List<string>() { "b6711b4f-2f5a-4c10-a8a6-43c5a59beea7", "028af9a2-6176-4667-8f87-63b77ca5c5f2" }, new List<string>() { "2629c136-914d-4886-bad7-2b82a15d3eb7", "40060b25-1f7d-43cf-bccd-3f9ebe929839" }, new List<string>() { "4947dca4-3726-4348-860e-b92addbf6c8c", "0134626b-bf7b-47d6-97db-56b97c72a5f8" }, new List<string>() { "1ac6b17a-b5ce-464d-ab17-24572e216c9e", "3113209c-21e3-42e3-a4ce-c9d27ec7bd32" } });
             // Leito_Anal_Re_Cow_A2_S1
@@ -381,11 +414,12 @@ namespace EPCat.Model
 
 
         }
-        private static void reBuild()
+        private static void reBuild(string file)
         {
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
             pProcess.StartInfo.FileName = @"d:\SteamLibrary\steamapps\common\Skyrim\Papyrus Compiler\ScriptCompileAdv.bat";
-            pProcess.StartInfo.Arguments = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\sslThreadController.psc"; //argument
+            //pProcess.StartInfo.Arguments = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\sslThreadController.psc"; //argument
+            pProcess.StartInfo.Arguments = $@"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\{file}"; //argument
             pProcess.StartInfo.UseShellExecute = false;
             pProcess.StartInfo.RedirectStandardOutput = true;
             //pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
@@ -396,7 +430,36 @@ namespace EPCat.Model
             pProcess.WaitForExit();
             MessageBox.Show(output);
         }
-        private static void RebuildScript(List<SkyrimScene> scenes)
+
+        private static void RebuildScript(List<SkyrimScene> scenes, params ActorEnumeration[] actors)
+        {
+            WriteFrameworkScript(scenes, actors);
+            WriteThreadControllerScript(scenes);
+            reBuild("sslThreadController.psc");
+            reBuild("SexLabFramework.psc");
+        }
+        private static void WriteFrameworkScript(List<SkyrimScene> scenes, params ActorEnumeration[] actors)
+        {
+            string sourceFile = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\SexLabFramework.psc";
+            List<string> raw = new List<string>(File.ReadAllLines(sourceFile));
+            List<string> source = new List<string>();
+            foreach (var item in raw)
+            {
+                source.Add(item);
+                if (item.Contains("AB SECTION"))
+                {
+                    break;
+                }
+            }
+            // Prepare location
+            source.AddRange(GenerateCell(CellEnumeration.WhiterunWarmaidens, 0));
+            // set Actors
+
+            List<ActorEnumeration> actorList = actors.ToList();
+            source.AddRange(GetActorList(actorList));
+            File.WriteAllLines(sourceFile, source);
+        }
+        private static void WriteThreadControllerScript(List<SkyrimScene> scenes)
         {
             string sourceFile = @"d:\SteamLibrary\steamapps\common\Skyrim\Data\scripts\source\sslThreadController.psc";
             List<string> raw = new List<string>(File.ReadAllLines(sourceFile));
@@ -423,7 +486,7 @@ namespace EPCat.Model
             }
             source.Add(@"    Endif");
             source.Add($@"    AB_RestartStage = {scenes.Count()}");
-            source.Add($@"    AB_RestartTo = {scenes.IndexOf(scenes.Where(x=>x.Repeatable).FirstOrDefault()) + 1}");
+            source.Add($@"    AB_RestartTo = {scenes.IndexOf(scenes.Where(x => x.Repeatable).FirstOrDefault()) + 1}");
 
             source.Add(@"endFunction");
             for (int i = 0; i < 4; i++)
@@ -464,42 +527,41 @@ namespace EPCat.Model
             source.Add(@"float[] result = new float[6]");
             source.Add(@"    If       (Stage == 0)");
 
-                int ii = 1;
-                foreach (var scen in scenes)
+            int ii = 1;
+            foreach (var scen in scenes)
+            {
+                source.Add($@"    ElseIf (Stage == {ii})");
+                foreach (var pose in scen.Poses)
                 {
-                    source.Add($@"    ElseIf (Stage == {ii})");
-                    foreach (var pose in scen.Poses)
-                    {
-                        if (pose.Position == 1)
-                            source.Add($@"        If     (position == {pose.Position - 1})");
-                        else
-                            source.Add($@"        Elseif (position == {pose.Position - 1})");
-                        if (pose.X != 0)    source.Add($@"           result[0]={pose.X}");
-                        if (pose.Y != 0)    source.Add($@"           result[1]={pose.Y}");
-                        if (pose.Z != 0)    source.Add($@"           result[2]={pose.Z}");
-                        if (pose.rotX != 0) source.Add($@"           result[3]={pose.rotX}");
-                        if (pose.rotY != 0) source.Add($@"           result[4]={pose.rotY}");
-                        if (pose.rotZ != 0) source.Add($@"           result[5]={pose.rotZ}");
-                    }
-                    source.Add($@"        EndIf");
-                    ii++;
+                    if (pose.Position == 1)
+                        source.Add($@"        If     (position == {pose.Position - 1})");
+                    else
+                        source.Add($@"        Elseif (position == {pose.Position - 1})");
+                    if (pose.X != 0) source.Add($@"           result[0]={pose.X}");
+                    if (pose.Y != 0) source.Add($@"           result[1]={pose.Y}");
+                    if (pose.Z != 0) source.Add($@"           result[2]={pose.Z}");
+                    if (pose.rotX != 0) source.Add($@"           result[3]={pose.rotX}");
+                    if (pose.rotY != 0) source.Add($@"           result[4]={pose.rotY}");
+                    if (pose.rotZ != 0) source.Add($@"           result[5]={pose.rotZ}");
                 }
+                source.Add($@"        EndIf");
+                ii++;
+            }
             source.Add(@"    Endif");
             source.Add($@"    return result");
             source.Add(@"endFunction");
-            // Prepare location
-            source.AddRange(GenerateCell(CellEnumeration.WhiterunWarmaidens, 0));
-            // set Actors
-            List<ActorEnumeration> actorList = new List<ActorEnumeration>();
-            actorList.Add(ActorEnumeration.Player);
-            actorList.Add(ActorEnumeration.Ulfbear);
-            source.AddRange(GetActorList(actorList));
             File.WriteAllLines(sourceFile, source);
-            reBuild();
         }
+
 
         private static List<SkyrimScene> SceneGenerate(bool complete, int stageStart, params string[] posArray)
         {
+            List<ActorEnumeration> actors = new List<ActorEnumeration>()
+            {
+                ActorEnumeration.Player,
+                ActorEnumeration.Ulfbear,
+            };
+
             int currStage = stageStart;
             List<SkyrimScene> scenes = new List<SkyrimScene>();
             SkyrimScene p;
@@ -512,7 +574,7 @@ namespace EPCat.Model
                 {
                     pose.CopyToDestination();
                 }
-                RebuildScript(scenes);
+                RebuildScript(scenes,actors.ToArray());
             }
             return scenes;
         }

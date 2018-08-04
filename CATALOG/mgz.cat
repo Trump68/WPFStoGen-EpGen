@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfEpItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>99dc088c-bd6b-40aa-a9dc-4daf6d0ad0cc</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\01 (1965 - 06)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>01 (06)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1965</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>c2904af5-d000-4a6b-a24a-90e38709af73</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\02 (1965 - 07)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>02 (07)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1965</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>585f1c74-d8a5-4726-a25b-e2047a50fabb</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\03 (1965 - 08)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>03 (08)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1965</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>b880f52a-ecc6-4481-b0de-0831c3b56d22</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\04 (1965 - 09)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>04 (09)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1965</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>cf9a018d-2f03-4491-a783-7a58f2280c21</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\05 (1965 - 10)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>05 (10)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1965</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>9aab31e1-0b4c-4304-a48f-b0766aaa9700</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\06 (1965 - 11)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>06 (11)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1965</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>d85af469-166d-403f-b299-99d9e10dde19</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\07 (1965 - 12)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>07 (12)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1965</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>40d85db7-c8d5-4e12-b922-162cbb32e25d</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\08 (1966 - 01)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>08 (01)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1966</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>4899bc82-bbb1-44d3-8f45-2b294184f452</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\09 (1966 - 02)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>09 (02)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1966</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>20a8eeb6-2166-43e4-8560-ea4ad50f63e3</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\10 (1966 - 03)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>10 (03)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1966</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>6bef69ab-3226-4471-bc06-4189f14fe070</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\11 (1966 - 04)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>11 (04)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1966</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>1d2b8b89-f8e9-41e4-b03d-d0c7e644e977</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\14 (1966 - 07)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>14 (1966 - 07)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1966</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>f6214d37-6410-4bf2-b876-2c713fa666fe</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\15 (1966 - 08)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>15 (1966 - 08)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1966</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>0f7659b1-93f2-4e81-8ed5-fc88e4cdeb91</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\16 (1966 - 09)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>16 (1966 - 09)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1966</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>58c00638-6817-4b88-a657-ea20562def76</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\17 (1966 - 10)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>17 (1966 - 10)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1966</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>d1080a3a-9724-42d5-b622-c05d84fd294f</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\18 (1966 - 11)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>18 (1966 - 11)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1966</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>db284299-d202-44fa-8820-75cc9c0cbd6d</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\19 (1966 - 12)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>19 (1966 - 12)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1966</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>59621b6f-cf0e-4ee3-bb1d-3b252e460d8f</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\20 (1967 - 01)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>20 (1967 - 01)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1967</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>5769ccbd-8019-4a94-8bc6-d43f012c801f</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\21 (1967 - 02)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>21 (1967 - 02)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1967</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>2219a149-b197-4ae9-a135-d08acbe517a0</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\22 (1967)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>22 (1967)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1967</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>d72f286b-625b-4b80-ae7f-d4ea56d39199</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\23 (1967 - 06)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>23 (1967 - 06)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1967</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>06414a06-7361-4644-9df0-f5917d7dd2b2</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\24 (1967 - 07)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>24 (1967 - 07)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1967</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>e7a73c15-42ff-49f7-9ec9-d28b674d2f90</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\25 (1967 - 08)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>25 (1967 - 08)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1967</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>22ee9291-a2e5-4d36-ad34-982c1915a222</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\26 (1967 - 09)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>26 (1967 - 09)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1967</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>5eac281b-b85f-4701-82f9-caed598fed5c</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\27 (1967 - 10)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>27 (1967 - 10)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1967</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>585c168f-e8ff-4b74-b2ad-f6ccd5ae1e7a</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\28 (1967 - 11)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>28 (1967 - 11)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1967</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>a0ade0fb-0490-408f-9596-062b356076ab</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\29 (1967 - 12)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>29 (1967 - 12)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1967</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>03768908-c8fe-4e7c-8475-0ba371943eaa</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\33 (1968 - 04)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>33 (1968 - 04)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1968</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>67eab8c0-6d0a-460e-b7d1-dcbdac6b1b0d</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\34 (1968 - 05)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>34 (1968 - 05)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1968</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>5db8d559-fb73-4773-93b8-3ffbf47cf5c8</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\35 (1968 - 07)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>35 (1968 - 07)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1968</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>934f34e8-1f6a-45a9-9a44-cc78718b5c62</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\36 (1968 - 08)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>36 (1968 - 08)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1968</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>4b0b149b-0c88-4949-b4bb-bcbbcbb95983</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\37 (1968 - 09)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>37 (1968 - 09)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1968</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>9212c7e2-a286-4dbb-83d8-9d2a0f18b8f5</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\38 (1968 - 10)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>38 (1968 - 10)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1968</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>8c4d3d2f-27cb-461f-976a-85fe98001c0d</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\39 (1968 - 11)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>39 (1968 - 11)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1968</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>77b70056-c345-49bf-ad93-99e60c36f40b</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\40 (1968 - 12)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>40 (1968 - 12)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1968</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>c3381ff6-5dd3-482f-afdb-a4fd24778e15</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\41 (1969 - 01)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>41 (1969 - 01)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1969</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>3888d5ce-88ba-471f-bb09-1fc2ce2b3a0e</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\42 (1969 - 02)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>42 (1969 - 02)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1969</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>0cc27af9-d993-42b1-9d5d-8e0386b70550</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\43 (1969 - 03)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>43 (1969 - 03)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1969</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>f352734a-01a6-4e16-a848-792230adc720</GID>
+    <ItemPath>d:\!catalog\mgz\ero magazin\cancans de paris\44 (1969 - 04)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>44 (1969 - 04)</Name>
+    <Catalog>MGZ</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1969</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>ERO MAGAZIN</Kind>
+    <Serie>Cancans de Paris</Serie>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+</ArrayOfEpItem>
