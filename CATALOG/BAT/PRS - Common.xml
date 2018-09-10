@@ -19,7 +19,7 @@
         <property name="MergeWithPreviousGroup">false</property>
       </property>
     </property>
-    <property name="Columns" iskey="true" value="28">
+    <property name="Columns" iskey="true" value="30">
       <property name="Item1" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Catalog</property>
@@ -106,97 +106,109 @@
       </property>
       <property name="Item13" isnull="true" iskey="true">
         <property name="GridRow">0</property>
+        <property name="FieldName">Stage</property>
+        <property name="VisibleIndex">7</property>
+        <property name="ActualWidth">NaN</property>
+      </property>
+      <property name="Item14" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Variant</property>
+        <property name="VisibleIndex">8</property>
+        <property name="ActualWidth">NaN</property>
+      </property>
+      <property name="Item15" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
         <property name="FieldName">Type</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">5</property>
         <property name="ActualWidth">137.88608624898291</property>
       </property>
-      <property name="Item14" isnull="true" iskey="true">
+      <property name="Item16" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Star</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">15</property>
         <property name="ActualWidth">NaN</property>
       </property>
-      <property name="Item15" isnull="true" iskey="true">
+      <property name="Item17" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Serie</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">15</property>
         <property name="ActualWidth">NaN</property>
       </property>
-      <property name="Item16" isnull="true" iskey="true">
+      <property name="Item18" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">MyDescr</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">5</property>
         <property name="ActualWidth">NaN</property>
       </property>
-      <property name="Item17" isnull="true" iskey="true">
+      <property name="Item19" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Director</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">2</property>
         <property name="ActualWidth">181</property>
       </property>
-      <property name="Item18" isnull="true" iskey="true">
+      <property name="Item20" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Studio</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">5</property>
         <property name="ActualWidth">94.772172497965812</property>
       </property>
-      <property name="Item19" isnull="true" iskey="true">
+      <property name="Item21" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">IMDB</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">17</property>
         <property name="ActualWidth">NaN</property>
       </property>
-      <property name="Item20" isnull="true" iskey="true">
+      <property name="Item22" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">ItemPath</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">17</property>
         <property name="ActualWidth">NaN</property>
       </property>
-      <property name="Item21" isnull="true" iskey="true">
+      <property name="Item23" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">PersonName</property>
         <property name="VisibleIndex">3</property>
         <property name="ActualWidth">149.83396421310869</property>
       </property>
-      <property name="Item22" isnull="true" iskey="true">
+      <property name="Item24" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">PersonAge</property>
         <property name="VisibleIndex">4</property>
         <property name="ActualWidth">82.6346481981346</property>
       </property>
-      <property name="Item23" isnull="true" iskey="true">
+      <property name="Item25" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">PersonSex</property>
         <property name="VisibleIndex">0</property>
         <property name="ActualWidth">67.245603026431</property>
       </property>
-      <property name="Item24" isnull="true" iskey="true">
+      <property name="Item26" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">PersonType</property>
         <property name="VisibleIndex">2</property>
         <property name="ActualWidth">110</property>
       </property>
-      <property name="Item25" isnull="true" iskey="true">
+      <property name="Item27" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">PersonKind</property>
         <property name="VisibleIndex">5</property>
         <property name="ActualWidth">299.6216414147604</property>
       </property>
-      <property name="Item26" isnull="true" iskey="true">
+      <property name="Item28" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">LastCheck</property>
         <property name="VisibleIndex">6</property>
         <property name="ActualWidth">NaN</property>
       </property>
-      <property name="Item27" isnull="true" iskey="true">
+      <property name="Item29" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">VideoPresent</property>
         <property name="Visible">false</property>
@@ -204,7 +216,7 @@
         <property name="Width">20</property>
         <property name="ActualWidth">20</property>
       </property>
-      <property name="Item28" isnull="true" iskey="true">
+      <property name="Item30" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">SourceFolderExist</property>
         <property name="Visible">false</property>

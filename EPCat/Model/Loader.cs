@@ -12,8 +12,8 @@ namespace EPCat.Model
 {
     public class Loader
     {
+        static string c_SortToCatalog = "SORT TO CATALOG";
         static string c_PrepareFolder = "PREPARE FOLDER ";
-
         static string c_UpdateFolder = "UPDATE FOLDER ";
         static string c_UpdateCapsFolder = "UPDATE CAPS FOLDER ";
 
@@ -35,10 +35,6 @@ namespace EPCat.Model
         private List<CapsItem> CaspSource;
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
         {
-            DoTempWork1();
-            DoTempwork2(@"d:\!CATALOG\MOV\");
-            return null;
-
             Source = sourceList;
             CaspSource = capsList;
             CaspSource.Clear();
@@ -65,45 +61,6 @@ namespace EPCat.Model
             }
             return Source;
         }
-        private void DoTempWork()
-        {
-            string toPath = @"d:\Process2\!!Data\EroFilms\! To Convert\";
-            string fromPath = @"d:\uTorrent\";
-            var rootdir = Directory.GetDirectories(fromPath, "JAP *", SearchOption.TopDirectoryOnly).ToList();
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "BRA *", SearchOption.TopDirectoryOnly).ToList());
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "ITA *", SearchOption.TopDirectoryOnly).ToList());
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "FRA *", SearchOption.TopDirectoryOnly).ToList());
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "USA *", SearchOption.TopDirectoryOnly).ToList());
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "GBR *", SearchOption.TopDirectoryOnly).ToList());
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "TWN *", SearchOption.TopDirectoryOnly).ToList());
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "SWZ *", SearchOption.TopDirectoryOnly).ToList());
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "KOR *", SearchOption.TopDirectoryOnly).ToList());
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "DEN *", SearchOption.TopDirectoryOnly).ToList());
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "HKG *", SearchOption.TopDirectoryOnly).ToList());
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "NLD *", SearchOption.TopDirectoryOnly).ToList());
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "CAN *", SearchOption.TopDirectoryOnly).ToList());
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "HSP *", SearchOption.TopDirectoryOnly).ToList());
-            rootdir.AddRange(Directory.GetDirectories(fromPath, "CHI *", SearchOption.TopDirectoryOnly).ToList());
-            //var rootdir = Directory.GetDirectories(fromPath, "JAP *|BRA *|ITA *|FRA *|USA *|UK *|TWN *|SWZ *|KOR *", SearchOption.TopDirectoryOnly).ToList();
-            foreach (var item in rootdir)
-            {
-                var files = Directory.GetFiles(item, "*.mkv", SearchOption.TopDirectoryOnly).ToList();
-                files.AddRange(Directory.GetFiles(item, "*.avi", SearchOption.TopDirectoryOnly).ToList());
-                files.AddRange(Directory.GetFiles(item, "*.mp4", SearchOption.TopDirectoryOnly).ToList());
-                files.AddRange(Directory.GetFiles(item, "*.wmv", SearchOption.TopDirectoryOnly).ToList());
-
-                
-                foreach (var fn in files)
-                {
-                    string newname = Path.GetFileName(item);
-                    string newPath = Path.Combine(toPath, newname + ".avi");
-                    File.Move(fn, newPath);
-
-                }
-                if (files.Any()) Directory.Delete(item);
-            }
-        }
-
         private void DoTempWork1()
         {
             string fromPath = @"d:\uTorrent\! ToProcess\";
@@ -153,6 +110,7 @@ namespace EPCat.Model
              * $08-XRated
              * $09-Type
              * $10-Director
+             * $11-NOSORT
              *
              * $01 JAV $02  $04  $
              * $01 JAV $04  $
@@ -160,14 +118,24 @@ namespace EPCat.Model
              * 
              * * $01 WEB $03 WEBCLIP $08 P $07 $
              *  
-             * $01 HEN $03 COMIX PRINTED $04 Top Model $Top Model 01
              * $01 HEN $03 ARTIST COMIX $10 Georges Levis $Coco 
              * $01 HEN $03 ARTIST BOARD $10 Zumi $Zumi Art             
              * $01 HEN $03 ARTIST PINUP $10 Luis Royo $Luis Royo Art
+             * $01 HEN $03 GameCG $07 BLACKRAINBOW $11 SORTED $!!!IMAGE SETS!!!
              * 
              * $01 R3D $03 ARTIST 3D $10 Smerinka $!!!IMAGE SETS!!!
              * 
              * $01 MGZ $03 ERO MAGAZIN $04 Cancans de Paris $!!!IMAGE SETS!!!
+             * $01 MGZ $03 PRN MAGAZIN $04 Silwa - Backdoor Lovers $!!!IMAGE SETS!!!
+             * 
+             * $01 COM $03 COMIX PRINTED $04 Top Model $!!!IMAGE SETS!!! 
+             * 
+             * 
+             * $01 MOD $03 ACTRESS $02 Eva Hedger $!!!IMAGE SETS!!!
+             * $01 MOD $03 FASHION $02 Eva Hedger $!!!IMAGE SETS!!!
+             * $01 MOD $03 SOFT $02 Eva Hedger $!!!IMAGE SETS!!!
+             * $01 MOD $03 HARD $02 Eva Hedger $!!!IMAGE SETS!!!
+             * 
              */
 
 
@@ -200,6 +168,15 @@ namespace EPCat.Model
 
                 if (tokens.Last() == "!!!IMAGE SETS!!!")
                 {
+                    var files = Directory.GetFiles(dir, "*.pdf", SearchOption.TopDirectoryOnly).ToList();
+                    files.AddRange(Directory.GetFiles(dir, "*.djvu", SearchOption.TopDirectoryOnly).ToList());
+                    foreach (var f in files)
+                    {
+                        string pdfdir = Path.Combine(dir, Path.GetFileNameWithoutExtension(f));
+                        Directory.CreateDirectory(pdfdir);
+                        File.Move(f,Path.Combine(pdfdir, Path.GetFileName(f)));
+                    }
+
                     tokens.Remove(tokens.Last());
                     DoFOLDER(dir, toDir, tokens);
                     Directory.Delete(dir);
@@ -221,6 +198,7 @@ namespace EPCat.Model
                     DoFOLDER(dir, toDir, null);
                     continue;
                 }
+                bool alreadysorted = false;
                 foreach (string tok in tokens)
                 {
                     if (string.IsNullOrEmpty(tok.Trim()))
@@ -267,6 +245,10 @@ namespace EPCat.Model
                     {
                         item.Director = val;
                     }
+                    else if (mark == "11")
+                    {
+                        alreadysorted = (val == "SORTED");
+                    }
                     else
                     {
                         item.Name = tok.Trim();
@@ -276,7 +258,6 @@ namespace EPCat.Model
                 {
                     if (!string.IsNullOrEmpty(item.Catalog))
                         toPath = $@"{toPath}\{item.Catalog}";
-
                     if (item.Catalog == "WEB")
                     {
                         if (!string.IsNullOrEmpty(item.Studio))
@@ -288,6 +269,8 @@ namespace EPCat.Model
                     }
                     else if (item.Catalog == "HEN" 
                         || item.Catalog == "R3D"
+                        || item.Catalog == "COM"
+                        || item.Catalog == "MOD"
                         || item.Catalog == "MGZ")
                     {
                         if (!string.IsNullOrEmpty(item.Kind))
@@ -298,6 +281,8 @@ namespace EPCat.Model
                             toPath = $@"{toPath}\{item.Serie}";
                         if (item.Year>0)
                             toPath = $@"{toPath}\{item.Year}";
+                        if (!string.IsNullOrEmpty(item.Star))
+                            toPath = $@"{toPath}\{item.Star}";
                     }
                     else
                     {
@@ -315,8 +300,13 @@ namespace EPCat.Model
                         newname = Path.Combine(toPath, $"[{item.Country}] {item.Name}");
                     }
 
-                    if ((item.Catalog == "HEN" 
+                    if (
+                        !alreadysorted &&
+                        (
+                           item.Catalog == "HEN" 
                         || item.Catalog == "R3D"
+                        || item.Catalog == "COM"
+                        || item.Catalog == "MOD"
                         || item.Catalog == "MGZ"
                         )
                         && parentokens != null)
@@ -326,7 +316,17 @@ namespace EPCat.Model
                         var files = Directory.GetFiles(dir, "*", SearchOption.TopDirectoryOnly).ToList();
                         files.ForEach(x => File.Move(x, Path.Combine(eventsdir, Path.GetFileName(x))));
                     }
-                    Directory.Move(dir, newname);
+
+                    try
+                    {
+                        if (!File.Exists(newname))
+                            Directory.Move(dir, newname);
+                    }
+                    catch (Exception)
+                    {
+
+                        
+                    }
                     List<string> lines = EpItem.SetToPassport(item);
                     File.WriteAllLines(Path.Combine(newname, EpItem.p_PassportName), lines);
                 }
@@ -521,7 +521,12 @@ namespace EPCat.Model
         internal void ParseLine(string line)
         {
             line = line.Trim();
-            if (line.StartsWith(c_PrepareFolder))
+            if (line.StartsWith(c_SortToCatalog))
+            {
+                DoTempWork1();
+                DoTempwork2(@"d:\!CATALOG\MOV\");                
+            }
+            else if (line.StartsWith(c_PrepareFolder))
             {
                 PrepareFolder(line.Replace(c_PrepareFolder, string.Empty),0,2);
             }
@@ -784,7 +789,8 @@ namespace EPCat.Model
                 EpItem item = EpItem.GetFromPassport(passport, passportPath);
                 if (item.GID == null || Guid.Empty.Equals(item.GID))
                     item.GID = Guid.NewGuid();
-               
+
+
                 if (string.IsNullOrEmpty(item.Name))
                 {
                     if (passportPath.Contains(@"/HEN/"))
@@ -801,7 +807,8 @@ namespace EPCat.Model
                         item.Catalog = "PTD";
                     else if (passportPath.Contains(@"/PRS/"))
                         item.Catalog = "PRS";
-                    //item.Kind = "Hentai Artist";
+                    else if (passportPath.Contains(@"/COM/"))
+                        item.Catalog = "COM";
 
                     string dirname = Path.GetDirectoryName(passportPath);
                     item.Name = UppercaseWords(Path.GetFileName(dirname));
@@ -875,6 +882,10 @@ namespace EPCat.Model
                         }
 
                     }
+                }
+                else
+                {
+
                 }
                 item.SourceFolderExist = true;
 

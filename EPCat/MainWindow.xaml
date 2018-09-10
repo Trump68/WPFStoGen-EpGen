@@ -545,7 +545,7 @@
 
 
 
-            <dx:DXTabItem Header="Scenes" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="54">
+            <dx:DXTabItem Header="Scenes" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
 
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">

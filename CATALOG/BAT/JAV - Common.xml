@@ -245,44 +245,44 @@
     <property name="TotalSummary" iskey="true" value="0" />
     <property name="MRUFilters" iskey="true" value="10">
       <property name="Item1" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'snis')</property>
-        <property name="FilterText">Starts with([Name], 'snis')</property>
+        <property name="FilterString">StartsWith([Name], 'd')</property>
+        <property name="FilterText">Starts with([Name], 'd')</property>
       </property>
       <property name="Item2" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'sni')</property>
-        <property name="FilterText">Starts with([Name], 'sni')</property>
+        <property name="FilterString">StartsWith([Name], 'de')</property>
+        <property name="FilterText">Starts with([Name], 'de')</property>
       </property>
       <property name="Item3" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'snin')</property>
-        <property name="FilterText">Starts with([Name], 'snin')</property>
+        <property name="FilterString">StartsWith([Name], 'del')</property>
+        <property name="FilterText">Starts with([Name], 'del')</property>
       </property>
       <property name="Item4" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'sn')</property>
-        <property name="FilterText">Starts with([Name], 'sn')</property>
+        <property name="FilterString">StartsWith([Name], 'deli')</property>
+        <property name="FilterText">Starts with([Name], 'deli')</property>
       </property>
       <property name="Item5" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 's')</property>
-        <property name="FilterText">Starts with([Name], 's')</property>
+        <property name="FilterString">StartsWith([Name], 'ddk')</property>
+        <property name="FilterText">Starts with([Name], 'ddk')</property>
       </property>
       <property name="Item6" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'shkd')</property>
-        <property name="FilterText">Starts with([Name], 'shkd')</property>
+        <property name="FilterString">StartsWith([Name], 'dd')</property>
+        <property name="FilterText">Starts with([Name], 'dd')</property>
       </property>
       <property name="Item7" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'shk')</property>
-        <property name="FilterText">Starts with([Name], 'shk')</property>
+        <property name="FilterString">StartsWith([Name], 'в')</property>
+        <property name="FilterText">Starts with([Name], 'в')</property>
       </property>
       <property name="Item8" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'sh')</property>
-        <property name="FilterText">Starts with([Name], 'sh')</property>
+        <property name="FilterString">StartsWith([Name], 'вв')</property>
+        <property name="FilterText">Starts with([Name], 'вв')</property>
       </property>
       <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">Contains([Star], '  Natsume')</property>
-        <property name="FilterText">Contains([Star], '  Natsume')</property>
+        <property name="FilterString">StartsWith([Name], 'ввл')</property>
+        <property name="FilterText">Starts with([Name], 'ввл')</property>
       </property>
       <property name="Item10" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'shkd') And StartsWith([Star], '  Natsume')</property>
-        <property name="FilterText">Starts with([Name], 'shkd') And Starts with([Star], '  Natsume')</property>
+        <property name="FilterString">StartsWith([Name], 'a')</property>
+        <property name="FilterText">Starts with([Name], 'a')</property>
       </property>
     </property>
     <property name="FilterString" />

@@ -95,9 +95,12 @@ namespace StoGen.Classes.Data.Games
             Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
 
             string story = string.Empty;
+            string path = string.Empty;
             var title = group.Where(x => x.Kind == 1).FirstOrDefault();
             if (title != null)
             {
+                path = title.Path;
+                // try to get text from kind 1
                 story = title.Story;
                 if (title.File == "$$WHITE$$") // white background
                 {
@@ -115,6 +118,40 @@ namespace StoGen.Classes.Data.Games
                 if (!string.IsNullOrEmpty(title.Z))
                     this.DefaultSceneText.FontColor = title.Z;
             }
+
+            // try to get text from kind 4
+            if (string.IsNullOrEmpty(story))
+            {                
+                title = group.Where(x => x.Kind == 4).FirstOrDefault();
+                if (title != null)
+                {
+                    story = title.Story;
+                    path = title.Path;
+                }
+            }
+
+            // try to get text from file
+            if (!string.IsNullOrEmpty(story))
+            {
+                if (story.Contains("@"))
+                {
+                    string[] vals = story.Split('@');
+                    if (File.Exists(Path.Combine(path,vals[0])))
+                    {
+                        List<string> textlist = new List<string>(File.ReadAllLines(Path.Combine(path, vals[0])));
+                        foreach (string line in textlist)
+                        {
+                            if (line.StartsWith($"@{vals[1]}"))
+                            {
+                                story = line.Replace($"@{vals[1]}", string.Empty).Trim();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+
 
             foreach (var item in infopictures)
             {

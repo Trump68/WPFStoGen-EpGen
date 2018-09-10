@@ -51,7 +51,10 @@ namespace EPCat
         void Serialization_Loaded(object sender, RoutedEventArgs e)
         {
             if (PathToGridSave != null)
-                RestoreLayout(PathToGridSave);
+            {
+                PathToGridSave = "D:\temp\temp.xml";
+            }
+            RestoreLayout(PathToGridSave);
             var CommandArgs = System.Environment.GetCommandLineArgs().ToList();
             if (CommandArgs.Where(x=>x.ToUpper() == "LOAD").Any())
             {
@@ -60,10 +63,11 @@ namespace EPCat
         }
         void SaveLayout()
         {
-            if (PathToGridSave != null)
-                this.GV.SaveLayoutToXml(PathToGridSave);
-            
-            
+            if (PathToGridSave == null)
+            {
+                PathToGridSave = @"d:\temp\temp.xml";
+            }
+            this.GV.SaveLayoutToXml(PathToGridSave);                        
         }
         string PathToGridSave = null;
         public void RestoreLayout(string path)

@@ -316,44 +316,44 @@
     <property name="TotalSummary" iskey="true" value="0" />
     <property name="MRUFilters" iskey="true" value="10">
       <property name="Item1" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], 'del')</property>
+        <property name="FilterText">Starts with([Name], 'del')</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], 'de')</property>
+        <property name="FilterText">Starts with([Name], 'de')</property>
+      </property>
+      <property name="Item3" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], 'd')</property>
+        <property name="FilterText">Starts with([Name], 'd')</property>
+      </property>
+      <property name="Item4" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], 'Luxure Obedient Wives')</property>
+        <property name="FilterText">Starts with([Name], 'Luxure Obedient Wives')</property>
+      </property>
+      <property name="Item5" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], 'Girl Slaves of Morgana Le Fay')</property>
+        <property name="FilterText">Starts with([Name], 'Girl Slaves of Morgana Le Fay')</property>
+      </property>
+      <property name="Item6" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], 'Confessions Among Actresses')</property>
+        <property name="FilterText">Starts with([Name], 'Confessions Among Actresses')</property>
+      </property>
+      <property name="Item7" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], 'Altar Of Lust')</property>
+        <property name="FilterText">Starts with([Name], 'Altar Of Lust')</property>
+      </property>
+      <property name="Item8" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'Nawa to chibusa')</property>
         <property name="FilterText">Starts with([Name], 'Nawa to chibusa')</property>
       </property>
-      <property name="Item2" isnull="true" iskey="true">
+      <property name="Item9" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'sta')</property>
         <property name="FilterText">Starts with([Name], 'sta')</property>
       </property>
-      <property name="Item3" isnull="true" iskey="true">
+      <property name="Item10" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'st')</property>
         <property name="FilterText">Starts with([Name], 'st')</property>
-      </property>
-      <property name="Item4" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 's')</property>
-        <property name="FilterText">Starts with([Name], 's')</property>
-      </property>
-      <property name="Item5" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'Staying on Top')</property>
-        <property name="FilterText">Starts with([Name], 'Staying on Top')</property>
-      </property>
-      <property name="Item6" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'e')</property>
-        <property name="FilterText">Starts with([Name], 'e')</property>
-      </property>
-      <property name="Item7" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'eu')</property>
-        <property name="FilterText">Starts with([Name], 'eu')</property>
-      </property>
-      <property name="Item8" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'eug')</property>
-        <property name="FilterText">Starts with([Name], 'eug')</property>
-      </property>
-      <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'euge')</property>
-        <property name="FilterText">Starts with([Name], 'euge')</property>
-      </property>
-      <property name="Item10" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'eugen')</property>
-        <property name="FilterText">Starts with([Name], 'eugen')</property>
       </property>
     </property>
     <property name="FilterString" />
