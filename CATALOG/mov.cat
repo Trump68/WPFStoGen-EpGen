@@ -6510,7 +6510,7 @@ DIRECTOR:</CommentsAsString>
     <_Videos />
     <CapsPassportData />
     <GID>8ad27dc8-db3f-48ef-ace3-2d62a599f047</GID>
-    <ItemPath>e:\!catalog\mov\1977\[e77-004-ger] love letters of a portuguese nun\PASSPORT.TXT</ItemPath>
+    <ItemPath>e:\!catalog\mov\1977\[ger] love letters of a portuguese nun\PASSPORT.TXT</ItemPath>
     <ParentID>0</ParentID>
     <Name>Love Letters of a Portuguese Nun</Name>
     <Catalog>MOV</Catalog>
@@ -6532,7 +6532,7 @@ DIRECTOR:</CommentsAsString>
     <_Videos />
     <CapsPassportData />
     <GID>e6969c97-3eac-42ac-aa63-60d0d2106bfc</GID>
-    <ItemPath>e:\!catalog\mov\1977\[e77-005-ger] der ruf der blonden göttin\PASSPORT.TXT</ItemPath>
+    <ItemPath>e:\!catalog\mov\1977\[ger] der ruf der blonden göttin\PASSPORT.TXT</ItemPath>
     <ParentID>0</ParentID>
     <Name>Der Ruf der blonden Göttin</Name>
     <Catalog>MOV</Catalog>
@@ -6950,15 +6950,17 @@ DIRECTOR:</CommentsAsString>
     <_Videos />
     <CapsPassportData />
     <GID>d3ea5750-186b-40d1-b9c8-8b59a3307d51</GID>
-    <ItemPath>e:\!catalog\mov\1977\[e77-023-ger] confessions of the sex slaves (-)\PASSPORT.TXT</ItemPath>
+    <ItemPath>e:\!catalog\mov\1977\[ger] confessions of the sex slaves\PASSPORT.TXT</ItemPath>
     <ParentID>0</ParentID>
     <Name>Confessions of the Sex Slaves</Name>
     <Catalog>MOV</Catalog>
-    <LastEdit>0</LastEdit>
+    <LastEdit>1</LastEdit>
     <Country>GER</Country>
     <Year>1977</Year>
     <Month>0</Month>
     <Day>0</Day>
+    <Variant>RENPY</Variant>
+    <Star>Gina Janssen</Star>
     <Comments>
       <string />
     </Comments>
@@ -7104,7 +7106,7 @@ DIRECTOR:</CommentsAsString>
     <_Videos />
     <CapsPassportData />
     <GID>936bb52f-e826-47c0-b9c5-cc60439c632b</GID>
-    <ItemPath>e:\!catalog\mov\1977\[e77-031-ger] schulmädchen-report 11 (-)\PASSPORT.TXT</ItemPath>
+    <ItemPath>e:\!catalog\mov\1977\[ger] schulmädchen-report 11 (-)\PASSPORT.TXT</ItemPath>
     <ParentID>0</ParentID>
     <Name>Schulmädchen-Report 11</Name>
     <Catalog>MOV</Catalog>
@@ -7148,7 +7150,7 @@ DIRECTOR:</CommentsAsString>
     <_Videos />
     <CapsPassportData />
     <GID>0c168f0b-b75e-4329-869f-191dccb6d2b8</GID>
-    <ItemPath>e:\!catalog\mov\1977\[e77-033-ger] ilsa she wolf of the ss\PASSPORT.TXT</ItemPath>
+    <ItemPath>e:\!catalog\mov\1977\[ger] ilsa she wolf of the ss\PASSPORT.TXT</ItemPath>
     <ParentID>0</ParentID>
     <Name>Ilsa She Wolf of the SS</Name>
     <Catalog>MOV</Catalog>
@@ -7192,7 +7194,7 @@ DIRECTOR:</CommentsAsString>
     <_Videos />
     <CapsPassportData />
     <GID>03435ccb-e1b5-417d-8f7a-cb8a7aa01167</GID>
-    <ItemPath>e:\!catalog\mov\1977\[e77-035-ita] emanuelle - perché violenza alle donne\PASSPORT.TXT</ItemPath>
+    <ItemPath>e:\!catalog\mov\1977\[ita] emanuelle - perché violenza alle donne\PASSPORT.TXT</ItemPath>
     <ParentID>0</ParentID>
     <Name>Emanuelle - Perché violenza alle donne</Name>
     <Catalog>MOV</Catalog>
@@ -7214,7 +7216,7 @@ DIRECTOR:</CommentsAsString>
     <_Videos />
     <CapsPassportData />
     <GID>985057a2-8b6e-4857-b018-701466d46e16</GID>
-    <ItemPath>e:\!catalog\mov\1977\[e77-036-ger] hausfrauen-report 6\PASSPORT.TXT</ItemPath>
+    <ItemPath>e:\!catalog\mov\1977\[ger] hausfrauen-report 6\PASSPORT.TXT</ItemPath>
     <ParentID>0</ParentID>
     <Name>Hausfrauen-Report 6</Name>
     <Catalog>MOV</Catalog>
@@ -57083,6 +57085,300 @@ My dad starts a double life with a Japanese mother who should never know.</Comme
     <Comments>
       <string />
     </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>1b4db8bc-5610-4dd8-a4fe-15aefd735f33</GID>
+    <ItemPath>e:\!catalog\mov\1980\[ita] erotic nights of the living dead\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Erotic Nights Of The Living Dead</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>ITA</Country>
+    <Year>1980</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>39ea4ada-82ef-49d0-a00f-ff94da1897f2</GID>
+    <ItemPath>e:\!catalog\mov\1991\[ita] games of desire\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Games of Desire</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>ITA</Country>
+    <Year>1991</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>bfcb0a19-03c3-4534-81ee-988b513ddc68</GID>
+    <ItemPath>e:\!catalog\mov\1992\[ita] desiderando moana\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Desiderando Moana</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>2</LastEdit>
+    <Country>ITA</Country>
+    <Year>1992</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>RENPY</Variant>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>dfe8cdf6-068b-49fc-908c-fb32e2607bef</GID>
+    <ItemPath>e:\!catalog\mov\1999\[fra] la fete a gigi\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>La Fete A Gigi</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1999</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>cb089af1-b2b6-4a38-aa52-2f425a3112bf</GID>
+    <ItemPath>e:\!catalog\mov\2018\[kor] dream of jinsia\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Dream of JINSIA</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>KOR</Country>
+    <Year>2018</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>4f6df075-88ba-4bfb-832e-4c5b1012a8f9</GID>
+    <ItemPath>e:\!catalog\mov\2018\[kor] nice mother in law\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Nice Mother in law</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>1</LastEdit>
+    <Country>KOR</Country>
+    <Year>2018</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>RENPY</Variant>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>0b7e7e96-887d-4ec4-9b13-ccd8a4c0512b</GID>
+    <ItemPath>e:\!catalog\mov\1994\[usa] clifford\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Clifford</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>USA</Country>
+    <Year>1994</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>RENPY</Variant>
+    <Star>Mary Steenburgen</Star>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>4e980dcf-b650-491e-b06f-e2ca222bd98a</GID>
+    <ItemPath>e:\!catalog\mov\1992\[usa] night rhythms\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Night Rhythms</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>USA</Country>
+    <Year>1992</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>RENPY</Variant>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>c9af2542-2802-4125-835b-9ae5341f8404</GID>
+    <ItemPath>e:\!catalog\mov\1995\[kor] liheoseol\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Liheoseol</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>1</LastEdit>
+    <Country>KOR</Country>
+    <Year>1995</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>RENPY</Variant>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>5b78b212-c70e-499d-bb33-96644bb5ff90</GID>
+    <ItemPath>e:\!catalog\mov\2005\[usa] rome\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Rome</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>USA</Country>
+    <Year>2005</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>RENPY</Variant>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>5e130b14-30e0-4a0e-9fa7-f39ee80c3a8d</GID>
+    <ItemPath>e:\!catalog\mov\2016\[fra] l'apprentie soumise\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>L'apprentie Soumise</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>2016</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>RENPY</Variant>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>8612d4da-123e-4d66-9fd8-c0f44adf9d00</GID>
+    <ItemPath>e:\!catalog\mov\2010\[usa] boardwalk empire\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Boardwalk Empire</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>USA</Country>
+    <Year>2010</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>RENPY</Variant>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>1c4ab895-577c-4873-a3c2-7c73fdd7f1e9</GID>
+    <ItemPath>e:\!catalog\mov\1989\[usa] parenthood\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Parenthood</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>USA</Country>
+    <Year>1989</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>RENPY</Variant>
+    <Star>Mary Steenburgen</Star>
+    <Comments />
     <CommentsAsString />
     <Clips />
     <CombinedScenes />

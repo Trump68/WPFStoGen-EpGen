@@ -433,7 +433,17 @@ namespace EPCat.Model
 
         private static void RebuildScript(List<SkyrimScene> scenes, params ActorEnumeration[] actors)
         {
-            WriteFrameworkScript(scenes, actors);
+            List<ActorEnumeration> actorsl = actors.ToList();
+            if (!actors.Any())
+            {
+               actorsl = new List<ActorEnumeration>()
+               {
+                ActorEnumeration.Player,
+                ActorEnumeration.Ulfbear,
+               };
+            }
+
+            WriteFrameworkScript(scenes, actorsl.ToArray());
             WriteThreadControllerScript(scenes);
             reBuild("sslThreadController.psc");
             reBuild("SexLabFramework.psc");
@@ -611,6 +621,500 @@ namespace EPCat.Model
                 result.Add($"  obstacle.Disable(false)");
             }
             result.Add($"  ObjectReference centerOn = Game.GetForm({centerOn}) as ObjectReference");
+            result.Add(@"
+  obstacle = Game.GetForm(0x000bbab1) as ObjectReference 
+  obstacle.Disable(false)
+  obstacle = Game.GetForm(0x0003ed49) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb49) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617f8) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x00061806) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0003ed4a) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbac9) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617cd) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb37) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc706) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc707) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb2e) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051c0) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617d6) as ObjectReference 
+  obstacle.Disable(false) 
+  
+  obstacle = Game.GetForm(0x000c7330) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0009cafe) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbac8) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617de) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617ea) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbaf5) as ObjectReference 
+  obstacle.Disable(false) 
+
+  obstacle = Game.GetForm(0x000bbacf) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb48) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbab2) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbad3) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc275) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc92) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb26) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617c9) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617d1) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x00061818) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617d3) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x00061806) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0003ed4a) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617f8) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb49) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0003ed49) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbab1) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbaf4) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbaf3) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbaf0) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbae7) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617cf) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617cc) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617cb) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617ca) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617d5) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617f6) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617e9) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbaf1) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbaf2) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc7e) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc271) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc272) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc5ae) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617ec) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617d0) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617c6) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617dd) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617ed) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617c8) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617e8) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617c7) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617e7) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617c5) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617d2) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0001db63) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a76) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x00061807) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051dc) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051bb) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051db) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x00061810) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc5e0) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc6ff) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc5c1) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc5b7) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc5c7) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc709) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc708) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc79) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc7a) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbae8) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc7b) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb80) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0009f261) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbab3) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc274) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617f7) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc7f) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc69c) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051bd) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051b9) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a77) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc722) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc81) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc725) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbad9) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc78) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbaf7) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc273) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc724) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb09) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbaaf) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617f9) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617ff) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617db) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617d8) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0006181c) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617e6) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb23) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb15) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb0d) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbadb) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbaf6) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb25) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbab0) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbad4) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bceff) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a7a) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a7b) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a79) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a78) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0001051bf) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbaac) as ObjectReference 
+  obstacle.Disable(false)  
+  obstacle = Game.GetForm(0x000bbb24) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x00061805) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x00010d979) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617fe) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bc5a5) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbadc) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617d4) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617dc) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617ee) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc7d) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc7c) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617f4) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcf02) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0009f262) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbaae) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0006180d) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051c7) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617f2) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051d7) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051cd) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb4b) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617e3) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0006180f) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bccf7) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bccb5) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb4b) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bbb4c) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc83) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617fd) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617d7) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc8c) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc85) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcd36) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc82) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617e2) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcefd) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcefe) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcca9) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0003ed4e) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617fa) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcf00) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bccc8) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0010d97a) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc88) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bccb6) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcefb) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcefa) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcefc) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x00033245) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a63) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617e1) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617eb) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617f0) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617e4) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcd38) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcd29) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcd37) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcd50) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc93) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051c5) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051c8) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051d9) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051da) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051d8) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051c9) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051d4) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x00061817) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617e5) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617e0) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617d9) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617da) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0001db55) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051c4) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051d5) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051cb) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051d1) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051ce) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bccaa) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617f3) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a5b) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a5a) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a6b) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a5c) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a6e) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000bcc80) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a6f) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a6d) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617df) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7aba) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617ef) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a62) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0010f54b) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a6a) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0006dc97) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000ea73a) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a75) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617f5) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000617f1) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001063c4) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a65) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a64) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0010f7fc) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a5f) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a60) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a5d) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a5e) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a61) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a71) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a72) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a70) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a66) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a67) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051d3) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051cf) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0010f54d) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x0010f54c) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051c6) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x001051d6) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a74) as ObjectReference 
+  obstacle.Disable(false) 
+  obstacle = Game.GetForm(0x000c7a73) as ObjectReference 
+  obstacle.Disable(false) 
+                ");
+
+
             result.Add($"  return centerOn");
             result.Add($"EndFunction");
             return result;

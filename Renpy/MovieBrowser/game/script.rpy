@@ -81,7 +81,7 @@ label start:
 
     # $ dirname = "default"
 
-    call USA_1992_Night_Rhythms
+    call ITA_1990_Lolita_2000 
     pause
 
 
