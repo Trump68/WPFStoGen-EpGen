@@ -81,7 +81,7 @@ label start:
 
     # $ dirname = "default"
 
-    call ITA_1990_Lolita_2000 
+    call SIMS4_Anims
     pause
 
 
@@ -89,6 +89,16 @@ label start:
         show movie:
             Ani(dirname +"/"+ labelname + "/m", cnt, rate, lp, bk, forv, start=st, ext="jpg", startpause = sp, reversepause = ep)
             xalign 0.5 yalign 0.3
+        pause
+        pause 0.5
+        hide movie
+        return
+
+    label BASEPNG(labelname="default",cnt=1,rate=0.01,lp=True,bk=True,forv=True,st=1,sp=0.1,ep=0.1):
+        show movie:
+            Ani(dirname +"/"+ labelname + "/m", cnt, rate, lp, bk, forv, start=st, ext="png", startpause = sp, reversepause = ep)
+            xalign 0.5 yalign 0.3
+            #xpos 0 ypos -100
         pause
         pause 0.5
         hide movie

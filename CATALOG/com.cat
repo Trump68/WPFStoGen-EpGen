@@ -71329,6 +71329,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>2509749a-b934-4cde-b46f-6f2673c8d027</GID>
     <ItemPath>e:\!catalog\com\artist comix\al rio\the art of al rio volume one (2005)\PASSPORT.TXT</ItemPath>
@@ -71341,7 +71342,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Al Rio</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71349,6 +71352,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>4f7c4946-fd97-43c0-acc9-f4c1b78c637b</GID>
     <ItemPath>e:\!catalog\com\artist comix\archie dickens\pin-up art of archie dickens vol.1\PASSPORT.TXT</ItemPath>
@@ -71361,7 +71365,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Archie Dickens</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71369,6 +71375,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>964d082e-9c58-4367-8f49-f67b386649c6</GID>
     <ItemPath>e:\!catalog\com\artist comix\aslan\aslan 1979 (fr)\PASSPORT.TXT</ItemPath>
@@ -71381,7 +71388,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Aslan</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71389,6 +71398,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>55485004-4f07-47ce-bc17-5297f38ff2b8</GID>
     <ItemPath>e:\!catalog\com\artist comix\azpiri\azpiri - historias cortas (traducc)\PASSPORT.TXT</ItemPath>
@@ -71401,7 +71411,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Azpiri</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71409,6 +71421,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>1861c80a-30a1-4710-98a3-51aad06d1754</GID>
     <ItemPath>e:\!catalog\com\artist comix\boobsgames\artist - boobsgames\PASSPORT.TXT</ItemPath>
@@ -71421,7 +71434,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Boobsgames</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71429,6 +71444,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>a1ca2d09-ba14-4d97-90c8-8e19c4821844</GID>
     <ItemPath>e:\!catalog\com\artist comix\cherry-gig\the art of cherry-gig (adult) [ntellez@crg]\PASSPORT.TXT</ItemPath>
@@ -71441,7 +71457,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Cherry-gig</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71449,6 +71467,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>d66d9a6f-82c6-4734-96a4-f3464adb13ee</GID>
     <ItemPath>e:\!catalog\com\artist comix\dean yeagle\melange by dean yeagle  [artbook]\PASSPORT.TXT</ItemPath>
@@ -71461,7 +71480,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Dean Yeagle</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71469,6 +71490,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>b6eda68a-027c-48b5-a295-d4f1f3fe310c</GID>
     <ItemPath>e:\!catalog\com\artist comix\denis sire\sire, denis - bois willys\PASSPORT.TXT</ItemPath>
@@ -71481,7 +71503,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Denis Sire</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71489,6 +71513,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>b8a589ca-5852-43f5-aa26-7af01bae7219</GID>
     <ItemPath>e:\!catalog\com\artist comix\don lawrence\carrie 03 - steve kingston [mamuf-luzroja]\PASSPORT.TXT</ItemPath>
@@ -71501,7 +71526,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Don Lawrence</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71509,6 +71536,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>0b40b03d-e1b5-4483-aa43-bc6c170d3cb0</GID>
     <ItemPath>e:\!catalog\com\artist comix\don lawrence\lawrence, don - carrie 01 (crg)\PASSPORT.TXT</ItemPath>
@@ -71521,7 +71549,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Don Lawrence</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71529,6 +71559,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>72e74f6e-fc5a-4b22-9c6b-be4402d1691f</GID>
     <ItemPath>e:\!catalog\com\artist comix\don lawrence\lawrence, don - carrie 02 (crg)\PASSPORT.TXT</ItemPath>
@@ -71541,7 +71572,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Don Lawrence</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71549,6 +71582,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>1459343d-d2f6-455f-b37c-af853711a1cb</GID>
     <ItemPath>e:\!catalog\com\artist comix\esteban maroto\xotica - the art of esteban maroto (por vampirella)(crg)\PASSPORT.TXT</ItemPath>
@@ -71561,7 +71595,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Esteban Maroto</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71569,6 +71605,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>fb0cece3-7cea-458a-a1bb-49cc2493c2fe</GID>
     <ItemPath>e:\!catalog\com\artist comix\frank cho\art by frank cho\PASSPORT.TXT</ItemPath>
@@ -71581,7 +71618,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Frank Cho</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71589,6 +71628,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>2ff70f30-46c2-41a1-a07b-f257c764df3a</GID>
     <ItemPath>e:\!catalog\com\artist comix\frank thorne\thorne, frank - iron devil 01 (crg)\PASSPORT.TXT</ItemPath>
@@ -71601,7 +71641,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Frank Thorne</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71609,6 +71651,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>5608c303-ae73-4cd8-a2ed-32a730e49b10</GID>
     <ItemPath>e:\!catalog\com\artist comix\gürcan gürsel\gürcan gürsel - 84 erotic strips\PASSPORT.TXT</ItemPath>
@@ -71621,7 +71664,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Gürcan Gürsel</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71629,6 +71674,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>b78f4b65-27c6-4fd9-983d-a62e0eb3ae54</GID>
     <ItemPath>e:\!catalog\com\artist comix\jack henry hopper(jacques géron)\brigade 03 [french]\PASSPORT.TXT</ItemPath>
@@ -71641,7 +71687,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Jack Henry Hopper(Jacques Géron)</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71649,6 +71697,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>831fc96e-acb5-4bcf-b33e-702036028bb9</GID>
     <ItemPath>e:\!catalog\com\artist comix\jack henry hopper(jacques géron)\hot night in rangoon\PASSPORT.TXT</ItemPath>
@@ -71661,7 +71710,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Jack Henry Hopper(Jacques Géron)</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71669,6 +71720,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>5d7b5f6c-941e-42cd-b031-c42d8c0fa19e</GID>
     <ItemPath>e:\!catalog\com\artist comix\jack henry hopper(jacques géron)\hotel goldenpole\PASSPORT.TXT</ItemPath>
@@ -71681,7 +71733,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Jack Henry Hopper(Jacques Géron)</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71689,6 +71743,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>72b25480-f396-4d2d-af55-a21e6fa8b60d</GID>
     <ItemPath>e:\!catalog\com\artist comix\jack henry hopper(jacques géron)\madame 2 eng\PASSPORT.TXT</ItemPath>
@@ -71701,7 +71756,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Jack Henry Hopper(Jacques Géron)</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71709,6 +71766,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>aca8a4dd-f498-48df-b4ad-f1ee8dbbaefc</GID>
     <ItemPath>e:\!catalog\com\artist comix\jack henry hopper(jacques géron)\madame 3 eng\PASSPORT.TXT</ItemPath>
@@ -71721,7 +71779,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Jack Henry Hopper(Jacques Géron)</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71729,6 +71789,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>c0b20b45-fa71-4eac-8df9-f4d5be2b59c2</GID>
     <ItemPath>e:\!catalog\com\artist comix\jack henry hopper(jacques géron)\special section 2\PASSPORT.TXT</ItemPath>
@@ -71741,7 +71802,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Jack Henry Hopper(Jacques Géron)</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71749,6 +71812,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>2b0f99ed-ce24-4f4c-b9fd-e208bbc19488</GID>
     <ItemPath>e:\!catalog\com\artist comix\jack henry hopper(jacques géron)\[geron jacques](ef popcomix #030) loubars trio [french]\PASSPORT.TXT</ItemPath>
@@ -71761,7 +71825,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Jack Henry Hopper(Jacques Géron)</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71769,6 +71835,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>93493bc4-afba-4d4c-b4fb-99c9d8814767</GID>
     <ItemPath>e:\!catalog\com\artist comix\jack henry hopper(jacques géron)\[jack henry hopper (j.h. haupeur)] nuits chaudes de rangoon [french]\PASSPORT.TXT</ItemPath>
@@ -71781,7 +71848,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Jack Henry Hopper(Jacques Géron)</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71789,6 +71858,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>e75a7644-d8b0-46e0-9882-7d0051015f7d</GID>
     <ItemPath>e:\!catalog\com\artist comix\jack henry hopper(jacques géron)\[jack henry hopper(jacques géron)] hôtel «con-d'or» #1 [french]\PASSPORT.TXT</ItemPath>
@@ -71801,7 +71871,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Jack Henry Hopper(Jacques Géron)</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71809,6 +71881,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>d9e2b923-de0c-44ca-a6ea-6c8cce1b8a02</GID>
     <ItemPath>e:\!catalog\com\artist comix\jack henry hopper(jacques géron)\[jack henry hopper(jacques géron)] hôtel «con-d'or» #2 [french]\PASSPORT.TXT</ItemPath>
@@ -71821,7 +71894,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Jack Henry Hopper(Jacques Géron)</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71829,6 +71904,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>69ae9f44-33e9-4fc3-b933-38c87925e825</GID>
     <ItemPath>e:\!catalog\com\artist comix\jack henry hopper(jacques géron)\[jack henry hopper(jacques géron)] section spéciale #2 - l’escadron de l’enfer [french]\PASSPORT.TXT</ItemPath>
@@ -71841,7 +71917,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Jack Henry Hopper(Jacques Géron)</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71849,6 +71927,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>13675551-faf3-4591-813e-8bad3a9599d6</GID>
     <ItemPath>e:\!catalog\com\artist comix\jack henry hopper(jacques géron)\[jack henry hopper(jacques géron)] section spéciale #2 - l’escadron de l’enfer [french](1)\PASSPORT.TXT</ItemPath>
@@ -71861,7 +71940,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Jack Henry Hopper(Jacques Géron)</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71869,6 +71950,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>6338617f-a6c4-4b91-8c9b-bb29e6685651</GID>
     <ItemPath>e:\!catalog\com\artist comix\jack henry hopper(jacques géron)\[jack henry hopper] madame #1 [english]\PASSPORT.TXT</ItemPath>
@@ -71881,7 +71963,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Jack Henry Hopper(Jacques Géron)</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71889,6 +71973,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>e66a796b-5f54-48ce-aee9-d1ae1385c879</GID>
     <ItemPath>e:\!catalog\com\artist comix\jack henry hopper(jacques géron)\[jack henry hopper] madame #2 [french]\PASSPORT.TXT</ItemPath>
@@ -71901,7 +71986,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Jack Henry Hopper(Jacques Géron)</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71909,6 +71996,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>144835ba-d2c8-4ee7-8a8b-a71e4d741cec</GID>
     <ItemPath>e:\!catalog\com\artist comix\louis\louis - red hot ladies (fr)\PASSPORT.TXT</ItemPath>
@@ -71921,7 +72009,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Louis</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71929,6 +72019,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>1bc19a39-b6e1-4d26-a2c4-933ef358ca8e</GID>
     <ItemPath>e:\!catalog\com\artist comix\mesalina tomo\mesalina tomo 1 - el templo de priapo [traducido por ntellez11 y elessar][xv aniversario crg]\PASSPORT.TXT</ItemPath>
@@ -71941,7 +72032,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Mesalina Tomo</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71949,6 +72042,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>7c0741ff-2cdf-4040-8cef-67a8e1c83afe</GID>
     <ItemPath>e:\!catalog\com\artist comix\milo manara\bolero\PASSPORT.TXT</ItemPath>
@@ -71961,7 +72055,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Milo Manara</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71969,6 +72065,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>b193f420-fe98-4376-a2d6-bcb416d89216</GID>
     <ItemPath>e:\!catalog\com\artist comix\milo manara\las aventuras africanas de giuseppe bergman 2 (milo manara) [biblioteca totem 25] (ed new comic) [x carasucia][crg]\PASSPORT.TXT</ItemPath>
@@ -71981,7 +72078,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Milo Manara</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -71989,6 +72088,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>41e9e068-4425-445f-9ad2-e3a730c8a4fb</GID>
     <ItemPath>e:\!catalog\com\artist comix\milo manara\las.aventuras.africanas.de.giuseppe.bergman.1.(milo.manara).[biblioteca.tуtem.24].(ed.nueva.frontera).[crg]\PASSPORT.TXT</ItemPath>
@@ -72001,7 +72101,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Milo Manara</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72009,6 +72111,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>462486dc-7771-4306-b1d9-8dd04db0c38d</GID>
     <ItemPath>e:\!catalog\com\artist comix\milo manara\manara - camara indiscreta (español) (crg)\PASSPORT.TXT</ItemPath>
@@ -72021,7 +72124,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Milo Manara</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72029,6 +72134,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>8d144ddf-5654-4eed-9676-425606151678</GID>
     <ItemPath>e:\!catalog\com\artist comix\milo manara\manara - revolucion\PASSPORT.TXT</ItemPath>
@@ -72041,7 +72147,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Milo Manara</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72049,6 +72157,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>e071d291-26dd-43c5-a217-a0f482783f21</GID>
     <ItemPath>e:\!catalog\com\artist comix\milo manara\manara - www\PASSPORT.TXT</ItemPath>
@@ -72061,7 +72170,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Milo Manara</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72069,6 +72180,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>02d94989-0c99-4a8f-9daa-b8b34bcc82ab</GID>
     <ItemPath>e:\!catalog\com\artist comix\milo manara\manara les femmes (fr)\PASSPORT.TXT</ItemPath>
@@ -72081,7 +72193,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Milo Manara</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72089,6 +72203,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>2fe34a85-6c93-478a-bac7-0bb60e1d6b3f</GID>
     <ItemPath>e:\!catalog\com\artist comix\milo manara\manara sirenae (it)\PASSPORT.TXT</ItemPath>
@@ -72101,7 +72216,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Milo Manara</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72109,6 +72226,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>d8ad7730-a752-4052-94fc-3f489db2d0d2</GID>
     <ItemPath>e:\!catalog\com\artist comix\milo manara\milo manara - camino oculto (las aventuras urbanas de giuseppe bergman.)\PASSPORT.TXT</ItemPath>
@@ -72121,7 +72239,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Milo Manara</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72129,6 +72249,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>a33ba201-e18f-4fd2-9ce2-976c288e3ba8</GID>
     <ItemPath>e:\!catalog\com\artist comix\milo manara\milo manara - kamasutra\PASSPORT.TXT</ItemPath>
@@ -72141,7 +72262,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Milo Manara</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72149,6 +72272,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>b8c46287-9e13-4831-befe-45e8c2971982</GID>
     <ItemPath>e:\!catalog\com\artist comix\milo manara\milo manara - la metamofosis de lucio\PASSPORT.TXT</ItemPath>
@@ -72161,7 +72285,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Milo Manara</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72169,6 +72295,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>3501f19d-a78e-4dd4-902c-6f09757a6f65</GID>
     <ItemPath>e:\!catalog\com\artist comix\paula meadows\paula meadows - sabina t2  sp\PASSPORT.TXT</ItemPath>
@@ -72181,7 +72308,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Paula Meadows</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72189,6 +72318,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>91e4f6fb-b8f9-4bae-8203-15b0002286ac</GID>
     <ItemPath>e:\!catalog\com\artist comix\richard moore\richard moore - cuentos perversos 1 (crg)\PASSPORT.TXT</ItemPath>
@@ -72201,7 +72331,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Richard Moore</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72209,6 +72341,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>0db78daf-554a-4a7c-bc3a-4db7b46426f6</GID>
     <ItemPath>e:\!catalog\com\artist comix\richard moore\richard moore - cuentos perversos 2 (crg)\PASSPORT.TXT</ItemPath>
@@ -72221,7 +72354,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Richard Moore</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72229,6 +72364,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>6f482f90-d4ef-4ae5-9a2e-2fd006359144</GID>
     <ItemPath>e:\!catalog\com\artist comix\rose mary chevrotine\rose mary chevrotine  - doakes y keister (prod. editoriales) [by mhrxxx]\PASSPORT.TXT</ItemPath>
@@ -72241,7 +72377,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Rose Mary Chevrotine</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72249,6 +72387,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>b8a3bd28-a9e8-47b4-9af9-4082e94a71bc</GID>
     <ItemPath>e:\!catalog\com\artist comix\salomon grundig\[salomon grundig] a ruined relationship #1 [english]\PASSPORT.TXT</ItemPath>
@@ -72261,7 +72400,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Salomon Grundig</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72269,6 +72410,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>5ac625e7-67b8-44cb-8b07-df39f61cce4b</GID>
     <ItemPath>e:\!catalog\com\artist comix\salomon grundig\[salomon grundig] a ruined relationship #2 [english]\PASSPORT.TXT</ItemPath>
@@ -72281,7 +72423,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Salomon Grundig</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72289,6 +72433,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>47a7006c-9af7-4a1d-806b-8fe07adf8ee5</GID>
     <ItemPath>e:\!catalog\com\artist comix\salomon grundig\[salomon grundig] a ruined relationship #3 [english]\PASSPORT.TXT</ItemPath>
@@ -72301,7 +72446,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Salomon Grundig</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72309,6 +72456,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>5f06b3ad-3e6a-48e2-a719-ed4cc3c53915</GID>
     <ItemPath>e:\!catalog\com\artist comix\salomon grundig\[salomon grundig] a ruined relationship 1 (разрушенные отношения 1)\PASSPORT.TXT</ItemPath>
@@ -72321,7 +72469,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Salomon Grundig</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72329,6 +72479,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>0bde0dcf-3acd-4856-b8b9-0731a1731061</GID>
     <ItemPath>e:\!catalog\com\artist comix\salomon grundig\[salomon grundig] malena #1 [english] {donnie b.}\PASSPORT.TXT</ItemPath>
@@ -72341,7 +72492,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Salomon Grundig</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72349,6 +72502,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>74e75a85-e6e2-4b59-80d0-57b7ac2efe75</GID>
     <ItemPath>e:\!catalog\com\artist comix\salomon grundig\[salomon grundig] malena #2 - the virgin whore [english] {donnie b.}\PASSPORT.TXT</ItemPath>
@@ -72361,7 +72515,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Salomon Grundig</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72369,6 +72525,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>2549c6ea-3030-4fad-8712-9e6113a54df6</GID>
     <ItemPath>e:\!catalog\com\artist comix\salomon grundig\[salomon grundig] the black czarina [english] {donnie b.}\PASSPORT.TXT</ItemPath>
@@ -72381,7 +72538,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Salomon Grundig</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72389,6 +72548,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>861532fa-a053-4772-bd18-44609edfe4f5</GID>
     <ItemPath>e:\!catalog\com\artist comix\salomon grundig\[salomon grundig] viole d'un couple 02 [french]\PASSPORT.TXT</ItemPath>
@@ -72401,7 +72561,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Salomon Grundig</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72409,6 +72571,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>ce3138ef-4219-4a6e-9b64-0f258ea19a4d</GID>
     <ItemPath>e:\!catalog\com\artist comix\solano lopez\solano lopez sketchbook vol1 - 100% sex[crg - srmilagro]\PASSPORT.TXT</ItemPath>
@@ -72421,7 +72584,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Solano Lopez</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72429,6 +72594,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>d4642c70-87d4-4a29-aefc-711103339e38</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\alice\PASSPORT.TXT</ItemPath>
@@ -72441,7 +72607,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72449,6 +72617,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>dc5b3aef-6ee6-40bc-99c5-68c9e1f89900</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\angelissa\PASSPORT.TXT</ItemPath>
@@ -72461,7 +72630,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72469,6 +72640,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>16255c85-a2ab-4f03-afaf-6287b33f7ccc</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\charlotte milk\PASSPORT.TXT</ItemPath>
@@ -72481,7 +72653,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72489,6 +72663,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>ff72daeb-c474-4007-a3cd-4c0647baad4b</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\cheyenne wild\PASSPORT.TXT</ItemPath>
@@ -72501,7 +72676,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72509,6 +72686,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>aaea3aea-fa5f-4c52-a0a6-9c9170f28361</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\elhedril silverstar\PASSPORT.TXT</ItemPath>
@@ -72521,7 +72699,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72529,6 +72709,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>1bd4c5bd-abf1-4277-945e-fd333651b036</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\hitomi neko\PASSPORT.TXT</ItemPath>
@@ -72541,7 +72722,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72549,6 +72732,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>1a13e90a-492f-4198-bc01-61e2dc6b8ae7</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\jenny poussin\PASSPORT.TXT</ItemPath>
@@ -72561,7 +72745,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72569,6 +72755,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>15da46fe-e696-4eb2-99aa-12b9a55e9749</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\juliet starling\PASSPORT.TXT</ItemPath>
@@ -72581,7 +72768,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72589,6 +72778,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>063dcfc0-58b0-4f5e-97d2-93252b1ff46a</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\june butterfly\PASSPORT.TXT</ItemPath>
@@ -72601,7 +72791,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72609,6 +72801,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>c25bdbb2-27bb-4382-9ed3-b85f8e88660f</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\katja uber\PASSPORT.TXT</ItemPath>
@@ -72621,7 +72814,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72629,6 +72824,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>fce91ed4-024f-4051-ac2c-3e5b3ed16bf0</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\kelly comet\PASSPORT.TXT</ItemPath>
@@ -72641,7 +72837,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72649,6 +72847,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>0d2f5bbf-5f49-4df0-a903-9ef6251bc880</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\kim california\PASSPORT.TXT</ItemPath>
@@ -72661,7 +72860,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72669,6 +72870,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>adf4e37d-f8cc-463e-8411-3426486ef389</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\lady kitana\PASSPORT.TXT</ItemPath>
@@ -72681,7 +72883,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72689,6 +72893,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>f254159a-5108-4f92-ba58-e66afd30a481</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\madison shelby\PASSPORT.TXT</ItemPath>
@@ -72701,7 +72906,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72709,6 +72916,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>ebfaecb5-4133-4933-b2ac-8651c82a94eb</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\marie rose\PASSPORT.TXT</ItemPath>
@@ -72721,7 +72929,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72729,6 +72939,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>256a4ead-4d14-4376-8ea3-85619fb46afb</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\mei lee\PASSPORT.TXT</ItemPath>
@@ -72741,7 +72952,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72749,6 +72962,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>1569d875-52cf-4dc2-8a34-a783fdec10d7</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\melody sin\PASSPORT.TXT</ItemPath>
@@ -72761,7 +72975,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72769,6 +72985,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>2eddd90f-8e4f-4779-bef6-75f5e4c2c2de</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\naomi blanche\PASSPORT.TXT</ItemPath>
@@ -72781,7 +72998,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72789,6 +73008,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>e252c4be-e545-4f05-a320-06753500f947</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\nova star\PASSPORT.TXT</ItemPath>
@@ -72801,7 +73021,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72809,6 +73031,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>d165733e-4257-4e69-8942-b6bd31199ac0</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\olivia styles\PASSPORT.TXT</ItemPath>
@@ -72821,7 +73044,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72829,6 +73054,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>5bfeb500-8e83-406f-89d7-707068eba094</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\pearl williams\PASSPORT.TXT</ItemPath>
@@ -72841,7 +73067,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72849,6 +73077,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>27daf0ea-8ce7-4f35-8c26-c417d79b6e58</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\poison\PASSPORT.TXT</ItemPath>
@@ -72861,7 +73090,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72869,6 +73100,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>94a01152-b430-4b53-ac54-b23a6f73d202</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\princess peach\PASSPORT.TXT</ItemPath>
@@ -72881,7 +73113,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72889,6 +73123,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>9f019a76-eb68-4977-884b-5d79e83ce31b</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\rainbow mika\PASSPORT.TXT</ItemPath>
@@ -72901,7 +73136,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72909,6 +73146,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>3f8ec025-473e-41df-9336-b2e4beaae987</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\samantha soft\PASSPORT.TXT</ItemPath>
@@ -72921,7 +73159,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72929,6 +73169,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>871ae1e9-ae52-469b-a488-97039e35ee82</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\samus aran\PASSPORT.TXT</ItemPath>
@@ -72941,7 +73182,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72949,6 +73192,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>bfdec023-d28f-4b14-90d0-86c1964d574b</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\sonya blade\PASSPORT.TXT</ItemPath>
@@ -72961,7 +73205,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72969,6 +73215,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>f53d94cf-fc81-461e-9c6c-d5eba7761c43</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\tabitha black\PASSPORT.TXT</ItemPath>
@@ -72981,7 +73228,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -72989,6 +73238,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>dceceb96-937b-4f35-b0eb-3d0ba1d50fda</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\the amazon\PASSPORT.TXT</ItemPath>
@@ -73001,7 +73251,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73009,6 +73261,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>03857dfd-c7da-4dc4-937e-967eaf144086</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\vanessa bond\PASSPORT.TXT</ItemPath>
@@ -73021,7 +73274,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73029,6 +73284,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>47c10607-5e0d-4011-aa16-f148b3503fe7</GID>
     <ItemPath>e:\!catalog\com\artist comix\vanilladoll\wonder woman\PASSPORT.TXT</ItemPath>
@@ -73041,7 +73297,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vanilladoll</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73049,6 +73307,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>c0b8eecc-a783-4085-be2c-1429dabaeaff</GID>
     <ItemPath>e:\!catalog\com\artist comix\vikki belle\vikki belle - la dama y el vampiro  [spa] por gambor (crg)(lamansion-crg.net)\PASSPORT.TXT</ItemPath>
@@ -73061,7 +73320,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vikki Belle</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73069,6 +73330,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>61bdbe83-064e-459d-9918-bb48e358d18c</GID>
     <ItemPath>e:\!catalog\com\artist comix\vincent stephens\vincent stephens - knots &amp; straps volume one\PASSPORT.TXT</ItemPath>
@@ -73081,7 +73343,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Vincent Stephens</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73089,6 +73353,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>1c7d2ad0-f165-4acb-8d24-18034893df94</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\0000-0999\PASSPORT.TXT</ItemPath>
@@ -73101,7 +73366,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73109,6 +73376,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>75c224b2-e9dd-4468-b6ad-c0e94cc0cdfe</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\1000-1999\PASSPORT.TXT</ItemPath>
@@ -73121,7 +73389,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73129,6 +73399,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>e5517566-4a67-4797-bd9a-ae644f2faadb</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\10000-10999\PASSPORT.TXT</ItemPath>
@@ -73141,7 +73412,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73149,6 +73422,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>3f5d2fb9-c445-4c72-bfe7-f5ef6ac4b2d1</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\11000-11999\PASSPORT.TXT</ItemPath>
@@ -73161,7 +73435,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73169,6 +73445,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>92a71db1-991d-4ee3-95a9-b85abc9c5035</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\12000-12999\PASSPORT.TXT</ItemPath>
@@ -73181,7 +73458,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73189,6 +73468,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>0da57833-9a0b-467a-a803-8e579d7bf14e</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\13000-13999\PASSPORT.TXT</ItemPath>
@@ -73201,7 +73481,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73209,6 +73491,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>d8858675-3d11-41e6-88c8-44e3ab3424ef</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\14000-14999\PASSPORT.TXT</ItemPath>
@@ -73221,7 +73504,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73229,6 +73514,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>4b5ae8c0-3306-4d76-a6d9-2a89ee504285</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\15000-15999\PASSPORT.TXT</ItemPath>
@@ -73241,7 +73527,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73249,6 +73537,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>a8f90dfb-5dfc-4464-8b6d-af405f71639e</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\16000-16999\PASSPORT.TXT</ItemPath>
@@ -73261,7 +73550,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73269,6 +73560,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>198e0b41-ad96-4df1-ade3-4b772276f0df</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\2000-2999\PASSPORT.TXT</ItemPath>
@@ -73281,7 +73573,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73289,6 +73583,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>aa8de396-e0f2-4bf0-b4e4-e4fa630864a3</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\3000-3999\PASSPORT.TXT</ItemPath>
@@ -73301,7 +73596,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73309,6 +73606,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>fc5b11ff-42a0-43e7-a852-de4fcb98df3b</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\4000-4999\PASSPORT.TXT</ItemPath>
@@ -73321,7 +73619,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73329,6 +73629,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>694da33d-a3af-48a8-8bca-7c80436a5e85</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\5000-5999\PASSPORT.TXT</ItemPath>
@@ -73341,7 +73642,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73349,6 +73652,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>ae42c998-ec57-49ae-9770-92fca4148db9</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\6000-6999\PASSPORT.TXT</ItemPath>
@@ -73361,7 +73665,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73369,6 +73675,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>73cedb6c-79d4-4982-83be-b349a7be61b1</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\7000-7999\PASSPORT.TXT</ItemPath>
@@ -73381,7 +73688,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73389,6 +73698,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>25910d8d-7619-466b-a9ab-e45d982e2e66</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\8000-8999\PASSPORT.TXT</ItemPath>
@@ -73401,7 +73711,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73409,6 +73721,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>4e1d2d5b-88db-4a92-bca4-ce9dd020fc15</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\9000-9999\PASSPORT.TXT</ItemPath>
@@ -73421,7 +73734,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73429,6 +73744,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>04f39657-62a3-4148-a4bf-07b16694af50</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\abc\PASSPORT.TXT</ItemPath>
@@ -73441,7 +73757,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73449,6 +73767,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>9acedb61-a8f0-4acb-9837-23529faa8751</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\captioned\PASSPORT.TXT</ItemPath>
@@ -73461,7 +73780,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73469,6 +73790,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>9a6033c5-a1e4-45c3-87eb-4f5838c28799</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\captioned\events\PASSPORT.TXT</ItemPath>
@@ -73480,7 +73802,9 @@ asdas444</CommentsAsString>
     <Month>0</Month>
     <Day>0</Day>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73488,6 +73812,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>f1f43ee2-4fda-487d-8050-db2760ee96e4</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\defg\PASSPORT.TXT</ItemPath>
@@ -73500,7 +73825,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73508,6 +73835,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>0012f395-c93a-48ab-8d23-4ede1c747bdf</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\hijkl\PASSPORT.TXT</ItemPath>
@@ -73520,7 +73848,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73528,6 +73858,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>6fdfe16e-cb52-45a7-8070-e9b9c820c7dc</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\mnopqr\PASSPORT.TXT</ItemPath>
@@ -73540,7 +73871,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73548,6 +73881,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>dee9d20d-994d-4a2a-9dcd-099bcd222425</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\mnopqr\events\PASSPORT.TXT</ItemPath>
@@ -73559,7 +73893,9 @@ asdas444</CommentsAsString>
     <Month>0</Month>
     <Day>0</Day>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73567,6 +73903,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>3ec44437-c884-4304-8977-9137353163ba</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\pre-z series\PASSPORT.TXT</ItemPath>
@@ -73579,7 +73916,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73587,6 +73926,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>4aa0a56f-9893-4cd4-b5de-0f40aa818256</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\revised by julius\PASSPORT.TXT</ItemPath>
@@ -73599,7 +73939,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73607,6 +73949,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>a3c70c15-e9da-446d-8041-e4a3f1b4ef26</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\s\PASSPORT.TXT</ItemPath>
@@ -73619,7 +73962,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73627,6 +73972,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>f70ecc0d-4af5-4375-9a22-e7675c2261d9</GID>
     <ItemPath>e:\!catalog\com\artist comix\zimmerman\tuvwxyz\PASSPORT.TXT</ItemPath>
@@ -73639,7 +73985,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>ARTIST COMIX</Kind>
     <Director>Zimmerman</Director>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73647,6 +73995,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>bf744f76-99ad-42b9-8c78-d9e5ea1abc58</GID>
     <ItemPath>e:\!catalog\com\comix printed\!other\!femdomart\PASSPORT.TXT</ItemPath>
@@ -73659,7 +74008,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>!Other</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73667,6 +74018,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>efb9672b-2489-4bb6-b112-7b0b27c885e8</GID>
     <ItemPath>e:\!catalog\com\comix printed\a gallery girls collection\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -73679,7 +74031,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>A Gallery Girls Collection</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73687,6 +74041,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>758a8cfb-7edb-49e3-8dd9-91e9a97be9c6</GID>
     <ItemPath>e:\!catalog\com\comix printed\a puerta cerrada\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -73699,7 +74054,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>A Puerta Cerrada</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73707,6 +74064,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>6d049397-7780-4992-bf21-a6683b4a9e9a</GID>
     <ItemPath>e:\!catalog\com\comix printed\a puro dolor\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -73720,7 +74078,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>A Puro Dolor</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73728,6 +74088,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>292b9279-5109-4188-bef5-5822aa837f62</GID>
     <ItemPath>e:\!catalog\com\comix printed\aca los maestros\aca los maestros (comic erotic spanish) (crg)\PASSPORT.TXT</ItemPath>
@@ -73740,7 +74101,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Aca Los Maestros</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73748,6 +74111,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>f9a966ed-a71c-4363-b7e5-0c3eaaaa7e69</GID>
     <ItemPath>e:\!catalog\com\comix printed\almas perversas\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -73760,7 +74124,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Almas Perversas</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73768,6 +74134,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>f4f1e8e9-5f63-49c7-8571-ba1443c5e56c</GID>
     <ItemPath>e:\!catalog\com\comix printed\antologia del sadomasoquismo by quecorunner\sm1 antologia de la historieta sadomasoquista by quecorunner.crg.rar\PASSPORT.TXT</ItemPath>
@@ -73780,7 +74147,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Antologia del sadomasoquismo by quecorunner</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73788,6 +74157,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>e9f2f8f0-7512-4a28-8bbd-7db2657464f5</GID>
     <ItemPath>e:\!catalog\com\comix printed\antologia del sadomasoquismo by quecorunner\sm2 antologia del sadomasoquismo by quecorunner.crg.rar\PASSPORT.TXT</ItemPath>
@@ -73800,7 +74170,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Antologia del sadomasoquismo by quecorunner</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73808,6 +74180,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>c9b638f2-5ede-4410-b4d8-6dd88f2f9f9c</GID>
     <ItemPath>e:\!catalog\com\comix printed\baby sitter\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -73820,7 +74193,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Baby Sitter</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73828,6 +74203,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>cffdb3b9-048d-4b07-a899-5e50bbb3bbd7</GID>
     <ItemPath>e:\!catalog\com\comix printed\baby sitter\baby sitter vietata 8 by charles\PASSPORT.TXT</ItemPath>
@@ -73840,7 +74216,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Baby Sitter</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73848,6 +74226,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>0fa2ce68-aee5-49b5-9fbc-4958bab33a40</GID>
     <ItemPath>e:\!catalog\com\comix printed\bellas de noche\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -73861,7 +74240,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Bellas De Noche</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73869,6 +74250,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>7232a5a3-5897-4c32-8e60-4a66118d8278</GID>
     <ItemPath>e:\!catalog\com\comix printed\bionika\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -73881,7 +74263,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Bionika</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73889,6 +74273,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>44c734c3-f52f-4035-8df4-472d6023df78</GID>
     <ItemPath>e:\!catalog\com\comix printed\brian the brain\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -73901,7 +74286,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Brian The Brain</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73909,6 +74296,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>e6cb95eb-19fb-4fee-92ef-a49708fcfd5b</GID>
     <ItemPath>e:\!catalog\com\comix printed\brian the brain\brian the brain 2 m a martнn - by edonkeyworld.tk\PASSPORT.TXT</ItemPath>
@@ -73921,7 +74309,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Brian The Brain</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73929,6 +74319,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>b16da805-5e97-4b0e-9ed7-040f103448e0</GID>
     <ItemPath>e:\!catalog\com\comix printed\brian the brain\brian, the brain - nє 8 - escaneado por melkor\PASSPORT.TXT</ItemPath>
@@ -73941,7 +74332,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Brian The Brain</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73949,6 +74342,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>2b0cceca-9545-4f4b-a431-bd90c5e98365</GID>
     <ItemPath>e:\!catalog\com\comix printed\burdel\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -73961,7 +74355,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Burdel</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73969,6 +74365,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>23ca61cf-1f0a-4cf0-9150-2360763a3f31</GID>
     <ItemPath>e:\!catalog\com\comix printed\cachondeo-humor a tope\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -73981,7 +74378,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Cachondeo-Humor A Tope</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -73989,6 +74388,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>8ee2c8e2-71c1-44b2-9a44-a09eece9782c</GID>
     <ItemPath>e:\!catalog\com\comix printed\calentura de sexo\calentura de sexo_037\PASSPORT.TXT</ItemPath>
@@ -74002,7 +74402,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Calentura De Sexo</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74010,6 +74412,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>d580afee-efa6-457b-9f2b-e8f54fd4c19d</GID>
     <ItemPath>e:\!catalog\com\comix printed\caperucita roja\caperucita roja.[claudio trinca].[erotico.adultos].[7aniver].[crg]\PASSPORT.TXT</ItemPath>
@@ -74022,7 +74425,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Caperucita Roja</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74030,6 +74435,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>8505ca68-151b-4c02-8494-35eaf59ec65f</GID>
     <ItemPath>e:\!catalog\com\comix printed\caperucita roja\caperucita roja.[crg].[cletch.adultos]\PASSPORT.TXT</ItemPath>
@@ -74042,7 +74448,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Caperucita Roja</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74050,6 +74458,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>653ed41e-043a-4005-ac0e-9e7cecc88157</GID>
     <ItemPath>e:\!catalog\com\comix printed\che\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74062,7 +74471,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Che</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74070,6 +74481,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>5aecad72-2015-4312-ba90-0c42fcd0499b</GID>
     <ItemPath>e:\!catalog\com\comix printed\colecciуn x\colección x color 15 - fanny hill\PASSPORT.TXT</ItemPath>
@@ -74082,7 +74494,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Colecciуn X</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74090,6 +74504,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>721dd13d-74e2-4df2-8722-b5e34933e4ed</GID>
     <ItemPath>e:\!catalog\com\comix printed\colecciуn x\colecciуn x 001 niсas ejemplares - levis [por marimon][crg]\PASSPORT.TXT</ItemPath>
@@ -74102,7 +74517,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Colecciуn X</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74110,6 +74527,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>272b94ee-3378-4bea-a12d-f632167d6baf</GID>
     <ItemPath>e:\!catalog\com\comix printed\coppie vogliose\coppie vogliose 6 by charles\PASSPORT.TXT</ItemPath>
@@ -74122,7 +74540,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Coppie Vogliose</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74130,6 +74550,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>2ee2a5b3-fcdd-49bd-9c30-0d7932589108</GID>
     <ItemPath>e:\!catalog\com\comix printed\coppie vogliose\coppie vogliose 7 by charles\PASSPORT.TXT</ItemPath>
@@ -74142,7 +74563,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Coppie Vogliose</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74150,6 +74573,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>ae356b52-24c0-4321-bfa8-2484a0ccc20f</GID>
     <ItemPath>e:\!catalog\com\comix printed\coppie vogliose\coppie vogliose ultra hard 8 by charles\PASSPORT.TXT</ItemPath>
@@ -74162,7 +74586,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Coppie Vogliose</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74170,6 +74596,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>398a4d79-4ad0-457f-abc6-8ef8f89a661f</GID>
     <ItemPath>e:\!catalog\com\comix printed\corna vissute\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74182,7 +74609,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Corna Vissute</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74190,6 +74619,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>5ba68af3-acd8-4f2f-8ccb-17e72407d53e</GID>
     <ItemPath>e:\!catalog\com\comix printed\corna vissute\corna vissute 129 by charles\PASSPORT.TXT</ItemPath>
@@ -74202,7 +74632,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Corna Vissute</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74210,6 +74642,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>f783cad4-e5df-47fc-9d8a-05fa6886fa84</GID>
     <ItemPath>e:\!catalog\com\comix printed\cronica real\cronica real 02\PASSPORT.TXT</ItemPath>
@@ -74222,7 +74655,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Cronica Real</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74230,6 +74665,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>fa48dffa-1184-4b8a-a242-3038fbe25e4a</GID>
     <ItemPath>e:\!catalog\com\comix printed\cronica real\cronica real [07]\PASSPORT.TXT</ItemPath>
@@ -74242,7 +74678,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Cronica Real</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74250,6 +74688,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>24d2d42e-aab1-476d-b113-c4db92d4bc60</GID>
     <ItemPath>e:\!catalog\com\comix printed\cuentos perversos\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74262,7 +74701,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Cuentos Perversos</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74270,6 +74711,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>94684b72-a0ed-4bb7-aa3c-d2f2c92fbf9e</GID>
     <ItemPath>e:\!catalog\com\comix printed\da'younguns &amp; dragons\da'younguns &amp; dragons 01 [vercomicsporno]\PASSPORT.TXT</ItemPath>
@@ -74282,7 +74724,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Da'Younguns &amp; Dragons</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74290,6 +74734,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>a14b8faa-2e89-4328-9f85-7d62dc7bb949</GID>
     <ItemPath>e:\!catalog\com\comix printed\delmoniacos erotika\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74302,7 +74747,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Delmoniacos Erotika</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74310,6 +74757,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>317682fc-4a62-4f18-b0eb-578dfbc43e12</GID>
     <ItemPath>e:\!catalog\com\comix printed\delmonicos\delmonikos-erotika-246-xorelo-ydm\PASSPORT.TXT</ItemPath>
@@ -74322,7 +74770,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Delmonicos</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74330,6 +74780,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>f6cbf7c3-e294-4712-aa4c-416e4db81c73</GID>
     <ItemPath>e:\!catalog\com\comix printed\deseo vicioso\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74342,7 +74793,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Deseo Vicioso</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74350,6 +74803,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>079b7e12-d9cb-49ab-87bb-26544dd5a536</GID>
     <ItemPath>e:\!catalog\com\comix printed\diva\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74362,7 +74816,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Diva</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74370,6 +74826,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>7f9d9974-a5f4-4d6b-9f1c-c2f6568310c3</GID>
     <ItemPath>e:\!catalog\com\comix printed\doctora dare\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74382,7 +74839,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Doctora Dare</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74390,6 +74849,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>a2341e14-2e71-4eef-9efb-4f573170b1bc</GID>
     <ItemPath>e:\!catalog\com\comix printed\dragones y calabozos\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74402,7 +74862,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Dragones Y Calabozos</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74410,6 +74872,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>c9149dd4-ae43-4ba6-a0db-fc369fd3d1b3</GID>
     <ItemPath>e:\!catalog\com\comix printed\el chistoso\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74422,7 +74885,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>El Chistoso</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74430,6 +74895,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>508de6d6-c350-47f7-83b6-b2fd7fa25c2e</GID>
     <ItemPath>e:\!catalog\com\comix printed\el consolador anonimo\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74442,7 +74908,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>El Consolador Anonimo</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74450,6 +74918,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>eb1fc2ae-64bc-43d5-a09e-c231580c2454</GID>
     <ItemPath>e:\!catalog\com\comix printed\el cuervo\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74462,7 +74931,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>El Cuervo</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74470,6 +74941,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>72470ff0-5a7d-4cf1-bcf5-d22853a985f5</GID>
     <ItemPath>e:\!catalog\com\comix printed\el jacuzzi caliente\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74482,7 +74954,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>El Jacuzzi Caliente</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74490,6 +74964,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>3b99eef1-4224-4abc-aba4-bc3942006590</GID>
     <ItemPath>e:\!catalog\com\comix printed\el libro policiaco\el libro policiaco 0043\PASSPORT.TXT</ItemPath>
@@ -74502,7 +74977,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>El Libro Policiaco</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74510,6 +74987,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>066e5b34-920a-4a5f-bfb4-1f498681f566</GID>
     <ItemPath>e:\!catalog\com\comix printed\el ligуn\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74522,7 +75000,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>El Ligуn</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74530,6 +75010,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>4d859404-5320-4221-a5b4-2430b9860a81</GID>
     <ItemPath>e:\!catalog\com\comix printed\el mil chistes\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74542,7 +75023,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>El Mil Chistes</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74550,6 +75033,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>8915f049-562c-4125-8715-777456463a76</GID>
     <ItemPath>e:\!catalog\com\comix printed\el mil chistes\especial de el mil chistes no. 236  heart of darkness\PASSPORT.TXT</ItemPath>
@@ -74562,7 +75046,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>El mil chistes</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74570,6 +75056,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>947b03f0-4d3c-43b3-ac2a-a98a05488a98</GID>
     <ItemPath>e:\!catalog\com\comix printed\el papus extra\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74582,7 +75069,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>El Papus Extra</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74590,6 +75079,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>eb424f46-f16a-4df6-9564-caa6d5772648</GID>
     <ItemPath>e:\!catalog\com\comix printed\el tocon\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74602,7 +75092,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>El Tocon</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74610,6 +75102,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>7d4c7b1c-7ed4-4213-8c60-75812ce06ecc</GID>
     <ItemPath>e:\!catalog\com\comix printed\eroticos anonimos\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74622,7 +75115,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Eroticos Anonimos</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74630,6 +75125,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>19c2640c-2d7e-4dd9-a912-003a70e0344b</GID>
     <ItemPath>e:\!catalog\com\comix printed\fauno sex\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74642,7 +75138,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Fauno Sex</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74650,6 +75148,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>b5096259-de38-4e85-a57f-ae5006e45a3c</GID>
     <ItemPath>e:\!catalog\com\comix printed\feos pero cumplidores\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74662,7 +75161,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Feos Pero Cumplidores</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74670,6 +75171,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>6126c40f-6f15-4b2d-a28a-66cc7c925adf</GID>
     <ItemPath>e:\!catalog\com\comix printed\free sex\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74682,7 +75184,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Free Sex</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74690,6 +75194,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>305f6d8e-bb2f-42dc-a351-d1dfd2670d48</GID>
     <ItemPath>e:\!catalog\com\comix printed\fucking possible\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74702,7 +75207,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Fucking Possible</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74710,6 +75217,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>8861e810-9464-40d2-aaf6-4bfef7b9553f</GID>
     <ItemPath>e:\!catalog\com\comix printed\golosas del sexo\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74722,7 +75230,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Golosas Del Sexo</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74730,6 +75240,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>fa4a878c-79f4-4ab6-a05d-67cd53863644</GID>
     <ItemPath>e:\!catalog\com\comix printed\grimm fairy tales\grimm fairy tales - return to wonderland cover gallery 01 (2008) (c2c) (greengiant-dcp)\PASSPORT.TXT</ItemPath>
@@ -74742,7 +75253,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Grimm Fairy Tales</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74750,6 +75263,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>9e8a346a-663a-42a1-a267-70d79d883550</GID>
     <ItemPath>e:\!catalog\com\comix printed\guapas y calientes\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74762,7 +75276,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Guapas Y Calientes</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74770,6 +75286,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>f88c8ca9-fd77-4e19-9177-382d2c96e697</GID>
     <ItemPath>e:\!catalog\com\comix printed\guerra\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74782,7 +75299,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Guerra</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74790,6 +75309,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>7757e199-29d1-48aa-ae85-7184ff691b51</GID>
     <ItemPath>e:\!catalog\com\comix printed\hampa\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74802,7 +75322,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Hampa</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74810,6 +75332,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>a8d51c38-ee5f-42d0-abbd-829e94c44154</GID>
     <ItemPath>e:\!catalog\com\comix printed\hard international\hard international nº 11\PASSPORT.TXT</ItemPath>
@@ -74822,7 +75345,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Hard International</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74830,6 +75355,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>ded37ba5-cef8-4aa3-ac4e-bf11ff21af47</GID>
     <ItemPath>e:\!catalog\com\comix printed\hellina\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74842,7 +75368,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Hellina</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74850,6 +75378,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>c4f9116d-863d-4ad0-8b2f-6c17d9c8030c</GID>
     <ItemPath>e:\!catalog\com\comix printed\hembras peligrosas\hembras peligrosas [014]\PASSPORT.TXT</ItemPath>
@@ -74862,7 +75391,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Hembras Peligrosas</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74870,6 +75401,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>3630aee1-2740-4ed5-b0b5-e3525af195cf</GID>
     <ItemPath>e:\!catalog\com\comix printed\hembras peligrosas\hembras peligrosas [030]\PASSPORT.TXT</ItemPath>
@@ -74882,7 +75414,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Hembras Peligrosas</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74890,6 +75424,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>29dd591e-86ae-4d78-9ad4-87a9a233dfda</GID>
     <ItemPath>e:\!catalog\com\comix printed\hembras peligrosas\hembras peligrosas [031]\PASSPORT.TXT</ItemPath>
@@ -74902,7 +75437,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Hembras Peligrosas</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74910,6 +75447,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>66e38542-a0ee-42c3-85e6-1c7c592a9925</GID>
     <ItemPath>e:\!catalog\com\comix printed\hembras peligrosas\hembras peligrosas [032]\PASSPORT.TXT</ItemPath>
@@ -74922,7 +75460,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Hembras Peligrosas</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74930,6 +75470,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>5e883d60-82eb-47c7-b151-158fb5739fef</GID>
     <ItemPath>e:\!catalog\com\comix printed\historias cortas\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -74943,7 +75484,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Historias Cortas</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74951,6 +75494,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>68f9a9ce-fc30-4e59-8d94-2393b946e9ec</GID>
     <ItemPath>e:\!catalog\com\comix printed\horror\horror nº73 xsantibarb\PASSPORT.TXT</ItemPath>
@@ -74963,7 +75507,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Horror</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74971,6 +75517,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>03fb4474-50f6-4fdb-af0b-5ed2426a57af</GID>
     <ItemPath>e:\!catalog\com\comix printed\horror\horror nє79 ed.zinco (chudy c.r.g.)\PASSPORT.TXT</ItemPath>
@@ -74983,7 +75530,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Horror</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -74991,6 +75540,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>64ec5b28-fe04-4ddb-916e-3b09cb9af745</GID>
     <ItemPath>e:\!catalog\com\comix printed\hot cartoons\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -75003,7 +75553,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Hot Cartoons</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75011,6 +75563,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>a792c039-e0a2-43ee-ba99-c5409a117881</GID>
     <ItemPath>e:\!catalog\com\comix printed\hot comix\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -75023,7 +75576,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Hot Comix</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75031,6 +75586,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>45f255b4-a62e-42f4-bfd7-06692656340d</GID>
     <ItemPath>e:\!catalog\com\comix printed\hsv\hsv n°25 - la vallée mort\PASSPORT.TXT</ItemPath>
@@ -75043,7 +75599,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>HSV</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75051,6 +75609,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>725cef89-cdce-46b4-82d8-5923149084c3</GID>
     <ItemPath>e:\!catalog\com\comix printed\infinitum ciencia ficcion\infinitum ciencia ficcion nє1\PASSPORT.TXT</ItemPath>
@@ -75063,7 +75622,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Infinitum Ciencia Ficcion</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75071,6 +75632,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>d3e14d4b-8c31-4e8b-93a3-efe9aeef405b</GID>
     <ItemPath>e:\!catalog\com\comix printed\inocencia sexual\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -75083,7 +75645,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Inocencia Sexual</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75091,6 +75655,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>be191b06-f816-4084-accf-71911825da5e</GID>
     <ItemPath>e:\!catalog\com\comix printed\la tuies\la tuies 132 (1926)\PASSPORT.TXT</ItemPath>
@@ -75103,7 +75668,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>La Tuies</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75111,6 +75678,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>91b3b695-7890-4b46-958d-b58b8b90a510</GID>
     <ItemPath>e:\!catalog\com\comix printed\la tuies\la tuies 50 (1924)\PASSPORT.TXT</ItemPath>
@@ -75123,7 +75691,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>La Tuies</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75131,6 +75701,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>8bab02a1-ec56-405b-8415-8bec0b6871e4</GID>
     <ItemPath>e:\!catalog\com\comix printed\la tuies\la tuies 87 (1925)\PASSPORT.TXT</ItemPath>
@@ -75143,7 +75714,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>La Tuies</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75151,6 +75724,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>1f8c1beb-4c69-44b1-bf71-6adbf4168daa</GID>
     <ItemPath>e:\!catalog\com\comix printed\la vida de\la vida de... 016 (cleopatra, la faraona insaciable) (x prometeoft)\PASSPORT.TXT</ItemPath>
@@ -75163,7 +75737,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>La Vida De</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75171,6 +75747,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>f3792055-797e-478f-8f12-3809e16a6748</GID>
     <ItemPath>e:\!catalog\com\comix printed\lara jones - amazonas\lara jones - amazonas (paco diaz)\PASSPORT.TXT</ItemPath>
@@ -75183,7 +75760,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Lara Jones - Amazonas</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75191,6 +75770,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>8bff8cf8-0c8b-4171-9b42-65fd93ce4f84</GID>
     <ItemPath>e:\!catalog\com\comix printed\las aventuras de bвdв\bвdв 02 [alb-luzroja]\PASSPORT.TXT</ItemPath>
@@ -75203,7 +75783,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Las aventuras de BВdВ</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75211,6 +75793,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>f92e98be-3c12-4429-a01a-63ef82fc93fb</GID>
     <ItemPath>e:\!catalog\com\comix printed\las aventuras de bвdв\las aventuras de bвdв 10 x carasucia\PASSPORT.TXT</ItemPath>
@@ -75223,7 +75806,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Las aventuras de BВdВ</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75231,6 +75816,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>1cbd0f3f-4e0b-435c-bbd7-2cbb0ad9e724</GID>
     <ItemPath>e:\!catalog\com\comix printed\las chambeadoras\chambeadoras_181\PASSPORT.TXT</ItemPath>
@@ -75243,7 +75829,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Las Chambeadoras</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75251,6 +75839,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>be904e63-62f3-40c1-a741-504dacb5291f</GID>
     <ItemPath>e:\!catalog\com\comix printed\las chambeadoras\comic_chambeadoras_201_xorelo_[eshocked]\PASSPORT.TXT</ItemPath>
@@ -75263,7 +75852,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Las Chambeadoras</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75271,6 +75862,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>bb1a7dfb-342c-45e3-94b3-ce044a398e8c</GID>
     <ItemPath>e:\!catalog\com\comix printed\las chambeadoras\las chambeadoras_217\PASSPORT.TXT</ItemPath>
@@ -75283,7 +75875,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Las Chambeadoras</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75291,6 +75885,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>2a718a99-379e-4371-8271-b2bc3fe473b7</GID>
     <ItemPath>e:\!catalog\com\comix printed\las chicas punk\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -75303,7 +75898,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Las Chicas Punk</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75311,6 +75908,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>eff264be-5960-4808-8adf-3cf7e85646a0</GID>
     <ItemPath>e:\!catalog\com\comix printed\las famosas aventuras de los\las famosas aventuras de losfreak brothers by quecorunner.crg\PASSPORT.TXT</ItemPath>
@@ -75323,7 +75921,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Las Famosas Aventuras de los</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75331,6 +75931,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>11c28068-d316-423c-8eaa-727b1f3789fc</GID>
     <ItemPath>e:\!catalog\com\comix printed\lavaderos\lavaderos.39[eshock].[xorelo]\PASSPORT.TXT</ItemPath>
@@ -75343,7 +75944,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Lavaderos</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75351,6 +75954,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>16931fa1-0c19-4e0b-9bf0-77817716890f</GID>
     <ItemPath>e:\!catalog\com\comix printed\lenceria pнcara\lenceria pícara - serie pícara 02 (crg)\PASSPORT.TXT</ItemPath>
@@ -75363,7 +75967,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Lenceria Pнcara</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75371,6 +75977,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>a2264686-c450-4b3b-986e-5a79192f83d8</GID>
     <ItemPath>e:\!catalog\com\comix printed\lesbos\lesbos 02\PASSPORT.TXT</ItemPath>
@@ -75383,7 +75990,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Lesbos</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75391,6 +76000,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>dbe2cb21-aab1-4584-9c09-4406ae623243</GID>
     <ItemPath>e:\!catalog\com\comix printed\los mejores del mil chistes\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -75403,7 +76013,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Los Mejores Del Mil Chistes</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75411,6 +76023,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>d14686ee-6dd6-477c-a3fe-ab85821d4e2c</GID>
     <ItemPath>e:\!catalog\com\comix printed\los picaros dichos mexicanos y espaсoles\los picaros dichos  mexicanos y espaдoles 015 - les dieron gato por liebre\PASSPORT.TXT</ItemPath>
@@ -75423,7 +76036,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Los Picaros Dichos Mexicanos Y Espaсoles</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75431,6 +76046,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>7c780948-a67f-4169-8f59-7ee1b67481df</GID>
     <ItemPath>e:\!catalog\com\comix printed\luna - cortesana de lujo\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -75443,7 +76059,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Luna - Cortesana De Lujo</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75451,6 +76069,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>e7babc36-b00d-4f7c-9911-5e31b7c70a6e</GID>
     <ItemPath>e:\!catalog\com\comix printed\lussurie segrete\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -75463,7 +76082,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Lussurie Segrete</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75471,6 +76092,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>88d68806-f300-48cd-9fbb-cd9dee594fb0</GID>
     <ItemPath>e:\!catalog\com\comix printed\mercados y marchantas\mercados y marchantas 004\PASSPORT.TXT</ItemPath>
@@ -75483,7 +76105,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Mercados Y Marchantas</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75491,6 +76115,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>d1286ad0-c14e-4d89-b71a-89787e4babd5</GID>
     <ItemPath>e:\!catalog\com\comix printed\mujeres secretas\mujeres secretas. mike ratera by quecorunner.crg\PASSPORT.TXT</ItemPath>
@@ -75503,7 +76128,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Mujeres Secretas</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75511,6 +76138,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>17b2b0e5-98a0-4bee-b10c-c39d554cc35c</GID>
     <ItemPath>e:\!catalog\com\comix printed\natalia, la pequeсa azafata\natalia, la pequeсa azafata [jabato8 y leech3r]\PASSPORT.TXT</ItemPath>
@@ -75523,7 +76151,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Natalia, la pequeсa azafata</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75531,6 +76161,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>35ed502e-c92c-4d57-abbe-80ab2f5e6140</GID>
     <ItemPath>e:\!catalog\com\comix printed\pascaline\pascaline - doakes y keister (prod. editoriales) [by mhrxxx]\PASSPORT.TXT</ItemPath>
@@ -75543,7 +76174,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Pascaline</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75551,6 +76184,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>4a7a4ede-4bfc-4c0a-b0e6-edbda743d7d2</GID>
     <ItemPath>e:\!catalog\com\comix printed\playcolt\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -75563,7 +76197,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Playcolt</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75571,6 +76207,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>3d638b90-9546-4baf-a9aa-f718f56ae1e8</GID>
     <ItemPath>e:\!catalog\com\comix printed\popcomix\popcomix n°30 - loubar's trio - ellipses à gogo\PASSPORT.TXT</ItemPath>
@@ -75583,7 +76220,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Popcomix</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75591,6 +76230,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>1f700819-d16b-44fb-8e92-911a1f14faf4</GID>
     <ItemPath>e:\!catalog\com\comix printed\primer pelo\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -75603,7 +76243,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Primer Pelo</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75611,6 +76253,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>38f5c5fa-fdb2-4803-a28b-b4fc6c4d75e1</GID>
     <ItemPath>e:\!catalog\com\comix printed\prohibicion final\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -75623,7 +76266,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Prohibicion Final</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75631,6 +76276,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>551d56d7-78c4-473c-8dd0-1047e8a0630b</GID>
     <ItemPath>e:\!catalog\com\comix printed\pнcaro verano\pнcaro verano - serie pнcara 01 (crg)\PASSPORT.TXT</ItemPath>
@@ -75643,7 +76289,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Pнcaro Verano</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75651,6 +76299,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>465d6b48-16b2-48d2-9581-0d92c16c7946</GID>
     <ItemPath>e:\!catalog\com\comix printed\rejas\rejas nє 49 edicomic [erotrash]\PASSPORT.TXT</ItemPath>
@@ -75663,7 +76312,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Rejas</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75671,6 +76322,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>27764991-11f3-4bd9-9812-717d632b8d89</GID>
     <ItemPath>e:\!catalog\com\comix printed\relazioni bollenti\relazioni bollenti 2 (cv109) by charles\PASSPORT.TXT</ItemPath>
@@ -75683,7 +76335,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Relazioni Bollenti</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75691,6 +76345,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>dda34d09-b98a-4039-ae64-fbaa42dc70a9</GID>
     <ItemPath>e:\!catalog\com\comix printed\revolver candente\revolver candente_003 cbr\PASSPORT.TXT</ItemPath>
@@ -75703,7 +76358,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Revolver Candente</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75711,6 +76368,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>19c73669-7add-41e5-bef6-2a69987e8f0a</GID>
     <ItemPath>e:\!catalog\com\comix printed\rooie oortjes\rooie oortjes cartoon album 22\PASSPORT.TXT</ItemPath>
@@ -75723,7 +76381,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Rooie Oortjes</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75731,6 +76391,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>ac3d3147-e33d-45ff-bbdb-030a4684e09c</GID>
     <ItemPath>e:\!catalog\com\comix printed\sabor a mi\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -75743,7 +76404,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Sabor A Mi</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75751,6 +76414,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>9a215a66-faed-42a5-a769-4e540a95a24b</GID>
     <ItemPath>e:\!catalog\com\comix printed\sadosex\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -75763,7 +76427,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Sadosex</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75771,6 +76437,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>df8639e9-091b-4358-a546-9b40a402382c</GID>
     <ItemPath>e:\!catalog\com\comix printed\satires\satires - 049 -lanlaire - mets-le moi-là\PASSPORT.TXT</ItemPath>
@@ -75783,7 +76450,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Satires</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75791,6 +76460,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>7fcd3242-77cd-4ef8-a182-1779fc65d388</GID>
     <ItemPath>e:\!catalog\com\comix printed\serie jaune\hors-série jaune n°32b - je l'aimais trop\PASSPORT.TXT</ItemPath>
@@ -75803,7 +76473,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Serie Jaune</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75811,6 +76483,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>d1d71802-69b8-4eac-b206-f421b8017066</GID>
     <ItemPath>e:\!catalog\com\comix printed\serie jaune\série jaune n°109- l'empreinte du maître\PASSPORT.TXT</ItemPath>
@@ -75823,7 +76496,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Serie Jaune</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75831,6 +76506,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>be1f223d-73a4-4d65-b3d2-6c158fc26147</GID>
     <ItemPath>e:\!catalog\com\comix printed\serie verte\hors-série verte n°22 tempête tri-dim... (ntarks 2) uncut\PASSPORT.TXT</ItemPath>
@@ -75843,7 +76519,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Serie Verte</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75851,6 +76529,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>20ccc97e-8938-4760-8e93-410e42c9a63d</GID>
     <ItemPath>e:\!catalog\com\comix printed\sexacional colegialas\sexacional colegialas no 100.[ydm].[xorelo].[eshock]\PASSPORT.TXT</ItemPath>
@@ -75863,7 +76542,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Sexacional Colegialas</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75871,6 +76552,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>73b9c998-9562-4903-b031-0a64a994b123</GID>
     <ItemPath>e:\!catalog\com\comix printed\sinful comics\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -75883,7 +76565,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Sinful Comics</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75891,6 +76575,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>53d65b93-71e5-4448-b56d-62eb6d0e0235</GID>
     <ItemPath>e:\!catalog\com\comix printed\sinful comics\halle berry perfect stranger 01\PASSPORT.TXT</ItemPath>
@@ -75903,7 +76588,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Sinful Comics</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75911,6 +76598,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>d68abd33-2dcc-44f8-a6a0-13ff69e4e065</GID>
     <ItemPath>e:\!catalog\com\comix printed\sinful comics\iron man 01\PASSPORT.TXT</ItemPath>
@@ -75923,7 +76611,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Sinful Comics</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75931,6 +76621,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>a7c1a35d-65c6-4f73-b85c-8def418eae28</GID>
     <ItemPath>e:\!catalog\com\comix printed\sinful comics\[sinful comics] hilary swank\PASSPORT.TXT</ItemPath>
@@ -75943,7 +76634,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Sinful Comics</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75951,6 +76644,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>199446a7-9807-49dd-ba60-d0290123efd4</GID>
     <ItemPath>e:\!catalog\com\comix printed\spiderman [seiren]\spiderman [seiren] [por lord jurjur &amp; fidelio]\PASSPORT.TXT</ItemPath>
@@ -75963,7 +76657,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Spiderman [Seiren]</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75971,6 +76667,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>9604cc79-efd1-4445-a350-2a5a6f6b8644</GID>
     <ItemPath>e:\!catalog\com\comix printed\sukia\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -75983,7 +76680,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Sukia</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -75991,6 +76690,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>c6253855-bbd0-45be-b554-b6945bce34e9</GID>
     <ItemPath>e:\!catalog\com\comix printed\telefilm prohibido\telefilm prohibido nє 27\PASSPORT.TXT</ItemPath>
@@ -76003,7 +76703,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Telefilm Prohibido</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -76011,6 +76713,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>484dca80-77d2-4c4e-8bdb-a16e4d1db9af</GID>
     <ItemPath>e:\!catalog\com\comix printed\totem\fetiche - totem comics 01 [marimon - crg]\PASSPORT.TXT</ItemPath>
@@ -76023,7 +76726,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Totem</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -76031,6 +76736,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>fdd7a76d-e5af-4937-9d3c-735b3c05cace</GID>
     <ItemPath>e:\!catalog\com\comix printed\totem\totem extra vuillemin [esp][por rowlf]\PASSPORT.TXT</ItemPath>
@@ -76043,7 +76749,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Totem</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -76051,6 +76759,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>1e30f7bf-4976-43df-9891-e5a3b3dc6e08</GID>
     <ItemPath>e:\!catalog\com\comix printed\totem\vuillemin [totem extra  #8][comic spanish] escan by franki\PASSPORT.TXT</ItemPath>
@@ -76063,7 +76772,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Totem</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -76071,6 +76782,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>3bd8f633-e681-4197-afdd-49d2eb7149d0</GID>
     <ItemPath>e:\!catalog\com\comix printed\totem\vйrtigo - totem comics 01 [marimon - crg]\PASSPORT.TXT</ItemPath>
@@ -76083,7 +76795,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Totem</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -76091,6 +76805,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>74589566-d48f-4956-9667-a9850dc236be</GID>
     <ItemPath>e:\!catalog\com\comix printed\unholy\unholy 001 (2017)\PASSPORT.TXT</ItemPath>
@@ -76103,7 +76818,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Unholy</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -76111,6 +76828,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>5e2de617-22d2-4d9f-a764-08418a036156</GID>
     <ItemPath>e:\!catalog\com\comix printed\venus domina\venus domina- wing bird #1 - san diego con special (verotik 1996)\PASSPORT.TXT</ItemPath>
@@ -76123,7 +76841,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Venus Domina</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -76131,6 +76851,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>7fe03052-98aa-4887-96af-e2141eae636a</GID>
     <ItemPath>e:\!catalog\com\comix printed\verotik rogues gallery of villains\verotik rogues gallery of villains 001 (1997)\PASSPORT.TXT</ItemPath>
@@ -76143,7 +76864,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Verotik Rogues Gallery Of Villains</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -76151,6 +76874,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>3dc7b9f4-af64-45ea-8e99-de5481ed28de</GID>
     <ItemPath>e:\!catalog\com\comix printed\vicio privado\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -76163,7 +76887,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Vicio Privado</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -76171,6 +76897,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>aa671ee0-5d87-4f87-8de6-72fce17caadd</GID>
     <ItemPath>e:\!catalog\com\comix printed\wet fetish\!!!mage sets!!!\PASSPORT.TXT</ItemPath>
@@ -76183,7 +76910,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Wet Fetish</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
@@ -76191,6 +76920,7 @@ asdas444</CommentsAsString>
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>0dfc053d-8b01-4ea8-8554-4406163c54e1</GID>
     <ItemPath>e:\!catalog\com\comix printed\zenescope basaldua and debalfo cover gallery\zenescope basaldua and debalfo\PASSPORT.TXT</ItemPath>
@@ -76203,7 +76933,9 @@ asdas444</CommentsAsString>
     <Day>0</Day>
     <Kind>COMIX PRINTED</Kind>
     <Serie>Zenescope Basaldua and Debalfo Cover Gallery</Serie>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />

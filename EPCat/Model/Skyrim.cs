@@ -38,6 +38,7 @@ namespace EPCat.Model
         public static class MKPoser
         {
             public static string F01_MK1P03_a = "ea939d85-5e08-4226-ae83-eb41f9823282";
+            public static string F01_MK1P03_c = "f3739d55-83ae-44d9-b012-e8506c858722";
         }
 
     }
@@ -407,8 +408,10 @@ namespace EPCat.Model
             else if (sgid == "0d78dd96-d159-4b55-85d3-e81e956fd6b2") SceneGenerate(true, 1, new string[] { "8cfbb186-c515-46f6-9f25-1ed81891d918", "e46d18ab-0348-4540-9b30-de183d054b3c" });
             // Leito_Standing_2 Movie
             else if (sgid == "edd4c8a0-8b33-4a88-8151-b7c252225ad9") MoviewGenerate(new List<List<string>>() { new List<string>() { "aa3af0a5-99bc-4582-b551-529dc84740d8", "6d601768-b220-4ca7-b7d2-149227cef9ad" }, new List<string>() { "57f3a7a4-7ebc-4923-8f17-cf90b91768bb", "1abee37d-b70e-4922-afec-a04d4f7658ab" }, new List<string>() { "f125fd6f-590a-4eac-8cda-33bc85dd6aaa", "cc5fc990-222c-4194-b119-9b57a1d505b8" }, new List<string>() { "a50f0114-2ba9-4912-9fe1-a5f1756da18d", "4ab7e7e7-f066-4639-a7c0-c5f29c2035a8" }, new List<string>() { "8cfbb186-c515-46f6-9f25-1ed81891d918", "e46d18ab-0348-4540-9b30-de183d054b3c" } });
-
-
+ 
+            //Solo scenes
+            else SoloSceneGenerate(true, 1, new string[] { sgid });
+ 
 
             //else GenerateMotionOld(epitem, items);
 
@@ -439,7 +442,7 @@ namespace EPCat.Model
                actorsl = new List<ActorEnumeration>()
                {
                 ActorEnumeration.Player,
-                ActorEnumeration.Ulfbear,
+                //ActorEnumeration.Ulfbear,
                };
             }
 
@@ -563,14 +566,25 @@ namespace EPCat.Model
             File.WriteAllLines(sourceFile, source);
         }
 
-
         private static List<SkyrimScene> SceneGenerate(bool complete, int stageStart, params string[] posArray)
+        {
+            return SceneGenerate(complete, false, stageStart, posArray);
+        }
+        private static List<SkyrimScene> SoloSceneGenerate(bool complete, int stageStart, params string[] posArray)
+        {
+            return SceneGenerate(complete, true, stageStart, posArray);
+        }
+        private static List<SkyrimScene> SceneGenerate(bool complete,bool solo, int stageStart, params string[] posArray)
         {
             List<ActorEnumeration> actors = new List<ActorEnumeration>()
             {
-                ActorEnumeration.Player,
-                ActorEnumeration.Ulfbear,
+                ActorEnumeration.Player,               
             };
+            if (!solo)
+            {
+                actors.Add(ActorEnumeration.Ulfbear);
+            }
+
 
             int currStage = stageStart;
             List<SkyrimScene> scenes = new List<SkyrimScene>();
@@ -621,8 +635,7 @@ namespace EPCat.Model
                 result.Add($"  obstacle.Disable(false)");
             }
             result.Add($"  ObjectReference centerOn = Game.GetForm({centerOn}) as ObjectReference");
-            result.Add(@"
-  obstacle = Game.GetForm(0x000bbab1) as ObjectReference 
+            result.Add(@"obstacle = Game.GetForm(0x000bbab1) as ObjectReference 
   obstacle.Disable(false)
   obstacle = Game.GetForm(0x0003ed49) as ObjectReference 
   obstacle.Disable(false) 
@@ -1111,8 +1124,9 @@ namespace EPCat.Model
   obstacle = Game.GetForm(0x000c7a74) as ObjectReference 
   obstacle.Disable(false) 
   obstacle = Game.GetForm(0x000c7a73) as ObjectReference 
-  obstacle.Disable(false) 
-                ");
+  obstacle.Disable(false)
+  obstacle = Game.GetForm(0x000bbada) as ObjectReference 
+  obstacle.Disable(false)");
 
 
             result.Add($"  return centerOn");

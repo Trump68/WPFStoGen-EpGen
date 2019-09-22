@@ -57342,6 +57342,7 @@ My dad starts a double life with a Japanese mother who should never know.</Comme
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>8612d4da-123e-4d66-9fd8-c0f44adf9d00</GID>
     <ItemPath>e:\!catalog\mov\2010\[usa] boardwalk empire\PASSPORT.TXT</ItemPath>
@@ -57354,6 +57355,29 @@ My dad starts a double life with a Japanese mother who should never know.</Comme
     <Month>0</Month>
     <Day>0</Day>
     <Variant>RENPY</Variant>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>1c4ab895-577c-4873-a3c2-7c73fdd7f1e9</GID>
+    <ItemPath>e:\!catalog\mov\1989\[usa] parenthood\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Parenthood</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>USA</Country>
+    <Year>1989</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>RENPY</Variant>
+    <Star>Mary Steenburgen</Star>
     <Comments />
     <CommentsAsString />
     <Clips />

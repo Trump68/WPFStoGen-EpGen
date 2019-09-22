@@ -1,0 +1,54 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+Compiling ATL code at game/Story01.rpy:18
+  File "game/script.rpy", line 97, in script call
+    call Story01
+  File "game/Story01.rpy", line 7, in script call
+    call GO("Story01_01")
+  File "game/script.rpy", line 142, in script call
+    call expression labelname
+  File "game/Story01.rpy", line 17, in script
+    show blackscreen:
+Exception: Not a displayable: <curry <function Fade at 0x0344D970> (0.5, 0, 0.5) {}>
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 97, in script call
+    call Story01
+  File "game/Story01.rpy", line 7, in script call
+    call GO("Story01_01")
+  File "game/script.rpy", line 142, in script call
+    call expression labelname
+  File "game/Story01.rpy", line 17, in script
+    show blackscreen:
+  File "D:\Tools\Renpy\renpy-7.1.0-sdk\renpy\ast.py", line 1151, in execute
+    show_imspec(self.imspec, atl=getattr(self, "atl", None))
+  File "D:\Tools\Renpy\renpy-7.1.0-sdk\renpy\ast.py", line 1121, in show_imspec
+    atl=atl)
+  File "D:\Tools\Renpy\renpy-7.1.0-sdk\renpy\exports.py", line 709, in show
+    sls.add(layer, img, key, zorder, behind, at_list=at_list, name=name, atl=atl, default_transform=default_transform, transient=transient)
+  File "D:\Tools\Renpy\renpy-7.1.0-sdk\renpy\display\core.py", line 1058, in add
+    thing._show()
+  File "D:\Tools\Renpy\renpy-7.1.0-sdk\renpy\display\transform.py", line 1044, in _show
+    super(ATLTransform, self)._show()
+  File "D:\Tools\Renpy\renpy-7.1.0-sdk\renpy\display\transform.py", line 1010, in _show
+    self.update_state()
+  File "D:\Tools\Renpy\renpy-7.1.0-sdk\renpy\display\transform.py", line 1032, in update_state
+    fr = self.execute(self, self.st, self.at)
+  File "D:\Tools\Renpy\renpy-7.1.0-sdk\renpy\atl.py", line 513, in execute
+    block = self.compile()
+  File "D:\Tools\Renpy\renpy-7.1.0-sdk\renpy\atl.py", line 481, in compile
+    block = self.atl.compile(self.context)
+  File "D:\Tools\Renpy\renpy-7.1.0-sdk\renpy\atl.py", line 676, in compile
+    statements = [ i.compile(ctx) for i in self.statements ]
+  File "D:\Tools\Renpy\renpy-7.1.0-sdk\renpy\atl.py", line 898, in compile
+    child = renpy.easy.displayable(child)
+  File "D:\Tools\Renpy\renpy-7.1.0-sdk\renpy\easy.py", line 136, in displayable
+    raise Exception("Not a displayable: %r" % (d,))
+Exception: Not a displayable: <curry <function Fade at 0x0344D970> (0.5, 0, 0.5) {}>
+
+Windows-8-6.2.9200
+Ren'Py 7.1.0.882
+Comix 1.0
+Sat Feb 23 09:03:48 2019

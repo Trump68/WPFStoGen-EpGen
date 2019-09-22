@@ -26335,6 +26335,8 @@ DIRECTOR:</CommentsAsString>
     <Year>1992</Year>
     <Month>0</Month>
     <Day>0</Day>
+    <Star>Shannon Tweed</Star>
+    <Director>Yaky Yosha</Director>
     <Comments>
       <string />
     </Comments>
@@ -27402,6 +27404,7 @@ DIRECTOR:Mario Salieri</CommentsAsString>
     <Year>1993</Year>
     <Month>0</Month>
     <Day>0</Day>
+    <Star>Shannon Tweed</Star>
     <Comments>
       <string />
     </Comments>
@@ -27650,6 +27653,7 @@ DIRECTOR:Mario Salieri</CommentsAsString>
     <Year>1993</Year>
     <Month>0</Month>
     <Day>0</Day>
+    <Star>Sara Suzanne Brown</Star>
     <Comments>
       <string />
     </Comments>
@@ -29476,6 +29480,8 @@ DIRECTOR:</CommentsAsString>
     <Year>1994</Year>
     <Month>0</Month>
     <Day>0</Day>
+    <Star>Sara Suzanne Brown</Star>
+    <Director>Paul Thomas</Director>
     <Comments>
       <string />
     </Comments>
@@ -57365,6 +57371,7 @@ My dad starts a double life with a Japanese mother who should never know.</Comme
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>1c4ab895-577c-4873-a3c2-7c73fdd7f1e9</GID>
     <ItemPath>e:\!catalog\mov\1989\[usa] parenthood\PASSPORT.TXT</ItemPath>
@@ -57378,7 +57385,9 @@ My dad starts a double life with a Japanese mother who should never know.</Comme
     <Day>0</Day>
     <Variant>RENPY</Variant>
     <Star>Mary Steenburgen</Star>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
     <Clips />
     <CombinedScenes />

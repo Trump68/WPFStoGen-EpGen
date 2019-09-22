@@ -35,7 +35,7 @@ namespace EPCat.Model
             SkyrimScene p;
             int sos = 2;
             // prepare standing pose
-            p = new SkyrimScene(currStage++, new string[] { Pose.MKPoser.F01_MK1P03_a, Pose.PinupPoser.M01_PinupsMStand1 });
+            p = new SkyrimScene(currStage++, new string[] { Pose.MKPoser.F01_MK1P03_c, Pose.PinupPoser.M01_PinupsMStand1 });
             p.Repeatable = false;
             p.Poses[1].X = -100;
             p.Poses[1].rotZ = 180;

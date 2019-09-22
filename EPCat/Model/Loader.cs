@@ -12,7 +12,7 @@ namespace EPCat.Model
 {
     public class Loader
     {
-        static string c_SortToCatalog = "SORT TO CATALOG";
+        static string c_SortToCatalog = "SORTTOCATALOG";
         static string c_PrepareFolder = "PREPARE FOLDER ";
         static string c_UpdateFolder = "UPDATE FOLDER ";
         static string c_UpdateCapsFolder = "UPDATE CAPS FOLDER ";
@@ -61,10 +61,15 @@ namespace EPCat.Model
             }
             return Source;
         }
-        private void DoTempWork1()
+        private void DoTempWork1(string line)
         {
             string fromPath = @"d:\uTorrent\! ToProcess\";
             string toPath = @"d:\!CATALOG\";
+            string[] args = line.Split('|');
+            if (args.Length > 0)
+                fromPath = args[1];
+            if (args.Length > 1)
+                toPath = args[2];
             DoTempWork1_OneCountry("JAP", fromPath, toPath);
             DoTempWork1_OneCountry("CHE", fromPath, toPath);
             DoTempWork1_OneCountry("FRA", fromPath, toPath);
@@ -112,6 +117,8 @@ namespace EPCat.Model
              * $10-Director
              * $11-NOSORT
              *
+             * $JAV [JUFE] JUFE-085.m4v
+             * 
              * $01 JAV $02  $04  $
              * $01 JAV $04  $
              * $01 JAV $!!!JAV Movies!!!
@@ -523,8 +530,10 @@ namespace EPCat.Model
             line = line.Trim();
             if (line.StartsWith(c_SortToCatalog))
             {
-                DoTempWork1();
-                DoTempwork2(@"d:\!CATALOG\MOV\");                
+
+                DoTempWork1(line);
+                DoTempwork2(@"d:\!CATALOG\MOV\");
+                Environment.Exit(0);             
             }
             else if (line.StartsWith(c_PrepareFolder))
             {

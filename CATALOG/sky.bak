@@ -12089,4 +12089,33 @@
     <PosePositions />
     <Motions />
   </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>f3739d55-83ae-44d9-b012-e8506c858722</GID>
+    <ItemPath>d:\!catalog\sky\pose\mkposer\mk1p03-с01\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MK1P03</Name>
+    <Catalog>SKY</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>Solo Stand</XRated>
+    <Stage>1</Stage>
+    <Variant>c01</Variant>
+    <Kind>POSE</Kind>
+    <Serie>AMKPoser</Serie>
+    <Type>a</Type>
+    <MyDescr>head pos 2 anim</MyDescr>
+    <PersonSex>F</PersonSex>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
 </ArrayOfEpItem>

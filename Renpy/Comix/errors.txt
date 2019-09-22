@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/Story01.rpy", line 7: expected 'image_name_component' not found.
+    show "/Frollo-Casino1/001.jpg":
+         ^
+
+Ren'Py Version: Ren'Py 7.1.0.882
+Sat Feb 23 08:42:21 2019
