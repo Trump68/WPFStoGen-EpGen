@@ -69,10 +69,13 @@
                         <dxlc:LayoutItem Margin="20,0,0,0" Width="50">
                             <dxe:CheckEdit x:Name="EditAllowed" Content="Edit" />
                         </dxlc:LayoutItem>
+                        
                         <dxlc:LayoutItem Margin="0,0,0,0" Width="50">
                             <dxe:CheckEdit x:Name="DeletingAllowed" Content="Delete" IsChecked="{Binding IsDeletingAllowed}" />
                         </dxlc:LayoutItem>
-
+                        <dxlc:LayoutItem Margin="0,0,0,0" Width="50">
+                            <dxe:CheckEdit x:Name="SavingAllowed" Content="Save" IsChecked="{Binding IsSavingAllowed}" />
+                        </dxlc:LayoutItem>
 
 
                         <dxlc:LayoutItem Margin="0,0,0,0" Width="400">
@@ -145,6 +148,8 @@
                             <dxg:GridColumn FieldName="PersonType" IsSmart="True" />
                             <dxg:GridColumn FieldName="PersonKind" IsSmart="True" />
                             <dxg:GridColumn FieldName="LastCheck" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Size" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Length" IsSmart="True" />
                             <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" Width="20" Header="." />
                             <dxg:GridColumn FieldName="SourceFolderExist" IsSmart="True" />
                         </dxg:GridControl>

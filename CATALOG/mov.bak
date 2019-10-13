@@ -26335,6 +26335,8 @@ DIRECTOR:</CommentsAsString>
     <Year>1992</Year>
     <Month>0</Month>
     <Day>0</Day>
+    <Star>Shannon Tweed</Star>
+    <Director>Yaky Yosha</Director>
     <Comments>
       <string />
     </Comments>
@@ -27402,6 +27404,7 @@ DIRECTOR:Mario Salieri</CommentsAsString>
     <Year>1993</Year>
     <Month>0</Month>
     <Day>0</Day>
+    <Star>Shannon Tweed</Star>
     <Comments>
       <string />
     </Comments>
@@ -27650,6 +27653,7 @@ DIRECTOR:Mario Salieri</CommentsAsString>
     <Year>1993</Year>
     <Month>0</Month>
     <Day>0</Day>
+    <Star>Sara Suzanne Brown</Star>
     <Comments>
       <string />
     </Comments>
@@ -29476,6 +29480,8 @@ DIRECTOR:</CommentsAsString>
     <Year>1994</Year>
     <Month>0</Month>
     <Day>0</Day>
+    <Star>Sara Suzanne Brown</Star>
+    <Director>Paul Thomas</Director>
     <Comments>
       <string />
     </Comments>
@@ -57365,6 +57371,7 @@ My dad starts a double life with a Japanese mother who should never know.</Comme
     <Motions />
   </EpItem>
   <EpItem>
+    <_Videos />
     <CapsPassportData />
     <GID>1c4ab895-577c-4873-a3c2-7c73fdd7f1e9</GID>
     <ItemPath>e:\!catalog\mov\1989\[usa] parenthood\PASSPORT.TXT</ItemPath>
@@ -57378,6 +57385,81 @@ My dad starts a double life with a Japanese mother who should never know.</Comme
     <Day>0</Day>
     <Variant>RENPY</Variant>
     <Star>Mary Steenburgen</Star>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>846df889-5c05-4749-813b-6c20e75ef868</GID>
+    <ItemPath>e:\!catalog\mov\1996\fra 1996 l'obsession de laure\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>L'obsession de Laure</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1996</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>p</XRated>
+    <Variant>EPIZODES</Variant>
+    <Star>Anita Blonde, Anita Dark, Laure Sainclair, Nikita Gross</Star>
+    <Studio>Mark Dorcel</Studio>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>8013ae42-9147-4dd0-bd2e-320b2aaaf62a</GID>
+    <ItemPath>e:\!catalog\mov\1982\roommates\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Roommates</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>USA</Country>
+    <Year>1982</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>p</XRated>
+    <Variant>EPIZODES</Variant>
+    <Star>Veronica Hart</Star>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>1d863f22-5dbc-44c2-bc75-41a31b09e702</GID>
+    <ItemPath>e:\!catalog\mov\1987\belle d'amour\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Belle d'Amour</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1987</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>p</XRated>
+    <Variant>EPIZODES</Variant>
+    <Star>Barbara Helner, Nathalie Christal</Star>
     <Comments />
     <CommentsAsString />
     <Clips />

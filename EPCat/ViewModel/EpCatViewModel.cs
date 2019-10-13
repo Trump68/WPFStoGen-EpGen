@@ -234,6 +234,7 @@ namespace EPCat
         }
 
         public bool IsDeletingAllowed { get; set; } = false;
+        public bool IsSavingAllowed { get; set; } = true;
 
         public int CapsViewMode = 0;
 
@@ -710,9 +711,10 @@ namespace EPCat
             projector.Start();
         }
 
-        internal void Close()
+        internal void Close(bool isSaving)
         {
-            Save();
+            if (isSaving)
+                Save();
             if (projector != null)
                 projector.Close();
         }

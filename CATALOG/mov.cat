@@ -57394,4 +57394,141 @@ My dad starts a double life with a Japanese mother who should never know.</Comme
     <PosePositions />
     <Motions />
   </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>846df889-5c05-4749-813b-6c20e75ef868</GID>
+    <ItemPath>e:\!catalog\mov\1996\fra 1996 l'obsession de laure\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>L'obsession de Laure</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1996</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>p</XRated>
+    <Variant>EPIZODES</Variant>
+    <Star>Anita Blonde, Anita Dark, Laure Sainclair, Nikita Gross</Star>
+    <Studio>Mark Dorcel</Studio>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>8013ae42-9147-4dd0-bd2e-320b2aaaf62a</GID>
+    <ItemPath>e:\!catalog\mov\1982\roommates\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Roommates</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>USA</Country>
+    <Year>1982</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>p</XRated>
+    <Variant>EPIZODES</Variant>
+    <Star>Veronica Hart</Star>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>1d863f22-5dbc-44c2-bc75-41a31b09e702</GID>
+    <ItemPath>e:\!catalog\mov\1987\belle d'amour\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Belle d'Amour</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>FRA</Country>
+    <Year>1987</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>p</XRated>
+    <Variant>EPIZODES</Variant>
+    <Star>Barbara Helner, Nathalie Christal</Star>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>8965ed02-2eaf-4112-aff7-c430289df1d6</GID>
+    <ItemPath>e:\!catalog\mov\1982\purely physical\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Purely Physical</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>USA</Country>
+    <Year>1982</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>p</XRated>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>8780555f-d647-4204-b502-18207d0d0869</GID>
+    <ItemPath>e:\!catalog\mov\1985\taboo american style 1\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Taboo American Style 1</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>USA</Country>
+    <Year>1985</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>p</XRated>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>03a637cb-712e-4d71-a319-707aa221c657</GID>
+    <ItemPath>e:\!catalog\mov\1985\taboo american style 3\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Taboo American Style 3</Name>
+    <Catalog>MOV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Country>USA</Country>
+    <Year>1985</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <XRated>p</XRated>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
 </ArrayOfEpItem>

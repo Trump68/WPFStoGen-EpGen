@@ -71,8 +71,13 @@
                         <dxlc:LayoutItem Label="P Kind" LabelPosition="Left">
                             <dxe:TextEdit TextWrapping="Wrap" Text="{Binding PersonKind}" />
                         </dxlc:LayoutItem>
-
-
+                        <dxlc:LayoutItem Label="Size" LabelPosition="Left">
+                            <dxe:TextEdit TextWrapping="Wrap" Text="{Binding Size}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Length" LabelPosition="Left">
+                            <dxe:TextEdit TextWrapping="Wrap" Text="{Binding Length}" />
+                        </dxlc:LayoutItem>
+                        
                         <dxlc:LayoutItem Label="MyDescr" LabelPosition="Left">
                             <dxe:TextEdit TextWrapping="Wrap" Text="{Binding MyDescr}" />
                         </dxlc:LayoutItem>

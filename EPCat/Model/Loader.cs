@@ -520,9 +520,6 @@ namespace EPCat.Model
                     File.WriteAllLines(Path.Combine(item.ItemDirectory, EpItem.p_PassportName), lines);
                 }
             }
-
-//            int frh = this.MainGridView.FocusedRowHandle;
-
         }
 
         internal void ParseLine(string line)
@@ -799,7 +796,7 @@ namespace EPCat.Model
                 if (item.GID == null || Guid.Empty.Equals(item.GID))
                     item.GID = Guid.NewGuid();
 
-
+                string dirname = Path.GetDirectoryName(passportPath);
                 if (string.IsNullOrEmpty(item.Name))
                 {
                     if (passportPath.Contains(@"/HEN/"))
@@ -819,7 +816,7 @@ namespace EPCat.Model
                     else if (passportPath.Contains(@"/COM/"))
                         item.Catalog = "COM";
 
-                    string dirname = Path.GetDirectoryName(passportPath);
+                    
                     item.Name = UppercaseWords(Path.GetFileName(dirname));
                     if (string.IsNullOrEmpty(item.Director) && item.Catalog =="HEN" && item.Kind=="Hentai Artist")
                     {
@@ -830,26 +827,29 @@ namespace EPCat.Model
                         string studio = Directory.GetParent(dirname).Name;
                         item.Studio = studio.ToUpper();
                     }
-                        //string sounddir = Path.Combine(dirname, "SOUND");
-                        //if (Directory.Exists(sounddir))
-                        //{
-                        //    var filesmp3 = Directory.GetFiles(sounddir, "*.mp3").ToList();
-                        //    var i = 0;
-                        //    foreach (string fn in filesmp3)
-                        //    {
-                        //        i++;
-                        //        string filename = Path.GetFileName(fn);
-                        //        if (filename.Length < 45)//string.len"0001.a9da9cd436174c35aa1a0fa0d33636b0.mp3")
-                        //        {
-                        //            string gid = Guid.NewGuid().ToString();
-                        //            string newpath = Path.GetFileNameWithoutExtension(filename);
-                        //            newpath = $"{newpath}.{gid}.mp3";
-                        //            newpath = Path.Combine(sounddir, newpath);
-                        //            File.Move(fn, newpath);
-                        //        }
-                        //    }
-                        //}
-                        string eventsdir = Path.Combine(dirname, "EVENTS");
+
+
+                      
+                    //string sounddir = Path.Combine(dirname, "SOUND");
+                    //if (Directory.Exists(sounddir))
+                    //{
+                    //    var filesmp3 = Directory.GetFiles(sounddir, "*.mp3").ToList();
+                    //    var i = 0;
+                    //    foreach (string fn in filesmp3)
+                    //    {
+                    //        i++;
+                    //        string filename = Path.GetFileName(fn);
+                    //        if (filename.Length < 45)//string.len"0001.a9da9cd436174c35aa1a0fa0d33636b0.mp3")
+                    //        {
+                    //            string gid = Guid.NewGuid().ToString();
+                    //            string newpath = Path.GetFileNameWithoutExtension(filename);
+                    //            newpath = $"{newpath}.{gid}.mp3";
+                    //            newpath = Path.Combine(sounddir, newpath);
+                    //            File.Move(fn, newpath);
+                    //        }
+                    //    }
+                    //}
+                    string eventsdir = Path.Combine(dirname, "EVENTS");
                     if (!Directory.Exists(eventsdir))
                     {
                         Directory.CreateDirectory(eventsdir);
@@ -894,11 +894,33 @@ namespace EPCat.Model
                 }
                 else
                 {
-
+                    
                 }
+
+
+
                 item.SourceFolderExist = true;
+                // size
+                var filesmp3 = Directory.GetFiles(dirname, "*.m4v").ToList();
+                long s = 0;
+                int d = 1000000;
+                foreach (string fn in filesmp3)
+                {
+                    try
+                    {
+                        FileInfo fi = new FileInfo(fn);
+                        s += fi.Length;
+                    }
+                    catch (Exception)
+                    {
+                        // path too long exception
+                        //throw;
+                    }
+                }
+                if (s > 0)
+                    item.Size = (s / d).ToString();
 
-
+                //poster
                 bool copyPoster = false;
                 bool reversecopyPoster = false;
                 var existingItem = Source.Where(x => x.GID == item.GID).FirstOrDefault();
@@ -927,6 +949,7 @@ namespace EPCat.Model
                     }
                     else
                     {
+                        existingItem.Size = item.Size;
                         existingItem.ItemPath = item.ItemPath;
                         existingItem.SourceFolderExist = item.SourceFolderExist;
                         copyPoster = !File.Exists(newPostername);

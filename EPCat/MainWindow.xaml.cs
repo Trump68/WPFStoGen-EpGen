@@ -99,7 +99,7 @@ namespace EPCat
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ViewModel.Close();
+            ViewModel.Close(ViewModel.IsSavingAllowed);
             SaveLayout();
         }
 

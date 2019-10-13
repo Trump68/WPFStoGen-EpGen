@@ -271,8 +271,8 @@ namespace EPCat.Model
         public string PersonKind { get; set; }
         public string LastCheck { get; set; }
 
-
-
+        public string Size { get; set; }
+        public string Length { get; set; }
         //
         public List<string> Comments { get; set; } = new List<string>();
         public string CommentsAsString
@@ -417,6 +417,8 @@ namespace EPCat.Model
             this.PersonSex = item.PersonSex;
             this.PersonType = item.PersonType;
             this.PersonKind = item.PersonKind;
+            this.Size = item.Size;
+            this.Length = item.Length;
 
             this.SourceFolderExist = item.SourceFolderExist;
 
@@ -466,7 +468,8 @@ namespace EPCat.Model
         static string p_PersonSex = "PersonSex:";
         static string p_PersonType = "PersonType:";
         static string p_PersonKind = "PersonKind:";
-        
+        static string p_Size = "Size:";
+        static string p_Length = "Length:";
 
         static string p_Type00 = "TYPE00:";
         static string p_Type01 = "TYPE01:";
@@ -595,6 +598,11 @@ namespace EPCat.Model
                 result.Add(p_PersonKind + item.PersonKind);
             if (!string.IsNullOrEmpty(item.LastCheck))
                 result.Add(p_LastCheck + item.LastCheck);
+
+            if (!string.IsNullOrEmpty(item.Size))
+                result.Add(p_Size + item.Size);
+            if (!string.IsNullOrEmpty(item.Length))
+                result.Add(p_Length + item.Length);
 
             if (item.Comments.Count == 1)
             {
@@ -1035,6 +1043,23 @@ namespace EPCat.Model
                         result.PersonKind = term;
                     }
                 }
+                else if (term.StartsWith(p_Size))
+                {
+                    term = term.Replace(p_Size, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.Size = term;
+                    }
+                }
+                else if (term.StartsWith(p_Length))
+                {
+                    term = term.Replace(p_Length, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.Length = term;
+                    }
+                }
+
                 else if (term.StartsWith(p_LastCheck))
                 {
                     term = term.Replace(p_LastCheck, string.Empty);
