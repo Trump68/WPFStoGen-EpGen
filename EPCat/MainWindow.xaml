@@ -124,7 +124,7 @@
                             <dxg:GridColumn FieldName="Name" IsSmart="True" />
                             <dxg:GridColumn FieldName="AltTitle" IsSmart="True" />
                             <dxg:GridColumn FieldName="Country" MaxWidth="35" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Year" MaxWidth="35" IsSmart="True" AllowGrouping="True" />
+                            <dxg:GridColumn FieldName="Year" MaxWidth="25" IsSmart="True" AllowGrouping="True" />
                             <dxg:GridColumn FieldName="Scenes" MaxWidth="35" IsSmart="True" AllowGrouping="True" />
                             <dxg:GridColumn FieldName="Month" MaxWidth="35" IsSmart="True" />
                             <dxg:GridColumn FieldName="Day" MaxWidth="35" IsSmart="True" />
@@ -148,7 +148,7 @@
                             <dxg:GridColumn FieldName="PersonType" IsSmart="True" />
                             <dxg:GridColumn FieldName="PersonKind" IsSmart="True" />
                             <dxg:GridColumn FieldName="LastCheck" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Size" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Size" IsSmart="True" MaxWidth="25"/>
                             <dxg:GridColumn FieldName="Length" IsSmart="True" />
                             <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" Width="20" Header="." />
                             <dxg:GridColumn FieldName="SourceFolderExist" IsSmart="True" />
@@ -484,22 +484,23 @@
                         <StackPanel>
                             <MediaElement x:Name="minionPlayer" Margin="0"                         
                              ScrubbingEnabled="True"
-                             MaxHeight="500"
+                             MinHeight="300"
+                             MaxHeight="700"
                              LoadedBehavior="Manual"
                              HorizontalAlignment="Left"/>
                             <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarPosition"
                             VerticalAlignment="Center" Scroll="sbarPosition_Scroll"
-                             PreviewMouseDown="sbarPosition_PreviewMouseDown" Margin="0,5"/>
+                             PreviewMouseDown="sbarPosition_PreviewMouseDown" Margin="0,1"/>
                             <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarSeek"
                             VerticalAlignment="Center"  Scroll="sbarSeek_Scroll"
                              PreviewMouseUp="sbarSeek_PreviewMouseUp"
-                             PreviewMouseDown="sbarSeek_PreviewMouseDown" Margin="0,5"/>
+                             PreviewMouseDown="sbarSeek_PreviewMouseDown" Margin="0,1"/>
                             <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarScale"
                             VerticalAlignment="Center"  Scroll="sbarScale_Scroll"
                              PreviewMouseUp="sbarScale_PreviewMouseUp"
-                             PreviewMouseDown="sbarScale_PreviewMouseDown" Margin="0,5"/>
+                             PreviewMouseDown="sbarScale_PreviewMouseDown" Margin="0,1"/>
                             <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Center" VerticalAlignment="Center">
+                                HorizontalAlignment="Left" VerticalAlignment="Top">
 
                                 <StackPanel.Resources>
                                     <Style TargetType="Button">
@@ -517,12 +518,10 @@
                                   x:Name="btnScreenshot" Click="btnScreenshot_Click"/>
                                 <Button Margin="25,0,0,0" Content="Reset" Height="30"
                                   Name="btnSetPositionReset" Click="btnSetPositionReset_Click"/>
-
                                 <Button Margin="5,0,0,0" Content="Start" Height="30"
                                   Name="btnSetPositionStart" Click="btnSetPositionStart_Click"/>
                                 <TextBox Name="txtPositionStart" Width="65" Height="24" Text="{Binding ClipTemplate.PositionStart, UpdateSourceTrigger=PropertyChanged}"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-
                                 <Button Margin="5,0,0,0" Content="End" Height="30"
                                   Name="btnSetPositionEnd" Click="btnSetPositionEnd_Click"/>
                                 <TextBox Name="txtPositionEnd" Width="65" Height="24" Text="{Binding ClipTemplate.PositionEnd, UpdateSourceTrigger=PropertyChanged}"
@@ -534,12 +533,11 @@
                                 <Label Content="Position:" Margin="5,0,0,0" VerticalAlignment="Center"/>
                                 <TextBox Name="txtPosition" Width="65" Height="24" Text="0.0"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-
-
-
+                                <Label Content="File:" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                <TextBox Text="{Binding ClipToProcess, UpdateSourceTrigger=PropertyChanged}"
+                                         Width="200" Height="24" />
                             </StackPanel>
-                            <TextBlock Text="File"/>
-                            <TextBox Text="{Binding ClipToProcess, UpdateSourceTrigger=PropertyChanged}" Margin="1,0,0,1" TextWrapping="Wrap"/>
+                           
 
 
                         </StackPanel>

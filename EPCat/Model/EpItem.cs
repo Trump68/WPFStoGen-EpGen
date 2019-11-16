@@ -117,7 +117,7 @@ namespace EPCat.Model
         {
             get
             {
-                if (_Videos == null)
+                if (_Videos == null || !_Videos.Any())
                 {
                     if (string.IsNullOrEmpty(ItemDirectory)) _Videos =  new List<string>();
                     else if (!Directory.Exists(ItemDirectory)) _Videos =  new List<string>();
@@ -271,7 +271,7 @@ namespace EPCat.Model
         public string PersonKind { get; set; }
         public string LastCheck { get; set; }
 
-        public string Size { get; set; }
+        public int Size { get; set; }
         public string Length { get; set; }
         //
         public List<string> Comments { get; set; } = new List<string>();
@@ -599,8 +599,8 @@ namespace EPCat.Model
             if (!string.IsNullOrEmpty(item.LastCheck))
                 result.Add(p_LastCheck + item.LastCheck);
 
-            if (!string.IsNullOrEmpty(item.Size))
-                result.Add(p_Size + item.Size);
+            if (item.Size > 0)
+                result.Add(p_Size + item.Size.ToString());
             if (!string.IsNullOrEmpty(item.Length))
                 result.Add(p_Length + item.Length);
 
@@ -1048,7 +1048,11 @@ namespace EPCat.Model
                     term = term.Replace(p_Size, string.Empty);
                     if (!string.IsNullOrWhiteSpace(term))
                     {
-                        result.Size = term;
+                        int size;
+                        if (int.TryParse(term, out size))
+                        {
+                            result.Size = size;
+                        }                        
                     }
                 }
                 else if (term.StartsWith(p_Length))

@@ -918,7 +918,7 @@ namespace EPCat.Model
                     }
                 }
                 if (s > 0)
-                    item.Size = (s / d).ToString();
+                    item.Size = Convert.ToInt32((s / d));
 
                 //poster
                 bool copyPoster = false;
@@ -979,7 +979,8 @@ namespace EPCat.Model
                     {
                         try
                         {
-                            File.Copy(newPostername, item.PosterPath, false);
+                            if (!File.Exists(item.PosterPath))
+                                File.Copy(newPostername, item.PosterPath, false);
                         }
                         catch (Exception)
                         {
