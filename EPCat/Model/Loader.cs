@@ -49,7 +49,7 @@ namespace EPCat.Model
                     string gridxml = CommandArgs[2];
                     MainWindow.Instance.RestoreLayout(gridxml);
                 }
-                    
+
             }
 
 
@@ -98,7 +98,9 @@ namespace EPCat.Model
             DoTempWork1_OneCountry("PRT", fromPath, toPath);
             DoTempWork1_OneCountry("GRE", fromPath, toPath);
 
-            DoTempWork1_OneCountry("$WEB", fromPath, toPath);
+
+
+            DoTempWork1_WEB(fromPath, toPath);
             DoTempWork1_OneCountry("$JAV", fromPath, toPath);
             DoFOLDER(fromPath, toPath, null);
         }
@@ -167,7 +169,7 @@ namespace EPCat.Model
                 {
                     item.Name = dn;
                     tokens = new List<string>();
-                }                
+                }
                 if (parentokens != null)
                 {
                     tokens.AddRange(parentokens);
@@ -181,7 +183,7 @@ namespace EPCat.Model
                     {
                         string pdfdir = Path.Combine(dir, Path.GetFileNameWithoutExtension(f));
                         Directory.CreateDirectory(pdfdir);
-                        File.Move(f,Path.Combine(pdfdir, Path.GetFileName(f)));
+                        File.Move(f, Path.Combine(pdfdir, Path.GetFileName(f)));
                     }
 
                     tokens.Remove(tokens.Last());
@@ -211,7 +213,7 @@ namespace EPCat.Model
                     if (string.IsNullOrEmpty(tok.Trim()))
                         continue;
                     string mark = tok.Substring(0, 2);
-                    string val = tok.Remove(0,2).Trim();
+                    string val = tok.Remove(0, 2).Trim();
                     if (mark == "01")
                     {
                         item.Catalog = val;
@@ -238,7 +240,7 @@ namespace EPCat.Model
                     }
                     else if (mark == "07")
                     {
-                        item.Studio =val;
+                        item.Studio = val;
                     }
                     else if (mark == "08")
                     {
@@ -274,7 +276,7 @@ namespace EPCat.Model
                     {
                         toPath = $@"{toPath}\{item.Year}";
                     }
-                    else if (item.Catalog == "HEN" 
+                    else if (item.Catalog == "HEN"
                         || item.Catalog == "R3D"
                         || item.Catalog == "COM"
                         || item.Catalog == "MOD"
@@ -286,7 +288,7 @@ namespace EPCat.Model
                             toPath = $@"{toPath}\{item.Director}";
                         if (!string.IsNullOrEmpty(item.Serie))
                             toPath = $@"{toPath}\{item.Serie}";
-                        if (item.Year>0)
+                        if (item.Year > 0)
                             toPath = $@"{toPath}\{item.Year}";
                         if (!string.IsNullOrEmpty(item.Star))
                             toPath = $@"{toPath}\{item.Star}";
@@ -310,7 +312,7 @@ namespace EPCat.Model
                     if (
                         !alreadysorted &&
                         (
-                           item.Catalog == "HEN" 
+                           item.Catalog == "HEN"
                         || item.Catalog == "R3D"
                         || item.Catalog == "COM"
                         || item.Catalog == "MOD"
@@ -332,14 +334,109 @@ namespace EPCat.Model
                     catch (Exception)
                     {
 
-                        
+
                     }
                     List<string> lines = EpItem.SetToPassport(item);
                     File.WriteAllLines(Path.Combine(newname, EpItem.p_PassportName), lines);
                 }
             }
         }
-        private void DoTempWork1_OneCountry(string mark,string fromPath, string toPath)
+        private void DoTempWork1_WEB(string fromPath, string toPath)
+        {
+            string Catalog = "WEB";
+            string Studio = string.Empty;
+            string Actors = string.Empty;
+            string Day = "00";
+            string Month = "00";
+            string Year = "0000";
+            string Name = string.Empty;
+
+            var files = Directory.GetFiles(fromPath, "*.m4v", SearchOption.TopDirectoryOnly).ToList();
+            foreach (var fn in files)
+            {
+                string source = fn;
+                string fnwe = Path.GetFileName(fn);
+                if (fnwe.ToUpper().StartsWith($"$WEB "))
+                {
+
+                    string nfm = fnwe.Remove(0, 4);
+                    nfm = nfm.Replace(".m4v", string.Empty);
+                    nfm = nfm.Trim();
+                    bool ok = false;
+
+                    if (fnwe.ToUpper().StartsWith("$"))
+                    {
+                        //Country = string.Empty;
+                        //Catalog = mark.Replace("$", string.Empty);
+                        var items = nfm.Split(' ');
+
+                        Studio = items[0]
+                            .Replace("[", string.Empty)
+                            .Replace("]", string.Empty)
+                            .Replace("_", " ").Trim();
+
+                        var time = items[1]
+                           .Replace("[", string.Empty)
+                           .Replace("]", string.Empty)
+                           .Trim();
+                        var timesplitted = time.Split('_');
+                        if (timesplitted.Length > 0)
+                            Year = timesplitted[0];
+                        if (timesplitted.Length > 1)
+                            Month = timesplitted[1];
+                        if (timesplitted.Length > 2)
+                            Day = timesplitted[2];
+
+                        Actors = items[2]
+                                .Replace("[", string.Empty)
+                                .Replace("]", string.Empty)
+                                .Replace("_", " ").Trim();
+
+                        Name = items[3]
+                                 .Replace("[", string.Empty)
+                                 .Replace("]", string.Empty)
+                                 .Replace("_", " ").Trim();
+
+                        Name = $"{Year}-{Month}-{Actors}-{Name}";
+
+                        ok = true;
+                    }
+
+                  
+
+                    if (ok)
+                    {                                              
+                        string newPath = Path.Combine(toPath, Catalog, Studio, Year, Month);
+                      
+                        if (!Directory.Exists(newPath))
+                        {
+                            Directory.CreateDirectory(newPath);
+                        }
+                        if (Directory.Exists(newPath))
+                        {
+                            newPath = Path.Combine(newPath, Name);
+                            if (!Directory.Exists(newPath))
+                            {
+                                Directory.CreateDirectory(newPath);
+                                EpItem item = new EpItem(0);
+                                item.Name = Name;
+                                item.Catalog = Catalog;
+                                item.Year = Convert.ToInt32(Year);
+                                item.Month = Convert.ToInt32(Month);
+                                item.Day = Convert.ToInt32(Day);
+                                item.Studio = Studio;
+                                item.Star = Actors;
+                                List<string> lines = EpItem.SetToPassport(item);
+                                File.WriteAllLines(Path.Combine(newPath, EpItem.p_PassportName), lines);
+                            }
+
+                            File.Move(source, Path.Combine(newPath, Name) + ".m4v");
+                        }
+                    }
+                }
+            }
+        }
+        private void DoTempWork1_OneCountry(string mark, string fromPath, string toPath)
         {
             string Country = mark;
             string Catalog = "MOV";
@@ -347,7 +444,7 @@ namespace EPCat.Model
             string Actors = string.Empty;
             string Serie = string.Empty;
             int Year = 0;
-            
+
 
             var files = Directory.GetFiles(fromPath, "*.m4v", SearchOption.TopDirectoryOnly).ToList();
             foreach (var fn in files)
@@ -391,14 +488,14 @@ namespace EPCat.Model
                                 ok = true;
                             }
                         }
-                    }                    
+                    }
 
                     if (nfm.Contains("{") && nfm.Contains("}"))
                     {
                         int fi = nfm.IndexOf('{') + 1;
                         int si = nfm.IndexOf('}') - 1;
                         Actors = nfm.Substring(fi, si - fi + 1);
-                        nfm = nfm.Replace("{"+Actors+"}", string.Empty).Trim();
+                        nfm = nfm.Replace("{" + Actors + "}", string.Empty).Trim();
                     }
 
                     if (Catalog == "MOV" && nfm.Contains("[") && nfm.Contains("]"))
@@ -434,7 +531,7 @@ namespace EPCat.Model
                                 Name = Name.Trim();
                             }
                         }
-                        else if(Catalog == "JAV")
+                        else if (Catalog == "JAV")
                         {
                             newPath = Path.Combine(toPath, Catalog, Serie);
                         }
@@ -473,7 +570,7 @@ namespace EPCat.Model
             }
         }
         private void DoTempwork2(string passportPath)
-        {            
+        {
             List<string> dirList = Directory.GetDirectories(passportPath).ToList();
             foreach (var dir in dirList)
             {
@@ -504,9 +601,9 @@ namespace EPCat.Model
         private string CurrentCatalog;
         internal void SaveCatalog()
         {
-            if (string.IsNullOrEmpty(CurrentCatalog)) return;    
-            if (File.Exists(CurrentCatalog))        
-                 File.Copy(CurrentCatalog,Path.ChangeExtension(CurrentCatalog,"bak"),true);
+            if (string.IsNullOrEmpty(CurrentCatalog)) return;
+            if (File.Exists(CurrentCatalog))
+                File.Copy(CurrentCatalog, Path.ChangeExtension(CurrentCatalog, "bak"), true);
             System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<EpItem>));
             using (var writer = new StreamWriter(CurrentCatalog))
             {
@@ -530,11 +627,11 @@ namespace EPCat.Model
 
                 DoTempWork1(line);
                 DoTempwork2(@"d:\!CATALOG\MOV\");
-                Environment.Exit(0);             
+                Environment.Exit(0);
             }
             else if (line.StartsWith(c_PrepareFolder))
             {
-                PrepareFolder(line.Replace(c_PrepareFolder, string.Empty),0,2);
+                PrepareFolder(line.Replace(c_PrepareFolder, string.Empty), 0, 2);
             }
             else if (line.StartsWith(c_UpdateFolder))
             {
@@ -561,7 +658,7 @@ namespace EPCat.Model
                 CreatePassport(line.Replace(c_CreatePassport, string.Empty));
             }
         }
-        private void PrepareFolder(string parameters,int CurrentLevel, int ProcessLevel)
+        private void PrepareFolder(string parameters, int CurrentLevel, int ProcessLevel)
         {
             string itemPath = parameters.ToLower();
             if (CurrentLevel == ProcessLevel)
@@ -581,7 +678,7 @@ namespace EPCat.Model
             List<string> dirList = Directory.GetDirectories(itemPath).ToList();
             foreach (var dir in dirList)
             {
-                PrepareFolder(dir, (CurrentLevel+1), ProcessLevel);
+                PrepareFolder(dir, (CurrentLevel + 1), ProcessLevel);
             }
         }
 
@@ -596,7 +693,7 @@ namespace EPCat.Model
         private void CreatePassportTo(string ToPath)
         {
             if (!Directory.Exists(ToPath)) return;
-            
+
 
             List<string> files = Directory.GetFiles(ToPath, EpItem.p_PassportName, SearchOption.TopDirectoryOnly).ToList();
 
@@ -711,13 +808,13 @@ namespace EPCat.Model
                 var dirnamesSource = dirs.Select(x => Path.GetFileName(x)).ToList();
                 foreach (var dn in dirsDest)
                 {
-                        string dirnameDest = Path.GetFileName(dn);
-                        if (!dirnamesSource.Contains(dirnameDest)) Directory.Delete(dn,true);
+                    string dirnameDest = Path.GetFileName(dn);
+                    if (!dirnamesSource.Contains(dirnameDest)) Directory.Delete(dn, true);
                 }
             }
         }
 
-       
+
 
 
         private void LoadCatalog(string parameters)
@@ -728,10 +825,10 @@ namespace EPCat.Model
             EpItem.CatalogPosterDir = dir;
             if (!Directory.Exists(dir))
             {
-                Directory.CreateDirectory(dir);               
+                Directory.CreateDirectory(dir);
             }
             if (File.Exists(itemPath))
-            {                
+            {
                 System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<EpItem>));
                 try
                 {
@@ -740,7 +837,7 @@ namespace EPCat.Model
                         list = serializer.Deserialize(sr) as List<EpItem>;
                     }
                 }
-                catch { }                               
+                catch { }
             }
             Source = list;
             CurrentCatalog = itemPath;
@@ -783,7 +880,7 @@ namespace EPCat.Model
         internal void UpdateItem(EpItem item)
         {
             if (!Directory.Exists(Path.GetDirectoryName(item.ItemPath))) return;
-            List<string> passportData = EpItem.SetToPassport(item);            
+            List<string> passportData = EpItem.SetToPassport(item);
             File.WriteAllLines(item.ItemPath, passportData);
         }
 
@@ -800,7 +897,7 @@ namespace EPCat.Model
                 if (string.IsNullOrEmpty(item.Name))
                 {
                     if (passportPath.Contains(@"/HEN/"))
-                            item.Catalog = "HEN";
+                        item.Catalog = "HEN";
                     else if (passportPath.Contains(@"/MOV/"))
                         item.Catalog = "MOV";
                     else if (passportPath.Contains(@"/AMA/"))
@@ -816,20 +913,21 @@ namespace EPCat.Model
                     else if (passportPath.Contains(@"/COM/"))
                         item.Catalog = "COM";
 
-                    
+
                     item.Name = UppercaseWords(Path.GetFileName(dirname));
-                    if (string.IsNullOrEmpty(item.Director) && item.Catalog =="HEN" && item.Kind=="Hentai Artist")
+                    if (string.IsNullOrEmpty(item.Director) && item.Catalog == "HEN" && item.Kind == "Hentai Artist")
                     {
-                       string director =  Directory.GetParent(dirname).Name;
-                       item.Director = UppercaseWords(director);
-                    } else if (string.IsNullOrEmpty(item.Studio) && item.Catalog == "HEN" && item.Kind == "GameCG")
+                        string director = Directory.GetParent(dirname).Name;
+                        item.Director = UppercaseWords(director);
+                    }
+                    else if (string.IsNullOrEmpty(item.Studio) && item.Catalog == "HEN" && item.Kind == "GameCG")
                     {
                         string studio = Directory.GetParent(dirname).Name;
                         item.Studio = studio.ToUpper();
                     }
 
 
-                      
+
                     //string sounddir = Path.Combine(dirname, "SOUND");
                     //if (Directory.Exists(sounddir))
                     //{
@@ -855,13 +953,13 @@ namespace EPCat.Model
                         Directory.CreateDirectory(eventsdir);
                         var filesjpg = Directory.GetFiles(dirname, "*.jpg").ToList();
                         var i = 0;
-                        foreach(string fn in filesjpg)
+                        foreach (string fn in filesjpg)
                         {
                             i++;
                             string filename = Path.GetFileName(fn);
                             if (filename.Length > 100)
-                                filename = filename.Substring(0, 100) +i.ToString()+ ".jpg";
-                            string newpath = Path.Combine(eventsdir, filename);                            
+                                filename = filename.Substring(0, 100) + i.ToString() + ".jpg";
+                            string newpath = Path.Combine(eventsdir, filename);
                             File.Move(fn, newpath);
                         }
                         var filespng = Directory.GetFiles(dirname, "*.png").ToList();
@@ -871,7 +969,7 @@ namespace EPCat.Model
                             i++;
                             string filename = Path.GetFileName(fn);
                             if (filename.Length > 100)
-                                filename = filename.Substring(0, 100) + i.ToString() +".png";
+                                filename = filename.Substring(0, 100) + i.ToString() + ".png";
                             string newpath = Path.Combine(eventsdir, filename);
                             File.Move(fn, newpath);
                         }
@@ -882,7 +980,7 @@ namespace EPCat.Model
                         cpslist.Add(Path.Combine(eventsdir, "0001.jpg"));
                         cpslist.Add(Path.Combine(eventsdir, "00001.jpg"));
                         foreach (var newcaption in cpslist)
-                        {                            
+                        {
                             if (File.Exists(newcaption))
                             {
                                 File.Copy(newcaption, Path.Combine(dirname, "POSTER.jpg"), false);
@@ -894,7 +992,7 @@ namespace EPCat.Model
                 }
                 else
                 {
-                    
+
                 }
 
 
@@ -927,11 +1025,11 @@ namespace EPCat.Model
 
                 string dirPoster = EpItem.GetCatalogPosterDir(CurrentCatalog);
                 string newPostername = Path.Combine(dirPoster, $"{item.GID}.jpg");
-                
+
                 if (existingItem == null)
                 {
                     if (string.IsNullOrEmpty(item.Name))
-                    {                        
+                    {
                         string name = Path.GetFileName(Path.GetDirectoryName(passportPath)).ToLower();
                         TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
                         item.Name = cultInfo.ToTitleCase(name);
@@ -949,6 +1047,10 @@ namespace EPCat.Model
                     }
                     else
                     {
+                        if (string.IsNullOrEmpty(existingItem.PARENT))
+                        {
+                            existingItem.PARENT = item.Name;
+                        }
                         existingItem.Size = item.Size;
                         existingItem.ItemPath = item.ItemPath;
                         existingItem.SourceFolderExist = item.SourceFolderExist;
@@ -968,8 +1070,8 @@ namespace EPCat.Model
                         catch (Exception)
                         {
 
-                        }              
-                        
+                        }
+
                     }
                 }
                 else if (reversecopyPoster)
@@ -1035,14 +1137,14 @@ namespace EPCat.Model
                         result.Add(item);
                     }
                 }
-                result.ForEach(x => 
+                result.ForEach(x =>
                   {
-                    x.Parent = result.Where(p => p.Id == x.ParentId).FirstOrDefault();
+                      x.Parent = result.Where(p => p.Id == x.ParentId).FirstOrDefault();
                       if (x.Parent != null)
                       {
                           x.Parent.ChildList.Add(x);
                       }
-                  }  
+                  }
                 );
                 CaspSource.AddRange(result);
             }
@@ -1052,4 +1154,3 @@ namespace EPCat.Model
     }
 
 }
-        

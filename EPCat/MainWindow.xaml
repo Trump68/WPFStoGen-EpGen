@@ -148,6 +148,7 @@
                             <dxg:GridColumn FieldName="PersonType" IsSmart="True" />
                             <dxg:GridColumn FieldName="PersonKind" IsSmart="True" />
                             <dxg:GridColumn FieldName="LastCheck" IsSmart="True" />
+                            <dxg:GridColumn FieldName="PARENT" IsSmart="True" />
                             <dxg:GridColumn FieldName="Size" IsSmart="True" MaxWidth="25"/>
                             <dxg:GridColumn FieldName="Length" IsSmart="True" />
                             <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" Width="20" Header="." />
@@ -484,8 +485,8 @@
                         <StackPanel>
                             <MediaElement x:Name="minionPlayer" Margin="0"                         
                              ScrubbingEnabled="True"
-                             MinHeight="300"
-                             MaxHeight="700"
+                             MinHeight="200"
+                             MaxHeight="600"
                              LoadedBehavior="Manual"
                              HorizontalAlignment="Left"/>
                             <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarPosition"

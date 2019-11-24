@@ -270,6 +270,7 @@ namespace EPCat.Model
         public string PersonType { get; set; }
         public string PersonKind { get; set; }
         public string LastCheck { get; set; }
+        public string PARENT { get; set; }
 
         public int Size { get; set; }
         public string Length { get; set; }
@@ -411,6 +412,7 @@ namespace EPCat.Model
             this.Studio = item.Studio;
             this.IMDB = item.IMDB;
             this.LastCheck = item.LastCheck;
+            this.PARENT = item.PARENT;
 
             this.PersonName = item.PersonName;
             this.PersonAge = item.PersonAge;
@@ -462,6 +464,7 @@ namespace EPCat.Model
         static string p_Studio = "Studio:";
         static string p_IMDB = "IMDB:";
         static string p_LastCheck = "LastCheck:";
+        static string p_Parent = "PARENT:";
 
         static string p_PersonName = "PersonName:";
         static string p_PersonAge = "PersonAge:";
@@ -549,6 +552,11 @@ namespace EPCat.Model
             result.Add(p_Catalog + item.Catalog);
             result.Add($"{p_LastEdit}{item.LastEdit}");
 
+            if (string.IsNullOrEmpty(item.PARENT))
+            {
+                item.PARENT = item.Name;
+            }
+
             if (!string.IsNullOrEmpty(item.Serie))
                 result.Add(p_Serie + item.Serie);
             if (!string.IsNullOrEmpty(item.AltTitle))
@@ -598,6 +606,8 @@ namespace EPCat.Model
                 result.Add(p_PersonKind + item.PersonKind);
             if (!string.IsNullOrEmpty(item.LastCheck))
                 result.Add(p_LastCheck + item.LastCheck);
+            if (!string.IsNullOrEmpty(item.PARENT))
+                result.Add(p_Parent + item.PARENT);
 
             if (item.Size > 0)
                 result.Add(p_Size + item.Size.ToString());
@@ -1072,6 +1082,19 @@ namespace EPCat.Model
                         result.LastCheck = term;
                     }
                 }
+                else if (term.StartsWith(p_Parent))
+                {
+                    term = term.Replace(p_Parent, string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        result.PARENT = term;
+                    }
+                }
+            }
+
+            if (string.IsNullOrEmpty(result.PARENT))
+            {
+                result.PARENT = result.Name;
             }
             return result;
         }
