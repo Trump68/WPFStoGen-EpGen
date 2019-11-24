@@ -120,10 +120,13 @@ namespace EPCat.Model
                     if (vals.Count() == 2)
                     {
                         string source = Path.Combine(path,vals[0].Trim());
-                        string dest = Path.Combine(path, vals[1].Trim());                        
-                        if (!string.IsNullOrEmpty(dest) && File.Exists(source))
+                        if (!string.IsNullOrEmpty(vals[1].Trim()))
                         {
-                            File.Move(source, dest);
+                            string dest = Path.Combine(path, vals[1].Trim());
+                            if (File.Exists(source))
+                            {
+                                File.Move(source, dest);
+                            }
                         }
                      }
                 }
