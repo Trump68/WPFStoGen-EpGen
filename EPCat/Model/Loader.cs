@@ -70,6 +70,9 @@ namespace EPCat.Model
                 fromPath = args[1];
             if (args.Length > 1)
                 toPath = args[2];
+
+            DoRenameList(fromPath);
+
             DoTempWork1_OneCountry("JAP", fromPath, toPath);
             DoTempWork1_OneCountry("CHE", fromPath, toPath);
             DoTempWork1_OneCountry("FRA", fromPath, toPath);
@@ -104,6 +107,31 @@ namespace EPCat.Model
             DoTempWork1_OneCountry("$JAV", fromPath, toPath);
             DoFOLDER(fromPath, toPath, null);
         }
+
+        private void DoRenameList(string path)
+        {
+            string fp = Path.Combine(path, "rename.txt");
+            if (File.Exists(fp))
+            {
+                var lines = File.ReadAllLines(fp).ToList();
+                foreach (var item in lines)
+                {
+                    var vals = item.Split('|');
+                    if (vals.Count() == 2)
+                    {
+                        string source = Path.Combine(path,vals[0].Trim());
+                        string dest = Path.Combine(path, vals[1].Trim());
+                        if (File.Exists(source))
+                        {
+                            File.Move(source, dest);
+                        }
+                     }
+                }
+            }
+            var dirs = Directory.GetDirectories(path).ToList();
+            dirs.ForEach(x => DoRenameList(x));
+        }
+
         private void DoFOLDER(string fromPath, string toDir, List<string> parentokens)
         {
             /* 
@@ -435,6 +463,7 @@ namespace EPCat.Model
                     }
                 }
             }
+            Directory.GetDirectories(fromPath).ToList().ForEach(x=>DoTempWork1_WEB(x,toPath));
         }
         private void DoTempWork1_OneCountry(string mark, string fromPath, string toPath)
         {

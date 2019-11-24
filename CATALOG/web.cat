@@ -3575,4 +3575,29 @@ Roz and Myra-12.04.2010.m4v</CommentsAsString>
     <PosePositions />
     <Motions />
   </EpItem>
+  <EpItem>
+    <_Videos>
+      <string>e:\!catalog\web\photodromm\2013\01\2013-01-alexa-theshore\2013-01-Alexa-Theshore.m4v</string>
+    </_Videos>
+    <CapsPassportData />
+    <GID>0d607e90-6935-41e2-bda6-e8f07c86fec6</GID>
+    <ItemPath>e:\!catalog\web\photodromm\2013\01\2013-01-alexa-theshore\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>2013-01-Alexa-Theshore</Name>
+    <Catalog>WEB</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>2013</Year>
+    <Month>1</Month>
+    <Day>0</Day>
+    <Star>Alexa</Star>
+    <Studio>Photodromm</Studio>
+    <PARENT>2013-01-Alexa-Theshore</PARENT>
+    <Size>136</Size>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
 </ArrayOfEpItem>
