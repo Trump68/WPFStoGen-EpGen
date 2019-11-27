@@ -31,7 +31,7 @@
         <property name="GridRow">0</property>
         <property name="FieldName">Name</property>
         <property name="VisibleIndex">1</property>
-        <property name="ActualWidth">243.730453970676</property>
+        <property name="ActualWidth">302.68078411963222</property>
       </property>
       <property name="Item3" isnull="true" iskey="true">
         <property name="GridRow">0</property>
@@ -51,7 +51,7 @@
         <property name="GridRow">0</property>
         <property name="FieldName">Year</property>
         <property name="VisibleIndex">2</property>
-        <property name="ActualWidth">36</property>
+        <property name="ActualWidth">43.654910398830459</property>
       </property>
       <property name="Item6" isnull="true" iskey="true">
         <property name="GridRow">0</property>
@@ -93,7 +93,7 @@
         <property name="FieldName">Kind</property>
         <property name="Visible">true</property>
         <property name="VisibleIndex">3</property>
-        <property name="ActualWidth">93.659255368210665</property>
+        <property name="ActualWidth">64</property>
       </property>
       <property name="Item12" isnull="true" iskey="true">
         <property name="GridRow">0</property>
@@ -127,7 +127,7 @@
         <property name="GridRow">0</property>
         <property name="FieldName">Star</property>
         <property name="VisibleIndex">4</property>
-        <property name="ActualWidth">84.2003323984867</property>
+        <property name="ActualWidth">205</property>
       </property>
       <property name="Item17" isnull="true" iskey="true">
         <property name="GridRow">0</property>
@@ -155,7 +155,7 @@
         <property name="FieldName">Studio</property>
         <property name="Visible">true</property>
         <property name="VisibleIndex">0</property>
-        <property name="ActualWidth">88.999999999999957</property>
+        <property name="ActualWidth">109.74233785489538</property>
       </property>
       <property name="Item21" isnull="true" iskey="true">
         <property name="GridRow">0</property>
@@ -224,7 +224,7 @@
         <property name="GridRow">0</property>
         <property name="FieldName">Size</property>
         <property name="VisibleIndex">5</property>
-        <property name="ActualWidth">72.8564157737372</property>
+        <property name="ActualWidth">39.921967626641944</property>
       </property>
       <property name="Item31" isnull="true" iskey="true">
         <property name="GridRow">0</property>

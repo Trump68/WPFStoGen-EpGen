@@ -6,10 +6,31 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace EPCat.Model
 {
+
+    public static class StringExtensions
+    {
+        public static string FirstCharToUpper(this string stringToFormat)
+        {
+            CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+            TextInfo textInfo = cultureInfo.TextInfo;
+
+            // Check if we have a string to format
+            if (String.IsNullOrEmpty(stringToFormat))
+            {
+                // Return an empty string
+                return string.Empty;
+            }
+
+            // Format the string to Proper Case
+            return textInfo.ToTitleCase(stringToFormat.ToLower());
+        }
+    }
+
     public class Loader
     {
         static string c_SortToCatalog = "SORTTOCATALOG";
@@ -122,8 +143,11 @@ namespace EPCat.Model
                     List<string> l1 = new List<string>();
                     foreach (var item in lines)
                     {
-                        string f = Path.GetFileNameWithoutExtension(item)
-                            .Replace(" ","_");
+                        string f = Path.GetFileNameWithoutExtension(item);
+                        f = f.Replace("-", " ");
+                        f = f.Replace("_", " ");
+                        f = f.FirstCharToUpper();
+                        f = f.Replace(" ", "_");
                         string t = template.Replace("*", f);
                         l1.Add($"{item}|{t}");
                     }
@@ -135,7 +159,7 @@ namespace EPCat.Model
                     var vals = item.Split('|');
                     if (vals.Count() == 2)
                     {
-                        string source = Path.Combine(path,vals[0].Trim());
+                        string source = Path.Combine(path, vals[0].Trim());
                         if (!string.IsNullOrEmpty(vals[1].Trim()))
                         {
                             string dest = Path.Combine(path, vals[1].Trim());
@@ -144,7 +168,7 @@ namespace EPCat.Model
                                 File.Move(source, dest);
                             }
                         }
-                     }
+                    }
                 }
             }
             var dirs = Directory.GetDirectories(path).ToList();
@@ -449,12 +473,12 @@ namespace EPCat.Model
                         ok = true;
                     }
 
-                  
+
 
                     if (ok)
-                    {                                              
+                    {
                         string newPath = Path.Combine(toPath, Catalog, Studio, Year, Month);
-                      
+
                         if (!Directory.Exists(newPath))
                         {
                             Directory.CreateDirectory(newPath);
@@ -482,7 +506,7 @@ namespace EPCat.Model
                     }
                 }
             }
-            Directory.GetDirectories(fromPath).ToList().ForEach(x=>DoTempWork1_WEB(x,toPath));
+            Directory.GetDirectories(fromPath).ToList().ForEach(x => DoTempWork1_WEB(x, toPath));
         }
         private void DoTempWork1_OneCountry(string mark, string fromPath, string toPath)
         {
