@@ -114,6 +114,22 @@ namespace EPCat.Model
             if (File.Exists(fp))
             {
                 var lines = File.ReadAllLines(fp).ToList();
+                if (lines.Any() && lines[0].StartsWith("*"))
+                {
+                    string template = lines[0].Remove(0, 1);
+                    lines.RemoveAt(0);
+
+                    List<string> l1 = new List<string>();
+                    foreach (var item in lines)
+                    {
+                        string f = Path.GetFileNameWithoutExtension(item)
+                            .Replace(" ","_");
+                        string t = template.Replace("*", f);
+                        l1.Add($"{item}|{t}");
+                    }
+                    lines.Clear();
+                    lines.AddRange(l1);
+                }
                 foreach (var item in lines)
                 {
                     var vals = item.Split('|');
