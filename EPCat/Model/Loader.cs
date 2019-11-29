@@ -500,8 +500,8 @@ namespace EPCat.Model
                                 List<string> lines = EpItem.SetToPassport(item);
                                 File.WriteAllLines(Path.Combine(newPath, EpItem.p_PassportName), lines);
                             }
-
-                            File.Move(source, Path.Combine(newPath, Name) + ".m4v");
+                            
+                            File.Move(source, Path.Combine(newPath, "video") + ".m4v");
                         }
                     }
                 }
