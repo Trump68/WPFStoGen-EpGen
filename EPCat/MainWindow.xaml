@@ -410,6 +410,9 @@
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="AddMediaBtn" Content="Add" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AdMediaBtn_Click" />
                             </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="SaveCurrentClipBtn" Content="Save" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="SaveCurrentClipBtn_Click" />
+                            </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
 
                         <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 

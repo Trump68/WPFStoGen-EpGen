@@ -90,7 +90,7 @@ namespace EPCat
                     }
                     else
                     {
-                        this._CurrentClip = new MovieSceneInfo() { Description = "Default", ID = _CurrentFolder.ToString() };
+                        this._CurrentClip = MovieSceneInfo.Default(_CurrentFolder.GID.ToString()); 
                     }
                     if (_CurrentFolder.CombinedScenes.Any())
                     {
@@ -408,20 +408,23 @@ namespace EPCat
         internal void ShowClip()
         {
             if (this.CurrentClip == null) return;
-            var videos = this.CurrentFolder.Videos;            
+
+            var videos = this.CurrentFolder.Videos;
             if (!videos.Any()) return;
-            string path = videos.First();            
+
             GameWorldFactory.GameWorld.LoadData();
             BaseScene scene = null;
-
+            string path = videos.First();
             scene = new _Clip_Default();
-            if (scene.LoadData(this.CurrentClip, path))
-                 scene.Generate(this.CurrentClip.ID);
+
+            scene.LoadData(new List<MovieSceneInfo>() { this.CurrentClip });
 
             if (projector == null)
                     projector = new StoGenWPF.MainWindow();
+
             projector.GlobalMenuCreator = GameWorldFactory.GameWorld;
             projector.Scene = scene;
+            projector.StartOnLoad = false;
             projector.Show();
             projector.Start();
         }
@@ -442,7 +445,14 @@ namespace EPCat
             newclipinfo.ID = Guid.NewGuid().ToString();
             newclipinfo.PositionStart = this.ClipTemplate.PositionStart;
             newclipinfo.PositionEnd = this.ClipTemplate.PositionEnd;
-            newclipinfo.File = this.ClipTemplate.File;
+            if (string.IsNullOrEmpty(this.ClipTemplate.File))
+            {
+                newclipinfo.File = this.CurrentFolder.Videos[0];
+            }
+            else
+            {
+                newclipinfo.File = this.ClipTemplate.File;
+            }
             if (last != null)
             {
                 newclipinfo.Antagonist = last.Antagonist;
@@ -473,7 +483,7 @@ namespace EPCat
             RaisePropertyChanged(() => this.CurrentClip);
             RaisePropertyChanged(() => this.CurrentFolder.Clips);
             this.CurrentClip = this.CurrentFolder.Clips.Last();
-            this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
+            //this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
 
             this.ClipTemplate.PositionEnd = 0;
             this.ClipTemplate.PositionStart = 0;
@@ -728,6 +738,17 @@ namespace EPCat
         public void GenerateMotion()
         {
             Skyrim.GenerateMotion(this.CurrentFolder, this.FolderListView);
+        }
+
+        internal void SaveCurrentClipList()
+        {
+            if (this.CurrentClip == null) return;
+            List<string> lines = new List<string>();
+            foreach (var item in this.CurrentFolder.Clips)
+            {
+                lines.Add(item.GenerateString());
+            }
+            File.WriteAllLines(Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), "ClipList.txt"), lines);
         }
         #endregion
     }

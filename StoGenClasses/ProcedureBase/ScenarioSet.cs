@@ -49,8 +49,8 @@ namespace StoGen.Classes
             this.CurrentProc.ShowContextMenuOnInit = false;
             this.CurrentProc.Clear();
 
-            Cadre cadre = new Cadre(this.CurrentProc, isAdd);
-            cadre.ProcFr.Proc = this.CurrentProc;
+            //Cadre cadre = new Cadre(this.CurrentProc, isAdd);
+            //cadre.ProcFr.Proc = this.CurrentProc;
             this.CurrentProc.MenuCreator = this.CreateMenu;
 
             //PreProcessFileLists(this.ScenarioFile);          
@@ -93,6 +93,7 @@ namespace StoGen.Classes
             foreach (var ad in this.CurrentProc.Scene.AlignList)
             {                
                 var AppCadre = new Cadre(this.CurrentProc, true);
+                AppCadre.ImageFr.ShowMovieControls = true;
                 AppCadre.AlignData = ad;
                 //foreach (seIm data in cdr.VisionList)
                 //{

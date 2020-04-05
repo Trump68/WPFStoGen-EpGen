@@ -386,12 +386,13 @@ namespace StoGenMake.Scenes.Base
             this.MoviePath = moviePath;
             return true;
         }
-        public MovieSceneInfo MoviewInfo;
-        public virtual bool LoadData(MovieSceneInfo minfo, string moviePath)
+        public List<MovieSceneInfo> MoviewInfo;
+        public virtual bool LoadData(List<MovieSceneInfo> minfo)
         {
             this.MoviewInfo = minfo;
-            this.currentGr = minfo.ID;
-            this.MoviePath = moviePath;
+            this.currentGr = minfo.First().ID;
+            //this.MoviePath = moviePath;
+            this.ShowMovieControl = true;           
             return true;
         }
 
@@ -445,7 +446,7 @@ namespace StoGenMake.Scenes.Base
         }
         public string Generate(string cadregroup)
         {
-            this.Cadres.Clear();
+            //this.Cadres.Clear();
             this.DoFilter(cadregroup);
             return null;
             //string fnScenario = string.Empty;
@@ -535,6 +536,7 @@ namespace StoGenMake.Scenes.Base
             Width = 366,
             FontColor = "Aqua"
         };
+        private object ShowMovieControl;
 
         #region Newest engine!!!
 

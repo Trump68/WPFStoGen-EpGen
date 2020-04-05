@@ -42,9 +42,10 @@ namespace StoGen.Classes
         public static int WaitEnd = -1;
         public static void ProcessLoopDelegate()
         {
-            #region Other
-            //Transition
-            if (FrameImage.tranManager.Process()) ;
+            if (FrameImage.Animations == null) return;
+                #region Other
+                //Transition
+                if (FrameImage.tranManager.Process()) ;
             if (Projector.TimerEnabled && (FrameImage.TimeToNext > 0))
             {
                 if (FrameImage.TimeStarted.AddMilliseconds(FrameImage.TimeToNext) <= DateTime.Now)
@@ -158,6 +159,7 @@ namespace StoGen.Classes
                 }
                 else if (FrameImage.IsLoop == 1)// в начало
                 {
+                    
                     if (FrameImage.Animations.Count() > (FrameImage.AnimationIndex + 1))
                         FrameImage.AnimationIndex++;
                     else
@@ -330,6 +332,7 @@ namespace StoGen.Classes
 
                     if (Projector.PicContainer.Clip.Source == null || (Projector.PicContainer.Clip.Source.LocalPath != Pics[i].Props.FileName))
                     {
+                        
                         Projector.PicContainer.Clip.Source = new Uri(Pics[i].Props.FileName);
                         Projector.ClipSound.Open(new Uri(Pics[i].Props.FileName));
                         Projector.PicContainer.Clip.MediaOpened -= Clip_MediaOpened;
@@ -707,6 +710,7 @@ namespace StoGen.Classes
         private static List<AP> Animations;
         private static int AnimationIndex;
         private static int Loops;
+        internal bool ShowMovieControls;
 
         internal void ProcessKey(Key e)
         {

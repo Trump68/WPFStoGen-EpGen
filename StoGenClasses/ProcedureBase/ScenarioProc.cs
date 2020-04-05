@@ -24,8 +24,9 @@ namespace StoGen.Classes
             this.sets.Add(set);
             set.InsertAsProcedureTo(this,true);
             this.ShowContextMenuOnInit = false;
-            this.GetNextCadre();
-           
+            this.GoFirstCadre();
+
+
         }
       
         public override bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)

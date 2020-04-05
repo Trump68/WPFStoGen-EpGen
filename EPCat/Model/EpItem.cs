@@ -110,8 +110,8 @@ namespace EPCat.Model
                 return _SoundDirectory;
             }
         }
-
-        public List<string> _Videos = null;
+        [XmlIgnore]
+        public List<string> _Videos = null;        
        [XmlIgnore]
         public List<string> Videos
         {

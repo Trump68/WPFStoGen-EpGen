@@ -143,6 +143,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Start params\StartParams.txt" />
     <Resource Include="back.png" />
     <Resource Include="faster.png" />
     <Content Include="minions.mp4" />

@@ -51,19 +51,19 @@ namespace StoGenMake
         public void LoadData()
         {
 
-            this.SceneList.Add(new AUX01_Accesuar());
-            this.SceneList.Add(new SC000_Various());
-            this.SceneList.Add(new SC000_TestTran());
-            this.SceneList.Add(new SC002_IlyaKuvshinov());
-            this.SceneList.Add(new SC001_FoolsArt());
-            this.SceneList.Add(new SC007_CleMasahiro());
-            this.SceneList.Add(new SC009_Hews_Hack());
-            this.SceneList.Add(new SC010_OyariAshito());
-            this.SceneList.Add(new SC011_HCG());
+            //this.SceneList.Add(new AUX01_Accesuar());
+            //this.SceneList.Add(new SC000_Various());
+            //this.SceneList.Add(new SC000_TestTran());
+            //this.SceneList.Add(new SC002_IlyaKuvshinov());
+            //this.SceneList.Add(new SC001_FoolsArt());
+            //this.SceneList.Add(new SC007_CleMasahiro());
+            //this.SceneList.Add(new SC009_Hews_Hack());
+            //this.SceneList.Add(new SC010_OyariAshito());
+            //this.SceneList.Add(new SC011_HCG());
 
-            //this.SceneList.Add(new A001_Woman());
-            this.SceneList.Add(new SILKYS_SAKURA_OttoNoInuMaNi());
-            this.SceneList.Add(new _2011_USA_SRL_Homeland());
+            ////this.SceneList.Add(new A001_Woman());
+            //this.SceneList.Add(new SILKYS_SAKURA_OttoNoInuMaNi());
+            //this.SceneList.Add(new _2011_USA_SRL_Homeland());
 
 
         }

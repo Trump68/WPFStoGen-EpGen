@@ -27,7 +27,7 @@ namespace StoGenWPF
         private MediaPlayer Sound05 = new MediaPlayer();
         public BaseScene Scene;
 
-        
+        public bool StartOnLoad { get; set; } = true;
 
         public MainWindow()
         {
@@ -69,7 +69,8 @@ namespace StoGenWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Start();           
+            if (StartOnLoad)
+                this.Start();           
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

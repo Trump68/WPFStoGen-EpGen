@@ -54,6 +54,7 @@ namespace StoGen.Classes
         public FrameImage ImageFr = new FrameImage();
         public FrameProc ProcFr = new FrameProc();
         public FrameSound SoundFr = new FrameSound();
+
         public virtual Cadre Repaint(bool doRecalculate) 
         {            
             Cadre result = this;
@@ -70,6 +71,7 @@ namespace StoGen.Classes
                     PictureItem pic = new PictureItem();
                     pic.Props = new PictureSourceProps(ids);
                     this.ImageFr.Pics.Add(pic);
+                    
                 }
                 foreach (seSo data in cdr.SoundList)
                 {

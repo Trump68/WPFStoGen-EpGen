@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black" Left="0" Top="0" KeyDown="Window_KeyDown" d:DesignHeight="869" Width="992">
     <Grid Name="MainGrid" ClipToBounds="False" Margin="0,0,0,0">
-        <MediaElement x:Name="Clip1"  ScrubbingEnabled="True" HorizontalAlignment="Left" Height="505" Margin="90,47,0,0" VerticalAlignment="Top" Width="853" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>
+        <MediaElement x:Name="Clip1" ScrubbingEnabled="True" HorizontalAlignment="Left" Height="505" Margin="90,47,0,0" VerticalAlignment="Top" Width="853" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>
         <!--<MediaElement x:Name="ClipSound"  ScrubbingEnabled="True" HorizontalAlignment="Left" Height="0" Margin="90,47,0,0" VerticalAlignment="Top" Width="0" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>-->
         <Viewbox x:Name ="ViewboxControl" Height="5000" Width="5000">
             <Canvas Grid.Row="1" x:Name="CanvasControl" ClipToBounds="False" Height="5000" Width="5000">

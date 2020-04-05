@@ -1,4 +1,5 @@
-﻿using StoGenMake.Scenes.Base;
+﻿using StoGenMake.Elements;
+using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,17 @@ namespace StoGen.Classes.Data.Movie
 {
     public class _Clip_Default : BaseScene
     {
-        public override bool LoadData(MovieSceneInfo minfo, string moviePath)
+        public override bool LoadData(List<MovieSceneInfo> minfos)
         {
-            base.LoadData(minfo, moviePath);
+            base.LoadData(minfos);
             PATH_M = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Music\";
 
-            string filter = minfo.ID;
-            AddToGlobalImage(filter, this.MoviePath);
-            ShowClip(filter);
+            
+            ShowClip(this.MoviePath);
+            //var currcadre = this.AddCadre(null,"def",10000);
+            //seIm im = new seIm();
+            //im.File = moviePath;
+            //currcadre.AddImage(im);
             return true;
         }
 
@@ -24,7 +28,7 @@ namespace StoGen.Classes.Data.Movie
         {
             currentGr = filter;
             List<string> music = new List<string>();// { $"{PATH_M}music.arc_000005.wav" };
-            List<List<AP>> anims;
+            //List<List<AP>> anims;
 
             double posStart = 0;
             double posEnd = 60000;
@@ -33,27 +37,37 @@ namespace StoGen.Classes.Data.Movie
             int speed = 100;
             string text = string.Empty;
 
-            if (this.MoviewInfo != null && this.MoviewInfo.ID == filter)
-            {
-                posStart = Convert.ToDouble(this.MoviewInfo.PositionStart);
-                posEnd = Convert.ToDouble(this.MoviewInfo.PositionEnd);
-                loopMode = this.MoviewInfo.LoopMode;
-                loopCount = this.MoviewInfo.LoopCount;
-                speed = this.MoviewInfo.Speed;
-                text = this.MoviewInfo.Story;
-            }
-
-            
+            var anims = new List<List<AP>>();
             int volume = 100;
             VOLUME_M = 0;
             this.VOLUME_M = 0;
+            if (this.MoviewInfo != null)
+            {
+                foreach (var item in MoviewInfo)
+                {
+                    AddToGlobalImage(item.File, item.File);
+                    posStart = Convert.ToDouble(item.PositionStart);
+                    posEnd = Convert.ToDouble(item.PositionEnd);
+                    loopMode = item.LoopMode;
+                    loopCount = item.LoopCount;
+                    speed = item.Speed;
+                    text = item.Story;
+                    anims.Add(new List<AP>());
 
-            anims = new List<List<AP>>() {
-                new List<AP>() { // shower 
-                new AP(filter) { APS = posStart, APE = posEnd, ALM = loopMode, ALC = loopCount , AR=speed, AV=volume},
-                } };
+                    anims.Last().Add(new AP(filter) { APS = posStart, APE = posEnd, ALM = loopMode, ALC = loopCount, AR = speed, AV = volume, File = item.File });
+                    //anims. new AP(filter) { APS = posStart, APE = posEnd, ALM = loopMode, ALC = loopCount, AR = speed, AV = volume };
+                }
+                
+            }
+
+           
+
+            //anims = new List<List<AP>>() {
+            //    new List<AP>() { // shower 
+            //    new AP(filter) { APS = posStart, APE = posEnd, ALM = loopMode, ALC = loopCount , AR=speed, AV=volume},
+            //    } };
             VideoFrame800(anims, music, text);
-            this.AlignList.AddRange(AlignList);
+            //this.AlignList.AddRange(AlignList);
         }
         public void VideoFrame800(List<AP> anims, List<string> music)
         {

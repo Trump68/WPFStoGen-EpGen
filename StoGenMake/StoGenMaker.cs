@@ -6,6 +6,7 @@ using System.IO;
 using StoGenMake.Pers;
 using StoGen.Classes.Data.Games;
 using StoGen.Classes.Data.Movie;
+using System.Linq;
 
 namespace StoGenMake
 {
@@ -15,17 +16,25 @@ namespace StoGenMake
         public static void Start(string[] args)
         {
             //GenerateScen();
-            GetScene(@"d:\uTorrent\ToConvert\ADN-051.avi", "E82608F1-2DA5-4D4C-ADE7-60E562D8557D", null);
+            if (args.Length > 1)
+            {
+                string file = args[1];
+                List<string> clipsinstr = new List<string>(File.ReadAllLines(file));
+                List<MovieSceneInfo> clips = new List<MovieSceneInfo>();
+                foreach (var item in clipsinstr)
+                {
+                    clips.Add(MovieSceneInfo.GenerateFromString(item));
+                }
+                GetScene(clips);
+            }
+            
         }
-        private static void GetScene(string path, string filter, string par)
+        private static void GetScene(List<MovieSceneInfo> clips)
         {
             GameWorldFactory.GameWorld.LoadData();
-            BaseScene scene = null;
-            if (filter == "E82608F1-2DA5-4D4C-ADE7-60E562D8557D")
-            {
-                scene = new _Clip_Default();                
-                scene.Generate(filter);
-            }
+            _Clip_Default scene = null;
+            scene = new _Clip_Default();
+            scene.LoadData(clips);
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
             window.GlobalMenuCreator = GameWorldFactory.GameWorld;

@@ -26,6 +26,8 @@ namespace StoGen.Classes
         public string Grade { set; get; }
         public int LoopCount { set; get; } = 1;
         public int Speed { set; get; } = 100;
+        public int ShowMovieControl { set; get; } = 0;
+        
         [XmlIgnore]
         public int N { set; get; } = 0;
         public string File { set; get; }
@@ -51,6 +53,9 @@ namespace StoGen.Classes
                 return null;
             }
         }
+
+        
+
         public string GenerateString()
         {
             List<string> rez = new List<string>();
@@ -73,6 +78,18 @@ namespace StoGen.Classes
             if (!string.IsNullOrEmpty(Story))
                 rez.Add($"STR={Story}");
             return string.Join(";", rez.ToArray());
+        }
+
+        public static MovieSceneInfo Default(string id)
+        {
+            return new MovieSceneInfo() { Description = "Default", ID = id };
+        }
+
+        public static MovieSceneInfo GenerateFromString(string item)
+        {
+            MovieSceneInfo rez = new MovieSceneInfo();
+            rez.LoadFromString(item);
+            return rez;
         }
 
         public void LoadFromString(string item)
@@ -131,5 +148,7 @@ namespace StoGen.Classes
                 }
             }
         }
+
+
     }
 }

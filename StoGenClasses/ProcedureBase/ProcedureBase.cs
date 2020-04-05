@@ -59,17 +59,22 @@ namespace StoGen.Classes
         protected bool isInitialized = false;
         public string Name { get; set; }
         public bool ShowContextMenuOnInit = true;        
-        public virtual void Run() { }
+        //public virtual void Run() { }
 
         public virtual void Init()
         {
             if (ShowContextMenuOnInit && !isInitialized) this.ShowContextMenu(true,null);
             isInitialized = true;
         }
+        public Cadre GoFirstCadre()
+        {
+            NestedCadreId = -1;
+            return GetNextCadre();
+        }
         public virtual Cadre GetNextCadre()
         {
 
-            Cadre result = null;
+            Cadre result = null;            
             if (NestedCadreId >= 0 && NestedCadreId <= Cadres.Count - 1)
             {
                 //Cadres[NestedCadreId].BeforeLeave();

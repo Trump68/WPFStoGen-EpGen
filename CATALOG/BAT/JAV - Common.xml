@@ -355,7 +355,7 @@
       <property name="SearchString" isnull="true" />
     </property>
     <property name="TotalSummary" iskey="true" value="0" />
-    <property name="MRUFilters" iskey="true" value="10">
+    <property name="MRUFilters" iskey="true" value="9">
       <property name="Item1" isnull="true" iskey="true">
         <property name="FilterString">Contains([Star], 'Mikuni') And Contains([Star], 'Saya')</property>
         <property name="FilterText">Contains([Star], 'Mikuni') And Contains([Star], 'Saya')</property>
@@ -391,10 +391,6 @@
       <property name="Item9" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Serie], 'abp')</property>
         <property name="FilterText">Starts with([Serie], 'abp')</property>
-      </property>
-      <property name="Item10" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'ab')</property>
-        <property name="FilterText">Starts with([Serie], 'ab')</property>
       </property>
     </property>
     <property name="FilterString">Contains([Star], 'Uehara') And Contains([Star], 'Mizuho')</property>

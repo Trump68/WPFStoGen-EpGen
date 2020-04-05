@@ -1,0 +1,2 @@
+﻿"d:\Work\WPFStoGen-EpGen\CATALOG\BAT\SORT TO CATALOG.txt" LOAD
+"d:\Work\WPFStoGen-EpGen\CATALOG\BAT\JAV - Common.txt" "d:\Work\WPFStoGen-EpGen\CATALOG\BAT\JAV - Common.xml" LOAD

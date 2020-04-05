@@ -364,8 +364,7 @@ namespace EPCat
         }
 
         private void ShowVideoBtn_Click(object sender, RoutedEventArgs e)
-        {
-            
+        {            
             ViewModel.ShowClip();
         }
         private void ShowSceneBtn_Click(object sender, RoutedEventArgs e)
@@ -764,5 +763,9 @@ namespace EPCat
             ViewModel.GenerateMotion();
         }
 
+        private void SaveCurrentClipBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SaveCurrentClipList();
+        }
     }
 }

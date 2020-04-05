@@ -10,6 +10,8 @@ namespace StoGen.ModelClasses
 {
     public class FrameProc : Frame
     {
+
+
         public ProcedureBase Proc { get; set; }
         public FrameProc()
             : base()
@@ -18,10 +20,10 @@ namespace StoGen.ModelClasses
         }
         public override Cadre Repaint()
         {
-            if (this.Proc != null) 
-            {
-                return this.Proc.GetNextCadre();
-            }
+            //if (this.Proc != null)
+            //{
+            //    return this.Proc.GetNextCadre();
+            //}
             return this.Owner;
         }
         public override void SetVisible(bool show)
