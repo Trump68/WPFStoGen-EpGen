@@ -17,6 +17,8 @@
     <PersonSex>F</PersonSex>
     <PersonType>Real</PersonType>
     <PersonKind>Good Teen Girl</PersonKind>
+    <PARENT>Anna !!!</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -43,6 +45,7 @@
     <PersonSex>F</PersonSex>
     <PersonType>Actor Mainstream</PersonType>
     <PersonKind>Good Fem</PersonKind>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -64,6 +67,8 @@
     <Year>0</Year>
     <Month>0</Month>
     <Day>0</Day>
+    <PARENT>Comix Compositions</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -92,6 +97,8 @@
     <PersonSex>M</PersonSex>
     <PersonType>Game CG</PersonType>
     <PersonKind>Bad White Man</PersonKind>
+    <PARENT>Netorare no Gakuen ~Mawaru Sacrifice~</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -161,6 +168,8 @@
     <PersonSex>M</PersonSex>
     <PersonType>Game CG</PersonType>
     <PersonKind>Bad White Man</PersonKind>
+    <PARENT>Netorare no Gakuen ~Mawaru Sacrifice~</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -406,6 +415,8 @@
     <PersonSex>M</PersonSex>
     <PersonType>Game CG</PersonType>
     <PersonKind>Bad White Man</PersonKind>
+    <PARENT>Netorare no Gakuen ~Mawaru Sacrifice~</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -563,6 +574,8 @@
     <PersonSex>M</PersonSex>
     <PersonType>Comix</PersonType>
     <PersonKind>Bad Old White Man</PersonKind>
+    <PARENT>Yair Maijor</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -591,6 +604,8 @@
     <PersonSex>F</PersonSex>
     <PersonType>Game CG</PersonType>
     <PersonKind>Good Mature Female</PersonKind>
+    <PARENT>Netorare no Gakuen ~Mawaru Sacrifice~</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -868,6 +883,8 @@
     <PersonSex>F</PersonSex>
     <PersonType>Game CG</PersonType>
     <PersonKind>Good Loli Teen Girl Futa</PersonKind>
+    <PARENT>Netorare no Gakuen ~Mawaru Sacrifice~</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -1001,6 +1018,8 @@
     <PersonSex>F</PersonSex>
     <PersonType>Game CG</PersonType>
     <PersonKind>Good Loli Teen Girl</PersonKind>
+    <PARENT>Netorare no Gakuen ~Mawaru Sacrifice~</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -1350,6 +1369,8 @@
     <PersonSex>F</PersonSex>
     <PersonType>Game CG</PersonType>
     <PersonKind>Good Loli Teen Girl</PersonKind>
+    <PARENT>Netorare no Gakuen ~Mawaru Sacrifice~</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -1699,6 +1720,8 @@
     <PersonSex>F</PersonSex>
     <PersonType>Game CG</PersonType>
     <PersonKind>Good Teen Girl</PersonKind>
+    <PARENT>Netorare no Gakuen ~Mawaru Sacrifice~</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -2672,6 +2695,8 @@
     <PersonSex>F</PersonSex>
     <PersonType>Game CG</PersonType>
     <PersonKind>Good Mature Woman Teacher</PersonKind>
+    <PARENT>Flyingshine Kuro-Netorare No Gakuen ~Mawaru Sacrifice~ [Misawa Mari]</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -3485,6 +3510,8 @@
     <PersonSex>F</PersonSex>
     <PersonType>Game CG</PersonType>
     <PersonKind>Good Teen Girl</PersonKind>
+    <PARENT>Netorare no Gakuen ~Mawaru Sacrifice~</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -3994,6 +4021,8 @@
     <PersonSex>F</PersonSex>
     <PersonType>Comix</PersonType>
     <PersonKind>Good Black Woman</PersonKind>
+    <PARENT>Yair - The Mayor 3 [Mari Vashigton]</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -4627,6 +4656,8 @@
     <PersonSex>F</PersonSex>
     <PersonType>Comix</PersonType>
     <PersonKind>Good White Wooman</PersonKind>
+    <PARENT>Yair - The Mayor 3 [Veronika Mayor]</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -4655,6 +4686,8 @@
     <PersonSex>M</PersonSex>
     <PersonType>Game CG</PersonType>
     <PersonKind>Good White Man</PersonKind>
+    <PARENT>Netorare no Gakuen ~Mawaru Sacrifice~</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -4853,6 +4886,8 @@
     <Year>0</Year>
     <Month>0</Month>
     <Day>0</Day>
+    <PARENT>Story 001 - Sakimi Chan</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -4891,6 +4926,8 @@
     <Year>0</Year>
     <Month>0</Month>
     <Day>0</Day>
+    <PARENT>STORY 002 [Lady hardor 01]</PARENT>
+    <Size>0</Size>
     <Comments>
       <string />
     </Comments>
@@ -5003,6 +5040,925 @@
         <Queue>q2</Queue>
       </CombinedSceneInfo>
     </CombinedScenes>
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>baabadab-bbd2-49fd-a10e-dedf9e62f29e</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\2a nier\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - 2A NieR</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>2A NieR</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>332</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>5551cabd-2b79-4811-b6d0-3c42d2e8316e</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\2b nier\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - 2B NieR</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>2B NieR</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>94127652-d579-45eb-bb37-351047b5233e</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\ada wong\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Ada Wong</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Ada Wong</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>be42aadb-1040-4871-9b7f-65401860b356</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\adult misty\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Misty</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Misty</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>b3648a1a-fc94-4446-a3e4-31f7bf5384aa</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\ahri k.da\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Ahri KDA</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Ahri KDA</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>4b54b0b1-b99a-41b6-b4c4-cd3fdcfb5075</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\akali k.da\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Akali K.DA</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Akali K.DA</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>5a9c4a38-d6b5-4a7b-90eb-8e1116bd21c4</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\alice madness\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Alice Madness</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Alice Madness</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>0229ee8b-4934-4a77-9bd4-4772edf71662</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\ashe\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Ashe</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Ashe</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>de23f50c-45be-472a-8c99-cb6f5717ebc9</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\asuka x rei ayanami\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Asuka X Rei</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Asuka X Rei</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>6655bb1e-901e-41e3-a96f-98c8fa19749c</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\black cat\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Black Cat</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Black Cat</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>4c59003a-6d35-4ed9-9541-afdb0146348c</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\black widow\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Black Widow</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Black Widow</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>7bab01a2-b868-4c20-b0b6-d510b8a975f9</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\bowsette\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Bowsette</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Bowsette</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>78c887aa-497a-4a44-ade0-2f6a40691e6d</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\brigitte\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Brigitte</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Brigitte</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>e5ecf7e5-2dd3-45a2-8058-9ae670c9c255</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\bunny d.va\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Bunny D.Va</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Bunny D.Va</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>98981c84-03ed-4fae-a56c-26f19c57ec7b</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\cap d.va\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Cap D.Va</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Cap D.Va</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>9feb6466-baa1-48f0-a12b-75f9469ce6bc</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\chirai\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Chirai</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Chirai</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>40025902-b14e-42ea-8d99-ba59ef097347</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\christmas brigitte\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Christmas Brigitte</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Christmas Brigitte</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>3aec4415-9972-4261-8094-4e6b54e944c9</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\christmas mercy\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Christmas Mercy</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Christmas Mercy</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>367df9e9-3260-488e-b893-cedb88ef6c54</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\lara croft\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Lara Croft</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Lara Croft</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>483f3051-dc45-48a3-b75a-337c03d6e6e6</GID>
+    <ItemPath>e:\!catalog\prs\hentai &amp; comix authors\logancure\lifeguard mercy\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>LoganCure - Lifeguard Mercy</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Lifeguard Mercy</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PSD</Variant>
+    <Kind>Comix</Kind>
+    <Director>LoganCure</Director>
+    <Studio>LoganCure</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>LoganCure - 2B NieR</PARENT>
+    <Size>571</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>c7f9de3a-0532-4aed-b03f-4ca2a0c6914f</GID>
+    <ItemPath>e:\!catalog\prs\hcg\alicesoft\haha ranman\01\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>ALICESOFT [Haha Ranman] _Mika</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>_Mika</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PNG</Variant>
+    <Kind>HCG</Kind>
+    <Director>ALICESOFT</Director>
+    <Studio>ALICESOFT</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>ALICESOFT [Haha Ranman] _Mika</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>f4f3dacc-9a12-49ff-9464-4648b88d247d</GID>
+    <ItemPath>e:\!catalog\prs\hcg\alicesoft\haha ranman\02\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>ALICESOFT [Haha Ranman] _Maria</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>_Maria</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PNG</Variant>
+    <Kind>HCG</Kind>
+    <Director>ALICESOFT</Director>
+    <Studio>ALICESOFT</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>ALICESOFT [Haha Ranman] _Maria</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>69787bee-394b-470e-a6eb-b3795dd640b7</GID>
+    <ItemPath>e:\!catalog\prs\hcg\alicesoft\haha ranman\03\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>ALICESOFT [Haha Ranman] _Anna</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>_Anna</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PNG</Variant>
+    <Kind>HCG</Kind>
+    <Director>ALICESOFT</Director>
+    <Studio>ALICESOFT</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>ALICESOFT [Haha Ranman] _Anna</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>131808a1-025e-46f4-a361-b312cd82bf5f</GID>
+    <ItemPath>e:\!catalog\prs\hcg\alicesoft\haha ranman\04\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>ALICESOFT [Haha Ranman] _Ola</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>_Ola</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PNG</Variant>
+    <Kind>HCG</Kind>
+    <Director>ALICESOFT</Director>
+    <Studio>ALICESOFT</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>ALICESOFT [Haha Ranman] _Ola</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>e1d4e862-6a58-45d6-a16f-9f9ecad2c4bb</GID>
+    <ItemPath>e:\!catalog\prs\hcg\alicesoft\haha ranman\05\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>ALICESOFT [Haha Ranman] _Andre</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>_Andre</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PNG</Variant>
+    <Kind>HCG</Kind>
+    <Director>ALICESOFT</Director>
+    <Studio>ALICESOFT</Studio>
+    <PersonSex>M</PersonSex>
+    <PARENT>ALICESOFT [Haha Ranman] _Andre</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>78fd48fe-fd5d-4742-94be-b8c9cf36a246</GID>
+    <ItemPath>e:\!catalog\prs\hcg\alicesoft\haha ranman\06\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>ALICESOFT [Haha Ranman] _Bobo</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>_Bobo</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PNG</Variant>
+    <Kind>HCG</Kind>
+    <Director>ALICESOFT</Director>
+    <Studio>ALICESOFT</Studio>
+    <PersonSex>M</PersonSex>
+    <PARENT>ALICESOFT [Haha Ranman] _Bobo</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>5186100e-1b96-4745-b193-bf94e59276dc</GID>
+    <ItemPath>e:\!catalog\prs\hcg\atelier sakura\kashidashi zuma, mayumi no netorase houkoku 2 binkan zuma to hitotsu no uso\mayumi\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Atelier Sakura - Mayumi [Kashidashi Zuma, Mayumi no Netorase Houkoku 2 Binkan Zuma to Hitotsu no Uso]</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Mayumi</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PNG</Variant>
+    <Kind>HCG</Kind>
+    <Director>Atelier Sakura</Director>
+    <Studio>Atelier Sakura</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>Atelier Sakura - Mayumi [Kashidashi Zuma, Mayumi no Netorase Houkoku 2 Binkan Zuma to Hitotsu no Uso]</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>fbafdd38-9c9f-4d1d-8209-475c3941ac03</GID>
+    <ItemPath>e:\!catalog\prs\hcg\atelier sakura\kashidashi zuma, mayumi no netorase houkoku 2 binkan zuma to hitotsu no uso\satoru\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Atelier Sakura - Satoru [Kashidashi Zuma, Mayumi no Netorase Houkoku 2 Binkan Zuma to Hitotsu no Uso]</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>2</LastEdit>
+    <AltTitle>Satoru</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PNG</Variant>
+    <Kind>HCG</Kind>
+    <Director>Atelier Sakura</Director>
+    <Studio>Atelier Sakura</Studio>
+    <PersonSex>M</PersonSex>
+    <PARENT>Atelier Sakura - Satoru [Kashidashi Zuma, Mayumi no Netorase Houkoku 2 Binkan Zuma to Hitotsu no Uso]</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <_Videos />
+    <CapsPassportData />
+    <GID>e6af072c-562f-4aa4-bd17-2250fe6796bf</GID>
+    <ItemPath>e:\!catalog\prs\hcg\atelier sakura\kashidashi zuma, mayumi no netorase houkoku 2 binkan zuma to hitotsu no uso\yuuzi\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Atelier Sakura - Yuuzi [Kashidashi Zuma, Mayumi no Netorase Houkoku 2 Binkan Zuma to Hitotsu no Uso]</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>2</LastEdit>
+    <AltTitle>Yuuzi</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PNG</Variant>
+    <Kind>HCG</Kind>
+    <Director>Atelier Sakura</Director>
+    <Studio>Atelier Sakura</Studio>
+    <PersonSex>M</PersonSex>
+    <PARENT>Atelier Sakura - Yuuzi [Kashidashi Zuma, Mayumi no Netorase Houkoku 2 Binkan Zuma to Hitotsu no Uso]</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>2d080b52-4447-46c9-b1ab-00f654cfd0d3</GID>
+    <ItemPath>e:\!catalog\prs\hcg\goku-raku\joushi no tsuma to buka no tsuma ~shiranu wa teishu bakarinari!\milf1\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>GOKU-RAKU - Milf1 [Joushi no Tsuma to Buka no Tsuma ~Shiranu wa Teishu Bakarinari!]</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Milf1</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PNG</Variant>
+    <Kind>HCG</Kind>
+    <Director>GOKU-RAKU</Director>
+    <Studio>GOKU-RAKU</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>GOKU-RAKU - Milf1 [Joushi no Tsuma to Buka no Tsuma ~Shiranu wa Teishu Bakarinari!]</PARENT>
+    <Size>0</Size>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>3d6ae0f9-1835-49b2-906d-5ee794f81cb7</GID>
+    <ItemPath>e:\!catalog\prs\hcg\goku-raku\joushi no tsuma to buka no tsuma ~shiranu wa teishu bakarinari!\milf2\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>GOKU-RAKU - Milf2 [Joushi no Tsuma to Buka no Tsuma ~Shiranu wa Teishu Bakarinari!]</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Milf2</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PNG</Variant>
+    <Kind>HCG</Kind>
+    <Director>GOKU-RAKU</Director>
+    <Studio>GOKU-RAKU</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>GOKU-RAKU - Milf2 [Joushi no Tsuma to Buka no Tsuma ~Shiranu wa Teishu Bakarinari!]</PARENT>
+    <Size>0</Size>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>5e4edb74-caad-437a-a754-bb535ba43beb</GID>
+    <ItemPath>e:\!catalog\prs\hcg\goku-raku\joushi no tsuma to buka no tsuma ~shiranu wa teishu bakarinari!\milf3\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>GOKU-RAKU - Milf3 [Joushi no Tsuma to Buka no Tsuma ~Shiranu wa Teishu Bakarinari!]</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Milf3</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>PNG</Variant>
+    <Kind>HCG</Kind>
+    <Director>GOKU-RAKU</Director>
+    <Studio>GOKU-RAKU</Studio>
+    <PersonSex>F</PersonSex>
+    <PARENT>GOKU-RAKU - Milf3 [Joushi no Tsuma to Buka no Tsuma ~Shiranu wa Teishu Bakarinari!]</PARENT>
+    <Size>0</Size>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
     <PosePositions />
     <Motions />
   </EpItem>

@@ -584,6 +584,11 @@ namespace EPCat.Model
                         int si = nfm.IndexOf(']') - 1;
                         Serie = nfm.Substring(fi, si - fi + 1);
                         nfm = nfm.Replace("[" + Serie + "]", string.Empty).Trim();
+                        if (string.IsNullOrEmpty(Serie))
+                        {
+                            var ser = nfm.Split('-');
+                            Serie = ser[0];
+                        }
                     }
 
                     if (ok)
