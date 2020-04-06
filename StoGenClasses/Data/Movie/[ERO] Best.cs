@@ -34,7 +34,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void USA_1999_Hot_Club_California()
         {
-            _Clip_Default st = new _Clip_Default();
+            Scene_Clips st = new Scene_Clips();
             st.currentGr = "Hot Club California.m4v";
             List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
             List<List<AP>> anims;
@@ -393,7 +393,7 @@ namespace StoGen.Classes.Data.Movie
         }
         private void USA_2006_Mistress_Of_Unit_C()
         {
-            _Clip_Default st = new _Clip_Default();
+            Scene_Clips st = new Scene_Clips();
             st.currentGr = "Mistress Of Unit C.m4v";
             List<string> music = new List<string>() { $"{PATH_M}music.arc_000005.wav" };
             List<List<AP>> anims;

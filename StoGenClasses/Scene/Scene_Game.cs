@@ -9,33 +9,23 @@ using System.Threading.Tasks;
 
 namespace StoGen.Classes.Data.Games
 {
-    public class CommonGameCG : BaseScene
+    public class Scene_Game : BaseScene
     {
-        public CommonGameCG() : base()
+        public Scene_Game() : base()
         {
-            Name = "CommonGameCG";
+            Name = "Scene_Game";
             EngineHiVer = 1;
             EngineLoVer = 0;
             setDefaultTextAttribs();
         }
-
-        private void setDefaultTextAttribs()
-        {
-            this.DefaultSceneText.Size = 150;
-            this.DefaultSceneText.Width = 1000;
-            this.DefaultSceneText.FontSize = 32;
-            this.DefaultSceneText.Shift = 250;
-            this.DefaultSceneText.FontColor = "White";
-        }
         List<CombinedSceneInfo> InfoList = null;
-        internal void SetInfo(List<CombinedSceneInfo> infoList)
+        List<List<CombinedSceneInfo>> data = new List<List<CombinedSceneInfo>>();
+        public void SetInfo(List<CombinedSceneInfo> infoList)
         {
             InfoList = infoList;
             this.LoadData(string.Empty, string.Empty);
             this.Generate(InfoList.First().ID);
         }
-
-        List<List<CombinedSceneInfo>> data = new List<List<CombinedSceneInfo>>();
         public override bool LoadData(string filter, string moviePath)
         {
             data.Clear();
@@ -63,11 +53,21 @@ namespace StoGen.Classes.Data.Games
             {
                 DoGroup(group);
             }
-           return true;
+            return true;
         }
 
+
+        private void setDefaultTextAttribs()
+        {
+            this.DefaultSceneText.Size = 150;
+            this.DefaultSceneText.Width = 1000;
+            this.DefaultSceneText.FontSize = 32;
+            this.DefaultSceneText.Shift = 250;
+            this.DefaultSceneText.FontColor = "White";
+        }
         private void CalculateGroup(List<CombinedSceneInfo> prevgroup, ref List<CombinedSceneInfo> curgroup)
         {
+            // repeat group for kind 3- repeat prev group 
             if (curgroup.Where(x=>x.Kind == 3).Any())
             {
                 curgroup.Where(x => x.Kind == 3).First().Kind = 1;
@@ -86,14 +86,12 @@ namespace StoGen.Classes.Data.Games
                 }
             }
         }
-
         private void DoGroup(List<CombinedSceneInfo> group)
         {
-
-            setDefaultTextAttribs();
-            var infopictures = group.Where(x => x.Kind == 0 || x.Kind == 2 || x.Kind == 4);
             Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
 
+            // TEXT
+            setDefaultTextAttribs();
             string story = string.Empty;
             string path = string.Empty;
             var title = group.Where(x => x.Kind == 1).FirstOrDefault();
@@ -122,7 +120,7 @@ namespace StoGen.Classes.Data.Games
             // try to get text from kind 4
             if (string.IsNullOrEmpty(story))
             {                
-                title = group.Where(x => x.Kind == 4).FirstOrDefault();
+                title = group.Where(x => x.Kind == 4).FirstOrDefault();                
                 if (title != null)
                 {
                     story = title.Story;
@@ -130,20 +128,34 @@ namespace StoGen.Classes.Data.Games
                 }
             }
 
+            // try to get text from kind 0
+            if (string.IsNullOrEmpty(story))
+            {
+                title = group.Where(x => x.Kind == 0).FirstOrDefault();
+                if (title != null)
+                {
+                    story = title.Story;
+                }
+            }
+
             // try to get text from file
             if (!string.IsNullOrEmpty(story))
             {
+                // text should have filename@section
                 if (story.Contains("@"))
                 {
                     string[] vals = story.Split('@');
-                    if (File.Exists(Path.Combine(path,vals[0])))
+                    string filename = vals[0];
+                    string section = vals[1];
+                    if (File.Exists(Path.Combine(path, filename)))
                     {
-                        List<string> textlist = new List<string>(File.ReadAllLines(Path.Combine(path, vals[0])));
+                        List<string> textlist = new List<string>(File.ReadAllLines(Path.Combine(path, filename)));
                         foreach (string line in textlist)
                         {
-                            if (line.StartsWith($"@{vals[1]}"))
+                            // get text from section within a file
+                            if (line.StartsWith($"@{section}"))
                             {
-                                story = line.Replace($"@{vals[1]}", string.Empty).Trim();
+                                story = line.Replace($"@{section}", string.Empty).Trim();
                                 break;
                             }
                         }
@@ -151,17 +163,8 @@ namespace StoGen.Classes.Data.Games
                 }
             }
 
-
-
-            foreach (var item in infopictures)
-            {
-                if (!string.IsNullOrEmpty(item.File))
-                {
-                    AddToGlobalImage(item.File, item.File, item.Path);
-                }
-            }
-
-
+            
+            // PICTURES- kind 5 (transform)
             List<OpEf> trans = new List<OpEf>();
             var prevtranpictures = group.Where(x => x.Kind == 5);
             foreach (var item in prevtranpictures)
@@ -185,6 +188,15 @@ namespace StoGen.Classes.Data.Games
             }
 
 
+            // PICTURES - kind 0,2,4
+            var infopictures = group.Where(x => x.Kind == 0 || x.Kind == 2 || x.Kind == 4);
+            foreach (var item in infopictures)
+            {
+                if (!string.IsNullOrEmpty(item.File))
+                {
+                    AddToGlobalImage(item.File, item.File, item.Path);
+                }
+            }
             int i = 1;
             foreach (var item in infopictures)
             {
@@ -227,11 +239,7 @@ namespace StoGen.Classes.Data.Games
 
             //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100*W..0>X.B.400.300")); //--appear+move from left
             //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100"));                  //--appear
-
-
             DoC2($"{story}", Pictures.Values.ToList(),trans);
         }
-       
-
     }
 }

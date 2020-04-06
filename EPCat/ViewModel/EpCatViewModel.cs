@@ -20,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Controls;
 using StoGen.Classes;
 using System.Diagnostics;
+using StoGen.Classes.Data.Games;
 
 namespace EPCat
 {
@@ -415,7 +416,7 @@ namespace EPCat
             GameWorldFactory.GameWorld.LoadData();
             BaseScene scene = null;
             string path = videos.First();
-            scene = new _Clip_Default();
+            scene = new Scene_Clips();
 
             scene.LoadData(new List<MovieSceneInfo>() { this.CurrentClip });
 
@@ -637,10 +638,13 @@ namespace EPCat
             if (this.CurrentCombinedScene == null) return;
             
             GameWorldFactory.GameWorld.LoadData();
-            BaseScene scene = null;
+            //BaseScene scene = null;
             var infolist = this.CurrentFolder.CombinedScenes.Where(x => x.Queue == this.CurrentCombinedScene.Queue).ToList();
             List<CombinedSceneInfo> listToShow = new List<CombinedSceneInfo>();
-
+            infolist.Sort(delegate (CombinedSceneInfo x, CombinedSceneInfo y)
+            {
+                return x.Group.CompareTo(y.Group);
+            });
             foreach (var item in infolist)
             {
                 string its = item.GenerateString();
@@ -710,8 +714,9 @@ namespace EPCat
                 }
             }
 
-            scene = GameWorldFactory.GetScene(listToShow);
-
+            //scene = GameWorldFactory.GetScene(listToShow);
+            Scene_Game scene = new Scene_Game();
+            scene.SetInfo(infolist);
 
             if (projector == null)
                 projector = new StoGenWPF.MainWindow();
@@ -748,7 +753,18 @@ namespace EPCat
             {
                 lines.Add(item.GenerateString());
             }
-            File.WriteAllLines(Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), "ClipList.txt"), lines);
+            File.WriteAllLines(Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), "ClipList.epcatci"), lines);
+        }
+        internal void SaveCurrentSceneList()
+        {
+            if (this.CurrentFolder == null) return;
+            if (this.CurrentFolder.CombinedScenes == null) return;
+            List<string> lines = new List<string>();
+            foreach (var item in this.CurrentFolder.CombinedScenes)
+            {
+                lines.Add(item.GenerateString());
+            }
+            File.WriteAllLines(Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), "SceneList.epcatsi"), lines);
         }
         #endregion
     }

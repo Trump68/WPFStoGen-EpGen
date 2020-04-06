@@ -274,17 +274,29 @@
       </property>
     </property>
     <property name="TotalSummary" iskey="true" value="0" />
-    <property name="MRUFilters" iskey="true" value="2">
+    <property name="MRUFilters" iskey="true" value="5">
       <property name="Item1" isnull="true" iskey="true">
+        <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'ur')</property>
+        <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'ur')</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'u')</property>
+        <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'u')</property>
+      </property>
+      <property name="Item3" isnull="true" iskey="true">
+        <property name="FilterString">[Catalog] = 'PRS'</property>
+        <property name="FilterText">[Catalog] = 'PRS'</property>
+      </property>
+      <property name="Item4" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'PRS' And [PersonName] = 'Mari Vashigton'</property>
         <property name="FilterText">[Catalog] = 'PRS' And [Person Name] = 'Mari Vashigton'</property>
       </property>
-      <property name="Item2" isnull="true" iskey="true">
+      <property name="Item5" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'HEN'</property>
         <property name="FilterText">[Catalog] = 'HEN'</property>
       </property>
     </property>
-    <property name="FilterString">[Catalog] = 'PRS'</property>
+    <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'ura')</property>
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>

@@ -20,7 +20,7 @@ namespace StoGen.Classes
         // 6 - sound
         // 7 -1+6
         public int Kind { set; get; } = 0;
-        public string Description { set; get; }
+        public string Description { set; get; } = string.Empty;
         [XmlIgnore]
         public string StoryAsString
         {
@@ -42,6 +42,13 @@ namespace StoGen.Classes
         public string Story { set; get; }
         public string Group { set; get; }
         public string Queue { set; get; }
+
+        public static CombinedSceneInfo GenerateFromString(string item)
+        {
+            CombinedSceneInfo Rez = new CombinedSceneInfo();
+            Rez.LoadFromString(item);
+            return Rez;
+        }
 
         //PictureProps
         public string X { set; get; }
@@ -77,8 +84,8 @@ namespace StoGen.Classes
                 }
                 else if (File.Contains("."))
                 {
-                    string[] parts = File.Split('.');
-                    File = parts[1];
+                    //string[] parts = File.Split('.');
+                    //File = parts[1];
                 }
                 rez.Add($"FILE={File}");
             }

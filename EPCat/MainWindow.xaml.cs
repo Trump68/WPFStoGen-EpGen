@@ -767,5 +767,10 @@ namespace EPCat
         {
             ViewModel.SaveCurrentClipList();
         }
+
+        private void SaveScenesToFileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SaveCurrentSceneList();
+        }
     }
 }

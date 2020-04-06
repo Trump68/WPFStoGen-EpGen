@@ -34,6 +34,7 @@ namespace StoGen.Classes
         public int Opacity { get; set; }
         public int Shift { get; set; }
         public int Aligh { get; set; }
+        public bool Animated { get; set; } = false;
         public bool ClearBack { get; set; } = false;
         public System.Threading.Timer timer;
         public static TransitionManager tranManager = new TransitionManager();
@@ -157,10 +158,23 @@ namespace StoGen.Classes
             Projector.TextVisible = true;
             
             string txt = string.Join(Environment.NewLine, TextList.ToArray());
-            TypewriteTextblock(txt, Projector.TextBlock1, new TimeSpan(0, 0, 3));
-            TypewriteTextblock(txt, Projector.TextBlock2, new TimeSpan(0, 0, 3));
-            TypewriteTextblock(txt, Projector.TextBlock3, new TimeSpan(0, 0, 3));
-            TypewriteTextblock(txt, Projector.TextBlock4, new TimeSpan(0, 0, 3));
+
+            
+            if (Animated)
+            {
+                TypewriteTextblock(txt, Projector.TextBlock1, new TimeSpan(0, 0, 0, 5));
+                TypewriteTextblock(txt, Projector.TextBlock2, new TimeSpan(0, 0, 0, 5));
+                TypewriteTextblock(txt, Projector.TextBlock3, new TimeSpan(0, 0, 0, 5));
+                TypewriteTextblock(txt, Projector.TextBlock4, new TimeSpan(0, 0, 0, 5));
+            }
+            else
+            {
+                Projector.TextBlock1.Text = txt;
+                Projector.TextBlock2.Text = txt;
+                Projector.TextBlock3.Text = txt;
+                Projector.TextBlock4.Text = txt;
+            }
+
 
             return this.Owner;
         }
@@ -176,6 +190,7 @@ namespace StoGen.Classes
             this.Size = data.Size;
             this.Shift = data.Shift;
             this.Bottom = data.Bottom;
+            this.Animated = (data.Animated == 1);
             this.Width = data.Width;
             this.ClearBack = data.ClearBack;
             this.AutoShow = data.AutoShow;
@@ -202,7 +217,7 @@ namespace StoGen.Classes
             foreach (char c in textToAnimate)
             {
                 discreteStringKeyFrame = new DiscreteStringKeyFrame();
-                discreteStringKeyFrame.KeyTime = KeyTime.Paced;
+                discreteStringKeyFrame.KeyTime = KeyTime.Paced;//KeyTime.FromTimeSpan(new TimeSpan(0, 0, 0, 5)); //KeyTime.Paced;// 
                 tmp += c;
                 discreteStringKeyFrame.Value = tmp;
                 stringAnimationUsingKeyFrames.KeyFrames.Add(discreteStringKeyFrame);

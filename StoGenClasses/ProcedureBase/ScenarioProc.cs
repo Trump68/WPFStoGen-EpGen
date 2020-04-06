@@ -9,9 +9,6 @@ namespace StoGen.Classes
     public class ScenarioProc : ProcedureBase
     {
         public List<ScenarioSet> sets = new List<ScenarioSet>();
-        
-
-
         public ScenarioProc(string fn, IMenuCreator globalMenuCreator, BaseScene scene)
            : base(0)
         {
@@ -27,8 +24,7 @@ namespace StoGen.Classes
             this.GoFirstCadre();
 
 
-        }
-      
+        }      
         public override bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
 

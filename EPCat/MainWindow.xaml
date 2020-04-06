@@ -575,6 +575,9 @@
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopySceneBtn" Content="Copy" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopySceneBtn_Click" />
                             </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="SaveToFileBtn" Content="Save To File" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="SaveScenesToFileBtn_Click" />
+                            </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Right">
                                 <dx:SimpleButton x:Name="SaveBtn" Content="Save" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="SaveBtn_Click" />
                             </dxlc:LayoutItem>

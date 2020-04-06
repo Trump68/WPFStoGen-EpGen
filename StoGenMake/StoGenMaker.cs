@@ -7,41 +7,80 @@ using StoGenMake.Pers;
 using StoGen.Classes.Data.Games;
 using StoGen.Classes.Data.Movie;
 using System.Linq;
+using System.Windows;
 
 namespace StoGenMake
 {
     public static class StoGenMaker
     {
         static List<BaseScene> SceneList = new List<BaseScene>();
+        static bool ExitOnComplete = false;
         public static void Start(string[] args)
         {
             //GenerateScen();
             if (args.Length > 1)
             {
+                ExitOnComplete = true;
                 string file = args[1];
                 List<string> clipsinstr = new List<string>(File.ReadAllLines(file));
-                List<MovieSceneInfo> clips = new List<MovieSceneInfo>();
-                foreach (var item in clipsinstr)
+                string extension = Path.GetExtension(file);
+                if (extension == ".epcatci")
                 {
-                    clips.Add(MovieSceneInfo.GenerateFromString(item));
+                    List<MovieSceneInfo> clips = new List<MovieSceneInfo>();
+                    foreach (var item in clipsinstr)
+                    {
+                        clips.Add(MovieSceneInfo.GenerateFromString(item));
+                    }
+                    GetScene(clips, null);
                 }
-                GetScene(clips);
+                else if (extension == ".epcatsi")
+                {
+                    List<CombinedSceneInfo> scenes = new List<CombinedSceneInfo>();
+                    foreach (var item in clipsinstr)
+                    {
+                        scenes.Add(CombinedSceneInfo.GenerateFromString(item));
+                    }
+                    GetScene(null,scenes);
+                }
             }
             
         }
-        private static void GetScene(List<MovieSceneInfo> clips)
+        private static void GetScene(List<MovieSceneInfo> clips, List<CombinedSceneInfo> scenes)
         {
             GameWorldFactory.GameWorld.LoadData();
-            _Clip_Default scene = null;
-            scene = new _Clip_Default();
-            scene.LoadData(clips);
+            BaseScene scene = null;
+            if (clips != null)
+            {
+                scene = new Scene_Clips();
+                scene.LoadData(clips);
+            }
+            else if (scenes != null)
+            {
+                scene = new Scene_Game();
+                ((Scene_Game)scene).SetInfo(scenes);
+            }
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
             window.GlobalMenuCreator = GameWorldFactory.GameWorld;
             window.Scene = scene;
             window.Show();
+            window.IsVisibleChanged += Window_IsVisibleChanged;
 
         }
+
+        private static void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (ExitOnComplete)
+                Application.Current.Shutdown();
+            //Environment.Exit(0)
+        }
+
+        private static void Window_Closed(object sender, System.EventArgs e)
+        {
+           
+            
+        }
+
         private static void GenerateScen()
         {
 

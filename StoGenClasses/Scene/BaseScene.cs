@@ -8,140 +8,6 @@ using StoGen.Classes.Transition;
 
 namespace StoGenMake.Scenes.Base
 {
-
-    public class ImageAlignVec
-    {
-        public string Name;
-        public string File;
-        public DifData DefaultAlign;
-        public List<ImageRelDifVec> Parents = new List<ImageRelDifVec>();
-    }
-
-    public class ImageRelDifVec
-    {
-        public ImageRelDifVec() { }
-        public string Parent;
-        public string Tag;
-        public int Xd = 0;
-        public int Yd = 0;
-        public int pSx = 1;
-        public int pSy = 1;
-        public float cSx = 1;
-        public float cSy = 1;
-        public int R = 0;
-        public int pR = 0;
-        public int pF = 0;
-        public int F = 0;
-        public int pO = -1;
-        public int cO = -1;
-        public int dO = 0;
-        public string pT;
-
-        internal void CreateDifProportions(seIm parIm, seIm childIm)
-        {
-            if (parIm == null) return;
-            if (childIm == null) return;
-            Xd = childIm.X - parIm.X;
-            Yd = childIm.Y - parIm.Y;
-
-            R = childIm.R;
-            pR = parIm.R;
-
-            pF = parIm.F;
-            F = childIm.F;
-
-            //dSx = ((float)childIm.Sx / (float)parIm.Sx);
-            //dSy = ((float)childIm.Sy / (float)parIm.Sy);
-            cSx = childIm.Sx;
-            cSy = childIm.Sy;
-
-            pSx = parIm.Sx;
-            pSy = parIm.Sy;
-
-            pT = parIm.T;
-            pO = parIm.O;
-            cO = childIm.O;
-            dO = childIm.O - parIm.O;
-        }
-
-        //! new!!!!
-        internal void ApplyTo(seIm target, seIm actualParent, DifData delta)
-        {
-            float dSx = ((float)cSx / (float)pSx);
-            float dSy = ((float)cSy / (float)pSy);
-            if (delta != null)
-            {
-                if (delta.Sx.HasValue)
-                    dSx = ((float)delta.Sx / (float)pSx);
-                if (delta.Sy.HasValue)
-                    dSy = ((float)delta.Sy / (float)pSy);
-            }
-            target.Sx = Convert.ToInt32(dSx * actualParent.Sx);
-            target.Sy = Convert.ToInt32(dSy * actualParent.Sy);
-
-            // Parent flip
-            {
-                target.ParentFlips.Clear();
-                if (actualParent.ParentFlips != null)
-                {
-                    target.ParentFlips.AddRange(actualParent.ParentFlips);
-                }
-                if (this.pF != actualParent.F)
-                {
-                    target.ParentFlips.Add(actualParent.Name);
-                }
-            }
-
-            { // X,Y coord
-
-                target.X = this.Xd;
-                target.Y = this.Yd;
-
-                if (delta.Xd.HasValue) target.X = target.X + delta.Xd.Value;
-                if (delta.Yd.HasValue) target.Y = target.Y + delta.Yd.Value;
-
-                target.X = (int)(target.X * ((float)actualParent.Sx / pSx));
-                target.Y = (int)(target.Y * ((float)actualParent.Sy / pSy));
-
-                target.X = target.X + actualParent.X;
-                target.Y = target.Y + actualParent.Y;
-
-                //if (delta != null && delta.Xd.HasValue)
-                //    target.X = target.X + delta.X.Value;
-                //if (delta != null && delta.Y.HasValue)
-                //    target.Y = delta.Y.Value;
-            }
-            target.R = this.R;
-            if (delta.Rd.HasValue) target.R = target.R + delta.Rd.Value;
-            if (delta.R.HasValue) target.R = delta.R.Value;
-
-            target.F = this.F;
-
-            // transition
-            target.T = this.pT; //default
-            target.T = actualParent.T; // parent
-            if (delta.T != null) //delta
-                target.T = delta.T;
-
-            // opacity
-            if (this.cO > -1)
-                target.O = this.cO;
-            //if (delta.Od.HasValue) target.O = target.O + delta.Od.Value;
-        }
-    }
-    public class CadreData
-    {
-        public bool IsGlobalAlign = false;
-        public List<seSo> SoundList = new List<seSo>();
-        public List<DifData> AlignList = new List<DifData>();
-        public List<string> MarkList = new List<string>();
-        public seTe TextData;
-        public CadreData()
-        {
-
-        }
-    }
-
     public class BaseScene
     {
         public int EngineHiVer = 0;
@@ -253,7 +119,8 @@ namespace StoGenMake.Scenes.Base
         public List<OpEf> CurrTransitions = new List<OpEf>();
         public void DoC2(string text, List<DifData> pics, List<OpEf> trans = null)
         {
-
+            //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100*W..0>X.B.400.300")); //--appear+move from left
+            //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100"));                  //--appear
             List<DifData> cdata = new List<DifData>();
             //pics = pics.OrderBy(x => x.Z).ToList();
             foreach (var item in pics)
@@ -369,12 +236,7 @@ namespace StoGenMake.Scenes.Base
         public List<CadreData> AlignList = new List<CadreData>();
         public Guid GID { set; get; }
 
-        //public BaseScene(string filter, string moviePath)
-        //{
-        //    this.Name = "Drama scene";
-        //    this.MoviePath = moviePath;
-        //    //LoadData(filter);
-        //}
+       
         public BaseScene()
         {
             this.Name = "Drama scene";
@@ -400,8 +262,6 @@ namespace StoGenMake.Scenes.Base
         {
            
         }
-
-
         private string _TempFileName;
         public string TempFileName
         {
@@ -592,7 +452,14 @@ namespace StoGenMake.Scenes.Base
         }
         public void AddToGlobalImage(string name, string fn, string path)
         {
-            AddToGlobalImage(name, Path.Combine(path, fn));
+            if (!string.IsNullOrEmpty(path))
+            {
+                AddToGlobalImage(name, Path.Combine(path, fn));
+            }
+            else
+            {
+                AddToGlobalImage(name, fn);
+            }
         }
         public void AddToGlobalImage(string name, string fnpath)
         {
@@ -697,6 +564,138 @@ namespace StoGenMake.Scenes.Base
 
     }
 
+
+    public class ImageAlignVec
+    {
+        public string Name;
+        public string File;
+        public DifData DefaultAlign;
+        public List<ImageRelDifVec> Parents = new List<ImageRelDifVec>();
+    }
+    public class ImageRelDifVec
+    {
+        public ImageRelDifVec() { }
+        public string Parent;
+        public string Tag;
+        public int Xd = 0;
+        public int Yd = 0;
+        public int pSx = 1;
+        public int pSy = 1;
+        public float cSx = 1;
+        public float cSy = 1;
+        public int R = 0;
+        public int pR = 0;
+        public int pF = 0;
+        public int F = 0;
+        public int pO = -1;
+        public int cO = -1;
+        public int dO = 0;
+        public string pT;
+
+        internal void CreateDifProportions(seIm parIm, seIm childIm)
+        {
+            if (parIm == null) return;
+            if (childIm == null) return;
+            Xd = childIm.X - parIm.X;
+            Yd = childIm.Y - parIm.Y;
+
+            R = childIm.R;
+            pR = parIm.R;
+
+            pF = parIm.F;
+            F = childIm.F;
+
+            //dSx = ((float)childIm.Sx / (float)parIm.Sx);
+            //dSy = ((float)childIm.Sy / (float)parIm.Sy);
+            cSx = childIm.Sx;
+            cSy = childIm.Sy;
+
+            pSx = parIm.Sx;
+            pSy = parIm.Sy;
+
+            pT = parIm.T;
+            pO = parIm.O;
+            cO = childIm.O;
+            dO = childIm.O - parIm.O;
+        }
+
+        //! new!!!!
+        internal void ApplyTo(seIm target, seIm actualParent, DifData delta)
+        {
+            float dSx = ((float)cSx / (float)pSx);
+            float dSy = ((float)cSy / (float)pSy);
+            if (delta != null)
+            {
+                if (delta.Sx.HasValue)
+                    dSx = ((float)delta.Sx / (float)pSx);
+                if (delta.Sy.HasValue)
+                    dSy = ((float)delta.Sy / (float)pSy);
+            }
+            target.Sx = Convert.ToInt32(dSx * actualParent.Sx);
+            target.Sy = Convert.ToInt32(dSy * actualParent.Sy);
+
+            // Parent flip
+            {
+                target.ParentFlips.Clear();
+                if (actualParent.ParentFlips != null)
+                {
+                    target.ParentFlips.AddRange(actualParent.ParentFlips);
+                }
+                if (this.pF != actualParent.F)
+                {
+                    target.ParentFlips.Add(actualParent.Name);
+                }
+            }
+
+            { // X,Y coord
+
+                target.X = this.Xd;
+                target.Y = this.Yd;
+
+                if (delta.Xd.HasValue) target.X = target.X + delta.Xd.Value;
+                if (delta.Yd.HasValue) target.Y = target.Y + delta.Yd.Value;
+
+                target.X = (int)(target.X * ((float)actualParent.Sx / pSx));
+                target.Y = (int)(target.Y * ((float)actualParent.Sy / pSy));
+
+                target.X = target.X + actualParent.X;
+                target.Y = target.Y + actualParent.Y;
+
+                //if (delta != null && delta.Xd.HasValue)
+                //    target.X = target.X + delta.X.Value;
+                //if (delta != null && delta.Y.HasValue)
+                //    target.Y = delta.Y.Value;
+            }
+            target.R = this.R;
+            if (delta.Rd.HasValue) target.R = target.R + delta.Rd.Value;
+            if (delta.R.HasValue) target.R = delta.R.Value;
+
+            target.F = this.F;
+
+            // transition
+            target.T = this.pT; //default
+            target.T = actualParent.T; // parent
+            if (delta.T != null) //delta
+                target.T = delta.T;
+
+            // opacity
+            if (this.cO > -1)
+                target.O = this.cO;
+            //if (delta.Od.HasValue) target.O = target.O + delta.Od.Value;
+        }
+    }
+    public class CadreData
+    {
+        public bool IsGlobalAlign = false;
+        public List<seSo> SoundList = new List<seSo>();
+        public List<DifData> AlignList = new List<DifData>();
+        public List<string> MarkList = new List<string>();
+        public seTe TextData;
+        public CadreData()
+        {
+
+        }
+    }
     public class DifData
     {
 

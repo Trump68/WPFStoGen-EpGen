@@ -8,19 +8,13 @@ using System.Threading.Tasks;
 
 namespace StoGen.Classes.Data.Movie
 {
-    public class _Clip_Default : BaseScene
+    public class Scene_Clips : BaseScene
     {
         public override bool LoadData(List<MovieSceneInfo> minfos)
         {
             base.LoadData(minfos);
             PATH_M = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Music\";
-
-            
             ShowClip(this.MoviePath);
-            //var currcadre = this.AddCadre(null,"def",10000);
-            //seIm im = new seIm();
-            //im.File = moviePath;
-            //currcadre.AddImage(im);
             return true;
         }
 

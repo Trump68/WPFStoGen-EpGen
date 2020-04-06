@@ -355,45 +355,49 @@
       <property name="SearchString" isnull="true" />
     </property>
     <property name="TotalSummary" iskey="true" value="0" />
-    <property name="MRUFilters" iskey="true" value="9">
+    <property name="MRUFilters" iskey="true" value="10">
       <property name="Item1" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Star], 'Maria Nagai')</property>
+        <property name="FilterText">Starts with([Star], 'Maria Nagai')</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Star], 'Kashiwagi Kurumi')</property>
+        <property name="FilterText">Starts with([Star], 'Kashiwagi Kurumi')</property>
+      </property>
+      <property name="Item3" isnull="true" iskey="true">
+        <property name="FilterString">Contains([Star], 'Uehara') And Contains([Star], 'Mizuho')</property>
+        <property name="FilterText">Contains([Star], 'Uehara') And Contains([Star], 'Mizuho')</property>
+      </property>
+      <property name="Item4" isnull="true" iskey="true">
         <property name="FilterString">Contains([Star], 'Mikuni') And Contains([Star], 'Saya')</property>
         <property name="FilterText">Contains([Star], 'Mikuni') And Contains([Star], 'Saya')</property>
       </property>
-      <property name="Item2" isnull="true" iskey="true">
+      <property name="Item5" isnull="true" iskey="true">
         <property name="FilterString">Contains([Star], 'Hamasaki') And Contains([Star], 'Mao')</property>
         <property name="FilterText">Contains([Star], 'Hamasaki') And Contains([Star], 'Mao')</property>
       </property>
-      <property name="Item3" isnull="true" iskey="true">
+      <property name="Item6" isnull="true" iskey="true">
         <property name="FilterString">Contains([Star], 'Honoka') And Contains([Star], 'Orihara')</property>
         <property name="FilterText">Contains([Star], 'Honoka') And Contains([Star], 'Orihara')</property>
       </property>
-      <property name="Item4" isnull="true" iskey="true">
+      <property name="Item7" isnull="true" iskey="true">
         <property name="FilterString">Contains([Star], 'Satomi') And Contains([Star], 'Nomiya')</property>
         <property name="FilterText">Contains([Star], 'Satomi') And Contains([Star], 'Nomiya')</property>
       </property>
-      <property name="Item5" isnull="true" iskey="true">
+      <property name="Item8" isnull="true" iskey="true">
         <property name="FilterString">Contains([Star], 'Satomi')</property>
         <property name="FilterText">Contains([Star], 'Satomi')</property>
       </property>
-      <property name="Item6" isnull="true" iskey="true">
+      <property name="Item9" isnull="true" iskey="true">
         <property name="FilterString">Contains([Star], 'Kotohara')</property>
         <property name="FilterText">Contains([Star], 'Kotohara')</property>
       </property>
-      <property name="Item7" isnull="true" iskey="true">
+      <property name="Item10" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Serie], 'abp') And StartsWith([Star], 'Kotohara')</property>
         <property name="FilterText">Starts with([Serie], 'abp') And Starts with([Star], 'Kotohara')</property>
       </property>
-      <property name="Item8" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'abp') And StartsWith([Star], 'Miyu Kotohara')</property>
-        <property name="FilterText">Starts with([Serie], 'abp') And Starts with([Star], 'Miyu Kotohara')</property>
-      </property>
-      <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'abp')</property>
-        <property name="FilterText">Starts with([Serie], 'abp')</property>
-      </property>
     </property>
-    <property name="FilterString">Contains([Star], 'Uehara') And Contains([Star], 'Mizuho')</property>
+    <property name="FilterString" />
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>

@@ -26,12 +26,12 @@ namespace StoGenMake
             }
         }
 
-        public static BaseScene GetScene(List<CombinedSceneInfo> infolist)
-        {
-            CommonGameCG scene = new CommonGameCG();
-            scene.SetInfo(infolist);
-            return scene;
-        }
+        //public static BaseScene GetScene(List<CombinedSceneInfo> infolist)
+        //{
+        //    Scene_Game scene = new Scene_Game();
+        //    scene.SetInfo(infolist);
+        //    return scene;
+        //}
     }
     public class GameWorld : IMenuCreator
     {
