@@ -7,20 +7,8 @@ using System.Xml.Serialization;
 
 namespace StoGen.Classes
 {
-    public class CombinedSceneInfo
+    public class Info_Combo
     {
-        public string ID { set; get; }
-        public string File { set; get; }
-        // 0 - standart image
-        // 1- header ($$WHITE$$  in file - white background)
-        // 2- external image (from another set)
-        // 3- repeat prev group 
-        // 4- 1+2 
-        // 5- transform prev picture
-        // 6 - sound
-        // 7 -1+6
-        public int Kind { set; get; } = 0;
-        public string Description { set; get; } = string.Empty;
         [XmlIgnore]
         public string StoryAsString
         {
@@ -39,16 +27,44 @@ namespace StoGen.Classes
                     this.Story = value;
             }
         }
+        [XmlIgnore]
+        public int N { set; get; } = 0;
+        [XmlIgnore]
+        public string Path;
+
+        public string ID { set; get; }
+        public string File { set; get; }
+        // 0 - standart image
+        // 1- header ($$WHITE$$  in file - white background)
+        // 2- external image (from another set)
+        // 3- repeat prev group 
+        // 4- 1+2 
+        // 5- transform prev picture
+        // 6 - sound
+        // 7 -1+6
+        // 8 - Movie Clip
+        public int Kind { set; get; } = 0;
+        public string Description { set; get; } = string.Empty;
+
         public string Story { set; get; }
         public string Group { set; get; }
         public string Queue { set; get; }
+       
 
-        public static CombinedSceneInfo GenerateFromString(string item)
+
+        public static Info_Combo GenerateFromString(string item)
         {
-            CombinedSceneInfo Rez = new CombinedSceneInfo();
+            Info_Combo Rez = new Info_Combo();
             Rez.LoadFromString(item);
             return Rez;
         }
+        // ClipProps
+        public int LoopMode { set; get; } = 1;
+        public int LoopCount { set; get; } = 1;
+        public int Speed { set; get; } = 100;
+        public int ShowMovieControl { set; get; } = 0;
+        public decimal PositionStart { set; get; } = 0;
+        public decimal PositionEnd { set; get; } = 0;
 
         //PictureProps
         public string X { set; get; }
@@ -60,10 +76,7 @@ namespace StoGen.Classes
         public string T { set; get; } //transition
         public string Z { set; get; } //ZOrder
 
-        [XmlIgnore]
-        public int N { set; get; } = 0;
-        [XmlIgnore]
-        public string Path;
+
 
         public string GenerateString()
         {
@@ -119,6 +132,21 @@ namespace StoGen.Classes
                 rez.Add($"GROUP={Group}");
             if (!string.IsNullOrEmpty(Queue))
                 rez.Add($"QUEUE={Queue}");
+
+            if (PositionStart != 0)
+                rez.Add($"PositionStart={PositionStart}");
+            if (PositionEnd != 0)
+                rez.Add($"PositionEnd={PositionEnd}");
+            if (LoopMode != 0)
+                rez.Add($"LoopMode={LoopMode}");
+            if (LoopCount != 0)
+                rez.Add($"LoopCount={LoopCount}");
+            if (Speed != 0)
+                rez.Add($"Speed={Speed}");
+            if (ShowMovieControl != 0)
+                rez.Add($"ShowMovieControl={ShowMovieControl}");
+
+
             return string.Join(";", rez.ToArray());
         }
         public void LoadFromString(string item)
@@ -189,6 +217,31 @@ namespace StoGen.Classes
                 {
                     this.Queue = str.Replace("QUEUE=", string.Empty);
                 }
+                else if (str.StartsWith("PositionStart="))
+                {                    
+                    this.PositionStart = Convert.ToDecimal(str.Replace("PositionStart=", string.Empty));
+                }
+                else if (str.StartsWith("PositionEnd="))
+                {
+                    this.PositionEnd = Convert.ToDecimal(str.Replace("PositionEnd=", string.Empty));
+                }
+                else if (str.StartsWith("LoopMode="))
+                {
+                    this.LoopMode = Convert.ToInt32(str.Replace("LoopMode=", string.Empty));
+                }
+                else if (str.StartsWith("LoopCount="))
+                {
+                    this.LoopCount = Convert.ToInt32(str.Replace("LoopCount=", string.Empty));
+                }
+                else if (str.StartsWith("Speed="))
+                {
+                    this.Speed = Convert.ToInt32(str.Replace("Speed=", string.Empty));
+                }
+                else if (str.StartsWith("ShowMovieControl="))
+                {
+                    this.ShowMovieControl = Convert.ToInt32(str.Replace("ShowMovieControl=", string.Empty));
+                }
+
             }
         }
     }

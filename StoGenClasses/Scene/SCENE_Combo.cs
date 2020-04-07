@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace StoGen.Classes.Data.Games
 {
-    public class Scene_Game : BaseScene
+    public class Scene_Combo : BaseScene
     {
-        public Scene_Game() : base()
+        public Scene_Combo() : base()
         {
             Name = "Scene_Game";
             EngineHiVer = 1;
             EngineLoVer = 0;
             setDefaultTextAttribs();
         }
-        List<CombinedSceneInfo> InfoList = null;
-        List<List<CombinedSceneInfo>> data = new List<List<CombinedSceneInfo>>();
-        public void SetInfo(List<CombinedSceneInfo> infoList)
+        List<Info_Combo> InfoList = null;
+        List<List<Info_Combo>> data = new List<List<Info_Combo>>();
+        public void SetInfo(List<Info_Combo> infoList)
         {
             InfoList = infoList;
             this.LoadData(string.Empty, string.Empty);
@@ -65,7 +65,7 @@ namespace StoGen.Classes.Data.Games
             this.DefaultSceneText.Shift = 250;
             this.DefaultSceneText.FontColor = "White";
         }
-        private void CalculateGroup(List<CombinedSceneInfo> prevgroup, ref List<CombinedSceneInfo> curgroup)
+        private void CalculateGroup(List<Info_Combo> prevgroup, ref List<Info_Combo> curgroup)
         {
             // repeat group for kind 3- repeat prev group 
             if (curgroup.Where(x=>x.Kind == 3).Any())
@@ -76,7 +76,7 @@ namespace StoGen.Classes.Data.Games
                     if (!curgroup.Where(z=>z.Kind !=1 && z.Description == pg.Description).Any())
                     {
                         string ngs = pg.GenerateString();
-                        CombinedSceneInfo ng = new CombinedSceneInfo();
+                        Info_Combo ng = new Info_Combo();
                         ng.LoadFromString(ngs);
                         ng.File = pg.File;
                         ng.Path = pg.Path;
@@ -86,10 +86,17 @@ namespace StoGen.Classes.Data.Games
                 }
             }
         }
-        private void DoGroup(List<CombinedSceneInfo> group)
+        private void DoGroup(List<Info_Combo> group)
         {
-            Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
+            // sound
+            this.VOLUME_M = 100;
+            var sounds = group.Where(x => x.Kind == 6);
+            foreach (var item in sounds)
+            {
+                this.AddMusic(item.File);
+            }
 
+            Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
             // TEXT
             setDefaultTextAttribs();
             string story = string.Empty;
@@ -137,7 +144,15 @@ namespace StoGen.Classes.Data.Games
                     story = title.Story;
                 }
             }
-
+            // try to get text from kind 8
+            if (string.IsNullOrEmpty(story))
+            {
+                title = group.Where(x => x.Kind == 8).FirstOrDefault();
+                if (title != null)
+                {
+                    story = title.Story;
+                }
+            }
             // try to get text from file
             if (!string.IsNullOrEmpty(story))
             {
@@ -188,58 +203,92 @@ namespace StoGen.Classes.Data.Games
             }
 
 
-            // PICTURES - kind 0,2,4
-            var infopictures = group.Where(x => x.Kind == 0 || x.Kind == 2 || x.Kind == 4);
+            // PICTURES and Clips- kind 0,2,4,8
+            var infopictures = group.Where(x => x.Kind == 0 || x.Kind == 2 || x.Kind == 4 || x.Kind == 8);
             foreach (var item in infopictures)
             {
                 if (!string.IsNullOrEmpty(item.File))
                 {
-                    AddToGlobalImage(item.File, item.File, item.Path);
+                    if (!string.IsNullOrEmpty(item.Path))
+                    {
+                        AddToGlobalImage(item.File, item.File, item.Path);
+                    }
+                    else
+                    {
+                        AddToGlobalImage(item.File, item.File);
+                    }
+                    
                 }
             }
             int i = 1;
+            List<DifData> itl = new List<DifData>();
             foreach (var item in infopictures)
             {
-                int opacity = 100;
-                if (Pictures.ContainsKey(item.Description))
+                if (item.Kind == 8) //Clip
                 {
-                    item.Description = $"{item.Description}{item.File}";
-                }
-                Pictures.Add(item.Description, new DifData(item.File) { });
-                Pictures[item.Description].X = Convert.ToInt32(item.X);
-                Pictures[item.Description].Y = Convert.ToInt32(item.Y);
-                if (!string.IsNullOrEmpty(item.O))
-                {
-                    Pictures[item.Description].O = Convert.ToInt32(item.O);
-                    opacity = Pictures[item.Description].O.Value;
-                }
-                if (!string.IsNullOrEmpty(item.S))
-                {
-                    Pictures[item.Description].S = Convert.ToInt32(item.S);
-                }
-                if (!string.IsNullOrEmpty(item.F))
-                {
-                    Pictures[item.Description].F = Convert.ToInt32(item.F);
-                }
-                if (!string.IsNullOrEmpty(item.Z))
-                {
-                    Pictures[item.Description].Z = Convert.ToInt32(item.Z);
-                }
-                if (!string.IsNullOrEmpty(item.R))
-                {
-                    Pictures[item.Description].R = Convert.ToInt32(item.R);
-                }
-                if (!string.IsNullOrEmpty(item.T))
-                {
-                    Pictures[item.Description].T = item.T;                                        
-                    trans.Add(new OpEf(i,false,opacity, item.T));
-                }
-                i++;
-            }
+                    int volume = 0;
+                    var anim = new AP(this.MoviePath)
+                    { APS = Convert.ToDouble(item.PositionStart),
+                      APE = Convert.ToDouble(item.PositionEnd),
+                      ALM = item.LoopMode,
+                      ALC = item.LoopCount,
+                      AR = item.Speed,
+                      AV = volume,
+                      File = item.File };
 
-            //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100*W..0>X.B.400.300")); //--appear+move from left
-            //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100"));                  //--appear
-            DoC2($"{story}", Pictures.Values.ToList(),trans);
+                    
+                    DifData size = new DifData() { S = 800 };
+                    size.Name = anim.File;
+                    size.AL.Add(anim);
+                    var dd = new List<DifData>();
+                    itl.AddRange(dd);
+                    itl.Insert(0, size);
+                    //DoC2($"{story}", itl, null);
+                    //AddAnim(anim.File, item.Story, itl, anim);
+                }
+                else
+                {
+                    int opacity = 100;
+                    if (Pictures.ContainsKey(item.Description))
+                    {
+                        item.Description = $"{item.Description}{item.File}";
+                    }
+                    Pictures.Add(item.Description, new DifData(item.File) { });
+                    Pictures[item.Description].X = Convert.ToInt32(item.X);
+                    Pictures[item.Description].Y = Convert.ToInt32(item.Y);
+                    if (!string.IsNullOrEmpty(item.O))
+                    {
+                        Pictures[item.Description].O = Convert.ToInt32(item.O);
+                        opacity = Pictures[item.Description].O.Value;
+                    }
+                    if (!string.IsNullOrEmpty(item.S))
+                    {
+                        Pictures[item.Description].S = Convert.ToInt32(item.S);
+                    }
+                    if (!string.IsNullOrEmpty(item.F))
+                    {
+                        Pictures[item.Description].F = Convert.ToInt32(item.F);
+                    }
+                    if (!string.IsNullOrEmpty(item.Z))
+                    {
+                        Pictures[item.Description].Z = Convert.ToInt32(item.Z);
+                    }
+                    if (!string.IsNullOrEmpty(item.R))
+                    {
+                        Pictures[item.Description].R = Convert.ToInt32(item.R);
+                    }
+                    if (!string.IsNullOrEmpty(item.T))
+                    {
+                        Pictures[item.Description].T = item.T;
+                        trans.Add(new OpEf(i, false, opacity, item.T));
+                    }
+                    i++;
+                }
+            }
+            itl.AddRange(Pictures.Values.ToList());
+                //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100*W..0>X.B.400.300")); //--appear+move from left
+                //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100"));                  //--appear
+            CreateCadreData($"{story}", itl, trans);            
         }
     }
 }

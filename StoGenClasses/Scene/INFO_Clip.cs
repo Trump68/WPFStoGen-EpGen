@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace StoGen.Classes
 {
-    public class MovieSceneInfo
+    public class Info_Clip
     {
         [XmlIgnore]
         public string Path;
@@ -80,14 +80,14 @@ namespace StoGen.Classes
             return string.Join(";", rez.ToArray());
         }
 
-        public static MovieSceneInfo Default(string id)
+        public static Info_Clip Default(string id)
         {
-            return new MovieSceneInfo() { Description = "Default", ID = id };
+            return new Info_Clip() { Description = "Default", ID = id };
         }
 
-        public static MovieSceneInfo GenerateFromString(string item)
+        public static Info_Clip GenerateFromString(string item)
         {
-            MovieSceneInfo rez = new MovieSceneInfo();
+            Info_Clip rez = new Info_Clip();
             rez.LoadFromString(item);
             return rez;
         }

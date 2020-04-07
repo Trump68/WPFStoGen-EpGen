@@ -26,26 +26,26 @@ namespace StoGenMake
                 string extension = Path.GetExtension(file);
                 if (extension == ".epcatci")
                 {
-                    List<MovieSceneInfo> clips = new List<MovieSceneInfo>();
+                    List<Info_Clip> clips = new List<Info_Clip>();
                     foreach (var item in clipsinstr)
                     {
-                        clips.Add(MovieSceneInfo.GenerateFromString(item));
+                        clips.Add(Info_Clip.GenerateFromString(item));
                     }
                     GetScene(clips, null);
                 }
                 else if (extension == ".epcatsi")
                 {
-                    List<CombinedSceneInfo> scenes = new List<CombinedSceneInfo>();
+                    List<Info_Combo> scenes = new List<Info_Combo>();
                     foreach (var item in clipsinstr)
                     {
-                        scenes.Add(CombinedSceneInfo.GenerateFromString(item));
+                        scenes.Add(Info_Combo.GenerateFromString(item));
                     }
                     GetScene(null,scenes);
                 }
             }
             
         }
-        private static void GetScene(List<MovieSceneInfo> clips, List<CombinedSceneInfo> scenes)
+        private static void GetScene(List<Info_Clip> clips, List<Info_Combo> scenes)
         {
             GameWorldFactory.GameWorld.LoadData();
             BaseScene scene = null;
@@ -56,8 +56,8 @@ namespace StoGenMake
             }
             else if (scenes != null)
             {
-                scene = new Scene_Game();
-                ((Scene_Game)scene).SetInfo(scenes);
+                scene = new Scene_Combo();
+                ((Scene_Combo)scene).SetInfo(scenes);
             }
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
@@ -81,33 +81,33 @@ namespace StoGenMake
             
         }
 
-        private static void GenerateScen()
-        {
+        //private static void GenerateScen()
+        //{
 
-            GameWorldFactory.GameWorld.LoadData();
-            //var scen = new SC001_FoolsArt();
-            //  var scen = new SC000_TestTran();
-            //var scen = new SC002_IlyaKuvshinov();
-            //var scen = new TestScene();
-            //var scen = new SC007_CleMasahiro();
-            //var scen = new A001_Woman();
-            //var scen = new SILKYS_SAKURA_OttoNoInuMaNi();
-            // var scen = new _2011_USA_SRL_Homeland();
-            //var scen = new _ALL__Mainstream();
-            //var scen = new _ALL__WEB();
-            //var scen = new _All__USA__PlayerHomeVideo();
-            var scen = new _ALL__Asian();
-            //var scen = new _ERO__Best();
-            string fn = scen.Generate();
+        //    GameWorldFactory.GameWorld.LoadData();
+        //    //var scen = new SC001_FoolsArt();
+        //    //  var scen = new SC000_TestTran();
+        //    //var scen = new SC002_IlyaKuvshinov();
+        //    //var scen = new TestScene();
+        //    //var scen = new SC007_CleMasahiro();
+        //    //var scen = new A001_Woman();
+        //    //var scen = new SILKYS_SAKURA_OttoNoInuMaNi();
+        //    // var scen = new _2011_USA_SRL_Homeland();
+        //    //var scen = new _ALL__Mainstream();
+        //    //var scen = new _ALL__WEB();
+        //    //var scen = new _All__USA__PlayerHomeVideo();
+        //    //var scen = new _ALL__Asian();
+        //    //var scen = new _ERO__Best();
+        //    //string fn = scen.Generate();
 
-            StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
-            //window.Startfile = fn;
-            window.GlobalMenuCreator = GameWorldFactory.GameWorld;
+        //    StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
+        //    //window.Startfile = fn;
+        //    window.GlobalMenuCreator = GameWorldFactory.GameWorld;
             
-            window.Scene = scen;
-            window.Show();
+        //    window.Scene = scen;
+        //    window.Show();
 
 
-        }
+        //}
     }
 }

@@ -290,14 +290,14 @@ namespace EPCat.Model
 
         
 
-        private ObservableCollection<MovieSceneInfo> _Clips = null;
-        public ObservableCollection<MovieSceneInfo> Clips
+        private ObservableCollection<Info_Clip> _Clips = null;
+        public ObservableCollection<Info_Clip> Clips
         {            
             get
             {
                 if (_Clips == null)
                 {
-                    _Clips = new ObservableCollection<MovieSceneInfo>();
+                    _Clips = new ObservableCollection<Info_Clip>();
 
                 }
                 foreach (var item in _Clips)
@@ -308,14 +308,14 @@ namespace EPCat.Model
                 return _Clips;
             }
         }
-        private ObservableCollection<CombinedSceneInfo> _CombinedScenes = null;
-        public ObservableCollection<CombinedSceneInfo> CombinedScenes
+        private ObservableCollection<Info_Combo> _CombinedScenes = null;
+        public ObservableCollection<Info_Combo> CombinedScenes
         {
             get
             {
                 if (_CombinedScenes == null)
                 {
-                    _CombinedScenes = new ObservableCollection<CombinedSceneInfo>();
+                    _CombinedScenes = new ObservableCollection<Info_Combo>();
 
                 }
                 foreach (var item in _CombinedScenes)
@@ -719,7 +719,7 @@ namespace EPCat.Model
                     term = term.Replace(p_SCENDATA_BEGIN, string.Empty);
                     if (!string.IsNullOrWhiteSpace(term))
                     {
-                        MovieSceneInfo sd = new MovieSceneInfo();
+                        Info_Clip sd = new Info_Clip();
                         sd.LoadFromString(term);
                         if (!string.IsNullOrEmpty(sd.ID))
                             result.Clips.Add(sd);
@@ -733,7 +733,7 @@ namespace EPCat.Model
                         term = term.Replace(p_SCENDATA_END, string.Empty);
                         isScenData = false;
                     }
-                    MovieSceneInfo sd = new MovieSceneInfo();
+                    Info_Clip sd = new Info_Clip();
                     sd.LoadFromString(term);
                     result.Clips.Add(sd);
                 }
@@ -744,7 +744,7 @@ namespace EPCat.Model
                     term = term.Replace(p_COMBDATA_BEGIN, string.Empty);
                     if (!string.IsNullOrWhiteSpace(term))
                     {
-                        CombinedSceneInfo sd = new CombinedSceneInfo();
+                        Info_Combo sd = new Info_Combo();
                         sd.LoadFromString(term);
                         if (!string.IsNullOrEmpty(sd.ID))
                             result.CombinedScenes.Add(sd);
@@ -758,7 +758,7 @@ namespace EPCat.Model
                         term = term.Replace(p_COMBDATA_END, string.Empty);
                         isCombData = false;
                     }
-                    CombinedSceneInfo sd = new CombinedSceneInfo();
+                    Info_Combo sd = new Info_Combo();
                     sd.LoadFromString(term);
                     result.CombinedScenes.Add(sd);
                 }

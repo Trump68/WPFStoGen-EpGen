@@ -65,7 +65,7 @@
   <ItemGroup>
     <Compile Include="Cadre.cs" />
     <Compile Include="CadreData.cs" />
-    <Compile Include="Scene\CombinedSceneInfo.cs" />
+    <Compile Include="Scene\INFO_Combo.cs" />
     <Compile Include="Controls\frmFrameChoice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,14 +86,8 @@
     </Compile>
     <Compile Include="Data\A001-Woman.cs" />
     <Compile Include="Data\AUX01-Accesuar.cs" />
-    <Compile Include="Scene\SCENE_Game.cs" />
+    <Compile Include="Scene\SCENE_Combo.cs" />
     <Compile Include="Data\Games\SILKY%27S SAKURA-Otto no Inu Ma ni.cs" />
-    <Compile Include="Data\Movie\[2011][USA][SRL] Homeland.cs" />
-    <Compile Include="Data\Movie\[ALL] Asian.cs" />
-    <Compile Include="Data\Movie\[ALL] ScenarioText.cs" />
-    <Compile Include="Data\Movie\[ALL] WEB.cs" />
-    <Compile Include="Data\Movie\[All][USA] PlayerHomeVideo.cs" />
-    <Compile Include="Data\Movie\[ERO] Best.cs" />
     <Compile Include="Scene\SCENE_Clips.cs" />
     <Compile Include="Data\SC000-TestTran.cs" />
     <Compile Include="Data\SC000-Various.cs" />
@@ -122,7 +116,7 @@
       <DependentUpon>PicPropsEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IMenuCreator.cs" />
-    <Compile Include="Scene\MovieSceneInfo.cs" />
+    <Compile Include="Scene\INFO_Clip.cs" />
     <Compile Include="PictureClasses.cs" />
     <Compile Include="SkyrimPosePositionInfo.cs" />
     <Compile Include="ProcedureBase\CycleProc.cs" />

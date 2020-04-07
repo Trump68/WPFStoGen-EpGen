@@ -10,7 +10,7 @@ namespace StoGen.Classes.Data.Movie
 {
     public class Scene_Clips : BaseScene
     {
-        public override bool LoadData(List<MovieSceneInfo> minfos)
+        public override bool LoadData(List<Info_Clip> minfos)
         {
             base.LoadData(minfos);
             PATH_M = @"d:\JGAMES\Otto no Inu Ma ni\inumani\Data\Music\";
@@ -63,16 +63,16 @@ namespace StoGen.Classes.Data.Movie
             VideoFrame800(anims, music, text);
             //this.AlignList.AddRange(AlignList);
         }
-        public void VideoFrame800(List<AP> anims, List<string> music)
-        {
-            List<List<AP>> anims2 = new List<List<AP>>();
-            anims2.Add(anims);
-            VideoFrame800(anims2, music);
-        }
-        public void VideoFrame800(List<List<AP>> anims, List<string> music, List<DifData> pics = null)
-        {
-            VideoFrame800(anims, music, string.Empty, pics);
-        }
+        //public void VideoFrame800(List<AP> anims, List<string> music)
+        //{
+        //    List<List<AP>> anims2 = new List<List<AP>>();
+        //    anims2.Add(anims);
+        //    VideoFrame800(anims2, music);
+        //}
+        //public void VideoFrame800(List<List<AP>> anims, List<string> music, List<DifData> pics = null)
+        //{
+        //    VideoFrame800(anims, music, string.Empty, pics);
+        //}
         public void VideoFrame800(List<List<AP>> anims, List<string> music,string text, List<DifData> pics = null)
         {
             if (music.Any())

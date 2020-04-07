@@ -91,7 +91,7 @@ namespace EPCat
                     }
                     else
                     {
-                        this._CurrentClip = MovieSceneInfo.Default(_CurrentFolder.GID.ToString()); 
+                        this._CurrentClip = Info_Clip.Default(_CurrentFolder.GID.ToString()); 
                     }
                     if (_CurrentFolder.CombinedScenes.Any())
                     {
@@ -115,8 +115,8 @@ namespace EPCat
             }
         }
 
-        MovieSceneInfo _CurrentClip;
-        public MovieSceneInfo CurrentClip
+        Info_Clip _CurrentClip;
+        public Info_Clip CurrentClip
         {
             get
             {
@@ -128,8 +128,8 @@ namespace EPCat
             }
         }
 
-        CombinedSceneInfo _CurrentCombinedScene;
-        public CombinedSceneInfo CurrentCombinedScene
+        Info_Combo _CurrentCombinedScene;
+        public Info_Combo CurrentCombinedScene
         {
             get
             {
@@ -187,8 +187,8 @@ namespace EPCat
         }
 
 
-        MovieSceneInfo _ClipTemplate = new MovieSceneInfo();
-        public MovieSceneInfo ClipTemplate
+        Info_Clip _ClipTemplate = new Info_Clip();
+        public Info_Clip ClipTemplate
         {
             get
             {
@@ -418,7 +418,7 @@ namespace EPCat
             string path = videos.First();
             scene = new Scene_Clips();
 
-            scene.LoadData(new List<MovieSceneInfo>() { this.CurrentClip });
+            scene.LoadData(new List<Info_Clip>() { this.CurrentClip });
 
             if (projector == null)
                     projector = new StoGenWPF.MainWindow();
@@ -442,7 +442,7 @@ namespace EPCat
             var last = this.CurrentFolder.Clips.LastOrDefault();
             
 
-            MovieSceneInfo newclipinfo = new MovieSceneInfo();
+            Info_Clip newclipinfo = new Info_Clip();
             newclipinfo.ID = Guid.NewGuid().ToString();
             newclipinfo.PositionStart = this.ClipTemplate.PositionStart;
             newclipinfo.PositionEnd = this.ClipTemplate.PositionEnd;
@@ -495,7 +495,7 @@ namespace EPCat
             var last = this.CurrentFolder.Clips.LastOrDefault();
 
 
-            MovieSceneInfo newclipinfo = new MovieSceneInfo();
+            Info_Clip newclipinfo = new Info_Clip();
             newclipinfo.ID = Guid.NewGuid().ToString();
             //newclipinfo.PositionStart = this.ClipTemplate.PositionStart;
             //newclipinfo.PositionEnd = this.ClipTemplate.PositionEnd;
@@ -566,7 +566,7 @@ namespace EPCat
             {
                 foreach (var item in CopiedCombinedScene)
                 {
-                    CombinedSceneInfo newclipinfo = new CombinedSceneInfo();
+                    Info_Combo newclipinfo = new Info_Combo();
                     newclipinfo.LoadFromString(item);
                     addNewComb(newclipinfo);
                 }
@@ -574,7 +574,7 @@ namespace EPCat
             }
             else
             {
-                CombinedSceneInfo newclipinfo = new CombinedSceneInfo();
+                Info_Combo newclipinfo = new Info_Combo();
                 if (last != null)
                 {
                     int r;
@@ -617,7 +617,7 @@ namespace EPCat
 
         }
         
-        private void addNewComb(CombinedSceneInfo newclipinfo)
+        private void addNewComb(Info_Combo newclipinfo)
         {
             newclipinfo.ID = Guid.NewGuid().ToString();
 
@@ -640,15 +640,15 @@ namespace EPCat
             GameWorldFactory.GameWorld.LoadData();
             //BaseScene scene = null;
             var infolist = this.CurrentFolder.CombinedScenes.Where(x => x.Queue == this.CurrentCombinedScene.Queue).ToList();
-            List<CombinedSceneInfo> listToShow = new List<CombinedSceneInfo>();
-            infolist.Sort(delegate (CombinedSceneInfo x, CombinedSceneInfo y)
+            List<Info_Combo> listToShow = new List<Info_Combo>();
+            infolist.Sort(delegate (Info_Combo x, Info_Combo y)
             {
                 return x.Group.CompareTo(y.Group);
             });
             foreach (var item in infolist)
             {
                 string its = item.GenerateString();
-                CombinedSceneInfo itn = new CombinedSceneInfo();
+                Info_Combo itn = new Info_Combo();
                 itn.LoadFromString(its);
                 itn.File = item.File;
                 itn.Path = item.Path;
@@ -715,7 +715,7 @@ namespace EPCat
             }
 
             //scene = GameWorldFactory.GetScene(listToShow);
-            Scene_Game scene = new Scene_Game();
+            Scene_Combo scene = new Scene_Combo();
             scene.SetInfo(infolist);
 
             if (projector == null)

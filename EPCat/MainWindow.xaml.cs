@@ -722,6 +722,13 @@ namespace EPCat
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
+        private void AddClipBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //save
+            (this.DataContext as EpCatViewModel).AddCombinedScene(8);
+            // reset
+            (this.DataContext as EpCatViewModel).RefreshFolder();
+        }
         private void AddSceneHeaderBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
@@ -772,5 +779,7 @@ namespace EPCat
         {
             ViewModel.SaveCurrentSceneList();
         }
+
+       
     }
 }

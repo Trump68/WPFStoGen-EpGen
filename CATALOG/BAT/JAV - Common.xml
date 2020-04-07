@@ -397,7 +397,7 @@
         <property name="FilterText">Starts with([Serie], 'abp') And Starts with([Star], 'Kotohara')</property>
       </property>
     </property>
-    <property name="FilterString" />
+    <property name="FilterString">StartsWith([Name], 'ABP-347')</property>
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>

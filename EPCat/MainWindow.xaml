@@ -573,6 +573,9 @@
                                 <dx:SimpleButton  Content="Add Sound+" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneSoundPlusBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton  Content="Add Clip" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopySceneBtn" Content="Copy" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopySceneBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
@@ -680,7 +683,27 @@
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                             </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
-
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                            <dxlc:LayoutItem Label="Start" MaxWidth="120">
+                                <TextBox Name="txtPosStart" Text="{Binding SelectedItem.PositionStart, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="End" MaxWidth="120">
+                                <TextBox Name="txtPosEnd" Text="{Binding SelectedItem.PositionEnd, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Loop mode" MaxWidth="100">
+                                <TextBox Name="txtLM" Text="{Binding SelectedItem.LoopMode, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Loop count" MaxWidth="100">
+                                <TextBox Name="txtLC" Text="{Binding SelectedItem.LoopCount, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Speed" MaxWidth="100">
+                                <TextBox Name="txtSpeed" Text="{Binding SelectedItem.Speed, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Controls" MaxWidth="100">
+                                <TextBox Name="txtControls" Text="{Binding SelectedItem., ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                        
                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                             <dxlc:LayoutItem Label="Transition" LabelPosition="Left">
                                 <dxe:TextEdit 

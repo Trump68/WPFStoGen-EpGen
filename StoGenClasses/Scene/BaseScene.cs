@@ -12,6 +12,29 @@ namespace StoGenMake.Scenes.Base
     {
         public int EngineHiVer = 0;
         public int EngineLoVer = 0;
+        // Magic here
+        public ScenCadre MakeCadre(CadreData item)
+        {
+
+            seTe te = null;
+            bool isWhite = false;
+            if (item.IsGlobalAlign)
+            {
+                te = new seTe();
+                te.FontSize = 60;
+                te.Size = 100;
+                te.Bottom = 0;
+                te.Shift = 700;
+                te.Text = "SETUP";
+            }
+            else
+            {
+                te = item.TextData;
+            }
+            return this.CreateCadre(item, isWhite, te);
+        }
+
+
 
         public string MoviePath = null; // path to movie file
 
@@ -117,19 +140,20 @@ namespace StoGenMake.Scenes.Base
         #region 'External' scene generations
         public string currentGr;
         public List<OpEf> CurrTransitions = new List<OpEf>();
-        public void DoC2(string text, List<DifData> pics, List<OpEf> trans = null)
+        public void CreateCadreData(string text, List<DifData> difdata, List<OpEf> trans = null)
         {
             //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100*W..0>X.B.400.300")); //--appear+move from left
             //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100"));                  //--appear
             List<DifData> cdata = new List<DifData>();
             //pics = pics.OrderBy(x => x.Z).ToList();
-            foreach (var item in pics)
+            foreach (var item in difdata)
             {
                 var ndd = new DifData(item.Name);
                 ndd.AssingFrom(item);
                 cdata.Add(ndd);
             }
 
+            #region transition
             if (trans != null)
             {
                 foreach (var oef in trans)
@@ -150,7 +174,7 @@ namespace StoGenMake.Scenes.Base
                             d.Parent = old.Parent;
                             d.S = old.S;
                             if (cdata.Count > oef.L)
-                                cdata.Insert(oef.L,d);
+                                cdata.Insert(oef.L, d);
                             else
                                 cdata.Add(d);
                         }
@@ -181,21 +205,16 @@ namespace StoGenMake.Scenes.Base
                     }
                 }
             }
+            #endregion
+
+            this.ClearSound(false, true, true);
             AddLocal(currentGr, text, cdata, this.CurrentSounds);
             this.CurrTransitions.Clear();
-            this.ClearSound(false, true, true);
+            
         }
-       
-        protected void AddAnim(string n,string text, List<DifData> difdata, params AP[] animations)
-        {
-            //List<DifData> cdata = new List<DifData>();
-            //List<AP> al = new List<AP>();
-            //al.AddRange(animations);
 
-            ////DifData size = new DifData() { S = 800 };
-            ////size.AL = al;
-            ////cdata.Add(size);
-            //cdata.AddRange(difdata);
+        protected void AddAnim(string n, string text, List<DifData> difdata, params AP[] animations)
+        {
             AddLocal(currentGr, text, difdata, this.CurrentSounds);
         }
         #endregion
@@ -213,26 +232,7 @@ namespace StoGenMake.Scenes.Base
         {
             DoFilter(new string[] { cadregroup }, (cadregroup == null));
         }
-        public ScenCadre MakeCadre(CadreData item)
-        {
-
-            seTe te = null;
-            bool isWhite = false;
-            if (item.IsGlobalAlign)
-            {
-                te = new seTe();
-                te.FontSize = 60;
-                te.Size = 100;
-                te.Bottom = 0;
-                te.Shift = 700;
-                te.Text = "SETUP";
-            }
-            else
-            {
-                te = item.TextData;
-            }
-            return this.CreateCadre(item, isWhite, te);
-        }
+       
         public List<CadreData> AlignList = new List<CadreData>();
         public Guid GID { set; get; }
 
@@ -248,8 +248,8 @@ namespace StoGenMake.Scenes.Base
             this.MoviePath = moviePath;
             return true;
         }
-        public List<MovieSceneInfo> MoviewInfo;
-        public virtual bool LoadData(List<MovieSceneInfo> minfo)
+        public List<Info_Clip> MoviewInfo;
+        public virtual bool LoadData(List<Info_Clip> minfo)
         {
             this.MoviewInfo = minfo;
             this.currentGr = minfo.First().ID;
@@ -399,8 +399,8 @@ namespace StoGenMake.Scenes.Base
         private object ShowMovieControl;
 
         #region Newest engine!!!
-
-        protected ScenCadre CreateCadre(CadreData item, bool isWhite = false, seTe text = null)
+        // => Here the magic happens
+        public ScenCadre CreateCadre(CadreData item, bool isWhite = false, seTe text = null)
         {
             var cadre = new ScenCadre();
             cadre.IsWhite = isWhite;
