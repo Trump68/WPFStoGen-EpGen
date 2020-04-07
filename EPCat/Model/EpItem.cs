@@ -742,6 +742,12 @@ namespace EPCat.Model
                 else if (term.StartsWith(p_COMBDATA_BEGIN))
                 {
                     term = term.Replace(p_COMBDATA_BEGIN, string.Empty);
+                    isCombData = true;
+                    if (term.Contains(p_COMBDATA_END))
+                    {
+                        term = term.Replace(p_COMBDATA_END, string.Empty);
+                        isCombData = false;
+                    }
                     if (!string.IsNullOrWhiteSpace(term))
                     {
                         Info_Combo sd = new Info_Combo();
@@ -749,7 +755,7 @@ namespace EPCat.Model
                         if (!string.IsNullOrEmpty(sd.ID))
                             result.CombinedScenes.Add(sd);
                     }
-                    isCombData = true;
+                    
                 }
                 else if (isCombData)
                 {

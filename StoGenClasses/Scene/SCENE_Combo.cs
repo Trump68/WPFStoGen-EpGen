@@ -29,6 +29,7 @@ namespace StoGen.Classes.Data.Games
         public override bool LoadData(string filter, string moviePath)
         {
             data.Clear();
+            setDefaultTextAttribs();
             this.currentGr = InfoList.First().ID;
             var grupedlist = InfoList.GroupBy(x => x.Group).ToList();
 
@@ -98,7 +99,7 @@ namespace StoGen.Classes.Data.Games
 
             Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
             // TEXT
-            setDefaultTextAttribs();
+            
             string story = string.Empty;
             string path = string.Empty;
             var title = group.Where(x => x.Kind == 1).FirstOrDefault();
@@ -162,18 +163,31 @@ namespace StoGen.Classes.Data.Games
                     string[] vals = story.Split('@');
                     string filename = vals[0];
                     string section = vals[1];
-                    if (File.Exists(Path.Combine(path, filename)))
+                    if (File.Exists(filename))
                     {
-                        List<string> textlist = new List<string>(File.ReadAllLines(Path.Combine(path, filename)));
+                        List<string> textlist = new List<string>(File.ReadAllLines(filename));
+                        bool gotcha = false;
+                        List<string> storylines = new List<string>();
                         foreach (string line in textlist)
                         {
+                           
                             // get text from section within a file
                             if (line.StartsWith($"@{section}"))
                             {
-                                story = line.Replace($"@{section}", string.Empty).Trim();
-                                break;
+                                gotcha = true;
+                                continue;
+                                //story = line.Replace($"@{section}", string.Empty).Trim();                                
+                            }
+                            else if (line.StartsWith($"@"))
+                            {
+                                gotcha = false;
+                            }
+                            if (gotcha)
+                            {
+                                storylines.Add(line);
                             }
                         }
+                        story = string.Join("~", storylines.ToArray());
                     }
                 }
             }
@@ -236,8 +250,8 @@ namespace StoGen.Classes.Data.Games
                       AV = volume,
                       File = item.File };
 
-                    
-                    DifData size = new DifData() { S = 800 };
+                    if (string.IsNullOrEmpty(item.S) || item.S == "0") item.S = "800";
+                    DifData size = new DifData() { S = Convert.ToInt32(item.S) };
                     size.Name = anim.File;
                     size.AL.Add(anim);
                     var dd = new List<DifData>();

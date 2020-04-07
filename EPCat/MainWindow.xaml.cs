@@ -745,9 +745,10 @@ namespace EPCat
 
         private void btnSetPositionSave_Click(object sender, RoutedEventArgs e)
         {
-
             //save
-            (this.DataContext as EpCatViewModel).SaveClipTemplate();
+            (this.DataContext as EpCatViewModel).SaveClipToCombinedScene();
+            //save
+            (this.DataContext as EpCatViewModel).SaveClipTemplate();            
             // reset
             btnSetPositionReset_Click(null, null);
             (this.DataContext as EpCatViewModel).RefreshFolder();

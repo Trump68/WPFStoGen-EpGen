@@ -151,7 +151,7 @@ namespace StoGen.Classes
         }
         public void LoadFromString(string item)
         {
-            item = item.Replace("SCENDATA>", string.Empty);
+            item = item.Replace("COMBDATA>", string.Empty);
             List<string> data = item.Split(';').ToList();
             foreach (var str in data)
             {

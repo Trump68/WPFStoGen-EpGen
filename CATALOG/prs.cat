@@ -2341,68 +2341,7 @@
     </Comments>
     <CommentsAsString />
     <Clips />
-    <CombinedScenes>
-      <Info_Scene>
-        <ID>e114afe3-4d83-4066-9067-22e1ddd1e1c7</ID>
-        <File>e:\!CATALOG\PRS\Hentai &amp; Comix Authors\Urakan\Boku no Migawari Mama\JPG\0001.jpg</File>
-        <Kind>0</Kind>
-        <Description>ewe</Description>
-        <Story>wewe</Story>
-        <Group>1</Group>
-        <Queue>1</Queue>
-        <LoopMode>1</LoopMode>
-        <LoopCount>1</LoopCount>
-        <Speed>100</Speed>
-        <ShowMovieControl>0</ShowMovieControl>
-        <PositionStart>0</PositionStart>
-        <PositionEnd>0</PositionEnd>
-      </Info_Scene>
-      <Info_Scene>
-        <ID>2bd8d9b5-12e1-4524-9fd0-63103e76aa6c</ID>
-        <File>d:\!Sound\NTRPG\0003-13_kumorizora.mp3</File>
-        <Kind>6</Kind>
-        <Description>ewe</Description>
-        <Story>фывфы</Story>
-        <Group>1</Group>
-        <Queue>1</Queue>
-        <LoopMode>1</LoopMode>
-        <LoopCount>1</LoopCount>
-        <Speed>100</Speed>
-        <ShowMovieControl>0</ShowMovieControl>
-        <PositionStart>0</PositionStart>
-        <PositionEnd>0</PositionEnd>
-      </Info_Scene>
-      <Info_Scene>
-        <ID>7f063875-5ab0-4c3f-a6cc-b3f6fcfb8acc</ID>
-        <File>d:\!Sound\NTRPG\0005-19_zaiakukan!!.mp3</File>
-        <Kind>6</Kind>
-        <Description>ewe</Description>
-        <Story>фывфыв</Story>
-        <Group>2</Group>
-        <Queue>1</Queue>
-        <LoopMode>1</LoopMode>
-        <LoopCount>1</LoopCount>
-        <Speed>100</Speed>
-        <ShowMovieControl>0</ShowMovieControl>
-        <PositionStart>0</PositionStart>
-        <PositionEnd>0</PositionEnd>
-      </Info_Scene>
-      <Info_Scene>
-        <ID>375c7acd-58b4-428a-a5cd-e6db04eb97e5</ID>
-        <File>e:\!CATALOG\JAV\ABP\ABP-347 [Mizuho Uehara]\ABP-347.m4v</File>
-        <Kind>8</Kind>
-        <Description>ewe</Description>
-        <Story>sdsd</Story>
-        <Group>2</Group>
-        <Queue>1</Queue>
-        <LoopMode>1</LoopMode>
-        <LoopCount>1</LoopCount>
-        <Speed>100</Speed>
-        <ShowMovieControl>0</ShowMovieControl>
-        <PositionStart>0</PositionStart>
-        <PositionEnd>1000</PositionEnd>
-      </Info_Scene>
-    </CombinedScenes>
+    <CombinedScenes />
     <PosePositions />
     <Motions />
   </EpItem>
@@ -3355,6 +3294,82 @@
     <CommentsAsString />
     <Clips />
     <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>1f8b8139-f10e-4025-a49c-4a7e362f7284</GID>
+    <ItemPath>e:\!catalog\prs\story\can't buy me love\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Story 03 - Can't Buy Me Love</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Can't Buy Me Love</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>STORY</Variant>
+    <Kind>Manga</Kind>
+    <Director>Story 01</Director>
+    <Studio>Story 01</Studio>
+    <PARENT>Story 03 - Can't Buy Me Love</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes>
+      <Info_Combo>
+        <ID>9351026d-3670-4451-9a68-d0f075e35ef6</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Description>Title 1</Description>
+        <Story>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Story.txt@0</Story>
+        <Group>1</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X>1200</X>
+        <Y>700</Y>
+        <F>22</F>
+        <S>50</S>
+        <Z>Black</Z>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>32cc31e4-6224-48ef-94cb-89bbcaf566c5</ID>
+        <File>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Pics\001.jpg</File>
+        <Kind>0</Kind>
+        <Description>Page 1</Description>
+        <Story>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Story.txt@1</Story>
+        <Group>2</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <S>400</S>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>9f484ca4-adfb-44db-b8a2-bcb3cda25a05</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Description>Page 1</Description>
+        <Group>2</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <S>300</S>
+      </Info_Combo>
+    </CombinedScenes>
     <PosePositions />
     <Motions />
   </EpItem>

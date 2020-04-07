@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using StoGenWPF;
+using System.Windows.Media.Effects;
 
 namespace StoGen.ModelClasses
 {
@@ -19,6 +20,10 @@ namespace StoGen.ModelClasses
         public static System.Windows.Controls.TextBlock TextBlock2;
         public static System.Windows.Controls.TextBlock TextBlock3;
         public static System.Windows.Controls.TextBlock TextBlock4;
+        public static DropShadowEffect dropShadowEffect1;
+        public static DropShadowEffect dropShadowEffect2;
+        public static DropShadowEffect dropShadowEffect3;
+        public static DropShadowEffect dropShadowEffect4;
         public static System.Windows.Controls.TextBox NumberText;
 
         private static bool textVisibleEnabled = true;
@@ -54,7 +59,15 @@ namespace StoGen.ModelClasses
                 }
             }
         }
-
+        public static void SetShadowEffect(bool enabled)
+        {
+            int val = 0;
+            if (enabled) val = 1;
+            dropShadowEffect1.Opacity = val;
+            dropShadowEffect2.Opacity = val;
+            dropShadowEffect3.Opacity = val;
+            dropShadowEffect4.Opacity = val;
+        }
         public static bool TimerEnabled { get; set; } = true;
         public static bool EndlessVideo { get; set; } = false;
         public static bool EditorMode { get; set; } = false;

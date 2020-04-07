@@ -133,19 +133,25 @@ namespace StoGen.Classes
             if (!string.IsNullOrEmpty(FontColor))
             {
                 SolidColorBrush br = System.Windows.Media.Brushes.White;
+                Projector.SetShadowEffect(true);
                 if (FontColor == "Black")
+                {
                     br = System.Windows.Media.Brushes.Black;
+                    Projector.SetShadowEffect(false);
+                }
                 else if (FontColor == "White")
+                {
                     br = System.Windows.Media.Brushes.White;
+                }
                 else if (FontColor == "Red")
                     br = System.Windows.Media.Brushes.Red;
                 else if (FontColor == "Blue")
                     br = System.Windows.Media.Brushes.Blue;
                 else if (FontColor == "Yellow")
                     br = System.Windows.Media.Brushes.Yellow;
-                else                   
-                  br = new System.Windows.Media.SolidColorBrush(
-                      (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(FontColor));
+                else
+                    br = new System.Windows.Media.SolidColorBrush(
+                        (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(FontColor));
 
                 Projector.TextBlock1.Foreground = br;
                 Projector.TextBlock2.Foreground = br;

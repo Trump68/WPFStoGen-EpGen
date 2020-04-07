@@ -766,6 +766,24 @@ namespace EPCat
             }
             File.WriteAllLines(Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), "SceneList.epcatsi"), lines);
         }
+
+        internal void SaveClipToCombinedScene()
+        {
+            Info_Combo newclipinfo = new Info_Combo();
+            newclipinfo.ID = Guid.NewGuid().ToString();
+            newclipinfo.Kind = 8;
+            newclipinfo.PositionStart = this.ClipTemplate.PositionStart;
+            newclipinfo.PositionEnd = this.ClipTemplate.PositionEnd;
+            if (string.IsNullOrEmpty(this.ClipTemplate.File))
+            {
+                newclipinfo.File = this.CurrentFolder.Videos[0];
+            }
+            else
+            {
+                newclipinfo.File = this.ClipTemplate.File;
+            }
+            addNewComb(newclipinfo);
+        }
         #endregion
     }
 

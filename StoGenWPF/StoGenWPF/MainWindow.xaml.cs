@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using StoGenMake.Scenes.Base;
+using System.Windows.Media.Effects;
 
 namespace StoGenWPF
 {
@@ -39,6 +40,10 @@ namespace StoGenWPF
             Projector.TextBlock2 = this.Tb2;
             Projector.TextBlock3 = this.Tb3;
             Projector.TextBlock4 = this.Tb4;
+            Projector.dropShadowEffect1 = (DropShadowEffect)this.Tb1.Effect;
+            Projector.dropShadowEffect2 = (DropShadowEffect)this.Tb2.Effect;
+            Projector.dropShadowEffect3 = (DropShadowEffect)this.Tb3.Effect;
+            Projector.dropShadowEffect4 = (DropShadowEffect)this.Tb4.Effect;
             Projector.NumberText = this.NumberBox;
             Projector.ClipSound = new MediaPlayer();
             Projector.Sound.Add(this.Sound01);
