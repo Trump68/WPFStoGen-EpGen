@@ -31,6 +31,7 @@ namespace StoGen.Classes
         public int N { set; get; } = 0;
         [XmlIgnore]
         public string Path;
+        
 
         public string ID { set; get; }
         public string File { set; get; }
@@ -75,7 +76,7 @@ namespace StoGen.Classes
         public string S { set; get; } //size
         public string T { set; get; } //transition
         public string Z { set; get; } //ZOrder
-
+        public int Align { set; get; } = 0;// text align 0 -left, 1- right, 2-center, 3-justify
 
 
         public string GenerateString()
@@ -126,7 +127,8 @@ namespace StoGen.Classes
                 rez.Add($"R={R}");
             if (!string.IsNullOrEmpty(T))
                 rez.Add($"T={T}");
-
+            if (Align != 0)
+                rez.Add($"Align={Align}");
 
             if (!string.IsNullOrEmpty(Group))
                 rez.Add($"GROUP={Group}");
@@ -170,6 +172,10 @@ namespace StoGen.Classes
                 else if (str.StartsWith("KIND="))
                 {
                     this.Kind = Convert.ToInt32(str.Replace("KIND=", string.Empty));
+                }
+                else if (str.StartsWith("Align="))
+                {
+                    this.Align = Convert.ToInt32(str.Replace("Align=", string.Empty));
                 }
                 else if (str.StartsWith("STR="))
                 {

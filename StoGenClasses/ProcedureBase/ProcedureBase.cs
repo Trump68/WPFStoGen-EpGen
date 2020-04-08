@@ -92,8 +92,16 @@ namespace StoGen.Classes
         }
         public Cadre GoFirstCadre()
         {
-            NestedCadreId = -1;
+            return GoToCadre(0);
+        }
+        public Cadre GoToCadre(int num)
+        {
+            NestedCadreId = num - 1;
             return GetNextCadre();
+        }
+        public int CurrentCadreNum()
+        {
+            return NestedCadreId;
         }
         public virtual Cadre GetNextCadre()
         {

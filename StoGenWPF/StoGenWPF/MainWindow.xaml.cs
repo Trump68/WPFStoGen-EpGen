@@ -7,6 +7,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using StoGenMake.Scenes.Base;
 using System.Windows.Media.Effects;
+using System.IO;
+using System.Collections.Generic;
 
 namespace StoGenWPF
 {
@@ -27,7 +29,7 @@ namespace StoGenWPF
         private MediaPlayer Sound04 = new MediaPlayer();
         private MediaPlayer Sound05 = new MediaPlayer();
         public BaseScene Scene;
-
+        
         public bool StartOnLoad { get; set; } = true;
 
         public MainWindow()
@@ -72,10 +74,14 @@ namespace StoGenWPF
             
         }
 
+        
+        
+    
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             if (StartOnLoad)
-                this.Start();           
+                this.Start(StartPageNum);           
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -143,7 +149,7 @@ namespace StoGenWPF
             else if (e.Key == Key.Escape)
             {
                 this.Hide();
-                this.Stop();             
+                Stop();             
             }
             else if (
                 e.Key == Key.NumPad1 || e.Key == Key.NumPad2 || e.Key == Key.NumPad3 || e.Key == Key.NumPad4 
@@ -164,7 +170,51 @@ namespace StoGenWPF
             }
         }
 
-        private void Stop()
+        private static string startfile;
+        private static int StartPageNum = 1;
+        private static bool FixPageNum = false;
+        public static void ReadIni(string file)
+        {
+            if (string.IsNullOrEmpty(file)) return;
+            startfile = file;
+            
+            string fileoptions = Path.ChangeExtension(file, ".ini");
+            if (File.Exists(fileoptions))
+            {
+                List<string> textlist = new List<string>(File.ReadAllLines(fileoptions));
+                foreach (var item in textlist)
+                {
+                    if (item.StartsWith("PAGE="))
+                    {
+                        int val;
+                        if (int.TryParse(item.Replace("PAGE=", string.Empty), out val))
+                        {
+                            StartPageNum = val;
+                        }
+                    }
+                    else if (item.StartsWith("FIXPAGE="))
+                    {
+                        int val;
+                        if (int.TryParse(item.Replace("FIXPAGE=", string.Empty), out val))
+                        {
+                            FixPageNum = (val==1);
+                        }
+                    }
+
+                }
+            }
+        }
+        public static void WriteIni()
+        {
+            if (FixPageNum) return;
+            if (string.IsNullOrEmpty(startfile)) return;
+            string fileoptions = Path.ChangeExtension(startfile, ".ini");
+            List<string> lines = new List<string>();
+            lines.Add($"PAGE={SGManager.CurrProc.CurrentCadreNum()+1}");
+            lines.Add($"FIXPAGE=0");
+            File.WriteAllLines(fileoptions, lines);          
+        }
+        public static void Stop()
         {
             Projector.ClipSound.Stop();
             Projector.PicContainer.Clip.Stop();
@@ -172,13 +222,17 @@ namespace StoGenWPF
             {
                 item.Stop();
             }
+            WriteIni();
         }
-        public void Start()
+        public void Start(int startpage)
         {
             PictureCadreDS.Visibility = Visibility.Hidden;
             PictureCadreDS.DataContext = Projector.ImageCadre;
-            SGManager.StartMainProc(Scene, GlobalMenuCreator);
+            SGManager.StartMainProc(Scene, startpage - 1, GlobalMenuCreator);
         }
-
+        public void Start()
+        {
+            Start(0);
+        }
     }
 }

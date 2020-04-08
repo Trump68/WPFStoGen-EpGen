@@ -67,6 +67,12 @@ namespace StoGen.Classes
             Projector.TextBlock3.TextWrapping = TextWrapping.Wrap;
             Projector.TextBlock4.TextWrapping = TextWrapping.Wrap;
 
+            //Projector.TextBlock1.VerticalAlignment = VerticalAlignment.Center;
+            //Projector.TextBlock2.VerticalAlignment = VerticalAlignment.Center;
+            //Projector.TextBlock3.VerticalAlignment = VerticalAlignment.Center;
+            //Projector.TextBlock4.VerticalAlignment = VerticalAlignment.Center;
+
+
             if (Size > 0)
             {
                 Projector.TextCanvas.Height = Size;
@@ -128,16 +134,28 @@ namespace StoGen.Classes
                 Projector.TextBlock2.TextAlignment = System.Windows.TextAlignment.Center;
                 Projector.TextBlock3.TextAlignment = System.Windows.TextAlignment.Center;
                 Projector.TextBlock4.TextAlignment = System.Windows.TextAlignment.Center;
-            }            
-
+            }
+            else if (Aligh == 3)
+            {
+                Projector.TextBlock1.TextAlignment = System.Windows.TextAlignment.Justify;
+                Projector.TextBlock2.TextAlignment = System.Windows.TextAlignment.Justify;
+                Projector.TextBlock3.TextAlignment = System.Windows.TextAlignment.Justify;
+                Projector.TextBlock4.TextAlignment = System.Windows.TextAlignment.Justify;
+            }
             if (!string.IsNullOrEmpty(FontColor))
             {
                 SolidColorBrush br = System.Windows.Media.Brushes.White;
                 Projector.SetShadowEffect(true);
+                Projector.TextBlock2.Visibility = Visibility.Visible;
+                Projector.TextBlock3.Visibility = Visibility.Visible;
+                Projector.TextBlock4.Visibility = Visibility.Visible;
                 if (FontColor == "Black")
                 {
                     br = System.Windows.Media.Brushes.Black;
                     Projector.SetShadowEffect(false);
+                    Projector.TextBlock2.Visibility = Visibility.Hidden;
+                    Projector.TextBlock3.Visibility = Visibility.Hidden;
+                    Projector.TextBlock4.Visibility = Visibility.Hidden;
                 }
                 else if (FontColor == "White")
                 {
@@ -196,12 +214,13 @@ namespace StoGen.Classes
             this.Size = data.Size;
             this.Shift = data.Shift;
             this.Bottom = data.Bottom;
-            this.Animated = (data.Animated == 1);
+            //this.Animated = (data.Animated == 1);
+            this.Animated = false;
             this.Width = data.Width;
             this.ClearBack = data.ClearBack;
             this.AutoShow = data.AutoShow;
             //this.Rtf = data.Rtf;
-            //this.Aligh = data.Align;
+            this.Aligh = data.Align;
             this.Opacity = data.Opacity;
             this.Transition = data.T;
 
@@ -233,13 +252,11 @@ namespace StoGen.Classes
             story.Children.Add(stringAnimationUsingKeyFrames);
             story.Begin(txt);
         }
+
         public bool AutoShow { get; set; }
         public override void SetVisible(bool show)
-        {
-            
+        {            
                 Projector.TextVisible = show;
-
-
         }
       
         public bool Html { get; set; }

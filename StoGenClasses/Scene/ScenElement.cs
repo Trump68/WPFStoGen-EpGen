@@ -259,6 +259,7 @@ namespace StoGenMake.Elements
     public class seTe : ScenElement
     {
         public string Text;
+        public int Align = 0;
         public int Width = 0;
         public int Shift = 0;
         public int Size = 600;
@@ -269,7 +270,7 @@ namespace StoGenMake.Elements
         public bool ClearBack = true;
         public string FontColor = "Yellow";
         public string FontName;
-        internal int Animated = 0;
+        public int Animated = 0;
 
         //public string Tran;
 
@@ -277,6 +278,7 @@ namespace StoGenMake.Elements
         public seTe() : base() { }
         public seTe(seTe origin):this()
         {
+            this.Align = origin.Align;
             this.Text = origin.Text;
             this.Shift = origin.Shift;
             this.Size = origin.Size;
@@ -289,6 +291,7 @@ namespace StoGenMake.Elements
             this.FontName = origin.FontName;
             this.AutoShow = origin.AutoShow;
             this.ClearBack = origin.ClearBack;
+            this.Animated = origin.Animated;
         }
 
        

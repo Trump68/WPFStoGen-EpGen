@@ -369,7 +369,6 @@ namespace EPCat
         }
         private void ShowSceneBtn_Click(object sender, RoutedEventArgs e)
         {
-
             ViewModel.ShowScene();
         }
         private void btnLoad_Click(object sender, RoutedEventArgs e)
@@ -739,7 +738,7 @@ namespace EPCat
 
         private void CopySceneBtn_Click(object sender, RoutedEventArgs e)
         {
-            (this.DataContext as EpCatViewModel).CopyCombinedScene();
+            (this.DataContext as EpCatViewModel).CopyCombinedScene(false);
         }
 
 
@@ -781,6 +780,13 @@ namespace EPCat
             ViewModel.SaveCurrentSceneList();
         }
 
-       
+        private void CopyGroupBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //save
+            (this.DataContext as EpCatViewModel).CopyCombinedScene(true);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(null);
+            // reset
+            (this.DataContext as EpCatViewModel).RefreshFolder();
+        }
     }
 }

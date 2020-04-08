@@ -31,6 +31,7 @@ namespace StoGenMake
                     {
                         clips.Add(Info_Clip.GenerateFromString(item));
                     }
+                    StoGenWPF.MainWindow.ReadIni(file);
                     GetScene(clips, null);
                 }
                 else if (extension == ".epcatsi")
@@ -40,11 +41,13 @@ namespace StoGenMake
                     {
                         scenes.Add(Info_Combo.GenerateFromString(item));
                     }
+                    StoGenWPF.MainWindow.ReadIni(file);
                     GetScene(null,scenes);
                 }
             }
             
         }
+      
         private static void GetScene(List<Info_Clip> clips, List<Info_Combo> scenes)
         {
             GameWorldFactory.GameWorld.LoadData();
@@ -71,7 +74,11 @@ namespace StoGenMake
         private static void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (ExitOnComplete)
+            {
+                StoGenWPF.MainWindow.Stop();
                 Application.Current.Shutdown();
+            }
+                
             //Environment.Exit(0)
         }
 

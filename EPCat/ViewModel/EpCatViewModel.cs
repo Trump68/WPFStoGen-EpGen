@@ -538,12 +538,12 @@ namespace EPCat
 
         }
         List<string> CopiedCombinedScene = new List<string>();
-        internal void CopyCombinedScene()
+        internal void CopyCombinedScene(bool allgroup)
         {
             if (this.CurrentCombinedScene == null)
                 return;
             CopiedCombinedScene.Clear();
-            if (this.CurrentCombinedScene.Kind == 1)
+            if (allgroup)
             {
                 var col = this.CurrentFolder.CombinedScenes.Where(x => x.Group == this.CurrentCombinedScene.Group);
                 foreach (var item in col)
@@ -562,7 +562,7 @@ namespace EPCat
             if (this.CurrentFolder == null) return;
             var last = this.CurrentFolder.CombinedScenes.LastOrDefault();
             
-            if (CopiedCombinedScene != null && CopiedCombinedScene.Any())
+            if (kind == null && CopiedCombinedScene != null && CopiedCombinedScene.Any())
             {
                 foreach (var item in CopiedCombinedScene)
                 {
@@ -722,8 +722,9 @@ namespace EPCat
                 projector = new StoGenWPF.MainWindow();
             projector.GlobalMenuCreator = GameWorldFactory.GameWorld;
             projector.Scene = scene;
-            projector.Show();
-            projector.Start();
+            projector.StartOnLoad = false;
+            projector.Show();            
+            projector.Start(Convert.ToInt32(this.CurrentCombinedScene.Group));
         }
 
         internal void Close(bool isSaving)
@@ -784,6 +785,8 @@ namespace EPCat
             }
             addNewComb(newclipinfo);
         }
+
+      
         #endregion
     }
 

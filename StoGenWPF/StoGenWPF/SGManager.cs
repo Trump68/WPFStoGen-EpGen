@@ -16,26 +16,27 @@ namespace StoGenWPF
     public class SGManager
     {
         static string _MainProcname = "SgMainProc";
-        static ProcedureBase CurrProc;
+        public static ProcedureBase CurrProc;
 
 
         #region Runtime compile
 
         static IMenuCreator GlobalMenuCreator = null;
         static BaseScene Scene;
-        internal static void StartMainProc(BaseScene scene,IMenuCreator globalMenuCreator = null)
+        internal static void StartMainProc(BaseScene scene,int startpage, IMenuCreator globalMenuCreator = null)
         {
             GlobalMenuCreator = globalMenuCreator;
             //if (!string.IsNullOrWhiteSpace(startfile)) _MainProcname = startfile;
-            SetMainProcedure(scene);
+            SetMainProcedure(scene, startpage);
         }
 
-        public static void SetMainProcedure(BaseScene scene)
+        public static void SetMainProcedure(BaseScene scene, int startpage)
         {
             CurrProc = new ScenarioProc(_MainProcname, GlobalMenuCreator, scene);
+            CurrProc.GoToCadre(startpage);
             //CurrProc.Scene = Scene;
         }
-       
+
 
         internal static void ProcessKeyData(int v)
         {

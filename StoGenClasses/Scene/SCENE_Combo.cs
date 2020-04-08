@@ -123,6 +123,8 @@ namespace StoGen.Classes.Data.Games
                     this.DefaultSceneText.Shift = Convert.ToInt32(title.S);
                 if (!string.IsNullOrEmpty(title.Z))
                     this.DefaultSceneText.FontColor = title.Z;
+
+                 this.DefaultSceneText.Align = title.Align;
             }
 
             // try to get text from kind 4

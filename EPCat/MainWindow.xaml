@@ -558,28 +558,31 @@
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="ShowSceneBtn" Content="Play" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ShowSceneBtn_Click" />
+                                <dx:SimpleButton x:Name="ShowSceneBtn" Content="Play" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ShowSceneBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="AddSceneBtn" Content="Add" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneBtn_Click" />
+                                <dx:SimpleButton x:Name="AddSceneBtn" Content="Add" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton  Content="Add Header" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneHeaderBtn_Click" />
+                                <dx:SimpleButton  Content="Add Header" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneHeaderBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton  Content="Add Sound" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneSoundBtn_Click" />
+                                <dx:SimpleButton  Content="Add Snd" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneSoundBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton  Content="Add Sound+" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneSoundPlusBtn_Click" />
+                                <dx:SimpleButton  Content="Add Snd+" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneSoundPlusBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton  Content="Add Clip" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
+                                <dx:SimpleButton  Content="Add Clip" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopySceneBtn" Content="Copy" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopySceneBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="SaveToFileBtn" Content="Save To File" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="SaveScenesToFileBtn_Click" />
+                                <dx:SimpleButton x:Name="CopGrBtn" Content="CopyGr" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="SaveToFileBtn" Content="SaveToFile" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="SaveScenesToFileBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Right">
                                 <dx:SimpleButton x:Name="SaveBtn" Content="Save" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="SaveBtn_Click" />
@@ -628,7 +631,7 @@
                                 <dxg:GridColumn FieldName="N" IsSmart="True" AllowResizing="False" Width="30" MaxWidth="30"/>
                                 <dxg:GridColumn FieldName="Kind" IsSmart="True" Width="35" SortOrder="Ascending" SortIndex="2"/>
                                 <dxg:GridColumn FieldName="Queue" IsSmart="True" Width="90" GroupIndex="0"/>
-                                <dxg:GridColumn FieldName="Group" IsSmart="True" Width="90" SortOrder="Ascending" SortIndex="1"/>
+                                <dxg:GridColumn FieldName="Group" IsSmart="True" Width="90" SortOrder="Ascending" GroupIndex="1" SortIndex="1"/>
                                 <dxg:GridColumn FieldName="File" IsSmart="True" Width="450"/>
                                 <dxg:GridColumn FieldName="Description" IsSmart="True" Width="250"/>
                                 <dxg:GridColumn FieldName="Story" IsSmart="True" Width="350"/>
@@ -672,6 +675,10 @@
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem Label="Z (FontColor)" MaxWidth="130">
                                 <TextBox Name="txtZOrder" Text="{Binding SelectedItem.Z, ElementName=GVCombScen}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Align" MaxWidth="60">
+                                <TextBox Name="txtAlign" Text="{Binding SelectedItem.Align, ElementName=GVCombScen}"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem Label="O" MaxWidth="50">

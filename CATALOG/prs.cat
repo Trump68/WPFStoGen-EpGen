@@ -3327,7 +3327,7 @@
         <Kind>1</Kind>
         <Description>Title 1</Description>
         <Story>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Story.txt@0</Story>
-        <Group>1</Group>
+        <Group>001</Group>
         <LoopMode>1</LoopMode>
         <LoopCount>1</LoopCount>
         <Speed>100</Speed>
@@ -3336,38 +3336,364 @@
         <PositionEnd>0</PositionEnd>
         <X>1200</X>
         <Y>700</Y>
-        <F>22</F>
+        <F>40</F>
         <S>50</S>
         <Z>Black</Z>
+        <Align>2</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>94e7e94e-2f57-4243-a7c9-46dc9739bff9</ID>
+        <File>d:\!Sound\NTRPG\0005-19_zaiakukan!!.mp3</File>
+        <Kind>6</Kind>
+        <Description>Page 1</Description>
+        <Group>001</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <Align>0</Align>
       </Info_Combo>
       <Info_Combo>
         <ID>32cc31e4-6224-48ef-94cb-89bbcaf566c5</ID>
         <File>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Pics\001.jpg</File>
         <Kind>0</Kind>
-        <Description>Page 1</Description>
-        <Story>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Story.txt@1</Story>
-        <Group>2</Group>
+        <Description>Page 2</Description>
+        <Story />
+        <Group>002</Group>
         <LoopMode>1</LoopMode>
         <LoopCount>1</LoopCount>
         <Speed>100</Speed>
         <ShowMovieControl>0</ShowMovieControl>
         <PositionStart>0</PositionStart>
         <PositionEnd>0</PositionEnd>
+        <Y>360</Y>
         <S>400</S>
+        <Align>0</Align>
       </Info_Combo>
       <Info_Combo>
         <ID>9f484ca4-adfb-44db-b8a2-bcb3cda25a05</ID>
         <File>$$WHITE$$</File>
         <Kind>1</Kind>
-        <Description>Page 1</Description>
-        <Group>2</Group>
+        <Description>Page 2 - set text params</Description>
+        <Story>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Story.txt@1</Story>
+        <Group>002</Group>
         <LoopMode>1</LoopMode>
         <LoopCount>1</LoopCount>
         <Speed>100</Speed>
         <ShowMovieControl>0</ShowMovieControl>
         <PositionStart>0</PositionStart>
         <PositionEnd>0</PositionEnd>
+        <X>700</X>
+        <Y>750</Y>
+        <F>20</F>
         <S>300</S>
+        <Align>3</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>5a9ae0e5-1fc3-45b8-84c4-3ae7daf0b6a0</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Description>Page 3</Description>
+        <Story>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Story.txt@2</Story>
+        <Group>003</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X />
+        <Y />
+        <F />
+        <S />
+        <Align>3</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>42ffb0ed-351a-4cd4-937f-113e6d6081f4</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Description>Page 4</Description>
+        <Story>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Story.txt@3</Story>
+        <Group>004</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <Align>3</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>db92d8b9-141f-40fd-84bd-4ec80099e0e0</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Description>Page 5</Description>
+        <Story>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Story.txt@4</Story>
+        <Group>005</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <Align>3</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>e73cf83b-d242-4ac4-bea4-31a687ea09dd</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Description>Page 6</Description>
+        <Story>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Story.txt@5</Story>
+        <Group>006</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <Align>3</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>f443477e-e5d6-4985-851e-fdf59ec26e4d</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Description>Page 7</Description>
+        <Story>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Story.txt@6</Story>
+        <Group>007</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X>700</X>
+        <Y>750</Y>
+        <F>20</F>
+        <S>300</S>
+        <Align>3</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>1e809e4c-6107-4571-aa9c-5241afaab689</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Description>Page 8</Description>
+        <Story>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Story.txt@7</Story>
+        <Group>008</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <Align>3</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>f09b34f3-23e4-4677-865b-4f02f34c3278</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Description>Page 8</Description>
+        <Story>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Story.txt@9</Story>
+        <Group>010</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <Align>3</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>6565a572-bc5b-4c8c-b66f-fbca9279a37a</ID>
+        <File>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Pics\003.jpg</File>
+        <Kind>0</Kind>
+        <Description>Page 2</Description>
+        <Group>008</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <Y>360</Y>
+        <S>400</S>
+        <Align>0</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>441f0edf-f9fb-4f9d-9d40-10ca5ab5ffb8</ID>
+        <File>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Pics\003.jpg</File>
+        <Kind>0</Kind>
+        <Description>Page 2</Description>
+        <Group>009</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <Y>360</Y>
+        <S>400</S>
+        <Align>0</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>36e41293-1cb3-41d8-a2e9-ac947adb72c5</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Description>Page 8</Description>
+        <Story>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Story.txt@8</Story>
+        <Group>009</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <Align>3</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>79e0c034-9f29-433d-be5c-94703b3930c6</ID>
+        <File>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Pics\004.jpg</File>
+        <Kind>0</Kind>
+        <Description>Page 2</Description>
+        <Group>010</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <Y>360</Y>
+        <S>400</S>
+        <Align>0</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>a3584e47-52cb-47ec-93fc-76732eb11a27</ID>
+        <File>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Pics\005.jpg</File>
+        <Kind>0</Kind>
+        <Description>Page 3</Description>
+        <Group>010</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X>1210</X>
+        <S>400</S>
+        <Align>0</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>964fcc58-57e1-4389-b48c-827d4e897ff3</ID>
+        <File>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Pics\002.jpg</File>
+        <Kind>0</Kind>
+        <Description>Page 3</Description>
+        <Group>008</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X>1000</X>
+        <S>400</S>
+        <Align>0</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>4cf4b681-3c50-4dd5-ba48-283260901be8</ID>
+        <File>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Pics\001.jpg</File>
+        <Kind>0</Kind>
+        <Description>Page 2</Description>
+        <Group>004</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <Y>360</Y>
+        <S>400</S>
+        <Align>0</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>3b103fd7-e6d4-4d0b-a935-dcf928b5cc5c</ID>
+        <File>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Pics\001.jpg</File>
+        <Kind>0</Kind>
+        <Description>Page 2</Description>
+        <Group>007</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <Y>360</Y>
+        <S>400</S>
+        <Align>0</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>2f509a9d-d92d-4a3a-9c26-1d3c2dd1808c</ID>
+        <File>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Pics\002.jpg</File>
+        <Kind>0</Kind>
+        <Description>Page 3</Description>
+        <Group>003</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X>1000</X>
+        <S>400</S>
+        <Align>0</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>1eecc6ba-c061-4a63-9e2a-fe89dc8037d0</ID>
+        <File>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Pics\002.jpg</File>
+        <Kind>0</Kind>
+        <Description>Page 3</Description>
+        <Group>007</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X>1000</X>
+        <S>400</S>
+        <Align>0</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>da5a71cf-55d8-4c0b-89df-cbf9594acb7a</ID>
+        <File>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Pics\002.jpg</File>
+        <Kind>0</Kind>
+        <Description>Page 3</Description>
+        <Group>009</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X>1000</X>
+        <S>400</S>
+        <Align>0</Align>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>54701eb5-ad03-4820-ad18-279b81802d95</ID>
+        <File>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Pics\002.jpg</File>
+        <Kind>0</Kind>
+        <Description>Page 6</Description>
+        <Group>006</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X>1000</X>
+        <S>400</S>
+        <Align>0</Align>
       </Info_Combo>
     </CombinedScenes>
     <PosePositions />
