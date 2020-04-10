@@ -123,8 +123,10 @@ namespace StoGen.Classes.Data.Games
                     this.DefaultSceneText.Shift = Convert.ToInt32(title.S);
                 if (!string.IsNullOrEmpty(title.Z))
                     this.DefaultSceneText.FontColor = title.Z;
-
-                 this.DefaultSceneText.Align = title.Align;
+                if (!string.IsNullOrEmpty(title.Align))
+                    this.DefaultSceneText.Align = Convert.ToInt32(title.Align);
+                if (!string.IsNullOrEmpty(title.VAlign))
+                    this.DefaultSceneText.VAlign = Convert.ToInt32(title.VAlign);
             }
 
             // try to get text from kind 4
@@ -240,6 +242,7 @@ namespace StoGen.Classes.Data.Games
             List<DifData> itl = new List<DifData>();
             foreach (var item in infopictures)
             {
+                if (string.IsNullOrEmpty(item.File)) continue;
                 if (item.Kind == 8) //Clip
                 {
                     int volume = 0;
@@ -265,43 +268,49 @@ namespace StoGen.Classes.Data.Games
                 else
                 {
                     int opacity = 100;
-                    if (Pictures.ContainsKey(item.Description))
-                    {
-                        item.Description = $"{item.Description}{item.File}";
-                    }
-                    Pictures.Add(item.Description, new DifData(item.File) { });
-                    Pictures[item.Description].X = Convert.ToInt32(item.X);
-                    Pictures[item.Description].Y = Convert.ToInt32(item.Y);
+
+                    //if (Pictures.ContainsKey(item.Description))
+                    //{
+                    //    item.Description = $"{item.Description}{item.File}";
+
+                    //}
+                    string key = item.File;
+                    Pictures.Add(key, new DifData(item.File) { });
+                    if (!string.IsNullOrEmpty(item.X))
+                        Pictures[key].X = Convert.ToInt32(item.X);
+                    if (!string.IsNullOrEmpty(item.Y))
+                        Pictures[key].Y = Convert.ToInt32(item.Y);
                     if (!string.IsNullOrEmpty(item.O))
                     {
-                        Pictures[item.Description].O = Convert.ToInt32(item.O);
-                        opacity = Pictures[item.Description].O.Value;
+                        Pictures[key].O = Convert.ToInt32(item.O);
+                        opacity = Pictures[key].O.Value;
                     }
                     if (!string.IsNullOrEmpty(item.S))
                     {
-                        Pictures[item.Description].S = Convert.ToInt32(item.S);
+                        Pictures[key].S = Convert.ToInt32(item.S);
                     }
                     if (!string.IsNullOrEmpty(item.F))
                     {
-                        Pictures[item.Description].F = Convert.ToInt32(item.F);
+                        Pictures[key].F = Convert.ToInt32(item.F);
                     }
                     if (!string.IsNullOrEmpty(item.Z))
                     {
-                        Pictures[item.Description].Z = Convert.ToInt32(item.Z);
+                        Pictures[key].Z = Convert.ToInt32(item.Z);
                     }
                     if (!string.IsNullOrEmpty(item.R))
                     {
-                        Pictures[item.Description].R = Convert.ToInt32(item.R);
+                        Pictures[key].R = Convert.ToInt32(item.R);
                     }
                     if (!string.IsNullOrEmpty(item.T))
                     {
-                        Pictures[item.Description].T = item.T;
+                        Pictures[key].T = item.T;
                         trans.Add(new OpEf(i, false, opacity, item.T));
                     }
                     i++;
                 }
             }
             itl.AddRange(Pictures.Values.ToList());
+            
                 //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100*W..0>X.B.400.300")); //--appear+move from left
                 //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100"));                  //--appear
             CreateCadreData($"{story}", itl, trans);            

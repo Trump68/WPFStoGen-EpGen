@@ -681,6 +681,11 @@
                                 <TextBox Name="txtAlign" Text="{Binding SelectedItem.Align, ElementName=GVCombScen}"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                             </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="VAlign" MaxWidth="60">
+                                <TextBox Name="txtVAlign" Text="{Binding SelectedItem.VAlign, ElementName=GVCombScen}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                            </dxlc:LayoutItem>
+                            
                             <dxlc:LayoutItem Label="O" MaxWidth="50">
                                 <TextBox Name="txtOpacity" Text="{Binding SelectedItem.O, ElementName=GVCombScen}"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>

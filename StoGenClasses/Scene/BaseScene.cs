@@ -513,7 +513,10 @@ namespace StoGenMake.Scenes.Base
             {
                 if (!this.CadreGroups.Contains(mark)) this.CadreGroups.Add(mark);
             }
-            foreach (var dif in difs)
+            // sort by level
+            var difsSortedByLevel = difs.OrderBy(x => x.Z).ToList();
+
+            foreach (var dif in difsSortedByLevel)
             {
                 cadreAlignData.AlignList.Add(dif);
                 if (installtoglobal && !string.IsNullOrEmpty(dif.Parent))

@@ -639,82 +639,93 @@ namespace EPCat
             
             GameWorldFactory.GameWorld.LoadData();
             //BaseScene scene = null;
-            var infolist = this.CurrentFolder.CombinedScenes.Where(x => x.Queue == this.CurrentCombinedScene.Queue).ToList();
-            List<Info_Combo> listToShow = new List<Info_Combo>();
-            infolist.Sort(delegate (Info_Combo x, Info_Combo y)
-            {
-                return x.Group.CompareTo(y.Group);
-            });
-            foreach (var item in infolist)
-            {
-                string its = item.GenerateString();
-                Info_Combo itn = new Info_Combo();
-                itn.LoadFromString(its);
-                itn.File = item.File;
-                itn.Path = item.Path;
-                listToShow.Add(itn);
+            //var infolist = this.CurrentFolder.CombinedScenes.Where(x => x.Queue == this.CurrentCombinedScene.Queue).ToList();
+            //List<Info_Combo> listToShow = new List<Info_Combo>();
 
-                if (string.IsNullOrEmpty(itn.Path))
-                {
-                    if (itn.Kind == 2 || itn.Kind == 4)
-                    {
-                        if (itn.File.Contains("@"))
-                        {
-                            string[] vals = itn.File.Split('@');
-                            Guid id = Guid.Parse(vals[0]);
-                            if (id != null)
-                            {
-                                var it = this._FolderList.Where(x => x.GID.Equals(id)).FirstOrDefault();
-                                if (it != null)
-                                {
-                                    itn.Path = it.ItemDirectory;
-                                    itn.File = vals[1];
-                                    string fn = null;
-                                    string path = Path.Combine(itn.Path,"PARTS");
-                                    if (Directory.Exists(path))
-                                       fn = Directory.GetFiles(path, $"*{vals[1]}*").ToList().FirstOrDefault();
-                                    if (fn == null)
-                                    {
-                                        path = Path.Combine(itn.Path, "FIGURE");
-                                        if (Directory.Exists(path))
-                                            fn = Directory.GetFiles(path, $"*{vals[1]}*").ToList().FirstOrDefault();
-                                        if (fn == null)
-                                        {
-                                            path = Path.Combine(itn.Path, "EVENTS");
-                                            if (Directory.Exists(path))
-                                                fn = Directory.GetFiles(path, $"*{vals[1]}*").ToList().FirstOrDefault();
-                                        }
-                                    }
-                                    if (!string.IsNullOrEmpty(fn))
-                                    {
-                                        itn.File = Path.GetFileName(fn);
-                                        itn.Path = path;
-                                    }                                                                        
-                                }
-                            }
-                        }
-                        else
-                        {
-                            var it = this._FolderList.Where(x => x.CombinedScenes.Where(
-                                z =>
-                                z.File == itn.File
-                                &&
-                                z.Kind == 0
-                                ).Any()).FirstOrDefault();
-                            if (it != null)
-                            {
-                                itn.Path = it.ItemDirectory;
-                            }
-                        }
-                    }
-                    else
-                    {
+            //infolist.Sort(delegate (Info_Combo x, Info_Combo y)
+            //{
+            //    return x.Group.CompareTo(y.Group);
+            //});
 
-                    }
-                }
-            }
+            //foreach (var item in infolist)
+            //{
+            //    string its = item.GenerateString();
+            //    Info_Combo itn = new Info_Combo();
+            //    itn.LoadFromString(its);
+            //    itn.File = item.File;
+            //    itn.Path = item.Path;
+            //    listToShow.Add(itn);
+
+            //    if (string.IsNullOrEmpty(itn.Path))
+            //    {
+            //        if (itn.Kind == 2 || itn.Kind == 4)
+            //        {
+            //            if (itn.File.Contains("@"))
+            //            {
+            //                string[] vals = itn.File.Split('@');
+            //                Guid id = Guid.Parse(vals[0]);
+            //                if (id != null)
+            //                {
+            //                    var it = this._FolderList.Where(x => x.GID.Equals(id)).FirstOrDefault();
+            //                    if (it != null)
+            //                    {
+            //                        itn.Path = it.ItemDirectory;
+            //                        itn.File = vals[1];
+            //                        string fn = null;
+            //                        string path = Path.Combine(itn.Path,"PARTS");
+            //                        if (Directory.Exists(path))
+            //                           fn = Directory.GetFiles(path, $"*{vals[1]}*").ToList().FirstOrDefault();
+            //                        if (fn == null)
+            //                        {
+            //                            path = Path.Combine(itn.Path, "FIGURE");
+            //                            if (Directory.Exists(path))
+            //                                fn = Directory.GetFiles(path, $"*{vals[1]}*").ToList().FirstOrDefault();
+            //                            if (fn == null)
+            //                            {
+            //                                path = Path.Combine(itn.Path, "EVENTS");
+            //                                if (Directory.Exists(path))
+            //                                    fn = Directory.GetFiles(path, $"*{vals[1]}*").ToList().FirstOrDefault();
+            //                            }
+            //                        }
+            //                        if (!string.IsNullOrEmpty(fn))
+            //                        {
+            //                            itn.File = Path.GetFileName(fn);
+            //                            itn.Path = path;
+            //                        }                                                                        
+            //                    }
+            //                }
+            //            }
+            //            else
+            //            {
+            //                var it = this._FolderList.Where(x => x.CombinedScenes.Where(
+            //                    z =>
+            //                    z.File == itn.File
+            //                    &&
+            //                    z.Kind == 0
+            //                    ).Any()).FirstOrDefault();
+            //                if (it != null)
+            //                {
+            //                    itn.Path = it.ItemDirectory;
+            //                }
+            //            }
+            //        }
+            //        else
+            //        {
+
+            //        }
+            //    }
+            //}
 
             //scene = GameWorldFactory.GetScene(listToShow);
+
+            var infolist = this.CurrentFolder.CombinedScenes.Where(x => x.Queue == this.CurrentCombinedScene.Queue).ToList();
+            infolist.Sort(delegate (Info_Combo x, Info_Combo y)
+            {
+                if (x.Group == null) x.Group = string.Empty;
+                if (y.Group == null) y.Group = string.Empty;
+                return x.Group.CompareTo(y.Group);
+            });
+
             Scene_Combo scene = new Scene_Combo();
             scene.SetInfo(infolist);
 
@@ -723,8 +734,17 @@ namespace EPCat
             projector.GlobalMenuCreator = GameWorldFactory.GameWorld;
             projector.Scene = scene;
             projector.StartOnLoad = false;
-            projector.Show();            
-            projector.Start(Convert.ToInt32(this.CurrentCombinedScene.Group));
+            projector.Show();
+            //var gl = infolist.GroupBy(x => x.Group).ToList();
+            //List<string> groups = new List<string>();
+            //foreach (var item in gl)
+            //{
+            //    groups.Add(item.Key);
+            //}
+            //groups.Sort();
+            //int page = groups.IndexOf(this.CurrentCombinedScene.Group)+1;
+            int page = infolist.Select(x=>x.Group).Distinct().ToList().IndexOf(this.CurrentCombinedScene.Group) + 1;
+            projector.Start(page);
         }
 
         internal void Close(bool isSaving)
@@ -761,11 +781,12 @@ namespace EPCat
             if (this.CurrentFolder == null) return;
             if (this.CurrentFolder.CombinedScenes == null) return;
             List<string> lines = new List<string>();
-            foreach (var item in this.CurrentFolder.CombinedScenes)
+            var selectedQueue = this.CurrentFolder.CombinedScenes.Where(x => x.Queue == this.CurrentCombinedScene.Queue).ToList();
+            foreach (var item in selectedQueue)
             {
                 lines.Add(item.GenerateString());
             }
-            File.WriteAllLines(Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), "SceneList.epcatsi"), lines);
+            File.WriteAllLines(Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), $"SceneList_{this.CurrentCombinedScene.Queue}.epcatsi"), lines);
         }
 
         internal void SaveClipToCombinedScene()

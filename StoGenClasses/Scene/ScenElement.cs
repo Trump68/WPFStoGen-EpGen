@@ -71,6 +71,7 @@ namespace StoGenMake.Elements
             if (dd.R.HasValue) this.R = dd.R.Value;
             if (dd.F.HasValue) this.F = dd.F.Value;
             if (dd.O.HasValue) this.O = dd.O.Value;
+            //if (dd.Z.HasValue) this. = dd.O.Value;
             this.Animations.Clear();
             this.Animations.AddRange(dd.AL);
 
@@ -260,6 +261,7 @@ namespace StoGenMake.Elements
     {
         public string Text;
         public int Align = 0;
+        public int VAlign = 0;
         public int Width = 0;
         public int Shift = 0;
         public int Size = 600;
@@ -279,6 +281,7 @@ namespace StoGenMake.Elements
         public seTe(seTe origin):this()
         {
             this.Align = origin.Align;
+            this.VAlign = origin.VAlign;
             this.Text = origin.Text;
             this.Shift = origin.Shift;
             this.Size = origin.Size;

@@ -76,8 +76,8 @@ namespace StoGen.Classes
         public string S { set; get; } //size
         public string T { set; get; } //transition
         public string Z { set; get; } //ZOrder
-        public int Align { set; get; } = 0;// text align 0 -left, 1- right, 2-center, 3-justify
-
+        public string Align { set; get; }// text align 0 -left, 1- right, 2-center, 3-justify
+        public string VAlign { set; get; }// textbox align 0 -top, 1-center, 3-bottom
 
         public string GenerateString()
         {
@@ -127,8 +127,10 @@ namespace StoGen.Classes
                 rez.Add($"R={R}");
             if (!string.IsNullOrEmpty(T))
                 rez.Add($"T={T}");
-            if (Align != 0)
+            if (!string.IsNullOrEmpty(Align))
                 rez.Add($"Align={Align}");
+            if (!string.IsNullOrEmpty(VAlign))
+                rez.Add($"VAlign={VAlign}");
 
             if (!string.IsNullOrEmpty(Group))
                 rez.Add($"GROUP={Group}");
@@ -175,7 +177,11 @@ namespace StoGen.Classes
                 }
                 else if (str.StartsWith("Align="))
                 {
-                    this.Align = Convert.ToInt32(str.Replace("Align=", string.Empty));
+                    this.Align = str.Replace("Align=", string.Empty);
+                }
+                else if (str.StartsWith("VAlign="))
+                {
+                    this.VAlign = str.Replace("VAlign=", string.Empty);
                 }
                 else if (str.StartsWith("STR="))
                 {

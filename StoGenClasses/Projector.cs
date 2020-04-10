@@ -20,6 +20,10 @@ namespace StoGen.ModelClasses
         public static System.Windows.Controls.TextBlock TextBlock2;
         public static System.Windows.Controls.TextBlock TextBlock3;
         public static System.Windows.Controls.TextBlock TextBlock4;
+        public static System.Windows.Controls.Border Border1;
+        public static System.Windows.Controls.Border Border2;
+        public static System.Windows.Controls.Border Border3;
+        public static System.Windows.Controls.Border Border4;
         public static DropShadowEffect dropShadowEffect1;
         public static DropShadowEffect dropShadowEffect2;
         public static DropShadowEffect dropShadowEffect3;

@@ -33,7 +33,8 @@ namespace StoGen.Classes
         public string Transition { get; set; }
         public int Opacity { get; set; }
         public int Shift { get; set; }
-        public int Aligh { get; set; }
+        public int HAlig { get; set; }
+        public int VAlig { get; set; }
         public bool Animated { get; set; } = false;
         public bool ClearBack { get; set; } = false;
         public System.Threading.Timer timer;
@@ -67,21 +68,24 @@ namespace StoGen.Classes
             Projector.TextBlock3.TextWrapping = TextWrapping.Wrap;
             Projector.TextBlock4.TextWrapping = TextWrapping.Wrap;
 
-            //Projector.TextBlock1.VerticalAlignment = VerticalAlignment.Center;
-            //Projector.TextBlock2.VerticalAlignment = VerticalAlignment.Center;
-            //Projector.TextBlock3.VerticalAlignment = VerticalAlignment.Center;
-            //Projector.TextBlock4.VerticalAlignment = VerticalAlignment.Center;
+           
 
 
             if (Size > 0)
             {
                 Projector.TextCanvas.Height = Size;
+                Projector.Border1.Height = Size;
+                Projector.Border2.Height = Size;
+                Projector.Border3.Height = Size;
+                Projector.Border4.Height = Size;
+
                 if (Width > 0) Projector.TextCanvas.Width = Width;
                 else Projector.TextCanvas.Width = 800;
-                Projector.TextBlock1.Width = Projector.TextCanvas.Width;
-                Projector.TextBlock2.Width = Projector.TextCanvas.Width;
-                Projector.TextBlock3.Width = Projector.TextCanvas.Width;
-                Projector.TextBlock4.Width = Projector.TextCanvas.Width;
+
+                Projector.Border1.Width = Projector.TextCanvas.Width;
+                Projector.Border2.Width = Projector.TextCanvas.Width;
+                Projector.Border2.Width = Projector.TextCanvas.Width;
+                Projector.Border2.Width = Projector.TextCanvas.Width;
 
                 double bm = Bottom;
                 double tm = Projector.TextCanvas.Margin.Top;
@@ -114,34 +118,70 @@ namespace StoGen.Classes
                 Projector.TextBlock4.FontSize = FontSize;
             }
 
-            if (Aligh == 1)
+            if (HAlig == 1)
             {
                 Projector.TextBlock1.TextAlignment = System.Windows.TextAlignment.Right;
                 Projector.TextBlock2.TextAlignment = System.Windows.TextAlignment.Right;
                 Projector.TextBlock3.TextAlignment = System.Windows.TextAlignment.Right;
                 Projector.TextBlock4.TextAlignment = System.Windows.TextAlignment.Right;
             }
-            else if (Aligh == 0)
+            else if (HAlig == 0)
             {
                 Projector.TextBlock1.TextAlignment = System.Windows.TextAlignment.Left;
                 Projector.TextBlock2.TextAlignment = System.Windows.TextAlignment.Left;
                 Projector.TextBlock3.TextAlignment = System.Windows.TextAlignment.Left;
                 Projector.TextBlock4.TextAlignment = System.Windows.TextAlignment.Left;
             }
-            else if (Aligh == 2)
+            else if (HAlig == 2)
             {
                 Projector.TextBlock1.TextAlignment = System.Windows.TextAlignment.Center;
                 Projector.TextBlock2.TextAlignment = System.Windows.TextAlignment.Center;
                 Projector.TextBlock3.TextAlignment = System.Windows.TextAlignment.Center;
                 Projector.TextBlock4.TextAlignment = System.Windows.TextAlignment.Center;
             }
-            else if (Aligh == 3)
+            else if (HAlig == 3)
             {
                 Projector.TextBlock1.TextAlignment = System.Windows.TextAlignment.Justify;
                 Projector.TextBlock2.TextAlignment = System.Windows.TextAlignment.Justify;
                 Projector.TextBlock3.TextAlignment = System.Windows.TextAlignment.Justify;
                 Projector.TextBlock4.TextAlignment = System.Windows.TextAlignment.Justify;
             }
+
+            if (VAlig == 0)
+            {
+                Projector.Border1.VerticalAlignment = VerticalAlignment.Top;
+                Projector.Border2.VerticalAlignment = VerticalAlignment.Top;
+                Projector.Border3.VerticalAlignment = VerticalAlignment.Top;
+                Projector.Border4.VerticalAlignment = VerticalAlignment.Top;
+                Projector.TextBlock1.VerticalAlignment = VerticalAlignment.Top;
+                Projector.TextBlock2.VerticalAlignment = VerticalAlignment.Top;
+                Projector.TextBlock3.VerticalAlignment = VerticalAlignment.Top;
+                Projector.TextBlock4.VerticalAlignment = VerticalAlignment.Top;
+            }
+            else if (VAlig == 1)
+            {
+                Projector.Border1.VerticalAlignment = VerticalAlignment.Stretch;
+                Projector.Border2.VerticalAlignment = VerticalAlignment.Stretch;
+                Projector.Border3.VerticalAlignment = VerticalAlignment.Stretch;
+                Projector.Border4.VerticalAlignment = VerticalAlignment.Stretch;
+                Projector.TextBlock1.VerticalAlignment = VerticalAlignment.Center;
+                Projector.TextBlock2.VerticalAlignment = VerticalAlignment.Center;
+                Projector.TextBlock3.VerticalAlignment = VerticalAlignment.Center;
+                Projector.TextBlock4.VerticalAlignment = VerticalAlignment.Center;
+            }
+            else if (VAlig == 2)
+            {
+                Projector.Border1.VerticalAlignment = VerticalAlignment.Bottom;
+                Projector.Border2.VerticalAlignment = VerticalAlignment.Bottom;
+                Projector.Border3.VerticalAlignment = VerticalAlignment.Bottom;
+                Projector.Border4.VerticalAlignment = VerticalAlignment.Bottom;
+                Projector.TextBlock1.VerticalAlignment = VerticalAlignment.Bottom;
+                Projector.TextBlock2.VerticalAlignment = VerticalAlignment.Bottom;
+                Projector.TextBlock3.VerticalAlignment = VerticalAlignment.Bottom;
+                Projector.TextBlock4.VerticalAlignment = VerticalAlignment.Bottom;
+            }
+
+
             if (!string.IsNullOrEmpty(FontColor))
             {
                 SolidColorBrush br = System.Windows.Media.Brushes.White;
@@ -220,7 +260,8 @@ namespace StoGen.Classes
             this.ClearBack = data.ClearBack;
             this.AutoShow = data.AutoShow;
             //this.Rtf = data.Rtf;
-            this.Aligh = data.Align;
+            this.HAlig = data.Align;
+            this.VAlig = data.VAlign;
             this.Opacity = data.Opacity;
             this.Transition = data.T;
 

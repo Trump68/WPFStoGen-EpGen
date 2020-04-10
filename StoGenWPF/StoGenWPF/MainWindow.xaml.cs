@@ -42,6 +42,10 @@ namespace StoGenWPF
             Projector.TextBlock2 = this.Tb2;
             Projector.TextBlock3 = this.Tb3;
             Projector.TextBlock4 = this.Tb4;
+            Projector.Border1 = this.Brd1;
+            Projector.Border2 = this.Brd2;
+            Projector.Border3 = this.Brd3;
+            Projector.Border4 = this.Brd4;
             Projector.dropShadowEffect1 = (DropShadowEffect)this.Tb1.Effect;
             Projector.dropShadowEffect2 = (DropShadowEffect)this.Tb2.Effect;
             Projector.dropShadowEffect3 = (DropShadowEffect)this.Tb3.Effect;
