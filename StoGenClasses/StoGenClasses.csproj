@@ -118,7 +118,6 @@
     <Compile Include="Interfaces\IMenuCreator.cs" />
     <Compile Include="Scene\INFO_Clip.cs" />
     <Compile Include="PictureClasses.cs" />
-    <Compile Include="SkyrimPosePositionInfo.cs" />
     <Compile Include="ProcedureBase\CycleProc.cs" />
     <Compile Include="ProcedureBase\ProcedureBase.cs" />
     <Compile Include="ProcedureBase\ScenarioProc.cs" />
@@ -132,7 +131,6 @@
     <Compile Include="Scene\ScenElement.cs" />
     <Compile Include="Scene\SceneMaker.cs" />
     <Compile Include="Scene\SoundStore.cs" />
-    <Compile Include="SkyrimMotionInfo.cs" />
     <Compile Include="Transition\OpEf.cs" />
     <Compile Include="Transition\Transition.cs" />
     <Compile Include="Transition\TransitionManager.cs" />

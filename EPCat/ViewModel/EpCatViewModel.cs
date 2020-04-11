@@ -187,18 +187,7 @@ namespace EPCat
         }
 
 
-        Info_Clip _ClipTemplate = new Info_Clip();
-        public Info_Clip ClipTemplate
-        {
-            get
-            {
-                return _ClipTemplate;
-            }
-            set
-            {              
-                _ClipTemplate = value;
-            }
-        }
+        
 
         
 
@@ -247,56 +236,13 @@ namespace EPCat
             
             if (this._FolderList == null) return;
 
-            FillPosePositions();
-            //FillMotions();
-
             this.FolderListView = new ObservableCollection<EpItem>(this._FolderList);
             this.CapsListView = new ObservableCollection<CapsItem>(this._CapsList.Where(x=>string.IsNullOrEmpty(x.ParentId)));
             RaisePropertyChanged(() => this.FolderListView);
             RaisePropertyChanged(() => this.CapsListView);
 
         }
-        public void FillPosePositions()
-        {
-            foreach (var item in _FolderList)
-            {
-                foreach (var pp in item.PosePositions)
-                {
-                    Guid gid = Guid.Parse(pp.ID);
-                    var si = _FolderList.Where(x => x.GID.Equals(gid)).FirstOrDefault();
-                    if (si != null)
-                    {
-                        pp.Name    = si.Name;
-                        pp.Stage   = si.Stage;
-                        pp.Serie   = si.Serie;
-                        pp.Sex     = si.PersonSex;
-                        pp.Variant = si.Variant;
-                        pp.XRate   = si.XRated;
-                        pp.Path    = si.ItemPath;
-                    }
-                }
-            } 
-        }
-        public void FillMotions()
-        {
-            foreach (var item in _FolderList)
-            {
-                foreach (var pp in item.Motions)
-                {
-                    Guid gid = Guid.Parse(pp.ID);
-                    var si = _FolderList.Where(x => x.GID.Equals(gid)).FirstOrDefault();
-                    if (si != null)
-                    {
-                        pp.Name = si.Name;
-                        pp.Stage = si.Stage;
-                        pp.Serie = si.Serie;
-                        pp.Sex = si.PersonSex;
-                        pp.Variant = si.Variant;
-                        pp.XRate = si.XRated;                       
-                    }
-                }
-            }
-        }
+     
         public void UpdateCurrentItem()
         {
             //if (updateenabled)
@@ -444,15 +390,15 @@ namespace EPCat
 
             Info_Clip newclipinfo = new Info_Clip();
             newclipinfo.ID = Guid.NewGuid().ToString();
-            newclipinfo.PositionStart = this.ClipTemplate.PositionStart;
-            newclipinfo.PositionEnd = this.ClipTemplate.PositionEnd;
-            if (string.IsNullOrEmpty(this.ClipTemplate.File))
+            newclipinfo.PositionStart = TicTakToe.ClipTemplate.PositionStart;
+            newclipinfo.PositionEnd = TicTakToe.ClipTemplate.PositionEnd;
+            if (string.IsNullOrEmpty(TicTakToe.ClipTemplate.File))
             {
                 newclipinfo.File = this.CurrentFolder.Videos[0];
             }
             else
             {
-                newclipinfo.File = this.ClipTemplate.File;
+                newclipinfo.File = TicTakToe.ClipTemplate.File;
             }
             if (last != null)
             {
@@ -486,8 +432,8 @@ namespace EPCat
             this.CurrentClip = this.CurrentFolder.Clips.Last();
             //this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
 
-            this.ClipTemplate.PositionEnd = 0;
-            this.ClipTemplate.PositionStart = 0;
+            TicTakToe.ClipTemplate.PositionEnd = 0;
+            TicTakToe.ClipTemplate.PositionStart = 0;
 
         }
         internal void AddMedia()
@@ -497,9 +443,9 @@ namespace EPCat
 
             Info_Clip newclipinfo = new Info_Clip();
             newclipinfo.ID = Guid.NewGuid().ToString();
-            //newclipinfo.PositionStart = this.ClipTemplate.PositionStart;
-            //newclipinfo.PositionEnd = this.ClipTemplate.PositionEnd;
-            //newclipinfo.File = this.ClipTemplate.File;
+            //newclipinfo.PositionStart = TicTakToe.ClipTemplate.PositionStart;
+            //newclipinfo.PositionEnd = TicTakToe.ClipTemplate.PositionEnd;
+            //newclipinfo.File = TicTakToe.ClipTemplate.File;
             if (last != null)
             {
                 //    newclipinfo.Antagonist = last.Antagonist;
@@ -533,104 +479,105 @@ namespace EPCat
             this.CurrentClip = this.CurrentFolder.Clips.Last();
             //this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
 
-            //this.ClipTemplate.PositionEnd = 0;
-            //this.ClipTemplate.PositionStart = 0;
+            //TicTakToe.ClipTemplate.PositionEnd = 0;
+            //TicTakToe.ClipTemplate.PositionStart = 0;
 
         }
-        List<string> CopiedCombinedScene = new List<string>();
+        
         internal void CopyCombinedScene(bool allgroup)
         {
             if (this.CurrentCombinedScene == null)
                 return;
-            CopiedCombinedScene.Clear();
+            TicTakToe.CopiedCombinedScene.Clear();
             if (allgroup)
             {
                 var col = this.CurrentFolder.CombinedScenes.Where(x => x.Group == this.CurrentCombinedScene.Group);
                 foreach (var item in col)
                 {
-                    CopiedCombinedScene.Add(item.GenerateString());
+                    TicTakToe.CopiedCombinedScene.Add(item.GenerateString());
                 }
             }
             else
-            {                
-                CopiedCombinedScene.Add(this.CurrentCombinedScene.GenerateString());
+            {
+                TicTakToe.CopiedCombinedScene.Add(this.CurrentCombinedScene.GenerateString());
             }
         }
 
         internal void AddCombinedScene(int? kind)
         {
             if (this.CurrentFolder == null) return;
-            var last = this.CurrentFolder.CombinedScenes.LastOrDefault();
-            
-            if (kind == null && CopiedCombinedScene != null && CopiedCombinedScene.Any())
+            //var last = this.CurrentFolder.CombinedScenes.LastOrDefault();
+            var clip = TicTakToe.GetClipScreenShot();
+            if (kind == null && TicTakToe.CopiedCombinedScene != null && TicTakToe.CopiedCombinedScene.Any())
             {
-                foreach (var item in CopiedCombinedScene)
+                foreach (var item in TicTakToe.CopiedCombinedScene)
                 {
                     Info_Combo newclipinfo = new Info_Combo();
                     newclipinfo.LoadFromString(item);
+                    string newgroup = IncrementGroup(newclipinfo.Group);
+                    newclipinfo.Group = newgroup;
+                    if (clip != null && newclipinfo.Kind == 0)
+                    {
+                        newclipinfo.File = clip;
+                    }
+                    else if (newclipinfo.Kind == 8)
+                    {
+                        newclipinfo.PositionStart = TicTakToe.ClipTemplate.PositionStart;
+                        newclipinfo.PositionEnd = TicTakToe.ClipTemplate.PositionEnd;
+                    }
                     addNewComb(newclipinfo);
                 }
-                CopiedCombinedScene.Clear();
+                TicTakToe.CopiedCombinedScene.Clear();
             }
             else
             {
-                Info_Combo newclipinfo = new Info_Combo();
-                if (last != null)
+                if (kind.HasValue)
                 {
-                    int r;
-                    if (newclipinfo.Kind == 4 && Int32.TryParse(last.Group, out r))
+                    Info_Combo newclipinfo = new Info_Combo();
+                    newclipinfo.Kind = kind.Value;
+                    if (TicTakToe.CopiedCombinedScene != null && TicTakToe.CopiedCombinedScene.Any())
                     {
-                        newclipinfo.Group = $"{++r}";
-                    }
-                    else
-                    {
-                        newclipinfo.Group = last.Group;
-                    }
-                    
-                    newclipinfo.Queue = last.Queue;
-                    if (kind.HasValue)
-                        newclipinfo.Kind = kind.Value;
-                    else
-                        newclipinfo.Kind = last.Kind;
-                    newclipinfo.Description = last.Description;
-                    if (!string.IsNullOrEmpty(last.File) && last.File.Contains("@"))
-                    {
-                        string[] vals = last.File.Split('@');
-                        newclipinfo.File = vals[0] + "@";
-                    }
-                    try
-                    {
-                        string clpb = Clipboard.GetText();
-                        if (clpb.EndsWith(".png") || clpb.EndsWith(".jpg"))
-                        {
-                            newclipinfo.File = $"{newclipinfo.File}{clpb}";
-                        }
-                    }
-                    catch (Exception)
-                    {
-
-                    }
-                   
+                        Info_Combo v = new Info_Combo();
+                        v.LoadFromString(TicTakToe.CopiedCombinedScene[0]);
+                        newclipinfo.Group = v.Group;
+                        newclipinfo.Queue = v.Queue;
+                       
+                    }                    
+                    addNewComb(newclipinfo);
                 }
-                addNewComb(newclipinfo);
+
             }
 
         }
-        
+
+        private string IncrementGroup(string v)
+        {
+            var vals = v.Split('.');
+            if (vals.Length == 0) return v;
+            int d;
+            if (int.TryParse(vals[0], out d))
+            {
+                ++d;
+                vals[0] = (d.ToString("D" + vals[0].Length));
+            }    
+            return string.Join(".", vals);
+        }
+
         private void addNewComb(Info_Combo newclipinfo)
         {
             newclipinfo.ID = Guid.NewGuid().ToString();
 
             //this.CurrentFolder.CombinedScenes.Add(newclipinfo);
-            int index = this.CurrentFolder.CombinedScenes.IndexOf(this.CurrentCombinedScene);
-            this.CurrentFolder.CombinedScenes.Insert(index + 1, newclipinfo);
+            //int index = this.CurrentFolder.CombinedScenes.IndexOf(this.CurrentCombinedScene);
 
+            //this.CurrentFolder.CombinedScenes.Insert(index + 1, newclipinfo);
+            this.CurrentFolder.CombinedScenes.Add(newclipinfo);
             this.CurrentCombinedScene = newclipinfo;
 
             RaisePropertyChanged(() => this.CurrentFolder);
             RaisePropertyChanged(() => this.CurrentCombinedScene);
             RaisePropertyChanged(() => this.CurrentFolder.CombinedScenes);
-            //this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
+            
         }
 
         internal void ShowScene()
@@ -638,86 +585,7 @@ namespace EPCat
             if (this.CurrentCombinedScene == null) return;
             
             GameWorldFactory.GameWorld.LoadData();
-            //BaseScene scene = null;
-            //var infolist = this.CurrentFolder.CombinedScenes.Where(x => x.Queue == this.CurrentCombinedScene.Queue).ToList();
-            //List<Info_Combo> listToShow = new List<Info_Combo>();
-
-            //infolist.Sort(delegate (Info_Combo x, Info_Combo y)
-            //{
-            //    return x.Group.CompareTo(y.Group);
-            //});
-
-            //foreach (var item in infolist)
-            //{
-            //    string its = item.GenerateString();
-            //    Info_Combo itn = new Info_Combo();
-            //    itn.LoadFromString(its);
-            //    itn.File = item.File;
-            //    itn.Path = item.Path;
-            //    listToShow.Add(itn);
-
-            //    if (string.IsNullOrEmpty(itn.Path))
-            //    {
-            //        if (itn.Kind == 2 || itn.Kind == 4)
-            //        {
-            //            if (itn.File.Contains("@"))
-            //            {
-            //                string[] vals = itn.File.Split('@');
-            //                Guid id = Guid.Parse(vals[0]);
-            //                if (id != null)
-            //                {
-            //                    var it = this._FolderList.Where(x => x.GID.Equals(id)).FirstOrDefault();
-            //                    if (it != null)
-            //                    {
-            //                        itn.Path = it.ItemDirectory;
-            //                        itn.File = vals[1];
-            //                        string fn = null;
-            //                        string path = Path.Combine(itn.Path,"PARTS");
-            //                        if (Directory.Exists(path))
-            //                           fn = Directory.GetFiles(path, $"*{vals[1]}*").ToList().FirstOrDefault();
-            //                        if (fn == null)
-            //                        {
-            //                            path = Path.Combine(itn.Path, "FIGURE");
-            //                            if (Directory.Exists(path))
-            //                                fn = Directory.GetFiles(path, $"*{vals[1]}*").ToList().FirstOrDefault();
-            //                            if (fn == null)
-            //                            {
-            //                                path = Path.Combine(itn.Path, "EVENTS");
-            //                                if (Directory.Exists(path))
-            //                                    fn = Directory.GetFiles(path, $"*{vals[1]}*").ToList().FirstOrDefault();
-            //                            }
-            //                        }
-            //                        if (!string.IsNullOrEmpty(fn))
-            //                        {
-            //                            itn.File = Path.GetFileName(fn);
-            //                            itn.Path = path;
-            //                        }                                                                        
-            //                    }
-            //                }
-            //            }
-            //            else
-            //            {
-            //                var it = this._FolderList.Where(x => x.CombinedScenes.Where(
-            //                    z =>
-            //                    z.File == itn.File
-            //                    &&
-            //                    z.Kind == 0
-            //                    ).Any()).FirstOrDefault();
-            //                if (it != null)
-            //                {
-            //                    itn.Path = it.ItemDirectory;
-            //                }
-            //            }
-            //        }
-            //        else
-            //        {
-
-            //        }
-            //    }
-            //}
-
-            //scene = GameWorldFactory.GetScene(listToShow);
-
+          
             var infolist = this.CurrentFolder.CombinedScenes.Where(x => x.Queue == this.CurrentCombinedScene.Queue).ToList();
             infolist.Sort(delegate (Info_Combo x, Info_Combo y)
             {
@@ -735,14 +603,6 @@ namespace EPCat
             projector.Scene = scene;
             projector.StartOnLoad = false;
             projector.Show();
-            //var gl = infolist.GroupBy(x => x.Group).ToList();
-            //List<string> groups = new List<string>();
-            //foreach (var item in gl)
-            //{
-            //    groups.Add(item.Key);
-            //}
-            //groups.Sort();
-            //int page = groups.IndexOf(this.CurrentCombinedScene.Group)+1;
             int page = infolist.Select(x=>x.Group).Distinct().ToList().IndexOf(this.CurrentCombinedScene.Group) + 1;
             projector.Start(page);
         }
@@ -761,10 +621,7 @@ namespace EPCat
 
 
         #region Pose positions
-        public void GenerateMotion()
-        {
-            Skyrim.GenerateMotion(this.CurrentFolder, this.FolderListView);
-        }
+      
 
         internal void SaveCurrentClipList()
         {
@@ -776,38 +633,59 @@ namespace EPCat
             }
             File.WriteAllLines(Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), "ClipList.epcatci"), lines);
         }
-        internal void SaveCurrentSceneList()
+        internal void SaveScenesList()
         {
             if (this.CurrentFolder == null) return;
             if (this.CurrentFolder.CombinedScenes == null) return;
-            List<string> lines = new List<string>();
-            var selectedQueue = this.CurrentFolder.CombinedScenes.Where(x => x.Queue == this.CurrentCombinedScene.Queue).ToList();
-            foreach (var item in selectedQueue)
+
+            List<string> files = this.CurrentFolder.CombinedScenes.Select(x => x.Queue).Distinct().ToList();
+            foreach (var item in files)
             {
-                lines.Add(item.GenerateString());
-            }
-            File.WriteAllLines(Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), $"SceneList_{this.CurrentCombinedScene.Queue}.epcatsi"), lines);
+                List<string> lines = new List<string>();
+                var selectedQueue = this.CurrentFolder.CombinedScenes.Where(x => x.Queue == item).OrderBy(x=>x.Group).ToList();
+                foreach (var queue in selectedQueue)
+                {
+                    lines.Add(queue.GenerateString());
+                }
+                string fn = Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), $"SceneList_{item}.epcatsi");
+                string bfn = Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), $"SceneList_{item}.bak");
+                if (File.Exists(fn))
+                {
+                    File.Copy(fn, bfn, true);
+                    File.Delete(fn);
+                }                
+                File.WriteAllLines(fn, lines);
+            }            
         }
 
-        internal void SaveClipToCombinedScene()
+        internal void LoadAllScenes()
         {
-            Info_Combo newclipinfo = new Info_Combo();
-            newclipinfo.ID = Guid.NewGuid().ToString();
-            newclipinfo.Kind = 8;
-            newclipinfo.PositionStart = this.ClipTemplate.PositionStart;
-            newclipinfo.PositionEnd = this.ClipTemplate.PositionEnd;
-            if (string.IsNullOrEmpty(this.ClipTemplate.File))
+            string dir = Path.GetDirectoryName(this.CurrentFolder.ItemPath);
+            var files = Directory.GetFiles(dir, "*.epcatsi");
+            this.CurrentFolder.CombinedScenes.Clear();
+            foreach (var item in files)
             {
-                newclipinfo.File = this.CurrentFolder.Videos[0];
-            }
-            else
-            {
-                newclipinfo.File = this.ClipTemplate.File;
-            }
-            addNewComb(newclipinfo);
+                Load1Scene(item);                      
+            }         
         }
 
-      
+        internal void Load1Scene(string fileName)
+        {            
+            List<string> clipsinstr = new List<string>(File.ReadAllLines(fileName));
+            foreach (var line in clipsinstr)
+            {
+                this.CurrentFolder.CombinedScenes.Add(Info_Combo.GenerateFromString(line));
+            }
+        }
+
+        internal void ClearScenes()
+        {
+            this.CurrentFolder.CombinedScenes.Clear();
+        }
+
+
+
+
         #endregion
     }
 

@@ -2,6 +2,7 @@
 using DevExpress.Xpf.Grid;
 using DevExpress.Xpf.LayoutControl;
 using EPCat.Model;
+using Microsoft.Win32;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -242,6 +243,7 @@ namespace EPCat
             if (e.NewSelectedItem == TabCaps) this.ViewModel.RefreshCaps();
             else if (e.NewSelectedItem == EditTab)
             {
+                RestoreVideoPosition();
                 RestoreVideoPosition();
             }
             else
@@ -503,21 +505,12 @@ namespace EPCat
         {
             RestoreVideoPosition();
         }
-        
-        private void btnSaveStart_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private void btnSaveEnd_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private void btnSaveEndAndAdd_Click(object sender, RoutedEventArgs e)
-        {
-        }
+               
         private void btnScreenshot_Click(object sender, RoutedEventArgs e)
         {
             this.MadeShot();
         }
-        private void MadeShot()
+        private void MadeShot(bool addGroup = false)
         {
             string path = 
                 System.IO.Path.GetDirectoryName(this.minionPlayer.Source.LocalPath)
@@ -554,7 +547,12 @@ namespace EPCat
                 }
             }
 
+            TicTakToe.SetClipScreenShot(str3);
             this.ImportMedia(str3);
+            if (addGroup)
+            {
+                this.CopyGroup(true);
+            }
         }
         private void ImportMedia(string path)
         {
@@ -575,6 +573,7 @@ namespace EPCat
                 }.Save(stream);
             }
         }
+
         private bool isNavigationByKey = true;
         #endregion
 
@@ -657,23 +656,23 @@ namespace EPCat
 
         private void btnSetPositionStart_Click(object sender, RoutedEventArgs e)
         {
-            (this.DataContext as EpCatViewModel).ClipTemplate.PositionStart = Decimal.Parse(txtPosition.Text);
-            txtPositionStart.Text = (this.DataContext as EpCatViewModel).ClipTemplate.PositionStart.ToString();
+            TicTakToe.ClipTemplate.PositionStart = Decimal.Parse(txtPosition.Text);
+            txtPositionStart.Text = TicTakToe.ClipTemplate.PositionStart.ToString();
         }
 
         private void btnSetPositionEnd_Click(object sender, RoutedEventArgs e)
         {
-            (this.DataContext as EpCatViewModel).ClipTemplate.PositionEnd = Decimal.Parse(txtPosition.Text);
-            txtPositionEnd.Text = (this.DataContext as EpCatViewModel).ClipTemplate.PositionEnd.ToString();
+            TicTakToe.ClipTemplate.PositionEnd = Decimal.Parse(txtPosition.Text);
+            txtPositionEnd.Text = TicTakToe.ClipTemplate.PositionEnd.ToString();
         }
 
         private void btnSetPositionReset_Click(object sender, RoutedEventArgs e)
         {
-            (this.DataContext as EpCatViewModel).ClipTemplate.PositionStart = 0;
-            txtPositionStart.Text = (this.DataContext as EpCatViewModel).ClipTemplate.PositionStart.ToString();
+            TicTakToe.ClipTemplate.PositionStart = 0;
+            txtPositionStart.Text = TicTakToe.ClipTemplate.PositionStart.ToString();
 
-            (this.DataContext as EpCatViewModel).ClipTemplate.PositionEnd = 0;
-            txtPositionEnd.Text = (this.DataContext as EpCatViewModel).ClipTemplate.PositionEnd.ToString();
+            TicTakToe.ClipTemplate.PositionEnd = 0;
+            txtPositionEnd.Text = TicTakToe.ClipTemplate.PositionEnd.ToString();
         }
 
       
@@ -692,11 +691,11 @@ namespace EPCat
 
         private void ProcessSpace()
         {
-           if ((this.DataContext as EpCatViewModel).ClipTemplate.PositionStart == 0)
+           if (TicTakToe.ClipTemplate.PositionStart == 0)
             {
                 btnSetPositionStart_Click(null,null);
             }
-           else if ((this.DataContext as EpCatViewModel).ClipTemplate.PositionEnd == 0)
+           else if (TicTakToe.ClipTemplate.PositionEnd == 0)
             {
                 btnSetPositionEnd_Click(null, null);
                 btnSetPositionSave_Click(null, null);
@@ -713,6 +712,8 @@ namespace EPCat
         }
         private void AddSceneSoundBtn_Click(object sender, RoutedEventArgs e)
         {
+            //copy
+            (this.DataContext as EpCatViewModel).CopyCombinedScene(false);
             //save
             (this.DataContext as EpCatViewModel).AddCombinedScene(6);
             // reset
@@ -749,7 +750,7 @@ namespace EPCat
         private void btnSetPositionSave_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).SaveClipToCombinedScene();
+            CopyGroup(false);
             //save
             (this.DataContext as EpCatViewModel).SaveClipTemplate();            
             // reset
@@ -767,25 +768,24 @@ namespace EPCat
         {
             ViewModel.AddMedia();
         }
-
-
-        private void MothionGenerate(object sender, RoutedEventArgs e)
-        {
-            ViewModel.GenerateMotion();
-        }
+     
 
         private void SaveCurrentClipBtn_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.SaveCurrentClipList();
-        }
-
-        private void SaveScenesToFileBtn_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.SaveCurrentSceneList();
-        }
+        }       
 
         private void CopyGroupBtn_Click(object sender, RoutedEventArgs e)
         {
+            CopyGroup();
+        }
+        public void CopyGroup(bool atEnd = false)
+        {
+            if (atEnd)
+            {
+                (this.DataContext as EpCatViewModel).CurrentCombinedScene =
+                (this.DataContext as EpCatViewModel).CurrentFolder.CombinedScenes.LastOrDefault();
+            }
             //save
             (this.DataContext as EpCatViewModel).CopyCombinedScene(true);
             (this.DataContext as EpCatViewModel).AddCombinedScene(null);
@@ -797,6 +797,36 @@ namespace EPCat
             TimeSpan timespan = TimeSpan.FromSeconds(double.Parse(txtPosition.Text));
             minionPlayer.Position = timespan;
             ShowPosition();
+        }
+
+        private void btnScreenshotAddGroup_Click(object sender, RoutedEventArgs e)
+        {
+            this.MadeShot(true);
+        }
+
+        private void LoadScenesFromFileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.LoadAllScenes();
+        }
+        private void SaveScenesToFileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SaveScenesList();
+        }
+
+        private void LoadOneSceneFromFileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName((this.DataContext as EpCatViewModel).CurrentFolder.ItemPath);
+            openFileDialog.DefaultExt = "epcatsi";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ViewModel.Load1Scene(openFileDialog.FileName);
+            }
+        }
+
+        private void ClearScenes_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.ClearScenes();
         }
     }
 }

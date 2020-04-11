@@ -63,9 +63,6 @@
                         <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
                             <dx:SimpleButton x:Name="GidJPGBtn" Content="JPG" Width="50" HorizontalAlignment="Left" Click="GidJPGBtn_Click"  />
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="btnmothinGenerate" Content="Generate" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="MothionGenerate" />
-                        </dxlc:LayoutItem>
                         <dxlc:LayoutItem Margin="20,0,0,0" Width="50">
                             <dxe:CheckEdit x:Name="EditAllowed" Content="Edit" />
                         </dxlc:LayoutItem>
@@ -518,9 +515,11 @@
 
                                 <Button Margin="5,0,0,0" Content="Load" Height="30" Width="50"
                                   x:Name="btnLoad" Click="btnLoad_Click"/>
-                                <Button Margin="20,0,0,0" Content="ScrShot" Height="30" Width="50"
+                                <Button Margin="5,0,0,0" Content="Scr" Height="30" Width="60"
                                   x:Name="btnScreenshot" Click="btnScreenshot_Click"/>
-                                <Button Margin="25,0,0,0" Content="Reset" Height="30"
+                                <Button Margin="5,0,0,0" Content="Scr+" Height="30" Width="60"
+                                  x:Name="btnScreenshot1" Click="btnScreenshotAddGroup_Click"/>
+                                <Button Margin="5,0,0,0" Content="Reset" Height="30"
                                   Name="btnSetPositionReset" Click="btnSetPositionReset_Click"/>
                                 <Button Margin="5,0,0,0" Content="Start" Height="30"
                                   Name="btnSetPositionStart" Click="btnSetPositionStart_Click"/>
@@ -532,7 +531,7 @@
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
                                 <Button Margin="5,0,0,0" Content="Set Position" Height="30"
                                   Name="btnSetPosition" Click="btnSetPosition_Click"/>
-                                <Button Margin="40,0,0,0" Content="Save" Height="30"
+                                <Button Margin="5,0,0,0" Content="Save" Height="30"
                                   Name="btnSetPositionSave" Click="btnSetPositionSave_Click"/>
                                 <Label Content="Position:" Margin="5,0,0,0" VerticalAlignment="Center"/>
                                 <TextBox Name="txtPosition" Width="65" Height="24" Text="0.0"
@@ -540,6 +539,9 @@
                                 <Label Content="File:" Margin="5,0,0,0" VerticalAlignment="Center"/>
                                 <TextBox Text="{Binding ClipToProcess, UpdateSourceTrigger=PropertyChanged}"
                                          Width="200" Height="24" />
+
+                                
+                                
                             </StackPanel>
                            
 
@@ -581,12 +583,19 @@
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopGrBtn" Content="CopyGr" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn_Click" />
                             </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="SaveToFileBtn" Content="SaveToFile" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="SaveScenesToFileBtn_Click" />
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <dx:SimpleButton x:Name="LoadOneFileBtn" Content="Load 1" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="LoadOneSceneFromFileBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Right">
-                                <dx:SimpleButton x:Name="SaveBtn" Content="Save" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="SaveBtn_Click" />
+                                <dx:SimpleButton x:Name="ClearScenesBtn" Content="Clear" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ClearScenes_Click" />
                             </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <dx:SimpleButton x:Name="LoadAllFileBtn" Content="Load" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="LoadScenesFromFileBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <dx:SimpleButton x:Name="SaveToFileBtn" Content="Save" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="SaveScenesToFileBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Right"/>
                         </dxlc:LayoutGroup>
 
                         <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
@@ -739,26 +748,6 @@
 
                     </dxlc:LayoutGroup>
 
-
-                </dxlc:LayoutGroup>
-            </dx:DXTabItem>
-
-
-            <dx:DXTabItem Header="Motions" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="54">
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
-
-                    <!--menu buttons-->
-                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
-                            
-                        </dxlc:LayoutGroup>
-                    </dxlc:LayoutGroup>
-
-                    <!--pose position grid-->
-                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
-                                     LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch"/>
-
-                    <!--PosePosition editing-->
 
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>

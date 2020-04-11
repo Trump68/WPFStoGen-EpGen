@@ -288,9 +288,10 @@ namespace EPCat.Model
             }
         }
 
-        
 
+        [XmlIgnore]
         private ObservableCollection<Info_Clip> _Clips = null;
+        [XmlIgnore]
         public ObservableCollection<Info_Clip> Clips
         {            
             get
@@ -308,7 +309,9 @@ namespace EPCat.Model
                 return _Clips;
             }
         }
+        [XmlIgnore]
         private ObservableCollection<Info_Combo> _CombinedScenes = null;
+        [XmlIgnore]
         public ObservableCollection<Info_Combo> CombinedScenes
         {
             get
@@ -345,30 +348,7 @@ namespace EPCat.Model
             }
         }
         
-        private ObservableCollection<SkyrimPosePositionInfo> _PosePositions = null;
-        public ObservableCollection<SkyrimPosePositionInfo> PosePositions
-        {
-            get
-            {
-                if (_PosePositions == null)
-                {
-                    _PosePositions = new ObservableCollection<SkyrimPosePositionInfo>();
-                }
-                return _PosePositions;
-            }
-        }
-        private ObservableCollection<SkyrimMotionInfo> _Motions = null;
-        public ObservableCollection<SkyrimMotionInfo> Motions
-        {
-            get
-            {
-                if (_Motions == null)
-                {
-                    _Motions = new ObservableCollection<SkyrimMotionInfo>();
-                }
-                return _Motions;
-            }
-        }
+       
 
         [XmlIgnore]
         public bool SourceFolderExist { get; set; } = false;
@@ -630,74 +610,74 @@ namespace EPCat.Model
                 result.AddRange(ttt);               
             }
 
-            if (item.Clips.Count == 1)
-            {
-                    result.Add(p_SCENDATA_BEGIN + item.Clips.First().GenerateString() + p_SCENDATA_END);
-            }
-            else if (item.Clips.Count > 0)
-            {
-                List<string> ttt = new List<string>();
-                foreach (var it in item.Clips)
-                {
-                    ttt.Add(it.GenerateString());
-                }
+            //if (item.Clips.Count == 1)
+            //{
+            //        result.Add(p_SCENDATA_BEGIN + item.Clips.First().GenerateString() + p_SCENDATA_END);
+            //}
+            //else if (item.Clips.Count > 0)
+            //{
+            //    List<string> ttt = new List<string>();
+            //    foreach (var it in item.Clips)
+            //    {
+            //        ttt.Add(it.GenerateString());
+            //    }
                 
-                ttt[0] = p_SCENDATA_BEGIN + ttt.First();
-                ttt[ttt.Count - 1] = ttt.Last() + p_SCENDATA_END;
-                result.AddRange(ttt);
-            }
+            //    ttt[0] = p_SCENDATA_BEGIN + ttt.First();
+            //    ttt[ttt.Count - 1] = ttt.Last() + p_SCENDATA_END;
+            //    result.AddRange(ttt);
+            //}
 
-            // combined scenes
-            if (item.CombinedScenes.Count == 1)
-            {
-                result.Add(p_COMBDATA_BEGIN + item.CombinedScenes.First().GenerateString() + p_COMBDATA_END);
-            }
-            else if (item.CombinedScenes.Count > 0)
-            {
-                List<string> ttt = new List<string>();
-                foreach (var it in item.CombinedScenes)
-                {
-                    ttt.Add(it.GenerateString());
-                }
+            //// combined scenes
+            //if (item.CombinedScenes.Count == 1)
+            //{
+            //    result.Add(p_COMBDATA_BEGIN + item.CombinedScenes.First().GenerateString() + p_COMBDATA_END);
+            //}
+            //else if (item.CombinedScenes.Count > 0)
+            //{
+            //    List<string> ttt = new List<string>();
+            //    foreach (var it in item.CombinedScenes)
+            //    {
+            //        ttt.Add(it.GenerateString());
+            //    }
 
-                ttt[0] = p_COMBDATA_BEGIN + ttt.First();
-                ttt[ttt.Count - 1] = ttt.Last() + p_COMBDATA_END;
-                result.AddRange(ttt);
-            }
+            //    ttt[0] = p_COMBDATA_BEGIN + ttt.First();
+            //    ttt[ttt.Count - 1] = ttt.Last() + p_COMBDATA_END;
+            //    result.AddRange(ttt);
+            //}
 
-            // pose positions
-            if (item.PosePositions.Count == 1)
-            {
-                result.Add(p_POSEPOSITION_BEGIN + item.PosePositions.First().GenerateString() + p_POSEPOSITION_END);
-            }
-            else if (item.PosePositions.Count > 0)
-            {
-                List<string> ttt = new List<string>();
-                foreach (var it in item.PosePositions)
-                {
-                    ttt.Add(it.GenerateString());
-                }
-                ttt[0] = p_POSEPOSITION_BEGIN + ttt.First();
-                ttt[ttt.Count - 1] = ttt.Last() + p_POSEPOSITION_END;
-                result.AddRange(ttt);
-            }
+            //// pose positions
+            //if (item.PosePositions.Count == 1)
+            //{
+            //    result.Add(p_POSEPOSITION_BEGIN + item.PosePositions.First().GenerateString() + p_POSEPOSITION_END);
+            //}
+            //else if (item.PosePositions.Count > 0)
+            //{
+            //    List<string> ttt = new List<string>();
+            //    foreach (var it in item.PosePositions)
+            //    {
+            //        ttt.Add(it.GenerateString());
+            //    }
+            //    ttt[0] = p_POSEPOSITION_BEGIN + ttt.First();
+            //    ttt[ttt.Count - 1] = ttt.Last() + p_POSEPOSITION_END;
+            //    result.AddRange(ttt);
+            //}
 
-            // motions
-            if (item.Motions.Count == 1)
-            {
-                result.Add(p_MOTION_BEGIN + item.Motions.First().GenerateString() + p_MOTION_END);
-            }
-            else if (item.Motions.Count > 0)
-            {
-                List<string> ttt = new List<string>();
-                foreach (var it in item.Motions)
-                {
-                    ttt.Add(it.GenerateString());
-                }
-                ttt[0] = p_MOTION_BEGIN + ttt.First();
-                ttt[ttt.Count - 1] = ttt.Last() + p_MOTION_END;
-                result.AddRange(ttt);
-            }
+            //// motions
+            //if (item.Motions.Count == 1)
+            //{
+            //    result.Add(p_MOTION_BEGIN + item.Motions.First().GenerateString() + p_MOTION_END);
+            //}
+            //else if (item.Motions.Count > 0)
+            //{
+            //    List<string> ttt = new List<string>();
+            //    foreach (var it in item.Motions)
+            //    {
+            //        ttt.Add(it.GenerateString());
+            //    }
+            //    ttt[0] = p_MOTION_BEGIN + ttt.First();
+            //    ttt[ttt.Count - 1] = ttt.Last() + p_MOTION_END;
+            //    result.AddRange(ttt);
+            //}
 
             return result;
         }
@@ -739,85 +719,85 @@ namespace EPCat.Model
                 }
 
                 //comb data
-                else if (term.StartsWith(p_COMBDATA_BEGIN))
-                {
-                    term = term.Replace(p_COMBDATA_BEGIN, string.Empty);
-                    isCombData = true;
-                    if (term.Contains(p_COMBDATA_END))
-                    {
-                        term = term.Replace(p_COMBDATA_END, string.Empty);
-                        isCombData = false;
-                    }
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        Info_Combo sd = new Info_Combo();
-                        sd.LoadFromString(term);
-                        if (!string.IsNullOrEmpty(sd.ID))
-                            result.CombinedScenes.Add(sd);
-                    }
+                //else if (term.StartsWith(p_COMBDATA_BEGIN))
+                //{
+                //    term = term.Replace(p_COMBDATA_BEGIN, string.Empty);
+                //    isCombData = true;
+                //    if (term.Contains(p_COMBDATA_END))
+                //    {
+                //        term = term.Replace(p_COMBDATA_END, string.Empty);
+                //        isCombData = false;
+                //    }
+                //    if (!string.IsNullOrWhiteSpace(term))
+                //    {
+                //        Info_Combo sd = new Info_Combo();
+                //        sd.LoadFromString(term);
+                //        if (!string.IsNullOrEmpty(sd.ID))
+                //            result.CombinedScenes.Add(sd);
+                //    }
                     
-                }
-                else if (isCombData)
-                {
-                    if (term.Contains(p_COMBDATA_END))
-                    {
-                        term = term.Replace(p_COMBDATA_END, string.Empty);
-                        isCombData = false;
-                    }
-                    Info_Combo sd = new Info_Combo();
-                    sd.LoadFromString(term);
-                    result.CombinedScenes.Add(sd);
-                }
+                //}
+                //else if (isCombData)
+                //{
+                //    if (term.Contains(p_COMBDATA_END))
+                //    {
+                //        term = term.Replace(p_COMBDATA_END, string.Empty);
+                //        isCombData = false;
+                //    }
+                //    Info_Combo sd = new Info_Combo();
+                //    sd.LoadFromString(term);
+                //    result.CombinedScenes.Add(sd);
+                //}
 
                 //pose position
-                else if (term.StartsWith(p_POSEPOSITION_BEGIN))
-                {
-                    term = term.Replace(p_POSEPOSITION_BEGIN, string.Empty);
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        SkyrimPosePositionInfo sd = new SkyrimPosePositionInfo();
-                        sd.LoadFromString(term);
-                        if (!string.IsNullOrEmpty(sd.ID))
-                            result.PosePositions.Add(sd);
-                    }
-                    isPosePosition = true;
-                }
-                else if (isPosePosition)
-                {
-                    if (term.Contains(p_POSEPOSITION_END))
-                    {
-                        term = term.Replace(p_POSEPOSITION_END, string.Empty);
-                        isPosePosition = false;
-                    }
-                    SkyrimPosePositionInfo sd = new SkyrimPosePositionInfo();
-                    sd.LoadFromString(term);
-                    result.PosePositions.Add(sd);
-                }
+                //else if (term.StartsWith(p_POSEPOSITION_BEGIN))
+                //{
+                //    term = term.Replace(p_POSEPOSITION_BEGIN, string.Empty);
+                //    if (!string.IsNullOrWhiteSpace(term))
+                //    {
+                //        SkyrimPosePositionInfo sd = new SkyrimPosePositionInfo();
+                //        sd.LoadFromString(term);
+                //        if (!string.IsNullOrEmpty(sd.ID))
+                //            result.PosePositions.Add(sd);
+                //    }
+                //    isPosePosition = true;
+                //}
+                //else if (isPosePosition)
+                //{
+                //    if (term.Contains(p_POSEPOSITION_END))
+                //    {
+                //        term = term.Replace(p_POSEPOSITION_END, string.Empty);
+                //        isPosePosition = false;
+                //    }
+                //    SkyrimPosePositionInfo sd = new SkyrimPosePositionInfo();
+                //    sd.LoadFromString(term);
+                //    result.PosePositions.Add(sd);
+                //}
 
                 //motion
-                else if (term.StartsWith(p_MOTION_BEGIN))
-                {
-                    term = term.Replace(p_MOTION_BEGIN, string.Empty);
-                    if (!string.IsNullOrWhiteSpace(term))
-                    {
-                        SkyrimMotionInfo sd = new SkyrimMotionInfo();
-                        sd.LoadFromString(term);
-                        if (!string.IsNullOrEmpty(sd.ID))
-                            result.Motions.Add(sd);
-                    }
-                    isMotion = true;
-                }
-                else if (isMotion)
-                {
-                    if (term.Contains(p_MOTION_END))
-                    {
-                        term = term.Replace(p_MOTION_END, string.Empty);
-                        isMotion = false;
-                    }
-                    SkyrimMotionInfo sd = new SkyrimMotionInfo();
-                    sd.LoadFromString(term);
-                    result.Motions.Add(sd);
-                }
+                //else if (term.StartsWith(p_MOTION_BEGIN))
+                //{
+                //    term = term.Replace(p_MOTION_BEGIN, string.Empty);
+                //    if (!string.IsNullOrWhiteSpace(term))
+                //    {
+                //        SkyrimMotionInfo sd = new SkyrimMotionInfo();
+                //        sd.LoadFromString(term);
+                //        if (!string.IsNullOrEmpty(sd.ID))
+                //            result.Motions.Add(sd);
+                //    }
+                //    isMotion = true;
+                //}
+                //else if (isMotion)
+                //{
+                //    if (term.Contains(p_MOTION_END))
+                //    {
+                //        term = term.Replace(p_MOTION_END, string.Empty);
+                //        isMotion = false;
+                //    }
+                //    SkyrimMotionInfo sd = new SkyrimMotionInfo();
+                //    sd.LoadFromString(term);
+                //    result.Motions.Add(sd);
+                //}
 
                 else if (term.StartsWith(p_COMMENTS_BEGIN))
                 {
