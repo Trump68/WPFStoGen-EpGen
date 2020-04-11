@@ -240,11 +240,17 @@ namespace EPCat
         private void TabPageChanged(object sender, TabControlSelectionChangedEventArgs e)
         {
             if (e.NewSelectedItem == TabCaps) this.ViewModel.RefreshCaps();
+            else if (e.NewSelectedItem == EditTab)
+            {
+                RestoreVideoPosition();
+            }
             else
             {
                 this.ViewModel.UpdateCapsFile();
             }
         }
+
+
 
         private void SetCapsMode(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
         {
@@ -495,9 +501,7 @@ namespace EPCat
 
         private void btnSetPosition_Click(object sender, RoutedEventArgs e)
         {
-            TimeSpan timespan = TimeSpan.FromSeconds(double.Parse(txtPosition.Text));
-            minionPlayer.Position = timespan;
-            ShowPosition();
+            RestoreVideoPosition();
         }
         
         private void btnSaveStart_Click(object sender, RoutedEventArgs e)
@@ -787,6 +791,12 @@ namespace EPCat
             (this.DataContext as EpCatViewModel).AddCombinedScene(null);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
+        }
+        private void RestoreVideoPosition()
+        {
+            TimeSpan timespan = TimeSpan.FromSeconds(double.Parse(txtPosition.Text));
+            minionPlayer.Position = timespan;
+            ShowPosition();
         }
     }
 }

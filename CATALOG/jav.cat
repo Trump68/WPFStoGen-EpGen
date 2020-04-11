@@ -16213,7 +16213,7 @@ NGOD JET Eizou JET Eizou Измена драма
     <Star>Natsume Iroha Hara Sarasa</Star>
     <Studio>IDEA POCKET</Studio>
     <PARENT>IPZ-962</PARENT>
-    <Size>804</Size>
+    <Size>1710</Size>
     <Comments>
       <string />
     </Comments>
@@ -43652,7 +43652,122 @@ NGOD JET Eizou JET Eizou Измена драма
     </Comments>
     <CommentsAsString />
     <Clips />
-    <CombinedScenes />
+    <CombinedScenes>
+      <Info_Combo>
+        <ID>19391697-4a17-44fa-b2bc-f4d1952e9138</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Description>Овель делают неприличное предложение</Description>
+        <Story>e:\!CATALOG\JAV\IPZ\IPZ-050\Story.txt@0010.01.01</Story>
+        <Group>0010.01.01</Group>
+        <Queue>1</Queue>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X>1000</X>
+        <Y>100</Y>
+        <F>20</F>
+        <S>30</S>
+        <T />
+        <Z>Black</Z>
+        <Align />
+        <VAlign>0</VAlign>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>78ce14ec-e71c-412e-bfe0-e4c4c17bcc9b</ID>
+        <File>e:\!CATALOG\JAV\IPZ\IPZ-050\CLIPCAPS\0000.3b21ee01-bef4-41bc-a7d9-3caed9fb057e.jpg</File>
+        <Kind>0</Kind>
+        <Description>00100.00100</Description>
+        <Group>0010.01.01</Group>
+        <Queue>1</Queue>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X>30</X>
+        <Y>30</Y>
+        <S />
+      </Info_Combo>
+      <Info_Combo>
+        <ID>c4df06db-970e-40c5-85bf-e7ae5dbfceca</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Description>Овель делают неприличное предложение</Description>
+        <Story>e:\!CATALOG\JAV\IPZ\IPZ-050\Story.txt@0010.01.01</Story>
+        <Group>0010.01.02</Group>
+        <Queue>1</Queue>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X>1000</X>
+        <Y>100</Y>
+        <F>20</F>
+        <S>30</S>
+        <Z>Black</Z>
+        <VAlign>0</VAlign>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>e4d52640-6937-4831-bd90-575eaa49fe23</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Description>Овель красавица</Description>
+        <Story>e:\!CATALOG\JAV\IPZ\IPZ-050\Story.txt@0020.01.01</Story>
+        <Group>0020.01.01</Group>
+        <Queue>1</Queue>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X>1000</X>
+        <Y>100</Y>
+        <F>20</F>
+        <S>30</S>
+        <Z>Black</Z>
+        <VAlign>0</VAlign>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>766fcc99-6cde-4c68-aa00-a428a61de147</ID>
+        <File>e:\!CATALOG\JAV\IPZ\IPZ-050\CLIPCAPS\0001.3b21ee01-bef4-41bc-a7d9-3caed9fb057e.jpg</File>
+        <Kind>0</Kind>
+        <Description>00100.00100</Description>
+        <Group>0010.01.02</Group>
+        <Queue>1</Queue>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X>30</X>
+        <Y>30</Y>
+      </Info_Combo>
+      <Info_Combo>
+        <ID>37381f76-1255-47f3-937f-f5044ac64a37</ID>
+        <File>e:\!CATALOG\JAV\IPZ\IPZ-050\CLIPCAPS\0002.3b21ee01-bef4-41bc-a7d9-3caed9fb057e.jpg</File>
+        <Kind>0</Kind>
+        <Description>00100.00100</Description>
+        <Group>0020.01.01</Group>
+        <Queue>1</Queue>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <X>30</X>
+        <Y>30</Y>
+      </Info_Combo>
+    </CombinedScenes>
     <PosePositions />
     <Motions />
   </EpItem>
@@ -58374,10 +58489,12 @@ On May 21, 2014. she announced her retirement.
     <Name>CJOD-113</Name>
     <Catalog>JAV</Catalog>
     <LastEdit>0</LastEdit>
-    <Year>0</Year>
+    <AltTitle>CJOD-113 Clothes Big Tits Bounced It's Cool In The Woman On Top! Kimishima Mio</AltTitle>
+    <Year>2017</Year>
     <Month>0</Month>
     <Day>0</Day>
     <Serie>CJOD</Serie>
+    <Star>Kimijima Mio </Star>
     <PARENT>CJOD-113</PARENT>
     <Size>3123</Size>
     <Comments>
@@ -58397,10 +58514,12 @@ On May 21, 2014. she announced her retirement.
     <Name>CJOD-139</Name>
     <Catalog>JAV</Catalog>
     <LastEdit>0</LastEdit>
-    <Year>0</Year>
+    <AltTitle>CJOD-139 Valley O Enlarge Enamel You Scorn Boobs Like Us At The Front Oi Kimishima Mio</AltTitle>
+    <Year>2018</Year>
     <Month>0</Month>
     <Day>0</Day>
     <Serie>CJOD</Serie>
+    <Star>Kimijima Mio </Star>
     <PARENT>CJOD-139</PARENT>
     <Size>3011</Size>
     <Comments>
@@ -60775,6 +60894,220 @@ On May 21, 2014. she announced her retirement.
     <Comments>
       <string />
     </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>5c668efd-85b5-4b88-8646-1f27b632af2c</GID>
+    <ItemPath>e:\!catalog\jav\cjod\cjod-163\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>CJOD-163</Name>
+    <Catalog>JAV</Catalog>
+    <LastEdit>0</LastEdit>
+    <AltTitle>CJOD-163 Purupuru Deca Washing Is A Popular Public Bath House Sister Shinoda Yu</AltTitle>
+    <Year>2018</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Serie>CJOD</Serie>
+    <Star>Shinoda Yuu</Star>
+    <PARENT>CJOD-163</PARENT>
+    <Size>601</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>2db9b06d-f539-47b5-b4e9-81cf3d75cdad</GID>
+    <ItemPath>e:\!catalog\jav\abp\abp-393\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>ABP-393</Name>
+    <Catalog>JAV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Serie>ABP</Serie>
+    <PARENT>ABP-393</PARENT>
+    <Size>1215</Size>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>118d6b14-7438-4cfd-b51e-1bd8386d131c</GID>
+    <ItemPath>e:\!catalog\jav\abp\abp-425\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>ABP-425</Name>
+    <Catalog>JAV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Serie>ABP</Serie>
+    <PARENT>ABP-425</PARENT>
+    <Size>1499</Size>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>6066b99d-e2bf-4946-9d04-2cc341cfd19c</GID>
+    <ItemPath>e:\!catalog\jav\abp\abp-454\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>ABP-454</Name>
+    <Catalog>JAV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Serie>ABP</Serie>
+    <PARENT>ABP-454</PARENT>
+    <Size>1761</Size>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>d7d2c0cb-9edc-473d-ad4c-3fac71015baa</GID>
+    <ItemPath>e:\!catalog\jav\djsg\djsg-123\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>DJSG-123</Name>
+    <Catalog>JAV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Serie>DJSG</Serie>
+    <PARENT>DJSG-123</PARENT>
+    <Size>1631</Size>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>1126471d-3ce5-4e68-b04e-bed8e969a4c0</GID>
+    <ItemPath>e:\!catalog\jav\fset\fset-678\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>FSET-678</Name>
+    <Catalog>JAV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Serie>FSET</Serie>
+    <PARENT>FSET-678</PARENT>
+    <Size>1766</Size>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>b0fff433-3a66-4ca2-b2c9-f757ce180e11</GID>
+    <ItemPath>e:\!catalog\jav\hnd\hnd-576\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>HND-576</Name>
+    <Catalog>JAV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Serie>HND</Serie>
+    <PARENT>HND-576</PARENT>
+    <Size>441</Size>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>75c353cc-4c7e-4830-a1b7-bd4abb9970af</GID>
+    <ItemPath>e:\!catalog\jav\mdbk\mdbk-081\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>MDBK-081</Name>
+    <Catalog>JAV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Serie>MDBK</Serie>
+    <PARENT>MDBK-081</PARENT>
+    <Size>1569</Size>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>c11c8cb2-2abe-4163-ad83-80315d199727</GID>
+    <ItemPath>e:\!catalog\jav\okad\okad-497\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>OKAD-497</Name>
+    <Catalog>JAV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Serie>OKAD</Serie>
+    <PARENT>OKAD-497</PARENT>
+    <Size>1378</Size>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes />
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>03b14556-0259-4315-9cf1-e2c1bdfc46ae</GID>
+    <ItemPath>e:\!catalog\jav\zuko\zuko-061\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>ZUKO-061</Name>
+    <Catalog>JAV</Catalog>
+    <LastEdit>0</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Serie>ZUKO</Serie>
+    <PARENT>ZUKO-061</PARENT>
+    <Size>1102</Size>
+    <Comments />
     <CommentsAsString />
     <Clips />
     <CombinedScenes />

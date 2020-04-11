@@ -5602,6 +5602,7 @@
         <Kind>1</Kind>
         <Description />
         <Story>e:\!CATALOG\PRS\Comix\LEONE FROLLO\Blancanieves - 02\Story.txt@001.010</Story>
+        <Group />
         <Queue>1</Queue>
         <LoopMode>1</LoopMode>
         <LoopCount>1</LoopCount>
@@ -5609,14 +5610,21 @@
         <ShowMovieControl>0</ShowMovieControl>
         <PositionStart>0</PositionStart>
         <PositionEnd>0</PositionEnd>
+        <X>1300</X>
+        <Y>300</Y>
         <F>20</F>
+        <S>30</S>
         <Z>Black</Z>
+        <Align>2</Align>
+        <VAlign>1</VAlign>
       </Info_Combo>
       <Info_Combo>
         <ID>f183e077-d20b-45a9-8818-a119a2be7f86</ID>
+        <File>e:\!CATALOG\PRS\Comix\LEONE FROLLO\Blancanieves - 02\Pics\0051.png</File>
         <Kind>0</Kind>
         <Description />
-        <Story>e:\!CATALOG\PRS\Comix\LEONE FROLLO\Blancanieves - 02\Pics\0051.png</Story>
+        <Story />
+        <Group />
         <Queue>1</Queue>
         <LoopMode>1</LoopMode>
         <LoopCount>1</LoopCount>
@@ -5624,6 +5632,48 @@
         <ShowMovieControl>0</ShowMovieControl>
         <PositionStart>0</PositionStart>
         <PositionEnd>0</PositionEnd>
+        <X>300</X>
+        <Y>100</Y>
+        <S>500</S>
+      </Info_Combo>
+    </CombinedScenes>
+    <PosePositions />
+    <Motions />
+  </EpItem>
+  <EpItem>
+    <CapsPassportData />
+    <GID>7769b1a3-ac99-42d6-ad08-00a391812b88</GID>
+    <ItemPath>e:\!catalog\prs\webcomix\illustratedinterracial-site-rip-2016\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>IllustratedInterracial-site-rip-2016</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>IllustratedInterracial-site-rip-2016</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>STORY</Variant>
+    <Kind>WebSite</Kind>
+    <PARENT>IllustratedInterracial-site-rip-2016</PARENT>
+    <Size>0</Size>
+    <Comments />
+    <CommentsAsString />
+    <Clips />
+    <CombinedScenes>
+      <Info_Combo>
+        <ID>293bb2fe-6412-4e74-aefb-c9c5e95f9b57</ID>
+        <File>$$WHITE$$</File>
+        <Kind>1</Kind>
+        <Description>013</Description>
+        <Story>e:\!CATALOG\PRS\Story\Can't Buy Me Love\Story.txt@5.00</Story>
+        <Group>005.00</Group>
+        <LoopMode>1</LoopMode>
+        <LoopCount>1</LoopCount>
+        <Speed>100</Speed>
+        <ShowMovieControl>0</ShowMovieControl>
+        <PositionStart>0</PositionStart>
+        <PositionEnd>0</PositionEnd>
+        <Align>3</Align>
       </Info_Combo>
     </CombinedScenes>
     <PosePositions />
