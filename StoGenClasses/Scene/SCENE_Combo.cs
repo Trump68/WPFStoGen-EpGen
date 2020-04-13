@@ -1,4 +1,5 @@
-﻿using StoGen.Classes.Transition;
+﻿using StoGen.Classes.Scene;
+using StoGen.Classes.Transition;
 using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
@@ -16,82 +17,93 @@ namespace StoGen.Classes.Data.Games
             Name = "Scene_Game";
             EngineHiVer = 1;
             EngineLoVer = 0;
-            setDefaultTextAttribs();
         }
-        List<Info_Combo> InfoList = null;
+        SCENARIO Scenario = null;
+        List<Info_Combo> Queue;
         List<List<Info_Combo>> data = new List<List<Info_Combo>>();
-        private Dictionary<string, Info_Combo> DefaultVisualDic = new Dictionary<string, Info_Combo>();
+        //private Dictionary<string, Info_Combo> DefaultVisualDic = new Dictionary<string, Info_Combo>();
 
-        public void SetInfo(List<Info_Combo> infoList)
+        public void SetScenario(SCENARIO scenario, string queue)
         {
-            InfoList = infoList;
-            this.LoadData(string.Empty, string.Empty);
-            this.Generate(InfoList.First().ID);
+            Scenario = scenario;
+            Queue = scenario.Scenes.Where(x => x.Queue == queue).ToList();
+            Queue.Sort(delegate (Info_Combo x, Info_Combo y)
+            {
+                if (x.Group == null) x.Group = string.Empty;
+                if (y.Group == null) y.Group = string.Empty;
+                return x.Group.CompareTo(y.Group);
+            });
+            this.Process();
         }
 
         private Info_Combo GetVisualByDefaultAndCurrent(Info_Combo current)
         {
             Info_Combo rez = Info_Combo.GenerateCopy(current);
-            Info_Combo def = null;
-            if (string.IsNullOrEmpty(rez.File))
-            {
-                if (DefaultVisualDic.Any())
-                {
-                    if (DefaultVisualDic.First().Value.Kind == rez.Kind)
-                        def = DefaultVisualDic.First().Value;
-                }
-            }
-            else
-            {
-                if (DefaultVisualDic.ContainsKey(rez.File))
-                    def = DefaultVisualDic[rez.File];
-            }
-            if (def != null)
-            {
+            //Info_Combo def = null;
+            //if (string.IsNullOrEmpty(rez.File))
+            //{
+            //    if (DefaultVisualDic.Any())
+            //    {
+            //        if (DefaultVisualDic.First().Value.Kind == rez.Kind)
+            //            def = DefaultVisualDic.First().Value;
+            //    }
+            //}
+            //else
+            //{
+            //    if (DefaultVisualDic.ContainsKey(rez.File))
+            //        def = DefaultVisualDic[rez.File];
+            //}
+            //if (def != null)
+            //{
                 if (string.IsNullOrEmpty(rez.File))             
-                    rez.File = def.File;
-                if (string.IsNullOrEmpty(rez.Align))
-                    rez.Align = def.Align;
+                    rez.File = Scenario.DefVisFile;
                 if (string.IsNullOrEmpty(rez.LoopCount))
-                    rez.LoopCount = def.LoopCount;
+                rez.LoopCount = Scenario.DefVisLC; 
                 if (string.IsNullOrEmpty(rez.LoopMode))
-                    rez.LoopMode = def.LoopMode;
-                if (string.IsNullOrEmpty(rez.O))
-                    rez.O = def.O;
-                if (string.IsNullOrEmpty(rez.PositionEnd))
-                    rez.PositionEnd = def.PositionEnd;
-                if (string.IsNullOrEmpty(rez.PositionStart))
-                    rez.PositionStart = def.PositionStart;
-                if (string.IsNullOrEmpty(rez.R))
-                    rez.R = def.R;
-                if (string.IsNullOrEmpty(rez.S))
-                    rez.S = def.S;
-                if (string.IsNullOrEmpty(rez.ShowMovieControl))
-                    rez.ShowMovieControl = def.ShowMovieControl;
-                if (string.IsNullOrEmpty(rez.Speed))
-                    rez.Speed = def.Speed;
-                if (string.IsNullOrEmpty(rez.VAlign))
-                    rez.VAlign = def.VAlign;
-                if (string.IsNullOrEmpty(rez.X))
-                    rez.X = def.X;
-                if (string.IsNullOrEmpty(rez.Y))
-                    rez.Y = def.Y;
-                if (string.IsNullOrEmpty(rez.Z))
-                    rez.Z = def.Z;
-            }
-            else if (!string.IsNullOrEmpty(rez.File))
-            {
-                DefaultVisualDic.Add(rez.File, rez);
-            }
+                    rez.LoopMode = Scenario.DefVisLM;
+            if (string.IsNullOrEmpty(rez.S))
+                    rez.S = Scenario.DefVisSize;
+            if (string.IsNullOrEmpty(rez.Speed))
+                rez.Speed = Scenario.DefVisSpeed;
+            if (string.IsNullOrEmpty(rez.X))
+                rez.X = Scenario.DefVisX;
+            if (string.IsNullOrEmpty(rez.Y))
+                rez.Y = Scenario.DefVisY;
+            //if (string.IsNullOrEmpty(rez.O))
+            //        rez.O = def.O;
+            //    //if (string.IsNullOrEmpty(rez.PositionEnd))
+            //    //    rez.PositionEnd = def.PositionEnd;
+            //    //if (string.IsNullOrEmpty(rez.PositionStart))
+            //    //    rez.PositionStart = def.PositionStart;
+            //    //if (string.IsNullOrEmpty(rez.R))
+            //    //    rez.R = def.R;
+            //    if (string.IsNullOrEmpty(rez.S))
+            //        rez.S = def.S;
+            //    if (string.IsNullOrEmpty(rez.ShowMovieControl))
+            //        rez.ShowMovieControl = def.ShowMovieControl;
+            //    if (string.IsNullOrEmpty(rez.Speed))
+            //        rez.Speed = def.Speed;
+            //    if (string.IsNullOrEmpty(rez.VAlign))
+            //        rez.VAlign = def.VAlign;
+            //    if (string.IsNullOrEmpty(rez.X))
+            //        rez.X = def.X;
+            //    if (string.IsNullOrEmpty(rez.Y))
+            //        rez.Y = def.Y;
+            //    if (string.IsNullOrEmpty(rez.Z))
+            //        rez.Z = def.Z;
+            ////}
+            //else if (!string.IsNullOrEmpty(rez.File))
+            //{
+            //    DefaultVisualDic.Add(rez.File, rez);
+            //}
             return rez;
         }
 
-        public override bool LoadData(string filter, string moviePath)
+        public bool Process()
         {
             data.Clear();
-            setDefaultTextAttribs();
-            this.currentGr = InfoList.First().ID;
-            var grupedlist = InfoList.GroupBy(x => x.Group).ToList();
+            this.currentGr = Queue.First().ID;
+            var grupedlist = Queue.GroupBy(x => x.Group).ToList();
 
             for (int i = 0; i < grupedlist.Count; i++)
             {
@@ -99,16 +111,21 @@ namespace StoGen.Classes.Data.Games
                 data.Add(nl);
             }
 
-            for (int i = 0; i < data.Count; i++)
-            {
-                if (i > 0)
-                {
-                    var prevgroup = data[i - 1];
-                    var curgroup = data[i];
-                    RepeatGroupForKind_3(prevgroup, ref curgroup);
-                }
-
-            }
+            // TEXT
+            if (!string.IsNullOrEmpty(Scenario.DefTextSize))
+                this.DefaultSceneText.Size = Convert.ToInt32(Scenario.DefTextSize);
+            if (!string.IsNullOrEmpty(Scenario.DefTextWidth))
+                this.DefaultSceneText.Width = Convert.ToInt32(Scenario.DefTextWidth);
+            if (!string.IsNullOrEmpty(Scenario.DefFontSize))
+                this.DefaultSceneText.FontSize = Convert.ToInt32(Scenario.DefFontSize);
+            if (!string.IsNullOrEmpty(Scenario.DefTextShift))
+                this.DefaultSceneText.Shift = Convert.ToInt32(Scenario.DefTextShift);
+            if (!string.IsNullOrEmpty(Scenario.DefFontColor))
+                this.DefaultSceneText.FontColor = Scenario.DefFontColor;
+            if (!string.IsNullOrEmpty(Scenario.DefTextAlignH))
+                this.DefaultSceneText.Align = Convert.ToInt32(Scenario.DefTextAlignH);
+            if (!string.IsNullOrEmpty(Scenario.DefTextAlignV))
+                this.DefaultSceneText.VAlign = Convert.ToInt32(Scenario.DefTextAlignV);
 
             foreach (var group in data)
             {
@@ -118,34 +135,7 @@ namespace StoGen.Classes.Data.Games
         }
         
 
-        private void setDefaultTextAttribs()
-        {
-            this.DefaultSceneText.Size = 150;
-            this.DefaultSceneText.Width = 1000;
-            this.DefaultSceneText.FontSize = 32;
-            this.DefaultSceneText.Shift = 250;
-            this.DefaultSceneText.FontColor = "White";
-        }
-        private void RepeatGroupForKind_3(List<Info_Combo> prevgroup, ref List<Info_Combo> curgroup)
-        {
-            // repeat group for kind 3- repeat prev group 
-            if (curgroup.Where(x=>x.Kind == 3).Any())
-            {
-                curgroup.Where(x => x.Kind == 3).First().Kind = 1;
-                foreach (var pg in prevgroup)
-                {
-                    if (!curgroup.Where(z=>z.Kind !=1 && z.Description == pg.Description).Any())
-                    {
-                        string ngs = pg.GenerateString();
-                        Info_Combo ng = new Info_Combo();
-                        ng.LoadFromString(ngs);
-                        ng.File = pg.File;
-                        ng.Group = curgroup.First().Group;
-                        curgroup.Add(ng);
-                    }
-                }
-            }
-        }
+
         private void DoCadreByGroup(List<Info_Combo> group)
         {
             // sound
@@ -157,34 +147,25 @@ namespace StoGen.Classes.Data.Games
             }
 
             Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
-            // TEXT
-            
+          
+
             string story = string.Empty;
             string path = string.Empty;
-            var title = group.Where(x => x.Kind == 1).FirstOrDefault();
+            Info_Combo title = group.Where(x => x.Kind == 1).FirstOrDefault();
+            Info_Combo copytitle = null;
             if (title != null)
             {
+                copytitle = Info_Combo.GenerateCopy(title);
                 // try to get text from kind 1
-                story = title.Story;
-                if (title.File == "$$WHITE$$") // white background
+                story = copytitle.Story;
+                if (string.IsNullOrEmpty(copytitle.File) && !string.IsNullOrEmpty(Scenario.DefTextBck))
+                    copytitle.File = Scenario.DefTextBck;
+                if (copytitle.File == "$$WHITE$$") // white background
                 {
                     AddToGlobalImage("$$WHITE$$", "$$WHITE$$",string.Empty);
                     Pictures.Add("$$WHITE$$", new DifData("$$WHITE$$") { });
                 }
-                if (!string.IsNullOrEmpty(title.Y))
-                    this.DefaultSceneText.Size = Convert.ToInt32(title.Y);
-                if (!string.IsNullOrEmpty(title.X))
-                    this.DefaultSceneText.Width = Convert.ToInt32(title.X);
-                if (!string.IsNullOrEmpty(title.F))
-                    this.DefaultSceneText.FontSize = Convert.ToInt32(title.F);
-                if (!string.IsNullOrEmpty(title.S))
-                    this.DefaultSceneText.Shift = Convert.ToInt32(title.S);
-                if (!string.IsNullOrEmpty(title.Z))
-                    this.DefaultSceneText.FontColor = title.Z;
-                if (!string.IsNullOrEmpty(title.Align))
-                    this.DefaultSceneText.Align = Convert.ToInt32(title.Align);
-                if (!string.IsNullOrEmpty(title.VAlign))
-                    this.DefaultSceneText.VAlign = Convert.ToInt32(title.VAlign);
+
             }
 
             // try to get text from kind 4
@@ -307,9 +288,21 @@ namespace StoGen.Classes.Data.Games
                       AR = Convert.ToInt32(item.Speed),
                       AV = volume};
 
-                    if (string.IsNullOrEmpty(item.S) || item.S == "0") item.S = "800";
+                    //if (string.IsNullOrEmpty(item.S) || item.S == "0") item.S = "800";
+
                     DifData size = new DifData() { S = Convert.ToInt32(item.S) };
                     size.Name = anim.File;
+                    if (!string.IsNullOrEmpty(item.X))
+                        size.X = Convert.ToInt32(item.X);
+                    if (!string.IsNullOrEmpty(item.Y))
+                        size.Y = Convert.ToInt32(item.Y);
+                    if (!string.IsNullOrEmpty(item.O))
+                        size.O = Convert.ToInt32(item.O);
+                    if (!string.IsNullOrEmpty(item.R))
+                        size.R = Convert.ToInt32(item.R);
+                    if (!string.IsNullOrEmpty(item.Z))
+                        size.Z = Convert.ToInt32(item.Z);
+
                     size.AL.Add(anim);
                     var dd = new List<DifData>();
                     itl.AddRange(dd);

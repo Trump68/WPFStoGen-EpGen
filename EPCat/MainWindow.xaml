@@ -75,25 +75,7 @@
                         </dxlc:LayoutItem>
 
 
-                        <dxlc:LayoutItem Margin="0,0,0,0" Width="400">
-
-                            <dxe:ListBoxEdit x:Name="rgCapsPassport" ShowBorder="True" EditValueChanged="SetCurrentImagePassort" SelectedIndex="0">
-                                <dxe:ListBoxEdit.StyleSettings>
-                                    <dxe:RadioListBoxEditStyleSettings />
-                                </dxe:ListBoxEdit.StyleSettings>
-                                <dxe:ListBoxEdit.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal" />
-                                    </ItemsPanelTemplate>
-                                </dxe:ListBoxEdit.ItemsPanel>
-                                <dxe:ListBoxEditItem Content="Caps" />
-                                <dxe:ListBoxEditItem Content="Events" />
-                                <dxe:ListBoxEditItem Content="Figures" />
-                                <dxe:ListBoxEditItem Content="Parts" />
-                                <dxe:ListBoxEditItem Content="Backg" />
-                                <dxe:ListBoxEditItem Content="Compos" />
-                            </dxe:ListBoxEdit>
-                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Margin="0,0,0,0" Width="400"/>
 
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup>
@@ -415,7 +397,7 @@
                                     <dxg:GridControl x:Name="GVCombScen"
                                          AutoGenerateColumns="None"
                                          EnableSmartColumnsGeneration="True"
-                                         ItemsSource="{Binding SelectedItem.Scenario.Scenes, ElementName=GV}"
+                                         ItemsSource="{Binding Scenes}"
                                          SelectedItem="{Binding CurrentCombinedScene}"
                                          SelectionMode="Cell" AutoExpandAllGroups="False">
                                         <!--SelectedItem="{Binding CurrentFolder}"-->
@@ -453,9 +435,9 @@
                                         <dxg:GridColumn FieldName="KindName" IsSmart="True" Width="35" IsEnabled="False"/>
                                         <dxg:GridColumn FieldName="Queue" IsSmart="True" Width="200" GroupIndex="0"/>
                                         <dxg:GridColumn FieldName="Group" IsSmart="True" Width="90" SortOrder="Ascending" GroupIndex="1" SortIndex="1"/>
-                                        <!--<dxg:GridColumn FieldName="File" IsSmart="True" Width="450"/>-->
                                         <dxg:GridColumn FieldName="Description" IsSmart="True"  Width="450"/>
-                                        <!--<dxg:GridColumn FieldName="Story" IsSmart="True" Width="350"/>-->
+                                        <dxg:GridColumn FieldName="File" IsSmart="True" Width="5"/>
+                                        <dxg:GridColumn FieldName="Story" IsSmart="True" Width="5"/>
                                     </dxg:GridControl>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutGroup Name="SceneProps" View="Group" Orientation="Vertical" Padding="0,0">
@@ -529,7 +511,7 @@
                                             <TextBox Name="txtSpeed" Text="{Binding SelectedItem.Speed, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                         <dxlc:LayoutItem Label="Controls" MaxWidth="100">
-                                            <TextBox Name="txtControls" Text="{Binding SelectedItem., ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                            <TextBox Name="txtControls" Text="{Binding SelectedItem.ShowMovieControl, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
@@ -551,53 +533,53 @@
                                     </dxlc:LayoutGroup>
                                 </dxlc:LayoutGroup>
                             </dxlc:LayoutGroup>
-                            <dxlc:LayoutItem Name ="Scenario" Width ="400" Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
+                            <dxlc:LayoutItem Name ="Scenario" Width ="600" Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
                                      LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
                                 <dxlc:LayoutGroup Name="ScenarioProps" View="Group" Orientation="Vertical" Padding="0,0">
                                     <dxlc:LayoutItem Label="Name" FontWeight="ExtraBold">
-                                        <TextBox FontWeight="Bold" TextWrapping="WrapWithOverflow" Foreground="Blue" Text="{Binding SelectedItem.Scenario.Name, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        <TextBox FontWeight="Bold" TextWrapping="WrapWithOverflow" Foreground="Blue" Text="{Binding Scenario.Name}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                     </dxlc:LayoutItem>
                                     <dxlc:LayoutItem Label="File name">
-                                        <TextBox Text="{Binding SelectedItem.Scenario.FileName, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        <TextBox Text="{Binding Scenario.FileName}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                     </dxlc:LayoutItem>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                         <dxlc:LayoutItem Label="Female">
-                                            <TextBox Text="{Binding SelectedItem.Scenario.Female, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            <TextBox Text="{Binding Scenario.Female}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                         <dxlc:LayoutItem Label="Male">
-                                            <TextBox Text="{Binding SelectedItem.Scenario.Male, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            <TextBox Text="{Binding Scenario.Male}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
 
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                         <dxlc:LayoutItem Label="Kind">
-                                            <TextBox Text="{Binding SelectedItem.Scenario.Kind, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            <TextBox Text="{Binding Scenario.Kind}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                         <dxlc:LayoutItem Label="Category">
-                                            <TextBox Text="{Binding SelectedItem.Scenario.Category, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            <TextBox Text="{Binding Scenario.Category}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                         <dxlc:LayoutItem Label="Variant">
-                                            <TextBox Text="{Binding SelectedItem.Scenario.Variant, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            <TextBox Text="{Binding Scenario.Variant}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
 
                                     <dxlc:LayoutItem Label="Stopwords" >
-                                        <TextBox TextWrapping="WrapWithOverflow" Text="{Binding SelectedItem.Scenario.Stopwords, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        <TextBox TextWrapping="WrapWithOverflow" Text="{Binding Scenario.StopWords}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                     </dxlc:LayoutItem>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                         <dxlc:LayoutItem Label="Description" LabelPosition="Top">
                                             <dxe:TextEdit MaxHeight="320"
-                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding SelectedItem.Scenario.Description, ElementName=GV}" />
+                                          TextWrapping="NoWrap" AcceptsReturn="True" Text="{Binding Scenario.Description}" />
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                         <dxlc:LayoutItem Label="Raw Parameters" LabelPosition="Top">
                                             <dxe:TextEdit MaxHeight="320"
-                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding SelectedItem.Scenario.RawParameters, ElementName=GV}" />
+                                          TextWrapping="NoWrap"  AcceptsReturn="True" Text="{Binding Scenario.RawParameters}" />
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
                                 </dxlc:LayoutGroup>

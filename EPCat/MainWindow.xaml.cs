@@ -157,16 +157,16 @@ namespace EPCat
 
         private void SetCapsMode(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
         {
-            RefreshCapsMode();
+
         }
         private void RefreshCapsMode()
         {
-           // ViewModel.SetCapsViewMode(rgCapsMode.SelectedIndex);
+
         }
 
         private void SetCurrentImagePassort(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
         {
-            ViewModel.SetCurrentImagePassort(rgCapsPassport.SelectedIndex);
+
 
         }
 
@@ -589,7 +589,7 @@ namespace EPCat
             if (atEnd)
             {
                 ViewModel.CurrentCombinedScene =
-                ViewModel.CurrentFolder.Scenario.Scenes.LastOrDefault();
+                ViewModel.Scenario.Scenes.LastOrDefault();
             }
             //save
             ViewModel.CopyCombinedScene(true);

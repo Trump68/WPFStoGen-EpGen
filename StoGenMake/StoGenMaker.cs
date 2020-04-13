@@ -8,6 +8,7 @@ using StoGen.Classes.Data.Games;
 using StoGen.Classes.Data.Movie;
 using System.Linq;
 using System.Windows;
+using StoGen.Classes.Scene;
 
 namespace StoGenMake
 {
@@ -36,19 +37,19 @@ namespace StoGenMake
                 }
                 else if (extension == ".epcatsi")
                 {
-                    List<Info_Combo> scenes = new List<Info_Combo>();
+                    SCENARIO scenario = new SCENARIO();                    
                     foreach (var item in clipsinstr)
                     {
-                        scenes.Add(Info_Combo.GenerateFromString(item));
+                        scenario.Scenes.Add(Info_Combo.GenerateFromString(item));
                     }
                     StoGenWPF.MainWindow.ReadIni(file);
-                    GetScene(null,scenes);
+                    GetScene(null, scenario);
                 }
             }
             
         }
       
-        private static void GetScene(List<Info_Clip> clips, List<Info_Combo> scenes)
+        private static void GetScene(List<Info_Clip> clips, SCENARIO scenario)
         {
             GameWorldFactory.GameWorld.LoadData();
             BaseScene scene = null;
@@ -57,10 +58,10 @@ namespace StoGenMake
                 scene = new Scene_Clips();
                 scene.LoadData(clips);
             }
-            else if (scenes != null)
+            else if (scenario != null)
             {
                 scene = new Scene_Combo();
-                ((Scene_Combo)scene).SetInfo(scenes);
+                ((Scene_Combo)scene).SetScenario(scenario, scenario.Scenes[0].Queue);
             }
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();

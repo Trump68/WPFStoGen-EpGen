@@ -251,19 +251,24 @@ namespace EPCat.Model
         }
         [XmlIgnore]
         private SCENARIO _Scenario = null;
-        [XmlIgnore]
-        public SCENARIO Scenario
-        {
-            get
-            {
-                if (_Scenario == null)
-                {
-                    _Scenario = new SCENARIO();
+        //[XmlIgnore]
+        //public SCENARIO Scenario
+        //{
+        //    get
+        //    {
+        //        //if (_Scenario == null)
+        //        //{
+        //        //    _Scenario = new SCENARIO();
 
-                }               
-                return _Scenario;
-            }
-        }
+        //        //}               
+        //        return _Scenario;
+        //    }
+        //    set
+        //    {
+            
+        //        _Scenario = value;
+        //    }
+        //}
         
        
 
@@ -330,11 +335,11 @@ namespace EPCat.Model
                 this.Clips.Add(it);
             }
 
-            this.Scenario.Scenes.Clear();
-            foreach (var it in item.Scenario.Scenes)
-            {
-                this.Scenario.Scenes.Add(it);
-            }
+            //this.Scenario.Scenes.Clear();
+            //foreach (var it in item.Scenario.Scenes)
+            //{
+            //    this.Scenario.Scenes.Add(it);
+            //}
 
         }
 

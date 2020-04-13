@@ -21,6 +21,7 @@ using System.Windows.Controls;
 using StoGen.Classes;
 using System.Diagnostics;
 using StoGen.Classes.Data.Games;
+using StoGen.Classes.Scene;
 
 namespace EPCat
 {
@@ -56,7 +57,19 @@ namespace EPCat
                 _FolderListView = value;
             }
         }
+        private ObservableCollection<Info_Combo> _Scenes = new ObservableCollection<Info_Combo>();
+        public ObservableCollection<Info_Combo> Scenes
+        {
+            get
+            {
+                return _Scenes;
 
+            }
+            set
+            {
+                _Scenes = value;
+            }
+        }
 
         EpItem _CurrentFolder;
         public EpItem CurrentFolder
@@ -78,10 +91,7 @@ namespace EPCat
                     {
                         this._CurrentClip = Info_Clip.Default(_CurrentFolder.GID.ToString()); 
                     }
-                    if (_CurrentFolder.Scenario.Scenes.Any())
-                    {
-                        this._CurrentCombinedScene = _CurrentFolder.Scenario.Scenes.First();
-                    }
+                    
                 }
             }
         }
@@ -118,12 +128,12 @@ namespace EPCat
         {
             get
             {
-                if (this.CurrentFolder != null)
+                if (this.Scenario != null)
                 {
                     if (_CurrentCombinedScene == null)
                     {
-                        if (this.CurrentFolder.Scenario.Scenes.Any())
-                            _CurrentCombinedScene = this.CurrentFolder.Scenario.Scenes.First();
+                        if (this.Scenario.Scenes.Any())
+                            _CurrentCombinedScene = this.Scenario.Scenes.First();
                     }
                 }
                 return _CurrentCombinedScene;
@@ -133,8 +143,19 @@ namespace EPCat
                 _CurrentCombinedScene = value;
             }
         }
+        SCENARIO _Scenario;
+        public SCENARIO Scenario
+        {
+            get
+            {
+                return _Scenario;
+            }
+            set
+            {
+                _Scenario = value;
+            }
+        }
 
-      
         public string PosterPath
         {
             set { }
@@ -178,6 +199,8 @@ namespace EPCat
             RaisePropertyChanged(() => this.CurrentFolder);
             RaisePropertyChanged(() => this.CurrentClip);
             RaisePropertyChanged(() => this.CurrentCombinedScene);
+            RaisePropertyChanged(() => this.Scenario);
+            RaisePropertyChanged(() => this.Scenes);
         }
 
 
@@ -298,9 +321,7 @@ namespace EPCat
 
             this.CurrentFolder.Clips.Add(newclipinfo);
             this.CurrentClip = this.CurrentFolder.Clips.Last();
-            RaisePropertyChanged(() => this.CurrentFolder);
-            RaisePropertyChanged(() => this.CurrentClip);
-            RaisePropertyChanged(() => this.CurrentFolder.Clips);
+            RefreshFolder();
             this.CurrentClip = this.CurrentFolder.Clips.Last();
             //this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
 
@@ -363,7 +384,7 @@ namespace EPCat
             TicTakToe.CopiedCombinedScene.Clear();
             if (allgroup)
             {
-                var col = this.CurrentFolder.Scenario.Scenes.Where(x => x.Group == this.CurrentCombinedScene.Group);
+                var col = this.Scenario.Scenes.Where(x => x.Group == this.CurrentCombinedScene.Group);
                 foreach (var item in col)
                 {
                     TicTakToe.CopiedCombinedScene.Add(item.GenerateString());
@@ -438,14 +459,12 @@ namespace EPCat
         private void addNewComb(Info_Combo newclipinfo)
         {
             newclipinfo.ID = Guid.NewGuid().ToString();
-            this.CurrentFolder.Scenario.Scenes.Add(newclipinfo);
+            this.Scenario.Scenes.Add(newclipinfo);
             this.CurrentCombinedScene = newclipinfo;
             RaisePropertyChanged(() => this.CurrentFolder);
             RaisePropertyChanged(() => this.CurrentCombinedScene);
-            RaisePropertyChanged(() => this.CurrentFolder.Scenario.Scenes);
-            MainWindow.Instance.SetGVCurrent(this.CurrentFolder.Scenario.Scenes.IndexOf(this.CurrentCombinedScene));
-
-
+            RaisePropertyChanged(() => this.Scenes);
+            MainWindow.Instance.SetGVCurrent(this.Scenario.Scenes.IndexOf(this.CurrentCombinedScene));
 
         }
 
@@ -454,17 +473,8 @@ namespace EPCat
             if (this.CurrentCombinedScene == null) return;
             
             GameWorldFactory.GameWorld.LoadData();
-          
-            var infolist = this.CurrentFolder.Scenario.Scenes.Where(x => x.Queue == this.CurrentCombinedScene.Queue).ToList();
-            infolist.Sort(delegate (Info_Combo x, Info_Combo y)
-            {
-                if (x.Group == null) x.Group = string.Empty;
-                if (y.Group == null) y.Group = string.Empty;
-                return x.Group.CompareTo(y.Group);
-            });
-
             Scene_Combo scene = new Scene_Combo();
-            scene.SetInfo(infolist);
+            scene.SetScenario(this.Scenario, this.CurrentCombinedScene.Queue);
 
             if (projector == null)
                 projector = new StoGenWPF.MainWindow();
@@ -472,7 +482,7 @@ namespace EPCat
             projector.Scene = scene;
             projector.StartOnLoad = false;
             projector.Show();
-            int page = infolist.Select(x=>x.Group).Distinct().ToList().IndexOf(this.CurrentCombinedScene.Group) + 1;
+            int page = Scenario.Scenes.Select(x=>x.Group).Distinct().ToList().IndexOf(this.CurrentCombinedScene.Group) + 1;
             projector.Start(page);
         }
 
@@ -505,7 +515,7 @@ namespace EPCat
         internal void SaveScenesList()
         {
             if (this.CurrentFolder == null) return;
-            this.CurrentFolder.Scenario.SaveToFile(this.CurrentFolder.ItemDirectory , this.CurrentFolder.ItemTempDirectory);             
+            this.Scenario.SaveToFile(this.CurrentFolder.ItemDirectory , this.CurrentFolder.ItemTempDirectory);             
         }
 
         //internal void LoadAllScenes()
@@ -522,12 +532,17 @@ namespace EPCat
         internal void Load1Scene(string fileName)
         {            
             List<string> clipsinstr = new List<string>(File.ReadAllLines(fileName));
-            this.CurrentFolder.Scenario.LoadFrom(clipsinstr);
+            this.Scenario = null;
+            SCENARIO scen = new SCENARIO();
+            scen.LoadFrom(clipsinstr);
+            this.Scenario = scen;
+            this.Scenes = this.Scenario.Scenes;
+            RefreshFolder();
         }
 
         internal void ClearScenes()
         {
-            this.CurrentFolder.Scenario.Scenes.Clear();
+            this.Scenario.Scenes.Clear();
         }
 
 
