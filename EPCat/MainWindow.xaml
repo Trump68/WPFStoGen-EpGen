@@ -208,7 +208,7 @@
                 
             </dx:DXTabItem>-->
 
-            <dx:DXTabItem Header="Scenario" Height="22" VerticalAlignment="Bottom">
+            <dx:DXTabItem Header="Clips" Height="22" VerticalAlignment="Bottom">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
 
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
@@ -370,13 +370,10 @@
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
 
-
-
             <dx:DXTabItem Header="Scenes" HorizontalAlignment="Left" Width="54">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
-
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                        <dxlc:LayoutGroup Name ="Buttons" View="Group" Orientation="Horizontal" Padding="0,0">
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="ShowSceneBtn" Content="Play" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ShowSceneBtn_Click" />
                             </dxlc:LayoutItem>
@@ -402,31 +399,28 @@
                                 <dx:SimpleButton x:Name="CopGrBtn" Content="CopyGr" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Right">
-                                <dx:SimpleButton x:Name="LoadOneFileBtn" Content="Load 1" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="LoadOneSceneFromFileBtn_Click" />
+                                <dx:SimpleButton x:Name="LoadOneFileBtn" Content="Load" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="LoadOneSceneFromFileBtn_Click" />
                             </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Right">
-                                <dx:SimpleButton x:Name="ClearScenesBtn" Content="Clear" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ClearScenes_Click" />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Right">
-                                <dx:SimpleButton x:Name="LoadAllFileBtn" Content="Load" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="LoadScenesFromFileBtn_Click" />
-                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Right"/>
+                            <dxlc:LayoutItem HorizontalAlignment="Right"/>
                             <dxlc:LayoutItem HorizontalAlignment="Right">
                                 <dx:SimpleButton x:Name="SaveToFileBtn" Content="Save" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="SaveScenesToFileBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Right"/>
                         </dxlc:LayoutGroup>
-
-                        <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
+                        <dxlc:LayoutGroup Name ="GridScenario" View="Group" Orientation="Horizontal" Padding="0,0">
+                            <dxlc:LayoutGroup Name="GridSceneProps" View="Group" Orientation="Vertical" Padding="0,0">
+                                <dxlc:LayoutItem Name ="Grid" Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
                                      LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
-                            <dxg:GridControl x:Name="GVCombScen"
+                                    <dxg:GridControl x:Name="GVCombScen"
                                          AutoGenerateColumns="None"
                                          EnableSmartColumnsGeneration="True"
                                          ItemsSource="{Binding SelectedItem.Scenario.Scenes, ElementName=GV}"
                                          SelectedItem="{Binding CurrentCombinedScene}"
                                          SelectionMode="Cell" AutoExpandAllGroups="False">
-                                <!--SelectedItem="{Binding CurrentFolder}"-->
-                                <dxg:GridControl.View>
-                                    <dxg:TableView 
+                                        <!--SelectedItem="{Binding CurrentFolder}"-->
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView 
                                 Name= "CombinedScenGV"
                                 AllowPerPixelScrolling="True"
                                 ShowAutoFilterRow="False"
@@ -436,136 +430,181 @@
                                 ShowGroupPanel="True"
                                 ShowDataNavigator="True"
                                 DataNavigatorButtons="DeleteFocusedRow" ShowGroupedColumns="True" AllowPartialGrouping="False" AllowFixedGroups="True" ShowGroupFooters="False">
-                                        <dxg:TableView.FormatConditions>
-                                            <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Tit'" FieldName="Queue">
-                                                <dx:Format Background="#FFB6FAB6" FontWeight="Bold" TextDecorations="{x:Null}"/>
-                                            </dxg:FormatCondition>
-                                            <dxg:FormatCondition ApplyToRow="False" Expression="[KindOrder] = 'Pic'" FieldName="Queue">
-                                                <dx:Format Background="#FFFCD4D4"/>
-                                            </dxg:FormatCondition>
-                                            <dxg:FormatCondition Expression="[KindName] = 'Snd'" FieldName="Queue" ApplyToRow="False">
-                                                <dx:Format Background="#FFD8D6CB" FontStyle="Italic" TextDecorations="{x:Null}"/>
-                                            </dxg:FormatCondition>
-                                            <dxg:FormatCondition Expression="[Kind] = '4'" FieldName="N" ApplyToRow="False" IsEnabled="False">
-                                                <dx:Format Background="#FFE3CFFA"/>
-                                            </dxg:FormatCondition>
-                                            <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Mov'" FieldName="Queue">
-                                                <dx:Format Background="#FF5CDCFF"/>
-                                            </dxg:FormatCondition>
-                                        </dxg:TableView.FormatConditions>
-                                    </dxg:TableView>
-                                </dxg:GridControl.View>
-                                <dxg:GridColumn FieldName="KindOrder" IsSmart="True" AllowResizing="False" Width="0" MaxWidth="30" SortOrder="Ascending" SortIndex="3"/>
-                                <dxg:GridColumn FieldName="KindName" IsSmart="True" Width="35" IsEnabled="False"/>
-                                <dxg:GridColumn FieldName="Queue" IsSmart="True" Width="200" GroupIndex="0"/>
-                                <dxg:GridColumn FieldName="Group" IsSmart="True" Width="90" SortOrder="Ascending" GroupIndex="1" SortIndex="1"/>
-                                <dxg:GridColumn FieldName="File" IsSmart="True" Width="450"/>
-                                <dxg:GridColumn FieldName="Description" IsSmart="True" Width="250"/>
-                                <dxg:GridColumn FieldName="Story" IsSmart="True" Width="350"/>
-                            </dxg:GridControl>
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
-
-                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
-
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
-                            <dxlc:LayoutItem Label="File">
-                                <TextBox Name="txtFile" Text="{Binding SelectedItem.File, ElementName=GVCombScen}"
+                                                <dxg:TableView.FormatConditions>
+                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Tit'" FieldName="Queue">
+                                                        <dx:Format Background="#FFB6FAB6" FontWeight="Bold" TextDecorations="{x:Null}"/>
+                                                    </dxg:FormatCondition>
+                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindOrder] = 'Pic'" FieldName="Queue">
+                                                        <dx:Format Background="#FFFCD4D4"/>
+                                                    </dxg:FormatCondition>
+                                                    <dxg:FormatCondition Expression="[KindName] = 'Snd'" FieldName="Queue" ApplyToRow="False">
+                                                        <dx:Format Background="#FFD8D6CB" FontStyle="Italic" TextDecorations="{x:Null}"/>
+                                                    </dxg:FormatCondition>
+                                                    <dxg:FormatCondition Expression="[Kind] = '4'" FieldName="N" ApplyToRow="False" IsEnabled="False">
+                                                        <dx:Format Background="#FFE3CFFA"/>
+                                                    </dxg:FormatCondition>
+                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Mov'" FieldName="Queue">
+                                                        <dx:Format Background="#FF5CDCFF"/>
+                                                    </dxg:FormatCondition>
+                                                </dxg:TableView.FormatConditions>
+                                            </dxg:TableView>
+                                        </dxg:GridControl.View>
+                                        <dxg:GridColumn FieldName="KindOrder" IsSmart="True" AllowResizing="False" Width="0" MaxWidth="30" SortOrder="Ascending" SortIndex="3"/>
+                                        <dxg:GridColumn FieldName="KindName" IsSmart="True" Width="35" IsEnabled="False"/>
+                                        <dxg:GridColumn FieldName="Queue" IsSmart="True" Width="200" GroupIndex="0"/>
+                                        <dxg:GridColumn FieldName="Group" IsSmart="True" Width="90" SortOrder="Ascending" GroupIndex="1" SortIndex="1"/>
+                                        <!--<dxg:GridColumn FieldName="File" IsSmart="True" Width="450"/>-->
+                                        <dxg:GridColumn FieldName="Description" IsSmart="True"  Width="450"/>
+                                        <!--<dxg:GridColumn FieldName="Story" IsSmart="True" Width="350"/>-->
+                                    </dxg:GridControl>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup Name="SceneProps" View="Group" Orientation="Vertical" Padding="0,0">
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="File">
+                                            <TextBox Name="txtFile" Text="{Binding SelectedItem.File, ElementName=GVCombScen}"
                                  HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="Group" MaxWidth="150">
-                                <TextBox Name="txtGroup" Text="{Binding SelectedItem.Group, ElementName=GVCombScen}"
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Group" MaxWidth="150">
+                                            <TextBox Name="txtGroup" Text="{Binding SelectedItem.Group, ElementName=GVCombScen}"
                                  HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Kind" MaxWidth="60">
+                                            <TextBox Name="txtKind" Text="{Binding SelectedItem.Kind, ElementName=GVCombScen}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="X (Text Width)" MaxWidth="130">
+                                            <TextBox Name="txtPosX" Text="{Binding SelectedItem.X, ElementName=GVCombScen}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Y (Text Size)" MaxWidth="130">
+                                            <TextBox Name="txtPosY" Text="{Binding SelectedItem.Y, ElementName=GVCombScen}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="S (Text Shift)" MaxWidth="130">
+                                            <TextBox Name="txtSize" Text="{Binding SelectedItem.S, ElementName=GVCombScen}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="F (FontSize)" MaxWidth="130">
+                                            <TextBox Name="txtFlip" Text="{Binding SelectedItem.F, ElementName=GVCombScen}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Z (FontColor)" MaxWidth="130">
+                                            <TextBox Name="txtZOrder" Text="{Binding SelectedItem.Z, ElementName=GVCombScen}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Align" MaxWidth="60">
+                                            <TextBox Name="txtAlign" Text="{Binding SelectedItem.Align, ElementName=GVCombScen}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="VAlign" MaxWidth="60">
+                                            <TextBox Name="txtVAlign" Text="{Binding SelectedItem.VAlign, ElementName=GVCombScen}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
 
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
-                            <dxlc:LayoutItem Label="Kind" MaxWidth="60">
-                                <TextBox Name="txtKind" Text="{Binding SelectedItem.Kind, ElementName=GVCombScen}"
+                                        <dxlc:LayoutItem Label="O" MaxWidth="50">
+                                            <TextBox Name="txtOpacity" Text="{Binding SelectedItem.O, ElementName=GVCombScen}"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="X (Text Width)" MaxWidth="130">
-                                <TextBox Name="txtPosX" Text="{Binding SelectedItem.X, ElementName=GVCombScen}"
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="R" MaxWidth="50">
+                                            <TextBox Name="txtRotation" Text="{Binding SelectedItem.R, ElementName=GVCombScen}"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="Y (Text Size)" MaxWidth="130">
-                                <TextBox Name="txtPosY" Text="{Binding SelectedItem.Y, ElementName=GVCombScen}"
-                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="S (Text Shift)" MaxWidth="130">
-                                <TextBox Name="txtSize" Text="{Binding SelectedItem.S, ElementName=GVCombScen}"
-                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="F (FontSize)" MaxWidth="130">
-                                <TextBox Name="txtFlip" Text="{Binding SelectedItem.F, ElementName=GVCombScen}"
-                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="Z (FontColor)" MaxWidth="130">
-                                <TextBox Name="txtZOrder" Text="{Binding SelectedItem.Z, ElementName=GVCombScen}"
-                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="Align" MaxWidth="60">
-                                <TextBox Name="txtAlign" Text="{Binding SelectedItem.Align, ElementName=GVCombScen}"
-                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="VAlign" MaxWidth="60">
-                                <TextBox Name="txtVAlign" Text="{Binding SelectedItem.VAlign, ElementName=GVCombScen}"
-                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutItem Label="O" MaxWidth="50">
-                                <TextBox Name="txtOpacity" Text="{Binding SelectedItem.O, ElementName=GVCombScen}"
-                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="R" MaxWidth="50">
-                                <TextBox Name="txtRotation" Text="{Binding SelectedItem.R, ElementName=GVCombScen}"
-                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
-                            <dxlc:LayoutItem Label="Start" MaxWidth="120">
-                                <TextBox Name="txtPosStart" Text="{Binding SelectedItem.PositionStart, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="End" MaxWidth="120">
-                                <TextBox Name="txtPosEnd" Text="{Binding SelectedItem.PositionEnd, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="Loop mode" MaxWidth="100">
-                                <TextBox Name="txtLM" Text="{Binding SelectedItem.LoopMode, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="Loop count" MaxWidth="100">
-                                <TextBox Name="txtLC" Text="{Binding SelectedItem.LoopCount, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="Speed" MaxWidth="100">
-                                <TextBox Name="txtSpeed" Text="{Binding SelectedItem.Speed, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="Controls" MaxWidth="100">
-                                <TextBox Name="txtControls" Text="{Binding SelectedItem., ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
-                            <dxlc:LayoutItem Label="Transition" LabelPosition="Left">
-                                <dxe:TextEdit 
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Start" MaxWidth="120">
+                                            <TextBox Name="txtPosStart" Text="{Binding SelectedItem.PositionStart, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="End" MaxWidth="120">
+                                            <TextBox Name="txtPosEnd" Text="{Binding SelectedItem.PositionEnd, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Loop mode" MaxWidth="100">
+                                            <TextBox Name="txtLM" Text="{Binding SelectedItem.LoopMode, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Loop count" MaxWidth="100">
+                                            <TextBox Name="txtLC" Text="{Binding SelectedItem.LoopCount, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Speed" MaxWidth="100">
+                                            <TextBox Name="txtSpeed" Text="{Binding SelectedItem.Speed, ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Controls" MaxWidth="100">
+                                            <TextBox Name="txtControls" Text="{Binding SelectedItem., ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Transition" LabelPosition="Left">
+                                            <dxe:TextEdit 
                                 MaxHeight="320"
                                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding SelectedItem.T, ElementName=GVCombScen}" />
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
-                            <dxlc:LayoutItem Label="Story" LabelPosition="Left">
-                                <dxe:TextEdit 
-                                MaxHeight="320"
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Story" LabelPosition="Left">
+                                            <dxe:TextEdit MaxHeight="320"
                                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding SelectedItem.StoryAsString, ElementName=GVCombScen}" />
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutItem Name ="Scenario" Width ="400" Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
+                                     LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
+                                <dxlc:LayoutGroup Name="ScenarioProps" View="Group" Orientation="Vertical" Padding="0,0">
+                                    <dxlc:LayoutItem Label="Name" FontWeight="ExtraBold">
+                                        <TextBox FontWeight="Bold" TextWrapping="WrapWithOverflow" Foreground="Blue" Text="{Binding SelectedItem.Scenario.Name, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="File name">
+                                        <TextBox Text="{Binding SelectedItem.Scenario.FileName, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Female">
+                                            <TextBox Text="{Binding SelectedItem.Scenario.Female, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Male">
+                                            <TextBox Text="{Binding SelectedItem.Scenario.Male, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Kind">
+                                            <TextBox Text="{Binding SelectedItem.Scenario.Kind, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Category">
+                                            <TextBox Text="{Binding SelectedItem.Scenario.Category, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Variant">
+                                            <TextBox Text="{Binding SelectedItem.Scenario.Variant, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+
+                                    <dxlc:LayoutItem Label="Stopwords" >
+                                        <TextBox TextWrapping="WrapWithOverflow" Text="{Binding SelectedItem.Scenario.Stopwords, ElementName=GV}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Description" LabelPosition="Top">
+                                            <dxe:TextEdit MaxHeight="320"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding SelectedItem.Scenario.Description, ElementName=GV}" />
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Raw Parameters" LabelPosition="Top">
+                                            <dxe:TextEdit MaxHeight="320"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding SelectedItem.Scenario.RawParameters, ElementName=GV}" />
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>
                             </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
 
-
                     </dxlc:LayoutGroup>
-
 
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>

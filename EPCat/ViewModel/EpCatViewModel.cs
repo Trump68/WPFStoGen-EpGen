@@ -505,48 +505,24 @@ namespace EPCat
         internal void SaveScenesList()
         {
             if (this.CurrentFolder == null) return;
-            if (this.CurrentFolder.Scenario.Scenes == null) return;
-
-            List<string> files = this.CurrentFolder.Scenario.Scenes.Select(x => x.Queue).Distinct().ToList();
-            foreach (var item in files)
-            {
-                List<string> lines = new List<string>();
-                var selectedQueue = this.CurrentFolder.Scenario.Scenes.Where(x => x.Queue == item).OrderBy(x=>x.Group).ToList();
-                foreach (var queue in selectedQueue)
-                {
-                    lines.Add(queue.GenerateString());
-                }
-                string fn = Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), $"{item}.epcatsi");               
-                Directory.CreateDirectory(this.CurrentFolder.ItemTempDirectory);
-                string bfn = Path.Combine(this.CurrentFolder.ItemTempDirectory, $"{item}.epcatsi");
-                
-                if (File.Exists(fn))
-                {
-                    File.Copy(fn, bfn, true);
-                    File.Delete(fn);
-                }                
-                File.WriteAllLines(fn, lines);
-            }            
+            this.CurrentFolder.Scenario.SaveToFile(this.CurrentFolder.ItemDirectory , this.CurrentFolder.ItemTempDirectory);             
         }
 
-        internal void LoadAllScenes()
-        {
-            string dir = Path.GetDirectoryName(this.CurrentFolder.ItemPath);
-            var files = Directory.GetFiles(dir, "*.epcatsi");
-            this.CurrentFolder.Scenario.Scenes.Clear();
-            foreach (var item in files)
-            {
-                Load1Scene(item);                      
-            }         
-        }
+        //internal void LoadAllScenes()
+        //{
+        //    string dir = Path.GetDirectoryName(this.CurrentFolder.ItemPath);
+        //    var files = Directory.GetFiles(dir, "*.epcatsi");
+        //    this.CurrentFolder.Scenario.Scenes.Clear();
+        //    foreach (var item in files)
+        //    {
+        //        Load1Scene(item);                      
+        //    }         
+        //}
 
         internal void Load1Scene(string fileName)
         {            
             List<string> clipsinstr = new List<string>(File.ReadAllLines(fileName));
-            foreach (var line in clipsinstr)
-            {
-                this.CurrentFolder.Scenario.Scenes.Add(Info_Combo.GenerateFromString(line));
-            }
+            this.CurrentFolder.Scenario.LoadFrom(clipsinstr);
         }
 
         internal void ClearScenes()

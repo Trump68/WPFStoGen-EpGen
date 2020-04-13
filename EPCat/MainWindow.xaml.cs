@@ -609,10 +609,8 @@ namespace EPCat
             this.MadeShot(true);
         }
 
-        private void LoadScenesFromFileBtn_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.LoadAllScenes();
-        }
+
+
         private void SaveScenesToFileBtn_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.SaveScenesList();
@@ -627,11 +625,6 @@ namespace EPCat
             {
                 ViewModel.Load1Scene(openFileDialog.FileName);
             }
-        }
-
-        private void ClearScenes_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.ClearScenes();
         }
 
         public void SetGVCurrent(int ind)
