@@ -177,12 +177,17 @@ namespace StoGenWPF
         private static string startfile;
         private static int StartPageNum = 1;
         private static bool FixPageNum = false;
+        private static string GetIniFile(string file)
+        {
+            string backupath = Path.Combine(Path.GetDirectoryName(file), "_TMP");
+            string fileoptions = Path.Combine(backupath, Path.GetFileName(Path.ChangeExtension(file, ".ini")));
+            return fileoptions;
+        }
         public static void ReadIni(string file)
         {
             if (string.IsNullOrEmpty(file)) return;
             startfile = file;
-            
-            string fileoptions = Path.ChangeExtension(file, ".ini");
+            string fileoptions = GetIniFile(file);
             if (File.Exists(fileoptions))
             {
                 List<string> textlist = new List<string>(File.ReadAllLines(fileoptions));
@@ -212,7 +217,7 @@ namespace StoGenWPF
         {
             if (FixPageNum) return;
             if (string.IsNullOrEmpty(startfile)) return;
-            string fileoptions = Path.ChangeExtension(startfile, ".ini");
+            string fileoptions = GetIniFile(startfile);
             List<string> lines = new List<string>();
             lines.Add($"PAGE={SGManager.CurrProc.CurrentCadreNum()+1}");
             lines.Add($"FIXPAGE=0");

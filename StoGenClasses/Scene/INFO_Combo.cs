@@ -28,21 +28,55 @@ namespace StoGen.Classes
             }
         }
         [XmlIgnore]
-        public int N { set; get; } = 0;
-        [XmlIgnore]
-        public string Path;
-        
+        public int KindOrder
+        {
+            get
+            {
+                switch (this.Kind)
+                {
 
+                    case 0:
+                        return 3;
+                    case 1: // 
+                        return 0;
+                    case 6: // 
+                        return 1;
+                    case 8: // 
+                        return 2;
+                    default: return 100;
+                }
+            }
+        }
+        [XmlIgnore]
+        public string KindName
+        {
+            get
+            {
+                switch (this.Kind)
+                {
+
+                    case 0:
+                        return "Pic";
+                    case 1: // 
+                        return "Tit";
+                    case 6: // 
+                        return "Snd";
+                    case 8: // 
+                        return "Mov";
+                    default: return "Oth";
+                }
+            }
+        }
         public string ID { set; get; }
         public string File { set; get; }
         // 0 - standart image
         // 1- header ($$WHITE$$  in file - white background)
-        // 2- external image (from another set)
-        // 3- repeat prev group 
-        // 4- 1+2 
-        // 5- transform prev picture
+        // 2- external image (from another set)-- DEPRECATED
+        // 3- repeat prev group -- DEPRECATED
+        // 4- 1+2 -- DEPRECATED
+        // 5- transform prev picture-- DEPRECATED
         // 6 - sound
-        // 7 -1+6
+        // 7 -1+6 -- DEPRECATED
         // 8 - Movie Clip
         public int Kind { set; get; } = 0;
         public string Description { set; get; } = string.Empty;
@@ -59,13 +93,31 @@ namespace StoGen.Classes
             Rez.LoadFromString(item);
             return Rez;
         }
+        public static Info_Combo GenerateCopy(Info_Combo item)
+        {
+            Info_Combo Rez = (Info_Combo)item.MemberwiseClone();
+
+            //Rez.Align = item.Align;
+            //Rez.Description = item.Description;
+            //Rez.F = item.F;
+            //Rez.File = item.File;
+            //Rez.Group = item.Group;
+            //Rez.ID = item.ID;
+            //Rez.Kind = item.Kind;
+            //Rez.LoopCount = item.LoopCount;
+            //Rez.LoopMode = item.LoopMode;
+            //Rez. = item.Align;
+            //Rez.Align = item.Align;
+            //Rez.Align = item.Align;
+            return Rez;
+        }
         // ClipProps
-        public int LoopMode { set; get; } = 1;
-        public int LoopCount { set; get; } = 1;
-        public int Speed { set; get; } = 100;
-        public int ShowMovieControl { set; get; } = 0;
-        public decimal PositionStart { set; get; } = 0;
-        public decimal PositionEnd { set; get; } = 0;
+        public string LoopMode { set; get; }// = 1;
+        public string LoopCount { set; get; }// = 1;
+        public string Speed { set; get; }// = 100;
+        public string ShowMovieControl { set; get; } 
+        public string PositionStart { set; get; }
+        public string PositionEnd { set; get; }
 
         //PictureProps
         public string X { set; get; }
@@ -82,6 +134,54 @@ namespace StoGen.Classes
         public string GenerateString()
         {
             List<string> rez = new List<string>();
+            if (!string.IsNullOrEmpty(Group))
+                rez.Add($"GROUP={Group}");
+            rez.Add($"KIND={Kind}");
+            if (!string.IsNullOrEmpty(S))
+                rez.Add($"S={S}");
+            if (!string.IsNullOrEmpty(X))
+                rez.Add($"X={X}");
+            if (!string.IsNullOrEmpty(Y))
+                rez.Add($"Y={Y}");
+            if (!string.IsNullOrEmpty(PositionStart))
+                rez.Add($"PositionStart={PositionStart}");
+            if (!string.IsNullOrEmpty(PositionEnd))
+                rez.Add($"PositionEnd={PositionEnd}");
+            if (!string.IsNullOrEmpty(LoopMode))
+                rez.Add($"LoopMode={LoopMode}");
+            if (!string.IsNullOrEmpty(LoopCount))
+                rez.Add($"LoopCount={LoopCount}");
+            if (!string.IsNullOrEmpty(Speed))
+                rez.Add($"Speed={Speed}");
+            if (!string.IsNullOrEmpty(ShowMovieControl))
+                rez.Add($"ShowMovieControl={ShowMovieControl}");
+            if (!string.IsNullOrEmpty(O))
+                rez.Add($"O={O}");
+            if (!string.IsNullOrEmpty(Z))
+                rez.Add($"Z={Z}");
+            if (!string.IsNullOrEmpty(F))
+                rez.Add($"F={F}");
+            if (!string.IsNullOrEmpty(R))
+                rez.Add($"R={R}");
+            if (!string.IsNullOrEmpty(T))
+                rez.Add($"T={T}");
+            if (!string.IsNullOrEmpty(Align))
+                rez.Add($"Align={Align}");
+            if (!string.IsNullOrEmpty(VAlign))
+                rez.Add($"VAlign={VAlign}");
+
+          
+
+
+
+            if (!string.IsNullOrEmpty(Description))
+                rez.Add($"DSC={Description}");
+            if (!string.IsNullOrEmpty(Story))
+                rez.Add($"STR={Story}");
+
+            if (!string.IsNullOrEmpty(Queue))
+                rez.Add($"QUEUE={Queue}");
+
             rez.Add($"ID={ID}");
 
             if (!string.IsNullOrEmpty(File))
@@ -103,54 +203,6 @@ namespace StoGen.Classes
                 }
                 rez.Add($"FILE={File}");
             }
-                
-
-            if (Kind!=0)
-                rez.Add($"KIND={Kind}");
-            if (!string.IsNullOrEmpty(Description))
-                rez.Add($"DSC={Description}");          
-            if (!string.IsNullOrEmpty(Story))
-                rez.Add($"STR={Story}");
-            if (!string.IsNullOrEmpty(X))
-                rez.Add($"X={X}");
-            if (!string.IsNullOrEmpty(Y))
-                rez.Add($"Y={Y}");
-            if (!string.IsNullOrEmpty(O))
-                rez.Add($"O={O}");
-            if (!string.IsNullOrEmpty(S))
-                rez.Add($"S={S}");
-            if (!string.IsNullOrEmpty(Z))
-                rez.Add($"Z={Z}");
-            if (!string.IsNullOrEmpty(F))
-                rez.Add($"F={F}");
-            if (!string.IsNullOrEmpty(R))
-                rez.Add($"R={R}");
-            if (!string.IsNullOrEmpty(T))
-                rez.Add($"T={T}");
-            if (!string.IsNullOrEmpty(Align))
-                rez.Add($"Align={Align}");
-            if (!string.IsNullOrEmpty(VAlign))
-                rez.Add($"VAlign={VAlign}");
-
-            if (!string.IsNullOrEmpty(Group))
-                rez.Add($"GROUP={Group}");
-            if (!string.IsNullOrEmpty(Queue))
-                rez.Add($"QUEUE={Queue}");
-
-            if (PositionStart != 0)
-                rez.Add($"PositionStart={PositionStart}");
-            if (PositionEnd != 0)
-                rez.Add($"PositionEnd={PositionEnd}");
-            if (LoopMode != 0)
-                rez.Add($"LoopMode={LoopMode}");
-            if (LoopCount != 0)
-                rez.Add($"LoopCount={LoopCount}");
-            if (Speed != 0)
-                rez.Add($"Speed={Speed}");
-            if (ShowMovieControl != 0)
-                rez.Add($"ShowMovieControl={ShowMovieControl}");
-
-
             return string.Join(";", rez.ToArray());
         }
         public void LoadFromString(string item)
@@ -231,27 +283,27 @@ namespace StoGen.Classes
                 }
                 else if (str.StartsWith("PositionStart="))
                 {                    
-                    this.PositionStart = Convert.ToDecimal(str.Replace("PositionStart=", string.Empty));
+                    this.PositionStart = str.Replace("PositionStart=", string.Empty);
                 }
                 else if (str.StartsWith("PositionEnd="))
                 {
-                    this.PositionEnd = Convert.ToDecimal(str.Replace("PositionEnd=", string.Empty));
+                    this.PositionEnd = str.Replace("PositionEnd=", string.Empty);
                 }
                 else if (str.StartsWith("LoopMode="))
                 {
-                    this.LoopMode = Convert.ToInt32(str.Replace("LoopMode=", string.Empty));
+                    this.LoopMode = str.Replace("LoopMode=", string.Empty);
                 }
                 else if (str.StartsWith("LoopCount="))
                 {
-                    this.LoopCount = Convert.ToInt32(str.Replace("LoopCount=", string.Empty));
+                    this.LoopCount = str.Replace("LoopCount=", string.Empty);
                 }
                 else if (str.StartsWith("Speed="))
                 {
-                    this.Speed = Convert.ToInt32(str.Replace("Speed=", string.Empty));
+                    this.Speed = str.Replace("Speed=", string.Empty);
                 }
                 else if (str.StartsWith("ShowMovieControl="))
                 {
-                    this.ShowMovieControl = Convert.ToInt32(str.Replace("ShowMovieControl=", string.Empty));
+                    this.ShowMovieControl = str.Replace("ShowMovieControl=", string.Empty);
                 }
 
             }

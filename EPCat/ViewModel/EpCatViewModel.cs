@@ -37,7 +37,6 @@ namespace EPCat
 
        
         internal List<EpItem> _FolderList = new List<EpItem>();
-        internal List<CapsItem> _CapsList = new List<CapsItem>();
 
 
         //bool updateenabled = false;
@@ -59,20 +58,6 @@ namespace EPCat
         }
 
 
-        private ObservableCollection<CapsItem> _CapsListView = new ObservableCollection<CapsItem>();
-        public ObservableCollection<CapsItem> CapsListView
-        {
-            get
-            {
-                return _CapsListView;
-
-            }
-            set
-            {
-                _CapsListView = value;
-            }
-        }
-
         EpItem _CurrentFolder;
         public EpItem CurrentFolder
         {
@@ -93,9 +78,9 @@ namespace EPCat
                     {
                         this._CurrentClip = Info_Clip.Default(_CurrentFolder.GID.ToString()); 
                     }
-                    if (_CurrentFolder.CombinedScenes.Any())
+                    if (_CurrentFolder.Scenario.Scenes.Any())
                     {
-                        this._CurrentCombinedScene = _CurrentFolder.CombinedScenes.First();
+                        this._CurrentCombinedScene = _CurrentFolder.Scenario.Scenes.First();
                     }
                 }
             }
@@ -137,8 +122,8 @@ namespace EPCat
                 {
                     if (_CurrentCombinedScene == null)
                     {
-                        if (this.CurrentFolder.CombinedScenes.Any())
-                            _CurrentCombinedScene = this.CurrentFolder.CombinedScenes.First();
+                        if (this.CurrentFolder.Scenario.Scenes.Any())
+                            _CurrentCombinedScene = this.CurrentFolder.Scenario.Scenes.First();
                     }
                 }
                 return _CurrentCombinedScene;
@@ -149,79 +134,13 @@ namespace EPCat
             }
         }
 
-
-        //SkyrimPosePositionInfo _CurrentPosePosition;
-        //public SkyrimPosePositionInfo CurrentPosePosition
-        //{
-        //    get
-        //    {
-        //        if (this.CurrentFolder != null)
-        //        {
-        //            if (_CurrentPosePosition == null)
-        //            {
-        //                if (this.CurrentFolder.CombinedScenes.Any())
-        //                    _CurrentPosePosition = this.CurrentFolder.PosePositions.First();
-        //            }
-        //        }
-        //        return _CurrentPosePosition;
-        //    }
-        //    set
-        //    {
-        //        _CurrentPosePosition = value;
-        //    }
-        //}
-
-
-        CapsItem _CurrentCapsGroup;
-        public CapsItem CurrentCapsGroup
-        {
-            get
-            {
-                return _CurrentCapsGroup;
-            }
-            set
-            {
-                _CurrentCapsGroup = value;
-                RaisePropertyChanged(() => this.CurrentCapsForGroup);
-            }
-        }
-
-
-        
-
-        
-
-        public List<CapsItem> CurrentCapsForGroup
-        {
-            get
-            {
-                List<CapsItem> result = null;
-                if (_CurrentCapsGroup != null)
-                {
-                    result = new List<CapsItem>();
-                    result.Add(_CurrentCapsGroup);
-                    result.AddRange(_CurrentCapsGroup.ChildList);
-                }
-                return result;
-            }
-        }
+      
         public string PosterPath
         {
             set { }
             get { return CurrentFolder?.PosterPath; }
         }
-        public ObservableCollection<CapsItem> CurrentCaps
-        {
-            get
-            {
-                if (_CurrentFolder != null)
-                {
-                    //if (CapsViewMode == 1) return _CurrentFolder?.Caps.Where(x => string.IsNullOrEmpty(x.ParentId)).ToList();
-                    return new ObservableCollection<CapsItem>(_CurrentFolder?.Caps);
-                }
-                return null;
-            }
-        }
+     
 
         public bool IsDeletingAllowed { get; set; } = false;
         public bool IsSavingAllowed { get; set; } = true;
@@ -232,14 +151,13 @@ namespace EPCat
         public void ProcessScriptFile()
         {
 
-            this._FolderList = _Loader.ProcessScriptFile(this._FolderList, this._CapsList);
+            this._FolderList = _Loader.ProcessScriptFile(this._FolderList);
             
             if (this._FolderList == null) return;
 
             this.FolderListView = new ObservableCollection<EpItem>(this._FolderList);
-            this.CapsListView = new ObservableCollection<CapsItem>(this._CapsList.Where(x=>string.IsNullOrEmpty(x.ParentId)));
+           
             RaisePropertyChanged(() => this.FolderListView);
-            RaisePropertyChanged(() => this.CapsListView);
 
         }
      
@@ -254,10 +172,7 @@ namespace EPCat
             //}
         }
 
-        internal void RefreshCaps()
-        {
-            RaisePropertyChanged(() => this.CurrentCaps);            
-        }
+
         public void RefreshFolder()
         {
             RaisePropertyChanged(() => this.CurrentFolder);
@@ -265,49 +180,6 @@ namespace EPCat
             RaisePropertyChanged(() => this.CurrentCombinedScene);
         }
 
-        public void UpdateCapsFile()
-        {
-            _CurrentFolder?.SaveImagePassport();
-
-            if (this.CurrentCapsGroup != null)
-            {
-                string pass = this.CurrentCapsGroup.PassportPath;
-
-                List<string> lines = new List<string>();
-                foreach (var cap in this._CapsList.Where(x => x.PassportPath == pass))
-                {
-                    string s = CapsItem.SetToPassport(cap);
-                    if (!string.IsNullOrEmpty(s)) lines.Add(s);
-                }
-                if (lines.Any())
-                {
-                    File.WriteAllLines(pass, lines);
-                }
-            }
-        }
-        public void UpdateGroup()
-        {
-            if (this.CurrentCapsGroup != null)
-            {
-                string pass = this.CurrentCapsGroup.PassportPath;
-
-                List<string> lines = new List<string>();
-                foreach (var cap in this._CapsList.Where(x => x.PassportPath == pass))
-                {
-                    string s = CapsItem.SetToPassport(cap);
-                    if (!string.IsNullOrEmpty(s)) lines.Add(s);
-                }
-                if (lines.Any())
-                {
-                    File.WriteAllLines(pass, lines);
-                }
-            }
-        }
-        internal void SetCapsViewMode(int newValue)
-        {
-            CapsViewMode = newValue;
-            RefreshCaps();
-        }
 
         internal void SetCurrentImagePassort(int selectedIndex)
         {
@@ -491,7 +363,7 @@ namespace EPCat
             TicTakToe.CopiedCombinedScene.Clear();
             if (allgroup)
             {
-                var col = this.CurrentFolder.CombinedScenes.Where(x => x.Group == this.CurrentCombinedScene.Group);
+                var col = this.CurrentFolder.Scenario.Scenes.Where(x => x.Group == this.CurrentCombinedScene.Group);
                 foreach (var item in col)
                 {
                     TicTakToe.CopiedCombinedScene.Add(item.GenerateString());
@@ -522,8 +394,8 @@ namespace EPCat
                     }
                     else if (newclipinfo.Kind == 8)
                     {
-                        newclipinfo.PositionStart = TicTakToe.ClipTemplate.PositionStart;
-                        newclipinfo.PositionEnd = TicTakToe.ClipTemplate.PositionEnd;
+                        newclipinfo.PositionStart = TicTakToe.ClipTemplate.PositionStart.ToString();
+                        newclipinfo.PositionEnd = TicTakToe.ClipTemplate.PositionEnd.ToString();
                     }
                     addNewComb(newclipinfo);
                 }
@@ -566,18 +438,15 @@ namespace EPCat
         private void addNewComb(Info_Combo newclipinfo)
         {
             newclipinfo.ID = Guid.NewGuid().ToString();
-
-            //this.CurrentFolder.CombinedScenes.Add(newclipinfo);
-            //int index = this.CurrentFolder.CombinedScenes.IndexOf(this.CurrentCombinedScene);
-
-            //this.CurrentFolder.CombinedScenes.Insert(index + 1, newclipinfo);
-            this.CurrentFolder.CombinedScenes.Add(newclipinfo);
+            this.CurrentFolder.Scenario.Scenes.Add(newclipinfo);
             this.CurrentCombinedScene = newclipinfo;
-
             RaisePropertyChanged(() => this.CurrentFolder);
             RaisePropertyChanged(() => this.CurrentCombinedScene);
-            RaisePropertyChanged(() => this.CurrentFolder.CombinedScenes);
-            
+            RaisePropertyChanged(() => this.CurrentFolder.Scenario.Scenes);
+            MainWindow.Instance.SetGVCurrent(this.CurrentFolder.Scenario.Scenes.IndexOf(this.CurrentCombinedScene));
+
+
+
         }
 
         internal void ShowScene()
@@ -586,7 +455,7 @@ namespace EPCat
             
             GameWorldFactory.GameWorld.LoadData();
           
-            var infolist = this.CurrentFolder.CombinedScenes.Where(x => x.Queue == this.CurrentCombinedScene.Queue).ToList();
+            var infolist = this.CurrentFolder.Scenario.Scenes.Where(x => x.Queue == this.CurrentCombinedScene.Queue).ToList();
             infolist.Sort(delegate (Info_Combo x, Info_Combo y)
             {
                 if (x.Group == null) x.Group = string.Empty;
@@ -636,19 +505,21 @@ namespace EPCat
         internal void SaveScenesList()
         {
             if (this.CurrentFolder == null) return;
-            if (this.CurrentFolder.CombinedScenes == null) return;
+            if (this.CurrentFolder.Scenario.Scenes == null) return;
 
-            List<string> files = this.CurrentFolder.CombinedScenes.Select(x => x.Queue).Distinct().ToList();
+            List<string> files = this.CurrentFolder.Scenario.Scenes.Select(x => x.Queue).Distinct().ToList();
             foreach (var item in files)
             {
                 List<string> lines = new List<string>();
-                var selectedQueue = this.CurrentFolder.CombinedScenes.Where(x => x.Queue == item).OrderBy(x=>x.Group).ToList();
+                var selectedQueue = this.CurrentFolder.Scenario.Scenes.Where(x => x.Queue == item).OrderBy(x=>x.Group).ToList();
                 foreach (var queue in selectedQueue)
                 {
                     lines.Add(queue.GenerateString());
                 }
-                string fn = Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), $"SceneList_{item}.epcatsi");
-                string bfn = Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), $"SceneList_{item}.bak");
+                string fn = Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), $"{item}.epcatsi");               
+                Directory.CreateDirectory(this.CurrentFolder.ItemTempDirectory);
+                string bfn = Path.Combine(this.CurrentFolder.ItemTempDirectory, $"{item}.epcatsi");
+                
                 if (File.Exists(fn))
                 {
                     File.Copy(fn, bfn, true);
@@ -662,7 +533,7 @@ namespace EPCat
         {
             string dir = Path.GetDirectoryName(this.CurrentFolder.ItemPath);
             var files = Directory.GetFiles(dir, "*.epcatsi");
-            this.CurrentFolder.CombinedScenes.Clear();
+            this.CurrentFolder.Scenario.Scenes.Clear();
             foreach (var item in files)
             {
                 Load1Scene(item);                      
@@ -674,13 +545,13 @@ namespace EPCat
             List<string> clipsinstr = new List<string>(File.ReadAllLines(fileName));
             foreach (var line in clipsinstr)
             {
-                this.CurrentFolder.CombinedScenes.Add(Info_Combo.GenerateFromString(line));
+                this.CurrentFolder.Scenario.Scenes.Add(Info_Combo.GenerateFromString(line));
             }
         }
 
         internal void ClearScenes()
         {
-            this.CurrentFolder.CombinedScenes.Clear();
+            this.CurrentFolder.Scenario.Scenes.Clear();
         }
 
 

@@ -20,12 +20,72 @@ namespace StoGen.Classes.Data.Games
         }
         List<Info_Combo> InfoList = null;
         List<List<Info_Combo>> data = new List<List<Info_Combo>>();
+        private Dictionary<string, Info_Combo> DefaultVisualDic = new Dictionary<string, Info_Combo>();
+
         public void SetInfo(List<Info_Combo> infoList)
         {
             InfoList = infoList;
             this.LoadData(string.Empty, string.Empty);
             this.Generate(InfoList.First().ID);
         }
+
+        private Info_Combo GetVisualByDefaultAndCurrent(Info_Combo current)
+        {
+            Info_Combo rez = Info_Combo.GenerateCopy(current);
+            Info_Combo def = null;
+            if (string.IsNullOrEmpty(rez.File))
+            {
+                if (DefaultVisualDic.Any())
+                {
+                    if (DefaultVisualDic.First().Value.Kind == rez.Kind)
+                        def = DefaultVisualDic.First().Value;
+                }
+            }
+            else
+            {
+                if (DefaultVisualDic.ContainsKey(rez.File))
+                    def = DefaultVisualDic[rez.File];
+            }
+            if (def != null)
+            {
+                if (string.IsNullOrEmpty(rez.File))             
+                    rez.File = def.File;
+                if (string.IsNullOrEmpty(rez.Align))
+                    rez.Align = def.Align;
+                if (string.IsNullOrEmpty(rez.LoopCount))
+                    rez.LoopCount = def.LoopCount;
+                if (string.IsNullOrEmpty(rez.LoopMode))
+                    rez.LoopMode = def.LoopMode;
+                if (string.IsNullOrEmpty(rez.O))
+                    rez.O = def.O;
+                if (string.IsNullOrEmpty(rez.PositionEnd))
+                    rez.PositionEnd = def.PositionEnd;
+                if (string.IsNullOrEmpty(rez.PositionStart))
+                    rez.PositionStart = def.PositionStart;
+                if (string.IsNullOrEmpty(rez.R))
+                    rez.R = def.R;
+                if (string.IsNullOrEmpty(rez.S))
+                    rez.S = def.S;
+                if (string.IsNullOrEmpty(rez.ShowMovieControl))
+                    rez.ShowMovieControl = def.ShowMovieControl;
+                if (string.IsNullOrEmpty(rez.Speed))
+                    rez.Speed = def.Speed;
+                if (string.IsNullOrEmpty(rez.VAlign))
+                    rez.VAlign = def.VAlign;
+                if (string.IsNullOrEmpty(rez.X))
+                    rez.X = def.X;
+                if (string.IsNullOrEmpty(rez.Y))
+                    rez.Y = def.Y;
+                if (string.IsNullOrEmpty(rez.Z))
+                    rez.Z = def.Z;
+            }
+            else if (!string.IsNullOrEmpty(rez.File))
+            {
+                DefaultVisualDic.Add(rez.File, rez);
+            }
+            return rez;
+        }
+
         public override bool LoadData(string filter, string moviePath)
         {
             data.Clear();
@@ -45,18 +105,18 @@ namespace StoGen.Classes.Data.Games
                 {
                     var prevgroup = data[i - 1];
                     var curgroup = data[i];
-                    CalculateGroup(prevgroup, ref curgroup);
+                    RepeatGroupForKind_3(prevgroup, ref curgroup);
                 }
 
             }
 
             foreach (var group in data)
             {
-                DoGroup(group);
+                DoCadreByGroup(group);
             }
             return true;
         }
-
+        
 
         private void setDefaultTextAttribs()
         {
@@ -66,7 +126,7 @@ namespace StoGen.Classes.Data.Games
             this.DefaultSceneText.Shift = 250;
             this.DefaultSceneText.FontColor = "White";
         }
-        private void CalculateGroup(List<Info_Combo> prevgroup, ref List<Info_Combo> curgroup)
+        private void RepeatGroupForKind_3(List<Info_Combo> prevgroup, ref List<Info_Combo> curgroup)
         {
             // repeat group for kind 3- repeat prev group 
             if (curgroup.Where(x=>x.Kind == 3).Any())
@@ -80,14 +140,13 @@ namespace StoGen.Classes.Data.Games
                         Info_Combo ng = new Info_Combo();
                         ng.LoadFromString(ngs);
                         ng.File = pg.File;
-                        ng.Path = pg.Path;
                         ng.Group = curgroup.First().Group;
                         curgroup.Add(ng);
                     }
                 }
             }
         }
-        private void DoGroup(List<Info_Combo> group)
+        private void DoCadreByGroup(List<Info_Combo> group)
         {
             // sound
             this.VOLUME_M = 100;
@@ -105,7 +164,6 @@ namespace StoGen.Classes.Data.Games
             var title = group.Where(x => x.Kind == 1).FirstOrDefault();
             if (title != null)
             {
-                path = title.Path;
                 // try to get text from kind 1
                 story = title.Story;
                 if (title.File == "$$WHITE$$") // white background
@@ -136,7 +194,6 @@ namespace StoGen.Classes.Data.Games
                 if (title != null)
                 {
                     story = title.Story;
-                    path = title.Path;
                 }
             }
 
@@ -223,37 +280,32 @@ namespace StoGen.Classes.Data.Games
 
             // PICTURES and Clips- kind 0,2,4,8
             var infopictures = group.Where(x => x.Kind == 0 || x.Kind == 2 || x.Kind == 4 || x.Kind == 8);
+
+            List<Info_Combo> infopicturesMod = new List<Info_Combo>();
             foreach (var item in infopictures)
             {
-                if (!string.IsNullOrEmpty(item.File))
-                {
-                    if (!string.IsNullOrEmpty(item.Path))
-                    {
-                        AddToGlobalImage(item.File, item.File, item.Path);
-                    }
-                    else
-                    {
-                        AddToGlobalImage(item.File, item.File);
-                    }
-                    
+                var it = GetVisualByDefaultAndCurrent(item);
+                infopicturesMod.Add(it);
+                if (!string.IsNullOrEmpty(it.File))
+                {                   
+                   AddToGlobalImage(it.File, it.File);
                 }
             }
             int i = 1;
             List<DifData> itl = new List<DifData>();
-            foreach (var item in infopictures)
+            foreach (var item in infopicturesMod)
             {
                 if (string.IsNullOrEmpty(item.File)) continue;
                 if (item.Kind == 8) //Clip
                 {
                     int volume = 0;
-                    var anim = new AP(this.MoviePath)
+                    var anim = new AP(item.File)
                     { APS = Convert.ToDouble(item.PositionStart),
                       APE = Convert.ToDouble(item.PositionEnd),
-                      ALM = item.LoopMode,
-                      ALC = item.LoopCount,
-                      AR = item.Speed,
-                      AV = volume,
-                      File = item.File };
+                      ALM = Convert.ToInt32(item.LoopMode),
+                      ALC = Convert.ToInt32(item.LoopCount),
+                      AR = Convert.ToInt32(item.Speed),
+                      AV = volume};
 
                     if (string.IsNullOrEmpty(item.S) || item.S == "0") item.S = "800";
                     DifData size = new DifData() { S = Convert.ToInt32(item.S) };

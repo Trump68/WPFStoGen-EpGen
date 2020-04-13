@@ -86,6 +86,7 @@
     </Compile>
     <Compile Include="Data\A001-Woman.cs" />
     <Compile Include="Data\AUX01-Accesuar.cs" />
+    <Compile Include="Scene\SCENARIO.cs" />
     <Compile Include="Scene\SCENE_Combo.cs" />
     <Compile Include="Data\Games\SILKY%27S SAKURA-Otto no Inu Ma ni.cs" />
     <Compile Include="Scene\SCENE_Clips.cs" />

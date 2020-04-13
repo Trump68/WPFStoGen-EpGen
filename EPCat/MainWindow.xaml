@@ -66,7 +66,7 @@
                         <dxlc:LayoutItem Margin="20,0,0,0" Width="50">
                             <dxe:CheckEdit x:Name="EditAllowed" Content="Edit" />
                         </dxlc:LayoutItem>
-                        
+
                         <dxlc:LayoutItem Margin="0,0,0,0" Width="50">
                             <dxe:CheckEdit x:Name="DeletingAllowed" Content="Delete" IsChecked="{Binding IsDeletingAllowed}" />
                         </dxlc:LayoutItem>
@@ -176,188 +176,6 @@
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutControl>
-            </dx:DXTabItem>
-            <dx:DXTabItem Name="TabCaps" Header="Caps" Padding="10,0" KeyUp="ShowHideChildCaps">
-
-                <dxlc:FlowLayoutControl x:Name="layoutImages" ItemsSource="{Binding CurrentCaps}"
-                              AllowItemMoving="False" 
-                              AllowLayerSizing="True"
-                              AllowMaximizedElementMoving="False"
-                              AnimateScrolling="False"
-                              AnimateItemMaximization="False"
-                              AnimateItemMoving="False"
-                              DragScrolling="False"                                        
-                              Background="Black" ShowLayerSeparators="False" Padding="0" ItemSpace="0" LayerSpace="0" Margin="0"  
-                              
-                              >
-                    <dxlc:FlowLayoutControl.ItemTemplate>
-                        <DataTemplate>
-                            <dxlc:GroupBox Header="{Binding}" Content="{Binding}" Width="150" Height="150" Padding="0" 
-                                 Margin="0,0,0,0"                                                                                       
-                                 MaximizeElementVisibility="Visible"
-                                 Loaded="GroupBox_Loaded"                                 
-                                 FontFamily="Segoe UI Light" FontSize="12" Cursor="Hand"                                             
-                                 >
-
-                                <!--HeaderTemplate-->
-                                <dxlc:GroupBox.HeaderTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock LineHeight="0" TextAlignment="Left" Text="{Binding ShortId}" FontFamily="Consolas" FontSize="14" FontWeight="Heavy" Padding="0,0,0,0" Margin="0,0,0,0" />
-                                            <Button Content="." Click="Caps_Delete" Width="15" Height="15" Margin="50,0,0,0" HorizontalAlignment="Right" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </dxlc:GroupBox.HeaderTemplate>
-
-                                <!--ContentTemplate-->
-                                <dxlc:GroupBox.ContentTemplate>
-                                    <DataTemplate>
-                                        <Image Source="{Binding Thumb}" Stretch="Uniform" HorizontalAlignment="Center" MouseLeftButtonUp="GroupBox_MouseLeftButtonUp" />
-                                    </DataTemplate>
-                                </dxlc:GroupBox.ContentTemplate>
-
-                                <!--MaximizedContentTemplate-->
-                                <dxlc:GroupBox.MaximizedContentTemplate>
-                                    <DataTemplate>
-
-                                        <dxlc:LayoutControl ItemSpace="0" Margin="0,0,0,0" Padding="0,0,0,0">
-
-                                            <dxlc:LayoutGroup Background="White" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="0,0,0,0" MaxWidth="600">
-                                                <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Vertical" MaxWidth="600">
-
-                                                    <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Horizontal" HorizontalAlignment="Left">
-
-                                                        <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Vertical" HorizontalAlignment="Left">
-                                                            <dxlc:LayoutItem Label="Id" LabelPosition="Top">
-                                                                <dxe:TextEdit Text="{Binding Id}" IsReadOnly="True" />
-                                                            </dxlc:LayoutItem>
-                                                            <dxlc:LayoutItem Label="Parent:" LabelPosition="Top">
-                                                                <dxe:TextEdit Text="{Binding ParentId}" />
-                                                            </dxlc:LayoutItem>
-                                                            <dxlc:LayoutItem Label="Name" LabelPosition="Top">
-                                                                <dxe:TextEdit Text="{Binding Name}" TextWrapping="Wrap" />
-                                                            </dxlc:LayoutItem>
-                                                        </dxlc:LayoutGroup>
-
-                                                        <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Vertical" HorizontalAlignment="Left">
-                                                            <dxlc:LayoutItem Label="Description" LabelPosition="Top">
-                                                                <dxe:TextEdit Text="{Binding Description}" TextWrapping="Wrap" />
-                                                            </dxlc:LayoutItem>
-                                                            <dxlc:LayoutItem Label="Star" LabelPosition="Top">
-                                                                <dxe:TextEdit Text="{Binding Star}" TextWrapping="Wrap" />
-                                                            </dxlc:LayoutItem>
-                                                        </dxlc:LayoutGroup>
-
-                                                    </dxlc:LayoutGroup>
-
-                                                    <dxlc:LayoutGroup View="Group" Header="Source2" Orientation="Vertical" HorizontalAlignment="Stretch">
-                                                        <dxlc:LayoutItem Margin="0" Padding="0" VerticalAlignment="Stretch" ElementSpace="0" HorizontalAlignment="Stretch">
-                                                            <ContentPresenter x:Name="DetailView" Content="{Binding}" ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch" />
-                                                        </dxlc:LayoutItem>
-                                                    </dxlc:LayoutGroup>
-
-                                                </dxlc:LayoutGroup>
-                                            </dxlc:LayoutGroup>
-
-
-                                            <Image Source="{Binding Picture}" Stretch="Uniform" MouseLeftButtonUp="GroupBox_MouseLeftButtonUp" />
-
-                                        </dxlc:LayoutControl>
-                                    </DataTemplate>
-                                </dxlc:GroupBox.MaximizedContentTemplate>
-
-                            </dxlc:GroupBox>
-                        </DataTemplate>
-                    </dxlc:FlowLayoutControl.ItemTemplate>
-                </dxlc:FlowLayoutControl>
-
-            </dx:DXTabItem>
-            <dx:DXTabItem Name="TabGroups" Header="Groups">
-
-
-
-                <dxlc:DockLayoutControl Margin="0" Padding="0" AllowItemSizing="True">
-                    <dxlc:GroupBox dxlc:DockLayoutControl.Dock="Left" Width="500" Name="CapsLayout" Padding="0,0" dxlc:DockLayoutControl.AllowHorizontalSizing="True">
-
-                        <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
-                            <dxg:GridControl x:Name="GVGroups" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" ItemsSource="{Binding CapsListView}" SelectedItem="{Binding CurrentCapsGroup}" SelectionMode="Cell" SelectedItemChanged="RefreshGroup">
-                                <dxg:GridControl.View>
-                                    <dxg:TableView AllowConditionalFormattingMenu="True" AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="False" CellValueChanged="UpdateGroup">
-                                    </dxg:TableView>
-                                </dxg:GridControl.View>
-
-                                <dxg:GridControl.TotalSummary>
-                                    <dxg:GridSummaryItem FieldName="Name" SummaryType="Count" />
-                                    <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
-                                </dxg:GridControl.TotalSummary>
-                                <dxg:GridColumn FieldName="Id" IsSmart="True" Width="10" />
-                                <dxg:GridColumn FieldName="Name" IsSmart="True" Width="40" />
-                                <dxg:GridColumn FieldName="Description" IsSmart="True" Width="40" />
-                                <dxg:GridColumn FieldName="Star" IsSmart="True" />
-                                <dxg:GridColumn FieldName="PassportPath" IsSmart="True" />
-                            </dxg:GridControl>
-                        </dxlc:LayoutGroup>
-
-                    </dxlc:GroupBox>
-
-                    <dxlc:GroupBox dxlc:DockLayoutControl.Dock="Client" dxlc:DockLayoutControl.AllowHorizontalSizing="True">
-                        <dxlc:FlowLayoutControl x:Name="layoutGroupCaps" ItemsSource="{Binding CurrentCapsForGroup}"
-                              AllowItemMoving="False" 
-                              AllowLayerSizing="True"
-                                                
-                              AllowMaximizedElementMoving="False"
-                              AnimateScrolling="False"
-                              AnimateItemMaximization="False"
-                              AnimateItemMoving="False"
-                              DragScrolling="False"                                                                              
-                              Background="Black" ShowLayerSeparators="True" Padding="0" ItemSpace="0" LayerSpace="0" Margin="0"  
-                              
-                              >
-                            <dxlc:FlowLayoutControl.ItemTemplate>
-                                <DataTemplate>
-                                    <dxlc:GroupBox Header="{Binding}" Content="{Binding}" Width="150" Height="150" Padding="0" 
-                                 Margin="0,0,0,0"                                                 
-                                 MaximizeElementVisibility="Visible"
-                                 FontFamily="Segoe UI Light" FontSize="12" Cursor="Hand" 
-                                 Loaded="GroupBox_Loaded2"                                 
-                                 >
-
-                                        <!--HeaderTemplate-->
-                                        <dxlc:GroupBox.HeaderTemplate>
-                                            <DataTemplate>
-                                                <TextBlock LineHeight="0" TextAlignment="Center" Text="{Binding ShortId}" FontFamily="Consolas" FontSize="14" FontWeight="Heavy" Padding="0,0,0,0" Margin="0,0,0,0" />
-                                            </DataTemplate>
-                                        </dxlc:GroupBox.HeaderTemplate>
-
-                                        <!--ContentTemplate-->
-                                        <dxlc:GroupBox.ContentTemplate>
-                                            <DataTemplate>
-                                                <Image Source="{Binding Thumb}" Stretch="Uniform" HorizontalAlignment="Center" MouseLeftButtonUp="GroupBox_NaximizeMinimize" />
-                                            </DataTemplate>
-                                        </dxlc:GroupBox.ContentTemplate>
-
-                                        <!--MaximizedContentTemplate-->
-                                        <dxlc:GroupBox.MaximizedContentTemplate>
-                                            <DataTemplate>
-
-                                                <dxlc:LayoutControl ItemSpace="0" Margin="0,0,0,0" Padding="0,0,0,0">
-
-
-                                                    <Image Source="{Binding Picture}" Stretch="Uniform" MouseLeftButtonUp="GroupBox_NaximizeMinimize" />
-
-                                                </dxlc:LayoutControl>
-                                            </DataTemplate>
-                                        </dxlc:GroupBox.MaximizedContentTemplate>
-
-                                    </dxlc:GroupBox>
-                                </DataTemplate>
-                            </dxlc:FlowLayoutControl.ItemTemplate>
-                        </dxlc:FlowLayoutControl>
-
-                        <!--<ContentPresenter x:Name ="CapsListView" Content="{Binding SelectedItem, ElementName=GVGroups}" ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch"/>-->
-                    </dxlc:GroupBox>
-                </dxlc:DockLayoutControl>
-
             </dx:DXTabItem>
             <dx:DXTabItem x:Name="tabCaption" Header="Poster">
                 <Grid Background="Transparent">
@@ -540,10 +358,10 @@
                                 <TextBox Text="{Binding ClipToProcess, UpdateSourceTrigger=PropertyChanged}"
                                          Width="200" Height="24" />
 
-                                
-                                
+
+
                             </StackPanel>
-                           
+
 
 
                         </StackPanel>
@@ -554,7 +372,7 @@
 
 
 
-            <dx:DXTabItem Header="Scenes" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54">
+            <dx:DXTabItem Header="Scenes" HorizontalAlignment="Left" Width="54">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
 
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
@@ -603,7 +421,7 @@
                             <dxg:GridControl x:Name="GVCombScen"
                                          AutoGenerateColumns="None"
                                          EnableSmartColumnsGeneration="True"
-                                         ItemsSource="{Binding SelectedItem.CombinedScenes, ElementName=GV}"
+                                         ItemsSource="{Binding SelectedItem.Scenario.Scenes, ElementName=GV}"
                                          SelectedItem="{Binding CurrentCombinedScene}"
                                          SelectionMode="Cell" AutoExpandAllGroups="False">
                                 <!--SelectedItem="{Binding CurrentFolder}"-->
@@ -617,29 +435,29 @@
                                 AutoWidth="False"
                                 ShowGroupPanel="True"
                                 ShowDataNavigator="True"
-                                DataNavigatorButtons="DeleteFocusedRow" ShowGroupedColumns="True" AllowPartialGrouping="True" AllowFixedGroups="True">
+                                DataNavigatorButtons="DeleteFocusedRow" ShowGroupedColumns="True" AllowPartialGrouping="False" AllowFixedGroups="True" ShowGroupFooters="False">
                                         <dxg:TableView.FormatConditions>
-                                            <dxg:FormatCondition ApplyToRow="True" Expression="[Kind] = '1'" FieldName="N">
+                                            <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Tit'" FieldName="Queue">
                                                 <dx:Format Background="#FFB6FAB6" FontWeight="Bold" TextDecorations="{x:Null}"/>
                                             </dxg:FormatCondition>
-                                            <dxg:FormatCondition ApplyToRow="True" Expression="[Kind] = '2'" FieldName="N">
+                                            <dxg:FormatCondition ApplyToRow="False" Expression="[KindOrder] = 'Pic'" FieldName="Queue">
                                                 <dx:Format Background="#FFFCD4D4"/>
                                             </dxg:FormatCondition>
-                                            <dxg:FormatCondition Expression="[Kind] = '3'" FieldName="N" ApplyToRow="True">
+                                            <dxg:FormatCondition Expression="[KindName] = 'Snd'" FieldName="Queue" ApplyToRow="False">
                                                 <dx:Format Background="#FFD8D6CB" FontStyle="Italic" TextDecorations="{x:Null}"/>
                                             </dxg:FormatCondition>
-                                            <dxg:FormatCondition Expression="[Kind] = '4'" FieldName="N" ApplyToRow="True">
+                                            <dxg:FormatCondition Expression="[Kind] = '4'" FieldName="N" ApplyToRow="False" IsEnabled="False">
                                                 <dx:Format Background="#FFE3CFFA"/>
                                             </dxg:FormatCondition>
-                                            <dxg:FormatCondition ApplyToRow="True" Expression="[Kind] = '5'" FieldName="N">
+                                            <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Mov'" FieldName="Queue">
                                                 <dx:Format Background="#FF5CDCFF"/>
                                             </dxg:FormatCondition>
                                         </dxg:TableView.FormatConditions>
                                     </dxg:TableView>
                                 </dxg:GridControl.View>
-                                <dxg:GridColumn FieldName="N" IsSmart="True" AllowResizing="False" Width="30" MaxWidth="30"/>
-                                <dxg:GridColumn FieldName="Kind" IsSmart="True" Width="35" SortOrder="Ascending" SortIndex="2"/>
-                                <dxg:GridColumn FieldName="Queue" IsSmart="True" Width="90" GroupIndex="0"/>
+                                <dxg:GridColumn FieldName="KindOrder" IsSmart="True" AllowResizing="False" Width="0" MaxWidth="30" SortOrder="Ascending" SortIndex="3"/>
+                                <dxg:GridColumn FieldName="KindName" IsSmart="True" Width="35" IsEnabled="False"/>
+                                <dxg:GridColumn FieldName="Queue" IsSmart="True" Width="200" GroupIndex="0"/>
                                 <dxg:GridColumn FieldName="Group" IsSmart="True" Width="90" SortOrder="Ascending" GroupIndex="1" SortIndex="1"/>
                                 <dxg:GridColumn FieldName="File" IsSmart="True" Width="450"/>
                                 <dxg:GridColumn FieldName="Description" IsSmart="True" Width="250"/>
@@ -694,7 +512,7 @@
                                 <TextBox Name="txtVAlign" Text="{Binding SelectedItem.VAlign, ElementName=GVCombScen}"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                             </dxlc:LayoutItem>
-                            
+
                             <dxlc:LayoutItem Label="O" MaxWidth="50">
                                 <TextBox Name="txtOpacity" Text="{Binding SelectedItem.O, ElementName=GVCombScen}"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
@@ -724,7 +542,7 @@
                                 <TextBox Name="txtControls" Text="{Binding SelectedItem., ElementName=GVCombScen}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                             </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
-                        
+
                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                             <dxlc:LayoutItem Label="Transition" LabelPosition="Left">
                                 <dxe:TextEdit 

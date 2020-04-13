@@ -36,7 +36,6 @@ namespace EPCat.Model
         static string c_SortToCatalog = "SORTTOCATALOG";
         static string c_PrepareFolder = "PREPARE FOLDER ";
         static string c_UpdateFolder = "UPDATE FOLDER ";
-        static string c_UpdateCapsFolder = "UPDATE CAPS FOLDER ";
 
 
         static string c_LoadCatalog = "LOAD CATALOG ";
@@ -46,19 +45,12 @@ namespace EPCat.Model
         static string c_SynchFiles = "SYNCH FILES ";
         static string c_CreatePassport = "CREATE PASSPORT ";
 
-        static string c_AddDict = "ADD DICT ";
-        static string c_AddCapsDict = "ADD CAPS_DICT ";
-
-        static string c_NameDict = "NAME DICT ";
-        static string c_NameCapsDict = "NAME CAPS_DICT ";
 
         private List<EpItem> Source;
-        private List<CapsItem> CaspSource;
-        public List<EpItem> ProcessScriptFile(List<EpItem> sourceList, List<CapsItem> capsList)
+
+        public List<EpItem> ProcessScriptFile(List<EpItem> sourceList)
         {
             Source = sourceList;
-            CaspSource = capsList;
-            CaspSource.Clear();
 
             string commandf = "commandscript.txt";
             var CommandArgs = System.Environment.GetCommandLineArgs().ToList();
@@ -714,10 +706,6 @@ namespace EPCat.Model
             {
                 UpdateFolder(line.Replace(c_UpdateFolder, string.Empty));
             }
-            else if (line.StartsWith(c_UpdateCapsFolder))
-            {
-                UpdateCapsFolder(line.Replace(c_UpdateCapsFolder, string.Empty));
-            }
             else if (line.StartsWith(c_LoadCatalog))
             {
                 LoadCatalog(line.Replace(c_LoadCatalog, string.Empty));
@@ -934,25 +922,6 @@ namespace EPCat.Model
                 UpdateFolder(dir);
             }
         }
-        private void UpdateCapsFolder(string parameters)
-        {
-            string itemPath = parameters.ToLower();
-            List<string> passportList = Directory.GetFiles(itemPath, EpItem.p_PassportCapsName).ToList();
-            passportList.AddRange(Directory.GetFiles(itemPath, EpItem.p_PassportEventsName));
-            passportList.AddRange(Directory.GetFiles(itemPath, EpItem.p_PassportFiguresName));
-            passportList.AddRange(Directory.GetFiles(itemPath, EpItem.p_PassportBackgroundName));
-            passportList.AddRange(Directory.GetFiles(itemPath, EpItem.p_PassportCompositionName));
-            passportList.AddRange(Directory.GetFiles(itemPath, EpItem.p_PassportPartsName));
-            foreach (var passport in passportList)
-            {
-                CreateUpdateCapsFromPassort(passport);
-            }
-            List<string> dirList = Directory.GetDirectories(itemPath).ToList();
-            foreach (var dir in dirList)
-            {
-                UpdateCapsFolder(dir);
-            }
-        }
 
         internal void UpdateItem(EpItem item)
         {
@@ -1129,7 +1098,7 @@ namespace EPCat.Model
                             existingItem.PARENT = item.Name;
                         }
                         existingItem.Size = item.Size;
-                        existingItem.ItemPath = item.ItemPath;
+                        existingItem.SetItemPath(item.ItemPath); 
                         existingItem.SourceFolderExist = item.SourceFolderExist;
                         copyPoster = !File.Exists(newPostername);
                         reversecopyPoster = !copyPoster;
@@ -1194,39 +1163,6 @@ namespace EPCat.Model
             }
             return new string(array);
         }
-        private void CreateUpdateCapsFromPassort(string passportPath)
-        {
-            List<string> passport = new List<string>(File.ReadAllLines(passportPath));
-            if (passport != null)
-            {
-
-                List<CapsItem> result = new List<CapsItem>();
-                foreach (var line in passport)
-                {
-                    string term = line.Trim();
-                    CapsItem item = CapsItem.GetFromPassport(term);
-                    if (item != null)
-                    {
-                        string foldername = Path.GetFileNameWithoutExtension(passportPath).Split('_')[1];
-                        item.GroupName = foldername;
-                        item.PassportPath = passportPath;
-                        item.ItemPath = Path.Combine(Path.GetDirectoryName(passportPath), foldername, item.Id);
-                        result.Add(item);
-                    }
-                }
-                result.ForEach(x =>
-                  {
-                      x.Parent = result.Where(p => p.Id == x.ParentId).FirstOrDefault();
-                      if (x.Parent != null)
-                      {
-                          x.Parent.ChildList.Add(x);
-                      }
-                  }
-                );
-                CaspSource.AddRange(result);
-            }
-        }
-
 
     }
 

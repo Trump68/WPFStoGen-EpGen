@@ -1,5 +1,6 @@
 ﻿using DevExpress.Mvvm;
 using StoGen.Classes;
+using StoGen.Classes.Scene;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,9 +22,15 @@ namespace EPCat.Model
     [Serializable]
     public class EpItem
     {
+        public static string TEMPDIR = "_TMP";
         public Guid GID { get; set; }
-        public bool GroupsEnabled { get { return true; } }
-        public string ItemPath { get; set; }
+
+        private string _ItemPath;
+        public string ItemPath
+        {
+            get { return _ItemPath; }
+            set { _ItemPath = value;}
+        }
         public readonly int _itemType;//0-Folder
         public int ItemType { get { return _itemType; } }
         public int ParentID { get; set; }
@@ -96,6 +103,14 @@ namespace EPCat.Model
                 return Path.GetDirectoryName(ItemPath);
             }
         }
+        public string ItemTempDirectory
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(ItemPath)) return string.Empty;
+                return Path.Combine(Path.GetDirectoryName(ItemPath), EpItem.TEMPDIR);
+            }
+        }
         private string _SoundDirectory;
         [XmlIgnore]
         public string SoundDirectory
@@ -146,87 +161,12 @@ namespace EPCat.Model
                 return _Sounds;
             }
         }
-        List<CapsItem> _Caps = null;
-        [XmlIgnore]
-        public List<CapsItem> Caps
-        {
-            get
-            {
-                if (_Caps == null || CurrentPassport != CurrentPassportImage)
-                {
-                    RefreshImageLists();
-                    CurrentPassport = CurrentPassportImage;
-                }
-                return _Caps;
-            }
-        }
+
+
         private string CurrentPassport;
-        public void RefreshImageLists()
-        {
-            CapsPassportData.Clear();
-            string foldername = Path.GetFileNameWithoutExtension(CurrentPassportImage).Split('_')[1];
-            string capspath = Path.Combine(ItemDirectory, foldername);
-            string ImagePassportPath = Path.Combine(ItemDirectory, CurrentPassportImage);
-            _Caps = new List<CapsItem>();
-            List<CapsItem> itemList = new List<CapsItem>();
-            if (!CapsPassportData.Any() && File.Exists(ImagePassportPath))
-            {
-                List<string> passport = new List<string>(File.ReadAllLines(ImagePassportPath));
-                if (passport != null)
-                {
-                    itemList = CapsItem.GetListFromPassport(passport);
-                }
-            }
-            itemList.ForEach(x => { x.Parent = itemList.Where(p => p.Id == x.ParentId).FirstOrDefault(); x.Owner = _Caps; });
 
-            if (Directory.Exists(capspath))
-            {
-                List<string> files = Directory.GetFiles(capspath, "*.jpg").ToList();
-                files.AddRange(Directory.GetFiles(capspath, "*.png"));
 
-                int pos = 0;
-                List<string> newfiles = new List<string>();
-                foreach (var f in files)
-                {
-                    pos++;
-                    string fn = CapsItem.ConvertRenameFilename(f, pos);
-                    newfiles.Add(fn);
-                }
 
-                foreach (var f in newfiles)
-                {
-
-                    string fn = Path.GetFileName(f);
-                    CapsItem existItem = itemList.Where(x => x.Id == fn).FirstOrDefault();
-                    if (existItem != null)
-                    {
-                        existItem.ItemPath = f;
-                        _Caps.Add(existItem);
-                    }
-                    else
-                    {
-                        CapsItem newitem = new CapsItem() { ItemPath = f, Id = fn, Owner = _Caps };
-                        _Caps.Add(newitem);
-                    }
-                }
-
-            }
-        }
-        public void SaveImagePassport()
-        {
-            if (_Caps != null)
-            {
-                List<string> lines = new List<string>();
-                foreach (var cap in _Caps)
-                {
-                    string s = CapsItem.SetToPassport(cap);
-                    if (!string.IsNullOrEmpty(s)) lines.Add(s);
-                }
-                if (lines.Any())
-                    File.WriteAllLines(Path.Combine(this.ItemDirectory, CurrentPassportImage), lines);
-            }
-        }
-        public List<CapsItem> CapsPassportData = new List<CapsItem>();
         public bool VideoPresent
         {
             get
@@ -310,41 +250,18 @@ namespace EPCat.Model
             }
         }
         [XmlIgnore]
-        private ObservableCollection<Info_Combo> _CombinedScenes = null;
+        private SCENARIO _Scenario = null;
         [XmlIgnore]
-        public ObservableCollection<Info_Combo> CombinedScenes
+        public SCENARIO Scenario
         {
             get
             {
-                if (_CombinedScenes == null)
+                if (_Scenario == null)
                 {
-                    _CombinedScenes = new ObservableCollection<Info_Combo>();
+                    _Scenario = new SCENARIO();
 
-                }
-                foreach (var item in _CombinedScenes)
-                {                    
-                    item.N = _CombinedScenes.IndexOf(item) + 1;
-                    if (item.Kind != 2 && item.Kind != 4)
-                        item.Path = Path.GetDirectoryName(this.ItemPath);
-                    if (item.Kind == 7)
-                    {
-                        if (string.IsNullOrEmpty(item.File) && !string.IsNullOrEmpty(item.Description))
-                        {
-                            string filename = Path.Combine(this.SoundDirectory, item.Description + ".mp3");
-                            if (File.Exists(filename))
-                            {
-                                string gid = Guid.NewGuid().ToString();
-                                string newpath = Path.GetFileNameWithoutExtension(filename);
-                                newpath = $"{newpath}.{gid}.mp3";
-                                newpath = Path.Combine(this.SoundDirectory, newpath);
-                                File.Move(filename, newpath);
-                                item.File = gid;
-                            }
-                            
-                        }
-                    }
-                }
-                return _CombinedScenes;
+                }               
+                return _Scenario;
             }
         }
         
@@ -369,7 +286,7 @@ namespace EPCat.Model
 
         internal void UpdateFrom(EpItem item)
         {
-            this.ItemPath = item.ItemPath;
+            this.SetItemPath(item.ItemPath);
             this.Name = item.Name;
             this.Serie = item.Serie;
             this.Catalog = item.Catalog;
@@ -413,10 +330,10 @@ namespace EPCat.Model
                 this.Clips.Add(it);
             }
 
-            this.CombinedScenes.Clear();
-            foreach (var it in item.CombinedScenes)
+            this.Scenario.Scenes.Clear();
+            foreach (var it in item.Scenario.Scenes)
             {
-                this.CombinedScenes.Add(it);
+                this.Scenario.Scenes.Add(it);
             }
 
         }
@@ -684,7 +601,7 @@ namespace EPCat.Model
         internal static EpItem GetFromPassport(List<string> passport, string path)
         {
             EpItem result = new EpItem(1);
-            result.ItemPath = path;
+            result.SetItemPath(path);            
             bool isComments = false;
             bool isScenData = false;
             bool isCombData = false;
@@ -1085,6 +1002,10 @@ namespace EPCat.Model
             return result;
         }
 
+        public void SetItemPath(string path)
+        {
+            this._ItemPath = path;
+        }
     }
 
 
