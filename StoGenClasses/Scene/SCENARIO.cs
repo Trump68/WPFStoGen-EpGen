@@ -77,7 +77,7 @@ namespace StoGen.Classes.Scene
         //Other
         public string GamePath;
         private bool packStory = true;
-        private bool packPicture = true;
+        private bool packImage = true;
         private bool packSound = true;
         private bool packVideo = false;
 
@@ -162,7 +162,23 @@ namespace StoGen.Classes.Scene
                 {
                     DefVisFile = item.Replace("DefVisFile=", string.Empty);
                 }
-
+                // Other
+                else if (item.StartsWith("PackStory="))
+                {
+                    packStory = (item.Replace("PackStory=", string.Empty) == "1");
+                }
+                else if (item.StartsWith("PackImage="))
+                {
+                    packImage = (item.Replace("PackImage=", string.Empty) == "1");
+                }
+                else if (item.StartsWith("PackSound="))
+                {
+                    packSound = (item.Replace("PackSound=", string.Empty) == "1");
+                }
+                else if (item.StartsWith("PackVideo="))
+                {
+                    packVideo = (item.Replace("PackVideo=", string.Empty) == "1");
+                }
             }
         }
         public void LoadFrom(List<string> clipsinstr)
@@ -334,7 +350,7 @@ namespace StoGen.Classes.Scene
                         bool add = false;
                         string subdir = string.Empty;
                         string ext = Path.GetExtension(scene.File).ToUpper();
-                        if (scenario.packPicture && (ext == ".JPG" || ext == ".PNG"))
+                        if (scenario.packImage && (ext == ".JPG" || ext == ".PNG"))
                         {
                             add = true;
                             subdir = "IMAGE";
@@ -377,7 +393,7 @@ namespace StoGen.Classes.Scene
                                 
                                 if (!files.Contains(v))
                                     files.Add(v);
-                                scene.File = $@".\{Path.GetFileName(v)}@{vals[1]}";
+                                scene.Story = $@".\{Path.GetFileName(v)}@{vals[1]}";
                             }
                         }
 
