@@ -9,6 +9,7 @@ using StoGen.Classes.Data.Movie;
 using System.Linq;
 using System.Windows;
 using StoGen.Classes.Scene;
+using StoGen.ModelClasses;
 
 namespace StoGenMake
 {
@@ -23,10 +24,11 @@ namespace StoGenMake
             {
                 ExitOnComplete = true;
                 string file = args[1];
-                List<string> clipsinstr = new List<string>(File.ReadAllLines(file));
+                
                 string extension = Path.GetExtension(file);
                 if (extension == ".epcatci")
                 {
+                    List<string> clipsinstr = new List<string>(File.ReadAllLines(file));
                     List<Info_Clip> clips = new List<Info_Clip>();
                     foreach (var item in clipsinstr)
                     {
@@ -37,11 +39,17 @@ namespace StoGenMake
                 }
                 else if (extension == ".epcatsi")
                 {
-                    SCENARIO scenario = new SCENARIO();                    
-                    foreach (var item in clipsinstr)
-                    {
-                        scenario.Scenes.Add(Info_Combo.GenerateFromString(item));
-                    }
+                    List<string> clipsinstr = new List<string>(File.ReadAllLines(file));
+                    SCENARIO scenario = new SCENARIO();
+                    scenario.GamePath = Path.GetDirectoryName(file);
+                    scenario.LoadFrom(clipsinstr);
+                    StoGenWPF.MainWindow.ReadIni(file);
+                    GetScene(null, scenario);
+                }
+                else if (extension == ".epcatsz")
+                {
+                    SCENARIO scenario = new SCENARIO();
+                    scenario.LoadFromZip(file);
                     StoGenWPF.MainWindow.ReadIni(file);
                     GetScene(null, scenario);
                 }
@@ -65,6 +73,7 @@ namespace StoGenMake
             }
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();
+            Projector.ProjectorWindow = window;
             window.GlobalMenuCreator = GameWorldFactory.GameWorld;
             window.Scene = scene;
             window.Show();

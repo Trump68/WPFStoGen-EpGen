@@ -39,63 +39,28 @@ namespace StoGen.Classes.Data.Games
         private Info_Combo GetVisualByDefaultAndCurrent(Info_Combo current)
         {
             Info_Combo rez = Info_Combo.GenerateCopy(current);
-            //Info_Combo def = null;
-            //if (string.IsNullOrEmpty(rez.File))
-            //{
-            //    if (DefaultVisualDic.Any())
-            //    {
-            //        if (DefaultVisualDic.First().Value.Kind == rez.Kind)
-            //            def = DefaultVisualDic.First().Value;
-            //    }
-            //}
-            //else
-            //{
-            //    if (DefaultVisualDic.ContainsKey(rez.File))
-            //        def = DefaultVisualDic[rez.File];
-            //}
-            //if (def != null)
-            //{
-                if (string.IsNullOrEmpty(rez.File))             
-                    rez.File = Scenario.DefVisFile;
-                if (string.IsNullOrEmpty(rez.LoopCount))
-                rez.LoopCount = Scenario.DefVisLC; 
-                if (string.IsNullOrEmpty(rez.LoopMode))
-                    rez.LoopMode = Scenario.DefVisLM;
+
+            if (string.IsNullOrEmpty(rez.File))
+                rez.File = Scenario.DefVisFile;
+            if (!string.IsNullOrEmpty(rez.File) && rez.File.StartsWith(@".\") && !string.IsNullOrEmpty(Scenario.GamePath))
+            {
+                rez.File = rez.File.Replace(@".\", $@"{Scenario.GamePath}\");
+            }
+
+
+            if (string.IsNullOrEmpty(rez.LoopCount))
+                rez.LoopCount = Scenario.DefVisLC;
+            if (string.IsNullOrEmpty(rez.LoopMode))
+                rez.LoopMode = Scenario.DefVisLM;
             if (string.IsNullOrEmpty(rez.S))
-                    rez.S = Scenario.DefVisSize;
+                rez.S = Scenario.DefVisSize;
             if (string.IsNullOrEmpty(rez.Speed))
                 rez.Speed = Scenario.DefVisSpeed;
             if (string.IsNullOrEmpty(rez.X))
                 rez.X = Scenario.DefVisX;
             if (string.IsNullOrEmpty(rez.Y))
                 rez.Y = Scenario.DefVisY;
-            //if (string.IsNullOrEmpty(rez.O))
-            //        rez.O = def.O;
-            //    //if (string.IsNullOrEmpty(rez.PositionEnd))
-            //    //    rez.PositionEnd = def.PositionEnd;
-            //    //if (string.IsNullOrEmpty(rez.PositionStart))
-            //    //    rez.PositionStart = def.PositionStart;
-            //    //if (string.IsNullOrEmpty(rez.R))
-            //    //    rez.R = def.R;
-            //    if (string.IsNullOrEmpty(rez.S))
-            //        rez.S = def.S;
-            //    if (string.IsNullOrEmpty(rez.ShowMovieControl))
-            //        rez.ShowMovieControl = def.ShowMovieControl;
-            //    if (string.IsNullOrEmpty(rez.Speed))
-            //        rez.Speed = def.Speed;
-            //    if (string.IsNullOrEmpty(rez.VAlign))
-            //        rez.VAlign = def.VAlign;
-            //    if (string.IsNullOrEmpty(rez.X))
-            //        rez.X = def.X;
-            //    if (string.IsNullOrEmpty(rez.Y))
-            //        rez.Y = def.Y;
-            //    if (string.IsNullOrEmpty(rez.Z))
-            //        rez.Z = def.Z;
-            ////}
-            //else if (!string.IsNullOrEmpty(rez.File))
-            //{
-            //    DefaultVisualDic.Add(rez.File, rez);
-            //}
+
             return rez;
         }
 
@@ -133,7 +98,7 @@ namespace StoGen.Classes.Data.Games
             }
             return true;
         }
-        
+
 
 
         private void DoCadreByGroup(List<Info_Combo> group)
@@ -143,11 +108,16 @@ namespace StoGen.Classes.Data.Games
             var sounds = group.Where(x => x.Kind == 6);
             foreach (var item in sounds)
             {
-                this.AddMusic(item.File);
+                Info_Combo rez = Info_Combo.GenerateCopy(item);
+                if (!string.IsNullOrEmpty(rez.File) && rez.File.StartsWith(@".\") && !string.IsNullOrEmpty(Scenario.GamePath))
+                {
+                    rez.File = rez.File.Replace(@".\", $@"{Scenario.GamePath}\");
+                }
+                this.AddMusic(rez.File);
             }
 
             Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
-          
+
 
             string story = string.Empty;
             string path = string.Empty;
@@ -162,7 +132,7 @@ namespace StoGen.Classes.Data.Games
                     copytitle.File = Scenario.DefTextBck;
                 if (copytitle.File == "$$WHITE$$") // white background
                 {
-                    AddToGlobalImage("$$WHITE$$", "$$WHITE$$",string.Empty);
+                    AddToGlobalImage("$$WHITE$$", "$$WHITE$$", string.Empty);
                     Pictures.Add("$$WHITE$$", new DifData("$$WHITE$$") { });
                 }
 
@@ -170,8 +140,8 @@ namespace StoGen.Classes.Data.Games
 
             // try to get text from kind 4
             if (string.IsNullOrEmpty(story))
-            {                
-                title = group.Where(x => x.Kind == 4).FirstOrDefault();                
+            {
+                title = group.Where(x => x.Kind == 4).FirstOrDefault();
                 if (title != null)
                 {
                     story = title.Story;
@@ -212,7 +182,7 @@ namespace StoGen.Classes.Data.Games
                         List<string> storylines = new List<string>();
                         foreach (string line in textlist)
                         {
-                           
+
                             // get text from section within a file
                             if (line.StartsWith($"@{section}"))
                             {
@@ -234,7 +204,7 @@ namespace StoGen.Classes.Data.Games
                 }
             }
 
-            
+
             // PICTURES- kind 5 (transform)
             List<OpEf> trans = new List<OpEf>();
             var prevtranpictures = group.Where(x => x.Kind == 5);
@@ -268,8 +238,8 @@ namespace StoGen.Classes.Data.Games
                 var it = GetVisualByDefaultAndCurrent(item);
                 infopicturesMod.Add(it);
                 if (!string.IsNullOrEmpty(it.File))
-                {                   
-                   AddToGlobalImage(it.File, it.File);
+                {
+                    AddToGlobalImage(it.File, it.File);
                 }
             }
             int i = 1;
@@ -281,12 +251,14 @@ namespace StoGen.Classes.Data.Games
                 {
                     int volume = 0;
                     var anim = new AP(item.File)
-                    { APS = Convert.ToDouble(item.PositionStart),
-                      APE = Convert.ToDouble(item.PositionEnd),
-                      ALM = Convert.ToInt32(item.LoopMode),
-                      ALC = Convert.ToInt32(item.LoopCount),
-                      AR = Convert.ToInt32(item.Speed),
-                      AV = volume};
+                    {
+                        APS = Convert.ToDouble(item.PositionStart),
+                        APE = Convert.ToDouble(item.PositionEnd),
+                        ALM = Convert.ToInt32(item.LoopMode),
+                        ALC = Convert.ToInt32(item.LoopCount),
+                        AR = Convert.ToInt32(item.Speed),
+                        AV = volume
+                    };
 
                     //if (string.IsNullOrEmpty(item.S) || item.S == "0") item.S = "800";
 
@@ -302,6 +274,8 @@ namespace StoGen.Classes.Data.Games
                         size.R = Convert.ToInt32(item.R);
                     if (!string.IsNullOrEmpty(item.Z))
                         size.Z = Convert.ToInt32(item.Z);
+                    //else
+                    //    size.Z = 2;
 
                     size.AL.Add(anim);
                     var dd = new List<DifData>();
@@ -342,6 +316,10 @@ namespace StoGen.Classes.Data.Games
                     {
                         Pictures[key].Z = Convert.ToInt32(item.Z);
                     }
+                    else
+                    {
+                        Pictures[key].Z = 2;
+                    }
                     if (!string.IsNullOrEmpty(item.R))
                     {
                         Pictures[key].R = Convert.ToInt32(item.R);
@@ -355,10 +333,10 @@ namespace StoGen.Classes.Data.Games
                 }
             }
             itl.AddRange(Pictures.Values.ToList());
-            
-                //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100*W..0>X.B.400.300")); //--appear+move from left
-                //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100"));                  //--appear
-            CreateCadreData($"{story}", itl, trans);            
+
+            //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100*W..0>X.B.400.300")); //--appear+move from left
+            //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100"));                  //--appear
+            CreateCadreData($"{story}", itl, trans);
         }
     }
 }

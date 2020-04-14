@@ -396,7 +396,7 @@ namespace EPCat
             }
         }
 
-        internal void AddCombinedScene(int? kind)
+        internal void AddCombinedScene(bool incurrentgroup, int? kind)
         {
             if (this.CurrentFolder == null) return;
             //var last = this.CurrentFolder.CombinedScenes.LastOrDefault();
@@ -407,8 +407,16 @@ namespace EPCat
                 {
                     Info_Combo newclipinfo = new Info_Combo();
                     newclipinfo.LoadFromString(item);
-                    string newgroup = IncrementGroup(newclipinfo.Group);
-                    newclipinfo.Group = newgroup;
+                    if (incurrentgroup)
+                    {
+                        newclipinfo.Group = this.CurrentCombinedScene.Group;
+                    }
+                    else
+                    {
+                        string newgroup = IncrementGroup(newclipinfo.Group);
+                        newclipinfo.Group = newgroup;
+                    }
+
                     if (clip != null && newclipinfo.Kind == 0)
                     {
                         newclipinfo.File = clip;
@@ -420,7 +428,7 @@ namespace EPCat
                     }
                     addNewComb(newclipinfo);
                 }
-                TicTakToe.CopiedCombinedScene.Clear();
+                //TicTakToe.CopiedCombinedScene.Clear();
             }
             else
             {
@@ -432,7 +440,14 @@ namespace EPCat
                     {
                         Info_Combo v = new Info_Combo();
                         v.LoadFromString(TicTakToe.CopiedCombinedScene[0]);
-                        newclipinfo.Group = v.Group;
+                        if (incurrentgroup)
+                        {
+                            newclipinfo.Group = this.CurrentCombinedScene.Group;
+                        }
+                        else
+                        {
+                            newclipinfo.Group = v.Group;
+                        }
                         newclipinfo.Queue = v.Queue;
                        
                     }                    
@@ -512,24 +527,14 @@ namespace EPCat
             }
             File.WriteAllLines(Path.Combine(Path.GetDirectoryName(this.CurrentFolder.ItemPath), "ClipList.epcatci"), lines);
         }
-        internal void SaveScenesList()
+        internal void SaveScenario()
         {
             if (this.CurrentFolder == null) return;
-            this.Scenario.SaveToFile(this.CurrentFolder.ItemDirectory , this.CurrentFolder.ItemTempDirectory);             
+            this.Scenario.SaveToFile(this.CurrentFolder.ItemDirectory, this.CurrentFolder.ItemTempDirectory);             
         }
 
-        //internal void LoadAllScenes()
-        //{
-        //    string dir = Path.GetDirectoryName(this.CurrentFolder.ItemPath);
-        //    var files = Directory.GetFiles(dir, "*.epcatsi");
-        //    this.CurrentFolder.Scenario.Scenes.Clear();
-        //    foreach (var item in files)
-        //    {
-        //        Load1Scene(item);                      
-        //    }         
-        //}
 
-        internal void Load1Scene(string fileName)
+        internal void LoadScenario(string fileName)
         {            
             List<string> clipsinstr = new List<string>(File.ReadAllLines(fileName));
             this.Scenario = null;
@@ -543,6 +548,14 @@ namespace EPCat
         internal void ClearScenes()
         {
             this.Scenario.Scenes.Clear();
+        }
+
+        internal void ReloadScenario()
+        {
+            if (this.CurrentFolder == null) return;
+            SaveScenario();
+            var dir = CurrentFolder.ItemDirectory;
+            LoadScenario(Path.Combine(dir,$"{this.Scenario.FileName}.epcatsi"));
         }
 
 

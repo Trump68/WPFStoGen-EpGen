@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StoGenWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black" Left="0" Top="0" KeyDown="Window_KeyDown" d:DesignHeight="869" Width="992">
+        Title="EP PROJECTOR" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black" Left="0" Top="0" KeyDown="Window_KeyDown" d:DesignHeight="869" Width="992" Icon="Google-Noto-Emoji-Objects-62843-film-projector.ico">
     <Grid Name="MainGrid" ClipToBounds="False" Margin="0,0,0,0">
         <MediaElement x:Name="Clip1" ScrubbingEnabled="True" HorizontalAlignment="Left" Height="505" Margin="90,47,0,0" VerticalAlignment="Top" Width="853" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>
         <!--<MediaElement x:Name="ClipSound"  ScrubbingEnabled="True" HorizontalAlignment="Left" Height="0" Margin="90,47,0,0" VerticalAlignment="Top" Width="0" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>-->

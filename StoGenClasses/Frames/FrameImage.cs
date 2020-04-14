@@ -11,9 +11,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace StoGen.Classes
 {
@@ -491,17 +493,32 @@ namespace StoGen.Classes
         }
         private void DoResize(PictureSourceProps pi, int imW, int imH)
         {
+            Projector.PicContainer.PicList[(int)pi.Level].Stretch = Stretch.Uniform;
             if (pi.SizeX == -1 || pi.SizeY == -1)
             {
                 if (pi.SizeX == -1) pi.SizeX = imW;
                 if (pi.SizeY == -1) pi.SizeY = imH;
-                Projector.PicContainer.PicList[(int)pi.Level].Stretch = Stretch.Uniform;
             }
             else if (pi.SizeX == -2 || pi.SizeY == -2)
             {
-                pi.SizeX = 1600;
-                pi.SizeY = 900;
-                Projector.PicContainer.PicList[(int)pi.Level].Stretch = Stretch.Uniform;
+                var interopHelper = new WindowInteropHelper(System.Windows.Application.Current.MainWindow);
+                var activeScreen = Screen.FromHandle(interopHelper.Handle);
+                pi.SizeX = activeScreen.WorkingArea.Width;
+                pi.SizeY = activeScreen.WorkingArea.Height;
+
+            }
+            else if (pi.SizeX == -3 || pi.SizeY == -3)
+            {
+                System.Windows.Window w = Projector.ProjectorWindow;
+                if (w == null)
+                    w = System.Windows.Application.Current.MainWindow;
+                    
+                var interopHelper = new WindowInteropHelper(Projector.ProjectorWindow);
+                var activeScreen = Screen.FromHandle(interopHelper.Handle);
+                pi.SizeX = activeScreen.WorkingArea.Width;
+                pi.SizeY = activeScreen.WorkingArea.Height;
+                pi.SizeMode = PictureSizeMode.Stretch;
+                Projector.PicContainer.PicList[(int)pi.Level].Stretch = Stretch.Fill;
             }
             else
             {

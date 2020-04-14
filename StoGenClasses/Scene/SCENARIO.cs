@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace StoGen.Classes.Scene
     {
         public SCENARIO()
         {
-            
+
         }
         public string Id { set; get; }
         public string Name { set; get; }
@@ -60,6 +61,9 @@ namespace StoGen.Classes.Scene
         public string DefFontSize;
         public string DefFontColor;
         public string DefTextAlignH;
+
+
+
         public string DefTextAlignV;
         public string DefTextBck;
         //visual
@@ -70,6 +74,13 @@ namespace StoGen.Classes.Scene
         public string DefVisLM;
         public string DefVisLC;
         public string DefVisFile;
+        //Other
+        public string GamePath;
+        private bool packStory = true;
+        private bool packPicture = true;
+        private bool packSound = true;
+        private bool packVideo = false;
+
         private void AssignRawParameters()
         {
             List<string> paramlist = new List<string>();
@@ -77,12 +88,14 @@ namespace StoGen.Classes.Scene
             var lines = rdata.Split('~');
             foreach (var line in lines)
             {
-                var items = line.Split(';');             
-                foreach (var item in items)
+                if (!line.StartsWith("//"))
                 {
-                    var s = item.Trim();
-                    if (!s.StartsWith("//"))
+                    var items = line.Split(';');
+                    foreach (var item in items)
+                    {
+                        var s = item.Trim();
                         paramlist.Add(item.Trim());
+                    }
                 }
             }
             foreach (var item in paramlist)
@@ -152,7 +165,6 @@ namespace StoGen.Classes.Scene
 
             }
         }
-
         public void LoadFrom(List<string> clipsinstr)
         {
             bool isMetadata = false;
@@ -251,7 +263,6 @@ namespace StoGen.Classes.Scene
             }
             AssignRawParameters();
         }
-
         public void SaveToFile(string ScenDir, string tempDir)
         {
             List<string> lines = new List<string>();
@@ -275,22 +286,159 @@ namespace StoGen.Classes.Scene
 
             foreach (var item in queues)
             {
-                
+
                 var selectedQueue = Scenes.Where(x => x.Queue == item).OrderBy(x => x.Group).ToList();
                 foreach (var queue in selectedQueue)
                 {
                     lines.Add(queue.GenerateString());
-                }               
+                }
             }
             string fn = Path.Combine(ScenDir, $"{FileName}.epcatsi");
-            Directory.CreateDirectory(tempDir);
-            string bfn = Path.Combine(tempDir, $"{FileName}.epcatsi");
-            if (File.Exists(fn))
+            if (tempDir != null)
             {
-                File.Copy(fn, bfn, true);
-                File.Delete(fn);
+                Directory.CreateDirectory(tempDir);
+                string bfn = Path.Combine(tempDir, $"{FileName}.epcatsi");
+                if (File.Exists(fn))
+                {
+                    File.Copy(fn, bfn, true);
+                    File.Delete(fn);
+                }
             }
             File.WriteAllLines(fn, lines);
+        }
+        public static void PackScenario(SCENARIO original, string ScenDir)
+        {
+            SCENARIO scenario = new SCENARIO();
+            string origfile = Path.Combine(ScenDir, $"{original.FileName}.epcatsi");
+            List<string> clipsinstr = new List<string>(File.ReadAllLines(origfile));
+            scenario.LoadFrom(clipsinstr);
+
+            string tempPath = Path.Combine(ScenDir, "_ZIPTEMP");
+            if (Directory.Exists(tempPath))
+            {
+                Directory.Delete(tempPath, true);
+            }
+
+
+
+            HashSet<string> files = new HashSet<string>();
+
+
+            foreach (var scene in scenario.Scenes)
+            {
+                if (!string.IsNullOrEmpty(scene.File))
+                {
+                    if (scene.File.Contains(Path.DirectorySeparatorChar))
+                    {
+
+                        bool add = false;
+                        string subdir = string.Empty;
+                        string ext = Path.GetExtension(scene.File).ToUpper();
+                        if (scenario.packPicture && (ext == ".JPG" || ext == ".PNG"))
+                        {
+                            add = true;
+                            subdir = "IMAGE";
+                        }
+                        else if (scenario.packVideo && (ext == ".M4V"))
+                        {
+                            add = true;
+                            subdir = "VIDEO";
+                        }
+                        else if (scenario.packSound && (ext == ".MP3" || ext == ".WAV" || ext == ".OGG"))
+                        {
+                            add = true;
+                            subdir = "SOUND";
+                        }
+                        if (add)
+                        {
+                            string f = scene.File;
+                            if (!files.Contains(scene.File))
+                            {
+                                files.Add(f);
+                            }                          
+                            scene.File = $@".\{subdir}\{Path.GetFileName(scene.File)}";
+                        }
+
+                    }
+                }
+
+                if (scenario.packStory)
+                {
+                    if (!string.IsNullOrEmpty(scene.Story))
+                    {
+                        string v = scene.Story;
+                        if (scene.Story.Contains("@"))
+                        {
+                            var vals = scene.Story.Split('@');
+                            v = vals[0];
+                            if (v.Contains(Path.DirectorySeparatorChar))
+                            {
+                                string f = scene.File;
+                                
+                                if (!files.Contains(v))
+                                    files.Add(v);
+                                scene.File = $@".\{Path.GetFileName(v)}@{vals[1]}";
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            foreach (var file in files)
+            {
+                if (File.Exists(file))
+                {
+                    string newfilename = Path.GetFileName(file);
+                    string ext = Path.GetExtension(newfilename).ToUpper();
+                    string subdir = string.Empty;
+                    if (ext == ".M4V")
+                    {
+                        subdir = "VIDEO";
+                    }
+                    else if (ext == ".JPG" || ext == ".PNG")
+                    {
+                        subdir = "IMAGE";
+                    }
+                    else if (ext == ".MP3" || ext == ".WAV" || ext == ".OGG")
+                    {
+                        subdir = "SOUND";
+                    }
+                    subdir = Path.Combine(tempPath, subdir);
+                    Directory.CreateDirectory(subdir);
+                    string newfilepath = Path.Combine(subdir, newfilename);
+                    File.Copy(file, newfilepath, false);
+                }
+            }
+
+            scenario.SaveToFile(tempPath,null);
+
+
+            string zipPath = Path.Combine(ScenDir, Path.ChangeExtension(scenario.FileName, ".epcatsz"));
+            if (File.Exists(zipPath))
+                File.Delete(zipPath);
+            ZipFile.CreateFromDirectory(tempPath, zipPath, CompressionLevel.Optimal, false);
+            Directory.Delete(tempPath, true);
+        }
+        public void LoadFromZip(string file)
+        {
+            string rootpath = Path.GetDirectoryName(file);
+            string zipname = Path.GetFileName(file);
+            GamePath = Path.Combine(rootpath, Path.GetFileNameWithoutExtension(zipname));
+            if (Directory.Exists(GamePath))
+            {
+                Directory.Delete(GamePath, true);
+                Directory.CreateDirectory(GamePath);
+            }
+            Directory.CreateDirectory(GamePath);
+            ZipFile.ExtractToDirectory(file, GamePath);
+            var f = Directory.GetFiles(GamePath, "*.epcatsi");
+            if (f.Any())
+            {
+                List<string> clipsinstr = new List<string>(File.ReadAllLines(f[0]));
+                this.LoadFrom(clipsinstr);
+            }
+
         }
     }
 }

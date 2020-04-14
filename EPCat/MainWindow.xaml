@@ -15,10 +15,10 @@
         xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
         x:Class="EPCat.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="593.484" Width="1290.694" Closing="Window_Closing" 
+        Title="EP CATALOGUE" Height="593.484" Width="1290.694" Closing="Window_Closing" 
         Loaded="Window_Loaded"
         KeyDown="Window_KeyDown"
-        WindowState="Maximized">
+        WindowState="Maximized" Icon="Papirus-Team-Papirus-Apps-Rocket-league.ico">
 
     <Window.DataContext>
         <local:EpCatViewModel />
@@ -379,6 +379,12 @@
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopGrBtn" Content="CopyGr" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="CompileScenarioBtn" Content="Compile" Width="80" Margin="100,4,0,0" HorizontalAlignment="Left" Click="CompileScenarioBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <dx:SimpleButton x:Name="ReloadFileBtn" Content="Reload" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ReloadScenarioFromFileBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Right">
                                 <dx:SimpleButton x:Name="LoadOneFileBtn" Content="Load" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="LoadOneSceneFromFileBtn_Click" />

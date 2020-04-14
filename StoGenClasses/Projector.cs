@@ -104,6 +104,8 @@ namespace StoGen.ModelClasses
             }
         }
 
+        public static System.Windows.Window ProjectorWindow { get; set; }
+
         public static void Clear()
         {
             //Projector.PicContainer.Lci.Parent.Visibility = LayoutVisibility.Never;

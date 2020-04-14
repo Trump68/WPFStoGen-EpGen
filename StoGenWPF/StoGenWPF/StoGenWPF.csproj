@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Google-Noto-Emoji-Objects-62843-film-projector.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.CodeParser.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -120,6 +123,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Doc\Help.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Papirus-Team-Papirus-Apps-Rocket-league.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Google-Noto-Emoji-Objects-62843-film-projector.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

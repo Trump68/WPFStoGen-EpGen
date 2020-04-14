@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StoGenMake"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+        Title="EP PROJECTOR STARTER" Height="41.912" Width="230.882" Loaded="Window_Loaded" Icon="Papirus-Team-Papirus-Apps-Rocket-league.ico">
     <Grid>
-        
+
     </Grid>
 </Window>

@@ -3,6 +3,7 @@ using DevExpress.Xpf.Grid;
 using DevExpress.Xpf.LayoutControl;
 using EPCat.Model;
 using Microsoft.Win32;
+using StoGen.Classes.Scene;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -511,7 +512,7 @@ namespace EPCat
         private void AddSceneBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(null);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(true,null);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
@@ -520,28 +521,28 @@ namespace EPCat
             //copy
             (this.DataContext as EpCatViewModel).CopyCombinedScene(false);
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(6);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(true,6);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
         private void AddSceneSoundPlusBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(7);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(true,7);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
         private void AddClipBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(8);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(true,8);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
         private void AddSceneHeaderBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(1);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(false,1);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
@@ -593,7 +594,7 @@ namespace EPCat
             }
             //save
             ViewModel.CopyCombinedScene(true);
-            ViewModel.AddCombinedScene(null);
+            ViewModel.AddCombinedScene(false,null);
             // reset
             ViewModel.RefreshFolder();
         }
@@ -613,7 +614,7 @@ namespace EPCat
 
         private void SaveScenesToFileBtn_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.SaveScenesList();
+            ViewModel.SaveScenario();
         }
 
         private void LoadOneSceneFromFileBtn_Click(object sender, RoutedEventArgs e)
@@ -623,13 +624,24 @@ namespace EPCat
             openFileDialog.Filter = "Scenes|*.epcatsi";
             if (openFileDialog.ShowDialog() == true)
             {
-                ViewModel.Load1Scene(openFileDialog.FileName);
+                ViewModel.LoadScenario(openFileDialog.FileName);
             }
         }
+
 
         public void SetGVCurrent(int ind)
         {
             GVCombScen.View.FocusedRowHandle = GVCombScen.GetRowHandleByListIndex(ind);
+        }
+
+        private void ReloadScenarioFromFileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.ReloadScenario();            
+        }
+
+        private void CompileScenarioBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SCENARIO.PackScenario(ViewModel.Scenario, ViewModel.CurrentFolder.ItemDirectory);
         }
     }
 }

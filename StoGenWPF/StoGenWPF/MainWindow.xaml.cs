@@ -180,6 +180,8 @@ namespace StoGenWPF
         private static string GetIniFile(string file)
         {
             string backupath = Path.Combine(Path.GetDirectoryName(file), "_TMP");
+            if (!Directory.Exists(backupath))
+                Directory.CreateDirectory(backupath);
             string fileoptions = Path.Combine(backupath, Path.GetFileName(Path.ChangeExtension(file, ".ini")));
             return fileoptions;
         }
