@@ -164,7 +164,7 @@ namespace EPCat
      
 
         public bool IsDeletingAllowed { get; set; } = false;
-        public bool IsSavingAllowed { get; set; } = true;
+        public bool IsSavingAllowed { get; set; } = false;
 
         public int CapsViewMode = 0;
 
@@ -396,7 +396,7 @@ namespace EPCat
             }
         }
 
-        internal void AddCombinedScene(bool incurrentgroup, int? kind)
+        internal void AddCombinedScene(bool incurrentgroup,bool toEnd, int? kind)
         {
             if (this.CurrentFolder == null) return;
             //var last = this.CurrentFolder.CombinedScenes.LastOrDefault();
@@ -410,6 +410,11 @@ namespace EPCat
                     if (incurrentgroup)
                     {
                         newclipinfo.Group = this.CurrentCombinedScene.Group;
+                    }
+                    else if (toEnd)
+                    {
+                        string newgroup = IncrementGroupToEnd(newclipinfo.Group);
+                        newclipinfo.Group = newgroup;
                     }
                     else
                     {
@@ -470,7 +475,15 @@ namespace EPCat
             }    
             return string.Join(".", vals);
         }
+        private string IncrementGroupToEnd(string v)
+        {
+            var vals = v.Split('.');
+            if (vals.Length == 0) return v;
+            int d = 999;
+            vals[0] = d.ToString("D" + vals[0].Length);
 
+            return string.Join(".", vals);
+        }
         private void addNewComb(Info_Combo newclipinfo)
         {
             newclipinfo.ID = Guid.NewGuid().ToString();

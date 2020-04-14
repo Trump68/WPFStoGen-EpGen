@@ -155,6 +155,7 @@ namespace StoGen.Classes
 
         public int SizeX { get; set; }
         public int SizeY { get; set; }
+        public bool ScreenStretch { get; set; } = false;
         public int Opacity { get; set; } = 100;
     
         public double NextCadre { get; set; }

@@ -21,6 +21,8 @@ namespace StoGen.Classes.Data.Games
         SCENARIO Scenario = null;
         List<Info_Combo> Queue;
         List<List<Info_Combo>> data = new List<List<Info_Combo>>();
+        private Info_Combo CurrentBackground;
+
         //private Dictionary<string, Info_Combo> DefaultVisualDic = new Dictionary<string, Info_Combo>();
 
         public void SetScenario(SCENARIO scenario, string queue)
@@ -228,23 +230,42 @@ namespace StoGen.Classes.Data.Games
                 }
             }
 
-
             // PICTURES and Clips- kind 0,2,4,8
-            var infopictures = group.Where(x => x.Kind == 0 || x.Kind == 2 || x.Kind == 4 || x.Kind == 8);
+            var visuals = group.Where(x => x.Kind == 0 || x.Kind == 2 || x.Kind == 4 || x.Kind == 8 || x.Kind == 9);
 
-            List<Info_Combo> infopicturesMod = new List<Info_Combo>();
-            foreach (var item in infopictures)
+            List<Info_Combo> visualsCopy = new List<Info_Combo>();
+            foreach (var item in visuals)
             {
-                var it = GetVisualByDefaultAndCurrent(item);
-                infopicturesMod.Add(it);
-                if (!string.IsNullOrEmpty(it.File))
+                if (item.Kind == 9) // set current background
                 {
-                    AddToGlobalImage(it.File, it.File);
+                    CurrentBackground = item;
                 }
+                else
+                {
+                    var it = GetVisualByDefaultAndCurrent(item);
+                    visualsCopy.Add(it);
+                    if (!string.IsNullOrEmpty(it.File))
+                        AddToGlobalImage(it.File, it.File);
+                }               
+                      
             }
+            if (CurrentBackground != null)// add Current Background
+            {
+                var it = Info_Combo.GenerateCopy(CurrentBackground);
+                it.Group = group.First().Group;
+                it.Queue = group.First().Queue;
+                it.Z = "0";
+                it.X = "0";
+                it.X = "0";
+                it.S = "-2";
+                visualsCopy.Add(it);
+                if (!string.IsNullOrEmpty(it.File))
+                    AddToGlobalImage(it.File, it.File);
+            }
+
             int i = 1;
             List<DifData> itl = new List<DifData>();
-            foreach (var item in infopicturesMod)
+            foreach (var item in visualsCopy)
             {
                 if (string.IsNullOrEmpty(item.File)) continue;
                 if (item.Kind == 8) //Clip

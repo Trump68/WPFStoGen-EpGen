@@ -16,7 +16,22 @@ namespace StoGen.Classes.Scene
         {
 
         }
-        public string Id { set; get; }
+        private string _Id;
+        public string Id
+        {
+            set
+            {
+                _Id = value;
+            }
+            get
+            {
+                if (string.IsNullOrEmpty(_Id))
+                {
+                    _Id = Guid.NewGuid().ToString();
+                };
+                return _Id;
+            }
+        }
         public string Name { set; get; }
         private string _FileName;
         public string FileName
@@ -208,7 +223,7 @@ namespace StoGen.Classes.Scene
                 }
                 else if (line.StartsWith("ID:"))
                 {
-                    this.Id = line.Replace(line, "ID:");
+                    this.Id = line.Replace(line, "ID:").Trim();
                     if (string.IsNullOrEmpty(this.Id)) this.Id = Guid.NewGuid().ToString();
                 }
                 else if (line.StartsWith("FILENAME:"))

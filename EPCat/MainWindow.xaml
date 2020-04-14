@@ -405,7 +405,7 @@
                                          EnableSmartColumnsGeneration="True"
                                          ItemsSource="{Binding Scenes}"
                                          SelectedItem="{Binding CurrentCombinedScene}"
-                                         SelectionMode="Cell" AutoExpandAllGroups="False">
+                                         SelectionMode="Cell" AutoExpandAllGroups="True" IsRecursiveExpand="True">
                                         <!--SelectedItem="{Binding CurrentFolder}"-->
                                         <dxg:GridControl.View>
                                             <dxg:TableView 
@@ -428,7 +428,7 @@
                                                     <dxg:FormatCondition Expression="[KindName] = 'Snd'" FieldName="Queue" ApplyToRow="False">
                                                         <dx:Format Background="#FFD8D6CB" FontStyle="Italic" TextDecorations="{x:Null}"/>
                                                     </dxg:FormatCondition>
-                                                    <dxg:FormatCondition Expression="[Kind] = '4'" FieldName="N" ApplyToRow="False" IsEnabled="False">
+                                                    <dxg:FormatCondition Expression="[KindName] = 'Bck'" FieldName="Queue" ApplyToRow="False" IsEnabled="True">
                                                         <dx:Format Background="#FFE3CFFA"/>
                                                     </dxg:FormatCondition>
                                                     <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Mov'" FieldName="Queue">

@@ -271,43 +271,43 @@
     <property name="TotalSummary" iskey="true" value="0" />
     <property name="MRUFilters" iskey="true" value="9">
       <property name="Item1" isnull="true" iskey="true">
-        <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'IllustratedInterracial-site-rip-2016')</property>
-        <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'IllustratedInterracial-site-rip-2016')</property>
+        <property name="FilterString">[Catalog] = 'PRS'</property>
+        <property name="FilterText">[Catalog] = 'PRS'</property>
       </property>
       <property name="Item2" isnull="true" iskey="true">
-        <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'LEONE FROLLO - Blancanieves - 02')</property>
-        <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'LEONE FROLLO - Blancanieves - 02')</property>
-      </property>
-      <property name="Item3" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'Story 03 - Can''t Buy Me Love')</property>
         <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'Story 03 - Can''t Buy Me Love')</property>
       </property>
+      <property name="Item3" isnull="true" iskey="true">
+        <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'IllustratedInterracial-site-rip-2016')</property>
+        <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'IllustratedInterracial-site-rip-2016')</property>
+      </property>
       <property name="Item4" isnull="true" iskey="true">
+        <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'LEONE FROLLO - Blancanieves - 02')</property>
+        <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'LEONE FROLLO - Blancanieves - 02')</property>
+      </property>
+      <property name="Item5" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'Story 0')</property>
         <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'Story 0')</property>
       </property>
-      <property name="Item5" isnull="true" iskey="true">
+      <property name="Item6" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'Story 03')</property>
         <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'Story 03')</property>
       </property>
-      <property name="Item6" isnull="true" iskey="true">
+      <property name="Item7" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'story')</property>
         <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'story')</property>
       </property>
-      <property name="Item7" isnull="true" iskey="true">
+      <property name="Item8" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'stor')</property>
         <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'stor')</property>
       </property>
-      <property name="Item8" isnull="true" iskey="true">
+      <property name="Item9" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'sto')</property>
         <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'sto')</property>
       </property>
-      <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'st')</property>
-        <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'st')</property>
-      </property>
     </property>
-    <property name="FilterString">[Catalog] = 'PRS'</property>
+    <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'HCG - 01')</property>
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>

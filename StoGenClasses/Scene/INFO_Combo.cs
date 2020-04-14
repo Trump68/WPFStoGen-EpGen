@@ -36,13 +36,15 @@ namespace StoGen.Classes
                 {
 
                     case 0:
-                        return 3;
+                        return 4;
                     case 1: // 
                         return 0;
                     case 6: // 
-                        return 1;
-                    case 8: // 
                         return 2;
+                    case 8: // 
+                        return 3;
+                    case 9: // 
+                        return 1;
                     default: return 100;
                 }
             }
@@ -63,6 +65,8 @@ namespace StoGen.Classes
                         return "Snd";
                     case 8: // 
                         return "Mov";
+                    case 9: // 
+                        return "Bck";
                     default: return "Oth";
                 }
             }
@@ -78,6 +82,7 @@ namespace StoGen.Classes
         // 6 - sound
         // 7 -1+6 -- DEPRECATED
         // 8 - Movie Clip
+        // 9 - background picture (auto added in every next scene)
         public int Kind { set; get; } = 0;
         public string Description { set; get; } = string.Empty;
 
