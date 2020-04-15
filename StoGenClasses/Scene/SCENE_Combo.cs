@@ -74,7 +74,7 @@ namespace StoGen.Classes.Data.Games
         public bool Process()
         {
             data.Clear();
-            this.currentGr = Queue.First().ID;
+            //this.currentGr = Queue.First().ID;
             var grupedlist = Queue.GroupBy(x => x.Group).ToList();
 
             for (int i = 0; i < grupedlist.Count; i++)

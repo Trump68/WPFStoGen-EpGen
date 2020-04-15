@@ -71,7 +71,7 @@ namespace StoGen.Classes
                 }
             }
         }
-        public string ID { set; get; }
+
         public string File { set; get; }
         // 0 - standart image
         // 1- header ($$WHITE$$  in file - white background)
@@ -187,7 +187,6 @@ namespace StoGen.Classes
             if (!string.IsNullOrEmpty(Queue))
                 rez.Add($"QUEUE={Queue}");
 
-            rez.Add($"ID={ID}");
 
             if (!string.IsNullOrEmpty(File))
             {
@@ -216,11 +215,7 @@ namespace StoGen.Classes
             List<string> data = item.Split(';').ToList();
             foreach (var str in data)
             {
-                if (str.StartsWith("ID="))
-                {
-                    this.ID = str.Replace("ID=", string.Empty);
-                }
-                else if (str.StartsWith("FILE="))
+                if (str.StartsWith("FILE="))
                 {
                     this.File = str.Replace("FILE=", string.Empty);
                 }              

@@ -581,10 +581,7 @@ namespace EPCat
             ViewModel.SaveCurrentClipList();
         }       
 
-        private void CopyGroupBtn_Click(object sender, RoutedEventArgs e)
-        {
-            CopyGroup(false, true);
-        }
+
         public void CopyGroup(bool atEnd, bool toEnd)
         {
             if (atEnd)
@@ -642,6 +639,20 @@ namespace EPCat
         private void CompileScenarioBtn_Click(object sender, RoutedEventArgs e)
         {
             SCENARIO.PackScenario(ViewModel.Scenario, ViewModel.CurrentFolder.ItemDirectory);
+        }
+        private void CopyGroupBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CopyGroup(false, true);
+        }
+
+        private void CopyGroupBtn1_Click(object sender, RoutedEventArgs e)
+        {
+            CopyGroup(false, false);
+        }
+
+        private void btnGoRepeatText_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.GoRepeatText();
         }
     }
 }

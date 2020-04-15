@@ -378,7 +378,10 @@
                                 <dx:SimpleButton x:Name="CopySceneBtn" Content="Copy" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopySceneBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="CopGrBtn" Content="CopyGr" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn_Click" />
+                                <dx:SimpleButton x:Name="CopGrBtn" Content="CopyGr" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="CopGrBtn1" Content="CopyGr+1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn1_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CompileScenarioBtn" Content="Compile" Width="80" Margin="100,4,0,0" HorizontalAlignment="Left" Click="CompileScenarioBtn_Click" />
@@ -549,14 +552,27 @@
                                         <TextBox Text="{Binding Scenario.FileName}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                     </dxlc:LayoutItem>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
-                                        <dxlc:LayoutItem Label="Female">
+                                        <dxlc:LayoutItem Label="Fm">
                                             <TextBox Text="{Binding Scenario.Female}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
-                                        <dxlc:LayoutItem Label="Male">
-                                            <TextBox Text="{Binding Scenario.Male}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        <dxlc:LayoutItem Label="Garment">
+                                            <TextBox Text="{Binding Scenario.Fgarment}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
-
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Ml">
+                                            <TextBox Text="{Binding Scenario.Male}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Garment">
+                                            <TextBox Text="{Binding Scenario.Mgarment}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutItem Label="Location" >
+                                        <TextBox TextWrapping="WrapWithOverflow" Text="{Binding Scenario.Location}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="Action" >
+                                        <TextBox TextWrapping="WrapWithOverflow" Text="{Binding Scenario.Action}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                    </dxlc:LayoutItem>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                         <dxlc:LayoutItem Label="Kind">
                                             <TextBox Text="{Binding Scenario.Kind}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
@@ -568,7 +584,7 @@
                                             <TextBox Text="{Binding Scenario.Variant}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
-
+                                    
                                     <dxlc:LayoutItem Label="Stopwords" >
                                         <TextBox TextWrapping="WrapWithOverflow" Text="{Binding Scenario.StopWords}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                     </dxlc:LayoutItem>
@@ -594,6 +610,29 @@
 
                     </dxlc:LayoutGroup>
 
+                </dxlc:LayoutGroup>
+            </dx:DXTabItem>
+            <dx:DXTabItem Header="Tools">
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                    <dxlc:LayoutItem Label="Start" MaxWidth="120">
+                            <TextBox Name="txtRepeatTextStart" Text="{Binding RepeatedTextStart}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="End" MaxWidth="120">
+                            <TextBox Name="txtRepeatTextEnd" Text="{Binding RepeatedTextEnd}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                    </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="GoRepeatTextBtn" Content="Go [x]" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoRepeatText_Click" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                        <dxlc:LayoutItem Label="Story" LabelPosition="Left">
+                            <dxe:TextEdit MaxHeight="320"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding RepeatedText}" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
 

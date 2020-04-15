@@ -486,7 +486,7 @@ namespace EPCat
         }
         private void addNewComb(Info_Combo newclipinfo)
         {
-            newclipinfo.ID = Guid.NewGuid().ToString();
+            //newclipinfo.ID = Guid.NewGuid().ToString();
             this.Scenario.Scenes.Add(newclipinfo);
             this.CurrentCombinedScene = newclipinfo;
             RaisePropertyChanged(() => this.CurrentFolder);
@@ -575,6 +575,34 @@ namespace EPCat
 
 
         #endregion
+
+
+        string _RepeatedText;
+        public string RepeatedText
+        {
+            get
+            {
+                return _RepeatedText;
+            }
+            set
+            {
+                _RepeatedText = value;
+            }
+        }
+
+        public int RepeatedTextStart { set; get; }
+        public int RepeatedTextEnd { set; get; }
+
+        internal void GoRepeatText()
+        {
+            List<string> rez = new List<string>();
+            for (int i = RepeatedTextStart; i <= RepeatedTextEnd; i++)
+            {
+                rez.Add(RepeatedText.Replace("[x]",$"{i}"));
+            }
+            RepeatedText = string.Join(Environment.NewLine, rez.ToArray());
+            RaisePropertyChanged(() => this.RepeatedText);
+        }
     }
 
 }

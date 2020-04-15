@@ -49,9 +49,13 @@ namespace StoGen.Classes.Scene
             }
         }
         public string Description { set; get; }
+        public string Location { set; get; }
         public string Female { set; get; }
+        public string Fgarment { set; get; }
         public string Male { set; get; }
+        public string Mgarment { set; get; }
         public string StopWords { set; get; }
+        public string Action { set; get; }
         public string Kind { set; get; }
         public string Category { set; get; }
         public string Variant { set; get; }
@@ -223,20 +227,36 @@ namespace StoGen.Classes.Scene
                 }
                 else if (line.StartsWith("ID:"))
                 {
-                    this.Id = line.Replace(line, "ID:").Trim();
-                    if (string.IsNullOrEmpty(this.Id)) this.Id = Guid.NewGuid().ToString();
+                    this.Id = line.Replace("ID:", string.Empty).Trim();
+                    if (string.IsNullOrEmpty(this.Id) || this.Id.Contains("ID")) this.Id = Guid.NewGuid().ToString();
                 }
                 else if (line.StartsWith("FILENAME:"))
                 {
                     this.FileName = line.Replace("FILENAME:", string.Empty);
                 }
+                else if (line.StartsWith("LOCATION:"))
+                {
+                    this.Location = line.Replace("LOCATION:", string.Empty);
+                }
                 else if (line.StartsWith("FEMALE:"))
                 {
                     this.Female = line.Replace("FEMALE:", string.Empty);
                 }
+                else if (line.StartsWith("FGARMENT:"))
+                {
+                    this.Fgarment = line.Replace("FGARMENT:", string.Empty);
+                }
                 else if (line.StartsWith("MALE:"))
                 {
                     this.Male = line.Replace("MALE:", string.Empty);
+                }
+                else if (line.StartsWith("MGARMENT:"))
+                {
+                    this.Mgarment = line.Replace("MGARMENT:", string.Empty);
+                }
+                else if (line.StartsWith("ACTION:"))
+                {
+                    this.Action = line.Replace("ACTION:", string.Empty);
                 }
                 else if (line.StartsWith("KIND:"))
                 {
@@ -301,8 +321,12 @@ namespace StoGen.Classes.Scene
             lines.Add($"NAME:{this.Name}");
             lines.Add($"ID:{this.Id}");
             lines.Add($"FILENAME:{this.FileName}");
+            lines.Add($"LOCATION:{this.Location}");
             lines.Add($"FEMALE:{this.Female}");
+            lines.Add($"FGARMENT:{this.Fgarment}");
             lines.Add($"MALE:{this.Male}");
+            lines.Add($"MGARMENT:{this.Mgarment}");
+            lines.Add($"ACTION:{this.Action}");
             lines.Add($"KIND:{this.Kind}");
             lines.Add($"CATEGORY:{this.Category}");
             lines.Add($"VARIANT:{this.Variant}");
