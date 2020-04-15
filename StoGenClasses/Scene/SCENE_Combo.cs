@@ -134,6 +134,11 @@ namespace StoGen.Classes.Data.Games
             {
                 copytitle = Info_Combo.GenerateCopy(title);
                 // try to get text from kind 1
+                if (copytitle.Story == "$$DESCRIPTION$$")
+                {
+                    story = copytitle.Description;
+                }
+                else
                 story = copytitle.Story;
                 if (string.IsNullOrEmpty(copytitle.File) && !string.IsNullOrEmpty(Scenario.DefTextBck))
                     copytitle.File = Scenario.DefTextBck;

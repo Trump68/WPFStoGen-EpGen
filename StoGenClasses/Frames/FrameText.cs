@@ -84,8 +84,8 @@ namespace StoGen.Classes
 
                 Projector.Border1.Width = Projector.TextCanvas.Width;
                 Projector.Border2.Width = Projector.TextCanvas.Width;
-                Projector.Border2.Width = Projector.TextCanvas.Width;
-                Projector.Border2.Width = Projector.TextCanvas.Width;
+                Projector.Border3.Width = Projector.TextCanvas.Width;
+                Projector.Border4.Width = Projector.TextCanvas.Width;
 
                 double bm = Bottom;
                 double tm = Projector.TextCanvas.Margin.Top;
