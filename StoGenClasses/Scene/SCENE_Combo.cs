@@ -38,16 +38,21 @@ namespace StoGen.Classes.Data.Games
             this.Process();
         }
 
+        private string GetAbsolutePath(string path)
+        {
+            if (!string.IsNullOrEmpty(path) && path.StartsWith(@".\") && !string.IsNullOrEmpty(Scenario.GamePath))
+            {
+                return path.Replace(@".\", $@"{Scenario.GamePath}\");
+            }
+            return path;
+        }
         private Info_Combo GetVisualByDefaultAndCurrent(Info_Combo current)
         {
             Info_Combo rez = Info_Combo.GenerateCopy(current);
 
             if (string.IsNullOrEmpty(rez.File))
                 rez.File = Scenario.DefVisFile;
-            if (!string.IsNullOrEmpty(rez.File) && rez.File.StartsWith(@".\") && !string.IsNullOrEmpty(Scenario.GamePath))
-            {
-                rez.File = rez.File.Replace(@".\", $@"{Scenario.GamePath}\");
-            }
+            rez.File = GetAbsolutePath(rez.File);
 
 
             if (string.IsNullOrEmpty(rez.LoopCount))
@@ -252,6 +257,7 @@ namespace StoGen.Classes.Data.Games
             if (CurrentBackground != null)// add Current Background
             {
                 var it = Info_Combo.GenerateCopy(CurrentBackground);
+                it.File = GetAbsolutePath(it.File);
                 it.Group = group.First().Group;
                 it.Queue = group.First().Queue;
                 it.Z = "0";
