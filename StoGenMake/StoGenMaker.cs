@@ -3,7 +3,6 @@ using StoGenMake.Scenes;
 using StoGenMake.Scenes.Base;
 using System.Collections.Generic;
 using System.IO;
-using StoGenMake.Pers;
 using StoGen.Classes.Data.Games;
 using StoGen.Classes.Data.Movie;
 using System.Linq;

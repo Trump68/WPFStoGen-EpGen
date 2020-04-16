@@ -61,11 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Scenes\Scene01.cs" />
     <Compile Include="StoGenMaker.cs" />
-    <Compile Include="VNPC\BASE\VNPC.cs" />
-    <Compile Include="VNPC\READY\LADY_041017.cs" />
-    <Compile Include="VNPC\READY\LADY_011017.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,10 +106,6 @@
     <ProjectReference Include="..\StoGenClasses\StoGenClasses.csproj">
       <Project>{16832A49-6465-4C63-8C20-F7DE36ADF10C}</Project>
       <Name>StoGenClasses</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\StoGenLife\StoGenLife.csproj">
-      <Project>{E45DC092-2338-4AE7-A151-423318D217EB}</Project>
-      <Name>StoGenLife</Name>
     </ProjectReference>
     <ProjectReference Include="..\StoGenWPF\StoGenWPF\StoGenWPF.csproj">
       <Project>{ad6db9a5-7a96-4a41-bda0-72d01e6e86ac}</Project>
