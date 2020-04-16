@@ -44,10 +44,11 @@ namespace StoGen.Classes
         public static int WaitEnd = -1;
         public static void ProcessLoopDelegate()
         {
+            //Transition
+            if (FrameImage.tranManager.Process()) ;
+
             if (FrameImage.Animations == null) return;
                 #region Other
-                //Transition
-                if (FrameImage.tranManager.Process()) ;
             if (Projector.TimerEnabled && (FrameImage.TimeToNext > 0))
             {
                 if (FrameImage.TimeStarted.AddMilliseconds(FrameImage.TimeToNext) <= DateTime.Now)

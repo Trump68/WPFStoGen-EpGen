@@ -110,6 +110,7 @@ namespace StoGen.Classes.Data.Games
 
         private void DoCadreByGroup(List<Info_Combo> group)
         {
+            int i = 1; // picture index to correct add transitions
             // sound
             this.VOLUME_M = 100;
             var sounds = group.Where(x => x.Kind == 6);
@@ -146,6 +147,7 @@ namespace StoGen.Classes.Data.Games
                 {
                     AddToGlobalImage("$$WHITE$$", "$$WHITE$$", string.Empty);
                     Pictures.Add("$$WHITE$$", new DifData("$$WHITE$$") { });
+                    ++i;
                 }
 
             }
@@ -274,7 +276,7 @@ namespace StoGen.Classes.Data.Games
                     AddToGlobalImage(it.File, it.File);
             }
 
-            int i = 1;
+
             List<DifData> itl = new List<DifData>();
             foreach (var item in visualsCopy)
             {
@@ -320,11 +322,6 @@ namespace StoGen.Classes.Data.Games
                 {
                     int opacity = 100;
 
-                    //if (Pictures.ContainsKey(item.Description))
-                    //{
-                    //    item.Description = $"{item.Description}{item.File}";
-
-                    //}
                     string key = item.File;
                     Pictures.Add(key, new DifData(item.File) { });
                     if (!string.IsNullOrEmpty(item.X))
@@ -358,17 +355,18 @@ namespace StoGen.Classes.Data.Games
                     }
                     if (!string.IsNullOrEmpty(item.T))
                     {
-                        Pictures[key].T = item.T;
-                        trans.Add(new OpEf(i, false, opacity, item.T));
+                        // if apper, dont forget to set Opacity to 0, as initially figure is invisible
+                        //"W..0>O.B.400.100" //--appear
+                        //"W..0>O.B.400.100*W..0>X.B.400.300"--appear+move from left
+                        Pictures[key].T = item.T;                                                                  
                     }
                     i++;
                 }
             }
             itl.AddRange(Pictures.Values.ToList());
 
-            //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100*W..0>X.B.400.300")); //--appear+move from left
-            //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100"));                  //--appear
-            CreateCadreData($"{story}", itl, trans);
+
+            CreateCadreData($"{story}", itl, null);
         }
     }
 }

@@ -178,6 +178,7 @@ namespace StoGenMake.Scenes.Base
                             else
                                 cdata.Add(d);
                         }
+
                         if (oef.Tran != null)
                         {
                             d.O = oef.O;
