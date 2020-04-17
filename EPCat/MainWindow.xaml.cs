@@ -654,5 +654,11 @@ namespace EPCat
         {
             ViewModel.GoRepeatText();
         }
+
+        private void btnGoGenerate_Click(object sender, RoutedEventArgs e)
+        {
+            var fn = ViewModel.GoGenerateScenario("TestScenario");
+            ViewModel.LoadScenario(fn);
+        }
     }
 }

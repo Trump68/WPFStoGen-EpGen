@@ -19,9 +19,9 @@ namespace StoGen.Classes.Data.Games
             EngineLoVer = 0;
         }
         SCENARIO Scenario = null;
-        List<Info_Combo> Queue;
-        List<List<Info_Combo>> data = new List<List<Info_Combo>>();
-        private Info_Combo CurrentBackground;
+        List<Info_Scene> Queue;
+        List<List<Info_Scene>> data = new List<List<Info_Scene>>();
+        private Info_Scene CurrentBackground;
 
         //private Dictionary<string, Info_Combo> DefaultVisualDic = new Dictionary<string, Info_Combo>();
 
@@ -29,7 +29,7 @@ namespace StoGen.Classes.Data.Games
         {
             Scenario = scenario;
             Queue = scenario.Scenes.Where(x => x.Queue == queue).ToList();
-            Queue.Sort(delegate (Info_Combo x, Info_Combo y)
+            Queue.Sort(delegate (Info_Scene x, Info_Scene y)
             {
                 if (x.Group == null) x.Group = string.Empty;
                 if (y.Group == null) y.Group = string.Empty;
@@ -46,9 +46,9 @@ namespace StoGen.Classes.Data.Games
             }
             return path;
         }
-        private Info_Combo GetVisualByDefaultAndCurrent(Info_Combo current)
+        private Info_Scene GetVisualByDefaultAndCurrent(Info_Scene current)
         {
-            Info_Combo rez = Info_Combo.GenerateCopy(current);
+            Info_Scene rez = Info_Scene.GenerateCopy(current);
 
             if (string.IsNullOrEmpty(rez.File))
                 rez.File = Scenario.DefVisFile;
@@ -108,7 +108,7 @@ namespace StoGen.Classes.Data.Games
 
 
 
-        private void DoCadreByGroup(List<Info_Combo> group)
+        private void DoCadreByGroup(List<Info_Scene> group)
         {
             int i = 1; // picture index to correct add transitions
             // sound
@@ -116,7 +116,7 @@ namespace StoGen.Classes.Data.Games
             var sounds = group.Where(x => x.Kind == 6);
             foreach (var item in sounds)
             {
-                Info_Combo rez = Info_Combo.GenerateCopy(item);
+                Info_Scene rez = Info_Scene.GenerateCopy(item);
                 if (!string.IsNullOrEmpty(rez.File) && rez.File.StartsWith(@".\") && !string.IsNullOrEmpty(Scenario.GamePath))
                 {
                     rez.File = rez.File.Replace(@".\", $@"{Scenario.GamePath}\");
@@ -129,11 +129,11 @@ namespace StoGen.Classes.Data.Games
 
             string story = string.Empty;
             string path = string.Empty;
-            Info_Combo title = group.Where(x => x.Kind == 1).FirstOrDefault();
-            Info_Combo copytitle = null;
+            Info_Scene title = group.Where(x => x.Kind == 1).FirstOrDefault();
+            Info_Scene copytitle = null;
             if (title != null)
             {
-                copytitle = Info_Combo.GenerateCopy(title);
+                copytitle = Info_Scene.GenerateCopy(title);
                 // try to get text from kind 1
                 if (copytitle.Story == "$$DESCRIPTION$$")
                 {
@@ -245,7 +245,7 @@ namespace StoGen.Classes.Data.Games
             // PICTURES and Clips- kind 0,2,4,8
             var visuals = group.Where(x => x.Kind == 0 || x.Kind == 2 || x.Kind == 4 || x.Kind == 8 || x.Kind == 9);
 
-            List<Info_Combo> visualsCopy = new List<Info_Combo>();
+            List<Info_Scene> visualsCopy = new List<Info_Scene>();
             foreach (var item in visuals)
             {
                 if (item.Kind == 9) // set current background
@@ -263,7 +263,7 @@ namespace StoGen.Classes.Data.Games
             }
             if (CurrentBackground != null)// add Current Background
             {
-                var it = Info_Combo.GenerateCopy(CurrentBackground);
+                var it = Info_Scene.GenerateCopy(CurrentBackground);
                 it.File = GetAbsolutePath(it.File);
                 it.Group = group.First().Group;
                 it.Queue = group.First().Queue;

@@ -67,7 +67,7 @@
   <ItemGroup>
     <Compile Include="Cadre.cs" />
     <Compile Include="CadreData.cs" />
-    <Compile Include="Scene\INFO_Combo.cs" />
+    <Compile Include="Scene\INFO_Scene.cs" />
     <Compile Include="Controls\frmFrameChoice.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -22,6 +22,7 @@ using StoGen.Classes;
 using System.Diagnostics;
 using StoGen.Classes.Data.Games;
 using StoGen.Classes.Scene;
+using StoGenerator;
 
 namespace EPCat
 {
@@ -57,8 +58,8 @@ namespace EPCat
                 _FolderListView = value;
             }
         }
-        private ObservableCollection<Info_Combo> _Scenes = new ObservableCollection<Info_Combo>();
-        public ObservableCollection<Info_Combo> Scenes
+        private ObservableCollection<Info_Scene> _Scenes = new ObservableCollection<Info_Scene>();
+        public ObservableCollection<Info_Scene> Scenes
         {
             get
             {
@@ -123,8 +124,8 @@ namespace EPCat
             }
         }
 
-        Info_Combo _CurrentCombinedScene;
-        public Info_Combo CurrentCombinedScene
+        Info_Scene _CurrentCombinedScene;
+        public Info_Scene CurrentCombinedScene
         {
             get
             {
@@ -405,7 +406,7 @@ namespace EPCat
             {
                 foreach (var item in TicTakToe.CopiedCombinedScene)
                 {
-                    Info_Combo newclipinfo = new Info_Combo();
+                    Info_Scene newclipinfo = new Info_Scene();
                     newclipinfo.LoadFromString(item);
                     if (incurrentgroup)
                     {
@@ -439,11 +440,11 @@ namespace EPCat
             {
                 if (kind.HasValue)
                 {
-                    Info_Combo newclipinfo = new Info_Combo();
+                    Info_Scene newclipinfo = new Info_Scene();
                     newclipinfo.Kind = kind.Value;
                     if (TicTakToe.CopiedCombinedScene != null && TicTakToe.CopiedCombinedScene.Any())
                     {
-                        Info_Combo v = new Info_Combo();
+                        Info_Scene v = new Info_Scene();
                         v.LoadFromString(TicTakToe.CopiedCombinedScene[0]);
                         if (incurrentgroup)
                         {
@@ -484,7 +485,7 @@ namespace EPCat
 
             return string.Join(".", vals);
         }
-        private void addNewComb(Info_Combo newclipinfo)
+        private void addNewComb(Info_Scene newclipinfo)
         {
             //newclipinfo.ID = Guid.NewGuid().ToString();
             this.Scenario.Scenes.Add(newclipinfo);
@@ -602,6 +603,12 @@ namespace EPCat
             }
             RepeatedText = string.Join(Environment.NewLine, rez.ToArray());
             RaisePropertyChanged(() => this.RepeatedText);
+        }
+
+        internal string  GoGenerateScenario(string name)
+        {            
+            Generator.MakeStory(CurrentFolder.ItemDirectory, name);
+            return Path.Combine(CurrentFolder.ItemDirectory,$"{name}.epcatsi");
         }
     }
 

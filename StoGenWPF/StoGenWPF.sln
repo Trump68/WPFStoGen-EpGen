@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoGenMake", "..\StoGenMake
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPCat", "..\EPCat\EPCat.csproj", "{C2DEA8FF-42FE-425B-82AB-209138F3F8DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoGenerator", "..\StoGen\StoGenerator.csproj", "{C0AA7B82-708F-4B98-9147-EFA87CCDB373}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C2DEA8FF-42FE-425B-82AB-209138F3F8DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2DEA8FF-42FE-425B-82AB-209138F3F8DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2DEA8FF-42FE-425B-82AB-209138F3F8DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0AA7B82-708F-4B98-9147-EFA87CCDB373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0AA7B82-708F-4B98-9147-EFA87CCDB373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0AA7B82-708F-4B98-9147-EFA87CCDB373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0AA7B82-708F-4B98-9147-EFA87CCDB373}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

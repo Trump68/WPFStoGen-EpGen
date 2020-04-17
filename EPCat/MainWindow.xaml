@@ -352,39 +352,39 @@
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
 
-            <dx:DXTabItem Header="Scenes" HorizontalAlignment="Left" Width="54">
+            <dx:DXTabItem Header="Scenes" HorizontalAlignment="Left" Width="80">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
                         <dxlc:LayoutGroup Name ="Buttons" View="Group" Orientation="Horizontal" Padding="0,0">
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="ShowSceneBtn" Content="Play" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ShowSceneBtn_Click" />
                             </dxlc:LayoutItem>
+
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="AddSceneBtn" Content="Add" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneBtn_Click" />
+                                <dx:SimpleButton  Content="Add Header" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneHeaderBtn_Click" />
                             </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton  Content="Add Header" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneHeaderBtn_Click" />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton  Content="Add Snd" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneSoundBtn_Click" />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton  Content="Add Snd+" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneSoundPlusBtn_Click" />
-                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left"/>
+                            <dxlc:LayoutItem HorizontalAlignment="Left"/>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton  Content="Add Clip" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="AddSceneBtn" Content="Add" Width="45" Margin="100,4,0,0" HorizontalAlignment="Left" Click="AddSceneBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopySceneBtn" Content="Copy" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopySceneBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="CopGrBtn" Content="CopyGr" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn_Click" />
+                                <dx:SimpleButton x:Name="CopGrBtn" Content="CopyGr" Width="80" Margin="100,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopGrBtn1" Content="CopyGr+1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn1_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CompileScenarioBtn" Content="Compile" Width="80" Margin="100,4,0,0" HorizontalAlignment="Left" Click="CompileScenarioBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="GoGenerateBtn2" Content="Go Generate" Width="120" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoGenerate_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Right">
                                 <dx:SimpleButton x:Name="ReloadFileBtn" Content="Reload" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ReloadScenarioFromFileBtn_Click" />
@@ -395,7 +395,7 @@
                             <dxlc:LayoutItem HorizontalAlignment="Right"/>
                             <dxlc:LayoutItem HorizontalAlignment="Right"/>
                             <dxlc:LayoutItem HorizontalAlignment="Right">
-                                <dx:SimpleButton x:Name="SaveToFileBtn" Content="Save" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="SaveScenesToFileBtn_Click" />
+                                <dx:SimpleButton x:Name="SaveToFileBtn" Content="Save" Width="50" Margin="100,4,0,0" HorizontalAlignment="Left" Click="SaveScenesToFileBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Right"/>
                         </dxlc:LayoutGroup>
@@ -584,7 +584,7 @@
                                             <TextBox Text="{Binding Scenario.Variant}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
-                                    
+
                                     <dxlc:LayoutItem Label="Stopwords" >
                                         <TextBox TextWrapping="WrapWithOverflow" Text="{Binding Scenario.StopWords}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                     </dxlc:LayoutItem>
@@ -612,20 +612,33 @@
 
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
+            <dx:DXTabItem Header="Generator">
+                
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                        
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="GoGenerateBtn" Content="Go Generate" Width="120" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoGenerate_Click" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+                
+            </dx:DXTabItem>
             <dx:DXTabItem Header="Tools">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
-                    <dxlc:LayoutItem Label="Start" MaxWidth="120">
+                        <dxlc:LayoutItem Label="Start" MaxWidth="120">
                             <TextBox Name="txtRepeatTextStart" Text="{Binding RepeatedTextStart}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="End" MaxWidth="120">
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="End" MaxWidth="120">
                             <TextBox Name="txtRepeatTextEnd" Text="{Binding RepeatedTextEnd}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
-                    </dxlc:LayoutItem>
+                        </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left">
                             <dx:SimpleButton x:Name="GoRepeatTextBtn" Content="Go [x]" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoRepeatText_Click" />
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                         <dxlc:LayoutItem Label="Story" LabelPosition="Left">
                             <dxe:TextEdit MaxHeight="320"
                                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
@@ -635,7 +648,6 @@
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
-
 
         </dx:DXTabControl>
 

@@ -207,10 +207,12 @@ namespace StoGen.Classes
                     br = System.Windows.Media.Brushes.Blue;
                 else if (FontColor == "Yellow")
                     br = System.Windows.Media.Brushes.Yellow;
+                else if (FontColor == "Cyan")
+                    br = System.Windows.Media.Brushes.Cyan;
                 else
                     br = new System.Windows.Media.SolidColorBrush(
                         (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(FontColor));
-
+                
                 Projector.TextBlock1.Foreground = br;
                 Projector.TextBlock2.Foreground = br;
                 Projector.TextBlock3.Foreground = br;

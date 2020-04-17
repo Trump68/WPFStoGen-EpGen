@@ -132,6 +132,10 @@
       <Project>{ad6db9a5-7a96-4a41-bda0-72d01e6e86ac}</Project>
       <Name>StoGenWPF</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StoGen\StoGenerator.csproj">
+      <Project>{c0aa7b82-708f-4b98-9147-efa87ccdb373}</Project>
+      <Name>StoGenerator</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Arrows3_1.png" />

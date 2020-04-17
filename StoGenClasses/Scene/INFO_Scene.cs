@@ -7,8 +7,15 @@ using System.Xml.Serialization;
 
 namespace StoGen.Classes
 {
-    public class Info_Combo
+    public class Info_Scene
     {
+        public Info_Scene()
+        {
+        }
+        public Info_Scene(int knd): this()
+        {
+            this.Kind = knd;
+        }
         [XmlIgnore]
         public string StoryAsString
         {
@@ -92,15 +99,15 @@ namespace StoGen.Classes
        
 
 
-        public static Info_Combo GenerateFromString(string item)
+        public static Info_Scene GenerateFromString(string item)
         {
-            Info_Combo Rez = new Info_Combo();
+            Info_Scene Rez = new Info_Scene();
             Rez.LoadFromString(item);
             return Rez;
         }
-        public static Info_Combo GenerateCopy(Info_Combo item)
+        public static Info_Scene GenerateCopy(Info_Scene item)
         {
-            Info_Combo Rez = (Info_Combo)item.MemberwiseClone();
+            Info_Scene Rez = (Info_Scene)item.MemberwiseClone();
 
             //Rez.Align = item.Align;
             //Rez.Description = item.Description;

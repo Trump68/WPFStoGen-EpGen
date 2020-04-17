@@ -60,14 +60,14 @@ namespace StoGen.Classes.Scene
         public string Category { set; get; }
         public string Variant { set; get; }
         public string RawParameters { set; get; }
-        private ObservableCollection<Info_Combo> _Scenes = null;
-        public ObservableCollection<Info_Combo> Scenes
+        private ObservableCollection<Info_Scene> _Scenes = null;
+        public ObservableCollection<Info_Scene> Scenes
         {
             get
             {
                 if (_Scenes == null)
                 {
-                    _Scenes = new ObservableCollection<Info_Combo>();
+                    _Scenes = new ObservableCollection<Info_Scene>();
 
                 }
                 return _Scenes;
@@ -100,7 +100,7 @@ namespace StoGen.Classes.Scene
         private bool packSound = true;
         private bool packVideo = false;
 
-        private void AssignRawParameters()
+        public void AssignRawParameters()
         {
             List<string> paramlist = new List<string>();
             string rdata = RawParameters.Replace(Environment.NewLine, "~");
@@ -310,7 +310,7 @@ namespace StoGen.Classes.Scene
             this.Scenes.Clear();
             foreach (var line in lines)
             {
-                this.Scenes.Add(Info_Combo.GenerateFromString(line));
+                this.Scenes.Add(Info_Scene.GenerateFromString(line));
             }
             AssignRawParameters();
         }
