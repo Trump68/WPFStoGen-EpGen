@@ -272,6 +272,7 @@ namespace StoGenMake.Elements
         public bool ClearBack = true;
         public string FontColor = "Yellow";
         public string FontName;
+        public string T;
         public int Animated = 0;
 
         //public string Tran;
@@ -295,6 +296,7 @@ namespace StoGenMake.Elements
             this.AutoShow = origin.AutoShow;
             this.ClearBack = origin.ClearBack;
             this.Animated = origin.Animated;
+            this.T = origin.T;
         }
 
        

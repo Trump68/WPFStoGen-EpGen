@@ -99,6 +99,7 @@ namespace StoGen.Classes.Data.Games
             if (!string.IsNullOrEmpty(Scenario.DefTextAlignV))
                 this.DefaultSceneText.VAlign = Convert.ToInt32(Scenario.DefTextAlignV);
 
+
             foreach (var group in data)
             {
                 DoCadreByGroup(group);
@@ -149,7 +150,12 @@ namespace StoGen.Classes.Data.Games
                     Pictures.Add("$$WHITE$$", new DifData("$$WHITE$$") { });
                     ++i;
                 }
-
+                if (!string.IsNullOrEmpty(copytitle.T))
+                    this.DefaultSceneText.T = copytitle.T;
+                if (!string.IsNullOrEmpty(copytitle.O))
+                    this.DefaultSceneText.Opacity = int.Parse(copytitle.O);
+                if (!string.IsNullOrEmpty(copytitle.Z))
+                    this.DefaultSceneText.FontColor = copytitle.Z;
             }
 
             // try to get text from kind 4

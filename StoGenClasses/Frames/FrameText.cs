@@ -95,7 +95,7 @@ namespace StoGen.Classes
             {
                 TransitionData trandata = new TransitionData();
                 trandata.Parse(Transition,2);
-                FrameImage.tranManager.Add(trandata);
+                FrameText.tranManager.Add(trandata);
             }
             //if (!ClearBack)
             //    Projector.TextCanvas.Background = new SolidColorBrush(this.BackColor);
@@ -209,6 +209,8 @@ namespace StoGen.Classes
                     br = System.Windows.Media.Brushes.Yellow;
                 else if (FontColor == "Cyan")
                     br = System.Windows.Media.Brushes.Cyan;
+                else if (FontColor == "Coral")
+                    br = System.Windows.Media.Brushes.Coral;
                 else
                     br = new System.Windows.Media.SolidColorBrush(
                         (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(FontColor));
@@ -304,6 +306,10 @@ namespace StoGen.Classes
       
         public bool Html { get; set; }
         public bool Rtf { get; set; }
+        public override void BeforeLeave()
+        {
+            FrameText.tranManager.Clear();
+        }
     }
  
 }

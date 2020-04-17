@@ -42,16 +42,55 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             FCurrentPosition.Y = "200";
 
             MakeLocationCadre("Apartment 001", "evening", "Печальная тема 01",null);
-            MakeFirsCadre("0070","Наконец ты пришел! Заждалась!");
-            MakeNextCadre("0070","0067", "Надеюсь, у тебя все хорошо.");
-
-           
-       
+            MakeFirsCadre("0070", "Cyan",
+            "Наконец ты пришел! Заждалась!");
+            MakeNextCadre("0070","0067", "Cyan", 
+            "Надеюсь, у тебя все хорошо.");
+            MakeNextCadre(null, "0067" ,"Coral", 
+            "Неплохо, любимая... А у тебя?");
+            MakeNextCadre("0067", "0068", "White",
+            "[Она погрустнела как-то. Видно что встревожена.]");
+            MakeNextCadre(null, "0068", "Cyan", 
+            "У меня? Ну как сказать...");
+            MakeNextCadre("0068", "0071", "Cyan", 
+            "Вообще-то, я хотела раньше тебе сказать...");
+            MakeNextCadre(null, "0071", "Cyan",
+            "Ну вообщем... ты только не злись, ладно?");
+            MakeNextCadre(null, "0071", "Cyan",
+            "Обещаешь?");
+            MakeNextCadre("0071", "0072", "Cyan",
+            "На работе... за мной ухаживают...");
+            MakeNextCadre(null, "0072", "White",
+            "[Что еще за новости?]");
+            MakeNextCadre("0072", "0076", "White",
+            "[Она вдруг покраснела...]");
+            MakeNextCadre(null, "0076", "Cyan",
+            "... ... ... ... ...");
+            MakeNextCadre(null, "0076", "Coral",
+            "Ухаживают? Ты уверена?");
+            MakeNextCadre("0076", "0077", "Cyan",
+            "Ну конечно уверена!");
+            MakeNextCadre("0077", "0079", "Cyan",
+            "... ... ... ... ...");
+            MakeNextCadre(null, "0079", "Cyan",
+            "В соседнем отделе есть один мужчина...");
+            MakeNextCadre("0079", "0086", "Cyan",
+            "Он проявляет знаки внимания...");
         }
-        private void MakeFirsCadre(string fileum, string story)
+        private void AddTextSlow(string story, string color)
         {
-            Scenario.Scenes.Add(new Info_Scene(1) { Story = story, Group = currentGroup, Queue = currentQueue });
+            Scenario.Scenes.Add(new Info_Scene(1)
+            { Story = story, Group = currentGroup, Queue = currentQueue, T = "W..1500>O.B.400.100", O = "0", Z = color });
+        }
+        private void AddText(string story, string color)
+        {
+            Scenario.Scenes.Add(new Info_Scene(1)
+            { Story = story, Group = currentGroup, Queue = currentQueue, T = "W..500>O.B.400.100", O = "0", Z = color });
+        }
+        private void MakeFirsCadre(string fileum, string color, string story)
+        {
 
+            AddTextSlow(story, color);
             var person = Person.GetByName(FPersonName, $"{fileum}", currentQueue, currentGroup);
             if (person != null)
             {
@@ -65,29 +104,36 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 IncrementGroup();
             }
         }
-        private void MakeNextCadre(string prev, string next, string story)
+        private void MakeNextCadre(string prev, string next, string color, string story)
         {
-            Scenario.Scenes.Add(new Info_Scene(1) { Story = story, Group = currentGroup, Queue = currentQueue });
+            AddText(story, color);
+            if (!string.IsNullOrEmpty(next))
+            {
+                var personNext = Person.GetByName(FPersonName, $"{next}", currentQueue, currentGroup);
+                if (personNext != null)
+                {
+                    personNext.Z = FCurrentPosition.Z;
+                    personNext.S = FCurrentPosition.S;
+                    personNext.X = FCurrentPosition.X;
+                    personNext.Y = FCurrentPosition.Y;
+                    Scenario.Scenes.Add(personNext);
+                }
+            }
 
-            var person = Person.GetByName(FPersonName, $"{next}", currentQueue, currentGroup);
-            if (person != null)
+            if (!string.IsNullOrEmpty(prev))
             {
-                person.Z = FCurrentPosition.Z;
-                person.S = FCurrentPosition.S;
-                person.X = FCurrentPosition.X;
-                person.Y = FCurrentPosition.Y;
-                Scenario.Scenes.Add(person);
+                var person = Person.GetByName(FPersonName, $"{prev}", currentQueue, currentGroup);
+                if (person != null)
+                {
+                    person.Z = "2";
+                    person.S = FCurrentPosition.S;
+                    person.X = FCurrentPosition.X;
+                    person.Y = FCurrentPosition.Y;
+                    person.T = "W..0>O.B.1000.-100";
+                    Scenario.Scenes.Add(person);
+                }
             }
-            person = Person.GetByName(FPersonName, $"{prev}", currentQueue, currentGroup);
-            if (person != null)
-            {
-                person.Z = "2";
-                person.S = FCurrentPosition.S;
-                person.X = FCurrentPosition.X;
-                person.Y = FCurrentPosition.Y;
-                person.T = "W..0>O.B.200.-100";
-                Scenario.Scenes.Add(person);
-            }
+
             
             IncrementGroup();
         }
