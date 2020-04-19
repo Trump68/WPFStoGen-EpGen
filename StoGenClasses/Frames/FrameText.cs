@@ -25,6 +25,7 @@ namespace StoGen.Classes
         }
         public string FontName { get; set; }
         public int FontSize { get; set; }
+        public int FontStyle { get; set; }
         public string FontColor { get; set; }
         public Color BackColor { get; set; }
         public int Size { get; set; }
@@ -42,7 +43,7 @@ namespace StoGen.Classes
         public FrameText() : base()
         {
             TextList = new List<string>();
-            timer = new System.Threading.Timer(new TimerCallback(TimerProc), null, 500, 500);
+            timer = new System.Threading.Timer(new TimerCallback(TimerProc), null, 100, 100);
         }
         private void TimerProc(object state)
         {
@@ -51,7 +52,7 @@ namespace StoGen.Classes
             RunNext op1 = new RunNext(FrameText.ProcessLoopDelegate);
             Projector.PicContainer.Clip.Dispatcher.Invoke(op1, System.Windows.Threading.DispatcherPriority.Render);
 
-            if (timer != null) timer.Change(500, 500);
+            if (timer != null) timer.Change(100, 100);
         }
         public static void ProcessLoopDelegate()
         {
@@ -68,7 +69,7 @@ namespace StoGen.Classes
             Projector.TextBlock3.TextWrapping = TextWrapping.Wrap;
             Projector.TextBlock4.TextWrapping = TextWrapping.Wrap;
 
-           
+
 
 
             if (Size > 0)
@@ -116,6 +117,50 @@ namespace StoGen.Classes
                 Projector.TextBlock2.FontSize = FontSize;
                 Projector.TextBlock3.FontSize = FontSize;
                 Projector.TextBlock4.FontSize = FontSize;
+            }
+            if (FontStyle == 0)
+            {
+                Projector.TextBlock1.FontStyle = FontStyles.Normal;
+                Projector.TextBlock2.FontStyle = FontStyles.Normal;
+                Projector.TextBlock3.FontStyle = FontStyles.Normal;
+                Projector.TextBlock4.FontStyle = FontStyles.Normal;
+                Projector.TextBlock1.FontWeight = FontWeights.Normal;
+                Projector.TextBlock2.FontWeight = FontWeights.Normal;
+                Projector.TextBlock3.FontWeight = FontWeights.Normal;
+                Projector.TextBlock4.FontWeight = FontWeights.Normal;
+            }
+            else if (FontStyle == 1)
+            {
+                Projector.TextBlock1.FontStyle = FontStyles.Italic;
+                Projector.TextBlock2.FontStyle = FontStyles.Italic;
+                Projector.TextBlock3.FontStyle = FontStyles.Italic;
+                Projector.TextBlock4.FontStyle = FontStyles.Italic;
+                Projector.TextBlock1.FontWeight = FontWeights.Normal;
+                Projector.TextBlock2.FontWeight = FontWeights.Normal;
+                Projector.TextBlock3.FontWeight = FontWeights.Normal;
+                Projector.TextBlock4.FontWeight = FontWeights.Normal;
+            }
+            else if (FontStyle == 2)
+            {
+                Projector.TextBlock1.FontStyle = FontStyles.Normal;
+                Projector.TextBlock2.FontStyle = FontStyles.Normal;
+                Projector.TextBlock3.FontStyle = FontStyles.Normal;
+                Projector.TextBlock4.FontStyle = FontStyles.Normal;
+                Projector.TextBlock1.FontWeight = FontWeights.Bold;
+                Projector.TextBlock2.FontWeight = FontWeights.Bold;
+                Projector.TextBlock3.FontWeight = FontWeights.Bold;
+                Projector.TextBlock4.FontWeight = FontWeights.Bold;
+            }
+            else if (FontStyle == 3)
+            {
+                Projector.TextBlock1.FontStyle = FontStyles.Italic;
+                Projector.TextBlock2.FontStyle = FontStyles.Italic;
+                Projector.TextBlock3.FontStyle = FontStyles.Italic;
+                Projector.TextBlock4.FontStyle = FontStyles.Italic;
+                Projector.TextBlock1.FontWeight = FontWeights.Bold;
+                Projector.TextBlock2.FontWeight = FontWeights.Bold;
+                Projector.TextBlock3.FontWeight = FontWeights.Bold;
+                Projector.TextBlock4.FontWeight = FontWeights.Bold;
             }
 
             if (HAlig == 1)
@@ -255,6 +300,7 @@ namespace StoGen.Classes
             this.FontName = data.FontName;
             this.FontSize = data.FontSize;
             this.FontColor = data.FontColor;
+            this.FontStyle = data.FontStyle;
             this.Size = data.Size;
             this.Shift = data.Shift;
             this.Bottom = data.Bottom;

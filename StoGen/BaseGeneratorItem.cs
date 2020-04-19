@@ -45,6 +45,13 @@ namespace StoGenerator
             }
             return result;
         }
+        protected virtual Info_Scene ToSceneInfo(Tuple<string, string> item)
+        {
+            Info_Scene result = new Info_Scene();
+            result.File = item.Item2;
+            result.Tags = item.Item1;
+            return result;
+        }
         public static Info_Scene GetByName(string name, string spec, string queue, string group)
         {
             var d = Storage.Where(x => ((x as BaseGeneratorItem<T>).Name == name)).FirstOrDefault();

@@ -24,8 +24,12 @@ namespace StoGen.Classes.Transition
                 return string.Join(">", result.ToArray()) + "~";
             }
         }
+
         public static string Eye_Wink { get;} = "W..1000>O.B.200.100>W..200>O.B.200.-100";
         public static string Eye_Close { get; } = "W..1000>O.B.200.100";
+        public static string SlowDissapearing { get; } = "W..0>O.B.1000.-100";
+        public static string Dissapearing(int msec) { return $"W..0>O.B.{msec}.-100"; }
+
         public static string Obzor()
         {
             string result = $"W..1000>Y.B.5000.-700>W..2000>Y.B.5000.700";

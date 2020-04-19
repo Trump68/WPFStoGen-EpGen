@@ -289,6 +289,7 @@ namespace StoGenMake.Elements
             this.Width = origin.Width;
             
             this.FontSize = origin.FontSize;
+            this.FontStyle = origin.FontStyle;
             this.Opacity = origin.Opacity;
             this.Bottom = origin.Bottom;
             this.FontColor = origin.FontColor;
@@ -302,6 +303,9 @@ namespace StoGenMake.Elements
        
 
         public override bool IsActivated { get { return !string.IsNullOrEmpty(this.Text); } }
+
+        public int FontStyle { get; internal set; }
+
         internal override string GetElementData()
         {            
             List<string> result = new List<string>();

@@ -96,8 +96,8 @@ namespace StoGen.Classes
         public string Story { set; get; }
         public string Group { set; get; }
         public string Queue { set; get; }
-       
-
+        [XmlIgnore]
+        public string Tags { set; get; } // for work in person's posture
 
         public static Info_Scene GenerateFromString(string item)
         {

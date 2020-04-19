@@ -11,7 +11,7 @@ namespace StoGenerator.Stories
     {
         public void Generate(SCENARIO Scenario, string queue, string group)
         {
-            Person.Load_JennyFord();
+            //Person.Load_JennyFord();
 
             SetLocation();
             SetBGM();

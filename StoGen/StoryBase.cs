@@ -7,6 +7,16 @@ using System.Threading.Tasks;
 
 namespace StoGenerator
 {
+    public enum Teller
+    {
+        Female,
+        Male,
+        FemaleThoughts,
+        MaleThoughts,
+        Author,
+        Others,
+        OthersThoughts
+    }
     public class StoryBase
     {
         public SCENARIO Scenario { set; get; }

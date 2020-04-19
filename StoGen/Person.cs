@@ -11,28 +11,69 @@ namespace StoGenerator
 {
     public class Person : BaseGeneratorItem<Person>
     {
+        public enum Figure
+        {
+            Full,
+            Feature
+        }
+        public enum Feature
+        {
+            Full,
+            Head,
+            Feature
+        }
         public Person(string name, string type) : base(name, type) { }
 
         public static void TestSave(string file)
         {
             Storage.Clear();
-            Load_JennyFord();
             File.WriteAllText(file, JsonConvert.SerializeObject(Storage, Formatting.Indented));
         }
-        public static void Load_JennyFord()
+
+        protected override Info_Scene ToSceneInfo(Tuple<string, string> item)
         {
-            Person var = new Person("Jenny Ford", "Wife");
-            for (int i = 1; i < 1310; i++)
-            {
-                var.Files.Add(new Tuple<string, string>($"{i.ToString("D4")}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\{i.ToString("D4")}.png"));
-            }
-            Storage.Add(var);
-        }
-        protected override Info_Scene ToSceneInfo(string spec, string queue, string group)
-        {
-            Info_Scene result = base.ToSceneInfo(spec, queue, group);
+            Info_Scene result = base.ToSceneInfo(item);
             result.Kind = 0;
             return result;
+        }
+        protected List<Info_Scene> SetFeature(List<Info_Scene> posture, string pose, string feature, string itemgeneric, string transition)
+        {
+            if (posture == null) posture = new List<Info_Scene>();
+            var neweyes = this.Files.FirstOrDefault(x => x.Item1.Contains(feature) && x.Item1.Contains(pose));
+            if (neweyes != null)
+            {
+                var oldeyes = posture.Where(x => x.Tags.Contains(itemgeneric)).OrderBy(x => x.Z).FirstOrDefault();
+                posture.RemoveAll(x => x.Tags.Contains(itemgeneric));
+                posture.Add(this.ToSceneInfo(neweyes));
+                if (oldeyes != null && !string.IsNullOrEmpty(transition))
+                {
+                    oldeyes.O = "0";
+                    oldeyes.T = transition;
+                    posture.Add(oldeyes);
+                }
+            }
+            return posture;
+        }
+        public List<Info_Scene> WoreOutfit(List<Info_Scene> posture, string pose, string outfit)
+        {
+            if (posture == null) posture = new List<Info_Scene>();
+            var v = this.Files.FirstOrDefault(x => x.Item1.Contains(outfit) && x.Item1.Contains(pose));
+            if (v != null)
+            {
+                posture.RemoveAll(x => x.Tags.Contains(Feature.Full.ToString()));
+                posture.Add(this.ToSceneInfo(v));
+            }
+            return posture;
+        }
+        internal void AddToStory(StoryBase story, List<Info_Scene> posture, int startLevel)
+        {
+            foreach (var item in posture)
+            {
+                item.Z = (startLevel++).ToString();
+                item.Group = story.currentGroup;
+                item.Queue = story.currentQueue;
+                story.Scenario.Scenes.Add(item);
+            }
         }
     }
 }
