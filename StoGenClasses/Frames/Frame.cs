@@ -21,12 +21,16 @@ namespace StoGen.Classes
         {
             get { return this.Owner.Owner; }
         }
+
+        public bool Stopped { get; internal set; } = true;
+
         public virtual void SetVisible(bool show)
         {
             isVisible = show;
         }
         public virtual Cadre Repaint() 
         {
+            Stopped = false;
             if (OnRepaint != null) OnRepaint(this, EventArgs.Empty);
             return null;
         }

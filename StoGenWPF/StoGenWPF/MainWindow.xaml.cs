@@ -227,12 +227,14 @@ namespace StoGenWPF
         }
         public static void Stop()
         {
+            SGManager.Stop();
             Projector.ClipSound.Stop();
             Projector.PicContainer.Clip.Stop();
             foreach (var item in Projector.Sound)
             {
                 item.Stop();
             }
+            
             WriteIni();
         }
         public void Start(int startpage)

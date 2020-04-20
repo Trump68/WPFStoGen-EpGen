@@ -51,8 +51,8 @@ namespace StoGen.Classes
 
             RunNext op1 = new RunNext(FrameText.ProcessLoopDelegate);
             Projector.PicContainer.Clip.Dispatcher.Invoke(op1, System.Windows.Threading.DispatcherPriority.Render);
-
-            if (timer != null) timer.Change(100, 100);
+            if (!base.Stopped)
+                if (timer != null) timer.Change(100, 100);
         }
         public static void ProcessLoopDelegate()
         {
@@ -354,6 +354,8 @@ namespace StoGen.Classes
         public bool Rtf { get; set; }
         public override void BeforeLeave()
         {
+            base.Stopped = true;
+            timer.Change(Timeout.Infinite, Timeout.Infinite);
             FrameText.tranManager.Clear();
         }
     }

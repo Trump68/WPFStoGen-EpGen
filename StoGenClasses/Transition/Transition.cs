@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StoGen.Classes.Transition
 {
-    public static class Transitions
+    public static class Trans
     {
         static Random rnd = new Random();
         public static string Orgazm { get; } = "W..0>O.A.0.100>O.B.250.-100";
@@ -14,7 +14,7 @@ namespace StoGen.Classes.Transition
         {
             get
             {
-                List<string> result = new List<string>() { "W..1000" };                
+                List<string> result = new List<string>() { $"{SetInvisible}>{Wait(1000)}" };                
                 for (int i = 0; i < 50; i++)
                 {
                     result.Add("O.B.20.0>O.B.20.100>O.B.20.-100>");                   
@@ -27,9 +27,14 @@ namespace StoGen.Classes.Transition
 
         public static string Eye_Wink { get;} = "W..1000>O.B.200.100>W..200>O.B.200.-100";
         public static string Eye_Close { get; } = "W..1000>O.B.200.100";
-        public static string SlowDissapearing { get; } = "W..0>O.B.1000.-100";
-        public static string Dissapearing(int msec) { return $"W..0>O.B.{msec}.-100"; }
-
+        public static string SlowDissapearing { get; } = $"{SetVisible}>W..0>O.B.1000.-100";
+        public static string Dissapearing(int msec) { return $"O.B.{msec}.-100"; }
+        public static string Appearing(int msec) { return $"O.B.{msec}.100"; }
+        public static string Wait(int msec) { return $"W..{msec}"; }
+        public static string MoveH(int speed, int distance) { return $"{Wait(0)}>X.B.{speed}.{distance}"; }
+        
+        public static string SetInvisible { get; } = "O.A.0.-100";
+        public static string SetVisible { get; } = "O.A.0.100";
         public static string Obzor()
         {
             string result = $"W..1000>Y.B.5000.-700>W..2000>Y.B.5000.700";

@@ -37,11 +37,20 @@ namespace StoGen.Classes
         public virtual void Clear()
         {
             //if (this.CurrentCadreMaker != null) this.CurrentCadreMaker.Selectors.Clear();
-            this.Cadres.Clear();
+            Stop();
             //this.Variants.Clear();
             this.InnerProc = null;
             this.NestedCadreId = 0;
         }
+
+        public void Stop()
+        {
+            foreach (var cadre in Cadres)
+            {
+                cadre.Stop();
+            }
+        }
+
         public ProcedureBase InnerProc { get; set; }
         public ProcedureBase GetLastProc()
         {
@@ -112,35 +121,40 @@ namespace StoGen.Classes
                 //Cadres[NestedCadreId].BeforeLeave();
                 if (!Cadres[NestedCadreId].AllowedForward) return result;
             }
-            if (this.InnerProc != null)
+            //if (this.InnerProc != null)
+            //{
+            //    result = this.InnerProc.GetNextCadre();
+            //    if (result != null) return result;
+            //    else if (this.AllowedForward)
+            //    {
+            //        // delete inner proc
+            //        this.InnerProc = null;
+            //        if (NestedCadreId > 0)
+            //        {
+            //            Cadres.RemoveAt(NestedCadreId);
+            //            NestedCadreId = NestedCadreId - 1;
+            //        }
+            //        if (Cadres.Count > NestedCadreId + 1) result = Cadres[NestedCadreId];
+            //        else if (Cadres.Count > NestedCadreId)
+            //        {
+            //            return Cadres[NestedCadreId];
+            //            //return null;
+            //        }
+            //        else
+            //        {
+            //            NestedCadreId = -1;
+            //            //isInitialized = false;
+            //            return this.GetNextCadre();
+            //        }
+            //    }
+            //}
+            if (NestedCadreId < Cadres.Count - 1)
             {
-                result = this.InnerProc.GetNextCadre();
-                if (result != null) return result;
-                else if (this.AllowedForward)
+                if (NestedCadreId > -1)
                 {
-                    // delete inner proc
-                    this.InnerProc = null;
-                    if (NestedCadreId > 0)
-                    {
-                        Cadres.RemoveAt(NestedCadreId);
-                        NestedCadreId = NestedCadreId - 1;
-                    }
-                    if (Cadres.Count > NestedCadreId + 1) result = Cadres[NestedCadreId];
-                    else if (Cadres.Count > NestedCadreId)
-                    {
-                        return Cadres[NestedCadreId];
-                        //return null;
-                    }
-                    else
-                    {
-                        NestedCadreId = -1;
-                        //isInitialized = false;
-                        return this.GetNextCadre();
-                    }
+                    var prev = Cadres[NestedCadreId];
+                    prev.Stop();
                 }
-            }
-            else if (NestedCadreId < Cadres.Count - 1)
-            {
                 result = Cadres[NestedCadreId + 1];
                 NestedCadreId++;
                 if (result.IsProc)

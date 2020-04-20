@@ -45,7 +45,7 @@ namespace StoGen.Classes
         public static void ProcessLoopDelegate()
         {
             //Transition
-            if (FrameImage.tranManager.Process()) ;
+            FrameImage.tranManager.Process();
 
             if (FrameImage.Animations == null) return;
                 #region Other
@@ -207,7 +207,10 @@ namespace StoGen.Classes
             RunNext op1 = new RunNext(FrameImage.ProcessLoopDelegate);
             Projector.PicContainer.Clip.Dispatcher.Invoke(op1, System.Windows.Threading.DispatcherPriority.Render);
 
-            if (timer != null) timer.Change(TimerPeriod, TimerPeriod);
+            if (timer != null)
+            {
+                    timer.Change(TimerPeriod, TimerPeriod);
+            }
         }
 
 
@@ -244,11 +247,12 @@ namespace StoGen.Classes
         }
         public override Cadre Repaint()
         {
+            Stopped = false;
             for (int i = 0; i < 15; i++)
             {
                 RecreateImage(i);
             }
-
+            if (timer == null) timer = new System.Threading.Timer(new TimerCallback(TimerProc), null, TimerPeriod, TimerPeriod);
             timer.Change(Timeout.Infinite, Timeout.Infinite);
             Projector.NumberText.Text = $"{this.Owner.Owner.Cadres.IndexOf(this.Owner) + 1}/{this.Owner.Owner.Cadres.Count}";
             Projector.Owner.Background = new SolidColorBrush(Colors.Black);
@@ -708,8 +712,14 @@ namespace StoGen.Classes
         }
         public override void BeforeLeave()
         {
+            if (timer != null)
+            {
+                timer.Change(Timeout.Infinite, Timeout.Infinite);
+                timer.Dispose();
+                timer = null;
+            }
             FrameImage.tranManager.Clear();
-
+            Stopped = true;
         }
 
         int CadreShifted = -1;

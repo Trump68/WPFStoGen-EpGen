@@ -29,7 +29,14 @@ namespace StoGenWPF
             //if (!string.IsNullOrWhiteSpace(startfile)) _MainProcname = startfile;
             SetMainProcedure(scene, startpage);
         }
-
+        internal static void Stop()
+        {
+            if (CurrProc != null)
+            {
+                CurrProc.Stop();
+            }
+        }
+           
         public static void SetMainProcedure(BaseScene scene, int startpage)
         {
             CurrProc = new ScenarioProc(_MainProcname, GlobalMenuCreator, scene);

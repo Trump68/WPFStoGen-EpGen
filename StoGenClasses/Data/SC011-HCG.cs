@@ -139,7 +139,7 @@ namespace StoGen.Classes.Data
                 {
                     // closed eyes
                     result.Insert(result.IndexOf(result.Where(x => x.Name == Face.Name).FirstOrDefault()) + 1,
-                        new DifData(PartList[5], FaceList[0]) { O = 1, T = Transitions.Eyes_Blink });
+                        new DifData(PartList[5], FaceList[0]) { O = 1, T = Trans.Eyes_Blink });
                 }
                 result.Add(new DifData(Devil.ManOld_001) { X = 740, Y = -5, S = 1000, F = 0 });
                 return result;
@@ -316,7 +316,7 @@ namespace StoGen.Classes.Data
                         result.Add(new DifData(PartList[1], FaceList[0]) { });
 
                     // closed eyes
-                    result.Add(new DifData(PartList[0], FaceList[0]) { O = 0, T = Transitions.Eyes_Blink });
+                    result.Add(new DifData(PartList[0], FaceList[0]) { O = 0, T = Trans.Eyes_Blink });
                 }
                 return result;
             }
@@ -436,7 +436,7 @@ namespace StoGen.Classes.Data
                     if (this.Variant == 4)
                         result.Add(new DifData(PartList[1], FaceList[0]) { });
                     // closed eyes
-                    result.Add(new DifData(PartList[0], FaceList[0]) { O = 0, T = Transitions.Eyes_Blink });
+                    result.Add(new DifData(PartList[0], FaceList[0]) { O = 0, T = Trans.Eyes_Blink });
                 }
 
                 result.Add(new DifData(Devil.ManOld_001) { X = 885, Y = 65, S = 1125, F = 0 });

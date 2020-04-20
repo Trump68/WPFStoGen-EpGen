@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using StoGenMake.Scenes.Base;
 using StoGenMake.Elements;
+using System;
 
 namespace StoGen.Classes
 {
@@ -99,7 +100,14 @@ namespace StoGen.Classes
 
             }            
         }
-   
+
+        internal void Stop()
+        {
+            foreach (Frame item in Frames)
+            {
+                item.BeforeLeave();
+            }
+        }
     }
 
    }

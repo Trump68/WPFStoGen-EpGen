@@ -404,10 +404,15 @@ namespace StoGen.Classes.Transition
             {
                 get
                 {
+                    if (Projector.PicContainer.PicList[this.Level].Opacity > 1)
+                        return 100;
                     return Projector.PicContainer.PicList[this.Level].Opacity * 100;
                 }
                 set
                 {
+                    if (value > 100)
+                        Projector.PicContainer.PicList[this.Level].Opacity = 1;
+                    else
                     Projector.PicContainer.PicList[this.Level].Opacity = value / 100;
                 }
             }

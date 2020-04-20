@@ -53,29 +53,33 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
 
             MakeFirsCadre("0070", Teller.Female,"Наконец ты пришел милый! Я уже заждалась!"); //"0070"
 
-            ResetTransitions();
-            Do(Wife_JennyFord.Poses.Stand1, Wife_JennyFord.Mouth.MouthClose1, Wife_JennyFord.Eyes.EyesOpen1, true);//"0067"
-            MakeNextCadre(Teller.Female,"Надеюсь, у тебя все хорошо.");
+            JennyFord_Posture = JennyFord.SetFace67(JennyFord_Posture); //"0067"
+            MakeNextCadre(Teller.Female, "Надеюсь, у тебя все хорошо.");
 
-            Do(Wife_JennyFord.Poses.Stand1, Wife_JennyFord.Mouth.MouthClose1, false);//"0067"
-            MakeNextCadre(Teller.Male,"Неплохо, любимая... А у тебя?");
+            JennyFord_Posture = JennyFord.SetFace68(JennyFord_Posture); //"0068"
+            MakeNextCadre(Teller.Male, "Неплохо, любимая... А у тебя?");
 
-            Do(Wife_JennyFord.Poses.Stand1, Wife_JennyFord.Mouth.MouthOpen1, true);//"0068"
+            JennyFord_Posture = JennyFord.SetFace71(JennyFord_Posture); //"0071"
             MakeNextCadre(Teller.MaleThoughts, "Что-то моя благоверная кислая какая-то. Встревожена что ли?");
 
-            Do(Wife_JennyFord.Poses.Stand1, Wife_JennyFord.Mouth.MouthOpen1, false);//"0068"
+            JennyFord_Posture = JennyFord.SetFace71(JennyFord_Posture); //"0071"
             MakeNextCadre(Teller.Female, "У меня? Ну как тебе сказать...");
 
-
-            Do(Wife_JennyFord.Poses.Stand1, Wife_JennyFord.Mouth.MouthClose2, Wife_JennyFord.Eyes.EyesOpen2, true);//"0071"
+            JennyFord_Posture = JennyFord.SetFace71(JennyFord_Posture); //"0071"
             MakeNextCadre(Teller.Female, "Вообще-то, я хотела раньше тебе сказать...");
 
+            JennyFord_Posture = JennyFord.SetFace71(JennyFord_Posture); //"0071"
+            MakeNextCadre(Teller.Female, "Ну вообщем... ты только не злись, ладно?");
 
+            JennyFord_Posture = JennyFord.SetFace71(JennyFord_Posture); //"0071"
+            MakeNextCadre(Teller.Female, "Обещаешь?");
 
-            //MakeNextCadre(null, Teller.Female,
-            //"Ну вообщем... ты только не злись, ладно?");
-            //MakeNextCadre(null, Teller.Female,
-            //"Обещаешь?");
+            JennyFord_Posture = JennyFord.SetFace72(JennyFord_Posture); //"0072"
+            MakeNextCadre(Teller.Female, "За мной ухаживают...");
+
+            JennyFord_Posture = JennyFord.SetFace72(JennyFord_Posture); //"0072"
+            MakeNextCadre(Teller.Female, "На работе...");
+
             //MakeNextCadre("0072", Teller.Female,
             //"На работе... за мной ухаживают...");
             //MakeNextCadre(null, Teller.MaleThoughts,
@@ -111,19 +115,19 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         private void Do(Wife_JennyFord.Poses pose, Wife_JennyFord.Mouth mouth, bool transition)
         {
             JennyFord_Posture = JennyFord.Combine(JennyFord_Posture, pose, mouth, transition);
-            JennyFord.AddBlink(JennyFord_Posture, pose, Wife_JennyFord.Eyes.EyesClosed1);
+            //JennyFord.AddBlink(JennyFord_Posture, pose, Wife_JennyFord.Eyes.EyesClosed1);
         }
         private void Do(Wife_JennyFord.Poses pose, Wife_JennyFord.Mouth mouth, Wife_JennyFord.Eyes eyes, bool transition)
         {
             JennyFord_Posture = JennyFord.Combine(JennyFord_Posture, pose, mouth, transition);
             JennyFord.RemoveBlink(JennyFord_Posture, pose, Wife_JennyFord.Eyes.EyesClosed1);
             JennyFord_Posture = JennyFord.Combine(JennyFord_Posture, pose, eyes, transition);
-            JennyFord.AddBlink(JennyFord_Posture, pose, Wife_JennyFord.Eyes.EyesClosed1);
+            //JennyFord.AddBlink(JennyFord_Posture, pose, Wife_JennyFord.Eyes.EyesClosed1);
         }
 
         private void MakeFirsCadre(string fileum, Teller who, string story)
         {
-            AddText(story, who, true);
+            
             JennyFord_Posture = JennyFord.WoreNightgown(null, Wife_JennyFord.Poses.Stand1);
             JennyFord_Posture = JennyFord.SetFace70(JennyFord_Posture);
             JennyFord_Posture.ForEach(x => 
@@ -131,17 +135,19 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 x.S = FCurrentPosition.S;
                 x.Y = FCurrentPosition.Y;
                 x.X = "2000";
-                x.O = "0";
-                x.T = "W..1500>O.B.1500.100*W..0>X.B.1500.-1200";
+                x.T = $"{Trans.SetInvisible}>{Trans.Wait(1500)}>{Trans.Appearing(1500)}*{Trans.MoveH(1500, -1200)}";
             });
-            JennyFord_Posture.First().T = "W..0>O.B.1500.100*W..0>X.B.1500.-1200";
+            JennyFord_Posture.First().T = 
+                $"{Trans.SetInvisible}>{Trans.Appearing(1500)}*{Trans.MoveH(1500,-1200)}";
             JennyFord.AddToStory(this, JennyFord_Posture, 1);
+            AddText(story, who, true);
+            JennyFord_Posture = JennyFord.ResetPosture(JennyFord_Posture);
             IncrementGroup();
         }
-        private void ResetTransitions()
-        {
-            JennyFord_Posture = JennyFord.ResetTransitions(JennyFord_Posture);           
-        }
+        //private void ResetTransitions()
+        //{
+        //    JennyFord_Posture = JennyFord.ResetTransitions(JennyFord_Posture);           
+        //}
         private void AddText(string story, Teller who, bool slow= false)
         {
             string tran = "W..500>O.B.400.100";
@@ -150,35 +156,46 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
               if (slow)
                     tran = "W..1500>O.B.400.100";
                 Scenario.Scenes.Add(new Info_Scene(1)
-                { Story = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "Cyan", F = "40", R = "2" });
+                { Story = story, Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "Cyan", F = "40", R = "2" });
             }
             else if (who == Teller.Male)
             {
                 Scenario.Scenes.Add(new Info_Scene(1)
-                { Story = $"{story}", Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "Coral", F = "40", R = "2" });
+                { Story = $"{story}", Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "Coral", F = "40", R = "2" });
             }
             else if (who == Teller.MaleThoughts)
             {
                 Scenario.Scenes.Add(new Info_Scene(1)
-                { Story = $"[{story}]", Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "White", F = "35", R = "3" });
+                { Story = $"[{story}]", Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "White", F = "35", R = "3" });
             }
         }
        
 
         private void MakeNextCadre( Teller who, string story)
         {
-            AddText(story, who);
-            int z = 1;
-            foreach (var itempocy in JennyFord_Posture)
+            JennyFord_Posture.ForEach(x =>
             {
-                itempocy.Queue = currentQueue;
-                itempocy.Group = currentGroup;
-                itempocy.Z = (z++).ToString();
-                itempocy.S = FCurrentPosition.S;
-                itempocy.X = FCurrentPosition.X;
-                itempocy.Y = FCurrentPosition.Y;
-                Scenario.Scenes.Add(itempocy);
-            }
+                x.S = FCurrentPosition.S;
+                x.Y = FCurrentPosition.Y;
+                x.X = FCurrentPosition.X;               
+            });
+            JennyFord.AddToStory(this, JennyFord_Posture, 1);
+            AddText(story, who, true);
+            JennyFord_Posture = JennyFord.ResetPosture(JennyFord_Posture);
+            IncrementGroup();
+
+            //AddText(story, who);
+            //int z = 1;
+            //foreach (var itempocy in JennyFord_Posture)
+            //{
+            //    itempocy.Queue = currentQueue;
+            //    itempocy.Group = currentGroup;
+            //    itempocy.Z = (z++).ToString();
+            //    itempocy.S = FCurrentPosition.S;
+            //    itempocy.X = FCurrentPosition.X;
+            //    itempocy.Y = FCurrentPosition.Y;
+            //    Scenario.Scenes.Add(itempocy);
+            //}
 
 
             //Info_Scene personNext = null;

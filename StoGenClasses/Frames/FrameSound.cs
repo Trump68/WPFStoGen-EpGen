@@ -29,8 +29,8 @@ namespace StoGen.Classes
 
             RunNext op1 = new RunNext(FrameSound.ProcessLoopDelegate);
             Projector.PicContainer.Clip.Dispatcher.Invoke(op1, System.Windows.Threading.DispatcherPriority.Render);
-
-            if (timer != null) timer.Change(500, 500);            
+            if (!base.Stopped)
+                if (timer != null) timer.Change(500, 500);            
         }
 
         private void FrameSound_MediaEnded(object sender, EventArgs e)
@@ -80,6 +80,7 @@ namespace StoGen.Classes
         }
         public override Cadre Repaint()
         {
+            base.Stopped = false;
             FrameSound.tranManager.Clear();
             GroupItems.Clear();
             foreach (SoundItem item in this.SoundList)
@@ -154,7 +155,12 @@ namespace StoGen.Classes
                 Projector.Sound[position].Stop();
             }
         }
-
+        public override void BeforeLeave()
+        {
+            base.Stopped = true;
+            timer.Change(Timeout.Infinite, Timeout.Infinite);
+            FrameSound.tranManager.Clear();
+        }
     }
     [Serializable]
     public class SoundItem
