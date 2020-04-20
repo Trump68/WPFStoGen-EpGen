@@ -17,12 +17,7 @@ namespace StoGenerator
             Full,
             Feature
         }
-        public enum Feature
-        {
-            Full,
-            Head,
-            Feature
-        }
+
         public Person(string name, string type) : base(name, type) { }
 
         public static void TestSave(string file)
@@ -37,7 +32,7 @@ namespace StoGenerator
             result.Kind = 0;
             return result;
         }
-        protected List<Info_Scene> SetFeature(List<Info_Scene> posture, string pose, string feature, string itemgeneric, string tranOfPrev, string tranOfNew, bool removeAllSimilar, bool AddBeforePrev)
+        public List<Info_Scene> SetFeature(List<Info_Scene> posture, string pose, string feature, string itemgeneric, string tranOfPrev, string tranOfNew, bool removeAllSimilar, bool AddBeforePrev)
         {
             if (posture == null) posture = new List<Info_Scene>();
             var info = this.Files.FirstOrDefault(x => x.Item1.Contains(feature) && x.Item1.Contains(pose));
@@ -49,9 +44,12 @@ namespace StoGenerator
                 {                   
                     posture.RemoveAll(x => x.Tags.Contains(itemgeneric));
                 }
+                else
+                {
+                    posture.RemoveAll(x => x.Tags.Contains(feature));
+                }
                 if (!string.IsNullOrEmpty(tranOfNew))
                 {
-                    newFeature.O = "0";
                     newFeature.T = tranOfNew;
                 }
 
@@ -75,14 +73,23 @@ namespace StoGenerator
         {
             return SetFeature(posture, pose, eyes, eyesgeneric, null, Trans.Eyes_Blink, false,false);
         }
-        public List<Info_Scene> WoreOutfit(List<Info_Scene> posture, string pose, string outfit)
+        public List<Info_Scene> WoreOutfit(List<Info_Scene> posture, string pose, string outfit, string tranOfPrev)
         {
             if (posture == null) posture = new List<Info_Scene>();
-            var v = this.Files.FirstOrDefault(x => x.Item1.Contains(outfit) && x.Item1.Contains(pose));
-            if (v != null)
+            var info = this.Files.FirstOrDefault(x => x.Item1.Contains(outfit) && x.Item1.Contains(pose));
+            if (info != null)
             {
-                posture.RemoveAll(x => x.Tags.Contains(Feature.Full.ToString()));
-                posture.Add(this.ToSceneInfo(v));
+                var newfigure = this.ToSceneInfo(info);
+                var oldFigure = posture.Where(x => x.Tags.Contains(Figure.Full.ToString()) && !x.Tags.Contains(pose)).OrderBy(x => x.Z).FirstOrDefault();
+                posture.RemoveAll(x => x.Tags.Contains(Figure.Full.ToString()));
+                posture.Insert(0, newfigure);
+                if (oldFigure != null && (oldFigure.File != newfigure.File)) // do not add same feature
+                {                   
+                    oldFigure.O = "100";
+                    oldFigure.T = tranOfPrev;
+                    posture.Add(oldFigure);
+                }
+               
             }
             return posture;
         }

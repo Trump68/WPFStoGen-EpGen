@@ -80,7 +80,9 @@ namespace StoGen.Classes
         }
         public override Cadre Repaint()
         {
+            timer.Change(Timeout.Infinite, Timeout.Infinite);
             base.Stopped = false;
+            
             FrameSound.tranManager.Clear();
             GroupItems.Clear();
             foreach (SoundItem item in this.SoundList)
@@ -95,7 +97,7 @@ namespace StoGen.Classes
                 }
                 SetSoundOneItem(item.Position, item);                    
             }
-
+            timer.Change(500, 500);
             return Owner;
         }
 

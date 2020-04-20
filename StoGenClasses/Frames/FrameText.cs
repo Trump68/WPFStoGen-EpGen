@@ -288,7 +288,7 @@ namespace StoGen.Classes
                 Projector.TextBlock4.Text = txt;
             }
 
-
+            timer.Change(100, 100);
             return this.Owner;
         }
 
