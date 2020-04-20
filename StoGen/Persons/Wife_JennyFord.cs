@@ -414,6 +414,33 @@ namespace StoGenerator.Persons
             posture = AddBlink(posture, Eyes.EyesBlink1);
             return posture;
         }
+        public List<Info_Scene> SetFace72_67(List<Info_Scene> posture)
+        {
+            if (posture == null) posture = new List<Info_Scene>();
+            Poses pose = (!posture.Any() || posture.First().Tags.Contains(Poses.Stand1.ToString())) ? Poses.Stand1 : Poses.Stand2;
+            posture = SetFeature(posture, pose.ToString(), Eyes.Eyes1_72.ToString(), Eyes.EyesGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            posture = SetFeature(posture, pose.ToString(), Mouth.Mouth1_67.ToString(), Mouth.MouthGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            posture = AddBlink(posture, Eyes.EyesBlink1);
+            return posture;
+        }
+        public List<Info_Scene> SetFace72_71(List<Info_Scene> posture)
+        {
+            if (posture == null) posture = new List<Info_Scene>();
+            Poses pose = (!posture.Any() || posture.First().Tags.Contains(Poses.Stand1.ToString())) ? Poses.Stand1 : Poses.Stand2;
+            posture = SetFeature(posture, pose.ToString(), Eyes.Eyes1_72.ToString(), Eyes.EyesGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            posture = SetFeature(posture, pose.ToString(), Mouth.Mouth1_71.ToString(), Mouth.MouthGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            posture = AddBlink(posture, Eyes.EyesBlink1);
+            return posture;
+        }
+        public List<Info_Scene> SetFace74_67(List<Info_Scene> posture)
+        {
+            if (posture == null) posture = new List<Info_Scene>();
+            Poses pose = (!posture.Any() || posture.First().Tags.Contains(Poses.Stand1.ToString())) ? Poses.Stand1 : Poses.Stand2;
+            posture = SetFeature(posture, pose.ToString(), Eyes.Eyes1_74.ToString(), Eyes.EyesGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            posture = SetFeature(posture, pose.ToString(), Mouth.Mouth1_67.ToString(), Mouth.MouthGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            posture = AddBlink(posture, Eyes.EyesBlink1);
+            return posture;
+        }
         public List<Info_Scene> SetFace68(List<Info_Scene> posture)
         {
             if (posture == null) posture = new List<Info_Scene>();
@@ -441,6 +468,15 @@ namespace StoGenerator.Persons
             posture = AddBlink(posture, Eyes.EyesBlink1);
             return posture;
         }
+        public List<Info_Scene> SetFace75(List<Info_Scene> posture)
+        {
+            if (posture == null) posture = new List<Info_Scene>();
+            Poses pose = (!posture.Any() || posture.First().Tags.Contains(Poses.Stand1.ToString())) ? Poses.Stand1 : Poses.Stand2;
+            posture = SetFeature(posture, pose.ToString(), Eyes.Eyes1_75.ToString(), Eyes.EyesGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            posture = SetFeature(posture, pose.ToString(), Mouth.Mouth1_75.ToString(), Mouth.MouthGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            posture = AddBlink(posture, Eyes.EyesBlink1);
+            return posture;
+        }
         public List<Info_Scene> SetFace76(List<Info_Scene> posture)
         {
             if (posture == null) posture = new List<Info_Scene>();
@@ -459,12 +495,30 @@ namespace StoGenerator.Persons
             posture = AddBlink(posture, Eyes.EyesBlink1);
             return posture;
         }
+        public List<Info_Scene> SetFace78(List<Info_Scene> posture)
+        {
+            if (posture == null) posture = new List<Info_Scene>();
+            Poses pose = (!posture.Any() || posture.First().Tags.Contains(Poses.Stand1.ToString())) ? Poses.Stand1 : Poses.Stand2;
+            posture = SetFeature(posture, pose.ToString(), Eyes.Eyes2_78.ToString(), Eyes.EyesGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            posture = SetFeature(posture, pose.ToString(), Mouth.Mouth2_78.ToString(), Mouth.MouthGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            posture = AddBlink(posture, Eyes.EyesBlink2);
+            return posture;
+        }
         public List<Info_Scene> SetFace79(List<Info_Scene> posture)
         {
             if (posture == null) posture = new List<Info_Scene>();
             Poses pose = (!posture.Any() || posture.First().Tags.Contains(Poses.Stand1.ToString())) ? Poses.Stand1 : Poses.Stand2;
             posture = SetFeature(posture, pose.ToString(), Eyes.Eyes2_79.ToString(), Eyes.EyesGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
             posture = SetFeature(posture, pose.ToString(), Mouth.Mouth2_79.ToString(), Mouth.MouthGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            posture = AddBlink(posture, Eyes.EyesBlink2);
+            return posture;
+        }
+        public List<Info_Scene> SetFace86(List<Info_Scene> posture)
+        {
+            if (posture == null) posture = new List<Info_Scene>();
+            Poses pose = (!posture.Any() || posture.First().Tags.Contains(Poses.Stand1.ToString())) ? Poses.Stand1 : Poses.Stand2;
+            posture = SetFeature(posture, pose.ToString(), Eyes.Eyes2_86.ToString(), Eyes.EyesGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            posture = SetFeature(posture, pose.ToString(), Mouth.Mouth2_86.ToString(), Mouth.MouthGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
             posture = AddBlink(posture, Eyes.EyesBlink2);
             return posture;
         }

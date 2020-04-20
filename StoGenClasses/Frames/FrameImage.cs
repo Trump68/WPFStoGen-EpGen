@@ -201,9 +201,10 @@ namespace StoGen.Classes
 
         private void TimerProc(object state)
         {
-
-            timer.Change(Timeout.Infinite, Timeout.Infinite);
-
+            if (timer != null)
+            {
+                timer.Change(Timeout.Infinite, Timeout.Infinite);
+            }
             RunNext op1 = new RunNext(FrameImage.ProcessLoopDelegate);
             Projector.PicContainer.Clip.Dispatcher.Invoke(op1, System.Windows.Threading.DispatcherPriority.Render);
 
