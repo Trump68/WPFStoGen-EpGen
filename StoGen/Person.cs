@@ -101,7 +101,7 @@ namespace StoGenerator
                 item.Z = (startLevel++).ToString();
                 item.Group = story.currentGroup;
                 item.Queue = story.currentQueue;
-                story.Scenario.SceneInfoList.Add(item);
+                story.SceneInfoList.Add(item);
             }
         }
         internal List<Info_Scene> ResetPosture(List<Info_Scene> posture)

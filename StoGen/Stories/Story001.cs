@@ -20,9 +20,9 @@ namespace StoGenerator.Stories
         protected Wife_JennyFord JennyFord;
         protected List<Info_Scene> JennyFord_Posture;
 
-        public override void Generate(SCENARIO scenario, string queue, string group)
+        public override void Generate(string queue, string group)
         {
-            base.Generate(scenario, queue, group);
+            base.Generate(queue, group);
 
             JennyFord = Wife_JennyFord.Load();
             //FPersonName = "Jenny Ford";
@@ -257,17 +257,17 @@ namespace StoGenerator.Stories
             {               
               if (slow)
                     tran = "W..1500>O.B.400.100";
-                Scenario.SceneInfoList.Add(new Info_Scene(1)
+                SceneInfoList.Add(new Info_Scene(1)
                 { Story = story, Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "Cyan", F = "40", R = "2" });
             }
             else if (who == Teller.Male)
             {
-                Scenario.SceneInfoList.Add(new Info_Scene(1)
+                SceneInfoList.Add(new Info_Scene(1)
                 { Story = $"{story}", Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "Coral", F = "40", R = "2" });
             }
             else if (who == Teller.MaleThoughts)
             {
-                Scenario.SceneInfoList.Add(new Info_Scene(1)
+                SceneInfoList.Add(new Info_Scene(1)
                 { Story = $"[{story}]", Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "White", F = "35", R = "3" });
             }
         }
@@ -291,13 +291,13 @@ namespace StoGenerator.Stories
             var item = Sound.GetByName(music, musicspec, currentQueue, currentGroup);
             if (item != null)
             {
-                Scenario.SceneInfoList.Add(item);
+                SceneInfoList.Add(item);
             }
-            item = Location.GetByName(location, locationspec, currentQueue, currentGroup);
+            item = Locations.GetByName(location, locationspec, currentQueue, currentGroup);
             if (item != null)
             {
                 item.Z = "0";
-                Scenario.SceneInfoList.Add(item);
+                SceneInfoList.Add(item);
             }
             IncrementGroup();
         }

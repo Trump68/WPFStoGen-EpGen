@@ -18,8 +18,11 @@ namespace StoGenerator
         Others,
         OthersThoughts
     }
-    public class StoryBase
+    public class StoryBase: SCENARIO
     {
+        public StoryBase(): base()
+        {
+        }
         protected string rawparameters =
 @"//Text
 //DefTextAlignH: 0-Left, 1-Right, 2-Center, 3-Justify
@@ -33,7 +36,7 @@ DefVisX = 700; DefVisY = 0; DefVisSize = 900; DefVisSpeed = 100; DefVisLM = 1; D
 DefVisFile =
 //Other
 PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
-        public SCENARIO Scenario { set; get; }
+        //public SCENARIO Scenario { set; get; }
         public string currentQueue;
         public string currentGroup;
         public string Name { set; get; }
@@ -50,13 +53,12 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             currentGroup = string.Join(".", vals);
         }
         public virtual void GenerateNextCadre() { }
-        public virtual void Generate(SCENARIO scenario, string queue, string group)
+        public virtual void Generate(string queue, string group)
         {
-            Scenario = scenario;
             currentGroup = group;
             currentQueue = queue;
-            Scenario.RawParameters = rawparameters;
-            Scenario.AssignRawParameters();
+            RawParameters = rawparameters;
+            AssignRawParameters();
         }
         protected virtual void FillData()
         {

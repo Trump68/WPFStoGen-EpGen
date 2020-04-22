@@ -9,9 +9,9 @@ namespace StoGenerator.Stories
 {
     public class StoryTest: Story001
     {
-        public override void Generate(SCENARIO scenario, string queue, string group)
+        public override void Generate(string queue, string group)
         {
-            base.Generate(scenario, queue, group);
+            base.Generate(queue, group);
 
         }
         protected override void FillData()

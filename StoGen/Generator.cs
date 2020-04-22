@@ -13,7 +13,7 @@ namespace StoGenerator
     {
         public static void MakeStory(string dir, string name)
         {
-            Location.InitDefaultLocations();
+            Locations.InitDefaultLocations();
             //Location.TestSave(Path.Combine(dir, "LocationList.txt"));
             //Location.LoadFromFile(Path.Combine(dir, "LocationList.txt"));
             Sound.InitDefaultSounds();
@@ -41,19 +41,20 @@ DefVisFile =
 //Other
 PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
 
-            SCENARIO Scenario = new SCENARIO();
-            Scenario.Name = name;
-            Scenario.FileName = name;
-            Scenario.RawParameters = rawparameters;
+           
+           
             
 
             //Story001 story = new Story001();
             StoryTest story = new StoryTest();
-            
-            story.Generate(Scenario, "001", "0001.001.001");
+            story.Name = name;
+            story.FileName = name;
+            story.RawParameters = rawparameters;
+
+            story.Generate("001", "0001.001.001");
 
 
-            Scenario.SaveToFile(dir, null);
+            story.SaveToFile(dir, null);
         }
 
     

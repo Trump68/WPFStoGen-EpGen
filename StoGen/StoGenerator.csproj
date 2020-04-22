@@ -47,7 +47,7 @@
     <Compile Include="BaseGeneratorItem.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="IStoryGenerator.cs" />
-    <Compile Include="Location.cs" />
+    <Compile Include="Locations.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Persons\Wife_JennyFord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
