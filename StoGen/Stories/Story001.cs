@@ -238,7 +238,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             JennyFord_Posture = JennyFord.SetFace72_71(JennyFord_Posture);
             JennyFord_Posture.Take(JennyFord_Posture.Count - 1).
                 Where(x => !x.Tags.Contains(Wife_JennyFord.Mouth.Mouth1_67.ToString())).ToList().ForEach(x => { x.T = "Y.B.500.-2>Y.B.500.2~"; });
-            MakeNextCadre(Teller.Female, "........");
+            MakeNextCadre(Teller.Female, "....он очень настойчив....");
         }
 
         private void MakeFirsCadre(string fileum, Teller who, string story)

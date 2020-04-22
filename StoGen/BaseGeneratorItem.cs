@@ -20,10 +20,10 @@ namespace StoGenerator
             this.Name = name;
             this.Type = type;
         }
-        public static void LoadFromFile(string file)
-        {
-            Storage.AddRange(JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(file)));
-        }
+        //public static void LoadFromFile(string file)
+        //{
+        //    //Storage.AddRange(JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(file)));
+        //}
         protected virtual Info_Scene ToSceneInfo(string spec, string queue, string group)
         {
             Info_Scene result = null;

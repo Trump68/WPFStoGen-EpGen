@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace StoGenerator
 {
+
     public class Location :BaseGeneratorItem<Location>
     {
+        public static string ImagePath = @"e:\!STOGENDB\DB\Bg\";
         public Location(string name, string type) : base(name, type) { }
 
         // static
@@ -20,15 +22,20 @@ namespace StoGenerator
             Storage.Clear();
             Location var = new Location(Sys_Background_White, "system");
             var.Files.Add(new Tuple<string, string>("system", "$$WHITE$$"));
+            var = new Location("Apartment 001", "Apartment");
+            var.Files.Add(new Tuple<string, string>("day", $@"{ImagePath}01\115.jpg"));
+            var.Files.Add(new Tuple<string, string>("day", $@"{ImagePath}01\117.jpg"));
+            var.Files.Add(new Tuple<string, string>("evening", $@"{ImagePath}01\116.jpg"));
             Storage.Add(var);
         }
+
         private static void TestSave(string file)
         {
             Storage.Clear();
             Location var = new Location("Apartment 001", "Apartment");
-            var.Files.Add(new Tuple<string, string>("day", @"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\BACK\01\115.jpg"));
-            var.Files.Add(new Tuple<string, string>("day", @"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\BACK\01\117.jpg"));
-            var.Files.Add(new Tuple<string, string>("evening", @"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\BACK\01\116.jpg"));
+            var.Files.Add(new Tuple<string, string>("day", $@"{ImagePath}01\115.jpg"));
+            var.Files.Add(new Tuple<string, string>("day", $@"{ImagePath}01\117.jpg"));
+            var.Files.Add(new Tuple<string, string>("evening", $@"{ImagePath}01\116.jpg"));
             Storage.Add(var);
             File.WriteAllText(file, JsonConvert.SerializeObject(Storage,Formatting.Indented));
         }

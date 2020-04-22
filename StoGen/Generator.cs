@@ -15,10 +15,10 @@ namespace StoGenerator
         {
             Location.InitDefaultLocations();
             //Location.TestSave(Path.Combine(dir, "LocationList.txt"));
-            Location.LoadFromFile(Path.Combine(dir, "LocationList.txt"));
-
+            //Location.LoadFromFile(Path.Combine(dir, "LocationList.txt"));
+            Sound.InitDefaultSounds();
             //Sound.TestSave(Path.Combine(dir, "SoundList.txt"));
-            Sound.LoadFromFile(Path.Combine(dir, "SoundList.txt"));
+            //Sound.LoadFromFile(Path.Combine(dir, "SoundList.txt"));
 
             //Person.TestSave(Path.Combine(dir, "PersonList.txt"));
             //Person.LoadFromFile(Path.Combine(dir, "PersonList.txt"));

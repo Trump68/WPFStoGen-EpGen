@@ -112,42 +112,51 @@ namespace StoGen.Classes
         {
             return NestedCadreId;
         }
+
+        // Key handling
+        public EventHandler OnKeyData;        
+        public void ProcessKeyData(int v)
+        {
+            if (this.InnerProc != null) this.InnerProc.ProcessKeyData(v);
+            else if (OnKeyData != null)
+            {
+                OnKeyData(v, null);
+            }
+        }
+        public void ProcessKey(Key e)
+        {
+            ProcessKey(e, null);
+        }
+        public void ProcessKey(Key e, ProcedureBase parent)
+        {
+            if (this.InnerProc != null) this.InnerProc.ProcessKey(e, this);
+            else
+            {
+                if (e == Key.Back)
+                {
+                    if (parent != null)
+                    {
+                        parent.InnerProc = null;
+                        parent.ShowContextMenu(true,null);
+                    }
+                    else
+                    {
+                        this.ShowContextMenu(true, null);
+                    }
+                }
+                else if (this.CurrentCadre != null) this.CurrentCadre.ProcessKey(e);
+            }
+        }
+
         public virtual Cadre GetNextCadre()
         {
-
-            Cadre result = null;            
+            CreateNextCadre();
+            Cadre result = null;
             if (NestedCadreId >= 0 && NestedCadreId <= Cadres.Count - 1)
             {
-                //Cadres[NestedCadreId].BeforeLeave();
                 if (!Cadres[NestedCadreId].AllowedForward) return result;
             }
-            //if (this.InnerProc != null)
-            //{
-            //    result = this.InnerProc.GetNextCadre();
-            //    if (result != null) return result;
-            //    else if (this.AllowedForward)
-            //    {
-            //        // delete inner proc
-            //        this.InnerProc = null;
-            //        if (NestedCadreId > 0)
-            //        {
-            //            Cadres.RemoveAt(NestedCadreId);
-            //            NestedCadreId = NestedCadreId - 1;
-            //        }
-            //        if (Cadres.Count > NestedCadreId + 1) result = Cadres[NestedCadreId];
-            //        else if (Cadres.Count > NestedCadreId)
-            //        {
-            //            return Cadres[NestedCadreId];
-            //            //return null;
-            //        }
-            //        else
-            //        {
-            //            NestedCadreId = -1;
-            //            //isInitialized = false;
-            //            return this.GetNextCadre();
-            //        }
-            //    }
-            //}
+
             if (NestedCadreId < Cadres.Count - 1)
             {
                 if (NestedCadreId > -1)
@@ -181,14 +190,16 @@ namespace StoGen.Classes
             {
                 SystemSounds.Beep.Play();
             }
-            //(Projector.Text.TopLevelControl as Form).Text = this.Level.ToString() + ":" + NestedCadreId;
-
             return result;
         }
+
+
+
         public virtual Cadre GetPrevCadre()
         {
 
             Cadre result = null;
+
             if (!this.GetLastProc().AllowedBackward)
             {
                 SystemSounds.Beep.Play();
@@ -261,40 +272,6 @@ namespace StoGen.Classes
 
             return result;
         }
-        // Key handling
-        public EventHandler OnKeyData;        
-        public void ProcessKeyData(int v)
-        {
-            if (this.InnerProc != null) this.InnerProc.ProcessKeyData(v);
-            else if (OnKeyData != null)
-            {
-                OnKeyData(v, null);
-            }
-        }
-        public void ProcessKey(Key e)
-        {
-            ProcessKey(e, null);
-        }
-        public void ProcessKey(Key e, ProcedureBase parent)
-        {
-            if (this.InnerProc != null) this.InnerProc.ProcessKey(e, this);
-            else
-            {
-                if (e == Key.Back)
-                {
-                    if (parent != null)
-                    {
-                        parent.InnerProc = null;
-                        parent.ShowContextMenu(true,null);
-                    }
-                    else
-                    {
-                        this.ShowContextMenu(true, null);
-                    }
-                }
-                else if (this.CurrentCadre != null) this.CurrentCadre.ProcessKey(e);
-            }
-        }
         // Menu
         public object MenuCreatorData;
         public MenuCreatorDelegate OldMenuCreator;
@@ -307,10 +284,7 @@ namespace StoGen.Classes
         public virtual bool ShowContextMenu(bool show, object Data)
         {
             isInitialized = true;
-            if (this.InnerProc != null && this.InnerProc.MenuCreator != null)
-            {
-                return this.InnerProc.ShowContextMenu(show,Data);
-            }
+           
             if (MenuCreator != null)
             {
                 return MenuCreator(this, show, null, Data);
@@ -333,6 +307,12 @@ namespace StoGen.Classes
             //    this.CurrentCadre.GetRadioGroupFrame().PerformExec();
             //}
         }
+        private void CreateNextCadre()
+        {
+
+        }
     }
     public delegate bool MenuCreatorDelegate(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data);
+
+
 }

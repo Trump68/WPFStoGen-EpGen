@@ -12,6 +12,7 @@ namespace StoGenerator.Persons
 {
     public class Wife_JennyFord : Person //Kazoku ~Haha To Shimai No Kyousei~
     {
+        public static string ImagePath = @"e:\!STOGENDB\READY\CHR\F\JennyFord\";
         public enum Poses
         {
             Stand1,
@@ -89,62 +90,62 @@ namespace StoGenerator.Persons
             Wife_JennyFord person = new Wife_JennyFord("Jenny Ford", "Wife");
             person.Files.Add(new Tuple<string, string>(
                 $"{Figure.Full},{Poses.Stand1},{Outfit.Nightgown}",
-                $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Nightgown1.png"));
+                $@"{ImagePath}Nightgown1.png"));
             person.Files.Add(new Tuple<string, string>(
                 $"{Figure.Full},{Poses.Stand2},{Outfit.Nightgown}",
-                $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Nightgown2.png"));
+                $@"{ImagePath}Nightgown2.png"));
 
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_67}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_1_067.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_68}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_1_068.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_69}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_1_069.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_70}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_1_070.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_71}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_1_071.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_72}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_1_072.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_73}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_1_073.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_74}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_1_074.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_75}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_1_075.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_76}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_1_076.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_77}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_1_077.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_67}", $@"{ImagePath}Mouth_1_067.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_68}", $@"{ImagePath}Mouth_1_068.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_69}", $@"{ImagePath}Mouth_1_069.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_70}", $@"{ImagePath}Mouth_1_070.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_71}", $@"{ImagePath}Mouth_1_071.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_72}", $@"{ImagePath}Mouth_1_072.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_73}", $@"{ImagePath}Mouth_1_073.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_74}", $@"{ImagePath}Mouth_1_074.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_75}", $@"{ImagePath}Mouth_1_075.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_76}", $@"{ImagePath}Mouth_1_076.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Mouth.MouthGeneric},{Mouth.Mouth1_77}", $@"{ImagePath}Mouth_1_077.png"));
 
 
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_67}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_1_067.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_68}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_1_068.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_69}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_1_069.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_70}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_1_070.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_71}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_1_071.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_72}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_1_072.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_73}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_1_073.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_74}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_1_074.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_75}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_1_075.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_76}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_1_076.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_77}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_1_077.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_67}", $@"{ImagePath}Eyes_1_067.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_68}", $@"{ImagePath}Eyes_1_068.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_69}", $@"{ImagePath}Eyes_1_069.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_70}", $@"{ImagePath}Eyes_1_070.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_71}", $@"{ImagePath}Eyes_1_071.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_72}", $@"{ImagePath}Eyes_1_072.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_73}", $@"{ImagePath}Eyes_1_073.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_74}", $@"{ImagePath}Eyes_1_074.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_75}", $@"{ImagePath}Eyes_1_075.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_76}", $@"{ImagePath}Eyes_1_076.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.Eyes1_77}", $@"{ImagePath}Eyes_1_077.png"));
 
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.EyesBlink1}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_1_blink1.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Feature.FeatureGeneric},{Feature.Blush1}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Blush_1_001.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.EyesBlink2}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_2_blink1.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Eyes.EyesGeneric},{Eyes.EyesBlink1}", $@"{ImagePath}Eyes_1_blink1.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand1},{Feature.FeatureGeneric},{Feature.Blush1}", $@"{ImagePath}Blush_1_001.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.EyesBlink2}", $@"{ImagePath}Eyes_2_blink1.png"));
 
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_78}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_2_078.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_79}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_2_079.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_80}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_2_080.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_81}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_2_081.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_82}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_2_082.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_83}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_2_083.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_84}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_2_084.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_85}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_2_085.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_86}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_2_086.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_87}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_2_087.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_88}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Mouth_2_088.png"));            
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_78}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_2_078.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_79}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_2_079.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_80}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_2_080.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_81}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_2_081.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_82}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_2_082.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_83}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_2_083.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_84}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_2_084.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_85}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_2_085.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_86}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_2_086.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_87}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_2_087.png"));
-            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_88}", $@"E:\!CATALOG\PRS\Story\HCG - 01\IMAGE\CHARA\37\DB\Eyes_2_088.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_78}", $@"{ImagePath}Mouth_2_078.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_79}", $@"{ImagePath}Mouth_2_079.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_80}", $@"{ImagePath}Mouth_2_080.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_81}", $@"{ImagePath}Mouth_2_081.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_82}", $@"{ImagePath}Mouth_2_082.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_83}", $@"{ImagePath}Mouth_2_083.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_84}", $@"{ImagePath}Mouth_2_084.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_85}", $@"{ImagePath}Mouth_2_085.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_86}", $@"{ImagePath}Mouth_2_086.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_87}", $@"{ImagePath}Mouth_2_087.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Mouth.MouthGeneric},{Mouth.Mouth2_88}", $@"{ImagePath}Mouth_2_088.png"));            
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_78}", $@"{ImagePath}Eyes_2_078.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_79}", $@"{ImagePath}Eyes_2_079.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_80}", $@"{ImagePath}Eyes_2_080.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_81}", $@"{ImagePath}Eyes_2_081.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_82}", $@"{ImagePath}Eyes_2_082.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_83}", $@"{ImagePath}Eyes_2_083.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_84}", $@"{ImagePath}Eyes_2_084.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_85}", $@"{ImagePath}Eyes_2_085.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_86}", $@"{ImagePath}Eyes_2_086.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_87}", $@"{ImagePath}Eyes_2_087.png"));
+            person.Files.Add(new Tuple<string, string>($"{Figure.Feature},{Poses.Stand2},{Eyes.EyesGeneric},{Eyes.Eyes2_88}", $@"{ImagePath}Eyes_2_088.png"));
             Storage.Add(person);
             return person;
         }

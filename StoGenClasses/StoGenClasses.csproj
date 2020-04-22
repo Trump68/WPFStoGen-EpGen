@@ -86,25 +86,10 @@
     <Compile Include="Controls\frmTextEdit.Designer.cs">
       <DependentUpon>frmTextEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Data\A001-Woman.cs" />
-    <Compile Include="Data\AUX01-Accesuar.cs" />
     <Compile Include="Scene\SCENARIO.cs" />
     <Compile Include="Scene\SCENE_Combo.cs" />
     <Compile Include="Data\Games\SILKY%27S SAKURA-Otto no Inu Ma ni.cs" />
     <Compile Include="Scene\SCENE_Clips.cs" />
-    <Compile Include="Data\SC000-TestTran.cs" />
-    <Compile Include="Data\SC000-Various.cs" />
-    <Compile Include="Data\SC001-Fools Art.cs" />
-    <Compile Include="Data\SC002-Ilya Kuvshinov.cs" />
-    <Compile Include="Data\SC003-Hara Shigeyuki.cs" />
-    <Compile Include="Data\SC004-Enoshima Iki.cs" />
-    <Compile Include="Data\SC005-Dtym.cs" />
-    <Compile Include="Data\SC006-Erotibot.cs" />
-    <Compile Include="Data\SC007-Cle Masahiro.cs" />
-    <Compile Include="Data\SC008-Itachou.cs" />
-    <Compile Include="Data\SC009-Hews Hack.cs" />
-    <Compile Include="Data\SC010-Oyari Ashito.cs" />
-    <Compile Include="Data\SC011-HCG.cs" />
     <Compile Include="Data\Texts\TextStory.cs" />
     <Compile Include="Frames\Frame.cs" />
     <Compile Include="Frames\FrameImage.cs" />

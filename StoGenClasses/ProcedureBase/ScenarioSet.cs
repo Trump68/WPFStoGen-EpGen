@@ -95,22 +95,6 @@ namespace StoGen.Classes
                 var AppCadre = new Cadre(this.CurrentProc, true);
                 AppCadre.ImageFr.ShowMovieControls = true;
                 AppCadre.AlignData = ad;
-                //foreach (seIm data in cdr.VisionList)
-                //{
-                //    var ids = data.ToPictureDataSource();
-                //    ids.Level = (PicLevel)(cdr.VisionList.IndexOf(data));
-                //    AppCadre.PicFrameData.PictureDataList.Add(ids);
-                //}
-                //foreach (seSo data in cdr.SoundList)
-                //{
-                //    var sds = data.ToSoundDataSource();
-                //    sds.Position = cdr.SoundList.IndexOf(data);
-                //    AppCadre.SoundFrameData.Add(sds);
-                //}
-                //foreach (seTe data in cdr.TextList)
-                //{
-                //    AppCadre.TextFrameData.Add(data.ToTextDataSource());
-                //}
             }
             return true;         
         }

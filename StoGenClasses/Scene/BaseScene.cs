@@ -219,21 +219,6 @@ namespace StoGenMake.Scenes.Base
             AddLocal(currentGr, text, difdata, this.CurrentSounds);
         }
         #endregion
-
-
-
-        public virtual void DoFilter(string[] cadregroups, bool all = false)
-        {
-            this.AlignList.RemoveAll(x =>
-                    !all
-                    &&
-                    !x.MarkList.Any(z => cadregroups.Contains(z)));
-        }
-        protected virtual void DoFilter(string cadregroup)
-        {
-            DoFilter(new string[] { cadregroup }, (cadregroup == null));
-        }
-       
         public List<CadreData> AlignList = new List<CadreData>();
         public Guid GID { set; get; }
 
@@ -300,45 +285,7 @@ namespace StoGenMake.Scenes.Base
         public List<ScenCadre> Cadres { get; set; } = new List<ScenCadre>();
         public string FileToProcess = null;
 
-        #region Generate
-        public string Generate()
-        {
-            return this.Generate(null);
-        }
-        public string Generate(string cadregroup)
-        {
-            //this.Cadres.Clear();
-            this.DoFilter(cadregroup);
-            return null;
-            //string fnScenario = string.Empty;
-            //if (string.IsNullOrEmpty(FileToProcess))
-            //{
-            //    FileToProcess = this.TempFileName;
-            //}
-            //string newfnScenario = Path.GetFileNameWithoutExtension(FileToProcess) + ".stogen";
-            //string savepath = Path.GetDirectoryName(FileToProcess);
-            //fnScenario = Path.Combine(savepath, newfnScenario);
 
-            //List<string> scendata = new List<string>();
-            //foreach (var item in this.Cadres)
-            //{             
-            //    int i = 0;
-            //    if (item.IsActivated)
-            //    {
-            //        var cadredata = item.GetCadreData();
-            //        if (!string.IsNullOrEmpty(FileToProcess))
-            //        {
-
-            //        }
-            //        scendata.AddRange(cadredata);
-            //    }
-            //}
-
-            //File.WriteAllText(fnScenario, string.Join(Environment.NewLine, scendata.ToArray()));
-            //return fnScenario;
-        }
-
-        #endregion
 
         #region Menu
 
@@ -355,11 +302,6 @@ namespace StoGenMake.Scenes.Base
                 item.itemData = it;
                 item.Executor = data =>
                 {
-                    //proc.MenuCreator = this.CreateMenuSceneForCadreList;
-                    //proc.ShowContextMenu(doShowMenu, data);
-
-                    this.Generate(data as string);
-                    //StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
                     proc.MenuCreator = proc.OldMenuCreator;
                     proc.GetNextCadre();
 
@@ -369,23 +311,7 @@ namespace StoGenMake.Scenes.Base
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
             return true;
         }
-        //internal bool CreateMenuSceneForCadreList(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
-        //{
-        //    ChoiceMenuItem item = null;
-        //    if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 
-        //    item = new ChoiceMenuItem($"Scene {this.Name}", this);
-        //    item.Executor = delegate (object data)
-        //    {
-        //        this.Generate(null);
-        //        StoGenParser.AddCadresToProcFromFile(proc, this.TempFileName, null, StoGenParser.DefaultPath);
-        //        proc.MenuCreator = proc.OldMenuCreator;
-        //        proc.GetNextCadre();
-        //    };
-        //    itemlist.Add(item);
-        //    ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, false);
-        //    return true;
-        //}
         #endregion
 
         public seTe DefaultSceneText = new seTe()

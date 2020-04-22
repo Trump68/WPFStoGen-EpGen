@@ -14,15 +14,23 @@ namespace StoGenerator
     {
         public Sound(string name, string type) : base(name, type) { }
 
-        // static     
-        private static void TestSave(string file)
+        internal static void InitDefaultSounds()
         {
             Storage.Clear();
             Sound var = new Sound("Печальная тема 01", "BGM");
             var.Files.Add(new Tuple<string, string>(null, @"d:\!Sound\NTRPG\0014-kanashimi.mp3"));
             Storage.Add(var);
-            File.WriteAllText(file, JsonConvert.SerializeObject(Storage, Formatting.Indented));
         }
+
+        // static     
+        //private static void TestSave(string file)
+        //{
+        //    Storage.Clear();
+        //    Sound var = new Sound("Печальная тема 01", "BGM");
+        //    var.Files.Add(new Tuple<string, string>(null, @"d:\!Sound\NTRPG\0014-kanashimi.mp3"));
+        //    Storage.Add(var);
+        //    File.WriteAllText(file, JsonConvert.SerializeObject(Storage, Formatting.Indented));
+        //}
         protected override Info_Scene ToSceneInfo(string spec, string queue, string group)
         {
             Info_Scene result = base.ToSceneInfo(spec, queue, group);
