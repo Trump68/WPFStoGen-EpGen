@@ -39,9 +39,8 @@ namespace StoGenWPF
            
         public static void SetMainProcedure(BaseScene scene, int startpage)
         {
-            CurrProc = new ScenarioProc(_MainProcname, GlobalMenuCreator, scene);
+            CurrProc = new ScenarioProc(_MainProcname, GlobalMenuCreator, scene.AlignList);
             CurrProc.GoToCadre(startpage);
-            //CurrProc.Scene = Scene;
         }
 
 

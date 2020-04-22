@@ -1,4 +1,6 @@
 ﻿using StoGen.Classes.Interfaces;
+using StoGenMake;
+using StoGenMake.Elements;
 using StoGenMake.Scenes.Base;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +10,14 @@ namespace StoGen.Classes
 {
     public class ScenarioProc : ProcedureBase
     {
-        //public List<ScenarioSet> sets = new List<ScenarioSet>();
-        public ScenarioProc(string fn, IMenuCreator globalMenuCreator, BaseScene scene)
+        public List<CadreData> CadreDataList = new List<CadreData>();
+        public ScenarioProc(string fn, IMenuCreator globalMenuCreator, List<CadreData>  CadreDataList)
            : base(0)
         {
-           
+            
             this.MenuCreator = CreateMenu;
-            this.Scene = scene;
             var i = 0;
-            foreach (var ad in this.Scene.AlignList)
+            foreach (var ad in CadreDataList)
             {
                 var AppCadre = new Cadre(this, true);
                 AppCadre.ImageFr.ShowMovieControls = true;
@@ -37,7 +38,8 @@ namespace StoGen.Classes
 
             }
             return true;
-        }           
+        }
+
 
     }
 }

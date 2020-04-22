@@ -12,28 +12,6 @@ namespace StoGenMake.Scenes.Base
     {
         public int EngineHiVer = 0;
         public int EngineLoVer = 0;
-        // Magic here
-        public ScenCadre MakeCadre(CadreData item)
-        {
-
-            seTe te = null;
-            bool isWhite = false;
-            if (item.IsGlobalAlign)
-            {
-                te = new seTe();
-                te.FontSize = 60;
-                te.Size = 100;
-                te.Bottom = 0;
-                te.Shift = 700;
-                te.Text = "SETUP";
-            }
-            else
-            {
-                te = item.TextData;
-            }
-            return this.CreateCadre(item, isWhite, te);
-        }
-
 
 
         public string MoviePath = null; // path to movie file
@@ -326,57 +304,7 @@ namespace StoGenMake.Scenes.Base
         private object ShowMovieControl;
 
         #region Newest engine!!!
-        // => Here the magic happens
-        public ScenCadre CreateCadre(CadreData item, bool isWhite = false, seTe text = null)
-        {
-            var cadre = new ScenCadre();
-            cadre.IsWhite = isWhite;
-            cadre.Name = $"Cadre {this.Cadres.Count + 1}";
-            foreach (var ai in item.AlignList)
-            {
-                //faind main image info in storage
-                var isi = GameWorld.ImageStorage.Where(x => x.Name == ai.Name).FirstOrDefault();
-                if (isi == null) continue;
-                // create image
-                seIm im = new seIm();
-                im.Name = isi.Name;
-                im.Parent = ai.Parent;
-                im.File = isi.File;
-                // there is 2 alt: assign from parent-child align or from delta align, not combined!
-                if (!string.IsNullOrEmpty(ai.Parent)) //if has parent image
-                {
-                    // get parent-child proportion
-                    var parentproportion = isi.Parents.Where(x => x.Parent == ai.Parent && x.Tag == ai.Tag).FirstOrDefault();
-                    if (parentproportion != null)
-                    {
-                        // get real parent image from cadre
-                        var realpar = cadre.VisionList.Where(x => x.Name == ai.Parent).FirstOrDefault();
-                        if (realpar != null)
-                        {
-                            // assign to image parent-child proportion according with real parent 
-                            seIm realparent = realpar as seIm;
-                            parentproportion.ApplyTo(im, realparent, ai);
-                        }
-                    }
-                }
-                else // no parent image
-                {
-                    // assign default align to image
-                    //im.AssignFrom(isi.DefaultAlign);
-                    // assign delta align, if any
-                    im.AssignFrom(ai);
 
-                }
-                // add image to cadre
-                cadre.AddImage(im);
-            }
-            cadre.SoundList.AddRange(item.SoundList);
-            if (text != null)
-            {
-                cadre.AddText(text);
-            }
-            return cadre;
-        }
         public void AddToGlobalImage(string name, string fn, string path)
         {
             if (!string.IsNullOrEmpty(path))

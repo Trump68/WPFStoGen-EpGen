@@ -64,7 +64,7 @@ namespace StoGen.Classes
             if (this.AlignData != null && !this.AlignDataProcessed)
             {
                 this.AlignDataProcessed = true;
-                ScenCadre cdr =  this.Owner.Scene.MakeCadre(this.AlignData);
+                ScenCadre cdr =  this.Owner.MakeCadre(this.AlignData);
                 foreach (seIm data in cdr.VisionList)
                 {                   
                     var ids = data.ToPictureDataSource();
