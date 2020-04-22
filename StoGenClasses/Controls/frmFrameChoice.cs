@@ -139,7 +139,7 @@ namespace StoGen.Classes
                 controller.MenuCreator = controller.OldMenuCreator;
                 controller.ShowContextMenu(doShowMenu, null);
             }
-            else controller.CurrentCadre.Repaint();
+            else controller.RepaintCadre(controller.CurrentCadre);
         }
     }
     public class MenuDescriptopnItem

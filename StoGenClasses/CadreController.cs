@@ -152,14 +152,18 @@ namespace StoGen.Classes
             {
                 Init();
             }
-            if (result != null) result.Repaint();
+            if (result != null) RepaintCadre(result);
             else
             {
                 SystemSounds.Beep.Play();
             }
             return result;
         }
-
+        public void RepaintCadre(Cadre cadre)
+        {
+            cadre.CadreInfo = this.MakeCadre(cadre.Data);
+            cadre.Repaint(34);
+        }
 
 
         public virtual Cadre GetPrevCadre()
@@ -185,8 +189,7 @@ namespace StoGen.Classes
             }
             if (result != null)
             {
-                result.Repaint();
-                //(Projector.Text.TopLevelControl as Form).Text = result.Owner.Level.ToString() + ":" + result.Owner.NestedCadreId;
+                this.RepaintCadre(result);      
             }
 
             return result;
@@ -227,7 +230,7 @@ namespace StoGen.Classes
         }
 
         // Magic here
-        public ScenCadre MakeCadre(CadreData item)
+        public CadreInfo MakeCadre(CadreData item)
         {
 
             seTe te = null;
@@ -248,9 +251,9 @@ namespace StoGen.Classes
             return this.CreateCadre(item, isWhite, te);
         }
         // => Here the magic happens
-        public ScenCadre CreateCadre(CadreData item, bool isWhite = false, seTe text = null)
+        public CadreInfo CreateCadre(CadreData item, bool isWhite = false, seTe text = null)
         {
-            var cadre = new ScenCadre();
+            var cadre = new CadreInfo();
             cadre.IsWhite = isWhite;
             cadre.Name = $"Cadre {this.Cadres.Count + 1}";
             foreach (var ai in item.AlignList)

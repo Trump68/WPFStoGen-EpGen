@@ -5,7 +5,7 @@ using StoGenLife.SOUND;
 
 namespace StoGenMake.Elements
 {
-    public class ScenCadre
+    public class CadreInfo
     {
         public string Name { set; get; }
         public string Description { set; get; }
@@ -17,7 +17,7 @@ namespace StoGenMake.Elements
         public List<ScenElement> TextList = new List<ScenElement>();
         public bool IsWhite = false;
 
-        public ScenCadre()
+        public CadreInfo()
         {
             
         }

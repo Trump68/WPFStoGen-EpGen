@@ -53,31 +53,32 @@ namespace StoGen.Classes
         public FrameImage ImageFr = new FrameImage();
         public FrameProc ProcFr = new FrameProc();
         public FrameSound SoundFr = new FrameSound();
+        public CadreInfo CadreInfo;
 
-        public virtual Cadre Repaint() 
+        public virtual Cadre Repaint(int fake) 
         {            
             Cadre result = this;
             Projector.TextVisible = true;
             if (this.Data != null && !this.AlignDataProcessed)
             {
                 this.AlignDataProcessed = true;
-                ScenCadre cdr =  this.Owner.MakeCadre(this.Data);
-                foreach (seIm data in cdr.VisionList)
+                this.Owner.MakeCadre(this.Data);
+                foreach (seIm data in CadreInfo.VisionList)
                 {                   
                     var ids = data.ToPictureDataSource();
-                    ids.Level = (PicLevel)(cdr.VisionList.IndexOf(data));
+                    ids.Level = (PicLevel)(CadreInfo.VisionList.IndexOf(data));
                     PictureItem pic = new PictureItem();
                     pic.Props = new PictureSourceProps(ids);
                     this.ImageFr.Pics.Add(pic);
                     
                 }
-                foreach (seSo data in cdr.SoundList)
+                foreach (seSo data in CadreInfo.SoundList)
                 {
                     var sds = data.ToSoundDataSource();
-                    sds.Position = cdr.SoundList.IndexOf(data);
+                    sds.Position = CadreInfo.SoundList.IndexOf(data);
                     this.SoundFr.SoundList.Add(sds);                    
                 }
-                foreach (seTe dataTe in cdr.TextList)
+                foreach (seTe dataTe in CadreInfo.TextList)
                 {
                     this.TextFr.SetData(dataTe);
                 }                

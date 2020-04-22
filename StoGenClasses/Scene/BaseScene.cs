@@ -249,10 +249,10 @@ namespace StoGenMake.Scenes.Base
                 _TempFileName = value;
             }
         }
-        public ScenCadre AddCadre(ScenCadre cadre, string name, int timer)
+        public CadreInfo AddCadre(CadreInfo cadre, string name, int timer)
         {
             if (cadre == null)
-                cadre = new ScenCadre();
+                cadre = new CadreInfo();
             if (name == null)
             {
                 name = $"Cadre { this.Cadres.Count + 1}";
@@ -265,7 +265,7 @@ namespace StoGenMake.Scenes.Base
         }
         public string Description { get; set; }
         public string Name { get; set; }
-        public List<ScenCadre> Cadres { get; set; } = new List<ScenCadre>();
+        public List<CadreInfo> Cadres { get; set; } = new List<CadreInfo>();
         public string FileToProcess = null;
 
 
