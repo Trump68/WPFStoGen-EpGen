@@ -16,7 +16,7 @@ namespace StoGenWPF
     public class SGManager
     {
         static string _MainProcname = "SgMainProc";
-        public static ProcedureBase CurrProc;
+        public static CadreController CurrProc;
 
 
         #region Runtime compile
@@ -37,7 +37,7 @@ namespace StoGenWPF
            
         public static void SetMainProcedure(BaseScene scene, int startpage)
         {
-            CurrProc = new ProcedureBase(scene);
+            CurrProc = new CadreController(scene);
             CurrProc.GoToCadre(startpage);
         }
 

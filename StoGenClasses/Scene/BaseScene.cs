@@ -274,7 +274,7 @@ namespace StoGenMake.Scenes.Base
 
 
         public List<string> CadreGroups = new List<string>();
-        public bool CreateMenuScene(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        public bool CreateMenuScene(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
             ChoiceMenuItem item = null;

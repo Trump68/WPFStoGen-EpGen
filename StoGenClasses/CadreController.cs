@@ -13,10 +13,10 @@ using StoGenMake;
 
 namespace StoGen.Classes
 {
-    public class ProcedureBase
+    public class CadreController
     {
         private BaseScene Scene;
-        public ProcedureBase(BaseScene scene)
+        public CadreController(BaseScene scene)
         {
             Cadres = new List<Cadre>();
             this.NestedCadreId = -1;
@@ -46,10 +46,7 @@ namespace StoGen.Classes
         }
         public virtual void Clear()
         {
-            //if (this.CurrentCadreMaker != null) this.CurrentCadreMaker.Selectors.Clear();
             Stop();
-            //this.Variants.Clear();
-            this.InnerProc = null;
             this.NestedCadreId = 0;
         }
 
@@ -61,12 +58,6 @@ namespace StoGen.Classes
             }
         }
 
-        public ProcedureBase InnerProc { get; set; }
-        public ProcedureBase GetLastProc()
-        {
-            if (this.InnerProc == null) return this;
-            return this.InnerProc.GetLastProc();
-        }
         public int NestedCadreId { get; set; } 
         protected bool isInitialized = false;
         // Navigation
@@ -78,12 +69,7 @@ namespace StoGen.Classes
                 {
                     return false;
                 }
-                if (this.InnerProc == null)
-                {
-                    if (this.Cadres.Count == 0) return true;
-                    return this.Cadres[this.Cadres.Count - 1].AllowedForward;
-                }
-                else return this.InnerProc.AllowedForward;
+                return true;
             }
         }
         public bool AllowedBackward
@@ -91,17 +77,10 @@ namespace StoGen.Classes
             get
             {
                 if (this.NestedCadreId == 0) return false;
-                if (this.InnerProc == null)
-                {
                     if (this.Cadres.Count == 0 || this.CurrentCadre == null) return false;
                     int idx = this.Cadres.IndexOf(this.CurrentCadre) - 1;
-                    if (idx > -1)
-                    {
-                        if (this.Cadres[idx].IsProc) return false;
-                    }
+
                     return this.CurrentCadre.AllowedBackward;
-                }
-                else return this.InnerProc.AllowedBackward;
             }
         }
         public virtual void Init()
@@ -127,35 +106,22 @@ namespace StoGen.Classes
         public EventHandler OnKeyData;        
         public void ProcessKeyData(int v)
         {
-            if (this.InnerProc != null) this.InnerProc.ProcessKeyData(v);
-            else if (OnKeyData != null)
+          
+            if (OnKeyData != null)
             {
                 OnKeyData(v, null);
             }
         }
+
         public void ProcessKey(Key e)
         {
-            ProcessKey(e, null);
-        }
-        public void ProcessKey(Key e, ProcedureBase parent)
-        {
-            if (this.InnerProc != null) this.InnerProc.ProcessKey(e, this);
-            else
-            {
+
                 if (e == Key.Back)
                 {
-                    if (parent != null)
-                    {
-                        parent.InnerProc = null;
-                        parent.ShowContextMenu(true,null);
-                    }
-                    else
-                    {
+
                         this.ShowContextMenu(true, null);
-                    }
                 }
                 else if (this.CurrentCadre != null) this.CurrentCadre.ProcessKey(e);
-            }
         }
 
         public virtual Cadre GetNextCadre()
@@ -176,15 +142,6 @@ namespace StoGen.Classes
                 }
                 result = Cadres[NestedCadreId + 1];
                 NestedCadreId++;
-                if (result.IsProc)
-                {
-                    this.InnerProc = result.ProcFr.Proc;
-                    if (this.InnerProc != null)
-                    {
-                        if (this.InnerProc.NestedCadreId == 0) this.InnerProc.NestedCadreId = -1;
-                        return this.InnerProc.GetNextCadre();
-                    }
-                }
             }
             else if (Cadres.Count > 0 && (NestedCadreId == Cadres.Count - 1))
             {
@@ -207,73 +164,25 @@ namespace StoGen.Classes
 
         public virtual Cadre GetPrevCadre()
         {
-
             Cadre result = null;
-
-            if (!this.GetLastProc().AllowedBackward)
+            if (NestedCadreId == 0)
             {
                 SystemSounds.Beep.Play();
                 return result;
             }
-            //if (!this.AllowedBackward)
-            //{
-            //    SystemSounds.Beep.Play();
-            //    return result;
-            //}
-            if (this.InnerProc != null)
-            {
-                if (this.InnerProc.NestedCadreId > 0)
-                    return this.InnerProc.GetPrevCadre();
-                else
-                {
-                    ProcedureBase bp = this.InnerProc;
-                    while (bp.InnerProc != null)
-                    {
-                        bp = bp.InnerProc;
-                        //bp.NestedCadreId = 0;
-                        bp.NestedCadreId = bp.NestedCadreId - 1;
-                    }
-                    if (bp.NestedCadreId < 0)
-                    {
-                        // delete inner proc
-                        this.InnerProc = null;
-                        Cadres.RemoveAt(NestedCadreId);
-                        NestedCadreId = NestedCadreId - 1;
-                    }
-                    else
-                    {
-                        result = bp.Cadres[bp.NestedCadreId];
-
-                    }
-                }
-            }
-
             if (result == null)
             {
                 if (NestedCadreId >= 1)
                 {
                     if (!Cadres[NestedCadreId - 1].AllowedBackward) return result;
-                    //Cadres[NestedCadreId].BeforeLeave();
                     result = Cadres[NestedCadreId - 1];
                     NestedCadreId--;
-                    while (result != null && result.IsProc)
-                    {
-                        result = Cadres[NestedCadreId];
-                        NestedCadreId--;
-                        if (NestedCadreId < 0)
-                        {
-                            return result;
-                        }
-                    }
                 }
                 else if (NestedCadreId == 0)
                 {
                     if (Cadres.Count > 0) result = Cadres[NestedCadreId];
                 }
-
             }
-
-
             if (result != null)
             {
                 result.Repaint(true);
@@ -286,7 +195,7 @@ namespace StoGen.Classes
         public object MenuCreatorData;
         public MenuCreatorDelegate OldMenuCreator;
         public MenuCreatorDelegate MenuCreator;
-        public bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        public bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
 
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
@@ -309,19 +218,12 @@ namespace StoGen.Classes
         }
         public void ApplyContextMenu()
         {
-            if (this.InnerProc != null)
-            {
-                this.InnerProc.ApplyContextMenu();
-                return;
-            }
+
             if (this.CurrentCadre == null)
             {
                 this.GetNextCadre();
             }
-            //if (this.CurrentCadre.GetRadioGroupFrame().isVisible)
-            //{
-            //    this.CurrentCadre.GetRadioGroupFrame().PerformExec();
-            //}
+
         }
         private void CreateNextCadre()
         {
@@ -400,7 +302,7 @@ namespace StoGen.Classes
             return cadre;
         }
     }
-    public delegate bool MenuCreatorDelegate(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data);
+    public delegate bool MenuCreatorDelegate(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data);
 
 
 }

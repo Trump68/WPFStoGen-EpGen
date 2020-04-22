@@ -17,7 +17,7 @@ namespace StoGen.Classes
             isVisible = true;
             Owner = null;
         }
-        public ProcedureBase Proc
+        public CadreController Proc
         {
             get { return this.Owner.Owner; }
         }

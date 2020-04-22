@@ -25,7 +25,7 @@ namespace StoGen.Classes
     {
         public static System.Threading.Timer timer;
         public static TransitionManager tranManager = new TransitionManager();
-        public static ProcedureBase CurrentProc;
+        public static CadreController CurrentProc;
         public static FrameImage Instance;
         public static volatile bool LoopProcessed = false;
         public static bool videoactive = false;        

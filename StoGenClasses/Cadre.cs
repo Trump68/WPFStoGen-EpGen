@@ -16,8 +16,7 @@ namespace StoGen.Classes
 
 
         public List<Frame> Frames { set; get; }
-        public bool IsProc { get; set; }
-        public ProcedureBase Owner{ get; set; }
+        public CadreController Owner{ get; set; }
         public bool AllowedForward { get; set; }
         public bool AllowedBackward { get; set; }
      
@@ -32,11 +31,10 @@ namespace StoGen.Classes
             this.ProcFr.Owner = this;
             this.SoundFr.Owner = this;
             this.TextFr.Owner = this;
-            IsProc = false;
             AllowedForward = true;
             AllowedBackward = true;
         }
-        public Cadre(ProcedureBase owner, bool isAdd)
+        public Cadre(CadreController owner, bool isAdd)
             : this()
         {
             this.Owner = owner;

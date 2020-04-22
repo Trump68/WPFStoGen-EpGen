@@ -128,7 +128,7 @@ namespace StoGen.Classes
         public object itemData { set; get; }
         public MenuItemExecutorDelegate Executor = null;
         public MenuDescriptopnItem[] Props;
-        public static void FinalizeShowMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, bool processCancel)
+        public static void FinalizeShowMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, bool processCancel)
         {
             if (frmFrameChoice.ShowOptionsmenu(itemlist) != DialogResult.Cancel)
             {

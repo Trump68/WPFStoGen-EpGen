@@ -70,7 +70,7 @@ namespace StoGenMake
 
 
         #region Menu
-        public bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        public bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             if (itemlist == null)
                 itemlist = new List<ChoiceMenuItem>();
@@ -141,7 +141,7 @@ namespace StoGenMake
         //    ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
         //    return true;
         //}
-        private bool CreateMenuScenes(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        private bool CreateMenuScenes(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
             ChoiceMenuItem item = null;

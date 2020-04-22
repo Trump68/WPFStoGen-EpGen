@@ -12,7 +12,7 @@ namespace StoGen.ModelClasses
     {
 
 
-        public ProcedureBase Proc { get; set; }
+        public CadreController Proc { get; set; }
         public FrameProc()
             : base()
         {
