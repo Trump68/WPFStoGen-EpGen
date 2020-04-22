@@ -93,7 +93,7 @@ namespace StoGenerator
             }
             return posture;
         }
-        internal void AddToStory(StoryBase story, List<Info_Scene> posture, int startLevel)
+        internal void AddToStory(StoryBase story, List<Info_Scene> posture, int startLevel, bool active)
         {
 
             foreach (var item in posture)
@@ -101,6 +101,7 @@ namespace StoGenerator
                 item.Z = (startLevel++).ToString();
                 item.Group = story.currentGroup;
                 item.Queue = story.currentQueue;
+                item.Active = active;
                 story.SceneInfoList.Add(item);
             }
         }

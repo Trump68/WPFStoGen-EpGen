@@ -142,6 +142,7 @@ namespace StoGen.Classes
         public string Z { set; get; } //ZOrder
         public string Align { set; get; }// text align 0 -left, 1- right, 2-center, 3-justify
         public string VAlign { set; get; }// textbox align 0 -top, 1-center, 3-bottom
+        public bool Active { get; set; }
 
         public string GenerateString()
         {

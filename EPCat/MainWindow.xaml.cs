@@ -587,7 +587,7 @@ namespace EPCat
             if (atEnd)
             {
                 ViewModel.CurrentCombinedScene =
-                ViewModel.Scenario.SceneInfoList.LastOrDefault();
+                ViewModel.Story.SceneInfoList.LastOrDefault();
             }
             //save
             ViewModel.CopyCombinedScene(true);
@@ -638,7 +638,7 @@ namespace EPCat
 
         private void CompileScenarioBtn_Click(object sender, RoutedEventArgs e)
         {
-            SCENARIO.PackScenario(ViewModel.Scenario, ViewModel.CurrentFolder.ItemDirectory);
+            SCENARIO.PackScenario(ViewModel.Story, ViewModel.CurrentFolder.ItemDirectory);
         }
         private void CopyGroupBtn_Click(object sender, RoutedEventArgs e)
         {

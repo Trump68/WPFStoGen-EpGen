@@ -129,12 +129,12 @@ namespace EPCat
         {
             get
             {
-                if (this.Scenario != null)
+                if (this.Story != null)
                 {
                     if (_CurrentCombinedScene == null)
                     {
-                        if (this.Scenario.SceneInfoList.Any())
-                            _CurrentCombinedScene = this.Scenario.SceneInfoList.First();
+                        if (this.Story.SceneInfoList.Any())
+                            _CurrentCombinedScene = this.Story.SceneInfoList.First();
                     }
                 }
                 return _CurrentCombinedScene;
@@ -144,8 +144,8 @@ namespace EPCat
                 _CurrentCombinedScene = value;
             }
         }
-        SCENARIO _Scenario;
-        public SCENARIO Scenario
+        StoryBase _Scenario;
+        public StoGenerator.StoryBase Story
         {
             get
             {
@@ -200,7 +200,7 @@ namespace EPCat
             RaisePropertyChanged(() => this.CurrentFolder);
             RaisePropertyChanged(() => this.CurrentClip);
             RaisePropertyChanged(() => this.CurrentCombinedScene);
-            RaisePropertyChanged(() => this.Scenario);
+            RaisePropertyChanged(() => this.Story);
             RaisePropertyChanged(() => this.Scenes);
         }
 
@@ -385,7 +385,7 @@ namespace EPCat
             TicTakToe.CopiedCombinedScene.Clear();
             if (allgroup)
             {
-                var col = this.Scenario.SceneInfoList.Where(x => x.Group == this.CurrentCombinedScene.Group);
+                var col = this.Story.SceneInfoList.Where(x => x.Group == this.CurrentCombinedScene.Group);
                 foreach (var item in col)
                 {
                     TicTakToe.CopiedCombinedScene.Add(item.GenerateString());
@@ -488,12 +488,12 @@ namespace EPCat
         private void addNewComb(Info_Scene newclipinfo)
         {
             //newclipinfo.ID = Guid.NewGuid().ToString();
-            this.Scenario.SceneInfoList.Add(newclipinfo);
+            this.Story.SceneInfoList.Add(newclipinfo);
             this.CurrentCombinedScene = newclipinfo;
             RaisePropertyChanged(() => this.CurrentFolder);
             RaisePropertyChanged(() => this.CurrentCombinedScene);
             RaisePropertyChanged(() => this.Scenes);
-            MainWindow.Instance.SetGVCurrent(this.Scenario.SceneInfoList.IndexOf(this.CurrentCombinedScene));
+            MainWindow.Instance.SetGVCurrent(this.Story.SceneInfoList.IndexOf(this.CurrentCombinedScene));
 
         }
 
@@ -503,7 +503,7 @@ namespace EPCat
             
             GameWorldFactory.GameWorld.LoadData();
             Scene_Combo scene = new Scene_Combo();
-            scene.SetScenario(this.Scenario, this.CurrentCombinedScene.Queue);
+            scene.SetScenario(this.Story, this.CurrentCombinedScene.Queue);
 
             if (projector == null)
                 projector = new StoGenWPF.MainWindow();
@@ -511,7 +511,7 @@ namespace EPCat
             projector.Scene = scene;
             projector.StartOnLoad = false;
             projector.Show();
-            int page = Scenario.SceneInfoList.Select(x=>x.Group).Distinct().ToList().IndexOf(this.CurrentCombinedScene.Group) + 1;
+            int page = Story.SceneInfoList.Select(x=>x.Group).Distinct().ToList().IndexOf(this.CurrentCombinedScene.Group) + 1;
             projector.Start(page);
         }
 
@@ -544,24 +544,24 @@ namespace EPCat
         internal void SaveScenario()
         {
             if (this.CurrentFolder == null) return;
-            this.Scenario.SaveToFile(this.CurrentFolder.ItemDirectory, this.CurrentFolder.ItemTempDirectory);             
+            this.Story.SaveToFile(this.CurrentFolder.ItemDirectory, this.CurrentFolder.ItemTempDirectory);             
         }
 
 
         internal void LoadScenario(string fileName)
         {            
             List<string> clipsinstr = new List<string>(File.ReadAllLines(fileName));
-            this.Scenario = null;
-            SCENARIO scen = new SCENARIO();
+            this.Story = null;
+            StoryBase scen = new StoryBase();
             scen.LoadFrom(clipsinstr);
-            this.Scenario = scen;
-            this.Scenes = this.Scenario.SceneInfoList;
+            this.Story = scen;
+            this.Scenes = this.Story.SceneInfoList;
             RefreshFolder();
         }
 
         internal void ClearScenes()
         {
-            this.Scenario.SceneInfoList.Clear();
+            this.Story.SceneInfoList.Clear();
         }
 
         internal void ReloadScenario()
@@ -569,7 +569,7 @@ namespace EPCat
             if (this.CurrentFolder == null) return;
             SaveScenario();
             var dir = CurrentFolder.ItemDirectory;
-            LoadScenario(Path.Combine(dir,$"{this.Scenario.FileName}.epcatsi"));
+            LoadScenario(Path.Combine(dir,$"{this.Story.FileName}.epcatsi"));
         }
 
 

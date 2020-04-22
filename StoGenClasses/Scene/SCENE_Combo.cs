@@ -1,5 +1,6 @@
 ﻿using StoGen.Classes.Scene;
 using StoGen.Classes.Transition;
+using StoGenerator;
 using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
@@ -18,17 +19,17 @@ namespace StoGen.Classes.Data.Games
             EngineHiVer = 1;
             EngineLoVer = 0;
         }
-        SCENARIO Scenario = null;
+        StoryBase Story = null;
         //List<Info_Scene> Queue;
       
         private Info_Scene CurrentBackground;
 
         //private Dictionary<string, Info_Combo> DefaultVisualDic = new Dictionary<string, Info_Combo>();
 
-        public void SetScenario(SCENARIO scenario, string queue)
+        public void SetScenario(StoryBase story, string queue)
         {
-            Scenario = scenario;
-            var Queue = scenario.SceneInfoList.Where(x => x.Queue == queue).ToList();
+            Story = story;
+            var Queue = story.SceneInfoList.Where(x => x.Queue == queue).ToList();
             Queue.Sort(delegate (Info_Scene x, Info_Scene y)
             {
                 if (x.Group == null) x.Group = string.Empty;
@@ -40,9 +41,9 @@ namespace StoGen.Classes.Data.Games
 
         private string GetAbsolutePath(string path)
         {
-            if (!string.IsNullOrEmpty(path) && path.StartsWith(@".\") && !string.IsNullOrEmpty(Scenario.GamePath))
+            if (!string.IsNullOrEmpty(path) && path.StartsWith(@".\") && !string.IsNullOrEmpty(Story.GamePath))
             {
-                return path.Replace(@".\", $@"{Scenario.GamePath}\");
+                return path.Replace(@".\", $@"{Story.GamePath}\");
             }
             return path;
         }
@@ -51,22 +52,22 @@ namespace StoGen.Classes.Data.Games
             Info_Scene rez = Info_Scene.GenerateCopy(current);
 
             if (string.IsNullOrEmpty(rez.File))
-                rez.File = Scenario.DefVisFile;
+                rez.File = Story.DefVisFile;
             rez.File = GetAbsolutePath(rez.File);
 
 
             if (string.IsNullOrEmpty(rez.LoopCount))
-                rez.LoopCount = Scenario.DefVisLC;
+                rez.LoopCount = Story.DefVisLC;
             if (string.IsNullOrEmpty(rez.LoopMode))
-                rez.LoopMode = Scenario.DefVisLM;
+                rez.LoopMode = Story.DefVisLM;
             if (string.IsNullOrEmpty(rez.S))
-                rez.S = Scenario.DefVisSize;
+                rez.S = Story.DefVisSize;
             if (string.IsNullOrEmpty(rez.Speed))
-                rez.Speed = Scenario.DefVisSpeed;
+                rez.Speed = Story.DefVisSpeed;
             if (string.IsNullOrEmpty(rez.X))
-                rez.X = Scenario.DefVisX;
+                rez.X = Story.DefVisX;
             if (string.IsNullOrEmpty(rez.Y))
-                rez.Y = Scenario.DefVisY;
+                rez.Y = Story.DefVisY;
 
             return rez;
         }
@@ -85,20 +86,20 @@ namespace StoGen.Classes.Data.Games
             }
 
             // TEXT
-            if (!string.IsNullOrEmpty(Scenario.DefTextSize))
-                this.DefaultSceneText.Size = Convert.ToInt32(Scenario.DefTextSize);
-            if (!string.IsNullOrEmpty(Scenario.DefTextWidth))
-                this.DefaultSceneText.Width = Convert.ToInt32(Scenario.DefTextWidth);
-            if (!string.IsNullOrEmpty(Scenario.DefFontSize))
-                this.DefaultSceneText.FontSize = Convert.ToInt32(Scenario.DefFontSize);
-            if (!string.IsNullOrEmpty(Scenario.DefTextShift))
-                this.DefaultSceneText.Shift = Convert.ToInt32(Scenario.DefTextShift);
-            if (!string.IsNullOrEmpty(Scenario.DefFontColor))
-                this.DefaultSceneText.FontColor = Scenario.DefFontColor;
-            if (!string.IsNullOrEmpty(Scenario.DefTextAlignH))
-                this.DefaultSceneText.Align = Convert.ToInt32(Scenario.DefTextAlignH);
-            if (!string.IsNullOrEmpty(Scenario.DefTextAlignV))
-                this.DefaultSceneText.VAlign = Convert.ToInt32(Scenario.DefTextAlignV);
+            if (!string.IsNullOrEmpty(Story.DefTextSize))
+                this.DefaultSceneText.Size = Convert.ToInt32(Story.DefTextSize);
+            if (!string.IsNullOrEmpty(Story.DefTextWidth))
+                this.DefaultSceneText.Width = Convert.ToInt32(Story.DefTextWidth);
+            if (!string.IsNullOrEmpty(Story.DefFontSize))
+                this.DefaultSceneText.FontSize = Convert.ToInt32(Story.DefFontSize);
+            if (!string.IsNullOrEmpty(Story.DefTextShift))
+                this.DefaultSceneText.Shift = Convert.ToInt32(Story.DefTextShift);
+            if (!string.IsNullOrEmpty(Story.DefFontColor))
+                this.DefaultSceneText.FontColor = Story.DefFontColor;
+            if (!string.IsNullOrEmpty(Story.DefTextAlignH))
+                this.DefaultSceneText.Align = Convert.ToInt32(Story.DefTextAlignH);
+            if (!string.IsNullOrEmpty(Story.DefTextAlignV))
+                this.DefaultSceneText.VAlign = Convert.ToInt32(Story.DefTextAlignV);
 
 
             foreach (var group in data)
@@ -116,9 +117,9 @@ namespace StoGen.Classes.Data.Games
             foreach (var item in sounds)
             {
                 Info_Scene rez = Info_Scene.GenerateCopy(item);
-                if (!string.IsNullOrEmpty(rez.File) && rez.File.StartsWith(@".\") && !string.IsNullOrEmpty(Scenario.GamePath))
+                if (!string.IsNullOrEmpty(rez.File) && rez.File.StartsWith(@".\") && !string.IsNullOrEmpty(Story.GamePath))
                 {
-                    rez.File = rez.File.Replace(@".\", $@"{Scenario.GamePath}\");
+                    rez.File = rez.File.Replace(@".\", $@"{Story.GamePath}\");
                 }
                 this.AddMusic(rez.File);
             }
@@ -140,8 +141,8 @@ namespace StoGen.Classes.Data.Games
                 }
                 else
                 story = copytitle.Story;
-                if (string.IsNullOrEmpty(copytitle.File) && !string.IsNullOrEmpty(Scenario.DefTextBck))
-                    copytitle.File = Scenario.DefTextBck;
+                if (string.IsNullOrEmpty(copytitle.File) && !string.IsNullOrEmpty(Story.DefTextBck))
+                    copytitle.File = Story.DefTextBck;
                 if (copytitle.File == "$$WHITE$$") // white background
                 {
                     AddToGlobalImage("$$WHITE$$", "$$WHITE$$", string.Empty);
@@ -379,7 +380,7 @@ namespace StoGen.Classes.Data.Games
 
         internal override List<CadreData> GetNextCadreData(int cadreId)
         {
-            List<Info_Scene> list = this.Scenario.GetNextGroups(cadreId);
+            List<Info_Scene> list = this.Story.GetNextGroups(cadreId);
             return Process(list);
         }
     }

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Windows;
 using StoGen.Classes.Scene;
 using StoGen.ModelClasses;
+using StoGenerator;
 
 namespace StoGenMake
 {
@@ -39,24 +40,24 @@ namespace StoGenMake
                 else if (extension == ".epcatsi")
                 {
                     List<string> clipsinstr = new List<string>(File.ReadAllLines(file));
-                    SCENARIO scenario = new SCENARIO();
-                    scenario.GamePath = Path.GetDirectoryName(file);
-                    scenario.LoadFrom(clipsinstr);
+                    StoGenerator.StoryBase story = new StoGenerator.StoryBase();
+                    story.GamePath = Path.GetDirectoryName(file);
+                    story.LoadFrom(clipsinstr);
                     StoGenWPF.MainWindow.ReadIni(file);
-                    GetScene(null, scenario);
+                    GetScene(null, story);
                 }
                 else if (extension == ".epcatsz")
                 {
-                    SCENARIO scenario = new SCENARIO();
-                    scenario.LoadFromZip(file);
+                    StoGenerator.StoryBase story = new StoGenerator.StoryBase();
+                    story.LoadFromZip(file);
                     StoGenWPF.MainWindow.ReadIni(file);
-                    GetScene(null, scenario);
+                    GetScene(null, story);
                 }
             }
             
         }
       
-        private static void GetScene(List<Info_Clip> clips, SCENARIO scenario)
+        private static void GetScene(List<Info_Clip> clips, StoGenerator.StoryBase story)
         {
             GameWorldFactory.GameWorld.LoadData();
             BaseScene scene = null;
@@ -65,10 +66,10 @@ namespace StoGenMake
                 scene = new Scene_Clips();
                 scene.LoadData(clips);
             }
-            else if (scenario != null)
+            else if (story != null)
             {
                 scene = new Scene_Combo();
-                ((Scene_Combo)scene).SetScenario(scenario, scenario.SceneInfoList[0].Queue);
+                ((Scene_Combo)scene).SetScenario(story, story.SceneInfoList[0].Queue);
             }
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();

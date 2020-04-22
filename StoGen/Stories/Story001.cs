@@ -41,7 +41,7 @@ namespace StoGenerator.Stories
         protected override void FillData()
         {
 
-            MakeFirsCadre("0070", Teller.Female, "Наконец ты пришел милый! Я уже заждалась!"); //"0070"
+            MakeFirsCadre("0070", Teller.Female, "Наконец ты пришел милый! Я уже заждалась!",true); //"0070"
 
             JennyFord_Posture = JennyFord.SetFace67(JennyFord_Posture); //"0067"
             MakeNextCadre(Teller.Female, "Надеюсь, у тебя все хорошо.");
@@ -230,7 +230,7 @@ namespace StoGenerator.Stories
                 Where(x => !x.Tags.Contains(Wife_JennyFord.Mouth.Mouth1_67.ToString())).ToList().ForEach(x => { x.T = "Y.B.500.-2>Y.B.500.2~"; });
             MakeNextCadre(Teller.Female, "....он очень настойчив....");
         }
-        protected void MakeFirsCadre(string fileum, Teller who, string story)
+        protected void MakeFirsCadre(string fileum, Teller who, string story, bool active)
         {
             
             JennyFord_Posture = JennyFord.WoreNightgown(null, Wife_JennyFord.Poses.Stand1);
@@ -244,13 +244,13 @@ namespace StoGenerator.Stories
             });
             JennyFord_Posture.First().T = 
                 $"{Trans.SetInvisible}>{Trans.Appearing(1500)}*{Trans.MoveH(1500,-1200)}";
-            JennyFord.AddToStory(this, JennyFord_Posture, 1);
-            AddText(story, who, true);
+            JennyFord.AddToStory(this, JennyFord_Posture, 1, active);
+            AddText(story, who, true, active);
             JennyFord_Posture = JennyFord.ResetPosture(JennyFord_Posture);
             IncrementGroup();
         }
 
-        protected void AddText(string story, Teller who, bool slow= false)
+        protected void AddText(string story, Teller who, bool slow, bool active)
         {
             string tran = "W..500>O.B.400.100";
             if (who == Teller.Female)
@@ -258,17 +258,17 @@ namespace StoGenerator.Stories
               if (slow)
                     tran = "W..1500>O.B.400.100";
                 SceneInfoList.Add(new Info_Scene(1)
-                { Story = story, Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "Cyan", F = "40", R = "2" });
+                { Active = active, Story = story, Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "Cyan", F = "40", R = "2" });
             }
             else if (who == Teller.Male)
             {
                 SceneInfoList.Add(new Info_Scene(1)
-                { Story = $"{story}", Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "Coral", F = "40", R = "2" });
+                { Active = active, Story = $"{story}", Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "Coral", F = "40", R = "2" });
             }
             else if (who == Teller.MaleThoughts)
             {
                 SceneInfoList.Add(new Info_Scene(1)
-                { Story = $"[{story}]", Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "White", F = "35", R = "3" });
+                { Active = active, Story = $"[{story}]", Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "White", F = "35", R = "3" });
             }
         }
 
@@ -281,8 +281,8 @@ namespace StoGenerator.Stories
                 x.Y = FCurrentPosition.Y;
                 x.X = FCurrentPosition.X;               
             });
-            JennyFord.AddToStory(this, JennyFord_Posture, 1);
-            AddText(story, who, false);
+            JennyFord.AddToStory(this, JennyFord_Posture, 1, false);
+            AddText(story, who, false,false);
             JennyFord_Posture = JennyFord.ResetPosture(JennyFord_Posture);
             IncrementGroup();
         }
@@ -291,11 +291,13 @@ namespace StoGenerator.Stories
             var item = Sound.GetByName(music, musicspec, currentQueue, currentGroup);
             if (item != null)
             {
+                item.Active = true;
                 SceneInfoList.Add(item);
             }
             item = Locations.GetByName(location, locationspec, currentQueue, currentGroup);
             if (item != null)
             {
+                item.Active = true;
                 item.Z = "0";
                 SceneInfoList.Add(item);
             }

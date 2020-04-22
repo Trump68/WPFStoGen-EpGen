@@ -1,6 +1,7 @@
 ﻿using DevExpress.Mvvm;
 using StoGen.Classes;
 using StoGen.Classes.Scene;
+using StoGenerator;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -249,8 +250,8 @@ namespace EPCat.Model
                 return _Clips;
             }
         }
-        [XmlIgnore]
-        private SCENARIO _Scenario = null;
+       // [XmlIgnore]
+        //private StoryBase _Scenario = null;
         //[XmlIgnore]
         //public SCENARIO Scenario
         //{

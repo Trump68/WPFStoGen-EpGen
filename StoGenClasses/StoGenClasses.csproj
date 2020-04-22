@@ -118,6 +118,7 @@
     <Compile Include="Scene\ScenElement.cs" />
     <Compile Include="Scene\SceneMaker.cs" />
     <Compile Include="Scene\SoundStore.cs" />
+    <Compile Include="StoryBase.cs" />
     <Compile Include="Transition\OpEf.cs" />
     <Compile Include="Transition\Transition.cs" />
     <Compile Include="Transition\TransitionManager.cs" />

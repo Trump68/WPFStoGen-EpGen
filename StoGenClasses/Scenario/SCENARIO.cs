@@ -476,11 +476,6 @@ namespace StoGen.Classes.Scene
             Directory.Delete(tempPath, true);
         }
 
-        internal List<Info_Scene> GetNextGroups(int lastgrouId)
-        {
-            return null;
-        }
-
         public void LoadFromZip(string file)
         {
             string rootpath = Path.GetDirectoryName(file);

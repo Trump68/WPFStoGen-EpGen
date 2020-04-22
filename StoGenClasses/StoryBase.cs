@@ -1,4 +1,5 @@
-﻿using StoGen.Classes.Scene;
+﻿using StoGen.Classes;
+using StoGen.Classes.Scene;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ DefVisX = 700; DefVisY = 0; DefVisSize = 900; DefVisSpeed = 100; DefVisLM = 1; D
 DefVisFile =
 //Other
 PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
-        //public SCENARIO Scenario { set; get; }
+
         public string currentQueue;
         public string currentGroup;
         public string Name { set; get; }
@@ -67,5 +68,25 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         {
 
         }
+
+        internal List<Info_Scene> GetNextGroups(int lastgrouId)
+        {
+            var grupedlist = SceneInfoList.GroupBy(x => x.Group).ToList();
+            //for (int i = 0; i < grupedlist.Count; i++)
+            //{
+            //    var nl = grupedlist[i].ToList();
+            //    data.Add(nl);
+            //}
+            lastgrouId++;
+            if (lastgrouId > grupedlist.Count() - 1)
+            {
+                return null;
+            }
+            else
+            {
+                return null;//grupedlist[lastgrouId].Select(x=>x).ToList();
+            }
+        }
+
     }
 }

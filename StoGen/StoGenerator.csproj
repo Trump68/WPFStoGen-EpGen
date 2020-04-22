@@ -54,7 +54,6 @@
     <Compile Include="Sound.cs" />
     <Compile Include="Stories\Story001.cs" />
     <Compile Include="Stories\StoryTest.cs" />
-    <Compile Include="StoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StoGenClasses\StoGenClasses.csproj">
