@@ -15,18 +15,26 @@ namespace StoGen.Classes
 {
     public class ProcedureBase
     {
-        public ProcedureBase(int level)
+        private BaseScene Scene;
+        public ProcedureBase(BaseScene scene)
         {
-            InnerProc = null;
             Cadres = new List<Cadre>();
-            this.Level = level;
             this.NestedCadreId = -1;
             this.MenuCreator = this.CreateMenu;
+            Scene = scene;
+            this.MenuCreator = CreateMenu;
+            var i = 0;
+            foreach (var ad in Scene.CadreDataList)
+            {
+                var AppCadre = new Cadre(this, true);
+                AppCadre.ImageFr.ShowMovieControls = true;
+                AppCadre.AlignData = ad;
+            }
+            this.ShowContextMenuOnInit = false;
+            this.GoFirstCadre();
         }
         // General
         public string Name { get; set; }
-        public int Level = 0;
-        //public BaseScene Scene;
         public List<Cadre> Cadres { get; set; }        
         public Cadre CurrentCadre
         {
@@ -278,9 +286,15 @@ namespace StoGen.Classes
         public object MenuCreatorData;
         public MenuCreatorDelegate OldMenuCreator;
         public MenuCreatorDelegate MenuCreator;
-        public virtual bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        public bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
-            return false;
+
+            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+            if (frmFrameChoice.ShowOptionsmenu(itemlist) == DialogResult.Cancel)
+            {
+
+            }
+            return true;
         }
         public bool ShowContextMenuOnInit = true;
         public virtual bool ShowContextMenu(bool show, object Data)
@@ -311,7 +325,7 @@ namespace StoGen.Classes
         }
         private void CreateNextCadre()
         {
-
+    
         }
         // Magic here
         public ScenCadre MakeCadre(CadreData item)

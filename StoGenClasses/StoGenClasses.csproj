@@ -109,7 +109,6 @@
     <Compile Include="Scene\INFO_Clip.cs" />
     <Compile Include="PictureClasses.cs" />
     <Compile Include="ProcedureBase\ProcedureBase.cs" />
-    <Compile Include="ProcedureBase\ScenarioProc.cs" />
     <Compile Include="Projector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\BaseScene.cs" />
