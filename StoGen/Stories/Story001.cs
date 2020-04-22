@@ -41,7 +41,7 @@ namespace StoGenerator.Stories
         protected override void FillData()
         {
 
-            MakeFirsCadre("0070", Teller.Female, "Наконец ты пришел милый! Я уже заждалась!",true); //"0070"
+            MakeFirsCadre("0070", Teller.Female, "Наконец ты пришел милый! Я уже заждалась!",false); //"0070"
 
             JennyFord_Posture = JennyFord.SetFace67(JennyFord_Posture); //"0067"
             MakeNextCadre(Teller.Female, "Надеюсь, у тебя все хорошо.");

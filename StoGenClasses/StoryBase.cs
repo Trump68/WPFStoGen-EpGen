@@ -72,20 +72,21 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         internal List<Info_Scene> GetNextGroups(int lastgrouId)
         {
             var grupedlist = SceneInfoList.GroupBy(x => x.Group).ToList();
-            //for (int i = 0; i < grupedlist.Count; i++)
-            //{
-            //    var nl = grupedlist[i].ToList();
-            //    data.Add(nl);
-            //}
             lastgrouId++;
             if (lastgrouId > grupedlist.Count() - 1)
             {
-                return null;
+
             }
             else
             {
-                return null;//grupedlist[lastgrouId].Select(x=>x).ToList();
+                var last = grupedlist[lastgrouId].Select(x => x).ToList();
+                if (!last.First().Active)
+                {
+                    last.ForEach(x => x.Active = true);
+                    return last;
+                }
             }
+            return null; ;
         }
 
     }

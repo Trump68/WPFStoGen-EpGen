@@ -142,7 +142,7 @@ namespace StoGen.Classes
         public string Z { set; get; } //ZOrder
         public string Align { set; get; }// text align 0 -left, 1- right, 2-center, 3-justify
         public string VAlign { set; get; }// textbox align 0 -top, 1-center, 3-bottom
-        public bool Active { get; set; }
+        public bool Active { get; set; } = false;
 
         public string GenerateString()
         {
@@ -150,6 +150,8 @@ namespace StoGen.Classes
             if (!string.IsNullOrEmpty(Group))
                 rez.Add($"GROUP={Group}");
             rez.Add($"KIND={Kind}");
+            if (this.Active)
+                rez.Add($"A=1");
             if (!string.IsNullOrEmpty(S))
                 rez.Add($"S={S}");
             if (!string.IsNullOrEmpty(X))
@@ -223,6 +225,10 @@ namespace StoGen.Classes
             List<string> data = item.Split(';').ToList();
             foreach (var str in data)
             {
+                if (str.StartsWith("A=1"))
+                {
+                    this.Active = true;                    
+                }
                 if (str.StartsWith("FILE="))
                 {
                     this.File = str.Replace("FILE=", string.Empty);
