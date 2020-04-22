@@ -28,7 +28,7 @@ namespace StoGen.Classes
             {
                 var AppCadre = new Cadre(this, true);
                 AppCadre.ImageFr.ShowMovieControls = true;
-                AppCadre.Data = ad;
+                //AppCadre.Data = ad;
             }
             this.ShowContextMenuOnInit = false;
             this.GoFirstCadre();
@@ -161,8 +161,8 @@ namespace StoGen.Classes
         }
         public void RepaintCadre(Cadre cadre)
         {
-            cadre.CadreInfo = this.MakeCadre(cadre.Data);
-            cadre.Repaint(34);
+            var info = this.MakeCadre(Scene.CadreDataList[CadreId]);
+            cadre.Repaint(info);
         }
 
 

@@ -11,7 +11,7 @@ namespace StoGen.Classes
     {
         public int SortOrder = int.MaxValue;
         public string Name = string.Empty;
-        internal CadreData Data;
+        //internal CadreData Data;
         private bool AlignDataProcessed = false;
 
 
@@ -53,32 +53,31 @@ namespace StoGen.Classes
         public FrameImage ImageFr = new FrameImage();
         public FrameProc ProcFr = new FrameProc();
         public FrameSound SoundFr = new FrameSound();
-        public CadreInfo CadreInfo;
+        //public CadreInfo CadreInfo;
 
-        public virtual Cadre Repaint(int fake) 
+        public virtual Cadre Repaint(CadreInfo info) 
         {            
             Cadre result = this;
             Projector.TextVisible = true;
-            if (this.Data != null && !this.AlignDataProcessed)
+            if (!this.AlignDataProcessed)
             {
                 this.AlignDataProcessed = true;
-                this.Owner.MakeCadre(this.Data);
-                foreach (seIm data in CadreInfo.VisionList)
+                foreach (seIm data in info.VisionList)
                 {                   
                     var ids = data.ToPictureDataSource();
-                    ids.Level = (PicLevel)(CadreInfo.VisionList.IndexOf(data));
+                    ids.Level = (PicLevel)(info.VisionList.IndexOf(data));
                     PictureItem pic = new PictureItem();
                     pic.Props = new PictureSourceProps(ids);
                     this.ImageFr.Pics.Add(pic);
                     
                 }
-                foreach (seSo data in CadreInfo.SoundList)
+                foreach (seSo data in info.SoundList)
                 {
                     var sds = data.ToSoundDataSource();
-                    sds.Position = CadreInfo.SoundList.IndexOf(data);
+                    sds.Position = info.SoundList.IndexOf(data);
                     this.SoundFr.SoundList.Add(sds);                    
                 }
-                foreach (seTe dataTe in CadreInfo.TextList)
+                foreach (seTe dataTe in info.TextList)
                 {
                     this.TextFr.SetData(dataTe);
                 }                
