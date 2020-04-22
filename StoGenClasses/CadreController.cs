@@ -26,12 +26,15 @@ namespace StoGen.Classes
             var i = 0;
             foreach (var ad in Scene.CadreDataList)
             {
-                var AppCadre = new Cadre(this, true);
-                AppCadre.ImageFr.ShowMovieControls = true;
-                //AppCadre.Data = ad;
+                CreateCadre();
             }
             this.ShowContextMenuOnInit = false;
             this.GoFirstCadre();
+        }
+        private void CreateCadre()
+        {
+            var AppCadre = new Cadre(this, true);
+            AppCadre.ImageFr.ShowMovieControls = true;
         }
         // General
         public string Name { get; set; }
@@ -126,7 +129,7 @@ namespace StoGen.Classes
 
         public virtual Cadre GetNextCadre()
         {
-            CreateNextCadre();
+            CreateNextCadres();
             Cadre result = null;
             if (CadreId >= 0 && CadreId <= Cadres.Count - 1)
             {
@@ -159,11 +162,7 @@ namespace StoGen.Classes
             }
             return result;
         }
-        public void RepaintCadre(Cadre cadre)
-        {
-            var info = this.MakeCadre(Scene.CadreDataList[CadreId]);
-            cadre.Repaint(info);
-        }
+   
 
 
         public virtual Cadre GetPrevCadre()
@@ -221,15 +220,13 @@ namespace StoGen.Classes
         }
         public void ApplyContextMenu()
         {
-
             if (this.CurrentCadre == null)
             {
                 this.GetNextCadre();
             }
-
         }
 
-        // Magic here
+        // Magic here (TO DO: recode this)
         public CadreInfo MakeCadre(CadreData item)
         {
 
@@ -250,7 +247,7 @@ namespace StoGen.Classes
             }
             return this.CreateCadre(item, isWhite, te);
         }
-        // => Here the magic happens
+        // => Here the magic happens (TO DO: recode this)
         public CadreInfo CreateCadre(CadreData item, bool isWhite = false, seTe text = null)
         {
             var cadre = new CadreInfo();
@@ -302,12 +299,21 @@ namespace StoGen.Classes
             return cadre;
         }
 
-        private void CreateNextCadre()
+        private void CreateNextCadres()
         {
-            if (Scene.StoryGenerator != null)
+            List<CadreData> nextcadredata = this.Scene.GetNextCadreData(CadreId);
+            if (nextcadredata != null)
             {
-
+                foreach (var item in nextcadredata)
+                {
+                    this.CreateCadre();
+                }
             }
+        }
+        public void RepaintCadre(Cadre cadre)
+        {
+            var info = this.MakeCadre(Scene.CadreDataList[CadreId]);
+            cadre.Repaint(info);
         }
     }
     public delegate bool MenuCreatorDelegate(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data);

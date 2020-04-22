@@ -209,7 +209,6 @@ namespace StoGenMake.Scenes.Base
         public BaseScene()
         {
             this.Name = "Drama scene";
-            LoadData();
         }
         public virtual bool LoadData(string filter, string moviePath) 
         {
@@ -227,28 +226,12 @@ namespace StoGenMake.Scenes.Base
             return true;
         }
 
-        protected virtual void LoadData()
+        internal virtual List<CadreData> GetNextCadreData(int cadreId)
         {
-           
+            return null;
         }
-        private string _TempFileName;
-        public string TempFileName
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_TempFileName))
-                {
-                    if (!string.IsNullOrEmpty(this.Name)) _TempFileName = $@"d:\temp\{this.Name}.stogen";
-                    else
-                        _TempFileName = $@"d:\temp\{this.GID}.stogen";
-                }
-                return _TempFileName;
-            }
-            set
-            {
-                _TempFileName = value;
-            }
-        }
+
+
         public CadreInfo AddCadre(CadreInfo cadre, string name, int timer)
         {
             if (cadre == null)
@@ -274,6 +257,9 @@ namespace StoGenMake.Scenes.Base
 
 
         public List<string> CadreGroups = new List<string>();
+
+
+
         public bool CreateMenuScene(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();

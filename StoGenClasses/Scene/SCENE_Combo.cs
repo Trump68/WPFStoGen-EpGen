@@ -70,7 +70,6 @@ namespace StoGen.Classes.Data.Games
 
             return rez;
         }
-
         public bool Process()
         {
             data.Clear();
@@ -106,9 +105,6 @@ namespace StoGen.Classes.Data.Games
             }
             return true;
         }
-
-
-
         private void DoCadreByGroup(List<Info_Scene> group)
         {
             int i = 1; // picture index to correct add transitions
@@ -377,6 +373,11 @@ namespace StoGen.Classes.Data.Games
 
 
             CreateCadreData($"{story}", itl, null);
+        }
+
+        internal override List<CadreData> GetNextCadreData(int cadreId)
+        {
+            return null;
         }
     }
 }
