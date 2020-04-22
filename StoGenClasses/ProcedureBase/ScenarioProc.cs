@@ -8,22 +8,22 @@ namespace StoGen.Classes
 {
     public class ScenarioProc : ProcedureBase
     {
-        public List<ScenarioSet> sets = new List<ScenarioSet>();
+        //public List<ScenarioSet> sets = new List<ScenarioSet>();
         public ScenarioProc(string fn, IMenuCreator globalMenuCreator, BaseScene scene)
            : base(0)
         {
            
             this.MenuCreator = CreateMenu;
             this.Scene = scene;
-            ScenarioSet set = new ScenarioSet();
-            set.GlobalMenuCreator = globalMenuCreator;
-            set.Init(fn);
-            this.sets.Add(set);
-            set.InsertAsProcedureTo(this,true);
+            var i = 0;
+            foreach (var ad in this.Scene.AlignList)
+            {
+                var AppCadre = new Cadre(this, true);
+                AppCadre.ImageFr.ShowMovieControls = true;
+                AppCadre.AlignData = ad;
+            }
             this.ShowContextMenuOnInit = false;
             this.GoFirstCadre();
-
-
         }      
         public override bool CreateMenu(ProcedureBase proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
@@ -34,8 +34,7 @@ namespace StoGen.Classes
            
             if (frmFrameChoice.ShowOptionsmenu(itemlist) == DialogResult.Cancel)
             {
-                //this.ParentProc.InnerProc = null;
-                //this.ParentProc.ShowContextMenu();
+
             }
             return true;
         }           

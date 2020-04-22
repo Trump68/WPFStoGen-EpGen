@@ -71,7 +71,7 @@ namespace StoGenWPF
         {
             if (keys == Key.F5)
             {
-                CurrProc = new CycleProc(_MainProcname);
+                //CurrProc = new CycleProc(_MainProcname);
                 return;
             }
             if (CurrProc != null) CurrProc.ProcessKey(keys);
