@@ -5,6 +5,8 @@ using StoGenMake.Elements;
 using System.IO;
 using StoGen.Classes;
 using StoGen.Classes.Transition;
+using StoGen.Classes.Scene;
+using StoGen.Classes.Scenario;
 
 namespace StoGenMake.Scenes.Base
 {
@@ -145,7 +147,7 @@ namespace StoGenMake.Scenes.Base
                         }
                         else
                         {
-                            var old = this.AlignList.Last().AlignList[oef.L - 1];
+                            var old = this.CadreDataList.Last().AlignList[oef.L - 1];
                             d = new DifData();
                             d.AssingFrom(old);
                             d.Name = old.Name;
@@ -197,7 +199,8 @@ namespace StoGenMake.Scenes.Base
             AddLocal(currentGr, text, difdata, this.CurrentSounds);
         }
         #endregion
-        public List<CadreData> AlignList = new List<CadreData>();
+        public List<CadreData> CadreDataList = new List<CadreData>();
+        public IStoryGenerator StoryGenerator = new StoryGeneratorDefault();
         public Guid GID { set; get; }
 
        
@@ -380,7 +383,7 @@ namespace StoGenMake.Scenes.Base
                     AddToGlobalAlign(dif, difs.Where(x => x.Name == dif.Parent).FirstOrDefault());
                 }
             }
-            AlignList.Add(cadreAlignData);
+            CadreDataList.Add(cadreAlignData);
         }
         private void AddToGlobalAlign(DifData dd, DifData pardelta)
         {

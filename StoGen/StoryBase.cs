@@ -35,5 +35,6 @@ namespace StoGenerator
             }
             currentGroup = string.Join(".", vals);
         }
+        public virtual void GenerateNextCadre(){}
     }
 }

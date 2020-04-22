@@ -26,8 +26,7 @@ namespace StoGenWPF
         internal static void StartMainProc(BaseScene scene,int startpage, IMenuCreator globalMenuCreator = null)
         {
             GlobalMenuCreator = globalMenuCreator;
-            //if (!string.IsNullOrWhiteSpace(startfile)) _MainProcname = startfile;
-            SetMainProcedure(scene, startpage);
+            SetMainProcedure(scene.CadreDataList, startpage);
         }
         internal static void Stop()
         {
@@ -37,9 +36,9 @@ namespace StoGenWPF
             }
         }
            
-        public static void SetMainProcedure(BaseScene scene, int startpage)
+        public static void SetMainProcedure(List<CadreData> cadres, int startpage)
         {
-            CurrProc = new ScenarioProc(_MainProcname, GlobalMenuCreator, scene.AlignList);
+            CurrProc = new ScenarioProc(_MainProcname, GlobalMenuCreator, cadres);
             CurrProc.GoToCadre(startpage);
         }
 

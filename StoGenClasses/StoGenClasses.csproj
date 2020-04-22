@@ -67,6 +67,8 @@
   <ItemGroup>
     <Compile Include="Cadre.cs" />
     <Compile Include="CadreData.cs" />
+    <Compile Include="Scenario\IStoryGenerator.cs" />
+    <Compile Include="Scenario\StoryGeneratorDefault.cs" />
     <Compile Include="Scene\INFO_Scene.cs" />
     <Compile Include="Controls\frmFrameChoice.cs">
       <SubType>Form</SubType>
@@ -86,7 +88,7 @@
     <Compile Include="Controls\frmTextEdit.Designer.cs">
       <DependentUpon>frmTextEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scene\SCENARIO.cs" />
+    <Compile Include="Scenario\SCENARIO.cs" />
     <Compile Include="Scene\SCENE_Combo.cs" />
     <Compile Include="Data\Games\SILKY%27S SAKURA-Otto no Inu Ma ni.cs" />
     <Compile Include="Scene\SCENE_Clips.cs" />
