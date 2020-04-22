@@ -19,7 +19,7 @@ namespace StoGen.Classes
         public CadreController(BaseScene scene)
         {
             Cadres = new List<Cadre>();
-            this.NestedCadreId = -1;
+            this.CadreId = -1;
             this.MenuCreator = this.CreateMenu;
             Scene = scene;
             this.MenuCreator = CreateMenu;
@@ -28,7 +28,7 @@ namespace StoGen.Classes
             {
                 var AppCadre = new Cadre(this, true);
                 AppCadre.ImageFr.ShowMovieControls = true;
-                AppCadre.AlignData = ad;
+                AppCadre.Data = ad;
             }
             this.ShowContextMenuOnInit = false;
             this.GoFirstCadre();
@@ -40,14 +40,14 @@ namespace StoGen.Classes
         {
             get
             {
-                if (this.Cadres.Count < 1 || this.NestedCadreId<0) return null;
-                return this.Cadres[this.NestedCadreId];
+                if (this.Cadres.Count < 1 || this.CadreId<0) return null;
+                return this.Cadres[this.CadreId];
             }
         }
         public virtual void Clear()
         {
             Stop();
-            this.NestedCadreId = 0;
+            this.CadreId = 0;
         }
 
         public void Stop()
@@ -58,14 +58,14 @@ namespace StoGen.Classes
             }
         }
 
-        public int NestedCadreId { get; set; } 
+        public int CadreId { get; set; } 
         protected bool isInitialized = false;
         // Navigation
         public bool AllowedForward
         {
             get
             {
-                if (this.NestedCadreId == (this.Cadres.Count - 1))
+                if (this.CadreId == (this.Cadres.Count - 1))
                 {
                     return false;
                 }
@@ -76,7 +76,7 @@ namespace StoGen.Classes
         {
             get
             {
-                if (this.NestedCadreId == 0) return false;
+                if (this.CadreId == 0) return false;
                     if (this.Cadres.Count == 0 || this.CurrentCadre == null) return false;
                     int idx = this.Cadres.IndexOf(this.CurrentCadre) - 1;
 
@@ -94,12 +94,12 @@ namespace StoGen.Classes
         }
         public Cadre GoToCadre(int num)
         {
-            NestedCadreId = num - 1;
+            CadreId = num - 1;
             return GetNextCadre();
         }
         public int CurrentCadreNum()
         {
-            return NestedCadreId;
+            return CadreId;
         }
 
         // Key handling
@@ -128,22 +128,22 @@ namespace StoGen.Classes
         {
             CreateNextCadre();
             Cadre result = null;
-            if (NestedCadreId >= 0 && NestedCadreId <= Cadres.Count - 1)
+            if (CadreId >= 0 && CadreId <= Cadres.Count - 1)
             {
-                if (!Cadres[NestedCadreId].AllowedForward) return result;
+                if (!Cadres[CadreId].AllowedForward) return result;
             }
 
-            if (NestedCadreId < Cadres.Count - 1)
+            if (CadreId < Cadres.Count - 1)
             {
-                if (NestedCadreId > -1)
+                if (CadreId > -1)
                 {
-                    var prev = Cadres[NestedCadreId];
+                    var prev = Cadres[CadreId];
                     prev.Stop();
                 }
-                result = Cadres[NestedCadreId + 1];
-                NestedCadreId++;
+                result = Cadres[CadreId + 1];
+                CadreId++;
             }
-            else if (Cadres.Count > 0 && (NestedCadreId == Cadres.Count - 1))
+            else if (Cadres.Count > 0 && (CadreId == Cadres.Count - 1))
             {
                 return null;
             }
@@ -152,7 +152,7 @@ namespace StoGen.Classes
             {
                 Init();
             }
-            if (result != null) result.Repaint(true);
+            if (result != null) result.Repaint();
             else
             {
                 SystemSounds.Beep.Play();
@@ -165,27 +165,27 @@ namespace StoGen.Classes
         public virtual Cadre GetPrevCadre()
         {
             Cadre result = null;
-            if (NestedCadreId == 0)
+            if (CadreId == 0)
             {
                 SystemSounds.Beep.Play();
                 return result;
             }
             if (result == null)
             {
-                if (NestedCadreId >= 1)
+                if (CadreId >= 1)
                 {
-                    if (!Cadres[NestedCadreId - 1].AllowedBackward) return result;
-                    result = Cadres[NestedCadreId - 1];
-                    NestedCadreId--;
+                    if (!Cadres[CadreId - 1].AllowedBackward) return result;
+                    result = Cadres[CadreId - 1];
+                    CadreId--;
                 }
-                else if (NestedCadreId == 0)
+                else if (CadreId == 0)
                 {
-                    if (Cadres.Count > 0) result = Cadres[NestedCadreId];
+                    if (Cadres.Count > 0) result = Cadres[CadreId];
                 }
             }
             if (result != null)
             {
-                result.Repaint(true);
+                result.Repaint();
                 //(Projector.Text.TopLevelControl as Form).Text = result.Owner.Level.ToString() + ":" + result.Owner.NestedCadreId;
             }
 
@@ -225,10 +225,7 @@ namespace StoGen.Classes
             }
 
         }
-        private void CreateNextCadre()
-        {
-    
-        }
+
         // Magic here
         public ScenCadre MakeCadre(CadreData item)
         {
@@ -300,6 +297,14 @@ namespace StoGen.Classes
                 cadre.AddText(text);
             }
             return cadre;
+        }
+
+        private void CreateNextCadre()
+        {
+            if (Scene.StoryGenerator != null)
+            {
+
+            }
         }
     }
     public delegate bool MenuCreatorDelegate(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data);

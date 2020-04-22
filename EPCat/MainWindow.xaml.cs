@@ -587,7 +587,7 @@ namespace EPCat
             if (atEnd)
             {
                 ViewModel.CurrentCombinedScene =
-                ViewModel.Scenario.Scenes.LastOrDefault();
+                ViewModel.Scenario.SceneInfoList.LastOrDefault();
             }
             //save
             ViewModel.CopyCombinedScene(true);

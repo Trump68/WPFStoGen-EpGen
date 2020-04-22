@@ -11,7 +11,7 @@ namespace StoGen.Classes
     {
         public int SortOrder = int.MaxValue;
         public string Name = string.Empty;
-        internal CadreData AlignData;
+        internal CadreData Data;
         private bool AlignDataProcessed = false;
 
 
@@ -43,8 +43,8 @@ namespace StoGen.Classes
                 if (isAdd) this.Owner.Cadres.Add(this);
                 else
                 {
-                    if (this.Owner.NestedCadreId == this.Owner.Cadres.Count) this.Owner.Cadres.Insert(this.Owner.NestedCadreId, this);
-                    else this.Owner.Cadres.Insert(this.Owner.NestedCadreId + 1, this);
+                    if (this.Owner.CadreId == this.Owner.Cadres.Count) this.Owner.Cadres.Insert(this.Owner.CadreId, this);
+                    else this.Owner.Cadres.Insert(this.Owner.CadreId + 1, this);
                 }
             }
         }
@@ -54,15 +54,14 @@ namespace StoGen.Classes
         public FrameProc ProcFr = new FrameProc();
         public FrameSound SoundFr = new FrameSound();
 
-        public virtual Cadre Repaint(bool doRecalculate) 
+        public virtual Cadre Repaint() 
         {            
             Cadre result = this;
-            //if (this.TextFr == null)
             Projector.TextVisible = true;
-            if (this.AlignData != null && !this.AlignDataProcessed)
+            if (this.Data != null && !this.AlignDataProcessed)
             {
                 this.AlignDataProcessed = true;
-                ScenCadre cdr =  this.Owner.MakeCadre(this.AlignData);
+                ScenCadre cdr =  this.Owner.MakeCadre(this.Data);
                 foreach (seIm data in cdr.VisionList)
                 {                   
                     var ids = data.ToPictureDataSource();
@@ -88,7 +87,8 @@ namespace StoGen.Classes
                 Cadre temp = item.Repaint();
             }            
             return result;
-        }             
+        }         
+            
         internal void ProcessKey(Key keys)
         {
             for (int i = 0; i < Frames.Count; i++)

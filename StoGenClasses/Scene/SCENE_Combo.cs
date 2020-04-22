@@ -28,7 +28,7 @@ namespace StoGen.Classes.Data.Games
         public void SetScenario(SCENARIO scenario, string queue)
         {
             Scenario = scenario;
-            Queue = scenario.Scenes.Where(x => x.Queue == queue).ToList();
+            Queue = scenario.SceneInfoList.Where(x => x.Queue == queue).ToList();
             Queue.Sort(delegate (Info_Scene x, Info_Scene y)
             {
                 if (x.Group == null) x.Group = string.Empty;

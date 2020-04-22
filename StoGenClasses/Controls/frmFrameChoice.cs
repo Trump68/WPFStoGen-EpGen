@@ -128,7 +128,7 @@ namespace StoGen.Classes
         public object itemData { set; get; }
         public MenuItemExecutorDelegate Executor = null;
         public MenuDescriptopnItem[] Props;
-        public static void FinalizeShowMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, bool processCancel)
+        public static void FinalizeShowMenu(CadreController controller, bool doShowMenu, List<ChoiceMenuItem> itemlist, bool processCancel)
         {
             if (frmFrameChoice.ShowOptionsmenu(itemlist) != DialogResult.Cancel)
             {
@@ -136,10 +136,10 @@ namespace StoGen.Classes
             }
             else if (processCancel)
             {
-                proc.MenuCreator = proc.OldMenuCreator;
-                proc.ShowContextMenu(doShowMenu, null);
+                controller.MenuCreator = controller.OldMenuCreator;
+                controller.ShowContextMenu(doShowMenu, null);
             }
-            else proc.CurrentCadre.Repaint(true);
+            else controller.CurrentCadre.Repaint();
         }
     }
     public class MenuDescriptopnItem

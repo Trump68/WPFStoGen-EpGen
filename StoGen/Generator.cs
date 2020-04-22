@@ -47,8 +47,8 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             Scenario.RawParameters = rawparameters;
             
 
-            Story001 story = new Story001();
-            //StoryTest story = new StoryTest();
+            //Story001 story = new Story001();
+            StoryTest story = new StoryTest();
             
             story.Generate(Scenario, "001", "0001.001.001");
 

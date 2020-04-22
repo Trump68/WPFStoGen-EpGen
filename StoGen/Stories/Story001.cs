@@ -12,46 +12,36 @@ namespace StoGenerator.Stories
 {
     public class Story001: StoryBase
     {
-        string rawparameters =
-@"//Text
-//DefTextAlignH: 0-Left, 1-Right, 2-Center, 3-Justify
-//DefTextAlignV: 0-Top, 1-Center, 2-Bottom
-//DefTextBck: $$WHITE$$
-DefTextSize=200;DefTextShift=30;DefTextWidth=1800;DefFontSize=40;DefFontColor=Cyan;DefTextAlignH=2;DefTextAlignV=1;DefTextBck=Cyan;DefTextBck=$$WHITE$$
-//Visual
-//DefVisLM: 0-next cadre, 1-loop, 2-stop, 3- backward?
-DefVisX = 700; DefVisY = 0; DefVisSize = 900; DefVisSpeed = 100; DefVisLM = 1; DefVisLC = 1
-//DefVisX=0;DefVisY=0;DefVisSize=-3;DefVisSpeed=100;DefVisLM=1;DefVisLC=1
-DefVisFile =
-//Other
-PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
+
 
         //private string FPersonName;
-        private Info_Scene FCurrentPosition = new Info_Scene();
-        private Info_Scene CurrentPerson;
-        Wife_JennyFord JennyFord;
-        List<Info_Scene> JennyFord_Posture;
+        protected Info_Scene FCurrentPosition = new Info_Scene();
+        protected Info_Scene CurrentPerson;
+        protected Wife_JennyFord JennyFord;
+        protected List<Info_Scene> JennyFord_Posture;
 
-        public void Generate(SCENARIO scenario, string queue, string group)
+        public override void Generate(SCENARIO scenario, string queue, string group)
         {
-            Scenario = scenario;
-            currentGroup = group;
-            currentQueue = queue;
-            Scenario.RawParameters = rawparameters;
-            Scenario.AssignRawParameters();
+            base.Generate(scenario, queue, group);
 
             JennyFord = Wife_JennyFord.Load();
-
-
             //FPersonName = "Jenny Ford";
             FCurrentPosition.Z = "1";
             FCurrentPosition.S = "1000";
             FCurrentPosition.X = "800";
             FCurrentPosition.Y = "200";
+            MakeLocation();
+            FillData();
 
-            MakeLocationCadre("Apartment 001", "evening", "Печальная тема 01",null);
+        }
+        protected override void MakeLocation()
+        {
+            MakeLocationCadre("Apartment 001", "evening", "Печальная тема 01", null);
+        }
+        protected override void FillData()
+        {
 
-            MakeFirsCadre("0070", Teller.Female,"Наконец ты пришел милый! Я уже заждалась!"); //"0070"
+            MakeFirsCadre("0070", Teller.Female, "Наконец ты пришел милый! Я уже заждалась!"); //"0070"
 
             JennyFord_Posture = JennyFord.SetFace67(JennyFord_Posture); //"0067"
             MakeNextCadre(Teller.Female, "Надеюсь, у тебя все хорошо.");
@@ -81,7 +71,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             MakeNextCadre(Teller.Female, "На работе...");
 
             JennyFord_Posture = JennyFord.SetFace72(JennyFord_Posture); //"0072"
-            JennyFord_Posture = JennyFord.Blush(JennyFord_Posture,false, 5000); // begin blush
+            JennyFord_Posture = JennyFord.Blush(JennyFord_Posture, false, 5000); // begin blush
             MakeNextCadre(Teller.MaleThoughts, "Что еще за новости?");
 
             JennyFord_Posture = JennyFord.SetFace76(JennyFord_Posture); //"0076"
@@ -153,14 +143,14 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
 
             JennyFord_Posture = JennyFord.SetFace67(JennyFord_Posture); //"0075" - CLOSER!!
             JennyFord_Posture.Remove(JennyFord_Posture.Last());
-            JennyFord_Posture.ForEach(x => {x.T = "C.B.2000.300*Y.B.2000.-200*X.B.2000.-300"; });           
+            JennyFord_Posture.ForEach(x => { x.T = "C.B.2000.300*Y.B.2000.-200*X.B.2000.-300"; });
             MakeNextCadre(Teller.Female, "ты хочешь все знать, да?");
 
             FCurrentPosition.S = "3000";
             FCurrentPosition.X = "500";
             FCurrentPosition.Y = "0";
 
-            JennyFord_Posture = JennyFord.SetFace72_67(JennyFord_Posture); 
+            JennyFord_Posture = JennyFord.SetFace72_67(JennyFord_Posture);
             MakeNextCadre(Teller.Female, "все-все, большой ревнивый мальчик?");
 
             JennyFord_Posture = JennyFord.SetFace72_67(JennyFord_Posture);
@@ -240,8 +230,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 Where(x => !x.Tags.Contains(Wife_JennyFord.Mouth.Mouth1_67.ToString())).ToList().ForEach(x => { x.T = "Y.B.500.-2>Y.B.500.2~"; });
             MakeNextCadre(Teller.Female, "....он очень настойчив....");
         }
-
-        private void MakeFirsCadre(string fileum, Teller who, string story)
+        protected void MakeFirsCadre(string fileum, Teller who, string story)
         {
             
             JennyFord_Posture = JennyFord.WoreNightgown(null, Wife_JennyFord.Poses.Stand1);
@@ -260,31 +249,31 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             JennyFord_Posture = JennyFord.ResetPosture(JennyFord_Posture);
             IncrementGroup();
         }
-        
-        private void AddText(string story, Teller who, bool slow= false)
+
+        protected void AddText(string story, Teller who, bool slow= false)
         {
             string tran = "W..500>O.B.400.100";
             if (who == Teller.Female)
             {               
               if (slow)
                     tran = "W..1500>O.B.400.100";
-                Scenario.Scenes.Add(new Info_Scene(1)
+                Scenario.SceneInfoList.Add(new Info_Scene(1)
                 { Story = story, Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "Cyan", F = "40", R = "2" });
             }
             else if (who == Teller.Male)
             {
-                Scenario.Scenes.Add(new Info_Scene(1)
+                Scenario.SceneInfoList.Add(new Info_Scene(1)
                 { Story = $"{story}", Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "Coral", F = "40", R = "2" });
             }
             else if (who == Teller.MaleThoughts)
             {
-                Scenario.Scenes.Add(new Info_Scene(1)
+                Scenario.SceneInfoList.Add(new Info_Scene(1)
                 { Story = $"[{story}]", Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "White", F = "35", R = "3" });
             }
         }
-       
 
-        private void MakeNextCadre( Teller who, string story)
+
+        protected void MakeNextCadre( Teller who, string story)
         {
             JennyFord_Posture.ForEach(x =>
             {
@@ -297,18 +286,18 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             JennyFord_Posture = JennyFord.ResetPosture(JennyFord_Posture);
             IncrementGroup();
         }
-        private void MakeLocationCadre(string location, string locationspec, string music, string musicspec)
+        protected void MakeLocationCadre(string location, string locationspec, string music, string musicspec)
         {
             var item = Sound.GetByName(music, musicspec, currentQueue, currentGroup);
             if (item != null)
             {
-                Scenario.Scenes.Add(item);
+                Scenario.SceneInfoList.Add(item);
             }
             item = Location.GetByName(location, locationspec, currentQueue, currentGroup);
             if (item != null)
             {
                 item.Z = "0";
-                Scenario.Scenes.Add(item);
+                Scenario.SceneInfoList.Add(item);
             }
             IncrementGroup();
         }
