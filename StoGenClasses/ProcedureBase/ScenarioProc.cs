@@ -10,14 +10,14 @@ namespace StoGen.Classes
 {
     public class ScenarioProc : ProcedureBase
     {
-        public List<CadreData> CadreDataList = new List<CadreData>();
-        public ScenarioProc(string fn, IMenuCreator globalMenuCreator, List<CadreData>  CadreDataList)
+        private BaseScene Scene;
+        public ScenarioProc(string fn, BaseScene scene)
            : base(0)
         {
-            
+            Scene = scene;
             this.MenuCreator = CreateMenu;
             var i = 0;
-            foreach (var ad in CadreDataList)
+            foreach (var ad in Scene.CadreDataList)
             {
                 var AppCadre = new Cadre(this, true);
                 AppCadre.ImageFr.ShowMovieControls = true;

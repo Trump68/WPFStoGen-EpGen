@@ -7,6 +7,7 @@ using StoGen.Classes;
 using StoGen.Classes.Transition;
 using StoGen.Classes.Scene;
 using StoGen.Classes.Scenario;
+using StoGen.Classes.Interfaces;
 
 namespace StoGenMake.Scenes.Base
 {
@@ -201,6 +202,7 @@ namespace StoGenMake.Scenes.Base
         #endregion
         public List<CadreData> CadreDataList = new List<CadreData>();
         public IStoryGenerator StoryGenerator = new StoryGeneratorDefault();
+        static IMenuCreator GlobalMenuCreator = null;
         public Guid GID { set; get; }
 
        

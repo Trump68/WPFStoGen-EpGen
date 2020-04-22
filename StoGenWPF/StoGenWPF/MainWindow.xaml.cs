@@ -241,7 +241,7 @@ namespace StoGenWPF
         {
             PictureCadreDS.Visibility = Visibility.Hidden;
             PictureCadreDS.DataContext = Projector.ImageCadre;
-            SGManager.StartMainProc(Scene, startpage - 1, GlobalMenuCreator);
+            SGManager.StartMainProc(Scene, startpage - 1);
         }
         public void Start()
         {
