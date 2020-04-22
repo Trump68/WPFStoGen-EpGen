@@ -45,8 +45,8 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
            
             
 
-            //Story001 story = new Story001();
-            StoryTest story = new StoryTest();
+            Story001 story = new Story001();
+            //StoryTest story = new StoryTest();
             story.Name = name;
             story.FileName = name;
             story.RawParameters = rawparameters;

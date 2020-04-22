@@ -19,8 +19,8 @@ namespace StoGen.Classes.Data.Games
             EngineLoVer = 0;
         }
         SCENARIO Scenario = null;
-        List<Info_Scene> Queue;
-        List<List<Info_Scene>> data = new List<List<Info_Scene>>();
+        //List<Info_Scene> Queue;
+      
         private Info_Scene CurrentBackground;
 
         //private Dictionary<string, Info_Combo> DefaultVisualDic = new Dictionary<string, Info_Combo>();
@@ -28,14 +28,14 @@ namespace StoGen.Classes.Data.Games
         public void SetScenario(SCENARIO scenario, string queue)
         {
             Scenario = scenario;
-            Queue = scenario.SceneInfoList.Where(x => x.Queue == queue).ToList();
+            var Queue = scenario.SceneInfoList.Where(x => x.Queue == queue).ToList();
             Queue.Sort(delegate (Info_Scene x, Info_Scene y)
             {
                 if (x.Group == null) x.Group = string.Empty;
                 if (y.Group == null) y.Group = string.Empty;
                 return x.Group.CompareTo(y.Group);
             });
-            this.Process();
+            this.Process(Queue);
         }
 
         private string GetAbsolutePath(string path)
@@ -70,9 +70,11 @@ namespace StoGen.Classes.Data.Games
 
             return rez;
         }
-        public bool Process()
+        public List<CadreData> Process(List<Info_Scene> Queue)
         {
-            data.Clear();
+            if (Queue == null) return null;
+            List<CadreData> result = new List<CadreData>();
+            List<List<Info_Scene>> data = new List<List<Info_Scene>>();
             //this.currentGr = Queue.First().ID;
             var grupedlist = Queue.GroupBy(x => x.Group).ToList();
 
@@ -101,11 +103,11 @@ namespace StoGen.Classes.Data.Games
 
             foreach (var group in data)
             {
-                DoCadreByGroup(group);
+                result.Add(DoCadreByGroup(group));
             }
-            return true;
+            return result;
         }
-        private void DoCadreByGroup(List<Info_Scene> group)
+        private CadreData DoCadreByGroup(List<Info_Scene> group)
         {
             int i = 1; // picture index to correct add transitions
             // sound
@@ -372,12 +374,13 @@ namespace StoGen.Classes.Data.Games
             itl.AddRange(Pictures.Values.ToList());
 
 
-            CreateCadreData($"{story}", itl, null);
+            return CreateCadreData($"{story}", itl, null);
         }
 
         internal override List<CadreData> GetNextCadreData(int cadreId)
         {
-            return null;
+            List<Info_Scene> list = this.Scenario.GetNextGroups(cadreId);
+            return Process(list);
         }
     }
 }

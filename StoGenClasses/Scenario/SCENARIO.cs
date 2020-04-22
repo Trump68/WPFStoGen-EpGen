@@ -475,6 +475,12 @@ namespace StoGen.Classes.Scene
             ZipFile.CreateFromDirectory(tempPath, zipPath, CompressionLevel.Optimal, false);
             Directory.Delete(tempPath, true);
         }
+
+        internal List<Info_Scene> GetNextGroups(int lastgrouId)
+        {
+            return null;
+        }
+
         public void LoadFromZip(string file)
         {
             string rootpath = Path.GetDirectoryName(file);

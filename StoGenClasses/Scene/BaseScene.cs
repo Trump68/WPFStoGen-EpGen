@@ -121,7 +121,7 @@ namespace StoGenMake.Scenes.Base
         #region 'External' scene generations
         public string currentGr;
         public List<OpEf> CurrTransitions = new List<OpEf>();
-        public void CreateCadreData(string text, List<DifData> difdata, List<OpEf> trans = null)
+        public CadreData CreateCadreData(string text, List<DifData> difdata, List<OpEf> trans = null)
         {
             //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100*W..0>X.B.400.300")); //--appear+move from left
             //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100"));                  //--appear
@@ -190,9 +190,9 @@ namespace StoGenMake.Scenes.Base
             #endregion
 
             this.ClearSound(false, true, true);
-            AddLocal(currentGr, text, cdata, this.CurrentSounds);
+            var result = AddLocal(currentGr, text, cdata, this.CurrentSounds);
             this.CurrTransitions.Clear();
-            
+            return result;
         }
 
         protected void AddAnim(string n, string text, List<DifData> difdata, params AP[] animations)
@@ -314,24 +314,26 @@ namespace StoGenMake.Scenes.Base
             newIAV.DefaultAlign.Name = name;
             GameWorld.ImageStorage.Add(newIAV);
         }
-        protected void AddLocal(string[] marks, DifData[] difs) { Add(marks, difs, false); }
-        protected void AddLocal(string[] marks, List<DifData> difs) { Add(marks, difs.ToArray()); }
-        public void AddLocal(string mark, List<DifData> difs) { Add(new string[] { mark }, difs.ToArray()); }
-        public void AddLocal(string mark, string text, List<DifData> difs, List<seSo> sounds = null)
+        protected CadreData AddLocal(string[] marks, DifData[] difs) { return Add(marks, difs, false); }
+        protected CadreData AddLocal(string[] marks, List<DifData> difs) { return Add(marks, difs.ToArray()); }
+        public CadreData AddLocal(string mark, List<DifData> difs) { return Add(new string[] { mark }, difs.ToArray()); }
+        public CadreData AddLocal(string mark, string text, List<DifData> difs, List<seSo> sounds = null)
         {
-            Add(new string[] { mark }, text, difs.ToArray(), sounds);
+            return Add(new string[] { mark }, text, difs.ToArray(), sounds);
         }
-        public void AddLocal(string mark, DifData dif) { Add(new string[] { mark }, new DifData[] { dif }); }
-        public void AddGlobal(string[] marks, DifData[] difs)
-        { Add(marks, difs, true); }
-        private void Add(
+        public void CadreData(string mark, DifData dif) { Add(new string[] { mark }, new DifData[] { dif }); }
+        public CadreData AddGlobal(string[] marks, DifData[] difs)
+        {
+           return  Add(marks, difs, true);
+        }
+        private CadreData Add(
             string[] marks,
             DifData[] difs,
             bool installtoglobal = false)
         {
-            Add(marks, difs, null, null, installtoglobal);
+            return Add(marks, difs, null, null, installtoglobal);
         }
-        private void Add(
+        private CadreData Add(
             string[] marks,
             string text,
             DifData[] difs,
@@ -340,9 +342,9 @@ namespace StoGenMake.Scenes.Base
         {
             seTe textData = new seTe(this.DefaultSceneText);
             textData.Text = text;
-            Add(marks, difs, textData, sounds, installtoglobal);
+            return Add(marks, difs, textData, sounds, installtoglobal);
         }
-        private void Add(
+        private CadreData Add(
             string[] marks,
             DifData[] difs,
             seTe text,
@@ -350,11 +352,11 @@ namespace StoGenMake.Scenes.Base
             bool installtoglobal = false
             )
         {
-            CadreData cadreAlignData = new CadreData();
-            cadreAlignData.TextData = text;
+            CadreData data = new CadreData();
+            data.TextData = text;
             if (sounds != null && sounds.Any())
-                cadreAlignData.SoundList.AddRange(sounds);
-            cadreAlignData.MarkList.AddRange(marks);
+                data.SoundList.AddRange(sounds);
+            data.MarkList.AddRange(marks);
             foreach (var mark in marks)
             {
                 if (!this.CadreGroups.Contains(mark)) this.CadreGroups.Add(mark);
@@ -364,14 +366,15 @@ namespace StoGenMake.Scenes.Base
 
             foreach (var dif in difsSortedByLevel)
             {
-                cadreAlignData.AlignList.Add(dif);
+                data.AlignList.Add(dif);
                 if (installtoglobal && !string.IsNullOrEmpty(dif.Parent))
                 {
-                    cadreAlignData.IsGlobalAlign = true;
+                    data.IsGlobalAlign = true;
                     AddToGlobalAlign(dif, difs.Where(x => x.Name == dif.Parent).FirstOrDefault());
                 }
             }
-            CadreDataList.Add(cadreAlignData);
+            CadreDataList.Add(data);
+            return data;
         }
         private void AddToGlobalAlign(DifData dd, DifData pardelta)
         {
