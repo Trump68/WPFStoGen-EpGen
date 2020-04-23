@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace StoGenerator.Stories
 {
@@ -30,13 +31,13 @@ namespace StoGenerator.Stories
             FCurrentPosition.S = "1000";
             FCurrentPosition.X = "800";
             FCurrentPosition.Y = "200";
-            MakeLocation();
+            MakeLocation("Student Room 001", "evening", "Печальная тема 01");
             FillData();
 
         }
-        protected override void MakeLocation()
+        protected void MakeLocation(string location,string feature, string music)
         {
-            MakeLocationCadre("Apartment 001", "evening", "Печальная тема 01", null);
+            MakeLocationCadre(location, feature, music, null);
         }
         protected override void FillData()
         {
@@ -257,17 +258,17 @@ namespace StoGenerator.Stories
             {               
               if (slow)
                     tran = "W..1500>O.B.400.100";
-                SceneInfoList.Add(new Info_Scene(1)
+                ObservableSceneInfoList.Add(new Info_Scene(1)
                 { Active = active, Story = story, Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "Cyan", F = "40", R = "2" });
             }
             else if (who == Teller.Male)
             {
-                SceneInfoList.Add(new Info_Scene(1)
+                ObservableSceneInfoList.Add(new Info_Scene(1)
                 { Active = active, Story = $"{story}", Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "Coral", F = "40", R = "2" });
             }
             else if (who == Teller.MaleThoughts)
             {
-                SceneInfoList.Add(new Info_Scene(1)
+                ObservableSceneInfoList.Add(new Info_Scene(1)
                 { Active = active, Story = $"[{story}]", Description = story, Group = currentGroup, Queue = currentQueue, T = tran, O = "0", Z = "White", F = "35", R = "3" });
             }
         }
@@ -291,18 +292,83 @@ namespace StoGenerator.Stories
             var item = Sound.GetByName(music, musicspec, currentQueue, currentGroup);
             if (item != null)
             {
-                item.Active = true;
-                SceneInfoList.Add(item);
+                //item.Active = true;
+                ObservableSceneInfoList.Add(item);
             }
-            item = Locations.GetByName(location, locationspec, currentQueue, currentGroup);
+            item = StoGenerator.Location.GetByName(location, locationspec, currentQueue, currentGroup);
             if (item != null)
             {
-                item.Active = true;
+                //item.Active = true;
                 item.Z = "0";
-                SceneInfoList.Add(item);
+                ObservableSceneInfoList.Add(item);
             }
             IncrementGroup();
         }
 
+
+        //MENU
+        public override bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        {
+            string caption;
+
+            itemlist = AddRootMenu(proc, null, out caption);
+            itemlist = base.AddRootMenu(proc, itemlist, out caption);
+            caption = "Выбрать действие:";
+            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, caption);
+            return true;
+        }
+        protected List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
+        {
+            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+
+            ChoiceMenuItem item = new ChoiceMenuItem();
+            item.Name = "Go To Location:";
+            item.itemData = "Go To Location:";
+            item.Executor = data =>
+            {
+                proc.MenuCreator = proc.OldMenuCreator;
+                string str1;
+                var itemlist1 = CreateMenuCadreLocation(proc, null, out str1);
+                ShowMenuGoToLocation(proc, itemlist1);
+            };
+            itemlist.Add(item);
+            caption = "Actions:";
+            return itemlist;
+        }
+        protected List<ChoiceMenuItem> CreateMenuCadreLocation(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
+        {
+            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+            foreach (var location in StoGenerator.Location.Storage)
+            {
+                var item = new ChoiceMenuItem();
+                item.Name = $"{location.Name}";
+                item.itemData = location;
+                MenuDescriptopnItem mdi1 = new MenuDescriptopnItem("Тип", location.Type, true);
+                item.Props = (new List<MenuDescriptopnItem>() { mdi1 }).ToArray();
+                item.Executor = data =>
+                {   
+                    var group = this.GetGroupedList()[proc.CadreId].Key;
+                    while (this.ObservableSceneInfoList.Last().Group != group)
+                    {
+                        this.ObservableSceneInfoList.Remove(this.ObservableSceneInfoList.Last());
+                    }
+                    MakeLocation(((Location)data).Name, "day", "Печальная тема 01");
+                    proc.GetNextCadre();
+                };
+                itemlist.Add(item);
+            }
+
+            caption = "Выбрать локацию:";
+            return itemlist;
+        }
+        public bool ShowMenuGoToLocation(CadreController proc, List<ChoiceMenuItem> itemlist)
+        {
+            string caption;
+            // just for current cadre selecting
+            itemlist = CreateMenuCadreLocation(proc, null, out caption);
+            ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, true, caption);
+            return true;
+        }
+       
     }
 }

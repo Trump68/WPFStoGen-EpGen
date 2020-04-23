@@ -99,10 +99,10 @@ namespace StoGenerator
             foreach (var item in posture)
             {
                 item.Z = (startLevel++).ToString();
-                item.Group = story.currentGroup;
-                item.Queue = story.currentQueue;
+                item.Group = StoryBase.currentGroup;
+                item.Queue = StoryBase.currentQueue;
                 item.Active = active;
-                story.SceneInfoList.Add(item);
+                story.ObservableSceneInfoList.Add(item);
             }
         }
         internal List<Info_Scene> ResetPosture(List<Info_Scene> posture)

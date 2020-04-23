@@ -13,7 +13,7 @@ namespace StoGenerator
     {
         public static void MakeStory(string dir, string name)
         {
-            Locations.InitDefaultLocations();
+            Location.InitDefaultLocations();
             //Location.TestSave(Path.Combine(dir, "LocationList.txt"));
             //Location.LoadFromFile(Path.Combine(dir, "LocationList.txt"));
             Sound.InitDefaultSounds();

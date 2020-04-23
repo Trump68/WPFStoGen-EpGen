@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace StoGenerator
 {
@@ -19,9 +20,9 @@ namespace StoGenerator
         Others,
         OthersThoughts
     }
-    public class StoryBase: SCENARIO
+    public class StoryBase : SCENARIO
     {
-        public StoryBase(): base()
+        public StoryBase() : base()
         {
         }
         protected string rawparameters =
@@ -38,8 +39,8 @@ DefVisFile =
 //Other
 PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
 
-        public string currentQueue;
-        public string currentGroup;
+        public static string currentQueue;
+        public static string currentGroup;
         public string Name { set; get; }
         public void IncrementGroup()
         {
@@ -71,7 +72,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
 
         internal List<Info_Scene> GetNextGroups(int lastgrouId)
         {
-            var grupedlist = SceneInfoList.GroupBy(x => x.Group).ToList();
+            var grupedlist = GetGroupedList();
             lastgrouId++;
             if (lastgrouId > grupedlist.Count() - 1)
             {
@@ -88,6 +89,75 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             }
             return null; ;
         }
+
+
+        // MENU
+        public MenuCreatorDelegate GetMenuCreator()
+        {
+            return CreateMenu;
+        }
+        public virtual bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        {
+            string caption;
+            // just for root menu
+            itemlist = AddRootMenu(proc, null, out caption);
+            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, caption);
+            return true;
+        }
+        protected List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
+        {
+            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+
+            ChoiceMenuItem item = new ChoiceMenuItem();
+            item.Name = "Go To Cadre:";
+            item.itemData = "Go To Cadre:";
+            item.Executor = data =>
+            {
+                proc.MenuCreator = proc.OldMenuCreator;
+                string str1;
+                var itemlist1 = CreateMenuCadreTravel(proc, null, out str1);
+                ShowMenuGoToCadre(proc, itemlist1);
+            };
+            itemlist.Add(item);
+            caption = "Actions:";
+            return itemlist;
+        }
+        protected List<ChoiceMenuItem> CreateMenuCadreTravel(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
+        {
+            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+            ChoiceMenuItem item = null;
+            var grupedlist = ObservableSceneInfoList.Where(x => x.Active && x.Kind == 1).GroupBy(x => x.Group).ToList();
+            foreach (var it in grupedlist)
+            {
+                item = new ChoiceMenuItem();
+                item.Name = it.First().Story;
+                item.itemData = it;
+                //MenuDescriptopnItem mdi1 = new MenuDescriptopnItem(" ", "9. Перейти на кадр:", true);                
+                //item.Props = (new List<MenuDescriptopnItem>() { mdi1 }).ToArray();
+                item.Executor = data =>
+                {
+                    proc.MenuCreator = proc.OldMenuCreator;
+                    var index = grupedlist.IndexOf(it);
+                    proc.GoToCadre(++index);
+
+                };
+                itemlist.Add(item);
+            }
+            caption = "Go To Cadre:";
+            return itemlist;
+        }       
+        public bool ShowMenuGoToCadre(CadreController proc, List<ChoiceMenuItem> itemlist)
+        {
+            string caption;
+            // just for current cadre selecting
+            itemlist = CreateMenuCadreTravel(proc, null, out caption);
+            ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, true, caption);
+            return true;
+        }
+
+      
+
+
 
     }
 }

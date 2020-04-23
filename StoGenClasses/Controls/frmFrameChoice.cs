@@ -18,11 +18,12 @@ namespace StoGen.Classes
             InitializeComponent();
         }
         MenuDescriptopnItem[] Columns;
-        public static DialogResult ShowOptionsmenu(List<ChoiceMenuItem> itemlist)
+        public static DialogResult ShowOptionsmenu(List<ChoiceMenuItem> itemlist, string caption)
         {
             DialogResult result = DialogResult.Cancel;
             using (frmFrameChoice frm = new frmFrameChoice())
             {
+                frm.LabelText.Text = caption;
                 if (itemlist.Count>0)
                 {
                     frm.Columns = itemlist[0].Props;
@@ -42,6 +43,7 @@ namespace StoGen.Classes
                             if (prop.isGroupColumn)
                             {
                                 col.Group();
+                                //frm.gridView1.OptionsBehavior.AutoExpandAllGroups = true;
                             }
                         }
                     }
@@ -49,8 +51,7 @@ namespace StoGen.Classes
 
                 frm.BS.DataSource = itemlist;
                 frm.gridView1.BestFitColumns(true);
-                
-                //frm.gridView1.ExpandAllGroups();
+                frm.gridView1.ExpandAllGroups();
                 result = frm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
@@ -128,9 +129,9 @@ namespace StoGen.Classes
         public object itemData { set; get; }
         public MenuItemExecutorDelegate Executor = null;
         public MenuDescriptopnItem[] Props;
-        public static void FinalizeShowMenu(CadreController controller, bool doShowMenu, List<ChoiceMenuItem> itemlist, bool processCancel)
+        public static void FinalizeShowMenu(CadreController controller, bool doShowMenu, List<ChoiceMenuItem> itemlist, bool processCancel, string caption)
         {
-            if (frmFrameChoice.ShowOptionsmenu(itemlist) != DialogResult.Cancel)
+            if (frmFrameChoice.ShowOptionsmenu(itemlist, caption) != DialogResult.Cancel)
             {
 
             }

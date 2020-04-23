@@ -20,9 +20,7 @@ namespace StoGen.Classes
         {
             Cadres = new List<Cadre>();
             this.CadreId = -1;
-            this.MenuCreator = this.CreateMenu;
             Scene = scene;
-            this.MenuCreator = CreateMenu;
             var i = 0;
             foreach (var ad in Scene.CadreDataList)
             {
@@ -197,16 +195,7 @@ namespace StoGen.Classes
         public object MenuCreatorData;
         public MenuCreatorDelegate OldMenuCreator;
         public MenuCreatorDelegate MenuCreator;
-        public bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
-        {
-
-            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-            if (frmFrameChoice.ShowOptionsmenu(itemlist) == DialogResult.Cancel)
-            {
-
-            }
-            return true;
-        }
+     
         public bool ShowContextMenuOnInit = true;
         public virtual bool ShowContextMenu(bool show, object Data)
         {
@@ -309,6 +298,7 @@ namespace StoGen.Classes
                     this.CreateCadre();
                 }
             }
+            this.MenuCreator = this.Scene.GetMenuCreator();
         }
         public void RepaintCadre(Cadre cadre)
         {

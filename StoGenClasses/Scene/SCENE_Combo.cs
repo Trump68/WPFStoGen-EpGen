@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace StoGen.Classes.Data.Games
 {
@@ -29,7 +30,7 @@ namespace StoGen.Classes.Data.Games
         public void SetScenario(StoryBase story, string queue)
         {
             Story = story;
-            var Queue = story.SceneInfoList.Where(x => x.Queue == queue && x.Active).ToList();
+            var Queue = story.ObservableSceneInfoList.Where(x => x.Queue == queue && x.Active).ToList();
             Queue.Sort(delegate (Info_Scene x, Info_Scene y)
             {
                 if (x.Group == null) x.Group = string.Empty;
@@ -383,5 +384,12 @@ namespace StoGen.Classes.Data.Games
             List<Info_Scene> list = this.Story.GetNextGroups(cadreId);
             return Process(list);
         }
+
+
+        public override MenuCreatorDelegate GetMenuCreator()
+        {
+            return this.Story.GetMenuCreator();
+        }
+
     }
 }

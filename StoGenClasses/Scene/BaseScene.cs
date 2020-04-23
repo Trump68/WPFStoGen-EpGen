@@ -8,6 +8,7 @@ using StoGen.Classes.Transition;
 using StoGen.Classes.Scene;
 using StoGen.Classes.Scenario;
 using StoGen.Classes.Interfaces;
+using System.Windows.Forms;
 
 namespace StoGenMake.Scenes.Base
 {
@@ -260,27 +261,13 @@ namespace StoGenMake.Scenes.Base
 
 
 
-        public bool CreateMenuScene(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+      
+
+        public virtual MenuCreatorDelegate GetMenuCreator()
         {
-            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-            ChoiceMenuItem item = null;
-            foreach (var it in CadreGroups)
-            {
-                item = new ChoiceMenuItem();
-                item.Name = it;
-                item.itemData = it;
-                item.Executor = data =>
-                {
-                    proc.MenuCreator = proc.OldMenuCreator;
-                    proc.GetNextCadre();
-
-                };
-                itemlist.Add(item);
-            }
-            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true);
-            return true;
+            return null;
         }
-
+       
         #endregion
 
         public seTe DefaultSceneText = new seTe()
