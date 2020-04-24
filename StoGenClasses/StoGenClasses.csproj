@@ -69,7 +69,7 @@
     <Compile Include="CadreData.cs" />
     <Compile Include="Scenario\IStoryGenerator.cs" />
     <Compile Include="Scenario\StoryGeneratorDefault.cs" />
-    <Compile Include="Scene\INFO_Scene.cs" />
+    <Compile Include="SceneCadres\INFO_Scene.cs" />
     <Compile Include="Controls\frmFrameChoice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,7 +89,7 @@
       <DependentUpon>frmTextEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Scenario\SCENARIO.cs" />
-    <Compile Include="Scene\SCENE_Combo.cs" />
+    <Compile Include="SceneCadres\SCENE_Combo.cs" />
     <Compile Include="Data\Games\SILKY%27S SAKURA-Otto no Inu Ma ni.cs" />
     <Compile Include="Scene\SCENE_Clips.cs" />
     <Compile Include="Data\Texts\TextStory.cs" />
@@ -113,11 +113,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\BaseScene.cs" />
     <Compile Include="Scene\GameWorld.cs" />
-    <Compile Include="Scene\Personality.cs" />
     <Compile Include="Scene\ScenCadre.cs" />
     <Compile Include="Scene\ScenElement.cs" />
     <Compile Include="Scene\SceneMaker.cs" />
-    <Compile Include="Scene\SoundStore.cs" />
     <Compile Include="StoryBase.cs" />
     <Compile Include="Transition\OpEf.cs" />
     <Compile Include="Transition\Transition.cs" />

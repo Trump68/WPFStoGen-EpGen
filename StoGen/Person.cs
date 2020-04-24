@@ -15,9 +15,15 @@ namespace StoGenerator
         public enum Figure
         {
             Full,
+            Face,
             Feature
         }
-
+        public enum Generic
+        {
+            FaceGeneric,
+            EyesGeneric,
+            MouthGeneric
+        }
         public Person(string name, string type) : base(name, type) { }
 
         public static void TestSave(string file)
@@ -32,10 +38,10 @@ namespace StoGenerator
             result.Kind = 0;
             return result;
         }
-        public List<Info_Scene> SetFeature(List<Info_Scene> posture, string pose, string feature, string itemgeneric, string tranOfPrev, string tranOfNew, bool removeAllSimilar, bool AddBeforePrev)
+        public List<Info_Scene> SetFeature(List<Info_Scene> posture, string feature, string itemgeneric, string tranOfPrev, string tranOfNew, bool removeAllSimilar, bool AddBeforePrev)
         {
             if (posture == null) posture = new List<Info_Scene>();
-            var info = this.Files.FirstOrDefault(x => x.Item1.Contains(feature) && x.Item1.Contains(pose));
+            var info = this.Files.FirstOrDefault(x => x.Item1.Contains(feature));
             if (info != null)
             {
                 var newFeature = this.ToSceneInfo(info);
@@ -69,9 +75,9 @@ namespace StoGenerator
             }
             return posture;
         }
-        public List<Info_Scene> AddBlink(List<Info_Scene> posture, string pose, string eyes, string eyesgeneric)
+        public List<Info_Scene> AddBlink(List<Info_Scene> posture, string eyes)
         {
-            return SetFeature(posture, pose, eyes, eyesgeneric, null, Trans.Eyes_Blink, false,false);
+            return SetFeature(posture, eyes, Generic.EyesGeneric.ToString(), null, Trans.Eyes_Blink, false,false);
         }
         public List<Info_Scene> WoreOutfit(List<Info_Scene> posture, string pose, string outfit, string tranOfPrev)
         {
@@ -102,7 +108,7 @@ namespace StoGenerator
                 item.Group = StoryBase.currentGroup;
                 item.Queue = StoryBase.currentQueue;
                 item.Active = active;
-                story.ObservableSceneInfoList.Add(item);
+                story.SceneInfos.Add(item);
             }
         }
         internal List<Info_Scene> ResetPosture(List<Info_Scene> posture)
@@ -115,6 +121,21 @@ namespace StoGenerator
                 result.Add(d);
             }
             return result;
+        }
+
+
+
+        public List<Info_Scene> GetFace(List<Info_Scene> posture, string eyes, string mouth, string blink)
+        {
+            if (posture == null) posture = new List<Info_Scene>();
+            posture = SetFeature(posture, eyes, Generic.EyesGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            posture = SetFeature(posture, mouth, Generic.MouthGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            if (!string.IsNullOrEmpty(blink))
+            {
+                AddBlink(posture, blink);
+                posture.Last().O = "100";
+            }
+            return posture;
         }
     }
 }

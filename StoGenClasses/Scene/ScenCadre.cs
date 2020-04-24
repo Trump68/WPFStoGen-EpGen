@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using StoGen.Classes;
-using StoGenLife.SOUND;
+
 
 namespace StoGenMake.Elements
 {
@@ -33,7 +32,7 @@ namespace StoGenMake.Elements
         {
             seSo sound = new seSo();
             sound.Name = name;
-            sound.File = SoundStore.ValByName(name);
+            //sound.File = SoundStore.ValByName(name);
             SoundList.Add(sound);
             return sound;
         }

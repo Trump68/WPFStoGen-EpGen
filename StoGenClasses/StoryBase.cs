@@ -90,6 +90,14 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             return null; ;
         }
 
+        public void RemoveAllGroupsAfterIndex(int index)
+        {
+            var group = this.GetGroupedList()[index].Key;
+            while (this.SceneInfos.Last().Group != group)
+            {
+                this.SceneInfos.Remove(this.SceneInfos.Last());
+            }
+        }
 
         // MENU
         public MenuCreatorDelegate GetMenuCreator()
@@ -126,7 +134,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
             ChoiceMenuItem item = null;
-            var grupedlist = ObservableSceneInfoList.Where(x => x.Active && x.Kind == 1).GroupBy(x => x.Group).ToList();
+            var grupedlist = SceneInfos.Where(x => x.Active && x.Kind == 1).GroupBy(x => x.Group).ToList();
             foreach (var it in grupedlist)
             {
                 item = new ChoiceMenuItem();

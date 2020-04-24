@@ -134,8 +134,8 @@ namespace EPCat
                 {
                     if (_CurrentCombinedScene == null)
                     {
-                        if (this.Story.ObservableSceneInfoList.Any())
-                            _CurrentCombinedScene = this.Story.ObservableSceneInfoList.First();
+                        if (this.Story.SceneInfos.Any())
+                            _CurrentCombinedScene = this.Story.SceneInfos.First();
                     }
                 }
                 return _CurrentCombinedScene;
@@ -386,7 +386,7 @@ namespace EPCat
             TicTakToe.CopiedCombinedScene.Clear();
             if (allgroup)
             {
-                var col = this.Story.ObservableSceneInfoList.Where(x => x.Group == this.CurrentCombinedScene.Group);
+                var col = this.Story.SceneInfos.Where(x => x.Group == this.CurrentCombinedScene.Group);
                 foreach (var item in col)
                 {
                     TicTakToe.CopiedCombinedScene.Add(item.GenerateString());
@@ -489,12 +489,12 @@ namespace EPCat
         private void addNewComb(Info_Scene newclipinfo)
         {
             //newclipinfo.ID = Guid.NewGuid().ToString();
-            this.Story.ObservableSceneInfoList.Add(newclipinfo);
+            this.Story.SceneInfos.Add(newclipinfo);
             this.CurrentCombinedScene = newclipinfo;
             RaisePropertyChanged(() => this.CurrentFolder);
             RaisePropertyChanged(() => this.CurrentCombinedScene);
             RaisePropertyChanged(() => this.Scenes);
-            MainWindow.Instance.SetGVCurrent(this.Story.ObservableSceneInfoList.IndexOf(this.CurrentCombinedScene));
+            MainWindow.Instance.SetGVCurrent(this.Story.SceneInfos.IndexOf(this.CurrentCombinedScene));
 
         }
 
@@ -512,7 +512,7 @@ namespace EPCat
             projector.Scene = scene;
             projector.StartOnLoad = false;
             projector.Show();
-            int page = Story.ObservableSceneInfoList.Select(x=>x.Group).Distinct().ToList().IndexOf(this.CurrentCombinedScene.Group) + 1;
+            int page = Story.SceneInfos.Select(x=>x.Group).Distinct().ToList().IndexOf(this.CurrentCombinedScene.Group) + 1;
             projector.Start(page);
         }
 
@@ -556,13 +556,13 @@ namespace EPCat
             Story001 scen = new Story001();
             scen.LoadFrom(clipsinstr);
             this.Story = scen;
-            this.Scenes = this.Story.ObservableSceneInfoList;
+            this.Scenes = this.Story.SceneInfos;
             RefreshFolder();
         }
 
         internal void ClearScenes()
         {
-            this.Story.ObservableSceneInfoList.Clear();
+            this.Story.SceneInfos.Clear();
         }
 
         internal void ReloadScenario()

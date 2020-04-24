@@ -30,7 +30,7 @@ namespace StoGen.Classes.Data.Games
         public void SetScenario(StoryBase story, string queue)
         {
             Story = story;
-            var Queue = story.ObservableSceneInfoList.Where(x => x.Queue == queue && x.Active).ToList();
+            var Queue = story.SceneInfos.Where(x => x.Queue == queue && x.Active).ToList();
             Queue.Sort(delegate (Info_Scene x, Info_Scene y)
             {
                 if (x.Group == null) x.Group = string.Empty;
@@ -274,6 +274,8 @@ namespace StoGen.Classes.Data.Games
             if (CurrentBackground != null)// add Current Background
             {
                 var it = Info_Scene.GenerateCopy(CurrentBackground);
+                CurrentBackground.T = null; // after 1st adding, remove transition
+                CurrentBackground.O = "100"; // after 1st adding, set visible
                 it.File = GetAbsolutePath(it.File);
                 it.Group = group.First().Group;
                 it.Queue = group.First().Queue;

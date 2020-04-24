@@ -61,7 +61,7 @@ namespace StoGen.Classes.Scene
         public string Variant { set; get; }
         public string RawParameters { set; get; }
         private ObservableCollection<Info_Scene> _ObservableSceneInfoList = null;
-        public ObservableCollection<Info_Scene> ObservableSceneInfoList
+        public ObservableCollection<Info_Scene> SceneInfos
         {
             get
             {
@@ -73,7 +73,13 @@ namespace StoGen.Classes.Scene
                 return _ObservableSceneInfoList;
             }
         }
-
+        public void AddScenes(List<Info_Scene> list)
+        {
+            foreach (var item in list)
+            {
+                SceneInfos.Add(item);
+            }
+        }
         //private List<Info_Scene> _SceneList;
         //public List<Info_Scene> SceneList
         //{
@@ -90,7 +96,7 @@ namespace StoGen.Classes.Scene
 
         public List<IGrouping<string,Info_Scene>> GetGroupedList()
         {
-            return ObservableSceneInfoList.GroupBy(x => x.Group).OrderBy(x=>x.Key).ToList();
+            return SceneInfos.GroupBy(x => x.Group).OrderBy(x=>x.Key).ToList();
         }
         //text
         public string DefTextSize;
@@ -326,10 +332,10 @@ namespace StoGen.Classes.Scene
             }
             this.Description = string.Join(Environment.NewLine, description_lines.ToArray());
             this.RawParameters = string.Join(Environment.NewLine, rawdata_lines.ToArray());
-            this.ObservableSceneInfoList.Clear();
+            this.SceneInfos.Clear();
             foreach (var line in lines)
             {
-                this.ObservableSceneInfoList.Add(Info_Scene.GenerateFromString(line));
+                this.SceneInfos.Add(Info_Scene.GenerateFromString(line));
             }
             AssignRawParameters();
         }
@@ -356,12 +362,12 @@ namespace StoGen.Classes.Scene
             lines.Add($"{this.RawParameters}");
             lines.Add($"****METADATA END****");
 
-            List<string> queues = ObservableSceneInfoList.Select(x => x.Queue).Distinct().ToList();
+            List<string> queues = SceneInfos.Select(x => x.Queue).Distinct().ToList();
 
             foreach (var item in queues)
             {
 
-                var selectedQueue = ObservableSceneInfoList.Where(x => x.Queue == item).OrderBy(x => x.Group).ToList();
+                var selectedQueue = SceneInfos.Where(x => x.Queue == item).OrderBy(x => x.Group).ToList();
                 foreach (var queue in selectedQueue)
                 {
                     lines.Add(queue.GenerateString());
@@ -398,7 +404,7 @@ namespace StoGen.Classes.Scene
             HashSet<string> files = new HashSet<string>();
 
 
-            foreach (var scene in scenario.ObservableSceneInfoList)
+            foreach (var scene in scenario.SceneInfos)
             {
                 if (!string.IsNullOrEmpty(scene.File))
                 {
