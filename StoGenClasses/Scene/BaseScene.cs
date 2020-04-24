@@ -191,17 +191,20 @@ namespace StoGenMake.Scenes.Base
             #endregion
 
             this.ClearSound(false, true, true);
-            var result = AddLocal(currentGr, text, cdata, this.CurrentSounds);
+            //var result = AddLocal(currentGr, text, cdata, this.CurrentSounds);
+            //var result = Add(new string[] { currentGr }, text, cdata.ToArray(), this.CurrentSounds);
+            seTe textData = new seTe(this.DefaultSceneText);
+            textData.Text = text;
+            var result = Add(new string[] { currentGr }, cdata.ToArray(), textData, this.CurrentSounds, false);
+
             this.CurrTransitions.Clear();
             return result;
         }
 
-        protected void AddAnim(string n, string text, List<DifData> difdata, params AP[] animations)
-        {
-            AddLocal(currentGr, text, difdata, this.CurrentSounds);
-        }
         #endregion
+
         public List<CadreData> CadreDataList = new List<CadreData>();
+
         public IStoryGenerator StoryGenerator = new StoryGeneratorDefault();
         static IMenuCreator GlobalMenuCreator = null;
         public Guid GID { set; get; }
@@ -222,7 +225,6 @@ namespace StoGenMake.Scenes.Base
         {
             this.MoviewInfo = minfo;
             this.currentGr = minfo.First().ID;
-            //this.MoviePath = moviePath;
             this.ShowMovieControl = true;           
             return true;
         }
@@ -301,37 +303,14 @@ namespace StoGenMake.Scenes.Base
             newIAV.DefaultAlign.Name = name;
             GameWorld.ImageStorage.Add(newIAV);
         }
-        protected CadreData AddLocal(string[] marks, DifData[] difs) { return Add(marks, difs, false); }
-        protected CadreData AddLocal(string[] marks, List<DifData> difs) { return Add(marks, difs.ToArray()); }
-        public CadreData AddLocal(string mark, List<DifData> difs) { return Add(new string[] { mark }, difs.ToArray()); }
-        public CadreData AddLocal(string mark, string text, List<DifData> difs, List<seSo> sounds = null)
+       
+        public void CadreData(string mark, DifData dif)
         {
-            return Add(new string[] { mark }, text, difs.ToArray(), sounds);
+
+            Add(new string[] { mark }, new DifData[] { dif }, null, null, false);
         }
-        public void CadreData(string mark, DifData dif) { Add(new string[] { mark }, new DifData[] { dif }); }
-        public CadreData AddGlobal(string[] marks, DifData[] difs)
-        {
-           return  Add(marks, difs, true);
-        }
-        private CadreData Add(
-            string[] marks,
-            DifData[] difs,
-            bool installtoglobal = false)
-        {
-            return Add(marks, difs, null, null, installtoglobal);
-        }
-        private CadreData Add(
-            string[] marks,
-            string text,
-            DifData[] difs,
-            List<seSo> sounds,
-            bool installtoglobal = false)
-        {
-            seTe textData = new seTe(this.DefaultSceneText);
-            textData.Text = text;
-            return Add(marks, difs, textData, sounds, installtoglobal);
-        }
-        private CadreData Add(
+
+        public CadreData Add(
             string[] marks,
             DifData[] difs,
             seTe text,

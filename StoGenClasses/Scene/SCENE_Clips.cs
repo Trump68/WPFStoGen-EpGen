@@ -86,7 +86,8 @@ namespace StoGen.Classes.Data.Movie
                 if (pics == null) pics = new List<DifData>();
                 itl.AddRange(pics);
                 itl.Insert(0, size);
-                AddAnim(item[0].File, text, itl, item.ToArray());
+                //AddAnim(item[0].File, text, itl, item.ToArray());
+                Add(new string[] { item[0].File }, itl.ToArray(), null, null, false);
             }
         }
 
