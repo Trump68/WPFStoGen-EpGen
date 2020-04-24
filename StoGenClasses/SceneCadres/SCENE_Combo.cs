@@ -378,7 +378,7 @@ namespace StoGen.Classes.Data.Games
             itl.AddRange(Pictures.Values.ToList());
 
 
-            return CreateCadreData($"{story}", itl, null);
+            return CreateCadreData($"{story}", itl, group);
         }
 
         internal override List<CadreData> GetNextCadreData(int cadreId)
