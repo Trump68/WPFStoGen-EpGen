@@ -257,9 +257,19 @@ namespace StoGen.Classes
                 else if (FontColor == "Coral")
                     br = System.Windows.Media.Brushes.Coral;
                 else
-                    br = new System.Windows.Media.SolidColorBrush(
-                        (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(FontColor));
-                
+                {
+                    try
+                    {
+                        br = new System.Windows.Media.SolidColorBrush(
+                                               (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(FontColor));
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+                }
+                   
                 Projector.TextBlock1.Foreground = br;
                 Projector.TextBlock2.Foreground = br;
                 Projector.TextBlock3.Foreground = br;

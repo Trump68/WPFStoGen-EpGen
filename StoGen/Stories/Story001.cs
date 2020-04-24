@@ -388,20 +388,19 @@ namespace StoGenerator.Stories
                 item.itemData = face.Item2;
                 item.Executor = data =>
                 {
-                    this.RemoveAllGroupsAfterIndex(proc.CadreId);
+                   
                     string[] vals = ((string)data).Split(';');
-                    JennyFord_Posture = JFord.WoreNightgown(null, JennyFord.Poses.Stand1);
-                    JennyFord_Posture = JFord.GetFace(JennyFord_Posture, vals[0], vals[1], JennyFord.Eyes.EyesBlink1.ToString());
-                    JennyFord_Posture.ForEach(x =>
-                    {
-                        x.S = FCurrentPosition.S;
-                        x.Y = FCurrentPosition.Y;
-                        x.X = FCurrentPosition.X;
-                    });
-                    JFord.AddToStory(this, JennyFord_Posture, 1, false);
-                    //AddText(story, who, false, false);
-                    JennyFord_Posture = JFord.ResetPosture(JennyFord_Posture);
+                    var v = proc.Scene.CadreDataList[proc.CadreId];
+
+                    JennyFord_Posture = v.OriginalInfo;
+
+                    this.RemoveAllGroupsAfterIndex(proc.CadreId-1);
                     IncrementGroup();
+                    JennyFord_Posture = JFord.GetFace(JennyFord_Posture, vals[0], vals[1], JennyFord.Eyes.EyesBlink1.ToString());
+                  
+                    JFord.AddToStory(this, JennyFord_Posture, 1, false);
+                    proc.GetPrevCadre();
+                    proc.GetNextCadre();
                     proc.GetNextCadre();
                 };
                 itemlist.Add(item);

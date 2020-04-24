@@ -135,6 +135,20 @@ namespace StoGenerator
                 AddBlink(posture, blink);
                 posture.Last().O = "100";
             }
+            var figure = posture.Where(x => x.Tags.Contains(Figure.Full.ToString())).FirstOrDefault();
+            if (figure != null)
+            {
+                posture.ForEach(x =>
+                {
+                    x.Group = figure.Group;
+                    x.Queue = figure.Queue;
+                    x.S = figure.S;
+                    x.X = figure.X;
+                    x.Y = figure.Y;
+                });
+
+            }
+
             return posture;
         }
     }

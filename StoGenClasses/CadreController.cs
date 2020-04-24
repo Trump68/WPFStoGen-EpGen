@@ -15,7 +15,7 @@ namespace StoGen.Classes
 {
     public class CadreController
     {
-        private BaseScene Scene;
+        public BaseScene Scene;
         public CadreController(BaseScene scene)
         {
             Cadres = new List<Cadre>();
@@ -288,7 +288,7 @@ namespace StoGen.Classes
             return cadre;
         }
 
-        private void CreateNextCadres()
+        public void CreateNextCadres()
         {
             List<CadreData> nextcadredata = this.Scene.GetNextCadreData(CadreId);
             if (nextcadredata != null)

@@ -96,8 +96,8 @@ namespace StoGen.Classes
         public string Story { set; get; }
         public string Group { set; get; }
         public string Queue { set; get; }
-        [XmlIgnore]
-        public string Tags { set; get; } // for work in person's posture
+    
+        public string Tags { set; get; } = string.Empty;// for work in person's posture
 
         public static Info_Scene GenerateFromString(string item)
         {
@@ -184,10 +184,8 @@ namespace StoGen.Classes
                 rez.Add($"Align={Align}");
             if (!string.IsNullOrEmpty(VAlign))
                 rez.Add($"VAlign={VAlign}");
-
-          
-
-
+            if (!string.IsNullOrEmpty(Tags))
+                rez.Add($"Tags={Tags}");
 
             if (!string.IsNullOrEmpty(Description))
                 rez.Add($"DSC={Description}");
@@ -286,7 +284,10 @@ namespace StoGen.Classes
                     this.T = str.Replace("T=", string.Empty);
                 }
 
-
+                else if (str.StartsWith("Tags="))
+                {
+                    this.Tags = str.Replace("Tags=", string.Empty);
+                }
                 else if (str.StartsWith("GROUP="))
                 {
                     this.Group = str.Replace("GROUP=", string.Empty);
