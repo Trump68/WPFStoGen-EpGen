@@ -28,7 +28,7 @@ namespace StoGenerator.CadreElements
         {
             List<Info_Scene> infos = new List<Info_Scene>();
             infos.AddRange(CE_Location.Get(name, spec));
-            story.AddScenes(infos);
+            story.AddScenes(infos,1,false);
             story.IncrementGroup();
             return infos;
         }
@@ -37,7 +37,7 @@ namespace StoGenerator.CadreElements
             List<Info_Scene> infos = new List<Info_Scene>();
             infos.AddRange(CE_Location.Get(name, spec));
             infos.AddRange(CE_Music.Get(musicname, musicspec));
-            story.AddScenes(infos);
+            story.AddScenes(infos,1, false);
             story.IncrementGroup();
             return infos;
         }

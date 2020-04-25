@@ -253,7 +253,7 @@ namespace StoGenerator.Stories
             });
             JennyFord_Posture.First().T = 
                 $"{Trans.SetInvisible}>{Trans.Appearing(1500)}*{Trans.MoveH(1500,-1200)}";
-            JFord.AddToStory(this, JennyFord_Posture, 1, active);
+            AddScenes(JennyFord_Posture, 1, active);
             AddText(story, who, true, active);
             JennyFord_Posture = JFord.ResetPosture(JennyFord_Posture);
             IncrementGroup();
@@ -288,7 +288,7 @@ namespace StoGenerator.Stories
                 x.Y = FCurrentPosition.Y;
                 x.X = FCurrentPosition.X;               
             });
-            JFord.AddToStory(this, JennyFord_Posture, 1, false);
+            AddScenes(JennyFord_Posture, 1, false);
             AddText(story, who, false,false);
             JennyFord_Posture = JFord.ResetPosture(JennyFord_Posture);
             IncrementGroup();
@@ -329,18 +329,6 @@ namespace StoGenerator.Stories
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 
             ChoiceMenuItem item = new ChoiceMenuItem();
-            item.Name = "Go To Location:";
-            item.itemData = "Go To Location:";
-            item.Executor = data =>
-            {
-                //proc.MenuCreator = proc.OldMenuCreator;
-                string caption1;
-                var itemlist1 = CreateMenuCadreLocation(proc, null, out caption1);
-                ShowSubmenu(proc, itemlist1, caption1);
-            };
-            itemlist.Add(item);
-
-            item = new ChoiceMenuItem();
             item.Name = "Change Face:";
             item.itemData = "Change Face:";
             item.Executor = data =>
@@ -349,6 +337,18 @@ namespace StoGenerator.Stories
                 string caption2;
                 var itemlist1 = CreateMenuChangeFace(proc, null, out caption2);
                 ShowSubmenu(proc, itemlist1, caption2);
+            };
+            itemlist.Add(item);
+
+            item = new ChoiceMenuItem();
+            item.Name = "Go To Location:";
+            item.itemData = "Go To Location:";
+            item.Executor = data =>
+            {
+                //proc.MenuCreator = proc.OldMenuCreator;
+                string caption1;
+                var itemlist1 = CreateMenuCadreLocation(proc, null, out caption1);
+                ShowSubmenu(proc, itemlist1, caption1);
             };
             itemlist.Add(item);
 
@@ -367,7 +367,7 @@ namespace StoGenerator.Stories
                 item.Props = (new List<MenuDescriptopnItem>() { mdi1 }).ToArray();
                 item.Executor = data =>
                 {
-                    this.RemoveAllGroupsAfterIndex(proc.CadreId);
+                    this.RemoveAllGroupsAfter(proc.CadreId);
                     CE_Location.AddWithMusic(this, ((Location)data).Name, "day", "Печальная тема 01", null);
                     proc.GetNextCadre();
                 };
@@ -385,23 +385,13 @@ namespace StoGenerator.Stories
             {
                 var item = new ChoiceMenuItem();
                 item.Name = $"{face.Item1}";
-                item.itemData = face.Item2;
+                item.itemData = face.Item2.Split(';');
                 item.Executor = data =>
                 {
-                   
-                    string[] vals = ((string)data).Split(';');
-                    var v = proc.Scene.CadreDataList[proc.CadreId];
-
-                    JennyFord_Posture = v.OriginalInfo;
-
-                    this.RemoveAllGroupsAfterIndex(proc.CadreId-1);
-                    IncrementGroup();
-                    JennyFord_Posture = JFord.GetFace(JennyFord_Posture, vals[0], vals[1], JennyFord.Eyes.EyesBlink1.ToString());
-                  
-                    JFord.AddToStory(this, JennyFord_Posture, 1, false);
-                    proc.GetPrevCadre();
-                    proc.GetNextCadre();
-                    proc.GetNextCadre();
+                    JennyFord_Posture = PullCadreFromScene(proc, proc.CadreId);
+                    JennyFord_Posture = JFord.GetFace(JennyFord_Posture, (data as string[])[0], (data as string[])[1], JennyFord.Eyes.EyesBlink1.ToString());
+                    AddScenes(JennyFord_Posture, 1, false);
+                    proc.RefreshCurrentCadre();
                 };
                 itemlist.Add(item);
             }
@@ -409,6 +399,19 @@ namespace StoGenerator.Stories
             caption = "Поменять выражение лица:";
             return itemlist;
         }
+
+        private List<Info_Scene> PullCadreFromScene(CadreController proc, int cadreId)
+        {
+            List<Info_Scene> result = proc.Scene.CadreDataList[cadreId].OriginalInfo;
+            currentGroup = result.First().Group;
+            currentQueue = result.First().Queue;
+            proc.Cadres.RemoveAt(cadreId);
+            proc.Scene.CadreDataList.RemoveAt(cadreId);
+            //RemoveAllGroupsAfter(cadreId - 1);
+            RemoveGroupAt(cadreId);
+            return result;
+        }
+
         public bool ShowSubmenu(CadreController proc, List<ChoiceMenuItem> itemlist, string caption)
         {
             ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, true, caption);

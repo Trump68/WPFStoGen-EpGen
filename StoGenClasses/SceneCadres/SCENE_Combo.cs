@@ -37,7 +37,7 @@ namespace StoGen.Classes.Data.Games
                 if (y.Group == null) y.Group = string.Empty;
                 return x.Group.CompareTo(y.Group);
             });
-            this.Process(Queue);
+            this.Process(Queue, null);
         }
 
         private string GetAbsolutePath(string path)
@@ -72,7 +72,7 @@ namespace StoGen.Classes.Data.Games
 
             return rez;
         }
-        public List<CadreData> Process(List<Info_Scene> Queue)
+        public List<CadreData> Process(List<Info_Scene> Queue, int? indexToInsert)
         {
             if (Queue == null) return null;
             List<CadreData> result = new List<CadreData>();
@@ -105,11 +105,16 @@ namespace StoGen.Classes.Data.Games
 
             foreach (var group in data)
             {
-                result.Add(DoCadreByGroup(group));
+
+                result.Add(DoCadreByGroup(group, indexToInsert));
+                if (indexToInsert.HasValue)
+                {
+                    indexToInsert++;
+                }
             }
             return result;
         }
-        private CadreData DoCadreByGroup(List<Info_Scene> group)
+        private CadreData DoCadreByGroup(List<Info_Scene> group, int? indexToInsert)
         {
             int i = 1; // picture index to correct add transitions
             // sound
@@ -378,13 +383,13 @@ namespace StoGen.Classes.Data.Games
             itl.AddRange(Pictures.Values.ToList());
 
 
-            return CreateCadreData($"{story}", itl, group);
+            return CreateCadreData($"{story}", itl, group, indexToInsert);
         }
 
         internal override List<CadreData> GetNextCadreData(int cadreId)
         {
             List<Info_Scene> list = this.Story.GetNextGroups(cadreId);
-            return Process(list);
+            return Process(list, cadreId+1);
         }
 
 

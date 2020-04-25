@@ -78,6 +78,11 @@ namespace EPCat
             {
                 PathToGridSave = path;
                 this.GV.RestoreLayoutFromXml(PathToGridSave);
+                //int i = ;
+                //var visiblerowH = GV.GetRowHandleByVisibleIndex(0);
+                //GV.IsGroupRowHandle()
+                //GV.SelectItem(visiblerowH);
+                //var dd = GV.GetRow(visiblerowH);
             }
             catch (Exception)
             {

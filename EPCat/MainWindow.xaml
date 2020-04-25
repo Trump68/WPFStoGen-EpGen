@@ -93,7 +93,7 @@
                             <dxg:GridControl.View>
                                 <dxg:TableView Name="MainGridView"
                                     AllowConditionalFormattingMenu="True" 
-                                    AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow" AllowGrouping="True" AllowPartialGrouping="False" AllowFixedGroups="True" ShowGroupedColumns="True" ShowFixedTotalSummary="True">
+                                    AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow" AllowGrouping="True" AllowPartialGrouping="False" AllowFixedGroups="True" ShowGroupedColumns="True" ShowFixedTotalSummary="True" ShowCriteriaInAutoFilterRow="False">
                                     <dxg:TableView.FormatConditions>
                                         <dxg:ColorScaleFormatCondition Expression="[VideoPresent] = True" FieldName="ItemPath" PredefinedFormatName="YellowGreenColorScale" />
                                     </dxg:TableView.FormatConditions>
@@ -613,17 +613,17 @@
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
             <dx:DXTabItem Header="Generator">
-                
+
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
-                        
+
                         <dxlc:LayoutItem HorizontalAlignment="Left">
                             <dx:SimpleButton x:Name="GoGenerateBtn" Content="Go Generate" Width="120" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoGenerate_Click" />
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
-                
+
             </dx:DXTabItem>
             <dx:DXTabItem Header="Tools">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">

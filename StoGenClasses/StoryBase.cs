@@ -90,7 +90,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             return null; ;
         }
 
-        public void RemoveAllGroupsAfterIndex(int index)
+        public void RemoveAllGroupsAfter(int index)
         {
             var group = this.GetGroupedList()[index].Key;
             while (this.SceneInfos.Last().Group != group)
@@ -98,7 +98,33 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 this.SceneInfos.Remove(this.SceneInfos.Last());
             }
         }
-
+        public void RemoveGroupAt(int index)
+        {
+            var group = this.GetGroupedList()[index].Key;
+            for (int i = 0; i < this.SceneInfos.Count(); i++)
+            {
+                if (this.SceneInfos[i].Group == group)
+                {
+                    this.SceneInfos.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+        public void AddScenes(List<Info_Scene> list,int startLevel,bool active)
+        {
+            foreach (var item in list)
+            {
+                if (item.Kind == 0)
+                    item.Z = (startLevel++).ToString();
+                item.Group = StoryBase.currentGroup;
+                item.Queue = StoryBase.currentQueue;
+                item.Active = active;
+                if (!SceneInfos.Contains(item))
+                {
+                    SceneInfos.Add(item);
+                }
+            }
+        }
         // MENU
         public MenuCreatorDelegate GetMenuCreator()
         {

@@ -17,7 +17,7 @@ namespace StoGenMake.Scenes.Base
         public int EngineHiVer = 0;
         public int EngineLoVer = 0;
 
-
+        public List<CadreData> CadreDataList = new List<CadreData>();
         public string MoviePath = null; // path to movie file
 
         #region Sound
@@ -122,89 +122,27 @@ namespace StoGenMake.Scenes.Base
         #region 'External' scene generations
         public string currentGr;
         //public List<OpEf> CurrTransitions = new List<OpEf>();
-        public CadreData CreateCadreData(string text, List<DifData> difdata, List<Info_Scene> infodata)
+        public CadreData CreateCadreData(string text, List<DifData> difdata, List<Info_Scene> infodata, int? indexToInsert = null)
         {
-            //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100*W..0>X.B.400.300")); //--appear+move from left
-            //trans.Add(OpEf.AppCurr(1, "W..0>O.B.400.100"));                  //--appear
             List<DifData> cdata = new List<DifData>();
-
             foreach (var item in difdata)
             {
                 var ndd = new DifData(item.Name);
                 ndd.AssingFrom(item);
                 cdata.Add(ndd);
             }
-
-            //#region transition
-            //if (trans != null)
-            //{
-            //    foreach (var oef in trans)
-            //    {
-            //        if (oef != null)
-            //        {
-            //            DifData d = null;
-            //            if (!oef.P)
-            //            {
-            //                d = cdata[oef.L - 1];
-            //            }
-            //            else
-            //            {
-            //                var old = this.CadreDataList.Last().AlignList[oef.L - 1];
-            //                d = new DifData();
-            //                d.AssingFrom(old);
-            //                d.Name = old.Name;
-            //                d.Parent = old.Parent;
-            //                d.S = old.S;
-            //                if (cdata.Count > oef.L)
-            //                    cdata.Insert(oef.L, d);
-            //                else
-            //                    cdata.Add(d);
-            //            }
-
-            //            if (oef.Tran != null)
-            //            {
-            //                d.O = oef.O;
-            //                d.T = oef.Tran;
-            //            }
-            //            else
-            //            {
-            //                if (oef.D)
-            //                {
-            //                    if (d != null)
-            //                    {
-            //                        d.O = 100;
-            //                        d.T = $"W..{oef.W}>O.B.{oef.T}.-100";
-            //                    }
-            //                }
-            //                else
-            //                {
-            //                    if (d != null)
-            //                    {
-            //                        d.O = 0;
-            //                        d.T = $"W..{oef.W}>O.B.{oef.T}.100";
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-            //#endregion
-
             this.ClearSound(false, true, true);
-            //var result = AddLocal(currentGr, text, cdata, this.CurrentSounds);
-            //var result = Add(new string[] { currentGr }, text, cdata.ToArray(), this.CurrentSounds);
             seTe textData = new seTe(this.DefaultSceneText);
             textData.Text = text;
-            var result = Add(new string[] { currentGr }, cdata.ToArray(), textData, this.CurrentSounds, false);
+            var result = Add(new string[] { currentGr }, cdata.ToArray(), textData, this.CurrentSounds, false, indexToInsert);
             // save it to futher modifications
             result.OriginalInfo.AddRange(infodata);
-            //this.CurrTransitions.Clear();
             return result;
         }
 
         #endregion
 
-        public List<CadreData> CadreDataList = new List<CadreData>();
+        
 
         public IStoryGenerator StoryGenerator = new StoryGeneratorDefault();
         static IMenuCreator GlobalMenuCreator = null;
@@ -316,7 +254,8 @@ namespace StoGenMake.Scenes.Base
             DifData[] difs,
             seTe text,
             List<seSo> sounds,
-            bool installtoglobal = false
+            bool installtoglobal = false, 
+            int? indexToInsert = null
             )
         {
             CadreData data = new CadreData();
@@ -340,7 +279,12 @@ namespace StoGenMake.Scenes.Base
                     AddToGlobalAlign(dif, difs.Where(x => x.Name == dif.Parent).FirstOrDefault());
                 }
             }
-            CadreDataList.Add(data);
+            if (indexToInsert.HasValue)
+            {
+                CadreDataList.Insert(indexToInsert.Value, data);
+            }
+            else
+                CadreDataList.Add(data);
             return data;
         }
         private void AddToGlobalAlign(DifData dd, DifData pardelta)

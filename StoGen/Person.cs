@@ -99,18 +99,18 @@ namespace StoGenerator
             }
             return posture;
         }
-        internal void AddToStory(StoryBase story, List<Info_Scene> posture, int startLevel, bool active)
-        {
+        //internal void AddToStory(StoryBase story, List<Info_Scene> posture, int startLevel, bool active)
+        //{
 
-            foreach (var item in posture)
-            {
-                item.Z = (startLevel++).ToString();
-                item.Group = StoryBase.currentGroup;
-                item.Queue = StoryBase.currentQueue;
-                item.Active = active;
-                story.SceneInfos.Add(item);
-            }
-        }
+        //    foreach (var item in posture)
+        //    {
+        //        item.Z = (startLevel++).ToString();
+        //        item.Group = StoryBase.currentGroup;
+        //        item.Queue = StoryBase.currentQueue;
+        //        item.Active = active;
+        //        story.SceneInfos.Add(item);
+        //    }
+        //}
         internal List<Info_Scene> ResetPosture(List<Info_Scene> posture)
         {
             List<Info_Scene> result = new List<Info_Scene>();

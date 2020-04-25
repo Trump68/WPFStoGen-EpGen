@@ -296,6 +296,7 @@ namespace StoGen.Classes
                 foreach (var item in nextcadredata)
                 {
                     this.CreateCadre();
+                    //MakeCadre(item);
                 }
             }
             this.MenuCreator = this.Scene.GetMenuCreator();
@@ -304,6 +305,12 @@ namespace StoGen.Classes
         {
             var info = this.MakeCadre(Scene.CadreDataList[CadreId]);
             cadre.Repaint(info);
+        }
+
+        public void RefreshCurrentCadre()
+        {
+            CadreId--;
+            GetNextCadre();
         }
     }
     public delegate bool MenuCreatorDelegate(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data);

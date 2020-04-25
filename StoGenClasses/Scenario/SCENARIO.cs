@@ -73,13 +73,7 @@ namespace StoGen.Classes.Scene
                 return _ObservableSceneInfoList;
             }
         }
-        public void AddScenes(List<Info_Scene> list)
-        {
-            foreach (var item in list)
-            {
-                SceneInfos.Add(item);
-            }
-        }
+
         //private List<Info_Scene> _SceneList;
         //public List<Info_Scene> SceneList
         //{

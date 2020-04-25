@@ -512,7 +512,9 @@ namespace EPCat
             projector.Scene = scene;
             projector.StartOnLoad = false;
             projector.Show();
-            int page = Story.SceneInfos.Select(x=>x.Group).Distinct().ToList().IndexOf(this.CurrentCombinedScene.Group) + 1;
+            var m = Story.SceneInfos.Select(x => x.Group).Distinct().ToList();
+            m.Sort();
+            int page = m.IndexOf(this.CurrentCombinedScene.Group) + 1;
             projector.Start(page);
         }
 
