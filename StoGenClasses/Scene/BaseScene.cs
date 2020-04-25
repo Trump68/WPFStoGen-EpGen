@@ -279,7 +279,7 @@ namespace StoGenMake.Scenes.Base
                     AddToGlobalAlign(dif, difs.Where(x => x.Name == dif.Parent).FirstOrDefault());
                 }
             }
-            if (indexToInsert.HasValue)
+            if (indexToInsert.HasValue && indexToInsert.Value<= CadreDataList.Count())
             {
                 CadreDataList.Insert(indexToInsert.Value, data);
             }

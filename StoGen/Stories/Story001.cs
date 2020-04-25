@@ -53,30 +53,32 @@ namespace StoGenerator.Stories
             JennyFord_Posture = JFord.GetFace(JennyFord_Posture, JennyFord.Eyes.Eyes1_68.ToString(), JennyFord.Mouth.Mouth1_68.ToString(), JennyFord.Eyes.EyesBlink1.ToString()); //"0068"
             MakeNextCadre(Teller.Male, "Неплохо, любимая... А у тебя?");
 
-            //JennyFord_Posture = JFord.SetFace71(JennyFord_Posture); //"0071"
-            //MakeNextCadre(Teller.MaleThoughts, "Что-то моя благоверная кислая какая-то. Встревожена что ли?");
+            JennyFord_Posture = JFord.GetFace(JennyFord_Posture, JennyFord.Eyes.Eyes1_71.ToString(), JennyFord.Mouth.Mouth1_71.ToString(), JennyFord.Eyes.EyesBlink1.ToString()); //"0071"
+            MakeNextCadre(Teller.MaleThoughts, "Что-то моя благоверная кислая какая-то. Встревожена что ли?");
 
-            //JennyFord_Posture = JFord.SetFace71(JennyFord_Posture); //"0071"
-            //MakeNextCadre(Teller.Female, "У меня? Ну как тебе сказать...");
+            JennyFord_Posture = JFord.GetFace(JennyFord_Posture, JennyFord.Eyes.Eyes1_71.ToString(), JennyFord.Mouth.Mouth1_71.ToString(), JennyFord.Eyes.EyesBlink1.ToString()); //"0071"
+            MakeNextCadre(Teller.Female, "У меня? Ну как тебе сказать...");
 
-            //JennyFord_Posture = JFord.SetFace71(JennyFord_Posture); //"0071"
-            //MakeNextCadre(Teller.Female, "Вообще-то, я хотела раньше тебе сказать...");
+            JennyFord_Posture = JFord.GetFace(JennyFord_Posture, JennyFord.Eyes.Eyes1_71.ToString(), JennyFord.Mouth.Mouth1_71.ToString(), JennyFord.Eyes.EyesBlink1.ToString()); //"0071"
+            MakeNextCadre(Teller.Female, "Вообще-то, я хотела раньше тебе сказать...");
 
-            //JennyFord_Posture = JFord.SetFace71(JennyFord_Posture); //"0071"
-            //MakeNextCadre(Teller.Female, "Ну вообщем... ты только не злись, ладно?");
+            JennyFord_Posture = JFord.GetFace(JennyFord_Posture, JennyFord.Eyes.Eyes1_71.ToString(), JennyFord.Mouth.Mouth1_71.ToString(), JennyFord.Eyes.EyesBlink1.ToString()); //"0071"
+            MakeNextCadre(Teller.Female, "Ну вообщем... ты только не злись, ладно?");
 
-            //JennyFord_Posture = JFord.SetFace71(JennyFord_Posture); //"0071"
-            //MakeNextCadre(Teller.Female, "Обещаешь?");
+            JennyFord_Posture = JFord.GetFace(JennyFord_Posture, JennyFord.Eyes.Eyes1_71.ToString(), JennyFord.Mouth.Mouth1_71.ToString(), JennyFord.Eyes.EyesBlink1.ToString()); //"0071"
+            MakeNextCadre(Teller.Female, "Обещаешь?");
 
-            //JennyFord_Posture = JFord.SetFace72(JennyFord_Posture); //"0072"
-            //MakeNextCadre(Teller.Female, "За мной ухаживают...");
+            JennyFord_Posture = JFord.GetFace(JennyFord_Posture, JennyFord.Eyes.Eyes1_72.ToString(), JennyFord.Mouth.Mouth1_72.ToString(), JennyFord.Eyes.EyesBlink1.ToString()); //"0072"
+            MakeNextCadre(Teller.Female, "За мной ухаживают...");
 
-            //JennyFord_Posture = JFord.SetFace72(JennyFord_Posture); //"0072"
-            //MakeNextCadre(Teller.Female, "На работе...");
+            JennyFord_Posture = JFord.GetFace(JennyFord_Posture, JennyFord.Eyes.Eyes1_72.ToString(), JennyFord.Mouth.Mouth1_72.ToString(), JennyFord.Eyes.EyesBlink1.ToString()); //"0072"
+            MakeNextCadre(Teller.Female, "На работе...");
 
-            //JennyFord_Posture = JFord.SetFace72(JennyFord_Posture); //"0072"
-            //JennyFord_Posture = JFord.Blush(JennyFord_Posture, false, 5000); // begin blush
-            //MakeNextCadre(Teller.MaleThoughts, "Что еще за новости?");
+            JennyFord_Posture = JFord.GetFace(JennyFord_Posture, JennyFord.Eyes.Eyes1_72.ToString(), JennyFord.Mouth.Mouth1_72.ToString(), JennyFord.Eyes.EyesBlink1.ToString()); //"0072"
+            JennyFord_Posture = JFord.Blush(JennyFord_Posture, false, 5000);
+            MakeNextCadre(Teller.MaleThoughts, "Что еще за новости?");
+
+
 
             //JennyFord_Posture = JFord.SetFace76(JennyFord_Posture); //"0076"
             //JennyFord_Posture = JFord.Blush(JennyFord_Posture); // blush
@@ -293,14 +295,7 @@ namespace StoGenerator.Stories
             JennyFord_Posture = JFord.ResetPosture(JennyFord_Posture);
             IncrementGroup();
         }
-        //protected void MakeLocationCadre(string location, string locationspec, string music, string musicspec)
-        //{
-        //    List<Info_Scene> infos = new List<Info_Scene>();
-        //    infos.AddRange(CE_Music.Get(music, musicspec));
-        //    infos.AddRange(CE_Location.Get(location, locationspec));
-        //    this.AddScenes(infos);
-        //    IncrementGroup();
-        //}
+
         protected void MakeTitle()
         {
             Info_Scene title = new Info_Scene();

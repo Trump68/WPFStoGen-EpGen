@@ -16,7 +16,7 @@ namespace StoGen.Classes
     public class CadreController
     {
         public BaseScene Scene;
-        public CadreController(BaseScene scene)
+        public CadreController(BaseScene scene, int startpage)
         {
             Cadres = new List<Cadre>();
             this.CadreId = -1;
@@ -28,6 +28,10 @@ namespace StoGen.Classes
             }
             this.ShowContextMenuOnInit = false;
             this.GoFirstCadre();
+            while (this.CadreId < startpage)
+            {
+                this.GetNextCadre();
+            }
         }
         private void CreateCadre()
         {

@@ -530,6 +530,7 @@ namespace StoGenerator.Persons
                     transition = Trans.Dissapearing(speed.Value);
             }                
             posture = SetFeature(posture, Feature.Blush1.ToString(), Feature.FeatureGeneric.ToString(),null, transition, false, false);
+            posture.Last().O = "0";
             if (reverse)
             {
                 posture.Last().O = "100";

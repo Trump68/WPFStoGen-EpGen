@@ -37,7 +37,7 @@ namespace StoGenWPF
            
         public static void SetMainProcedure(BaseScene scene, int startpage)
         {
-            CurrProc = new CadreController(scene);
+            CurrProc = new CadreController(scene, startpage);
             CurrProc.GoToCadre(startpage);
         }
 
