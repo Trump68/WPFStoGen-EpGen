@@ -21,7 +21,6 @@ namespace StoGen.Classes
             Cadres = new List<Cadre>();
             this.CadreId = -1;
             Scene = scene;
-            var i = 0;
             foreach (var ad in Scene.CadreDataList)
             {
                 CreateCadre();

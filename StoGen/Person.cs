@@ -12,17 +12,31 @@ namespace StoGenerator
 {
     public class Person : BaseGeneratorItem<Person>
     {
-        public enum Figure
-        {
-            Full,
-            Face,
-            Feature
-        }
+
         public enum Generic
         {
-            FaceGeneric,
+            //FaceGeneric,
             EyesGeneric,
-            MouthGeneric
+            MouthGeneric,
+            FeatureGeneric,
+            NipplesGeneric,
+            FigureGeneric,
+            BlushGeneric,
+            BlinkGeneric,
+            WeddingRingGeneric,
+            PregnantTammyGeneric
+        }
+        public enum Feature
+        {
+            FeatureFigure,
+            FeatureBlush,
+            FeatureNipples,
+            WeddingRing,
+            PregnantTammy
+        }
+        public enum Poses
+        {
+            Pose,
         }
         public Person(string name, string type) : base(name, type) { }
 
@@ -32,28 +46,40 @@ namespace StoGenerator
             File.WriteAllText(file, JsonConvert.SerializeObject(Storage, Formatting.Indented));
         }
 
-        protected override Info_Scene ToSceneInfo(Tuple<string, string> item)
+        protected override Info_Scene ToSceneInfo(Tuple<string, string, string, string> item)
         {
             Info_Scene result = base.ToSceneInfo(item);
             result.Kind = 0;
             return result;
         }
-        public List<Info_Scene> SetFeature(List<Info_Scene> posture, string feature, string itemgeneric, string tranOfPrev, string tranOfNew, bool removeAllSimilar, bool AddBeforePrev)
+
+        public List<Info_Scene> AddBlink(List<Info_Scene> posture, string eyes)
+        {
+            return SetFeature(posture, eyes, null, Trans.Eyes_Blink, false);
+        }
+        internal List<Info_Scene> ResetPosture(List<Info_Scene> posture)
+        {
+            List<Info_Scene> result = new List<Info_Scene>();
+            foreach (var item in posture)
+            {
+                var d = Info_Scene.GenerateCopy(item);
+                d.T = null;
+                result.Add(d);
+            }
+            return result;
+        }
+
+
+        public List<Info_Scene> SetFeature(List<Info_Scene> posture, string feature, string tranOfPrev, string tranOfNew, bool AddBeforePrev)
         {
             if (posture == null) posture = new List<Info_Scene>();
             var info = this.Files.FirstOrDefault(x => x.Item1.Contains(feature));
             if (info != null)
             {
+                string itemgeneric = info.Item1.Split(',')[1];
                 var newFeature = this.ToSceneInfo(info);
                 var oldFeature = posture.Where(x => x.Tags.Contains(itemgeneric)).OrderBy(x => x.Z).FirstOrDefault();
-                if (removeAllSimilar)
-                {                   
-                    posture.RemoveAll(x => x.Tags.Contains(itemgeneric));
-                }
-                else
-                {
-                    posture.RemoveAll(x => x.Tags.Contains(feature));
-                }
+                posture.RemoveAll(x => x.Tags.Contains(itemgeneric));
                 if (!string.IsNullOrEmpty(tranOfNew))
                 {
                     newFeature.T = tranOfNew;
@@ -61,9 +87,9 @@ namespace StoGenerator
 
                 if (AddBeforePrev)
                     posture.Add(newFeature);
-                if (removeAllSimilar)
+                if (oldFeature != null)
                 {
-                    if (oldFeature != null && (oldFeature.File != newFeature.File)) // do not add same feature
+                    if (oldFeature.File != newFeature.File)// do not add same feature
                     {
                         oldFeature.O = "100";
                         oldFeature.T = tranOfPrev;
@@ -72,70 +98,33 @@ namespace StoGenerator
                 }
                 if (!AddBeforePrev)
                     posture.Add(newFeature);
-            }
-            return posture;
-        }
-        public List<Info_Scene> AddBlink(List<Info_Scene> posture, string eyes)
-        {
-            return SetFeature(posture, eyes, Generic.EyesGeneric.ToString(), null, Trans.Eyes_Blink, false,false);
-        }
-        public List<Info_Scene> WoreOutfit(List<Info_Scene> posture, string pose, string outfit, string tranOfPrev)
-        {
-            if (posture == null) posture = new List<Info_Scene>();
-            var info = this.Files.FirstOrDefault(x => x.Item1.Contains(outfit) && x.Item1.Contains(pose));
-            if (info != null)
-            {
-                var newfigure = this.ToSceneInfo(info);
-                var oldFigure = posture.Where(x => x.Tags.Contains(Figure.Full.ToString()) && !x.Tags.Contains(pose)).OrderBy(x => x.Z).FirstOrDefault();
-                posture.RemoveAll(x => x.Tags.Contains(Figure.Full.ToString()));
-                posture.Insert(0, newfigure);
-                if (oldFigure != null && (oldFigure.File != newfigure.File)) // do not add same feature
-                {                   
-                    oldFigure.O = "100";
-                    oldFigure.T = tranOfPrev;
-                    posture.Add(oldFigure);
+                var figure = posture.Where(x => x.Tags.Contains(Generic.FigureGeneric.ToString())).FirstOrDefault();
+                if (figure != null)
+                {
+                    posture.ForEach(x =>
+                    {
+                        x.Group = figure.Group;
+                        x.Queue = figure.Queue;
+                        x.S = figure.S;
+                        x.X = figure.X;
+                        x.Y = figure.Y;
+                    });
+
                 }
-               
             }
             return posture;
         }
-        //internal void AddToStory(StoryBase story, List<Info_Scene> posture, int startLevel, bool active)
-        //{
-
-        //    foreach (var item in posture)
-        //    {
-        //        item.Z = (startLevel++).ToString();
-        //        item.Group = StoryBase.currentGroup;
-        //        item.Queue = StoryBase.currentQueue;
-        //        item.Active = active;
-        //        story.SceneInfos.Add(item);
-        //    }
-        //}
-        internal List<Info_Scene> ResetPosture(List<Info_Scene> posture)
-        {
-            List<Info_Scene> result = new List<Info_Scene>();
-            foreach (var item in posture)
-            {
-                var d = Info_Scene.GenerateCopy(item);
-                d.T = null; 
-                result.Add(d);
-            }
-            return result;
-        }
-
-
-
         public List<Info_Scene> GetFace(List<Info_Scene> posture, string eyes, string mouth, string blink)
         {
             if (posture == null) posture = new List<Info_Scene>();
-            posture = SetFeature(posture, eyes, Generic.EyesGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
-            posture = SetFeature(posture, mouth, Generic.MouthGeneric.ToString(), Trans.Dissapearing(1000), null, true, true);
+            posture = SetFeature(posture, eyes, Trans.Dissapearing(1000), null, true);
+            posture = SetFeature(posture, mouth, Trans.Dissapearing(1000), null, true);
             if (!string.IsNullOrEmpty(blink))
             {
                 AddBlink(posture, blink);
                 posture.Last().O = "100";
             }
-            var figure = posture.Where(x => x.Tags.Contains(Figure.Full.ToString())).FirstOrDefault();
+            var figure = posture.Where(x => x.Tags.Contains(Generic.FigureGeneric.ToString())).FirstOrDefault();
             if (figure != null)
             {
                 posture.ForEach(x =>
@@ -151,5 +140,39 @@ namespace StoGenerator
 
             return posture;
         }
+        public List<Info_Scene> GetFigure(List<Info_Scene> posture, string outfit, string tranOfPrev)
+        {
+            if (posture == null) posture = new List<Info_Scene>();
+            var info = this.Files.FirstOrDefault(x => x.Item1.Contains(outfit));
+            if (info != null)
+            {
+                var newfigure = this.ToSceneInfo(info);
+                var oldFigure = posture.Where(x => x.Tags.Contains(Generic.FigureGeneric.ToString())).OrderBy(x => x.Z).FirstOrDefault();
+                posture.RemoveAll(x =>
+                x.Tags.Contains(Generic.FigureGeneric.ToString())
+                ||
+                (x.Tags.Contains(Generic.FeatureGeneric.ToString())));
+                posture.Insert(0, newfigure);
+                if (oldFigure != null) // do not add same feature
+                {
+                    posture.ForEach(x =>
+                    {
+                        x.Group = oldFigure.Group;
+                        x.Queue = oldFigure.Queue;
+                        x.S = oldFigure.S;
+                        x.X = oldFigure.X;
+                        x.Y = oldFigure.Y;
+                    });
+                    if (oldFigure.File != newfigure.File)
+                    {
+                        oldFigure.O = "100";
+                        oldFigure.T = tranOfPrev;
+                        posture.Add(oldFigure);
+                    }
+                }
+            }
+            return posture;
+        }
+
     }
 }

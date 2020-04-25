@@ -125,6 +125,16 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 }
             }
         }
+        protected List<Info_Scene> PullCadreFromScene(CadreController proc, int cadreId)
+        {
+            List<Info_Scene> result = proc.Scene.CadreDataList[cadreId].OriginalInfo;
+            currentGroup = result.First().Group;
+            currentQueue = result.First().Queue;
+            proc.Cadres.RemoveAt(cadreId);
+            proc.Scene.CadreDataList.RemoveAt(cadreId);
+            RemoveGroupAt(cadreId);
+            return result;
+        }
         // MENU
         public MenuCreatorDelegate GetMenuCreator()
         {

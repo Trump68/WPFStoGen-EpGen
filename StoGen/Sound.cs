@@ -18,7 +18,7 @@ namespace StoGenerator
         {
             Storage.Clear();
             Sound var = new Sound("Печальная тема 01", "BGM");
-            var.Files.Add(new Tuple<string, string>(null, @"d:\!Sound\NTRPG\0014-kanashimi.mp3"));
+            var.Files.Add(new Tuple<string, string, string, string>(null, @"d:\!Sound\NTRPG\0014-kanashimi.mp3",null, null));
             Storage.Add(var);
         }
 

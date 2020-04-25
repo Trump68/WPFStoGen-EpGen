@@ -13,7 +13,7 @@ namespace StoGenerator
     {
         public string Name { set; get; } = "Default Name";
         public string Type { set; get; } = "Default Type";
-        public List<Tuple<string, string>> Files { set; get; } = new List<Tuple<string, string>>();
+        public List<Tuple<string, string, string, string>> Files { set; get; } = new List<Tuple<string, string, string, string>>();
         public static List<T> Storage { set; get; } = new List<T>();
         public BaseGeneratorItem(string name, string type)
         {
@@ -29,7 +29,7 @@ namespace StoGenerator
             Info_Scene result = null;
             if (Files.Any())
             {
-                Tuple<string, string> file = null;
+                Tuple<string, string, string, string> file = null;
                 if (!string.IsNullOrEmpty(spec))
                 {
                     file = Files.FirstOrDefault(x => x.Item1 == spec);
@@ -45,7 +45,7 @@ namespace StoGenerator
             }
             return result;
         }
-        protected virtual Info_Scene ToSceneInfo(Tuple<string, string> item)
+        protected virtual Info_Scene ToSceneInfo(Tuple<string, string, string, string> item)
         {
             Info_Scene result = new Info_Scene();
             result.File = item.Item2;
