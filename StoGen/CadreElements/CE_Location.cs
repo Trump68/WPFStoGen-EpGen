@@ -32,6 +32,13 @@ namespace StoGenerator.CadreElements
             story.IncrementGroup();
             return infos;
         }
+        public static List<Info_Scene> Get(List<Info_Scene> posture, string name, string spec)
+        {
+            if (posture == null)
+                posture = new List<Info_Scene>();
+            posture.AddRange(CE_Location.Get(name, spec));
+            return posture;
+        }
         public static List<Info_Scene> AddWithMusic(StoryBase story, string name, string spec, string musicname, string musicspec)
         {
             List<Info_Scene> infos = new List<Info_Scene>();

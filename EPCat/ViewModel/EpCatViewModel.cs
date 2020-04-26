@@ -145,16 +145,16 @@ namespace EPCat
                 _CurrentCombinedScene = value;
             }
         }
-        StoryBase _Scenario;
-        public StoGenerator.StoryBase Story
+        StoryBase _Story;
+        public StoryBase Story
         {
             get
             {
-                return _Scenario;
+                return _Story;
             }
             set
             {
-                _Scenario = value;
+                _Story = value;
             }
         }
 
@@ -555,7 +555,8 @@ namespace EPCat
         {            
             List<string> clipsinstr = new List<string>(File.ReadAllLines(fileName));
             this.Story = null;
-            Story001 scen = new Story001();
+            //var scen = new Story001();
+            var scen = new Works_Momofuki_Rio();
             scen.LoadFrom(clipsinstr);
             this.Story = scen;
             this.Scenes = this.Story.SceneInfos;

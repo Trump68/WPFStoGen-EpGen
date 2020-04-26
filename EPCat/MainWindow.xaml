@@ -445,8 +445,9 @@
                                         <dxg:GridColumn FieldName="Queue" IsSmart="True" Width="200" GroupIndex="0"/>
                                         <dxg:GridColumn FieldName="Group" IsSmart="True" Width="90" SortOrder="Ascending" GroupIndex="1" SortIndex="1"/>
                                         <dxg:GridColumn FieldName="Description" IsSmart="True"  Width="450"/>
+                                        <dxg:GridColumn FieldName="Story" IsSmart="True" Width="400"/>
                                         <dxg:GridColumn FieldName="File" IsSmart="True" Width="5"/>
-                                        <dxg:GridColumn FieldName="Story" IsSmart="True" Width="5"/>
+
                                     </dxg:GridControl>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutGroup Name="SceneProps" View="Group" Orientation="Vertical" Padding="0,0">
@@ -546,54 +547,54 @@
                                      LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
                                 <dxlc:LayoutGroup Name="ScenarioProps" View="Group" Orientation="Vertical" Padding="0,0">
                                     <dxlc:LayoutItem Label="Name" FontWeight="ExtraBold">
-                                        <TextBox FontWeight="Bold" TextWrapping="WrapWithOverflow" Foreground="Blue" Text="{Binding Scenario.Name}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        <TextBox FontWeight="Bold" TextWrapping="WrapWithOverflow" Foreground="Blue" Text="{Binding Story.Name}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                     </dxlc:LayoutItem>
                                     <dxlc:LayoutItem Label="File name">
-                                        <TextBox Text="{Binding Scenario.FileName}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        <TextBox Text="{Binding Story.FileName}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                     </dxlc:LayoutItem>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                         <dxlc:LayoutItem Label="Fm">
-                                            <TextBox Text="{Binding Scenario.Female}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            <TextBox Text="{Binding Story.Female}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                         <dxlc:LayoutItem Label="Garment">
-                                            <TextBox Text="{Binding Scenario.Fgarment}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            <TextBox Text="{Binding Story.Fgarment}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                         <dxlc:LayoutItem Label="Ml">
-                                            <TextBox Text="{Binding Scenario.Male}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            <TextBox Text="{Binding Story.Male}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                         <dxlc:LayoutItem Label="Garment">
-                                            <TextBox Text="{Binding Scenario.Mgarment}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            <TextBox Text="{Binding Story.Mgarment}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
                                     <dxlc:LayoutItem Label="Location" >
-                                        <TextBox TextWrapping="WrapWithOverflow" Text="{Binding Scenario.Location}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        <TextBox TextWrapping="WrapWithOverflow" Text="{Binding Story.Location}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                     </dxlc:LayoutItem>
                                     <dxlc:LayoutItem Label="Action" >
-                                        <TextBox TextWrapping="WrapWithOverflow" Text="{Binding Scenario.Action}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        <TextBox TextWrapping="WrapWithOverflow" Text="{Binding Story.Action}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                     </dxlc:LayoutItem>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                         <dxlc:LayoutItem Label="Kind">
-                                            <TextBox Text="{Binding Scenario.Kind}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            <TextBox Text="{Binding Story.Kind}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                         <dxlc:LayoutItem Label="Category">
-                                            <TextBox Text="{Binding Scenario.Category}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            <TextBox Text="{Binding Story.Category}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                         <dxlc:LayoutItem Label="Variant">
-                                            <TextBox Text="{Binding Scenario.Variant}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            <TextBox Text="{Binding Story.Variant}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
 
                                     <dxlc:LayoutItem Label="Stopwords" >
-                                        <TextBox TextWrapping="WrapWithOverflow" Text="{Binding Scenario.StopWords}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        <TextBox TextWrapping="WrapWithOverflow" Text="{Binding Story.StopWords}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
                                     </dxlc:LayoutItem>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                         <dxlc:LayoutItem Label="Description" LabelPosition="Top">
                                             <dxe:TextEdit MaxHeight="320"
                                           ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                          TextWrapping="NoWrap" AcceptsReturn="True" Text="{Binding Scenario.Description}" />
+                                          TextWrapping="NoWrap" AcceptsReturn="True" Text="{Binding Story.Description}" />
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
@@ -601,7 +602,7 @@
                                             <dxe:TextEdit MaxHeight="320"
                                           ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                          TextWrapping="NoWrap"  AcceptsReturn="True" Text="{Binding Scenario.RawParameters}" />
+                                          TextWrapping="NoWrap"  AcceptsReturn="True" Text="{Binding Story.RawParameters}" />
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
                                 </dxlc:LayoutGroup>

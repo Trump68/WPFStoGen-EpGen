@@ -41,15 +41,16 @@ DefVisFile =
 //Other
 PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
 
-           
-           
-            
 
-            Story001 story = new Story001();
-            //StoryTest story = new StoryTest();
+
+
+
+            //var story = new Story001();
+            //var story = new StoryTest();
+            var story = new Works_Momofuki_Rio();
             story.Name = name;
             story.FileName = name;
-            story.RawParameters = rawparameters;
+            //story.RawParameters = rawparameters;
 
             story.Generate("001", "0001.001.001");
 

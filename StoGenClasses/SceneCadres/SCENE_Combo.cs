@@ -165,6 +165,12 @@ namespace StoGen.Classes.Data.Games
                     this.DefaultSceneText.FontStyle = int.Parse(copytitle.R);
                 if (!string.IsNullOrEmpty(copytitle.F))
                     this.DefaultSceneText.FontSize = int.Parse(copytitle.F);
+                if (!string.IsNullOrEmpty(copytitle.S))
+                    this.DefaultSceneText.Shift = int.Parse(copytitle.S);
+                if (!string.IsNullOrEmpty(copytitle.X))
+                    this.DefaultSceneText.Width = int.Parse(copytitle.X);
+                if (!string.IsNullOrEmpty(copytitle.Y))
+                    this.DefaultSceneText.Size = int.Parse(copytitle.Y);
             }
 
             // try to get text from kind 4

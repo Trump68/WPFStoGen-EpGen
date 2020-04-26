@@ -24,7 +24,11 @@ namespace StoGenerator
             BlushGeneric,
             BlinkGeneric,
             WeddingRingGeneric,
-            PregnantTammyGeneric
+            PregnantTammyGeneric,
+            PantyGeneric,
+            BraGeneric,
+            PantyhoseGeneric,
+            BluseGeneric
         }
         public enum Feature
         {
@@ -32,7 +36,12 @@ namespace StoGenerator
             FeatureBlush,
             FeatureNipples,
             WeddingRing,
-            PregnantTammy
+            PregnantTammy,
+            PregnantPanty,
+            NormalPanty,
+            NormalBra,
+            PantyhoseNormal,
+            BluseNormal
         }
         public enum Poses
         {
@@ -57,17 +66,7 @@ namespace StoGenerator
         {
             return SetFeature(posture, eyes, null, Trans.Eyes_Blink, false);
         }
-        internal List<Info_Scene> ResetPosture(List<Info_Scene> posture)
-        {
-            List<Info_Scene> result = new List<Info_Scene>();
-            foreach (var item in posture)
-            {
-                var d = Info_Scene.GenerateCopy(item);
-                d.T = null;
-                result.Add(d);
-            }
-            return result;
-        }
+
 
 
         public List<Info_Scene> SetFeature(List<Info_Scene> posture, string feature, string tranOfPrev, string tranOfNew, bool AddBeforePrev)
@@ -82,6 +81,7 @@ namespace StoGenerator
                 posture.RemoveAll(x => x.Tags.Contains(itemgeneric));
                 if (!string.IsNullOrEmpty(tranOfNew))
                 {
+                    newFeature.O = "0";
                     newFeature.T = tranOfNew;
                 }
 
@@ -105,9 +105,12 @@ namespace StoGenerator
                     {
                         x.Group = figure.Group;
                         x.Queue = figure.Queue;
-                        x.S = figure.S;
-                        x.X = figure.X;
-                        x.Y = figure.Y;
+                        if (x.Kind == 0)
+                        {
+                            x.S = figure.S;
+                            x.X = figure.X;
+                            x.Y = figure.Y;
+                        }
                     });
 
                 }
@@ -131,9 +134,12 @@ namespace StoGenerator
                 {
                     x.Group = figure.Group;
                     x.Queue = figure.Queue;
-                    x.S = figure.S;
-                    x.X = figure.X;
-                    x.Y = figure.Y;
+                    if (x.Kind == 0)
+                    {
+                        x.S = figure.S;
+                        x.X = figure.X;
+                        x.Y = figure.Y;
+                    }
                 });
 
             }
@@ -159,9 +165,12 @@ namespace StoGenerator
                     {
                         x.Group = oldFigure.Group;
                         x.Queue = oldFigure.Queue;
-                        x.S = oldFigure.S;
-                        x.X = oldFigure.X;
-                        x.Y = oldFigure.Y;
+                        if (x.Kind == 0)
+                        {
+                            x.S = oldFigure.S;
+                            x.X = oldFigure.X;
+                            x.Y = oldFigure.Y;
+                        }
                     });
                     if (oldFigure.File != newfigure.File)
                     {

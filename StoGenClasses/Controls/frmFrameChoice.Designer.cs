@@ -73,6 +73,7 @@
             // Grid
             // 
             this.Grid.DataSource = this.BS;
+            this.Grid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Grid.Location = new System.Drawing.Point(2, 26);
             this.Grid.MainView = this.gridView1;
             this.Grid.Name = "Grid";
@@ -140,12 +141,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(857, 685);
             this.Controls.Add(this.layoutControl1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Location = new System.Drawing.Point(1066, 0);
             this.Name = "frmFrameChoice";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Opacity = 0.7D;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Options Menu";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmFrameChoice_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

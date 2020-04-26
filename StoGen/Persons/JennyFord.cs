@@ -77,22 +77,100 @@ namespace StoGenerator.Persons
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}", $@"{ImagePath}Figure001_1.png","Голая","Поза 1")); ++i;
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
                 $@"{Feature.FeatureFigure}{1},{Feature.FeatureNipples}{1}",
-                "Голая,соски", "Поза 1")); ++i;
+                "Соски", "Поза 1,голая")); ++i;
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}", 
                 $@"{Feature.FeatureFigure}{1},{Feature.FeatureNipples}{1},{Feature.WeddingRing}{1}",
-                "Голая,соски,обр.кольцо(г)", "Поза 1")); ; ++i;
+                "Соски,обр.кольцо(г)", "Поза 1,голая")); ; ++i;
+
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.FeatureNipples}{1},{Feature.WeddingRing}{1},{Feature.NormalPanty}{1}",
+                "Соски,обр.кольцо(г),трусики 1(кружева)", "Поза 1,в трусиках")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.FeatureNipples}{1},{Feature.WeddingRing}{1},{Feature.NormalPanty}{2}",
+                "Соски,обр.кольцо(г),трусики 2(бикини)", "Поза 1,в трусиках")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.FeatureNipples}{1},{Feature.WeddingRing}{1},{Feature.NormalPanty}{3}",
+                "Соски,обр.кольцо(г),трусики 3(кружева)", "Поза 1,в трусиках")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.FeatureNipples}{1},{Feature.WeddingRing}{1},{Feature.NormalPanty}{4}",
+                "Соски,обр.кольцо(г),трусики 4(кружева)", "Поза 1,в трусиках")); ; ++i;
+
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.WeddingRing}{1},{Feature.NormalPanty}{1},{Feature.BluseNormal}{1}",
+                "Обр.кольцо(г),трусики 1(кружева),блузка 1", "Поза 1,в трусиках и блузке")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.WeddingRing}{1},{Feature.NormalPanty}{2},{Feature.BluseNormal}{1}",
+                "Обр.кольцо(г),трусики 2(бикини),блузка 1", "Поза 1,в трусиках и блузке")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.WeddingRing}{1},{Feature.NormalPanty}{3},{Feature.BluseNormal}{1}",
+                "Обр.кольцо(г),трусики 3(кружева),блузка 1", "Поза 1,в трусиках и блузке")); ; ++i;
+
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.FeatureNipples}{1},{Feature.WeddingRing}{1},{Feature.PantyhoseNormal}{1}",
+                "Соски,обр.кольцо(г),колготки 1", "Поза 1,в колготках")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.FeatureNipples}{1},{Feature.WeddingRing}{1},{Feature.PantyhoseNormal}{2}",
+                "Соски,обр.кольцо(г),колготки 2", "Поза 1,в колготках")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.FeatureNipples}{1},{Feature.WeddingRing}{1},{Feature.PantyhoseNormal}{3}",
+                "Соски,обр.кольцо(г),колготки 3", "Поза 1,в колготках")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.FeatureNipples}{1},{Feature.WeddingRing}{1},{Feature.PantyhoseNormal}{4}",
+                "Соски,обр.кольцо(г),колготки 4", "Поза 1,в колготках")); ; ++i;
+
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.WeddingRing}{1},{Feature.NormalBra}{1}",
+                "Обр.кольцо(г),бра 1(кружева)", "Поза 1,в бра")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.WeddingRing}{1},{Feature.NormalBra}{2}",
+                "Обр.кольцо(г),бра 2(бикини)", "Поза 1,в бра")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.WeddingRing}{1},{Feature.NormalBra}{3}",
+                "Обр.кольцо(г),бра 3(кружева)", "Поза 1,в бра")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.WeddingRing}{1},{Feature.NormalBra}{4}",
+                "Обр.кольцо(г),бра 4(кружева)", "Поза 1,в бра")); ; ++i;
+
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.WeddingRing}{1},{Feature.NormalBra}{1},{Feature.NormalPanty}{1}",
+                "Обр.кольцо(г),бра,трусики 1(кружева)", "Поза 1,в бра и трусиках")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.WeddingRing}{1},{Feature.NormalBra}{2},{Feature.NormalPanty}{2}",
+                "Обр.кольцо(г),бра,трусики 2(бикини)", "Поза 1,в бра и трусиках")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.WeddingRing}{1},{Feature.NormalBra}{3},{Feature.NormalPanty}{3}",
+                "Обр.кольцо(г),бра,трусики 3(кружева)", "Поза 1,в бра и трусиках")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.WeddingRing}{1},{Feature.NormalBra}{4},{Feature.NormalPanty}{4}",
+                "Обр.кольцо(г),бра,трусики 4(кружева)", "Поза 1,в бра и трусиках")); ; ++i;
+
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
                 $@"{Feature.FeatureFigure}{1},{Feature.FeatureNipples}{1},{Feature.WeddingRing}{1},{Feature.PregnantTammy}{1}",
-                "Голая,соски,обр.кольцо(г),беременная", "Поза 1")); ; ++i;
+                "Соски,обр.кольцо(г)", "Поза 1,беременная,голая")); ; ++i;
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",
+                $@"{Feature.FeatureFigure}{1},{Feature.FeatureNipples}{1},{Feature.WeddingRing}{1},{Feature.PregnantTammy}{1},{Feature.PregnantPanty}{1}",
+                "Соски,обр.кольцо(г),трусики 1(кружева)", "Поза 1,беременная,в трусиках")); ; ++i;
+
+
 
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.BlushGeneric},{Feature.FeatureBlush}{1}", $@"{ImagePath}Blush_1_001.png", null, $"{Poses.Pose}{1}"));
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.NipplesGeneric},{Feature.FeatureNipples}{1}", $@"{ImagePath}Nipple001_1.png", null, $"{Poses.Pose}{1}"));
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.WeddingRingGeneric},{Feature.WeddingRing}{1}", $@"{ImagePath}FingerRing001_1.png", null, $"{Poses.Pose}{1}"));
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.PregnantTammyGeneric},{Feature.PregnantTammy}{1}", $@"{ImagePath}PregnantTammyNaked001_1.png", null, $"{Poses.Pose}{1}"));
-            
-            //person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Poses.Pose}{1},{Outfit.Nightgown}",$@"{ImagePath}Nightgown1.png",null,null));
-            //person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Poses.Pose}{2},{Outfit.Nightgown}",$@"{ImagePath}Nightgown2.png",null,null));
-
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.PantyGeneric},{Feature.PregnantPanty}{1}", $@"{ImagePath}PregnantPanty001_1.png", null, $"{Poses.Pose}{1}"));
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.PantyGeneric},{Feature.NormalPanty}{1}", $@"{ImagePath}Panty001_1.png", null, $"{Poses.Pose}{1}"));
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.PantyGeneric},{Feature.NormalPanty}{2}", $@"{ImagePath}Panty002_1.png", null, $"{Poses.Pose}{1}"));
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.PantyGeneric},{Feature.NormalPanty}{3}", $@"{ImagePath}Panty003_1.png", null, $"{Poses.Pose}{1}"));
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.PantyGeneric},{Feature.NormalPanty}{4}", $@"{ImagePath}Panty004_1.png", null, $"{Poses.Pose}{1}"));
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.BraGeneric},{Feature.NormalBra}{1}", $@"{ImagePath}Bra001_1.png", null, $"{Poses.Pose}{1}"));
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.BraGeneric},{Feature.NormalBra}{2}", $@"{ImagePath}Bra002_1.png", null, $"{Poses.Pose}{1}"));
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.BraGeneric},{Feature.NormalBra}{3}", $@"{ImagePath}Bra003_1.png", null, $"{Poses.Pose}{1}"));
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.BraGeneric},{Feature.NormalBra}{4}", $@"{ImagePath}Bra004_1.png", null, $"{Poses.Pose}{1}"));
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.PantyhoseGeneric},{Feature.PantyhoseNormal}{1}", $@"{ImagePath}Pantyhose001_1.png", null, $"{Poses.Pose}{1}"));
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.PantyhoseGeneric},{Feature.PantyhoseNormal}{2}", $@"{ImagePath}Pantyhose002_1.png", null, $"{Poses.Pose}{1}"));
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.PantyhoseGeneric},{Feature.PantyhoseNormal}{3}", $@"{ImagePath}Pantyhose003_1.png", null, $"{Poses.Pose}{1}"));
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.PantyhoseGeneric},{Feature.PantyhoseNormal}{4}", $@"{ImagePath}Pantyhose004_1.png", null, $"{Poses.Pose}{1}"));
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.BluseGeneric},{Feature.BluseNormal}{1}", $@"{ImagePath}Bluse001_1.png", null, $"{Poses.Pose}{1}"));
 
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},,{Generic.MouthGeneric},{Mouth.Mouth1_67}", $@"{ImagePath}Mouth_1_067.png",null,null));
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.MouthGeneric},{Mouth.Mouth1_68}", $@"{ImagePath}Mouth_1_068.png",null, $"{Poses.Pose}{1}"));

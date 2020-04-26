@@ -14,7 +14,24 @@ namespace StoGen.Classes.Scene
     {
         public SCENARIO()
         {
-
+            RawParameters = GetParameters();
+            AssignRawParameters();
+        }
+        protected virtual string GetParameters()
+        {
+            return
+@"//Text
+//DefTextAlignH: 0-Left, 1-Right, 2-Center, 3-Justify
+//DefTextAlignV: 0-Top, 1-Center, 2-Bottom
+//DefTextBck: $$WHITE$$
+DefTextSize=200;DefTextShift=30;DefTextWidth=1800;DefFontSize=40;DefFontColor=Cyan;DefTextAlignH=2;DefTextAlignV=1;DefTextBck=Cyan;DefTextBck=$$WHITE$$
+//Visual
+//DefVisLM: 0-next cadre, 1-loop, 2-stop, 3- backward?
+DefVisX = 700; DefVisY = 0; DefVisSize = 900; DefVisSpeed = 100; DefVisLM = 1; DefVisLC = 1
+//DefVisX=0;DefVisY=0;DefVisSize=-3;DefVisSpeed=100;DefVisLM=1;DefVisLC=1
+DefVisFile =
+//Other
+PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         }
         private string _Id;
         public string Id

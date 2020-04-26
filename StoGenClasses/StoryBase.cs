@@ -22,10 +22,26 @@ namespace StoGenerator
     }
     public class StoryBase : SCENARIO
     {
+        protected Info_Scene FCurrentPosition = new Info_Scene();
+        protected Info_Scene CurrentPerson;
+        protected List<Info_Scene> F_Posture;
         public StoryBase() : base()
         {
+
         }
-        protected string rawparameters =
+        protected void MakeTitle()
+        {
+            Info_Scene title = new Info_Scene();
+            title.Kind = 1;
+            //title.File = "$$WHITE$$";
+            title.Queue = currentQueue;
+            title.Group = currentGroup;
+            SceneInfos.Add(title);
+            IncrementGroup();
+        }
+        protected override string GetParameters()
+        {
+            return
 @"//Text
 //DefTextAlignH: 0-Left, 1-Right, 2-Center, 3-Justify
 //DefTextAlignV: 0-Top, 1-Center, 2-Bottom
@@ -38,7 +54,7 @@ DefVisX = 700; DefVisY = 0; DefVisSize = 900; DefVisSpeed = 100; DefVisLM = 1; D
 DefVisFile =
 //Other
 PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
-
+        }
         public static string currentQueue;
         public static string currentGroup;
         public string Name { set; get; }
@@ -59,8 +75,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         {
             currentGroup = group;
             currentQueue = queue;
-            RawParameters = rawparameters;
-            AssignRawParameters();
+
         }
         protected virtual void FillData()
         {
@@ -133,6 +148,61 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             proc.Cadres.RemoveAt(cadreId);
             proc.Scene.CadreDataList.RemoveAt(cadreId);
             RemoveGroupAt(cadreId);
+            return result;
+        }
+        protected void AddText(string story, Teller who, bool slow, bool active, int? fontSize = null)
+        {
+            string tran = "W..500>O.B.400.100";
+            string fs = null;
+            if (fontSize.HasValue)
+                fs = $"{fontSize.Value}";
+            if (who == Teller.Female)
+            {
+                if (slow)
+                    tran = "W..1500>O.B.400.100";
+                SceneInfos.Add(new Info_Scene(1)
+                { Active = active, Story = story, Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0", Z = "Cyan", R = "2" });
+            }
+            else if (who == Teller.Male)
+            {
+                SceneInfos.Add(new Info_Scene(1)
+                { Active = active, Story = $"{story}", Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0", Z = "Coral", R = "2" });
+            }
+            else if (who == Teller.MaleThoughts)
+            {
+                SceneInfos.Add(new Info_Scene(1)
+                { Active = active, Story = $"[{story}]", Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0", Z = "White",  R = "3" });
+            }
+        }
+        protected void MakeNextCadre(Teller who, string story)
+        {
+            MakeNextCadre(who, null, story);
+        }
+        protected void MakeNextCadre(Teller who, int? fontSize, string story)
+        {
+            F_Posture.ForEach(x =>
+            {
+                if (x.Kind == 0)
+                {
+                    x.S = FCurrentPosition.S;
+                    x.Y = FCurrentPosition.Y;
+                    x.X = FCurrentPosition.X;
+                }
+            });
+            AddScenes(F_Posture, 1, false);
+            AddText(story, who, false, false);
+            F_Posture = ResetPosture(F_Posture);
+            IncrementGroup();
+        }
+        protected List<Info_Scene> ResetPosture(List<Info_Scene> posture)
+        {
+            List<Info_Scene> result = new List<Info_Scene>();
+            foreach (var item in posture)
+            {
+                var d = Info_Scene.GenerateCopy(item);
+                d.T = null;
+                result.Add(d);
+            }
             return result;
         }
         // MENU

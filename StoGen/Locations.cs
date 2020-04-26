@@ -70,6 +70,30 @@ namespace StoGenerator
             //муниципальное здание
             Add_MunicipalBuilding001();
 
+            //небеса
+            Add_Sky001();
+
+            //романтика
+            Add_Romantic001();
+        }
+        private static void Add_Sky001()
+        {
+            Location var = new Location("Sky 001", "Sky");
+            var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}SIMPLE\SKY\089.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("explode", $@"{ImagePath}SIMPLE\SKY\090.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("night", $@"{ImagePath}SIMPLE\SKY\091.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}SIMPLE\SKY\092.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("stars", $@"{ImagePath}SIMPLE\SKY\093.jpg", null, null));
+            Storage.Add(var);
+        }
+        private static void Add_Romantic001()
+        {
+            Location var = new Location("Romantic 001", "Romantic");
+            var.Files.Add(new Tuple<string, string, string, string>("Pink Striped with Bow", $@"{ImagePath}SIMPLE\ROMANTIC\Pink_Striped_with_Bow.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("Cream Satin with Bow", $@"{ImagePath}SIMPLE\ROMANTIC\Cream_Satin_with_Bow.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("White Satin", $@"{ImagePath}SIMPLE\ROMANTIC\White_Satin.jpg", null, null));
+
+            Storage.Add(var);
         }
         private static void Add_Bedroom001()
         {
