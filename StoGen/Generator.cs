@@ -11,53 +11,32 @@ namespace StoGenerator
 {
     public static class Generator
     {
-        public static void MakeStory(string dir, string name)
+        public static string MakeScenario(string dir, string storyname)
         {
-            Location.InitDefaultLocations();
-            //Location.TestSave(Path.Combine(dir, "LocationList.txt"));
-            //Location.LoadFromFile(Path.Combine(dir, "LocationList.txt"));
-            Sound.InitDefaultSounds();
-            //Sound.TestSave(Path.Combine(dir, "SoundList.txt"));
-            //Sound.LoadFromFile(Path.Combine(dir, "SoundList.txt"));
 
-            //Person.TestSave(Path.Combine(dir, "PersonList.txt"));
-            //Person.LoadFromFile(Path.Combine(dir, "PersonList.txt"));
+            StoryBase story = null;
+            if (string.IsNullOrEmpty(storyname))
+                story = new Works_Momofuki_Rio(); //default
 
-            MakeScenario(dir, name);
+            else if(storyname == Works_Momofuki_Rio.StoryName)
+                story = new Works_Momofuki_Rio();
+            else if (storyname == Story001.StoryName)
+                story = new Story001();
+            else if (storyname == Person_Jenny_Ford.StoryName)
+                story = new Person_Jenny_Ford();
+
+
+            if (story != null)
+            {
+                Location.InitDefaultLocations();
+                Sound.InitDefaultSounds();
+                story.Generate("001", "0001.001.001");
+                story.SaveToFile(dir, Path.Combine(dir, $"TMP"));
+                return story.FileName;
+            }
+            return null;
         }
 
-        private static void MakeScenario(string dir, string name)
-        {
-            string rawparameters = @"//Text
-//DefTextAlignH: 0-Left, 1-Right, 2-Center, 3-Justify
-//DefTextAlignV: 0-Top, 1-Center, 2-Bottom
-//DefTextBck: $$WHITE$$
-DefTextSize=200;DefTextShift=30;DefTextWidth=1800;DefFontSize=30;DefFontColor=White;DefTextAlignH=2;DefTextAlignV=1;DefTextBck=$$WHITE$$
-//Visual
-//DefVisLM: 0-next cadre, 1-loop, 2-stop, 3- backward?
-DefVisX = 700; DefVisY = 0; DefVisSize = 900; DefVisSpeed = 100; DefVisLM = 1; DefVisLC = 1
-//DefVisX=0;DefVisY=0;DefVisSize=-3;DefVisSpeed=100;DefVisLM=1;DefVisLC=1
-DefVisFile =
-//Other
-PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
 
-
-
-
-
-            //var story = new Story001();
-            //var story = new StoryTest();
-            var story = new Works_Momofuki_Rio();
-            story.Name = name;
-            story.FileName = name;
-            //story.RawParameters = rawparameters;
-
-            story.Generate("001", "0001.001.001");
-
-
-            story.SaveToFile(dir, null);
-        }
-
-    
     }
 }

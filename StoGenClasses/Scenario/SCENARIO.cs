@@ -56,12 +56,6 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             set { _FileName = value; }
             get
             {
-                if (string.IsNullOrEmpty(_FileName))
-                {
-                    if (string.IsNullOrEmpty(Name))
-                        _FileName = Name;
-                    else _FileName = "Default";
-                }
                 return _FileName;
             }
         }

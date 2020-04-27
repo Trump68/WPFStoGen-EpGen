@@ -546,11 +546,19 @@ namespace EPCat
         }
         internal void SaveScenario()
         {
-            if (this.CurrentFolder == null) return;
-            this.Story.SaveToFile(this.CurrentFolder.ItemDirectory, this.CurrentFolder.ItemTempDirectory);             
+            this.Story.SaveToFile(this.StoryWorkDir, Path.Combine(this.StoryWorkDir,"TMP"));             
         }
 
-
+        public string StoryWorkDir
+        {
+            get
+            {
+                string d = @"e:\!STOGENDB\TEMP\";
+                if (Directory.Exists(d))
+                    return d;
+                return @"d:\temp";
+            }
+        }
         internal void LoadScenario(string fileName)
         {            
             List<string> clipsinstr = new List<string>(File.ReadAllLines(fileName));
@@ -570,9 +578,9 @@ namespace EPCat
 
         internal void ReloadScenario()
         {
-            if (this.CurrentFolder == null) return;
+            
             SaveScenario();
-            var dir = CurrentFolder.ItemDirectory;
+            var dir = StoryWorkDir;
             LoadScenario(Path.Combine(dir,$"{this.Story.FileName}.epcatsi"));
         }
 
@@ -609,10 +617,12 @@ namespace EPCat
             RaisePropertyChanged(() => this.RepeatedText);
         }
 
-        internal string  GoGenerateScenario(string name)
-        {            
-            Generator.MakeStory(CurrentFolder.ItemDirectory, name);
-            return Path.Combine(CurrentFolder.ItemDirectory,$"{name}.epcatsi");
+        internal string  GoGenerateScenario(string storyname)
+        {         
+            string filename = Generator.MakeScenario(StoryWorkDir, storyname);
+            if (string.IsNullOrEmpty(filename))
+                return null;
+            return Path.Combine(StoryWorkDir, $"{filename}.epcatsi");
         }
     }
 

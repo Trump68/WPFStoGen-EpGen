@@ -45,13 +45,9 @@
 
                 <dxlc:LayoutControl Orientation="Vertical" Margin="0" Padding="0">
                     <dxlc:LayoutGroup>
-                        <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="ShowVideoBtnGlobal" Content="Play" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ShowVideoBtn_Click" />
-                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left"/>
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="EditVideoBtnGlobal" Content="Edit" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnLoad_Click" />
-                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left"/>
 
                         <dxlc:LayoutItem HorizontalAlignment="Left">
                             <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" 
@@ -67,9 +63,7 @@
                             <dxe:CheckEdit x:Name="EditAllowed" Content="Edit" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Margin="0,0,0,0" Width="50">
-                            <dxe:CheckEdit x:Name="DeletingAllowed" Content="Delete" IsChecked="{Binding IsDeletingAllowed}" />
-                        </dxlc:LayoutItem>
+
                         <dxlc:LayoutItem Margin="0,0,0,0" Width="50">
                             <dxe:CheckEdit x:Name="SavingAllowed" Content="Save" IsChecked="{Binding IsSavingAllowed}" />
                         </dxlc:LayoutItem>
@@ -366,16 +360,16 @@
                             <dxlc:LayoutItem HorizontalAlignment="Left"/>
                             <dxlc:LayoutItem HorizontalAlignment="Left"/>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton  Content="Add Clip" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
+                                <dx:SimpleButton  Content="Add Clip" Width="80" Margin="5,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="AddSceneBtn" Content="Add" Width="45" Margin="100,4,0,0" HorizontalAlignment="Left" Click="AddSceneBtn_Click" />
+                                <dx:SimpleButton x:Name="AddSceneBtn" Content="Add" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopySceneBtn" Content="Copy" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopySceneBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="CopGrBtn" Content="CopyGr" Width="80" Margin="100,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn_Click" />
+                                <dx:SimpleButton x:Name="CopGrBtn" Content="CopyGr" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopGrBtn1" Content="CopyGr+1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn1_Click" />
@@ -384,7 +378,10 @@
                                 <dx:SimpleButton x:Name="CompileScenarioBtn" Content="Compile" Width="80" Margin="100,4,0,0" HorizontalAlignment="Left" Click="CompileScenarioBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="GoGenerateBtn2" Content="Go Generate" Width="120" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoGenerate_Click" />
+                                <dx:SimpleButton x:Name="GoGenerateBtn2" Content="Generate One" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoGenerate_Click" FontWeight="Bold" Foreground="#FF3F55B8" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="GoGenerateBtn3" Content="Generate Cur" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoGenerateDefault_Click" FontWeight="Bold" Background="#FF1DBB5E" Foreground="#FF1CD114" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Right">
                                 <dx:SimpleButton x:Name="ReloadFileBtn" Content="Reload" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ReloadScenarioFromFileBtn_Click" />
@@ -612,19 +609,6 @@
                     </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
-            </dx:DXTabItem>
-            <dx:DXTabItem Header="Generator">
-
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="GoGenerateBtn" Content="Go Generate" Width="120" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoGenerate_Click" />
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
-
-                </dxlc:LayoutGroup>
-
             </dx:DXTabItem>
             <dx:DXTabItem Header="Tools">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">

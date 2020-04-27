@@ -27,8 +27,7 @@ namespace StoGenerator.Stories
             FCurrentPosition.X = "400";
             FCurrentPosition.Y = "70";
         }
-        //private string FPersonName;
-
+        public static string StoryName = "Story001";
         protected JennyFord JFord;
 
 
@@ -388,23 +387,24 @@ namespace StoGenerator.Stories
                     int ms = 1000;
                     F_Posture = PullCadreFromScene(proc, proc.CadreId);
                     var feature = data as Tuple<string, string, string, string>;
-                    List<string> features = feature.Item2.Split(',').ToList();
-                    if (features.Count == 1)
-                    {
-                        F_Posture = JFord.GetFigure(F_Posture, feature.Item1, Trans.Dissapearing(ms));
-                    }
-                    else
-                    {
-                        foreach (var it in features)
-                        {
-                            if (it == features.First())
-                                F_Posture = JFord.GetFigure(F_Posture, it, Trans.Dissapearing(ms));
-                            else
-                            {              
-                                F_Posture = JFord.SetFeature(F_Posture, it, Trans.Dissapearing(ms), Trans.Appearing(ms), true);
-                            }
-                        }
-                    }                                    
+                    F_Posture = this.CombinePerson(F_Posture, feature, JFord, ms);
+                    //List<string> features = feature.Item2.Split(',').ToList();
+                    //if (features.Count == 1)
+                    //{
+                    //    F_Posture = JFord.GetFigure(F_Posture, feature.Item1, Trans.Dissapearing(ms));
+                    //}
+                    //else
+                    //{
+                    //    foreach (var it in features)
+                    //    {
+                    //        if (it == features.First())
+                    //            F_Posture = JFord.GetFigure(F_Posture, it, Trans.Dissapearing(ms));
+                    //        else
+                    //        {              
+                    //            F_Posture = JFord.SetFeature(F_Posture, it, Trans.Dissapearing(ms), Trans.Appearing(ms), true);
+                    //        }
+                    //    }
+                    //}                                    
                     AddScenes(F_Posture, 1, false);
                     proc.RefreshCurrentCadre();
                 };

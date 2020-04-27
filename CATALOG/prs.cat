@@ -2771,4 +2771,60 @@
     </Comments>
     <CommentsAsString />
   </EpItem>
+  <EpItem>
+    <GID>b412ffdc-f413-4a32-ad1d-ceac65adf110</GID>
+    <ItemPath>e:\!catalog\prs\!sto gen story\person_jenny_ford\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Person Jenny Ford</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>STORY</Variant>
+    <Kind>STOGEN</Kind>
+    <PARENT>Person Jenny Ford</PARENT>
+    <Size>0</Size>
+    <Comments />
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>290fa5a9-3092-4c2a-90e1-811d2c898e39</GID>
+    <ItemPath>e:\!catalog\prs\!sto gen story\works_momofuki_rio\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Momofuki Rio Works</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>STORY</Variant>
+    <Kind>STOGEN</Kind>
+    <Director>Momofuki Rio</Director>
+    <Studio>Momofuki Rio</Studio>
+    <PARENT>Momofuki Rio Works</PARENT>
+    <Size>0</Size>
+    <Comments />
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>b7facc1f-8888-47af-b220-fb4383382cd4</GID>
+    <ItemPath>e:\!catalog\prs\story\hcg - 01\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>HCG - 01</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>HCG - 01</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Variant>STORY</Variant>
+    <Kind>Manga</Kind>
+    <Director>HCG - 01</Director>
+    <Studio>HCG - 01</Studio>
+    <PARENT>HCG - 01</PARENT>
+    <Size>0</Size>
+    <Comments />
+    <CommentsAsString />
+  </EpItem>
 </ArrayOfEpItem>

@@ -12,6 +12,7 @@ namespace StoGenerator.Stories
 {
     public class Works_Momofuki_Rio : StoryBase
     {
+        public static string StoryName = "Momofuki Rio Works";
         protected ART_Momofuki_Rio Art;
         protected override string GetParameters()
         {
@@ -31,6 +32,8 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         }
         public Works_Momofuki_Rio() : base()
         {
+            this.Name = Works_Momofuki_Rio.StoryName;
+            this.FileName = this.Name;
             Art = ART_Momofuki_Rio.Load();
             FCurrentPosition.Z = "1";
             FCurrentPosition.S = "1200";
@@ -48,15 +51,11 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             int fs = 32;
             CE_Location.AddWithMusic(this, "Romantic 001", "Cream Satin with Bow", "Печальная тема 01", null);
 
-            for (int i = 1; i < 11; i++)
+            for (int i = 1; i <= 83; i++)
             {
                 F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{i}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
                 MakeNextCadre(Teller.Female, fs, @"Любимый, наша жизнь теперь сильно изменится.Завтра приезжает мой новый муж, чтобы предъявить свои права на меня.~И ты должен понять.что я могу спариваться только с ним.~~До тех пор, пока я не рожу ему 2 детей, а может и больше, если он так захочет.~~~Теперь мы не сможем видется часто, ведь Уложение Жезла и Браслета гласит что~'Новобрачная Жена всегда должна быть рядом со своим Альфа Супругом и готова для спаривания с ним в любое удобное тому время.'~При том, 'Альфа Супруг должен как можно чаще укладывать Новобрачную Жену на супружеское ложе и наполнять семенем до тех пор, пока она не понесет.'~~~ Милый, я сейчас люблю тебя еще сильнее, ведь ты даришь мне счастье. Я знаю что мы выдержим эти 2 года и будем вместе.");
             }
-
-            
-
-           
         }
     }
 }

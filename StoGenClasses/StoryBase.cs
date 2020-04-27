@@ -1,5 +1,6 @@
 ﻿using StoGen.Classes;
 using StoGen.Classes.Scene;
+using StoGen.Classes.Transition;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -204,6 +205,27 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 result.Add(d);
             }
             return result;
+        }
+        protected List<Info_Scene> CombinePerson(List<Info_Scene> posture, Tuple<string, string, string, string> feature, Person person, int ms)
+        {
+            List<string> features = feature.Item2.Split(',').ToList();
+            if (features.Count == 1)
+            {
+                posture = person.GetFigure(posture, feature.Item1, Trans.Dissapearing(ms));
+            }
+            else
+            {
+                foreach (var it in features)
+                {
+                    if (it == features.First())
+                        posture = person.GetFigure(posture, it, Trans.Dissapearing(ms));
+                    else
+                    {
+                        posture = person.SetFeature(posture, it, Trans.Dissapearing(ms), Trans.Appearing(ms), true);
+                    }
+                }
+            }
+            return posture;
         }
         // MENU
         public MenuCreatorDelegate GetMenuCreator()

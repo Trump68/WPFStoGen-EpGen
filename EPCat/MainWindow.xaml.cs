@@ -622,7 +622,7 @@ namespace EPCat
         private void LoadOneSceneFromFileBtn_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = System.IO.Path.GetDirectoryName((this.DataContext as EpCatViewModel).CurrentFolder.ItemPath);
+            openFileDialog.InitialDirectory = ViewModel.StoryWorkDir;
             openFileDialog.Filter = "Scenes|*.epcatsi";
             if (openFileDialog.ShowDialog() == true)
             {
@@ -643,7 +643,7 @@ namespace EPCat
 
         private void CompileScenarioBtn_Click(object sender, RoutedEventArgs e)
         {
-            SCENARIO.PackScenario(ViewModel.Story, ViewModel.CurrentFolder.ItemDirectory);
+            SCENARIO.PackScenario(ViewModel.Story, ViewModel.StoryWorkDir);
         }
         private void CopyGroupBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -662,8 +662,21 @@ namespace EPCat
 
         private void btnGoGenerate_Click(object sender, RoutedEventArgs e)
         {
-            var fn = ViewModel.GoGenerateScenario("TestScenario");
-            ViewModel.LoadScenario(fn);
+            GenerateScenario(null);
+        }
+        private void GenerateScenario(string name)
+        {
+            var fn = ViewModel.GoGenerateScenario(name);
+            if (!string.IsNullOrEmpty(fn))
+                    ViewModel.LoadScenario(fn);
+        }
+
+        private void btnGoGenerateDefault_Click(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.CurrentFolder != null)
+                GenerateScenario(ViewModel.CurrentFolder.Name);
+            else
+                GenerateScenario(null);
         }
     }
 }
