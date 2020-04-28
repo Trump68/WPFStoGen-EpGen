@@ -21,7 +21,7 @@ namespace StoGenerator.Stories
 //DefTextAlignH: 0-Left, 1-Right, 2-Center, 3-Justify
 //DefTextAlignV: 0-Top, 1-Center, 2-Bottom
 //DefTextBck: $$WHITE$$
-DefTextSize=1200;DefTextShift=1000;DefTextWidth=900;DefFontSize=32;DefFontColor=Cyan;DefTextAlignH=3;DefTextAlignV=1;DefTextBck=Cyan;DefTextBck=$$WHITE$$
+DefTextSize=300;DefTextShift=20;DefTextWidth=900;DefFontSize=32;DefFontColor=Cyan;DefTextAlignH=3;DefTextAlignV=1;DefTextBck=Cyan;DefTextBck=$$WHITE$$
 //Visual
 //DefVisLM: 0-next cadre, 1-loop, 2-stop, 3- backward?
 DefVisX = 700; DefVisY = 0; DefVisSize = 1200; DefVisSpeed = 100; DefVisLM = 1; DefVisLC = 1
@@ -48,7 +48,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         }
         protected override void FillData()
         {
-            int fs = 32;
+            int fs = 20;
             int ms = 1000;
             //CE_Location.AddWithMusic(this, "Romantic 001", "Cream Satin with Bow", "Печальная тема 01", null);
             foreach (var item in person.Files)
@@ -56,7 +56,9 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 if (item.Item1.Contains($"{Generic.FigureGeneric}"))
                 {
                     F_Posture = this.CombinePerson(F_Posture, item, person, ms);                  
-                    MakeNextCadre(Teller.Female, fs, @"");
+                    MakeNextCadre(Teller.Female, fs, $"{item.Item4}~~{item.Item3}");
+                    var title = F_Posture.Where(x => x.Kind == 1).FirstOrDefault();
+                    if (title != null) title.Description = item.Item4;
                 }
             }
         }

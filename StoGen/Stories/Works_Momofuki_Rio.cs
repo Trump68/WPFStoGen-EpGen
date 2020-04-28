@@ -21,7 +21,7 @@ namespace StoGenerator.Stories
 //DefTextAlignH: 0-Left, 1-Right, 2-Center, 3-Justify
 //DefTextAlignV: 0-Top, 1-Center, 2-Bottom
 //DefTextBck: $$WHITE$$
-DefTextSize=1200;DefTextShift=1000;DefTextWidth=900;DefFontSize=32;DefFontColor=Cyan;DefTextAlignH=3;DefTextAlignV=1;DefTextBck=Cyan;DefTextBck=$$WHITE$$
+DefTextSize=1200;DefTextShift=1000;DefTextWidth=900;DefFontSize=32;DefFontColor=#E74C3C;DefTextAlignH=3;DefTextAlignV=1;DefTextBck=Cyan;DefTextBck=$$WHITE$$
 //Visual
 //DefVisLM: 0-next cadre, 1-loop, 2-stop, 3- backward?
 DefVisX = 700; DefVisY = 0; DefVisSize = 1200; DefVisSpeed = 100; DefVisLM = 1; DefVisLC = 1
@@ -51,10 +51,30 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             int fs = 32;
             CE_Location.AddWithMusic(this, "Romantic 001", "Cream Satin with Bow", "Печальная тема 01", null);
 
+            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1000}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            F_Posture = Art.SetFeature(F_Posture, $"{Feature.MouthNormal}{1000}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            F_Posture = Art.SetFeature(F_Posture, $"{Feature.FeatureNipples}{1000}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            F_Posture.Last().T = Trans.Pulsation(500, 100);
+            F_Posture = Art.SetFeature(F_Posture, $"{Feature.FeatureBlush}{1000}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            F_Posture.Last().T = Trans.Pulsation(500, 100);
+            MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Momofuki_Rio\Momofuki_Rio.txt@0001");
+
+            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1001}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            F_Posture = Art.SetFeature(F_Posture, $"{Feature.MouthNormal}{1001}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Momofuki_Rio\Momofuki_Rio.txt@0001");
+
+            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1002}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            F_Posture = Art.SetFeature(F_Posture, $"{Feature.MouthNormal}{1002}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Momofuki_Rio\Momofuki_Rio.txt@0002");
+
+            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1003}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            F_Posture = Art.SetFeature(F_Posture, $"{Feature.MouthNormal}{1003}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Momofuki_Rio\Momofuki_Rio.txt@0003");
+
             for (int i = 1; i <= 83; i++)
             {
                 F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{i}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
-                MakeNextCadre(Teller.Female, fs, @"Любимый, наша жизнь теперь сильно изменится.Завтра приезжает мой новый муж, чтобы предъявить свои права на меня.~И ты должен понять.что я могу спариваться только с ним.~~До тех пор, пока я не рожу ему 2 детей, а может и больше, если он так захочет.~~~Теперь мы не сможем видется часто, ведь Уложение Жезла и Браслета гласит что~'Новобрачная Жена всегда должна быть рядом со своим Альфа Супругом и готова для спаривания с ним в любое удобное тому время.'~При том, 'Альфа Супруг должен как можно чаще укладывать Новобрачную Жену на супружеское ложе и наполнять семенем до тех пор, пока она не понесет.'~~~ Милый, я сейчас люблю тебя еще сильнее, ведь ты даришь мне счастье. Я знаю что мы выдержим эти 2 года и будем вместе.");
+                MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Momofuki_Rio\Momofuki_Rio.txt@0000");
             }
         }
     }

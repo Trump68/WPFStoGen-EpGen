@@ -85,19 +85,6 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             }
         }
 
-        //private List<Info_Scene> _SceneList;
-        //public List<Info_Scene> SceneList
-        //{
-        //    get
-        //    {
-        //        if (_SceneList == null)
-        //        {
-        //            _SceneList = ObservableSceneInfoList.ToList();
-
-        //        }
-        //        return _SceneList;
-        //    }
-        //}
 
         public List<IGrouping<string,Info_Scene>> GetGroupedList()
         {
@@ -110,8 +97,8 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         public string DefFontSize;
         public string DefFontColor;
         public string DefTextAlignH;
-
-
+        public string DefFontStyle;
+        public string DefFontName;
 
         public string DefTextAlignV;
         public string DefTextBck;
@@ -166,6 +153,10 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 {
                     DefFontSize = item.Replace("DefFontSize=", string.Empty);
                 }
+                else if (item.StartsWith("DefFontName="))
+                {
+                    DefFontName = item.Replace("DefFontName=", string.Empty);
+                }
                 else if (item.StartsWith("DefFontColor="))
                 {
                     DefFontColor = item.Replace("DefFontColor=", string.Empty);
@@ -181,6 +172,10 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 else if (item.StartsWith("DefTextBck="))
                 {
                     DefTextBck = item.Replace("DefTextBck=", string.Empty);
+                }
+                else if (item.StartsWith("DefFontStyle="))
+                {
+                    DefFontStyle = item.Replace("DefFontStyle=", string.Empty);
                 }
                 //visual
                 else if (item.StartsWith("DefVisX="))

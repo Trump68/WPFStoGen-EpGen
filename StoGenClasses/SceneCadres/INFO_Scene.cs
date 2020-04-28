@@ -134,7 +134,7 @@ namespace StoGen.Classes
         //PictureProps
         public string X { set; get; }
         public string Y { set; get; }
-        public string R { set; get; } //rotation
+        public string R { set; get; } //rotation (Font Style)
         public string O { set; get; } //opacity
         public string F { set; get; } //flip
         public string S { set; get; } //size

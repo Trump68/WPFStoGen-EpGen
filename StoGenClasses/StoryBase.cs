@@ -162,17 +162,17 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 if (slow)
                     tran = "W..1500>O.B.400.100";
                 SceneInfos.Add(new Info_Scene(1)
-                { Active = active, Story = story, Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0", Z = "Cyan", R = "2" });
+                { Active = active, Story = story, Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0", R = "2" });
             }
             else if (who == Teller.Male)
             {
                 SceneInfos.Add(new Info_Scene(1)
-                { Active = active, Story = $"{story}", Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0", Z = "Coral", R = "2" });
+                { Active = active, Story = $"{story}", Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0", R = "2" });
             }
             else if (who == Teller.MaleThoughts)
             {
                 SceneInfos.Add(new Info_Scene(1)
-                { Active = active, Story = $"[{story}]", Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0", Z = "White",  R = "3" });
+                { Active = active, Story = $"[{story}]", Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0",  R = "3" });
             }
         }
         protected void MakeNextCadre(Teller who, string story)
@@ -268,8 +268,8 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 item = new ChoiceMenuItem();
                 item.Name = it.First().Story;
                 item.itemData = it;
-                //MenuDescriptopnItem mdi1 = new MenuDescriptopnItem(" ", "9. Перейти на кадр:", true);                
-                //item.Props = (new List<MenuDescriptopnItem>() { mdi1 }).ToArray();
+                MenuDescriptopnItem mdi1 = new MenuDescriptopnItem(" ", it.First().Description, true);                
+                item.Props = (new List<MenuDescriptopnItem>() { mdi1 }).ToArray();
                 item.Executor = data =>
                 {
                     proc.MenuCreator = proc.OldMenuCreator;

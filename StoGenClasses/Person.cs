@@ -28,7 +28,10 @@ namespace StoGenerator
             PantyGeneric,
             BraGeneric,
             PantyhoseGeneric,
-            BluseGeneric
+            BluseGeneric,
+            SkirtGeneric,
+            ShoesGeneric,
+            PubicGeneric
         }
         public enum Feature
         {
@@ -41,7 +44,11 @@ namespace StoGenerator
             NormalPanty,
             NormalBra,
             PantyhoseNormal,
-            BluseNormal
+            BluseNormal,
+            SkirtNormal,
+            ShoesNormal,
+            MouthNormal,
+            PubicNormal
         }
         public enum Poses
         {
@@ -77,6 +84,7 @@ namespace StoGenerator
             {
                 string itemgeneric = info.Item1.Split(',')[1];
                 var newFeature = this.ToSceneInfo(info);
+                newFeature.Description = info.Item3;
                 var oldFeature = posture.Where(x => x.Tags.Contains(itemgeneric)).OrderBy(x => x.Z).FirstOrDefault();
                 posture.RemoveAll(x => x.Tags.Contains(itemgeneric));
                 if (!string.IsNullOrEmpty(tranOfNew))
@@ -153,6 +161,7 @@ namespace StoGenerator
             if (info != null)
             {
                 var newfigure = this.ToSceneInfo(info);
+                newfigure.Description = info.Item3;
                 var oldFigure = posture.Where(x => x.Tags.Contains(Generic.FigureGeneric.ToString())).OrderBy(x => x.Z).FirstOrDefault();
                 posture.RemoveAll(x =>
                 x.Tags.Contains(Generic.FigureGeneric.ToString())

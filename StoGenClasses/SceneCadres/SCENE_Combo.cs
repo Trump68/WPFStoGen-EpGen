@@ -97,11 +97,14 @@ namespace StoGen.Classes.Data.Games
                 this.DefaultSceneText.Shift = Convert.ToInt32(Story.DefTextShift);
             if (!string.IsNullOrEmpty(Story.DefFontColor))
                 this.DefaultSceneText.FontColor = Story.DefFontColor;
+            if (!string.IsNullOrEmpty(Story.DefFontColor))
+                this.DefaultSceneText.FontStyle = Convert.ToInt32(Story.DefFontStyle);
             if (!string.IsNullOrEmpty(Story.DefTextAlignH))
                 this.DefaultSceneText.Align = Convert.ToInt32(Story.DefTextAlignH);
             if (!string.IsNullOrEmpty(Story.DefTextAlignV))
                 this.DefaultSceneText.VAlign = Convert.ToInt32(Story.DefTextAlignV);
-
+            if (!string.IsNullOrEmpty(Story.DefFontName))
+                this.DefaultSceneText.FontName = Story.DefFontName;
 
             foreach (var group in data)
             {
@@ -171,6 +174,9 @@ namespace StoGen.Classes.Data.Games
                     this.DefaultSceneText.Width = int.Parse(copytitle.X);
                 if (!string.IsNullOrEmpty(copytitle.Y))
                     this.DefaultSceneText.Size = int.Parse(copytitle.Y);
+                if (!string.IsNullOrEmpty(copytitle.Speed))
+                    this.DefaultSceneText.FontName = copytitle.Speed;
+
             }
 
             // try to get text from kind 4

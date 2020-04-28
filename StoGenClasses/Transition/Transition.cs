@@ -40,7 +40,10 @@ namespace StoGen.Classes.Transition
             string result = $"W..1000>Y.B.5000.-700>W..2000>Y.B.5000.700";
             return result;
         }
-
+        public static string Pulsation(int speed, int wait)
+        {
+            return $"W..0>O.B.{speed}.100>W..{wait}>O.B.{speed}.-100~";
+        }
         public static string Blush(int time,bool reverse, bool restore, bool permanent)
         {
             int up = 7000;

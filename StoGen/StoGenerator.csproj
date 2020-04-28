@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Art\ART_Horikawa_Gorou.cs" />
     <Compile Include="Art\ART_Momofuki_Rio.cs" />
     <Compile Include="CadreElements\CE_Location.cs" />
     <Compile Include="CadreElements\CE_Music.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Stories\Person_Jenny_Ford.cs" />
     <Compile Include="Stories\Story001.cs" />
     <Compile Include="Stories\StoryTest.cs" />
+    <Compile Include="Stories\Works_Horikawa_Gorou.cs" />
     <Compile Include="Stories\Works_Momofuki_Rio.cs" />
   </ItemGroup>
   <ItemGroup>

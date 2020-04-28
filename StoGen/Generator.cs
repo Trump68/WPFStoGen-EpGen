@@ -16,10 +16,12 @@ namespace StoGenerator
 
             StoryBase story = null;
             if (string.IsNullOrEmpty(storyname))
-                story = new Works_Momofuki_Rio(); //default
+                story = new Works_Horikawa_Gorou(); //default
 
             else if(storyname == Works_Momofuki_Rio.StoryName)
                 story = new Works_Momofuki_Rio();
+            else if (storyname == Works_Horikawa_Gorou.StoryName)
+                story = new Works_Horikawa_Gorou();
             else if (storyname == Story001.StoryName)
                 story = new Story001();
             else if (storyname == Person_Jenny_Ford.StoryName)
