@@ -174,6 +174,11 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 SceneInfos.Add(new Info_Scene(1)
                 { Active = active, Story = $"[{story}]", Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0",  R = "3" });
             }
+            else if (who == Teller.Author)
+            {
+                SceneInfos.Add(new Info_Scene(1)
+                { Active = active, Story = $"[{story}]", Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0", R = "3" });
+            }
         }
         protected void MakeNextCadre(Teller who, string story)
         {

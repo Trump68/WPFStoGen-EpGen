@@ -51,10 +51,15 @@
     <Compile Include="CadreElements\CE_Music.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="IStoryGenerator.cs" />
-    <Compile Include="Locations.cs" />
+    <Compile Include="Cell.cs" />
+    <Compile Include="LocationStorage.cs" />
+    <Compile Include="Persons\BobLulam.cs" />
     <Compile Include="Persons\JennyFord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sound.cs" />
+    <Compile Include="Stories\CelledStory.cs" />
+    <Compile Include="Stories\LocationUnit_Aratments_01.cs" />
+    <Compile Include="Stories\Person_Bob_Lulam.cs" />
     <Compile Include="Stories\Person_Jenny_Ford.cs" />
     <Compile Include="Stories\Story001.cs" />
     <Compile Include="Stories\StoryTest.cs" />

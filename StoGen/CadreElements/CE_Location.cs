@@ -11,10 +11,10 @@ namespace StoGenerator.CadreElements
 {
     public class CE_Location
     {
-        private static List<Info_Scene> Get(string name, string spec)
+        public static List<Info_Scene> Get(string name, string spec)
         {
             List<Info_Scene> result = new List<Info_Scene>();
-            var item = Location.GetByName(name, spec, StoryBase.currentQueue, StoryBase.currentGroup); 
+            var item = LocationStorage.GetByName(name, spec, StoryBase.currentQueue, StoryBase.currentGroup); 
             if (item != null)
             {
                 item.Z = "0";
@@ -24,7 +24,7 @@ namespace StoGenerator.CadreElements
             }
             return result;
         }
-        private static List<Info_Scene> Add(StoryBase story,string name, string spec)
+        public static List<Info_Scene> Add(StoryBase story,string name, string spec)
         {
             List<Info_Scene> infos = new List<Info_Scene>();
             infos.AddRange(CE_Location.Get(name, spec));

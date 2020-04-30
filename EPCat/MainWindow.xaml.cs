@@ -626,7 +626,7 @@ namespace EPCat
             openFileDialog.Filter = "Scenes|*.epcatsi";
             if (openFileDialog.ShowDialog() == true)
             {
-                ViewModel.LoadScenario(openFileDialog.FileName);
+                ViewModel.LoadScenario(openFileDialog.FileName, null);
             }
         }
 
@@ -668,7 +668,7 @@ namespace EPCat
         {
             var fn = ViewModel.GoGenerateScenario(name);
             if (!string.IsNullOrEmpty(fn))
-                    ViewModel.LoadScenario(fn);
+                    ViewModel.LoadScenario(fn, name);
         }
 
         private void btnGoGenerateDefault_Click(object sender, RoutedEventArgs e)

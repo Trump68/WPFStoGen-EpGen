@@ -559,14 +559,10 @@ namespace EPCat
                 return @"d:\temp";
             }
         }
-        internal void LoadScenario(string fileName)
+        internal void LoadScenario(string fileName, string scenarioname)
         {            
             List<string> clipsinstr = new List<string>(File.ReadAllLines(fileName));
-            this.Story = null;
-            //var scen = new Story001();
-            var scen = new Works_Momofuki_Rio();
-            scen.LoadFrom(clipsinstr);
-            this.Story = scen;
+            this.Story = Generator.LoadScenario(clipsinstr, scenarioname);
             this.Scenes = this.Story.SceneInfos;
             RefreshFolder();
         }
@@ -577,11 +573,10 @@ namespace EPCat
         }
 
         internal void ReloadScenario()
-        {
-            
+        {          
             SaveScenario();
             var dir = StoryWorkDir;
-            LoadScenario(Path.Combine(dir,$"{this.Story.FileName}.epcatsi"));
+            LoadScenario(Path.Combine(dir,$"{this.Story.FileName}.epcatsi"), this.Story.Name);
         }
 
 

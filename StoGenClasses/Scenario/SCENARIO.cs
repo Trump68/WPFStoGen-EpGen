@@ -521,5 +521,17 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             }
 
         }
+        public static string GetNameFromData(List<string> clipsinstr)
+        {
+            foreach (var line in clipsinstr)
+            {
+               
+                if (line.StartsWith("NAME:"))
+                {
+                    return line.Replace("NAME:", string.Empty);
+                }
+            }
+            return null;
+        }
     }
 }
