@@ -295,8 +295,12 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, true, caption);
             return true;
         }
+        public bool ShowSubmenu(CadreController proc, List<ChoiceMenuItem> itemlist, string caption)
+        {
+            ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, true, caption);
+            return true;
+        }
 
-      
 
 
 

@@ -28,18 +28,34 @@ namespace StoGenerator
             LocationStorage var = new LocationStorage(Sys_Background_White, "system");
             var.Files.Add(new Tuple<string, string, string, string>("system", "$$WHITE$$",null,null));
             //комната в общаге/кондоминиуме
-            Add_StudentRoom001();
-            Add_StudentRoom002();
-            Add_StudentRoom003();
-            Add_StudentRoom004();
-            Add_FemaleRoom005();
-            Add_StudentRoom006();
-            //Коридор в общаге-гостинице
-            Add_Hallway001();
+            Add_StudentRoom001("Student Room 001", "Student Room");
+            Add_StudentRoom002("Student Room 002", "Student Room");
+            Add_StudentRoom003("Student Room 003", "Student Room");
+            Add_StudentRoom004("Student Room 004", "Student Room");
+            Add_StudentFemaleRoom005("Student Room 005", "Student Room");
+            Add_StudentRoom006("Student Room 006", "Student Room");
+            //Коридор общий
+            Add_Hallway001("Hallway 001", "Hallway");
+            //вход в подьезд
+            Add_Hallway002("Hallway 002", "Hallway");
             //спальня
-            Add_Bedroom001();
+            Add_Bedroom001("Bedroom 001", "Bedroom");
+            Add_Bedroom002("Bedroom 002", "Bedroom");
             //дверь
-            Add_Door001();
+            Add_DoorBathroom001();
+            Add_Door002("Door 002","Door");
+            Add_Door003("Door 003", "Door");
+            //ванная
+            Add_Bathroom001("Bathroom 001", "Bathroom", $@"{ImagePath}APARTMENT\BATHROOM\001\372.jpg");
+            Add_Bathroom001("Bathroom 002", "Bathroom", $@"{ImagePath}APARTMENT\BATHROOM\002\001.jpg");
+            //кухня
+            Add_Kitchen001("Kitchen 001", "Kitchen");
+            //гостиная
+            Add_Livingroom001("Livingroom 001", "Livingroom");
+            Add_Livingroom002("Livingroom 002", "Livingroom");
+            Add_Livingroom003("Livingroom 003", "Livingroom");
+            //квартирка дворника
+            Add_PoorePeopleRoom001("JanitorRoom 001", "Janitor Room");
 
             //класс
             Add_Classroom001();
@@ -73,7 +89,8 @@ namespace StoGenerator
             Add_ForestPark001();
             Add_ForestPark002();
             //муниципальное здание
-            Add_MunicipalBuilding001();
+            Add_MunicipalBuilding001("Municipal Building 001", "Municipal Building");
+            Add_MunicipalBuilding002("Municipal Building 002", "Municipal Building");
             //купальня
             Add_HotSPA001();
             //office
@@ -164,28 +181,48 @@ namespace StoGenerator
             var.Files.Add(new Tuple<string, string, string, string>("Old Paper 1", $@"{ImagePath}SIMPLE\OLD\001.jpg", null, null));
             Storage.Add(var);
         }
-        private static void Add_Bedroom001()
+        private static void Add_Bedroom001(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Bedroom 001", "Bedroom");
+            LocationStorage var = new LocationStorage(name, type);
             var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}APARTMENT\BEDROOM\001\102.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("night", $@"{ImagePath}APARTMENT\BEDROOM\001\104.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("evening", $@"{ImagePath}APARTMENT\BEDROOM\001\105.jpg",null,null));
             Storage.Add(var);
         }
-        private static void Add_Hallway001()
+        private static void Add_Bedroom002(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Hallway 001", "Hallway");
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new Tuple<string, string, string, string>("day,night,evening", $@"{ImagePath}APARTMENT\BEDROOM\002\001.jpg", null, null));
+            Storage.Add(var);
+        }
+        private static void Add_Hallway001(string name, string type)
+        {
+            LocationStorage var = new LocationStorage(name, type);//("Hallway 001", "Hallway");
             var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}APARTMENT\HALLWAY\001\132.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("night", $@"{ImagePath}APARTMENT\HALLWAY\001\133.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("evening", $@"{ImagePath}APARTMENT\EVENING\001\134.jpg",null,null));
             Storage.Add(var);
         }
-        private static void Add_MunicipalBuilding001()
+        private static void Add_Hallway002(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Municipal Building 001", "Municipal Building");
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new Tuple<string, string, string, string>("day,night,evening", $@"{ImagePath}APARTMENT\HALLWAY\002\001.jpg", null, null));
+            Storage.Add(var);
+        }
+        private static void Add_MunicipalBuilding001(string name, string type)
+        {
+            LocationStorage var = new LocationStorage(name, type);
             var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}MUNICIPAL\BUILDING\001\057.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("evening", $@"{ImagePath}MUNICIPAL\BUILDING\001\058.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("night", $@"{ImagePath}MUNICIPAL\BUILDING\001\059.jpg",null,null));
+            Storage.Add(var);
+        }
+        private static void Add_MunicipalBuilding002(string name, string type)
+        {
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}MUNICIPAL\BUILDING\002\001.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("evening", $@"{ImagePath}MUNICIPAL\BUILDING\002\002.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("night", $@"{ImagePath}MUNICIPAL\BUILDING\002\003.jpg", null, null));
             Storage.Add(var);
         }
         private static void Add_BuildingSchool001()
@@ -216,40 +253,40 @@ namespace StoGenerator
             var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}STREET\SQUAREPARK\001\025.jpg",null,null));
             Storage.Add(var);
         }
-        private static void Add_StudentRoom001()
+        private static void Add_StudentRoom001(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Student Room 001", "Student Room");
+            LocationStorage var = new LocationStorage(name, type);
             var.Files.Add(new Tuple<string, string, string, string>("day",              $@"{ImagePath}APARTMENT\ROOM\001\001.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("evening",          $@"{ImagePath}APARTMENT\ROOM\001\003.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("night",            $@"{ImagePath}APARTMENT\ROOM\001\002.jpg",null,null));
             Storage.Add(var);
         }
-        private static void Add_StudentRoom002()
+        private static void Add_StudentRoom002(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Student Room 002", "Student Room");
+            LocationStorage var = new LocationStorage(name, type);
             var.Files.Add(new Tuple<string, string, string, string>("day",              $@"{ImagePath}APARTMENT\ROOM\002\001.jpg",null,null));
-            var.Files.Add(new Tuple<string, string, string, string>("evening",          $@"{ImagePath}APARTMENT\ROOM\002\002.jpg",null,null));
+            var.Files.Add(new Tuple<string, string, string, string>("evening,night",    $@"{ImagePath}APARTMENT\ROOM\002\002.jpg",null,null));
             Storage.Add(var);
         }
-        private static void Add_StudentRoom003()
+        private static void Add_StudentRoom003(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Student Room 003", "Student Room");
+            LocationStorage var = new LocationStorage(name, type);
             var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}APARTMENT\ROOM\003\135.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("night", $@"{ImagePath}APARTMENT\ROOM\003\137.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("evening", $@"{ImagePath}APARTMENT\ROOM\003\138.jpg",null,null));
             Storage.Add(var);
         }
-        private static void Add_StudentRoom004()
+        private static void Add_StudentRoom004(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Student Room 004", "Student Room");
+            LocationStorage var = new LocationStorage(name, type);
             var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}APARTMENT\ROOM\004\121.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("night", $@"{ImagePath}APARTMENT\ROOM\004\122.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("evening", $@"{ImagePath}APARTMENT\ROOM\004\123.jpg",null,null));
             Storage.Add(var);
         }
-        private static void Add_FemaleRoom005()
+        private static void Add_StudentFemaleRoom005(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Female Room 005", "Female Room");
+            LocationStorage var = new LocationStorage(name,  type);
             var.Files.Add(new Tuple<string, string, string, string>("day,female", $@"{ImagePath}APARTMENT\ROOM\005\096.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("night,female", $@"{ImagePath}APARTMENT\ROOM\005\097.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("evening,female", $@"{ImagePath}APARTMENT\ROOM\005\098.jpg",null,null));
@@ -257,12 +294,22 @@ namespace StoGenerator
             var.Files.Add(new Tuple<string, string, string, string>("evening,female,watching tv", $@"{ImagePath}APARTMENT\ROOM\005\095.jpg",null,null));
             Storage.Add(var);
         }
-        private static void Add_StudentRoom006()
+        private static void Add_StudentRoom006(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Student Room 006", "Student Room");
+            LocationStorage var = new LocationStorage(name, type);
             var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}APARTMENT\ROOM\006\111.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("night", $@"{ImagePath}APARTMENT\ROOM\006\113.jpg",null,null));
             var.Files.Add(new Tuple<string, string, string, string>("evening", $@"{ImagePath}APARTMENT\ROOM\006\114.jpg",null,null));
+            Storage.Add(var);
+        }
+        private static void Add_PoorePeopleRoom001(string name, string type)
+        {
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new Tuple<string, string, string, string>("day,clean", $@"{ImagePath}APARTMENT\ROOM\007\004.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("day,dirty", $@"{ImagePath}APARTMENT\ROOM\007\001.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("evening,dirty", $@"{ImagePath}APARTMENT\ROOM\007\002.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("night,dirty", $@"{ImagePath}APARTMENT\ROOM\007\003.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("night,clean,empty", $@"{ImagePath}APARTMENT\ROOM\007\005.jpg", null, null));
             Storage.Add(var);
         }
         private static void Add_Lab001()
@@ -355,12 +402,61 @@ namespace StoGenerator
             var.Files.Add(new Tuple<string, string, string, string>("evening", $@"{ImagePath}SCHOOL\SWIMMING\001\029.jpg",null,null));
             Storage.Add(var);
         }
-        private static void Add_Door001()
+        private static void Add_DoorBathroom001()
         {
             LocationStorage var = new LocationStorage("Door 001", "Door");
             var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}APARTMENT\DOOR\001\509.jpg", null, null));
             var.Files.Add(new Tuple<string, string, string, string>("night", $@"{ImagePath}APARTMENT\DOOR\001\512.jpg", null, null));
             var.Files.Add(new Tuple<string, string, string, string>("evening", $@"{ImagePath}APARTMENT\DOOR\001\511.jpg", null, null));
+            Storage.Add(var);
+        }
+        private static void Add_Door002(string name, string type)
+        {
+            LocationStorage var = new LocationStorage(name,  type);
+            var.Files.Add(new Tuple<string, string, string, string>("day,night,evening", $@"{ImagePath}APARTMENT\DOOR\002\001.jpg", null, null));
+            Storage.Add(var);
+        }
+        private static void Add_Door003(string name, string type)
+        {
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new Tuple<string, string, string, string>("day,night,evening,closed", $@"{ImagePath}APARTMENT\DOOR\003\001.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("day,night,evening,opened", $@"{ImagePath}APARTMENT\DOOR\003\002.jpg", null, null));
+            Storage.Add(var);
+        }
+        private static void Add_Bathroom001(string name, string type, string file)
+        {
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new Tuple<string, string, string, string>("day,night,evening", file, null, null));
+            Storage.Add(var);
+        }
+        private static void Add_Kitchen001(string name, string type)
+        {
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}APARTMENT\KITCHEN\001\001.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("night,evening", $@"{ImagePath}APARTMENT\KITCHEN\001\002.jpg", null, null));
+            Storage.Add(var);
+        }
+        private static void Add_Livingroom001(string name, string type)
+        {
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}APARTMENT\LIVINGROOM\001\001.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("evening", $@"{ImagePath}APARTMENT\LIVINGROOM\001\002.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("night", $@"{ImagePath}APARTMENT\LIVINGROOM\001\003.jpg", null, null));
+            Storage.Add(var);
+        }
+        private static void Add_Livingroom002(string name, string type)
+        {
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}APARTMENT\LIVINGROOM\002\001.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("evening", $@"{ImagePath}APARTMENT\LIVINGROOM\002\003.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("night", $@"{ImagePath}APARTMENT\LIVINGROOM\002\002.jpg", null, null));
+            Storage.Add(var);
+        }
+        private static void Add_Livingroom003(string name, string type)
+        {
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new Tuple<string, string, string, string>("day", $@"{ImagePath}APARTMENT\LIVINGROOM\003\001.jpg", null, null));
+            var.Files.Add(new Tuple<string, string, string, string>("night,evening", $@"{ImagePath}APARTMENT\LIVINGROOM\003\002.jpg", null, null));
             Storage.Add(var);
         }
     }

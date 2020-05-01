@@ -284,40 +284,9 @@ namespace StoGenerator.Stories
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 
-            ChoiceMenuItem item = new ChoiceMenuItem();
-            item.Name = "Идти куда:";
-            item.itemData = "Идти куда:";
-            item.Executor = data =>
-            {
-                string caption2;
-                var itemlist1 = CreateMenuGoToLocation(proc, null, out caption2);
-                ShowSubmenu(proc, itemlist1, caption2);
-            };
-            itemlist.Add(item);
-
-            item = new ChoiceMenuItem();
-            item.Name = "Change Figure:";
-            item.itemData = "Change Figure:";
-            item.Executor = data =>
-            {
-                string caption2;
-                var itemlist1 = CreateMenuChangeFigure(proc, null, out caption2);
-                ShowSubmenu(proc, itemlist1, caption2);
-            };
-            itemlist.Add(item);
-
-
-            item = new ChoiceMenuItem();
-            item.Name = "Change Face:";
-            item.itemData = "Change Face:";
-            item.Executor = data =>
-            {
-                string caption2;
-                var itemlist1 = CreateMenuChangeFace(proc, null, out caption2);
-                ShowSubmenu(proc, itemlist1, caption2);
-            };
-            itemlist.Add(item);
-
+            this.AddMenu_GoToLocation(proc, itemlist, out caption);
+            this.AddMenu_ChangeFace(proc, itemlist, out caption);
+            this.AddMenu_ChangeFigure(proc, itemlist, out caption);
             //item = new ChoiceMenuItem();
             //item.Name = "Go To Location:";
             //item.itemData = "Go To Location:";
@@ -329,34 +298,42 @@ namespace StoGenerator.Stories
             //};
             //itemlist.Add(item);
 
-            caption = "Actions:";
+            caption = "Выбрать действие:";
             return itemlist;
         }
 
-        private List<ChoiceMenuItem> CreateMenuGoToLocation(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
+        protected List<ChoiceMenuItem> AddMenu_ChangeFace(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-
-            foreach (var cell in this.CurrentCell.NearByCells)
+            ChoiceMenuItem item = new ChoiceMenuItem();
+            item.Name = "Change Face:";
+            item.itemData = "Change Face:";
+            item.Executor = data =>
             {
-                var item = new ChoiceMenuItem();
-                item.Name = $"{cell.Name}";
-                item.itemData = cell;
-                item.Executor = data =>
-                {
-                    CurrentCell = data as Cell;
-                    F_Posture = new List<Info_Scene>();
-                    F_Posture.Add(CurrentCell.Picture("day").FirstOrDefault());                   
-                    MakeNextCadre(Teller.Author, CurrentCell.Name);
-                    proc.GetNextCadre();
-                };
-                itemlist.Add(item);
-            }
-
-            caption = "Идти куда:";
+                string caption2;
+                var itemlist1 = CreateMenuChangeFace(proc, null, out caption2);
+                ShowSubmenu(proc, itemlist1, caption2);
+            };
+            itemlist.Add(item);
+            caption = "Выбрать действие:";
             return itemlist;
         }
-
+        protected List<ChoiceMenuItem> AddMenu_ChangeFigure(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
+        {
+            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+            ChoiceMenuItem item = new ChoiceMenuItem();
+            item.Name = "Change Figure:";
+            item.itemData = "Change Figure:";
+            item.Executor = data =>
+            {
+                string caption2;
+                var itemlist1 = CreateMenuChangeFigure(proc, null, out caption2);
+                ShowSubmenu(proc, itemlist1, caption2);
+            };
+            itemlist.Add(item);
+            caption = "Выбрать действие:";
+            return itemlist;
+        }
         //protected List<ChoiceMenuItem> CreateMenuCadreLocation(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
         //{
         //    if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
@@ -457,11 +434,7 @@ namespace StoGenerator.Stories
         }
 
 
-        public bool ShowSubmenu(CadreController proc, List<ChoiceMenuItem> itemlist, string caption)
-        {
-            ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, true, caption);
-            return true;
-        }
+      
 
     }
 }

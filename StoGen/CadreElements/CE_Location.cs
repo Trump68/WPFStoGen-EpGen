@@ -48,5 +48,6 @@ namespace StoGenerator.CadreElements
             story.IncrementGroup();
             return infos;
         }
+
     }
 }
