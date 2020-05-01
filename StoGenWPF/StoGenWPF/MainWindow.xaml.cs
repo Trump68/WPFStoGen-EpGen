@@ -120,6 +120,10 @@ namespace StoGenWPF
                 Projector.EditorMode = !Projector.EditorMode;
                 PictureCadreDS.Visibility = Projector.EditorMode ? Visibility.Visible : Visibility.Hidden;
             }
+            else if (e.Key == Key.F7)
+            {
+                InfoLocation.Visibility = (InfoLocation.Visibility ==Visibility.Visible) ? Visibility.Hidden : Visibility.Visible;
+            }
             else if (e.Key == Key.OemPeriod)
             {
                 var p = Projector.PicContainer.Clip.Position;
@@ -241,6 +245,7 @@ namespace StoGenWPF
         {
             PictureCadreDS.Visibility = Visibility.Hidden;
             PictureCadreDS.DataContext = Projector.ImageCadre;
+            InfoLocation.DataContext = Projector.ImageCadre;
             SGManager.StartMainProc(Scene, startpage - 1);
         }
         public void Start()

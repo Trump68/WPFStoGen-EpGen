@@ -1,4 +1,5 @@
 ﻿using StoGen.Classes;
+using StoGen.ModelClasses;
 using StoGenerator.CadreElements;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,8 @@ namespace StoGenerator.Stories
                     CurrentCell = data as Cell;
                     F_Posture = new List<Info_Scene>();
                     F_Posture.Add(CurrentCell.Picture("day").FirstOrDefault());
-                    MakeNextCadre(Teller.Author, CurrentCell.FullName);
+                    MakeNextCadre(Teller.Author,null);
+                    Projector.ImageCadre.InfoLocationText = CurrentCell.FullName;
                     proc.GetNextCadre();
                 };
                 itemlist.Add(item);

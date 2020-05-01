@@ -195,8 +195,9 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                     x.X = FCurrentPosition.X;
                 }
             });
-            AddScenes(F_Posture, 1, false);
-            AddText(story, who, false, false);
+            AddScenes(F_Posture, 1, false); 
+            if (!string.IsNullOrEmpty(story))                        
+                AddText(story, who, false, false);
             F_Posture = ResetPosture(F_Posture);
             IncrementGroup();
         }

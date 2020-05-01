@@ -2,6 +2,7 @@
 using StoGen.Classes.Scene;
 using StoGen.Classes.SceneCadres.CadreElements;
 using StoGen.Classes.Transition;
+using StoGen.ModelClasses;
 using StoGenerator.CadreElements;
 using StoGenerator.Persons;
 using System;
@@ -48,7 +49,8 @@ namespace StoGenerator.Stories
             F_Posture = new List<Info_Scene>();
             F_Posture.Add(CurrentCell.Picture("day").FirstOrDefault());
             F_Posture.AddRange(CE_Music.Get("Печальная тема 01", null));
-            MakeNextCadre(Teller.Author, CurrentCell.Name);
+            Projector.ImageCadre.InfoLocationText = CurrentCell.FullName;
+            MakeNextCadre(Teller.Author, null);
 
             //F_Posture = JFord.GetFigure(F_Posture, $"{Feature.FeatureFigure}{1}", Trans.Dissapearing(1000));
             //F_Posture = JFord.SetFeature(F_Posture, $"{Feature.FeatureNipples}{1}", Trans.Dissapearing(1000), null, true);
