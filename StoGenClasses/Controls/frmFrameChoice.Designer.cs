@@ -28,13 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition1 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
+            DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement1 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFrameChoice));
+            this.TileViewName = new DevExpress.XtraGrid.Columns.TileViewColumn();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.LabelText = new System.Windows.Forms.Label();
             this.Grid = new DevExpress.XtraGrid.GridControl();
-            this.BS = new System.Windows.Forms.BindingSource(this.components);
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.BS = new System.Windows.Forms.BindingSource();
+            this.ViewTiles = new DevExpress.XtraGrid.Views.Tile.TileView();
+            this.TileViewPicture = new DevExpress.XtraGrid.Columns.TileViewColumn();
+            this.ViewGrid = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -43,11 +47,26 @@
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ViewTiles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ViewGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.SuspendLayout();
+            // 
+            // TileViewName
+            // 
+            this.TileViewName.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TileViewName.AppearanceCell.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.TileViewName.AppearanceCell.Options.UseFont = true;
+            this.TileViewName.AppearanceCell.Options.UseForeColor = true;
+            this.TileViewName.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TileViewName.AppearanceHeader.Options.UseFont = true;
+            this.TileViewName.Caption = "Name";
+            this.TileViewName.FieldName = "Name";
+            this.TileViewName.Name = "TileViewName";
+            this.TileViewName.Visible = true;
+            this.TileViewName.VisibleIndex = 0;
             // 
             // layoutControl1
             // 
@@ -57,7 +76,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(857, 685);
+            this.layoutControl1.Size = new System.Drawing.Size(800, 250);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -66,7 +85,7 @@
             this.LabelText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.LabelText.Location = new System.Drawing.Point(2, 2);
             this.LabelText.Name = "LabelText";
-            this.LabelText.Size = new System.Drawing.Size(853, 20);
+            this.LabelText.Size = new System.Drawing.Size(796, 20);
             this.LabelText.TabIndex = 5;
             this.LabelText.Text = "Choose Menu ";
             // 
@@ -75,28 +94,68 @@
             this.Grid.DataSource = this.BS;
             this.Grid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Grid.Location = new System.Drawing.Point(2, 26);
-            this.Grid.MainView = this.gridView1;
+            this.Grid.MainView = this.ViewTiles;
             this.Grid.Name = "Grid";
-            this.Grid.Size = new System.Drawing.Size(853, 657);
+            this.Grid.Size = new System.Drawing.Size(796, 222);
             this.Grid.TabIndex = 4;
             this.Grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.ViewTiles,
+            this.ViewGrid});
             // 
-            // gridView1
+            // ViewTiles
             // 
-            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView1.Appearance.Row.Options.UseFont = true;
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.ViewTiles.Appearance.ItemFocused.Font = new System.Drawing.Font("Tahoma", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ViewTiles.Appearance.ItemFocused.FontSizeDelta = 1;
+            this.ViewTiles.Appearance.ItemFocused.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.ViewTiles.Appearance.ItemFocused.Options.UseFont = true;
+            this.ViewTiles.Appearance.ItemFocused.Options.UseForeColor = true;
+            this.ViewTiles.Appearance.ItemNormal.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ViewTiles.Appearance.ItemNormal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.ViewTiles.Appearance.ItemNormal.Options.UseFont = true;
+            this.ViewTiles.Appearance.ItemNormal.Options.UseForeColor = true;
+            this.ViewTiles.Appearance.ItemSelected.Font = new System.Drawing.Font("Tahoma", 13F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ViewTiles.Appearance.ItemSelected.FontSizeDelta = 1;
+            this.ViewTiles.Appearance.ItemSelected.FontStyleDelta = System.Drawing.FontStyle.Underline;
+            this.ViewTiles.Appearance.ItemSelected.Options.UseFont = true;
+            this.ViewTiles.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.TileViewName,
+            this.TileViewPicture});
+            this.ViewTiles.ColumnSet.BackgroundImageColumn = this.TileViewPicture;
+            this.ViewTiles.GridControl = this.Grid;
+            this.ViewTiles.Name = "ViewTiles";
+            this.ViewTiles.OptionsTiles.HighlightFocusedTileOnGridLoad = true;
+            this.ViewTiles.OptionsTiles.IndentBetweenItems = 0;
+            this.ViewTiles.OptionsTiles.ItemBackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
+            this.ViewTiles.OptionsTiles.ItemSize = new System.Drawing.Size(200, 200);
+            this.ViewTiles.OptionsTiles.Padding = new System.Windows.Forms.Padding(0);
+            this.ViewTiles.TileRows.Add(tableRowDefinition1);
+            tileViewItemElement1.Column = this.TileViewName;
+            tileViewItemElement1.Text = "TileViewName";
+            this.ViewTiles.TileTemplate.Add(tileViewItemElement1);
+            // 
+            // TileViewPicture
+            // 
+            this.TileViewPicture.Caption = "tileViewColumn2";
+            this.TileViewPicture.FieldName = "Picture";
+            this.TileViewPicture.Name = "TileViewPicture";
+            this.TileViewPicture.Visible = true;
+            this.TileViewPicture.VisibleIndex = 1;
+            // 
+            // ViewGrid
+            // 
+            this.ViewGrid.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ViewGrid.Appearance.Row.Options.UseFont = true;
+            this.ViewGrid.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gcName});
-            this.gridView1.GridControl = this.Grid;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
-            this.gridView1.OptionsView.ShowColumnHeaders = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.PaintStyleName = "Skin";
-            this.gridView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
-            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
+            this.ViewGrid.GridControl = this.Grid;
+            this.ViewGrid.Name = "ViewGrid";
+            this.ViewGrid.OptionsBehavior.Editable = false;
+            this.ViewGrid.OptionsView.EnableAppearanceEvenRow = true;
+            this.ViewGrid.OptionsView.ShowColumnHeaders = false;
+            this.ViewGrid.OptionsView.ShowGroupPanel = false;
+            this.ViewGrid.PaintStyleName = "Skin";
+            this.ViewGrid.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
+            this.ViewGrid.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // gcName
             // 
@@ -116,7 +175,7 @@
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(857, 685);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(800, 250);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -124,7 +183,7 @@
             this.layoutControlItem1.Control = this.Grid;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(857, 661);
+            this.layoutControlItem1.Size = new System.Drawing.Size(800, 226);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -133,7 +192,7 @@
             this.layoutControlItem2.Control = this.LabelText;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(857, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(800, 24);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -141,7 +200,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(857, 685);
+            this.ClientSize = new System.Drawing.Size(800, 250);
             this.Controls.Add(this.layoutControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -156,7 +215,8 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ViewTiles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ViewGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -168,12 +228,15 @@
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraGrid.GridControl Grid;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView ViewGrid;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraGrid.Columns.GridColumn gcName;
         private System.Windows.Forms.BindingSource BS;
         private System.Windows.Forms.Label LabelText;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraGrid.Views.Tile.TileView ViewTiles;
+        private DevExpress.XtraGrid.Columns.TileViewColumn TileViewName;
+        private DevExpress.XtraGrid.Columns.TileViewColumn TileViewPicture;
     }
 }

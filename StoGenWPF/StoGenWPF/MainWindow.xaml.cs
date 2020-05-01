@@ -144,15 +144,15 @@ namespace StoGenWPF
            
             else if (e.Key == Key.Space)
             {
-               
+                SGManager.ChangeVisibleChoiceMenu(1); // move
             }
             else if (e.Key == Key.F3)
             {
-                SGManager.ChangeVisibleChoiceMenu();
+                SGManager.ChangeVisibleChoiceMenu(0); // full
             }
             else if (e.Key == Key.Enter)
             {
-                SGManager.ApplayVisibleChoiceMenu();
+                SGManager.ApplayVisibleChoiceMenu(); 
             }
             else if (e.Key == Key.Escape)
             {

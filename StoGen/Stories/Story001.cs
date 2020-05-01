@@ -275,14 +275,21 @@ namespace StoGenerator.Stories
         public override bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
         {
             string caption;
-
-            itemlist = AddRootMenu(proc, null, out caption);
-            itemlist = base.AddRootMenu(proc, itemlist, out caption);
-            caption = "Выбрать действие:";
-            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, caption);
+            int mode = (int)Data;
+            int viewNum = mode;
+            if (mode == 1) // moving
+            {
+                itemlist = CreateMenuGoToLocation(proc, null, out caption);
+            }
+            else // all
+            {
+                itemlist = AddRootMenu(proc, null, out caption);
+                itemlist = base.AddRootMenu(proc, itemlist, out caption);
+            }
+            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, caption, viewNum);
             return true;
         }
-        protected List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
+        protected override List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 
@@ -303,7 +310,6 @@ namespace StoGenerator.Stories
             caption = "Выбрать действие:";
             return itemlist;
         }
-
         protected List<ChoiceMenuItem> AddMenu_ChangeFace(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();

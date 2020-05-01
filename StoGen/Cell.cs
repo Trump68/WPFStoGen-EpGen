@@ -13,13 +13,13 @@ namespace StoGenerator
     {
         public enum Kind
         {
-            Land, // земля          
-            Area, //  нас. пункт
-            District, // район
-            Street, // улица
-            House, // дом
-            Aparment, // квартира
-            Cell //комната, помещение
+            Land = 6, // земля          
+            Area = 5, //  нас. пункт
+            District = 4, // район
+            Street = 3, // улица
+            House = 2, // дом
+            Aparment = 1, // квартира
+            Cell  = 0//комната, помещение 
         }
        
         public Kind LocationKind { get; set; } 

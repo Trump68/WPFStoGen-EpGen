@@ -246,7 +246,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, caption);
             return true;
         }
-        protected List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
+        protected virtual List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 

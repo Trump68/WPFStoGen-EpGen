@@ -17,8 +17,8 @@ namespace StoGen.Classes
         {
             InitializeComponent();
         }
-        MenuDescriptopnItem[] Columns;
-        public static DialogResult ShowOptionsmenu(List<ChoiceMenuItem> itemlist, string caption)
+        MenuDescriptopnItem[] Columns;        
+        public static DialogResult ShowOptionsmenu(List<ChoiceMenuItem> itemlist, string caption, int viewNum)
         {
             DialogResult result = DialogResult.Cancel;
             using (frmFrameChoice frm = new frmFrameChoice())
@@ -39,7 +39,8 @@ namespace StoGen.Classes
                             col.UnboundType = DevExpress.Data.UnboundColumnType.String;
                             col.Name = "gc" + col.Caption;
                             col.VisibleIndex = i;
-                            frm.gridView1.Columns.Add(col);
+                            frm.ViewTiles.Columns.Add(col);
+                            frm.ViewGrid.Columns.Add(col);
                             if (prop.isGroupColumn)
                             {
                                 col.Group();
@@ -48,10 +49,21 @@ namespace StoGen.Classes
                         }
                     }
                 }
-
                 frm.BS.DataSource = itemlist;
-                frm.gridView1.BestFitColumns(true);
-                frm.gridView1.ExpandAllGroups();
+                if (viewNum == 1)
+                {
+                    frm.Grid.MainView = frm.ViewTiles;
+                    frm.Height = 250;
+                    frm.Width = 1200;
+                }
+                else
+                {
+                    frm.Grid.MainView = frm.ViewGrid;
+                    frm.ViewGrid.BestFitColumns(true);
+                    frm.ViewGrid.ExpandAllGroups();
+                    frm.Height = 800;
+                    frm.Width = 800;
+                }
                 result = frm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
@@ -69,6 +81,11 @@ namespace StoGen.Classes
                 this.Close();
             }
             else if (e.KeyData == Keys.Enter) 
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
+            }
+            else if (e.KeyData == Keys.Space)
             {
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();
@@ -126,12 +143,20 @@ namespace StoGen.Classes
             this.Props = args;
         }
         public string Name {set; get;}
+        public Image Picture { set; get; }
+        public void SetPicture(string imageFile)
+        {
+            if (!string.IsNullOrEmpty(imageFile))
+            {
+                Picture = Image.FromFile(imageFile);
+            }
+        }
         public object itemData { set; get; }
         public MenuItemExecutorDelegate Executor = null;
         public MenuDescriptopnItem[] Props;
-        public static void FinalizeShowMenu(CadreController controller, bool doShowMenu, List<ChoiceMenuItem> itemlist, bool processCancel, string caption)
+        public static void FinalizeShowMenu(CadreController controller, bool doShowMenu, List<ChoiceMenuItem> itemlist, bool processCancel, string caption,int viewNum = 0)
         {
-            if (frmFrameChoice.ShowOptionsmenu(itemlist, caption) != DialogResult.Cancel)
+            if (frmFrameChoice.ShowOptionsmenu(itemlist, caption, viewNum) != DialogResult.Cancel)
             {
 
             }
@@ -143,6 +168,7 @@ namespace StoGen.Classes
             else controller.RepaintCadre(controller.CurrentCadre);
         }
     }
+
     public class MenuDescriptopnItem
     {
 
