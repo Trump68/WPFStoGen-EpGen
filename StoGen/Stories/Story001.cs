@@ -5,6 +5,7 @@ using StoGen.Classes.Transition;
 using StoGen.ModelClasses;
 using StoGenerator.CadreElements;
 using StoGenerator.Persons;
+using StoGenerator.StoryClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ using static StoGenerator.Person;
 
 namespace StoGenerator.Stories
 {
-    public class Story001 : CelledStory
+    public class Story001 : PersonizedStory
     {
         public static string StoryName = "Story 001";
         public Story001():base()
@@ -24,8 +25,8 @@ namespace StoGenerator.Stories
             this.FileName = this.Name;
 
             JFord = JennyFord.Load();
-            
-           //FPersonName = "Jenny Ford";
+            this.VisiblePersons.Add(JFord);
+           
             FCurrentPosition.Z = "1";
             FCurrentPosition.S = "1200";
             FCurrentPosition.X = "400";
@@ -33,8 +34,6 @@ namespace StoGenerator.Stories
         }
 
         protected JennyFord JFord;
-
-
         public override void Generate(string queue, string group)
         {
             base.Generate(queue, group);
@@ -42,7 +41,6 @@ namespace StoGenerator.Stories
             FillData();
 
         }
-
         protected override void FillData()
         {
             //CE_Location.AddWithMusic(this,"Student Room 001", "evening", "Печальная тема 01", null);
@@ -244,9 +242,6 @@ namespace StoGenerator.Stories
             //    Where(x => !x.Tags.Contains(JennyFord.Mouth.Mouth1_67.ToString())).ToList().ForEach(x => { x.T = "Y.B.500.-2>Y.B.500.2~"; });
             //MakeNextCadre(Teller.Female, "....он очень настойчив....");
         }
-
-
-
         protected void MakeFirsCadre(string fileum, Teller who, string story, bool active)
         {
             //JennyFord_Posture = JFord.WoreNightgown(null, JennyFord.Poses.Stand1);
@@ -267,182 +262,6 @@ namespace StoGenerator.Stories
             //IncrementGroup();
         }
 
-
-
-
-
-        //MENU
-        public override bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
-        {
-            string caption;
-            int mode = (int)Data;
-            int viewNum = mode;
-            if (mode == 1) // moving
-            {
-                itemlist = CreateMenuGoToLocation(proc, null, out caption);
-            }
-            else // all
-            {
-                itemlist = AddRootMenu(proc, null, out caption);
-                itemlist = base.AddRootMenu(proc, itemlist, out caption);
-            }
-            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, caption, viewNum);
-            return true;
-        }
-        protected override List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
-        {
-            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-
-            this.AddMenu_GoToLocation(proc, itemlist, out caption);
-            this.AddMenu_ChangeFace(proc, itemlist, out caption);
-            this.AddMenu_ChangeFigure(proc, itemlist, out caption);
-            //item = new ChoiceMenuItem();
-            //item.Name = "Go To Location:";
-            //item.itemData = "Go To Location:";
-            //item.Executor = data =>
-            //{
-            //    string caption1;
-            //    var itemlist1 = CreateMenuCadreLocation(proc, null, out caption1);
-            //    ShowSubmenu(proc, itemlist1, caption1);
-            //};
-            //itemlist.Add(item);
-
-            caption = "Выбрать действие:";
-            return itemlist;
-        }
-        protected List<ChoiceMenuItem> AddMenu_ChangeFace(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
-        {
-            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-            ChoiceMenuItem item = new ChoiceMenuItem();
-            item.Name = "Change Face:";
-            item.itemData = "Change Face:";
-            item.Executor = data =>
-            {
-                string caption2;
-                var itemlist1 = CreateMenuChangeFace(proc, null, out caption2);
-                ShowSubmenu(proc, itemlist1, caption2);
-            };
-            itemlist.Add(item);
-            caption = "Выбрать действие:";
-            return itemlist;
-        }
-        protected List<ChoiceMenuItem> AddMenu_ChangeFigure(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
-        {
-            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-            ChoiceMenuItem item = new ChoiceMenuItem();
-            item.Name = "Change Figure:";
-            item.itemData = "Change Figure:";
-            item.Executor = data =>
-            {
-                string caption2;
-                var itemlist1 = CreateMenuChangeFigure(proc, null, out caption2);
-                ShowSubmenu(proc, itemlist1, caption2);
-            };
-            itemlist.Add(item);
-            caption = "Выбрать действие:";
-            return itemlist;
-        }
-        //protected List<ChoiceMenuItem> CreateMenuCadreLocation(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
-        //{
-        //    if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-        //    foreach (var location in StoGenerator.LocationStorage.Storage)
-        //    {
-        //        var item = new ChoiceMenuItem();
-        //        item.Name = $"{location.Name}";
-        //        item.itemData = location;
-        //        MenuDescriptopnItem mdi1 = new MenuDescriptopnItem("Тип", location.Type, true);
-        //        item.Props = (new List<MenuDescriptopnItem>() { mdi1 }).ToArray();
-        //        item.Executor = data =>
-        //        {
-        //            this.RemoveAllGroupsAfter(proc.CadreId);
-        //            CE_Location.AddWithMusic(this, ((LocationStorage)data).Name, "day", "Печальная тема 01", null);
-        //            proc.GetNextCadre();
-        //        };
-        //        itemlist.Add(item);
-        //    }
-
-        //    caption = "Выбрать локацию:";
-        //    return itemlist;
-        //}
-        protected List<ChoiceMenuItem> CreateMenuChangeFace(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
-        {
-            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-            //var faces = JFord.Files.Where(x => x.Item1.Contains(Person.Generic.FaceGeneric.ToString())).ToList();
-            List<Tuple<string, string>> list = new List<Tuple<string, string>>();
-            for (int m = 67; m <= 77; m++)
-            {
-                for (int y = 67; y <= 77; y++)
-                {
-                    list.Add(new Tuple<string, string>($"Mouth1_{m}", $"Eyes1_{y}"));
-                }
-            }
-            foreach (var face in list)
-            {
-                var item = new ChoiceMenuItem();
-                item.Name = $"{face.Item1}-{face.Item2}";
-                item.itemData = face;
-                MenuDescriptopnItem mdi1 = new MenuDescriptopnItem("Mouth", face.Item1, true);                
-                item.Props = (new List<MenuDescriptopnItem>() { mdi1 }).ToArray();
-                item.Executor = data =>
-                {
-                    Tuple<string, string> v = (data as Tuple<string, string>);
-                    F_Posture = PullCadreFromScene(proc, proc.CadreId);
-                    F_Posture = JFord.GetFace(F_Posture, v.Item2, v.Item1, JennyFord.Eyes.EyesBlink1.ToString());
-                    AddScenes(F_Posture, 1, false);
-                    proc.RefreshCurrentCadre();
-                };
-                itemlist.Add(item);
-            }
-
-            caption = "Поменять выражение лица:";
-            return itemlist;
-        }
-        protected List<ChoiceMenuItem> CreateMenuChangeFigure(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
-        {
-            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-            var list = JFord.Files.Where(x => x.Item1.Contains(Person.Generic.FigureGeneric.ToString())).ToList();
-            foreach (var figure in list)
-            {
-                var item = new ChoiceMenuItem();
-                item.Name = $"{figure.Item3}";
-                item.itemData = figure;
-                MenuDescriptopnItem mdi1 = new MenuDescriptopnItem("Наряд", figure.Item4, true);
-                item.Props = (new List<MenuDescriptopnItem>() { mdi1 }).ToArray();
-                item.Executor = data =>
-                {
-                    int ms = 1000;
-                    F_Posture = PullCadreFromScene(proc, proc.CadreId);
-                    var feature = data as Tuple<string, string, string, string>;
-                    F_Posture = this.CombinePerson(F_Posture, feature, JFord, ms);
-                    //List<string> features = feature.Item2.Split(',').ToList();
-                    //if (features.Count == 1)
-                    //{
-                    //    F_Posture = JFord.GetFigure(F_Posture, feature.Item1, Trans.Dissapearing(ms));
-                    //}
-                    //else
-                    //{
-                    //    foreach (var it in features)
-                    //    {
-                    //        if (it == features.First())
-                    //            F_Posture = JFord.GetFigure(F_Posture, it, Trans.Dissapearing(ms));
-                    //        else
-                    //        {              
-                    //            F_Posture = JFord.SetFeature(F_Posture, it, Trans.Dissapearing(ms), Trans.Appearing(ms), true);
-                    //        }
-                    //    }
-                    //}                                    
-                    AddScenes(F_Posture, 1, false);
-                    proc.RefreshCurrentCadre();
-                };
-                itemlist.Add(item);
-            }
-
-            caption = "Поменять выражение лица:";
-            return itemlist;
-        }
-
-
-      
 
     }
 }

@@ -48,7 +48,8 @@ namespace StoGenerator
             SkirtNormal,
             ShoesNormal,
             MouthNormal,
-            PubicNormal
+            PubicNormal,
+            FeatureBlink
         }
         public enum Poses
         {
@@ -61,21 +62,16 @@ namespace StoGenerator
             Storage.Clear();
             File.WriteAllText(file, JsonConvert.SerializeObject(Storage, Formatting.Indented));
         }
-
         protected override Info_Scene ToSceneInfo(Tuple<string, string, string, string> item)
         {
             Info_Scene result = base.ToSceneInfo(item);
             result.Kind = 0;
             return result;
         }
-
         public List<Info_Scene> AddBlink(List<Info_Scene> posture, string eyes)
         {
             return SetFeature(posture, eyes, null, Trans.Eyes_Blink, false);
         }
-
-
-
         public List<Info_Scene> SetFeature(List<Info_Scene> posture, string feature, string tranOfPrev, string tranOfNew, bool AddBeforePrev)
         {
             if (posture == null) posture = new List<Info_Scene>();
@@ -190,6 +186,12 @@ namespace StoGenerator
                 }
             }
             return posture;
+        }
+
+        public virtual List<Tuple<string, string>> GetAllFaceCombinations()
+        {
+            List<Tuple<string, string>> list = new List<Tuple<string, string>>();           
+            return list;
         }
 
     }

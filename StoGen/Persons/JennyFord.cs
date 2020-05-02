@@ -251,7 +251,7 @@ namespace StoGenerator.Persons
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.EyesGeneric},{Eyes.Eyes1_76}", $@"{ImagePath}Eyes_1_076.png", null, $"{Poses.Pose}{1}"));
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.EyesGeneric},{Eyes.Eyes1_77}", $@"{ImagePath}Eyes_1_077.png", null, $"{Poses.Pose}{1}"));
 
-            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.BlinkGeneric},{Eyes.EyesBlink1}", $@"{ImagePath}Eyes_1_blink1.png", null, $"{Poses.Pose}{1}"));
+            person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.BlinkGeneric},{Feature.FeatureBlink}{1}", $@"{ImagePath}Eyes_1_blink1.png", null, $"{Poses.Pose}{1}"));
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.BlushGeneric},{Feature.FeatureBlush}{1}", $@"{ImagePath}Blush_1_001.png", null, $"{Poses.Pose}{1}"));
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FeatureGeneric},{Generic.BlinkGeneric},{Eyes.EyesBlink2}", $@"{ImagePath}Eyes_2_blink1.png", null, $"{Poses.Pose}{2}"));
 
@@ -662,6 +662,20 @@ namespace StoGenerator.Persons
         {
             posture.RemoveAll(x => x.Tags.Contains(Feature.FeatureBlush.ToString() + "1"));
             return posture;
+        }
+
+
+        public override List<Tuple<string, string>> GetAllFaceCombinations()
+        {
+            List<Tuple<string, string>> list = new List<Tuple<string, string>>();
+            for (int m = 67; m <= 77; m++)
+            {
+                for (int y = 67; y <= 77; y++)
+                {
+                    list.Add(new Tuple<string, string>($"Mouth1_{m}", $"Eyes1_{y}"));
+                }
+            }
+            return list;
         }
     }
 }
