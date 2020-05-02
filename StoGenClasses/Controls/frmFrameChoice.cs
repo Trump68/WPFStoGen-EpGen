@@ -21,10 +21,11 @@ namespace StoGen.Classes
         public static DialogResult ShowOptionsmenu(List<ChoiceMenuItem> itemlist, string caption, int viewNum)
         {
             DialogResult result = DialogResult.Cancel;
+            if (itemlist == null || !itemlist.Any()) return result;
             using (frmFrameChoice frm = new frmFrameChoice())
             {
                 frm.LabelText.Text = caption;
-                if (itemlist.Count>0)
+                if (itemlist.Any())
                 {
                     frm.Columns = itemlist[0].Props;
                     if (frm.Columns != null)
@@ -162,8 +163,8 @@ namespace StoGen.Classes
             }
             else if (processCancel)
             {
-                controller.MenuCreator = controller.OldMenuCreator;
-                controller.ShowContextMenu(doShowMenu, null);
+                //controller.MenuCreator = controller.OldMenuCreator;
+                //controller.ShowContextMenu(doShowMenu, null);
             }
             else controller.RepaintCadre(controller.CurrentCadre);
         }

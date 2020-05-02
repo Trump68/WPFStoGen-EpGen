@@ -1,6 +1,7 @@
 ﻿using StoGen.Classes;
 using StoGen.ModelClasses;
 using StoGenerator.CadreElements;
+using StoGenerator.StoryClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace StoGenerator.Stories
 {
-    public class CelledStory : StoryBase
+    public class CelledStory : TimedStory
     {
         private enum MovementDirection
         {
@@ -37,7 +38,7 @@ namespace StoGenerator.Stories
                 return MovementDirection.In;
             }
         }
-        public CelledStory():base()
+        public CelledStory(DateTime date):base(date)
         {
             CurrentCell = Cell.Storage.First();
         }
@@ -45,7 +46,7 @@ namespace StoGenerator.Stories
         {           
             F_Posture = new List<Info_Scene>();
             CurrentCell = cell;
-            F_Posture.Add(CurrentCell.Picture("day").FirstOrDefault());
+            F_Posture.Add(CurrentCell.Picture(TimeOfDay).FirstOrDefault());
             MakeNextCadre(Teller.Author, null);
             if (proc != null)
             {
@@ -59,22 +60,29 @@ namespace StoGenerator.Stories
             string caption;
             int mode = (int)Data;
             int viewNum = mode;
+            string cap = null;
             if (mode == 1)
             {
-                itemlist = FillMenu_GoToLocation_ByData(proc, null, out caption);
+                if (MenuIsLive)
+                {
+                    itemlist = FillMenu_GoToLocation_ByData(proc, null, out caption);
+                    cap = caption;
+                }            
             }
             else
             {
-                itemlist = AddRootMenu(proc, null, out caption);
-                itemlist = base.AddRootMenu(proc, itemlist, out caption);
+                if (MenuIsLive)
+                    itemlist = AddRootMenu(proc, null, out caption);
             }
-            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, caption, viewNum);
+            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, cap, viewNum);
             return true;
         }
         protected override List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-            this.AddMenu_GoToLocation(proc, itemlist, out caption);
+            if (MenuIsLive)
+                this.AddMenu_GoToLocation(proc, itemlist, out caption);
+            itemlist = base.AddRootMenu(proc, itemlist, out caption);
             caption = "Выбрать действие:";
             return itemlist;
         }
@@ -103,7 +111,7 @@ namespace StoGenerator.Stories
                 var item = new ChoiceMenuItem();
                 item.Name = $"{cell.Name}";
                 item.itemData = cell;
-                item.SetPicture(cell.Picture("day").FirstOrDefault()?.File);
+                item.SetPicture(cell.Picture(TimeOfDay).FirstOrDefault()?.File);
                 item.Executor = data =>
                 {
                     GoToCell(data as Cell, proc);

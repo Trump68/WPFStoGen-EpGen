@@ -68,8 +68,8 @@ namespace StoGenMake
             }
             else if (story != null)
             {
-                scene = new Scene_Combo();
-                ((Scene_Combo)scene).SetScenario(story, story.SceneInfos[0].Queue);
+                scene = new StoryScene();
+                ((StoryScene)scene).SetScenario(story, story.SceneInfos[0].Queue);
             }
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();

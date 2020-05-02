@@ -123,6 +123,7 @@ namespace StoGenWPF
             else if (e.Key == Key.F7)
             {
                 InfoLocation.Visibility = (InfoLocation.Visibility ==Visibility.Visible) ? Visibility.Hidden : Visibility.Visible;
+                InfoDate.Visibility = (InfoDate.Visibility == Visibility.Visible) ? Visibility.Hidden : Visibility.Visible;
             }
             else if (e.Key == Key.OemPeriod)
             {
@@ -246,6 +247,7 @@ namespace StoGenWPF
             PictureCadreDS.Visibility = Visibility.Hidden;
             PictureCadreDS.DataContext = Projector.ImageCadre;
             InfoLocation.DataContext = Projector.ImageCadre;
+            InfoDate.DataContext = Projector.ImageCadre;
             SGManager.StartMainProc(Scene, startpage - 1);
         }
         public void Start()

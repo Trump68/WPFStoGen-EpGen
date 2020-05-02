@@ -204,7 +204,7 @@ namespace StoGenMake.Scenes.Base
 
       
 
-        public virtual MenuCreatorDelegate GetMenuCreator()
+        public virtual MenuCreatorDelegate GetMenuCreator(bool live)
         {
             return null;
         }

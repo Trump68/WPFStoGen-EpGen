@@ -74,7 +74,7 @@ namespace StoGenMake
         {
             if (itemlist == null)
                 itemlist = new List<ChoiceMenuItem>();
-            proc.OldMenuCreator = this.CreateMenu;
+            //proc.OldMenuCreator = this.CreateMenu;
             ChoiceMenuItem item = null;
 
 

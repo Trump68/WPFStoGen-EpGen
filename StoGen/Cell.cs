@@ -1,5 +1,6 @@
 ﻿using StoGen.Classes;
 using StoGenerator.CadreElements;
+using StoGenerator.StoryClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,9 +43,9 @@ namespace StoGenerator
         }
         public string Description { get; set; }
         public string VisualName { get; set; }
-        public List<Info_Scene> Picture(string feature)
+        public List<Info_Scene> Picture(TimeOfDay feature)
         {
-            return CE_Location.Get(VisualName, feature);
+            return CE_Location.Get(VisualName, $"{feature}");
         }
         public HashSet<Cell> NearByCells = new HashSet<Cell>();
         public List<Cell> Cells = new List<Cell>();

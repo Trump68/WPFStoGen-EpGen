@@ -503,7 +503,7 @@ namespace EPCat
             if (this.CurrentCombinedScene == null) return;
             
             GameWorldFactory.GameWorld.LoadData();
-            Scene_Combo scene = new Scene_Combo();
+            StoryScene scene = new StoryScene();
             scene.SetScenario(this.Story, this.CurrentCombinedScene.Queue);
 
             if (projector == null)

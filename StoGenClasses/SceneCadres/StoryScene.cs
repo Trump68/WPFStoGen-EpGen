@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace StoGen.Classes.Data.Games
 {
-    public class Scene_Combo : BaseScene
+    public class StoryScene : BaseScene
     {
-        public Scene_Combo() : base()
+        public StoryScene() : base()
         {
             Name = "Scene_Game";
             EngineHiVer = 1;
@@ -400,14 +400,14 @@ namespace StoGen.Classes.Data.Games
 
         internal override List<CadreData> GetNextCadreData(int cadreId)
         {
-            List<Info_Scene> list = this.Story.GetNextGroups(cadreId);
+            List<Info_Scene> list = this.Story.GoForwardStory(cadreId);
             return Process(list, cadreId+1);
         }
 
 
-        public override MenuCreatorDelegate GetMenuCreator()
+        public override MenuCreatorDelegate GetMenuCreator(bool live)
         {
-            return this.Story.GetMenuCreator();
+            return this.Story.GetMenuCreator(live);
         }
 
     }

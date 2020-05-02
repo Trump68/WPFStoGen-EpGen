@@ -12,7 +12,7 @@ namespace StoGenerator.StoryClasses
     public class PersonizedStory : CelledStory
     {
         public List<Person> VisiblePersons = new List<Person>();
-        public PersonizedStory():base()
+        public PersonizedStory(DateTime date):base(date)
         {
 
         }
@@ -22,16 +22,22 @@ namespace StoGenerator.StoryClasses
             string caption;
             int mode = (int)Data;
             int viewNum = mode;
+            string cap = null;
             if (mode == 1) // moving
             {
-                itemlist = FillMenu_GoToLocation_ByData(proc, null, out caption);
+                if (MenuIsLive)
+                {
+                    itemlist = FillMenu_GoToLocation_ByData(proc, null, out caption);
+                    cap = caption;
+                }
             }
             else // all
             {
-                itemlist = AddRootMenu(proc, null, out caption);
+                if (MenuIsLive)
+                    itemlist = AddRootMenu(proc, null, out caption);
                 itemlist = base.AddRootMenu(proc, itemlist, out caption);
             }
-            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, caption, viewNum);
+            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, cap, viewNum);
             return true;
         }
         protected override List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
@@ -145,7 +151,7 @@ namespace StoGenerator.StoryClasses
                     int ms = 1000;
                     F_Posture = PullCadreFromScene(proc, proc.CadreId);
                     var feature = data as Tuple<string, string, string, string>;
-                    F_Posture = this.CombinePerson(F_Posture, feature, person, ms);                              
+                    F_Posture = person.CombinePerson(F_Posture, feature, ms);                              
                     AddScenes(F_Posture, 1, false);
                     proc.RefreshCurrentCadre();
                 };

@@ -187,7 +187,27 @@ namespace StoGenerator
             }
             return posture;
         }
-
+        public List<Info_Scene> CombinePerson(List<Info_Scene> posture, Tuple<string, string, string, string> feature, int ms)
+        {
+            List<string> features = feature.Item2.Split(',').ToList();
+            if (features.Count == 1)
+            {
+                posture = GetFigure(posture, feature.Item1, Trans.Dissapearing(ms));
+            }
+            else
+            {
+                foreach (var it in features)
+                {
+                    if (it == features.First())
+                        posture = GetFigure(posture, it, Trans.Dissapearing(ms));
+                    else
+                    {
+                        posture = SetFeature(posture, it, Trans.Dissapearing(ms), Trans.Appearing(ms), true);
+                    }
+                }
+            }
+            return posture;
+        }
         public virtual List<Tuple<string, string>> GetAllFaceCombinations()
         {
             List<Tuple<string, string>> list = new List<Tuple<string, string>>();           

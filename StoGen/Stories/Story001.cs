@@ -19,7 +19,8 @@ namespace StoGenerator.Stories
     public class Story001 : PersonizedStory
     {
         public static string StoryName = "Story 001";
-        public Story001():base()
+        public static DateTime DateStart = new DateTime(2020, 6, 1, 8, 0, 0);
+        public Story001():base(DateStart)
         {
             this.Name = Story001.StoryName;
             this.FileName = this.Name;
@@ -45,7 +46,7 @@ namespace StoGenerator.Stories
         {
             //CE_Location.AddWithMusic(this,"Student Room 001", "evening", "Печальная тема 01", null);
             F_Posture = new List<Info_Scene>();
-            F_Posture.Add(CurrentCell.Picture("day").FirstOrDefault());
+            F_Posture.Add(CurrentCell.Picture(TimeOfDay).FirstOrDefault());
             F_Posture.AddRange(CE_Music.Get("Печальная тема 01", null));
             Projector.ImageCadre.InfoLocationText = CurrentCell.FullName;
             MakeNextCadre(Teller.Author, null);

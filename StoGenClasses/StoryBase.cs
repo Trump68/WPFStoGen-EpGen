@@ -86,8 +86,8 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
 
         }
 
-        internal List<Info_Scene> GetNextGroups(int lastgrouId)
-        {
+        public virtual List<Info_Scene> GoForwardStory(int lastgrouId)
+        {            
             var grupedlist = GetGroupedList();
             lastgrouId++;
             if (lastgrouId > grupedlist.Count() - 1)
@@ -103,7 +103,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                     return last;
                 }
             }
-            return null; ;
+            return null; 
         }
 
         public void RemoveAllGroupsAfter(int index)
@@ -212,30 +212,14 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             }
             return result;
         }
-        protected List<Info_Scene> CombinePerson(List<Info_Scene> posture, Tuple<string, string, string, string> feature, Person person, int ms)
-        {
-            List<string> features = feature.Item2.Split(',').ToList();
-            if (features.Count == 1)
-            {
-                posture = person.GetFigure(posture, feature.Item1, Trans.Dissapearing(ms));
-            }
-            else
-            {
-                foreach (var it in features)
-                {
-                    if (it == features.First())
-                        posture = person.GetFigure(posture, it, Trans.Dissapearing(ms));
-                    else
-                    {
-                        posture = person.SetFeature(posture, it, Trans.Dissapearing(ms), Trans.Appearing(ms), true);
-                    }
-                }
-            }
-            return posture;
-        }
+
+
+
         // MENU
-        public MenuCreatorDelegate GetMenuCreator()
+        protected bool MenuIsLive = false;
+        public MenuCreatorDelegate GetMenuCreator(bool live)
         {
+            MenuIsLive = live;
             return CreateMenu;
         }
         public virtual bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
@@ -255,7 +239,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             item.itemData = "Go To Cadre:";
             item.Executor = data =>
             {
-                proc.MenuCreator = proc.OldMenuCreator;
+                //proc.MenuCreator = proc.OldMenuCreator;
                 string str1;
                 var itemlist1 = CreateMenuCadreTravel(proc, null, out str1);
                 ShowMenuGoToCadre(proc, itemlist1);
@@ -278,7 +262,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 item.Props = (new List<MenuDescriptopnItem>() { mdi1 }).ToArray();
                 item.Executor = data =>
                 {
-                    proc.MenuCreator = proc.OldMenuCreator;
+                   // proc.MenuCreator = proc.OldMenuCreator;
                     var index = grupedlist.IndexOf(it);
                     proc.GoToCadre(++index);
 

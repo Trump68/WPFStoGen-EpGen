@@ -71,5 +71,18 @@ namespace StoGenWPF
                 OnPropertyChanged("InfoLocationText");
             }
         }
+
+        private string _InfoDateText;
+        public string InfoDateText
+        {
+            get { return _InfoDateText; }
+            set
+            {
+                _InfoDateText = value;
+                OnPropertyChanged("InfoDateText");
+            }
+        }
+      
+
     }
 }

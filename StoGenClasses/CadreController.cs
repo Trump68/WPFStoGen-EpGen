@@ -25,12 +25,14 @@ namespace StoGen.Classes
             {
                 CreateCadre();
             }
-            this.ShowContextMenuOnInit = false;
             this.GoFirstCadre();
             while (this.CadreId < startpage)
             {
                 this.GetNextCadre();
             }
+            //bool LiveMenu = (startpage == Cadres.Count()-1);
+            //this.OldMenuCreator = this.MenuCreator;
+            //this.MenuCreator = this.Scene.GetMenuCreator(LiveMenu);
         }
         private void CreateCadre()
         {
@@ -89,7 +91,7 @@ namespace StoGen.Classes
         }
         public virtual void Init()
         {
-            if (ShowContextMenuOnInit && !isInitialized) this.ShowContextMenu(true,null);
+            //if (ShowContextMenuOnInit && !isInitialized) this.ShowContextMenu(true,null);
             isInitialized = true;
         }
         public Cadre GoFirstCadre()
@@ -191,19 +193,17 @@ namespace StoGen.Classes
             {
                 this.RepaintCadre(result);      
             }
-
+            
             return result;
         }
         // Menu
-        public object MenuCreatorData;
-        public MenuCreatorDelegate OldMenuCreator;
-        public MenuCreatorDelegate MenuCreator;
-     
-        public bool ShowContextMenuOnInit = true;
+
+        //public bool ShowContextMenuOnInit = true;
         public virtual bool ShowContextMenu(bool show, object Data)
         {
             isInitialized = true;
-           
+            bool LiveMenu = (CadreId == Cadres.Count() - 1);
+            var MenuCreator = this.Scene.GetMenuCreator(LiveMenu);
             if (MenuCreator != null)
             {
                 return MenuCreator(this, show, null, Data);
@@ -293,16 +293,18 @@ namespace StoGen.Classes
 
         public void CreateNextCadres()
         {
+            bool LiveMenu = false;
             List<CadreData> nextcadredata = this.Scene.GetNextCadreData(CadreId);
             if (nextcadredata != null)
             {
                 foreach (var item in nextcadredata)
                 {
-                    this.CreateCadre();
-                    //MakeCadre(item);
+                    this.CreateCadre();                    
                 }
+                LiveMenu = true;                
+                //this.OldMenuCreator = this.MenuCreator;
+                //this.MenuCreator = this.Scene.GetMenuCreator(LiveMenu);
             }
-            this.MenuCreator = this.Scene.GetMenuCreator();
         }
         public void RepaintCadre(Cadre cadre)
         {

@@ -66,6 +66,7 @@
     <Compile Include="Stories\Works_Horikawa_Gorou.cs" />
     <Compile Include="Stories\Works_Momofuki_Rio.cs" />
     <Compile Include="StoryClasses\PersonizedStory.cs" />
+    <Compile Include="StoryClasses\TimedStory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StoGenClasses\StoGenClasses.csproj">

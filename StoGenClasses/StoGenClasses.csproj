@@ -95,7 +95,7 @@
       <DependentUpon>frmTextEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Scenario\SCENARIO.cs" />
-    <Compile Include="SceneCadres\SCENE_Combo.cs" />
+    <Compile Include="SceneCadres\StoryScene.cs" />
     <Compile Include="Data\Games\SILKY%27S SAKURA-Otto no Inu Ma ni.cs" />
     <Compile Include="Scene\SCENE_Clips.cs" />
     <Compile Include="Data\Texts\TextStory.cs" />
