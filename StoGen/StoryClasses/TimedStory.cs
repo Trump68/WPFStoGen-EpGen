@@ -8,13 +8,7 @@ using System.Threading.Tasks;
 
 namespace StoGenerator.StoryClasses
 {
-    public enum TimeOfDay
-    {
-        morning,
-        day,
-        evening,
-        night
-    }
+
     public class TimedStory: StoryBase
     {
         DateTime _DateTimeStart;

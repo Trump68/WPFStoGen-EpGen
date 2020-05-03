@@ -11,6 +11,13 @@ using DevExpress.XtraEditors;
 
 namespace StoGen.Classes
 {
+    public enum TimeOfDay
+    {
+        morning,
+        day,
+        evening,
+        night
+    }
     public static class Universe
     {    
         public static Random Rnd = new Random();

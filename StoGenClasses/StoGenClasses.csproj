@@ -72,9 +72,14 @@
     <Compile Include="BaseGeneratorItem.cs" />
     <Compile Include="Cadre.cs" />
     <Compile Include="CadreData.cs" />
+    <Compile Include="Cell.cs" />
+    <Compile Include="Interfaces\IPersonManager.cs" />
+    <Compile Include="LocationStorage.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Scenario\IStoryGenerator.cs" />
     <Compile Include="Scenario\StoryGeneratorDefault.cs" />
+    <Compile Include="SceneCadres\CE_Location.cs" />
+    <Compile Include="SceneCadres\CE_Music.cs" />
     <Compile Include="SceneCadres\INFO_Scene.cs" />
     <Compile Include="Controls\frmFrameChoice.cs">
       <SubType>Form</SubType>
@@ -122,6 +127,7 @@
     <Compile Include="Scene\ScenCadre.cs" />
     <Compile Include="Scene\ScenElement.cs" />
     <Compile Include="Scene\SceneMaker.cs" />
+    <Compile Include="Sound.cs" />
     <Compile Include="StoryBase.cs" />
     <Compile Include="Transition\OpEf.cs" />
     <Compile Include="Transition\Transition.cs" />

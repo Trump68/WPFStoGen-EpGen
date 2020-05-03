@@ -14,7 +14,7 @@ namespace StoGenerator.Persons
     {
         public static string ImagePath = @"e:\!STOGENDB\READY\CHR\F\JennyFord\";
 
-
+        public Cell CurrentHome { get; internal set; }
 
         public enum Eyes
         {

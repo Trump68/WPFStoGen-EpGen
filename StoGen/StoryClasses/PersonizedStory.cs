@@ -1,4 +1,5 @@
 ﻿using StoGen.Classes;
+using StoGenerator.Persons;
 using StoGenerator.Stories;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,14 @@ namespace StoGenerator.StoryClasses
         public List<Person> VisiblePersons = new List<Person>();
         public PersonizedStory(DateTime date):base(date)
         {
+            FillPersonStorage();
+        }
 
+        private void FillPersonStorage()
+        {
+            Person.Storage.Add(new JennyFord("Jenny Ford","wife"));
+            Person.Storage.Add(new BobLulam("Bob Lulam", "bully"));
+            
         }
 
         public override bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)

@@ -1,11 +1,8 @@
 ﻿using StoGen.Classes;
 using StoGenerator.CadreElements;
-using StoGenerator.StoryClasses;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace StoGenerator
 {
@@ -47,6 +44,7 @@ namespace StoGenerator
         {
             return CE_Location.Get(VisualName, $"{feature}");
         }
+      
         public HashSet<Cell> NearByCells = new HashSet<Cell>();
         public List<Cell> Cells = new List<Cell>();
         public Cell(string name, string visualName, Cell owner, Kind kind, params Cell[] nearBy)
@@ -58,8 +56,8 @@ namespace StoGenerator
                 Owner.Cells.Add(this);
             }
         }
-        // static 
 
+        // static 
         private static List<Cell> _Storage;
         public static List<Cell> Storage
         {
@@ -75,11 +73,22 @@ namespace StoGenerator
         }
         private static void Initiate()
         {
+            LocationStorage.InitDefaultLocations();
             //var land = AddLandNihon();
             var street = AddStreetJasmineGardens(null);
             _Storage.Add(street);
         }
-
+        public static Cell GetByAddress(List<Cell> list, string address)
+        {           
+            foreach (var cell in list)
+            {
+                if (cell.FullName == address) return cell;
+                var result = GetByAddress(cell.Cells, address);
+                if (result != null)
+                    return result;
+            }
+            return null;
+        }
         //private static LocationGeneric AddLandNihon()
         //{
         //    LocationGeneric item = new LocationGeneric("Земля Нихон", null, Kind.Land);
@@ -92,6 +101,7 @@ namespace StoGenerator
         //    var area = AddStreetJasmineGardens(item);
         //    return item;
         //}
+
         private static Cell AddStreetJasmineGardens(Cell owner)
         {
             Cell street = new Cell("Жасминовая улица", "Street City 001", owner, Kind.Area);

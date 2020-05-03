@@ -214,5 +214,23 @@ namespace StoGenerator
             return list;
         }
 
+
+
+
+        // Static Storage
+        private static List<Person> _Storage;
+        public static List<Person> Storage
+        {
+            get
+            {
+                if (_Storage == null)
+                {
+                    _Storage = new List<Person>();
+                }
+                return _Storage;
+            }
+        }
+
+        public Cell CurrentHome { get; set; }
     }
 }

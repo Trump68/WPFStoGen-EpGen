@@ -15,6 +15,10 @@ namespace StoGenerator.CadreElements
         {
             List<Info_Scene> result = new List<Info_Scene>();
             var item = LocationStorage.GetByName(name, spec, StoryBase.currentQueue, StoryBase.currentGroup); 
+            if (item == null)
+                item = LocationStorage.GetByName(name, "day", StoryBase.currentQueue, StoryBase.currentGroup);
+            if (item == null)
+                item = LocationStorage.GetByName(name, null, StoryBase.currentQueue, StoryBase.currentGroup);
             if (item != null)
             {
                 item.Z = "0";
