@@ -13,7 +13,7 @@ namespace StoGenerator.Persons
     public class JennyFord : Person //Kazoku ~Haha To Shimai No Kyousei~
     {
         public static string ImagePath = @"e:\!STOGENDB\READY\CHR\F\JennyFord\";
-
+        public static string Name = "Jenny Ford";
         public Cell CurrentHome { get; internal set; }
 
         public enum Eyes
@@ -72,7 +72,7 @@ namespace StoGenerator.Persons
         public JennyFord(string name, string type) : base(name, type) { }
         public static JennyFord Load()
         {
-            JennyFord person = new JennyFord("Jenny Ford", "Wife");
+            JennyFord person = new JennyFord(JennyFord.Name, "Wife");
             int i = 1;
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}", $@"{ImagePath}Figure001_1.png", "Голая", "Поза 1")); ++i;
             person.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",

@@ -398,9 +398,9 @@ namespace StoGen.Classes.Data.Games
             return CreateCadreData($"{story}", itl, group, indexToInsert);
         }
 
-        internal override List<CadreData> GetNextCadreData(int cadreId)
+        internal override List<CadreData> GetNextCadreData(CadreController proc, int cadreId)
         {
-            List<Info_Scene> list = this.Story.GoForwardStory(cadreId);
+            List<Info_Scene> list = this.Story.GoForwardStory(proc, cadreId);
             return Process(list, cadreId+1);
         }
 

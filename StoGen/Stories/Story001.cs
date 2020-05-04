@@ -44,11 +44,8 @@ namespace StoGenerator.Stories
         }
         protected override void FillData()
         {
-            //CE_Location.AddWithMusic(this,"Student Room 001", "evening", "Печальная тема 01", null);
-            F_Posture = new List<Info_Scene>();
-            F_Posture.Add(CurrentCell.Picture(TimeOfDay).FirstOrDefault());
+            GoToCell(null, null);
             F_Posture.AddRange(CE_Music.Get("Печальная тема 01", null));
-            Projector.ImageCadre.InfoLocationText = CurrentCell.FullName;
             MakeNextCadre(Teller.Author, null);
 
             //F_Posture = JFord.GetFigure(F_Posture, $"{Feature.FeatureFigure}{1}", Trans.Dissapearing(1000));
@@ -243,7 +240,7 @@ namespace StoGenerator.Stories
             //    Where(x => !x.Tags.Contains(JennyFord.Mouth.Mouth1_67.ToString())).ToList().ForEach(x => { x.T = "Y.B.500.-2>Y.B.500.2~"; });
             //MakeNextCadre(Teller.Female, "....он очень настойчив....");
         }
-        protected void MakeFirsCadre(string fileum, Teller who, string story, bool active)
+        protected void MakeFirstCadre(string fileum, Teller who, string story, bool active)
         {
             //JennyFord_Posture = JFord.WoreNightgown(null, JennyFord.Poses.Stand1);
             //JennyFord_Posture = 

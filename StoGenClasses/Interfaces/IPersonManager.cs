@@ -9,6 +9,7 @@ namespace StoGen.Classes.Interfaces
 {
     public interface IPersonManager
     {
-        void AllocateCells(List<Person> persons, List<Cell> cells);
+        void AllocateHomes(List<Person> persons, List<Cell> cells);
+        void AllocateCurrentCells();
     }
 }

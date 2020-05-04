@@ -71,28 +71,25 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             }
             currentGroup = string.Join(".", vals);
         }
-        public virtual void GenerateNextCadre() { }
         public virtual void Generate(string queue, string group)
         {
             currentGroup = group;
             currentQueue = queue;
-
         }
         protected virtual void FillData()
         {
         }
-        protected virtual void MakeLocation()
-        {
-
-        }
-
-        public virtual List<Info_Scene> GoForwardStory(int lastgrouId)
+        public virtual List<Info_Scene> GoForwardStory(CadreController proc, int lastgrouId)
         {            
             var grupedlist = GetGroupedList();
             lastgrouId++;
             if (lastgrouId > grupedlist.Count() - 1)
             {
-
+                var MenuCreator = GetMenuCreator(true);
+                if (MenuCreator != null)
+                {
+                    MenuCreator(proc, true, null, 1);
+                }
             }
             else
             {

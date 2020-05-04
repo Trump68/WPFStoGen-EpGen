@@ -12,19 +12,36 @@ namespace StoGenerator.Persons
 
         public List<Person> Persons;
         public List<Cell> Cells;
-        public void AllocateCells(List<Person> persons, List<Cell> cells)
+        public void AllocateHomes(List<Person> persons, List<Cell> cells)
         {
             Persons = persons;
             Cells = cells;
-            SetPerson(JennyFord.Load(), "Квартира N1,Дом N1,Жасминовая улица");
-            SetPerson(BobLulam.Load(),  "Квартира N2,Дом N1,Жасминовая улица");
-
+            SetPersonHome(JennyFord.Name, "Квартира N1,Дом N1,Жасминовая улица");
+            SetPersonHome(BobLulam.Name,  "Квартира N2,Дом N1,Жасминовая улица");
         }
-        private void SetPerson(Person person, string homeaddress)
+        public void AllocateCurrentCells()
         {
-            Cell home = Cell.GetByAddress(Cell.Storage, homeaddress);
-            person.CurrentHome = home;
-            Persons.Add(person);
+            SetPersonCurrentCell(JennyFord.Name, "Квартира N1,Дом N1,Жасминовая улица");
+            SetPersonCurrentCell(BobLulam.Name, "Квартира N2,Дом N1,Жасминовая улица");
         }
+        private void SetPersonHome(string personName, string homeaddress)
+        {
+            Person person = Person.Storage.Where(x => x.Name == personName).FirstOrDefault();
+            if (person != null)
+            {
+                Cell home = Cell.GetByAddress(Cell.Storage, homeaddress);
+                person.CurrentHome = home;
+            }
+        }
+        private void SetPersonCurrentCell(string personName, string homeaddress)
+        {
+            Person person = Person.Storage.Where(x => x.Name == personName).FirstOrDefault();
+            if (person != null)
+            {
+                Cell home = Cell.GetByAddress(Cell.Storage, homeaddress);
+                person.CurrentHome = home;
+            }
+        }
+
     }
 }

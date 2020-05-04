@@ -294,7 +294,7 @@ namespace StoGen.Classes
         public void CreateNextCadres()
         {
             bool LiveMenu = false;
-            List<CadreData> nextcadredata = this.Scene.GetNextCadreData(CadreId);
+            List<CadreData> nextcadredata = this.Scene.GetNextCadreData(this,CadreId);
             if (nextcadredata != null)
             {
                 foreach (var item in nextcadredata)

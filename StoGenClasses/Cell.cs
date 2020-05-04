@@ -1,4 +1,5 @@
 ﻿using StoGen.Classes;
+using StoGen.ModelClasses;
 using StoGenerator.CadreElements;
 using System.Collections.Generic;
 using System.Linq;
@@ -79,7 +80,15 @@ namespace StoGenerator
             _Storage.Add(street);
         }
         public static Cell GetByAddress(List<Cell> list, string address)
-        {           
+        {          
+            if (list == null)
+            {
+                list = Cell.Storage;
+            }
+            if (string.IsNullOrEmpty(address))
+            {
+                return Cell.Storage.FirstOrDefault();
+            }
             foreach (var cell in list)
             {
                 if (cell.FullName == address) return cell;

@@ -10,10 +10,10 @@ namespace StoGenerator.Persons
     {
         public BobLulam(string name, string type) : base(name, type) { }
         public static string ImagePath = @"e:\!STOGENDB\READY\CHR\M\Bo Lulam\";
-
+        public static string Name = "Bob Lulam";
         public static BobLulam Load()
         {
-            BobLulam art = new BobLulam("Bob Lulam - Evil Coach", "Person");
+            BobLulam art = new BobLulam(BobLulam.Name, "bully");
 
             art.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{1000}", $@"{ImagePath}001.png", "", ""));
             art.Files.Add(new Tuple<string, string, string, string>($"{Generic.FigureGeneric},{Feature.FeatureFigure}{1001}", $@"{ImagePath}002.png", "", ""));

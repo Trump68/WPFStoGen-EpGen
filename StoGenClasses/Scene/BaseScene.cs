@@ -168,7 +168,7 @@ namespace StoGenMake.Scenes.Base
             return true;
         }
 
-        internal virtual List<CadreData> GetNextCadreData(int cadreId)
+        internal virtual List<CadreData> GetNextCadreData(CadreController proc, int cadreId)
         {
             return null;
         }

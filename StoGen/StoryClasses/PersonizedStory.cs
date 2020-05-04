@@ -1,4 +1,5 @@
 ﻿using StoGen.Classes;
+using StoGen.Classes.Interfaces;
 using StoGenerator.Persons;
 using StoGenerator.Stories;
 using System;
@@ -13,16 +14,19 @@ namespace StoGenerator.StoryClasses
     public class PersonizedStory : CelledStory
     {
         public List<Person> VisiblePersons = new List<Person>();
+        IPersonManager PersonManager;
         public PersonizedStory(DateTime date):base(date)
         {
             FillPersonStorage();
         }
 
-        private void FillPersonStorage()
+        protected virtual void FillPersonStorage()
         {
-            Person.Storage.Add(new JennyFord("Jenny Ford","wife"));
-            Person.Storage.Add(new BobLulam("Bob Lulam", "bully"));
-            
+            Person.Storage.Add(JennyFord.Load());
+            Person.Storage.Add(BobLulam.Load());
+            PersonManager = new DefaultPersonManager();
+            PersonManager.AllocateHomes(Person.Storage, Cell.Storage);
+            PersonManager.AllocateCurrentCells();
         }
 
         public override bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)

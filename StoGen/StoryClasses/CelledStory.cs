@@ -43,15 +43,28 @@ namespace StoGenerator.Stories
             CurrentCell = Cell.Storage.First();
         }
         protected void GoToCell(Cell cell, CadreController proc)
-        {           
+        {
+            //if (F_Posture == null)
+            // всегда начинаем кадр с локации
             F_Posture = new List<Info_Scene>();
+            if (cell == null)
+                cell = Cell.Storage.First();
             CurrentCell = cell;
             F_Posture.Add(CurrentCell.Picture(TimeOfDay).FirstOrDefault());
-            MakeNextCadre(Teller.Author, null);
             if (proc != null)
             {
-                proc.GetNextCadre();
-                Projector.ImageCadre.InfoLocationText = CurrentCell.FullName;
+                MakeNextCadre(Teller.Author, null);
+                proc.GetNextCadre();               
+            }
+            Projector.ImageCadre.InfoLocationText = CurrentCell.FullName;
+        }
+
+        public void GoToCellByName(string address, CadreController proc)
+        {           
+            Cell cell = Cell.GetByAddress(null, address);
+            if (cell != null)
+            {
+                GoToCell(cell, proc);
             }
         }
 
@@ -114,7 +127,7 @@ namespace StoGenerator.Stories
                 item.SetPicture(cell.Picture(TimeOfDay).FirstOrDefault()?.File);
                 item.Executor = data =>
                 {
-                    GoToCell(data as Cell, proc);
+                    GoToCell(data as Cell, proc);                  
                 };
                 itemlist.Add(item);
             }
