@@ -10,6 +10,7 @@ using System.Windows.Input;
 using StoGenMake.Scenes.Base;
 using StoGenMake.Elements;
 using StoGenMake;
+using Menu.Classes;
 
 namespace StoGen.Classes
 {
@@ -19,13 +20,12 @@ namespace StoGen.Classes
         public CadreController(BaseScene scene, int startpage)
         {
             Cadres = new List<Cadre>();
-            this.CadreId = -1;
             Scene = scene;
             foreach (var ad in Scene.CadreDataList)
             {
                 CreateCadre();
             }
-            this.GoFirstCadre();
+            this.CadreId = -1;
             while (this.CadreId < startpage)
             {
                 this.GetNextCadre();
@@ -34,7 +34,7 @@ namespace StoGen.Classes
             //this.OldMenuCreator = this.MenuCreator;
             //this.MenuCreator = this.Scene.GetMenuCreator(LiveMenu);
         }
-        private void CreateCadre()
+        public void CreateCadre()
         {
             var AppCadre = new Cadre(this, true);
             AppCadre.ImageFr.ShowMovieControls = true;
@@ -65,7 +65,6 @@ namespace StoGen.Classes
         }
 
         public int CadreId { get; set; } 
-        protected bool isInitialized = false;
         // Navigation
         public bool AllowedForward
         {
@@ -89,18 +88,12 @@ namespace StoGen.Classes
                     return this.CurrentCadre.AllowedBackward;
             }
         }
-        public virtual void Init()
-        {
-            //if (ShowContextMenuOnInit && !isInitialized) this.ShowContextMenu(true,null);
-            isInitialized = true;
-        }
-        public Cadre GoFirstCadre()
-        {
-            return GoToCadre(0);
-        }
+
+
         public Cadre GoToCadre(int num)
         {
-            CadreId = num - 1;
+            //CadreId = num - 1;
+            CadreId = num;
             return GetNextCadre();
         }
         public int CurrentCadreNum()
@@ -119,44 +112,29 @@ namespace StoGen.Classes
             }
         }
 
-        public void ProcessKey(Key e)
-        {
-
-                if (e == Key.Back)
-                {
-
-                        this.ShowContextMenu(true, null);
-                }
-                else if (this.CurrentCadre != null) this.CurrentCadre.ProcessKey(e);
-        }
 
         public virtual Cadre GetNextCadre()
         {
             CreateNextCadres();
+            CadreId++;
             Cadre result = null;
             if (CadreId >= 0 && CadreId <= Cadres.Count - 1)
             {
                 if (!Cadres[CadreId].AllowedForward) return result;
             }
 
-            if (CadreId < Cadres.Count - 1)
+            if (CadreId <= Cadres.Count - 1)
             {
-                if (CadreId > -1)
+                if (CadreId > 0)
                 {
-                    var prev = Cadres[CadreId];
+                    var prev = Cadres[CadreId - 1];
                     prev.Stop();
                 }
-                result = Cadres[CadreId + 1];
-                CadreId++;
+                result = Cadres[CadreId];
             }
             else if (Cadres.Count > 0 && (CadreId == Cadres.Count - 1))
             {
                 return null;
-            }
-
-            if (!isInitialized)
-            {
-                Init();
             }
             if (result != null) RepaintCadre(result);
             else
@@ -199,14 +177,13 @@ namespace StoGen.Classes
         // Menu
 
         //public bool ShowContextMenuOnInit = true;
-        public virtual bool ShowContextMenu(bool show, object Data)
+        public virtual bool ShowContextMenu(bool show, MenuType type)
         {
-            isInitialized = true;
-            bool LiveMenu = (CadreId == Cadres.Count() - 1);
+            bool LiveMenu = (CadreId == Cadres.Count()-1);
             var MenuCreator = this.Scene.GetMenuCreator(LiveMenu);
             if (MenuCreator != null)
             {
-                return MenuCreator(this, show, null, Data);
+                return MenuCreator(this, show, null, type, true);
             }
             return false;
         }
@@ -293,17 +270,16 @@ namespace StoGen.Classes
 
         public void CreateNextCadres()
         {
-            bool LiveMenu = false;
-            List<CadreData> nextcadredata = this.Scene.GetNextCadreData(this,CadreId);
-            if (nextcadredata != null)
-            {
-                foreach (var item in nextcadredata)
+            if (CadreId == Cadres.Count - 1)
+            {          
+                List<CadreData> nextcadredata = this.Scene.GetNextCadreData(this, (CadreId + 1));
+                if (nextcadredata != null)
                 {
-                    this.CreateCadre();                    
+                    foreach (var item in nextcadredata)
+                    {
+                        this.CreateCadre();
+                    }
                 }
-                LiveMenu = true;                
-                //this.OldMenuCreator = this.MenuCreator;
-                //this.MenuCreator = this.Scene.GetMenuCreator(LiveMenu);
             }
         }
         public void RepaintCadre(Cadre cadre)
@@ -318,7 +294,5 @@ namespace StoGen.Classes
             GetNextCadre();
         }
     }
-    public delegate bool MenuCreatorDelegate(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data);
-
-
+  
 }

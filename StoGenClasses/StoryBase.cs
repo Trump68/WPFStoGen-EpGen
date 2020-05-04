@@ -1,4 +1,5 @@
-﻿using StoGen.Classes;
+﻿using Menu.Classes;
+using StoGen.Classes;
 using StoGen.Classes.Scene;
 using StoGen.Classes.Transition;
 using System;
@@ -78,30 +79,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         }
         protected virtual void FillData()
         {
-        }
-        public virtual List<Info_Scene> GoForwardStory(CadreController proc, int lastgrouId)
-        {            
-            var grupedlist = GetGroupedList();
-            lastgrouId++;
-            if (lastgrouId > grupedlist.Count() - 1)
-            {
-                var MenuCreator = GetMenuCreator(true);
-                if (MenuCreator != null)
-                {
-                    MenuCreator(proc, true, null, 1);
-                }
-            }
-            else
-            {
-                var last = grupedlist[lastgrouId].Select(x => x).ToList();
-                if (!last.First().Active)
-                {
-                    last.ForEach(x => x.Active = true);
-                    return last;
-                }
-            }
-            return null; 
-        }
+        }     
 
         public void RemoveAllGroupsAfter(int index)
         {
@@ -211,6 +189,37 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         }
 
 
+        // MAIN! Miving story AHEAD
+        public List<Info_Scene> GoForwardStory(CadreController proc, int lastgrouId)
+        {
+            List<Info_Scene> result = null;
+            var grupedlist = GetGroupedList();
+            if (lastgrouId > grupedlist.Count() - 1)
+            {
+                GenerateNewStoryStep(proc);
+            }
+            result = ShowReneratedStep(lastgrouId);               
+            return result;
+        }
+        private List<Info_Scene> ShowReneratedStep(int lastgrouId)
+        {
+            var grupedlist = GetGroupedList();
+            //lastgrouId++;
+            var last = grupedlist[lastgrouId].Select(x => x).ToList();
+            if (!last.First().Active)
+            {
+                last.ForEach(x => x.Active = true);
+            }
+            return last;
+        }
+        protected virtual void GenerateNewStoryStep(CadreController proc)
+        {
+            var MenuCreator = GetMenuCreator(true);
+            if (MenuCreator != null)
+            {
+                MenuCreator(proc, true, null, MenuType.Cell, false); // change last argument to default
+            }
+        }
 
         // MENU
         protected bool MenuIsLive = false;
@@ -219,15 +228,15 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             MenuIsLive = live;
             return CreateMenu;
         }
-        public virtual bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        public virtual bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, MenuType type, bool goNextCadre)
         {
             string caption;
             // just for root menu
-            itemlist = AddRootMenu(proc, null, out caption);
+            itemlist = AddRootMenu(proc, null, goNextCadre, out caption);
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, caption);
             return true;
         }
-        protected virtual List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
+        protected virtual List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist,bool goNextCadre, out string caption)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 

@@ -153,12 +153,18 @@ namespace StoGenerator
         public List<Info_Scene> GetFigure(List<Info_Scene> posture, string outfit, string tranOfPrev)
         {
             if (posture == null) posture = new List<Info_Scene>();
-            var info = this.Files.FirstOrDefault(x => x.Item1.Contains(outfit));
+            Tuple<string, string, string, string> info = null;
+            if (string.IsNullOrEmpty(outfit))
+            {
+                info = this.Files.FirstOrDefault(x => x.Item1.Contains($"{Generic.FigureGeneric}"));
+            }
+            else
+                info = this.Files.FirstOrDefault(x => x.Item1.Contains(outfit));
             if (info != null)
             {
                 var newfigure = this.ToSceneInfo(info);
                 newfigure.Description = info.Item3;
-                var oldFigure = posture.Where(x => x.Tags.Contains(Generic.FigureGeneric.ToString())).OrderBy(x => x.Z).FirstOrDefault();
+                var oldFigure = posture.Where(x => x.Tags.Contains($"{Generic.FigureGeneric}")).OrderBy(x => x.Z).FirstOrDefault();
                 posture.RemoveAll(x =>
                 x.Tags.Contains(Generic.FigureGeneric.ToString())
                 ||
@@ -210,7 +216,7 @@ namespace StoGenerator
         }
         public virtual List<Tuple<string, string>> GetAllFaceCombinations()
         {
-            List<Tuple<string, string>> list = new List<Tuple<string, string>>();           
+            List<Tuple<string, string>> list = new List<Tuple<string, string>>();
             return list;
         }
 
@@ -230,7 +236,17 @@ namespace StoGenerator
                 return _Storage;
             }
         }
-
-        public Cell CurrentHome { get; set; }
+        private Cell _CurrentHome;
+        public Cell CurrentHome
+        {
+            get { return _CurrentHome; }
+            set { _CurrentHome = value; if (!_CurrentHome.HomeOf.Contains(this)) _CurrentHome.HomeOf.Add(this); }
+        }
+        private Cell _CurrentCell;
+        public Cell CurrentCell
+        {
+            get { return _CurrentCell; }
+            set { _CurrentCell = value; if (!_CurrentCell.Persons.Contains(this)) _CurrentCell.Persons.Add(this); }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using StoGen.Classes.Scene;
+﻿using Menu.Classes;
+using StoGen.Classes.Scene;
 using StoGen.Classes.Transition;
 using StoGenerator;
 using StoGenMake.Scenes.Base;
@@ -401,7 +402,7 @@ namespace StoGen.Classes.Data.Games
         internal override List<CadreData> GetNextCadreData(CadreController proc, int cadreId)
         {
             List<Info_Scene> list = this.Story.GoForwardStory(proc, cadreId);
-            return Process(list, cadreId+1);
+            return Process(list, cadreId);
         }
 
 

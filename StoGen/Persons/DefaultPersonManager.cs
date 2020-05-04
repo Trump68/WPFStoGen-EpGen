@@ -38,8 +38,9 @@ namespace StoGenerator.Persons
             Person person = Person.Storage.Where(x => x.Name == personName).FirstOrDefault();
             if (person != null)
             {
-                Cell home = Cell.GetByAddress(Cell.Storage, homeaddress);
-                person.CurrentHome = home;
+                Cell cell = Cell.GetByAddress(Cell.Storage, homeaddress);
+                var realsell =cell.Cells.Where(x => x.LocationKind == Cell.Kind.Cell).FirstOrDefault(); // get first real cell in address
+                person.CurrentCell = realsell;
             }
         }
 

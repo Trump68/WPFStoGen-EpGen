@@ -9,6 +9,7 @@ using StoGen.Classes.Scene;
 using StoGen.Classes.Scenario;
 using StoGen.Classes.Interfaces;
 using System.Windows.Forms;
+using Menu.Classes;
 
 namespace StoGenMake.Scenes.Base
 {

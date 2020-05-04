@@ -80,10 +80,15 @@ namespace StoGenerator.StoryClasses
             DTime = datetime;
         }
 
-        public override List<Info_Scene> GoForwardStory(CadreController proc, int lastgrouId)
+        //public override List<Info_Scene> GoForwardStory(CadreController proc, int lastgrouId)
+        //{
+        //    RefreshProjectorTime();
+        //    return base.GoForwardStory(proc, lastgrouId);
+        //}
+        protected override void GenerateNewStoryStep(CadreController proc)
         {
+            base.GenerateNewStoryStep(proc);
             RefreshProjectorTime();
-            return base.GoForwardStory(proc, lastgrouId);
         }
     }
 }

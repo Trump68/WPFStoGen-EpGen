@@ -59,7 +59,7 @@ namespace StoGenMake
       
         private static void GetScene(List<Info_Clip> clips, StoGenerator.StoryBase story)
         {
-            GameWorldFactory.GameWorld.LoadData();
+            //GameWorldFactory.GameWorld.LoadData();
             BaseScene scene = null;
             if (clips != null)
             {

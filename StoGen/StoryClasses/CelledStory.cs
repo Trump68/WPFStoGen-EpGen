@@ -1,4 +1,5 @@
-﻿using StoGen.Classes;
+﻿using Menu.Classes;
+using StoGen.Classes;
 using StoGen.ModelClasses;
 using StoGenerator.CadreElements;
 using StoGenerator.StoryClasses;
@@ -42,7 +43,7 @@ namespace StoGenerator.Stories
         {
             CurrentCell = Cell.Storage.First();
         }
-        protected void GoToCell(Cell cell, CadreController proc)
+        protected virtual void GoToCell(Cell cell, CadreController proc, bool goNextCadre)
         {
             //if (F_Posture == null)
             // всегда начинаем кадр с локации
@@ -50,56 +51,57 @@ namespace StoGenerator.Stories
             if (cell == null)
                 cell = Cell.Storage.First();
             CurrentCell = cell;
-            F_Posture.Add(CurrentCell.Picture(TimeOfDay).FirstOrDefault());
+            FillCadreContent();
             if (proc != null)
             {
-                MakeNextCadre(Teller.Author, null);
-                proc.GetNextCadre();               
+                MakeNextCadre(Teller.Author, null);      
+                if (goNextCadre)         
+                    proc.GetNextCadre();               
             }
             Projector.ImageCadre.InfoLocationText = CurrentCell.FullName;
         }
-
+        protected virtual void FillCadreContent()
+        {
+            F_Posture.Add(CurrentCell.Picture(TimeOfDay).FirstOrDefault());
+        }
         public void GoToCellByName(string address, CadreController proc)
         {           
             Cell cell = Cell.GetByAddress(null, address);
             if (cell != null)
             {
-                GoToCell(cell, proc);
+                GoToCell(cell, proc,false);
             }
         }
-
-        public override bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        public override bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, MenuType type, bool goNextCadre)
         {
-            string caption;
-            int mode = (int)Data;
-            int viewNum = mode;
+            string caption;            
             string cap = null;
-            if (mode == 1)
+            if (type == MenuType.Cell)
             {
                 if (MenuIsLive)
                 {
-                    itemlist = FillMenu_GoToLocation_ByData(proc, null, out caption);
+                    itemlist = FillMenu_GoToLocation_ByData(proc, null, goNextCadre, out caption);
                     cap = caption;
                 }            
             }
-            else
+            else if(type == MenuType.Common)
             {
                 if (MenuIsLive)
-                    itemlist = AddRootMenu(proc, null, out caption);
+                    itemlist = AddRootMenu(proc, null, goNextCadre, out caption);
             }
-            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, cap, viewNum);
+            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, cap, type);
             return true;
         }
-        protected override List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
+        protected override List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist,bool goNextCadre, out string caption)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
             if (MenuIsLive)
-                this.AddMenu_GoToLocation(proc, itemlist, out caption);
-            itemlist = base.AddRootMenu(proc, itemlist, out caption);
+                this.AddMenu_GoToLocation(proc, itemlist, goNextCadre, out caption);
+            itemlist = base.AddRootMenu(proc, itemlist, goNextCadre, out caption);
             caption = "Выбрать действие:";
             return itemlist;
         }
-        protected List<ChoiceMenuItem> AddMenu_GoToLocation(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
+        protected List<ChoiceMenuItem> AddMenu_GoToLocation(CadreController proc, List<ChoiceMenuItem> itemlist,bool goNextCadre, out string caption)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 
@@ -108,14 +110,14 @@ namespace StoGenerator.Stories
             item.Executor = data =>
             {
                 string tmp;
-                var itemlist1 = FillMenu_GoToLocation_ByData(proc, null, out tmp);
+                var itemlist1 = FillMenu_GoToLocation_ByData(proc, null, goNextCadre, out tmp);
                 ShowSubmenu(proc, itemlist1, tmp);
             };
             caption = item.Name;
             itemlist.Add(item);
             return itemlist;
         }
-        protected List<ChoiceMenuItem> FillMenu_GoToLocation_ByData(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
+        protected List<ChoiceMenuItem> FillMenu_GoToLocation_ByData(CadreController proc, List<ChoiceMenuItem> itemlist, bool goNextCadre, out string caption)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 
@@ -127,7 +129,7 @@ namespace StoGenerator.Stories
                 item.SetPicture(cell.Picture(TimeOfDay).FirstOrDefault()?.File);
                 item.Executor = data =>
                 {
-                    GoToCell(data as Cell, proc);                  
+                    GoToCell(data as Cell, proc, goNextCadre);                  
                 };
                 itemlist.Add(item);
             }
@@ -168,5 +170,10 @@ namespace StoGenerator.Stories
         //    ShowSubmenu(proc, itemlist1, caption1);
         //};
         //itemlist.Add(item);
+
+        protected override void GenerateNewStoryStep(CadreController proc)
+        {
+           base.GenerateNewStoryStep(proc);
+        }
     }
 }

@@ -9,6 +9,7 @@ using StoGenMake.Scenes.Base;
 using System.Windows.Media.Effects;
 using System.IO;
 using System.Collections.Generic;
+using Menu.Classes;
 
 namespace StoGenWPF
 {
@@ -145,11 +146,11 @@ namespace StoGenWPF
            
             else if (e.Key == Key.Space)
             {
-                SGManager.ChangeVisibleChoiceMenu(1); // move
+                SGManager.ChangeVisibleChoiceMenu(MenuType.Cell); // move
             }
             else if (e.Key == Key.F3)
             {
-                SGManager.ChangeVisibleChoiceMenu(0); // full
+                SGManager.ChangeVisibleChoiceMenu(MenuType.Common); // full
             }
             else if (e.Key == Key.Enter)
             {
@@ -248,7 +249,7 @@ namespace StoGenWPF
             PictureCadreDS.DataContext = Projector.ImageCadre;
             InfoLocation.DataContext = Projector.ImageCadre;
             InfoDate.DataContext = Projector.ImageCadre;
-            SGManager.StartMainProc(Scene, startpage - 1);
+            SGManager.StartMainProc(Scene, startpage);
         }
         public void Start()
         {

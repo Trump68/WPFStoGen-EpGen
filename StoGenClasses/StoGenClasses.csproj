@@ -75,6 +75,7 @@
     <Compile Include="Cell.cs" />
     <Compile Include="Interfaces\IPersonManager.cs" />
     <Compile Include="LocationStorage.cs" />
+    <Compile Include="Menu\MenuClasses.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Scenario\IStoryGenerator.cs" />
     <Compile Include="Scenario\StoryGeneratorDefault.cs" />

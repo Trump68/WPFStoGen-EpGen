@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using StoGen.Classes.Interfaces;
 using StoGenMake.Scenes.Base;
+using Menu.Classes;
 
 namespace StoGenWPF
 {
@@ -25,7 +26,10 @@ namespace StoGenWPF
         static BaseScene Scene;
         internal static void StartMainProc(BaseScene scene,int startpage)
         {
-            SetMainProcedure(scene, startpage);
+           // SetMainProcedure(scene, startpage);
+            CurrProc = new CadreController(scene, startpage);
+            //if (startpage != 1)
+            //    CurrProc.GoToCadre(startpage);
         }
         internal static void Stop()
         {
@@ -35,11 +39,12 @@ namespace StoGenWPF
             }
         }
            
-        public static void SetMainProcedure(BaseScene scene, int startpage)
-        {
-            CurrProc = new CadreController(scene, startpage);
-            CurrProc.GoToCadre(startpage);
-        }
+        //public static void SetMainProcedure(BaseScene scene, int startpage)
+        //{
+        //    CurrProc = new CadreController(scene, startpage);
+        //    if (startpage != 1)
+        //        CurrProc.GoToCadre(startpage);
+        //}
 
 
         internal static void ProcessKeyData(int v)
@@ -66,16 +71,16 @@ namespace StoGenWPF
         }
         internal static void ProcessKey(Key keys)
         {
-            if (keys == Key.F5)
-            {
-                //CurrProc = new CycleProc(_MainProcname);
-                return;
-            }
-            if (CurrProc != null) CurrProc.ProcessKey(keys);
+            //if (keys == Key.F5)
+            //{
+            //    //CurrProc = new CycleProc(_MainProcname);
+            //    return;
+            //}
+            //if (CurrProc != null) CurrProc.ProcessKey(keys);
         }
-        internal static void ChangeVisibleChoiceMenu(int mode)
+        internal static void ChangeVisibleChoiceMenu(MenuType type)
         {
-            if (CurrProc != null) CurrProc.ShowContextMenu(true, mode);
+            if (CurrProc != null) CurrProc.ShowContextMenu(true, type);
         }
         internal static void ApplayVisibleChoiceMenu()
         {

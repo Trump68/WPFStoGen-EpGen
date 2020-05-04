@@ -60,6 +60,7 @@ namespace StoGenerator
 
         // static 
         private static List<Cell> _Storage;
+
         public static List<Cell> Storage
         {
             get
@@ -72,6 +73,10 @@ namespace StoGenerator
                 return _Storage;
             }
         }
+
+        public List<Person> Persons { get; internal set; } = new List<Person>();
+        public List<Person> HomeOf { get; internal set; } = new List<Person>();
+
         private static void Initiate()
         {
             LocationStorage.InitDefaultLocations();

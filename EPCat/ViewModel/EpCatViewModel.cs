@@ -256,7 +256,7 @@ namespace EPCat
             var videos = this.CurrentFolder.Videos;
             if (!videos.Any()) return;
 
-            GameWorldFactory.GameWorld.LoadData();
+            //GameWorldFactory.GameWorld.LoadData();
             BaseScene scene = null;
             string path = videos.First();
             scene = new Scene_Clips();
@@ -502,7 +502,7 @@ namespace EPCat
         {
             if (this.CurrentCombinedScene == null) return;
             
-            GameWorldFactory.GameWorld.LoadData();
+           // GameWorldFactory.GameWorld.LoadData();
             StoryScene scene = new StoryScene();
             scene.SetScenario(this.Story, this.CurrentCombinedScene.Queue);
 
@@ -514,7 +514,7 @@ namespace EPCat
             projector.Show();
             var m = Story.SceneInfos.Select(x => x.Group).Distinct().ToList();
             m.Sort();
-            int page = m.IndexOf(this.CurrentCombinedScene.Group) + 1;
+            int page = m.IndexOf(this.CurrentCombinedScene.Group);
             projector.Start(page);
         }
 

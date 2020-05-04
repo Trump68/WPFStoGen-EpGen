@@ -1,4 +1,5 @@
-﻿using StoGen.Classes;
+﻿using Menu.Classes;
+using StoGen.Classes;
 using StoGen.Classes.Interfaces;
 using StoGenerator.Persons;
 using StoGenerator.Stories;
@@ -28,31 +29,38 @@ namespace StoGenerator.StoryClasses
             PersonManager.AllocateHomes(Person.Storage, Cell.Storage);
             PersonManager.AllocateCurrentCells();
         }
+        protected override void FillCadreContent()
+        {
+            base.FillCadreContent();
+            foreach (var person in CurrentCell.Persons)
+            {
+                F_Posture.AddRange(person.GetFigure(F_Posture, null, null));
+            }
+            
+        }
 
-        public override bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, object Data)
+        public override bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, MenuType type, bool goNextCadre)
         {
             string caption;
-            int mode = (int)Data;
-            int viewNum = mode;
             string cap = null;
-            if (mode == 1) // moving
+            if (type == MenuType.Cell) // moving
             {
                 if (MenuIsLive)
                 {
-                    itemlist = FillMenu_GoToLocation_ByData(proc, null, out caption);
+                    itemlist = FillMenu_GoToLocation_ByData(proc, null, goNextCadre, out caption);
                     cap = caption;
                 }
             }
-            else // all
+            else if (type == MenuType.Default) 
             {
                 if (MenuIsLive)
-                    itemlist = AddRootMenu(proc, null, out caption);
-                itemlist = base.AddRootMenu(proc, itemlist, out caption);
+                    itemlist = AddRootMenu(proc, null, goNextCadre, out caption);
+                itemlist = base.AddRootMenu(proc, itemlist, goNextCadre, out caption);
             }
-            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, cap, viewNum);
+            ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, cap, type);
             return true;
         }
-        protected override List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
+        protected override List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist,bool goNextCadre, out string caption)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();         
             AddMenu_PersonSelection(proc, itemlist, out caption);
@@ -174,5 +182,11 @@ namespace StoGenerator.StoryClasses
             return itemlist;
         }
 
+
+
+        protected override void GenerateNewStoryStep(CadreController proc)
+        {
+            base.GenerateNewStoryStep(proc);
+        }
     }
 }

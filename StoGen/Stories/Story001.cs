@@ -44,7 +44,7 @@ namespace StoGenerator.Stories
         }
         protected override void FillData()
         {
-            GoToCell(null, null);
+            GoToCell(null, null,false);
             F_Posture.AddRange(CE_Music.Get("Печальная тема 01", null));
             MakeNextCadre(Teller.Author, null);
 

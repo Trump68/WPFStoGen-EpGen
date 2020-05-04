@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraGrid.Columns;
+using Menu.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,7 @@ namespace StoGen.Classes
             InitializeComponent();
         }
         MenuDescriptopnItem[] Columns;        
-        public static DialogResult ShowOptionsmenu(List<ChoiceMenuItem> itemlist, string caption, int viewNum)
+        public static DialogResult ShowOptionsmenu(List<ChoiceMenuItem> itemlist, string caption, MenuType type)
         {
             DialogResult result = DialogResult.Cancel;
             if (itemlist == null || !itemlist.Any()) return result;
@@ -51,7 +52,7 @@ namespace StoGen.Classes
                     }
                 }
                 frm.BS.DataSource = itemlist;
-                if (viewNum == 1)
+                if (type == MenuType.Cell)
                 {
                     frm.Grid.MainView = frm.ViewTiles;
                     frm.Height = 250;
@@ -155,9 +156,9 @@ namespace StoGen.Classes
         public object itemData { set; get; }
         public MenuItemExecutorDelegate Executor = null;
         public MenuDescriptopnItem[] Props;
-        public static void FinalizeShowMenu(CadreController controller, bool doShowMenu, List<ChoiceMenuItem> itemlist, bool processCancel, string caption,int viewNum = 0)
+        public static void FinalizeShowMenu(CadreController controller, bool doShowMenu, List<ChoiceMenuItem> itemlist, bool processCancel, string caption, MenuType type = MenuType.Common )
         {
-            if (frmFrameChoice.ShowOptionsmenu(itemlist, caption, viewNum) != DialogResult.Cancel)
+            if (frmFrameChoice.ShowOptionsmenu(itemlist, caption, type) != DialogResult.Cancel)
             {
 
             }
