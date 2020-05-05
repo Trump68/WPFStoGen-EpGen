@@ -39,15 +39,15 @@ namespace StoGenerator.Stories
                 return MovementDirection.In;
             }
         }
-        public CelledStory(DateTime date):base(date)
+        public CelledStory(DateTime date, string startAtAddress):base(date)
         {
-            CurrentCell = Cell.Storage.First();
+            CurrentCell = Cell.GetByAddress(null, startAtAddress);
         }
         protected virtual void GoToCell(Cell cell, CadreController proc, bool goNextCadre)
         {
             //if (F_Posture == null)
             // всегда начинаем кадр с локации
-            F_Posture = new List<Info_Scene>();
+            Layers = new List<Info_Scene>();
             if (cell == null)
                 cell = Cell.Storage.First();
             CurrentCell = cell;
@@ -62,9 +62,11 @@ namespace StoGenerator.Stories
         }
         protected virtual void FillCadreContent()
         {
-            F_Posture.Add(CurrentCell.Picture(TimeOfDay).FirstOrDefault());
+            var pic = CurrentCell.Picture(TimeOfDay).FirstOrDefault();
+            pic.Description = CurrentCell.FullName;
+            Layers.Add(pic);
         }
-        public void GoToCellByName(string address, CadreController proc)
+        public void GoToCellByAddress(string address, CadreController proc)
         {           
             Cell cell = Cell.GetByAddress(null, address);
             if (cell != null)

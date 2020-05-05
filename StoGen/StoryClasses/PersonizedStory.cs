@@ -1,6 +1,7 @@
 ﻿using Menu.Classes;
 using StoGen.Classes;
 using StoGen.Classes.Interfaces;
+using StoGen.Classes.Transition;
 using StoGenerator.Persons;
 using StoGenerator.Stories;
 using System;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static StoGenerator.Person;
+using static StoGenerator.Persons.JennyFord;
 
 namespace StoGenerator.StoryClasses
 {
@@ -16,7 +18,7 @@ namespace StoGenerator.StoryClasses
     {
         public List<Person> VisiblePersons = new List<Person>();
         IPersonManager PersonManager;
-        public PersonizedStory(DateTime date):base(date)
+        public PersonizedStory(DateTime date, string startAtAddress) :base(date, startAtAddress)
         {
             FillPersonStorage();
         }
@@ -34,10 +36,30 @@ namespace StoGenerator.StoryClasses
             base.FillCadreContent();
             foreach (var person in CurrentCell.Persons)
             {
-                F_Posture.AddRange(person.GetFigure(F_Posture, null, null));
+                ProcessPerson(person);
             }
             
         }
+        // Set person ===============================
+        private void ProcessPerson(Person person)
+        {
+            SetPersonOutfit(person);
+            SetPersonFace(person);
+        }
+        private void SetPersonOutfit(Person person)
+        {
+            string outfit = GetPersonOutfitName(person);
+            Layers = person.GetFigure(Layers, outfit, null, Trans.Appearing(500));
+        }
+        private void SetPersonFace(Person person)
+        {
+            Layers = person.GetFace(Layers, $"{JennyFord_Eyes.Eyes1_67}", $"{JennyFord_Mouth.Mouth1_67}", $"{Feature.FeatureBlink}{1}");
+        }
+        private string GetPersonOutfitName(Person person)
+        {
+            return $"{OutfitName.CasHome_I}{1}";
+        }
+        // Set person ===============================
 
         public override bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, MenuType type, bool goNextCadre)
         {
@@ -145,9 +167,9 @@ namespace StoGenerator.StoryClasses
                 item.Executor = data =>
                 {
                     Tuple<string, string> v = (data as Tuple<string, string>);
-                    F_Posture = PullCadreFromScene(proc, proc.CadreId);
-                    F_Posture = person.GetFace(F_Posture, v.Item2, v.Item1, $"{Feature.FeatureBlink}{1}");
-                    AddScenes(F_Posture, 1, false);
+                    Layers = PullCadreFromScene(proc, proc.CadreId);
+                    Layers = person.GetFace(Layers, v.Item2, v.Item1, $"{Feature.FeatureBlink}{1}");
+                    AddScenes(Layers, 1, false);
                     proc.RefreshCurrentCadre();
                 };
                 itemlist.Add(item);
@@ -169,10 +191,10 @@ namespace StoGenerator.StoryClasses
                 item.Executor = data =>
                 {
                     int ms = 1000;
-                    F_Posture = PullCadreFromScene(proc, proc.CadreId);
+                    Layers = PullCadreFromScene(proc, proc.CadreId);
                     var feature = data as Tuple<string, string, string, string>;
-                    F_Posture = person.CombinePerson(F_Posture, feature, ms);                              
-                    AddScenes(F_Posture, 1, false);
+                    Layers = person.CombinePerson(Layers, feature, ms);                              
+                    AddScenes(Layers, 1, false);
                     proc.RefreshCurrentCadre();
                 };
                 itemlist.Add(item);

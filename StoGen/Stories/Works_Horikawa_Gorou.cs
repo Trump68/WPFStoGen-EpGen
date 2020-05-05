@@ -51,54 +51,54 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             int fs = 32;
             CE_Location.AddWithMusic(this, "Romantic 001", "Cream Satin with Bow", "Печальная тема 01", null);
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1013}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1013}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0001");
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1003}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1003}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0001");
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1004}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1004}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0002");
 
             FCurrentPosition.S = "1200";
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1005}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1005}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0003");
 
 
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1000}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);           
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1000}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);           
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0001");
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1001}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
-            MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0001");
-
-
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1002}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1001}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0001");
 
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1006}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1002}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0001");
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1007}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1006}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0001");
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1008}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1007}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0001");
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1009}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1008}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0001");
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1010}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1009}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0001");
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1011}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1010}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0001");
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1005}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1011}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0001");
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1012}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1005}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0001");
+
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1012}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Horikawa_Gorou\Horikawa_Gorou.txt@0001");
 
 

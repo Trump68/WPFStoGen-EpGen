@@ -62,4 +62,12 @@ namespace StoGenerator
             return null;
         }
     }
+    public class ItemData
+    {
+        public string Name { set; get; }
+        public string Features { set; get; }
+        public string File { set; get; }
+        public string Pose { set; get; }
+        public string Category { set; get; }
+    }
 }

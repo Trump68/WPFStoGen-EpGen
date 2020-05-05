@@ -20,7 +20,8 @@ namespace StoGenerator.Stories
     {
         public static string StoryName = "Story 001";
         public static DateTime DateStart = new DateTime(2020, 6, 1, 8, 0, 0);
-        public Story001():base(DateStart)
+        public static string startAtAddress = "Квартира N1,Дом N1,Жасминовая улица";
+        public Story001():base(DateStart, startAtAddress)
         {
             this.Name = Story001.StoryName;
             this.FileName = this.Name;
@@ -44,8 +45,8 @@ namespace StoGenerator.Stories
         }
         protected override void FillData()
         {
-            GoToCell(null, null,false);
-            F_Posture.AddRange(CE_Music.Get("Печальная тема 01", null));
+            GoToCell(CurrentCell, null, false);
+            Layers.AddRange(CE_Music.Get("Печальная тема 01", null));
             MakeNextCadre(Teller.Author, null);
 
             //F_Posture = JFord.GetFigure(F_Posture, $"{Feature.FeatureFigure}{1}", Trans.Dissapearing(1000));

@@ -12,7 +12,10 @@ namespace StoGenerator
 {
     public class Person : BaseGeneratorItem<Person>
     {
-
+        public enum OutfitName
+        {
+            CasHome_I
+        }
         public enum Generic
         {
             //FaceGeneric,
@@ -49,7 +52,8 @@ namespace StoGenerator
             ShoesNormal,
             MouthNormal,
             PubicNormal,
-            FeatureBlink
+            FeatureBlink,
+            FaceGeneric
         }
         public enum Poses
         {
@@ -150,9 +154,9 @@ namespace StoGenerator
 
             return posture;
         }
-        public List<Info_Scene> GetFigure(List<Info_Scene> posture, string outfit, string tranOfPrev)
+        public List<Info_Scene> GetFigure(List<Info_Scene> layers, string outfit, string tranOfPrev, string tranOfNew)
         {
-            if (posture == null) posture = new List<Info_Scene>();
+            if (layers == null) layers = new List<Info_Scene>();
             Tuple<string, string, string, string> info = null;
             if (string.IsNullOrEmpty(outfit))
             {
@@ -164,15 +168,16 @@ namespace StoGenerator
             {
                 var newfigure = this.ToSceneInfo(info);
                 newfigure.Description = info.Item3;
-                var oldFigure = posture.Where(x => x.Tags.Contains($"{Generic.FigureGeneric}")).OrderBy(x => x.Z).FirstOrDefault();
-                posture.RemoveAll(x =>
-                x.Tags.Contains(Generic.FigureGeneric.ToString())
+                
+                var oldFigure = layers.Where(x => x.Tags.Contains($"{Generic.FigureGeneric}")).OrderBy(x => x.Z).FirstOrDefault();
+                layers.RemoveAll(x =>
+                x.Tags.Contains($"{Generic.FigureGeneric}")
                 ||
-                (x.Tags.Contains(Generic.FeatureGeneric.ToString())));
-                posture.Insert(0, newfigure);
+                (x.Tags.Contains($"{Generic.FeatureGeneric}")));
+                layers.Insert(0, newfigure);
                 if (oldFigure != null) // do not add same feature
                 {
-                    posture.ForEach(x =>
+                    layers.ForEach(x =>
                     {
                         x.Group = oldFigure.Group;
                         x.Queue = oldFigure.Queue;
@@ -187,25 +192,33 @@ namespace StoGenerator
                     {
                         oldFigure.O = "100";
                         oldFigure.T = tranOfPrev;
-                        posture.Add(oldFigure);
+                        layers.Add(oldFigure);
+                    }
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(tranOfNew))
+                    {
+                        newfigure.T = tranOfNew;
+                        newfigure.O = "0";
                     }
                 }
             }
-            return posture;
+            return layers;
         }
         public List<Info_Scene> CombinePerson(List<Info_Scene> posture, Tuple<string, string, string, string> feature, int ms)
         {
             List<string> features = feature.Item2.Split(',').ToList();
             if (features.Count == 1)
             {
-                posture = GetFigure(posture, feature.Item1, Trans.Dissapearing(ms));
+                posture = GetFigure(posture, feature.Item1, Trans.Dissapearing(ms), Trans.Appearing(ms));
             }
             else
             {
                 foreach (var it in features)
                 {
                     if (it == features.First())
-                        posture = GetFigure(posture, it, Trans.Dissapearing(ms));
+                        posture = GetFigure(posture, it, Trans.Dissapearing(ms), Trans.Appearing(ms));
                     else
                     {
                         posture = SetFeature(posture, it, Trans.Dissapearing(ms), Trans.Appearing(ms), true);

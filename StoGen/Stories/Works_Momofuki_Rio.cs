@@ -51,29 +51,29 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             int fs = 32;
             CE_Location.AddWithMusic(this, "Romantic 001", "Cream Satin with Bow", "Печальная тема 01", null);
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1000}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
-            F_Posture = Art.SetFeature(F_Posture, $"{Feature.MouthNormal}{1000}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
-            F_Posture = Art.SetFeature(F_Posture, $"{Feature.FeatureNipples}{1000}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
-            F_Posture.Last().T = Trans.Pulsation(500, 100);
-            F_Posture = Art.SetFeature(F_Posture, $"{Feature.FeatureBlush}{1000}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
-            F_Posture.Last().T = Trans.Pulsation(500, 100);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1000}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(Layers, $"{Feature.MouthNormal}{1000}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(Layers, $"{Feature.FeatureNipples}{1000}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers.Last().T = Trans.Pulsation(500, 100);
+            Layers = Art.SetFeature(Layers, $"{Feature.FeatureBlush}{1000}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers.Last().T = Trans.Pulsation(500, 100);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Momofuki_Rio\Momofuki_Rio.txt@0001");
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1001}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
-            F_Posture = Art.SetFeature(F_Posture, $"{Feature.MouthNormal}{1001}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1001}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(Layers, $"{Feature.MouthNormal}{1001}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Momofuki_Rio\Momofuki_Rio.txt@0001");
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1002}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
-            F_Posture = Art.SetFeature(F_Posture, $"{Feature.MouthNormal}{1002}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1002}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(Layers, $"{Feature.MouthNormal}{1002}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Momofuki_Rio\Momofuki_Rio.txt@0002");
 
-            F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{1003}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
-            F_Posture = Art.SetFeature(F_Posture, $"{Feature.MouthNormal}{1003}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{1003}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+            Layers = Art.SetFeature(Layers, $"{Feature.MouthNormal}{1003}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
             MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Momofuki_Rio\Momofuki_Rio.txt@0003");
 
             for (int i = 1; i <= 83; i++)
             {
-                F_Posture = Art.SetFeature(null, $"{Feature.FeatureFigure}{i}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
+                Layers = Art.SetFeature(null, $"{Feature.FeatureFigure}{i}", Trans.Dissapearing(1000), Trans.Appearing(1000), true);
                 MakeNextCadre(Teller.Female, fs, @"e:\!STOGENDB\READY\ART\Momofuki_Rio\Momofuki_Rio.txt@0000");
             }
         }

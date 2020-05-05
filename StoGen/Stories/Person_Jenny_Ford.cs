@@ -55,9 +55,9 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             {
                 if (item.Item1.Contains($"{Generic.FigureGeneric}"))
                 {
-                    F_Posture = person.CombinePerson(F_Posture, item, ms);                  
+                    Layers = person.CombinePerson(Layers, item, ms);                  
                     MakeNextCadre(Teller.Female, fs, $"{item.Item4}~~{item.Item3}");
-                    var title = F_Posture.Where(x => x.Kind == 1).FirstOrDefault();
+                    var title = Layers.Where(x => x.Kind == 1).FirstOrDefault();
                     if (title != null) title.Description = item.Item4;
                 }
             }

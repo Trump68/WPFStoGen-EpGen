@@ -25,8 +25,7 @@ namespace StoGenerator
     public class StoryBase : SCENARIO
     {
         protected Info_Scene FCurrentPosition = new Info_Scene();
-        protected Info_Scene CurrentPerson;
-        protected List<Info_Scene> F_Posture;
+        protected List<Info_Scene> Layers;
         public StoryBase() : base()
         {
 
@@ -161,7 +160,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         }
         protected void MakeNextCadre(Teller who, int? fontSize, string story)
         {
-            F_Posture.ForEach(x =>
+            Layers.ForEach(x =>
             {
                 if (x.Kind == 0)
                 {
@@ -170,10 +169,10 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                     x.X = FCurrentPosition.X;
                 }
             });
-            AddScenes(F_Posture, 1, false); 
+            AddScenes(Layers, 1, false); 
             if (!string.IsNullOrEmpty(story))                        
                 AddText(story, who, false, false);
-            F_Posture = ResetPosture(F_Posture);
+            Layers = ResetPosture(Layers);
             IncrementGroup();
         }
         protected List<Info_Scene> ResetPosture(List<Info_Scene> posture)
