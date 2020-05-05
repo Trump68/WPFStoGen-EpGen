@@ -29,10 +29,10 @@ namespace StoGenerator.Stories
             JFord = JennyFord.Load();
             this.VisiblePersons.Add(JFord);
            
-            FCurrentPosition.Z = "1";
-            FCurrentPosition.S = "1200";
-            FCurrentPosition.X = "400";
-            FCurrentPosition.Y = "70";
+            //FCurrentPosition.Z = "1";
+            //FCurrentPosition.S = "1200";
+            //FCurrentPosition.X = "400";
+            //FCurrentPosition.Y = "70";
         }
 
         protected JennyFord JFord;

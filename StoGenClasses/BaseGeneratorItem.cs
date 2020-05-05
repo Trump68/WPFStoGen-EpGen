@@ -13,8 +13,9 @@ namespace StoGenerator
     {
         public string Name { set; get; } = "Default Name";
         public string Type { set; get; } = "Default Type";
-        public List<Tuple<string, string, string, string>> Files { set; get; } = new List<Tuple<string, string, string, string>>();
-        public static List<T> Storage { set; get; } = new List<T>();
+        public List<ItemData> Files { set; get; } = new List<ItemData>();
+        public List<Info_Scene> Positions { set; get; } = new List<Info_Scene>();
+        public static List<T> Storage { set; get; } = new List<T>();       
         public BaseGeneratorItem(string name, string type)
         {
             this.Name = name;
@@ -29,27 +30,27 @@ namespace StoGenerator
             Info_Scene result = null;
             if (Files.Any())
             {
-                Tuple<string, string, string, string> file = null;
+                ItemData file = null;
                 if (!string.IsNullOrEmpty(spec))
                 {
-                    file = Files.FirstOrDefault(x => x.Item1 == spec);
+                    file = Files.FirstOrDefault(x => x.Features == spec);
                 }
                 if (file == null)
                 {
                     file = Files[0];
                 }
                 result = new Info_Scene();
-                result.File = file.Item2;
+                result.File = file.File;
                 result.Queue = queue;
                 result.Group = group;
             }
             return result;
         }
-        protected virtual Info_Scene ToSceneInfo(Tuple<string, string, string, string> item)
+        protected virtual Info_Scene ToSceneInfo(ItemData item)
         {
             Info_Scene result = new Info_Scene();
-            result.File = item.Item2;
-            result.Tags = item.Item1;
+            result.File = item.File;
+            result.Tags = item.Features;
             return result;
         }
         public static Info_Scene GetByName(string name, string spec, string queue, string group)
@@ -64,7 +65,16 @@ namespace StoGenerator
     }
     public class ItemData
     {
-        public string Name { set; get; }
+        public ItemData() { }
+        public ItemData(string v1, string v2, string v3, string v4, string v5):this()
+        {
+            this.Features = v1;
+            this.File = v2;
+            this.Category = v3;
+            this.Pose = v4;
+            this.Figure = v5;
+        }
+        public string Figure { set; get; }
         public string Features { set; get; }
         public string File { set; get; }
         public string Pose { set; get; }

@@ -14,7 +14,13 @@ namespace StoGenerator
     {
         public enum OutfitName
         {
-            CasHome_I
+            CasHome_I,
+            OutfitDefault_I
+        }
+        public enum FaceName
+        {
+            FaceNeitral_I,
+            FaceDefault_I
         }
         public enum Generic
         {
@@ -60,31 +66,43 @@ namespace StoGenerator
             Pose,
         }
         public Person(string name, string type) : base(name, type) { }
-
-        public static void TestSave(string file)
+        public Info_Scene GetPositionByName(string name)
         {
-            Storage.Clear();
-            File.WriteAllText(file, JsonConvert.SerializeObject(Storage, Formatting.Indented));
+            var position = Positions.Where(x => x.Story == name).FirstOrDefault();
+            if (position == null)
+                position = Positions.Where(x => x.Story == "Default").FirstOrDefault();
+            if (position == null)
+                position = Positions.FirstOrDefault();
+            return position;
         }
-        protected override Info_Scene ToSceneInfo(Tuple<string, string, string, string> item)
+
+
+
+        protected override Info_Scene ToSceneInfo(ItemData item)
         {
             Info_Scene result = base.ToSceneInfo(item);
             result.Kind = 0;
             return result;
         }
-        public List<Info_Scene> AddBlink(List<Info_Scene> posture, string eyes)
+        public List<Info_Scene> AddBlink(List<Info_Scene> posture, string eyes, Info_Scene position)
         {
-            return SetFeature(posture, eyes, null, Trans.Eyes_Blink, false);
+            return SetFeature(posture, eyes, null, Trans.Eyes_Blink, false, position);
         }
-        public List<Info_Scene> SetFeature(List<Info_Scene> posture, string feature, string tranOfPrev, string tranOfNew, bool AddBeforePrev)
+        public List<Info_Scene> SetFeature(List<Info_Scene> posture, string feature, string tranOfPrev, string tranOfNew, bool AddBeforePrev, Info_Scene position)
         {
             if (posture == null) posture = new List<Info_Scene>();
-            var info = this.Files.FirstOrDefault(x => x.Item1.Contains(feature));
+            var info = this.Files.FirstOrDefault(x => x.Features.Contains(feature));
             if (info != null)
             {
-                string itemgeneric = info.Item1.Split(',')[1];
+                string itemgeneric = info.Features.Split(',')[1];
                 var newFeature = this.ToSceneInfo(info);
-                newFeature.Description = info.Item3;
+                newFeature.Description = info.Category;
+                if (newFeature.Kind == 0 && position != null)
+                {
+                    newFeature.S = position.S;
+                    newFeature.X = position.X;
+                    newFeature.Y = position.Y;
+                }
                 var oldFeature = posture.Where(x => x.Tags.Contains(itemgeneric)).OrderBy(x => x.Z).FirstOrDefault();
                 posture.RemoveAll(x => x.Tags.Contains(itemgeneric));
                 if (!string.IsNullOrEmpty(tranOfNew))
@@ -113,7 +131,7 @@ namespace StoGenerator
                     {
                         x.Group = figure.Group;
                         x.Queue = figure.Queue;
-                        if (x.Kind == 0)
+                        if (x.Kind == 0 && position == null)
                         {
                             x.S = figure.S;
                             x.X = figure.X;
@@ -125,14 +143,14 @@ namespace StoGenerator
             }
             return posture;
         }
-        public List<Info_Scene> GetFace(List<Info_Scene> posture, string eyes, string mouth, string blink)
+        public List<Info_Scene> GetFace(List<Info_Scene> posture, string eyes, string mouth, string blink, Info_Scene position)
         {
             if (posture == null) posture = new List<Info_Scene>();
-            posture = SetFeature(posture, eyes, Trans.Dissapearing(1000), null, true);
-            posture = SetFeature(posture, mouth, Trans.Dissapearing(1000), null, true);
+            posture = SetFeature(posture, eyes, Trans.Dissapearing(1000), null, true, position);
+            posture = SetFeature(posture, mouth, Trans.Dissapearing(1000), null, true, position);
             if (!string.IsNullOrEmpty(blink))
             {
-                AddBlink(posture, blink);
+                AddBlink(posture, blink, position);
                 posture.Last().O = "100";
             }
             var figure = posture.Where(x => x.Tags.Contains(Generic.FigureGeneric.ToString())).FirstOrDefault();
@@ -142,33 +160,45 @@ namespace StoGenerator
                 {
                     x.Group = figure.Group;
                     x.Queue = figure.Queue;
-                    if (x.Kind == 0)
-                    {
-                        x.S = figure.S;
-                        x.X = figure.X;
-                        x.Y = figure.Y;
-                    }
                 });
 
             }
 
             return posture;
         }
-        public List<Info_Scene> GetFigure(List<Info_Scene> layers, string outfit, string tranOfPrev, string tranOfNew)
+        public List<Info_Scene> GetFace(List<Info_Scene> posture, string face, Info_Scene position)
+        {
+            var info = this.Files.FirstOrDefault(x => x.Features.Contains(face));
+            if (info != null)
+            {
+                var vals = info.File.Split(',');
+                string eyes = vals[0];
+                string mouth = vals[1];
+                string blink = vals[2];
+                return GetFace(posture, eyes, mouth, blink, position);
+            }
+            return posture;
+        }
+        public List<Info_Scene> GetFigure(List<Info_Scene> layers, string outfit, string tranOfPrev, string tranOfNew, Info_Scene position)
         {
             if (layers == null) layers = new List<Info_Scene>();
-            Tuple<string, string, string, string> info = null;
+            ItemData info = null;
             if (string.IsNullOrEmpty(outfit))
             {
-                info = this.Files.FirstOrDefault(x => x.Item1.Contains($"{Generic.FigureGeneric}"));
+                info = this.Files.FirstOrDefault(x => x.Features.Contains($"{Generic.FigureGeneric}"));
             }
             else
-                info = this.Files.FirstOrDefault(x => x.Item1.Contains(outfit));
+                info = this.Files.FirstOrDefault(x => x.Features.Contains(outfit));
             if (info != null)
             {
                 var newfigure = this.ToSceneInfo(info);
-                newfigure.Description = info.Item3;
-                
+                newfigure.Description = info.Category;                
+                if (newfigure.Kind == 0 && position != null)
+                {
+                    newfigure.S = position.S;
+                    newfigure.X = position.X;
+                    newfigure.Y = position.Y;
+                }
                 var oldFigure = layers.Where(x => x.Tags.Contains($"{Generic.FigureGeneric}")).OrderBy(x => x.Z).FirstOrDefault();
                 layers.RemoveAll(x =>
                 x.Tags.Contains($"{Generic.FigureGeneric}")
@@ -181,7 +211,7 @@ namespace StoGenerator
                     {
                         x.Group = oldFigure.Group;
                         x.Queue = oldFigure.Queue;
-                        if (x.Kind == 0)
+                        if (x.Kind == 0 && position == null)
                         {
                             x.S = oldFigure.S;
                             x.X = oldFigure.X;
@@ -206,22 +236,22 @@ namespace StoGenerator
             }
             return layers;
         }
-        public List<Info_Scene> CombinePerson(List<Info_Scene> posture, Tuple<string, string, string, string> feature, int ms)
+        public List<Info_Scene> CombinePerson(List<Info_Scene> posture, ItemData feature, Info_Scene position, int ms)
         {
-            List<string> features = feature.Item2.Split(',').ToList();
+            List<string> features = feature.File.Split(',').ToList();
             if (features.Count == 1)
             {
-                posture = GetFigure(posture, feature.Item1, Trans.Dissapearing(ms), Trans.Appearing(ms));
+                posture = GetFigure(posture, feature.Features, Trans.Dissapearing(ms), Trans.Appearing(ms), position);
             }
             else
             {
                 foreach (var it in features)
                 {
                     if (it == features.First())
-                        posture = GetFigure(posture, it, Trans.Dissapearing(ms), Trans.Appearing(ms));
+                        posture = GetFigure(posture, it, Trans.Dissapearing(ms), Trans.Appearing(ms), position);
                     else
                     {
-                        posture = SetFeature(posture, it, Trans.Dissapearing(ms), Trans.Appearing(ms), true);
+                        posture = SetFeature(posture, it, Trans.Dissapearing(ms), Trans.Appearing(ms), true, position);
                     }
                 }
             }

@@ -1,6 +1,8 @@
-﻿using StoGen.Classes.Transition;
+﻿using StoGen.Classes;
+using StoGen.Classes.Transition;
 using StoGenerator.CadreElements;
 using StoGenerator.Persons;
+using StoGenerator.StoryClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,10 +37,10 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             this.Name = Person_Jenny_Ford.StoryName;
             this.FileName = this.Name;
             person = JennyFord.Load();
-            FCurrentPosition.Z = "1";
-            FCurrentPosition.S = "1200";
-            FCurrentPosition.X = "500";
-            FCurrentPosition.Y = "0";
+            //FCurrentPosition.Z = "1";
+            //FCurrentPosition.S = "1200";
+            //FCurrentPosition.X = "500";
+            //FCurrentPosition.Y = "0";
         }
         public override void Generate(string queue, string group)
         {
@@ -51,14 +53,15 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             int fs = 20;
             int ms = 1000;
             //CE_Location.AddWithMusic(this, "Romantic 001", "Cream Satin with Bow", "Печальная тема 01", null);
+            Info_Scene position = new Info_Scene() { Z = "1", S = "1200", X = "500", Y = "0" };
             foreach (var item in person.Files)
             {
-                if (item.Item1.Contains($"{Generic.FigureGeneric}"))
+                if (item.Features.Contains($"{Generic.FigureGeneric}"))
                 {
-                    Layers = person.CombinePerson(Layers, item, ms);                  
-                    MakeNextCadre(Teller.Female, fs, $"{item.Item4}~~{item.Item3}");
+                    Layers = person.CombinePerson(Layers, item, position, ms);                  
+                    MakeNextCadre(Teller.Female, fs, $"{item.Pose}~~{item.Category}");
                     var title = Layers.Where(x => x.Kind == 1).FirstOrDefault();
-                    if (title != null) title.Description = item.Item4;
+                    if (title != null) title.Description = item.Pose;
                 }
             }
         }

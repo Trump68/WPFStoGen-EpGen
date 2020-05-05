@@ -16,13 +16,13 @@ namespace StoGenerator.Persons
         {
             Persons = persons;
             Cells = cells;
-            SetPersonHome(JennyFord.Name, "Квартира N1,Дом N1,Жасминовая улица");
-            SetPersonHome(BobLulam.Name,  "Квартира N2,Дом N1,Жасминовая улица");
+            SetPersonHome(JennyFord.PersonName, "Квартира N1,Дом N1,Жасминовая улица");
+            SetPersonHome(BobLulam.ArtName,  "Квартира N2,Дом N1,Жасминовая улица");
         }
         public void AllocateCurrentCells()
         {
-            SetPersonCurrentCell(JennyFord.Name, "Квартира N1,Дом N1,Жасминовая улица");
-            SetPersonCurrentCell(BobLulam.Name, "Квартира N2,Дом N1,Жасминовая улица");
+            SetPersonCurrentCell(JennyFord.PersonName, "Квартира N1,Дом N1,Жасминовая улица");
+            SetPersonCurrentCell(BobLulam.ArtName, "Квартира N2,Дом N1,Жасминовая улица");
         }
         private void SetPersonHome(string personName, string homeaddress)
         {

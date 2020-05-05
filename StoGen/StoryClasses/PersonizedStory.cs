@@ -43,22 +43,29 @@ namespace StoGenerator.StoryClasses
         // Set person ===============================
         private void ProcessPerson(Person person)
         {
-            SetPersonOutfit(person);
-            SetPersonFace(person);
+            Info_Scene position = person.GetPositionByName("Default");
+            Layers = SetPersonOutfit(person, $"{OutfitName.CasHome_I}", position);
+            Layers = GetPersonFace(person, Layers, $"{FaceName.FaceNeitral_I}", position);
         }
-        private void SetPersonOutfit(Person person)
+        private List<Info_Scene> SetPersonOutfit(Person person, string outfit, Info_Scene position)
         {
-            string outfit = GetPersonOutfitName(person);
-            Layers = person.GetFigure(Layers, outfit, null, Trans.Appearing(500));
+            if (string.IsNullOrEmpty(outfit))
+            {
+                outfit = $"{OutfitName.OutfitDefault_I}";
+            }
+            var result = person.GetFigure(Layers, outfit, null, Trans.Appearing(500), position);
+            return result;
         }
-        private void SetPersonFace(Person person)
+        public List<Info_Scene> GetPersonFace(Person person, List<Info_Scene> layers, string face, Info_Scene position)
         {
-            Layers = person.GetFace(Layers, $"{JennyFord_Eyes.Eyes1_67}", $"{JennyFord_Mouth.Mouth1_67}", $"{Feature.FeatureBlink}{1}");
+            if (string.IsNullOrEmpty(face))
+            {
+                face = $"{FaceName.FaceDefault_I}";
+            }
+            var result = person.GetFace(layers, $"{face}", position);
+            return result;
         }
-        private string GetPersonOutfitName(Person person)
-        {
-            return $"{OutfitName.CasHome_I}{1}";
-        }
+
         // Set person ===============================
 
         public override bool CreateMenu(CadreController proc, bool doShowMenu, List<ChoiceMenuItem> itemlist, MenuType type, bool goNextCadre)
@@ -168,7 +175,7 @@ namespace StoGenerator.StoryClasses
                 {
                     Tuple<string, string> v = (data as Tuple<string, string>);
                     Layers = PullCadreFromScene(proc, proc.CadreId);
-                    Layers = person.GetFace(Layers, v.Item2, v.Item1, $"{Feature.FeatureBlink}{1}");
+                    Layers = person.GetFace(Layers, v.Item2, v.Item1, $"{Feature.FeatureBlink}{1}",null);
                     AddScenes(Layers, 1, false);
                     proc.RefreshCurrentCadre();
                 };
@@ -180,20 +187,20 @@ namespace StoGenerator.StoryClasses
         protected List<ChoiceMenuItem> AddMenu_ChangingFigure(CadreController proc, List<ChoiceMenuItem> itemlist,Person person, out string caption)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-            var list = person.Files.Where(x => x.Item1.Contains(Person.Generic.FigureGeneric.ToString())).ToList();
+            var list = person.Files.Where(x => x.Features.Contains(Person.Generic.FigureGeneric.ToString())).ToList();
             foreach (var figure in list)
             {
                 var item = new ChoiceMenuItem();
-                item.Name = $"{figure.Item3}";
+                item.Name = $"{figure.Category}";
                 item.itemData = figure;
-                MenuDescriptopnItem mdi1 = new MenuDescriptopnItem("Наряд", figure.Item4, true);
+                MenuDescriptopnItem mdi1 = new MenuDescriptopnItem("Наряд", figure.Pose, true);
                 item.Props = (new List<MenuDescriptopnItem>() { mdi1 }).ToArray();
                 item.Executor = data =>
                 {
                     int ms = 1000;
                     Layers = PullCadreFromScene(proc, proc.CadreId);
-                    var feature = data as Tuple<string, string, string, string>;
-                    Layers = person.CombinePerson(Layers, feature, ms);                              
+                    var feature = data as ItemData;
+                    Layers = person.CombinePerson(Layers, feature,null, ms);                              
                     AddScenes(Layers, 1, false);
                     proc.RefreshCurrentCadre();
                 };
