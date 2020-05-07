@@ -49,18 +49,12 @@
     <Compile Include="Art\ART_Momofuki_Rio.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="IStoryGenerator.cs" />
-    <Compile Include="Persons\BobLulam.cs" />
-    <Compile Include="Persons\ElizabethScott.cs" />
-    <Compile Include="Persons\JennyFord.cs" />
+    <Compile Include="Persons\Fems\JennyFord.cs" />
     <Compile Include="Persons\DefaultPersonManager.cs" />
-    <Compile Include="Persons\JuliaSanders.cs" />
-    <Compile Include="Persons\MariaKelmi.cs" />
-    <Compile Include="Persons\MarySimmons.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sound.cs" />
     <Compile Include="StoryClasses\CelledStory.cs" />
     <Compile Include="Stories\LocationUnit_Aratments_01.cs" />
-    <Compile Include="Stories\Person_Bob_Lulam.cs" />
     <Compile Include="Stories\Person_Jenny_Ford.cs" />
     <Compile Include="Stories\Story001.cs" />
     <Compile Include="Stories\StoryTest.cs" />
@@ -77,6 +71,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Persons\Males\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -19,7 +19,7 @@
         <property name="MergeWithPreviousGroup">false</property>
       </property>
     </property>
-    <property name="Columns" iskey="true" value="30">
+    <property name="Columns" iskey="true" value="33">
       <property name="Item1" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Catalog</property>
@@ -213,13 +213,31 @@
       </property>
       <property name="Item29" isnull="true" iskey="true">
         <property name="GridRow">0</property>
+        <property name="FieldName">PARENT</property>
+        <property name="VisibleIndex">10</property>
+        <property name="ActualWidth">NaN</property>
+      </property>
+      <property name="Item30" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Size</property>
+        <property name="VisibleIndex">11</property>
+        <property name="ActualWidth">NaN</property>
+      </property>
+      <property name="Item31" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Length</property>
+        <property name="VisibleIndex">12</property>
+        <property name="ActualWidth">NaN</property>
+      </property>
+      <property name="Item32" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
         <property name="FieldName">VideoPresent</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">18</property>
         <property name="Width">20</property>
         <property name="ActualWidth">8.5725087335896291</property>
       </property>
-      <property name="Item30" isnull="true" iskey="true">
+      <property name="Item33" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">SourceFolderExist</property>
         <property name="VisibleIndex">6</property>

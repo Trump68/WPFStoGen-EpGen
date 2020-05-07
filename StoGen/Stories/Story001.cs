@@ -5,6 +5,7 @@ using StoGen.Classes.Transition;
 using StoGen.ModelClasses;
 using StoGenerator.CadreElements;
 using StoGenerator.Persons;
+using StoGenerator.Persons.Fems;
 using StoGenerator.StoryClasses;
 using System;
 using System.Collections.Generic;
@@ -37,13 +38,26 @@ namespace StoGenerator.Stories
         {
             Person.Storage.Clear();
 
-            Person.Storage.Add(JennyFord.Load());
-            Person.Storage.Add(BobLulam.Load());
-            Person.Storage.Add(MariaKelmi.Load());
-            Person.Storage.Add(ElizabethScott.Load());
-            Person.Storage.Add(MarySimmons.Load());
-            Person.Storage.Add(JuliaSanders.Load());
-            
+            //Person.Storage.Add(JennyFord.Load());
+            //Person.Storage.Add(BobLulam.Load());
+            //Person.Storage.Add(MariaKelmi.Load());
+            //Person.Storage.Add(ElizabethScott.Load());
+            //Person.Storage.Add(MarySimmons.Load());
+            //Person.Storage.Add(JuliaSanders.Load());
+            //Person.Storage.Add(MariaSanchez.Load());
+            //Person.Storage.Add(OliviaShaw.Load());
+            //Person.Storage.Add(JessicaStone.Load());
+            //Person.Storage.Add(RachelStephens.Load());
+            //Person.Storage.Add(EmilySims.Load());
+            //Person.Storage.Add(SaraMorton.Load());
+            //Person.Storage.Add(DianaOliver.Load());
+            //Person.Storage.Add(OliviaSmith.Load());
+            //Person.Storage.Add(PhebeCurtis.Load());
+            //Person.Storage.Add(MaryLewis.Load());
+            //Person.Storage.Add(PhoebeFrench.Load());
+            //Person.Storage.Add(JuliaThomas.Load());
+            Person.LoadPassportsFolder(@"e:\!CATALOG\PRS\!STO GEN PERSON\");
+
             base.FillPersonStorage();
         }
         protected override void FillData()

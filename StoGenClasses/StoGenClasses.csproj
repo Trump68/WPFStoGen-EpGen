@@ -72,11 +72,13 @@
     <Compile Include="BaseGeneratorItem.cs" />
     <Compile Include="Cadre.cs" />
     <Compile Include="CadreData.cs" />
+    <Compile Include="Catalog\EpItem.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="Interfaces\IPersonManager.cs" />
     <Compile Include="LocationStorage.cs" />
     <Compile Include="Menu\MenuClasses.cs" />
-    <Compile Include="Person.cs" />
+    <Compile Include="Person\Person.cs" />
+    <Compile Include="Person\_FemaleStandart.cs" />
     <Compile Include="Scenario\IStoryGenerator.cs" />
     <Compile Include="Scenario\StoryGeneratorDefault.cs" />
     <Compile Include="SceneCadres\CE_Location.cs" />
@@ -203,6 +205,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

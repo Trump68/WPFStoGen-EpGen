@@ -1,17 +1,9 @@
-﻿using DevExpress.Mvvm;
-using StoGen.Classes;
-using StoGen.Classes.Scene;
-using StoGenerator;
+﻿using StoGen.Classes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
@@ -290,7 +282,7 @@ namespace EPCat.Model
             return result;
         }
 
-        internal void UpdateFrom(EpItem item)
+        public void UpdateFrom(EpItem item)
         {
             this.SetItemPath(item.ItemPath);
             this.Name = item.Name;
@@ -408,9 +400,9 @@ namespace EPCat.Model
         public static string p_PassportCompositionName = "PASSPORT_COMPOSITION.TXT";
 
         public static string CurrentPassportImage = p_PassportCapsName;
-        internal static string CatalogPosterDir;
+        public static string CatalogPosterDir;
 
-        internal static void SetCurrentImagePassort(int selectedIndex)
+        public static void SetCurrentImagePassort(int selectedIndex)
         {
             switch (selectedIndex)
             {
@@ -440,14 +432,14 @@ namespace EPCat.Model
 
 
        
-        internal static string GetCatalogPosterDir(string itemPath)
+        public static string GetCatalogPosterDir(string itemPath)
         {
             string dir = Path.GetDirectoryName(itemPath);
             string catname = Path.GetFileNameWithoutExtension(itemPath);
             return $@"{dir}\POSTERS.{catname}";
         }
 
-        internal static List<string> SetToPassport(EpItem item)
+        public static List<string> SetToPassport(EpItem item)
         {
             List<string> result = new List<string>();
             result.Add(p_GID + item.GID.ToString());
@@ -455,10 +447,10 @@ namespace EPCat.Model
             result.Add(p_Catalog + item.Catalog);
             result.Add($"{p_LastEdit}{item.LastEdit}");
 
-            if (string.IsNullOrEmpty(item.PARENT))
-            {
-                item.PARENT = item.Name;
-            }
+            //if (string.IsNullOrEmpty(item.PARENT))
+            //{
+            //    item.PARENT = item.Name;
+            //}
 
             if (!string.IsNullOrEmpty(item.Serie))
                 result.Add(p_Serie + item.Serie);
@@ -509,8 +501,8 @@ namespace EPCat.Model
                 result.Add(p_PersonKind + item.PersonKind);
             if (!string.IsNullOrEmpty(item.LastCheck))
                 result.Add(p_LastCheck + item.LastCheck);
-            if (!string.IsNullOrEmpty(item.PARENT))
-                result.Add(p_Parent + item.PARENT);
+            //if (!string.IsNullOrEmpty(item.PARENT))
+            //    result.Add(p_Parent + item.PARENT);
 
             if (item.Size > 0)
                 result.Add(p_Size + item.Size.ToString());
@@ -533,78 +525,11 @@ namespace EPCat.Model
                 result.AddRange(ttt);               
             }
 
-            //if (item.Clips.Count == 1)
-            //{
-            //        result.Add(p_SCENDATA_BEGIN + item.Clips.First().GenerateString() + p_SCENDATA_END);
-            //}
-            //else if (item.Clips.Count > 0)
-            //{
-            //    List<string> ttt = new List<string>();
-            //    foreach (var it in item.Clips)
-            //    {
-            //        ttt.Add(it.GenerateString());
-            //    }
-                
-            //    ttt[0] = p_SCENDATA_BEGIN + ttt.First();
-            //    ttt[ttt.Count - 1] = ttt.Last() + p_SCENDATA_END;
-            //    result.AddRange(ttt);
-            //}
-
-            //// combined scenes
-            //if (item.CombinedScenes.Count == 1)
-            //{
-            //    result.Add(p_COMBDATA_BEGIN + item.CombinedScenes.First().GenerateString() + p_COMBDATA_END);
-            //}
-            //else if (item.CombinedScenes.Count > 0)
-            //{
-            //    List<string> ttt = new List<string>();
-            //    foreach (var it in item.CombinedScenes)
-            //    {
-            //        ttt.Add(it.GenerateString());
-            //    }
-
-            //    ttt[0] = p_COMBDATA_BEGIN + ttt.First();
-            //    ttt[ttt.Count - 1] = ttt.Last() + p_COMBDATA_END;
-            //    result.AddRange(ttt);
-            //}
-
-            //// pose positions
-            //if (item.PosePositions.Count == 1)
-            //{
-            //    result.Add(p_POSEPOSITION_BEGIN + item.PosePositions.First().GenerateString() + p_POSEPOSITION_END);
-            //}
-            //else if (item.PosePositions.Count > 0)
-            //{
-            //    List<string> ttt = new List<string>();
-            //    foreach (var it in item.PosePositions)
-            //    {
-            //        ttt.Add(it.GenerateString());
-            //    }
-            //    ttt[0] = p_POSEPOSITION_BEGIN + ttt.First();
-            //    ttt[ttt.Count - 1] = ttt.Last() + p_POSEPOSITION_END;
-            //    result.AddRange(ttt);
-            //}
-
-            //// motions
-            //if (item.Motions.Count == 1)
-            //{
-            //    result.Add(p_MOTION_BEGIN + item.Motions.First().GenerateString() + p_MOTION_END);
-            //}
-            //else if (item.Motions.Count > 0)
-            //{
-            //    List<string> ttt = new List<string>();
-            //    foreach (var it in item.Motions)
-            //    {
-            //        ttt.Add(it.GenerateString());
-            //    }
-            //    ttt[0] = p_MOTION_BEGIN + ttt.First();
-            //    ttt[ttt.Count - 1] = ttt.Last() + p_MOTION_END;
-            //    result.AddRange(ttt);
-            //}
+        
 
             return result;
         }
-        internal static EpItem GetFromPassport(List<string> passport, string path)
+        public static EpItem GetFromPassport(List<string> passport, string path)
         {
             EpItem result = new EpItem(1);
             result.SetItemPath(path);            

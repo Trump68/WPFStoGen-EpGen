@@ -973,68 +973,48 @@ namespace EPCat.Model
                     }
 
 
-
-                    //string sounddir = Path.Combine(dirname, "SOUND");
-                    //if (Directory.Exists(sounddir))
+                    //string eventsdir = Path.Combine(dirname, "EVENTS");
+                    //if (!Directory.Exists(eventsdir))
                     //{
-                    //    var filesmp3 = Directory.GetFiles(sounddir, "*.mp3").ToList();
+                    //    Directory.CreateDirectory(eventsdir);
+                    //    var filesjpg = Directory.GetFiles(dirname, "*.jpg").ToList();
                     //    var i = 0;
-                    //    foreach (string fn in filesmp3)
+                    //    foreach (string fn in filesjpg)
                     //    {
                     //        i++;
                     //        string filename = Path.GetFileName(fn);
-                    //        if (filename.Length < 45)//string.len"0001.a9da9cd436174c35aa1a0fa0d33636b0.mp3")
+                    //        if (filename.Length > 100)
+                    //            filename = filename.Substring(0, 100) + i.ToString() + ".jpg";
+                    //        string newpath = Path.Combine(eventsdir, filename);
+                    //        File.Move(fn, newpath);
+                    //    }
+                    //    var filespng = Directory.GetFiles(dirname, "*.png").ToList();
+                    //    i = 0;
+                    //    foreach (string fn in filespng)
+                    //    {
+                    //        i++;
+                    //        string filename = Path.GetFileName(fn);
+                    //        if (filename.Length > 100)
+                    //            filename = filename.Substring(0, 100) + i.ToString() + ".png";
+                    //        string newpath = Path.Combine(eventsdir, filename);
+                    //        File.Move(fn, newpath);
+                    //    }
+                    //    List<String> cpslist = new List<string>();
+                    //    cpslist.Add(Path.Combine(eventsdir, "1.jpg"));
+                    //    cpslist.Add(Path.Combine(eventsdir, "01.jpg"));
+                    //    cpslist.Add(Path.Combine(eventsdir, "001.jpg"));
+                    //    cpslist.Add(Path.Combine(eventsdir, "0001.jpg"));
+                    //    cpslist.Add(Path.Combine(eventsdir, "00001.jpg"));
+                    //    foreach (var newcaption in cpslist)
+                    //    {
+                    //        if (File.Exists(newcaption))
                     //        {
-                    //            string gid = Guid.NewGuid().ToString();
-                    //            string newpath = Path.GetFileNameWithoutExtension(filename);
-                    //            newpath = $"{newpath}.{gid}.mp3";
-                    //            newpath = Path.Combine(sounddir, newpath);
-                    //            File.Move(fn, newpath);
+                    //            File.Copy(newcaption, Path.Combine(dirname, "POSTER.jpg"), false);
+                    //            break;
                     //        }
                     //    }
-                    //}
-                    string eventsdir = Path.Combine(dirname, "EVENTS");
-                    if (!Directory.Exists(eventsdir))
-                    {
-                        Directory.CreateDirectory(eventsdir);
-                        var filesjpg = Directory.GetFiles(dirname, "*.jpg").ToList();
-                        var i = 0;
-                        foreach (string fn in filesjpg)
-                        {
-                            i++;
-                            string filename = Path.GetFileName(fn);
-                            if (filename.Length > 100)
-                                filename = filename.Substring(0, 100) + i.ToString() + ".jpg";
-                            string newpath = Path.Combine(eventsdir, filename);
-                            File.Move(fn, newpath);
-                        }
-                        var filespng = Directory.GetFiles(dirname, "*.png").ToList();
-                        i = 0;
-                        foreach (string fn in filespng)
-                        {
-                            i++;
-                            string filename = Path.GetFileName(fn);
-                            if (filename.Length > 100)
-                                filename = filename.Substring(0, 100) + i.ToString() + ".png";
-                            string newpath = Path.Combine(eventsdir, filename);
-                            File.Move(fn, newpath);
-                        }
-                        List<String> cpslist = new List<string>();
-                        cpslist.Add(Path.Combine(eventsdir, "1.jpg"));
-                        cpslist.Add(Path.Combine(eventsdir, "01.jpg"));
-                        cpslist.Add(Path.Combine(eventsdir, "001.jpg"));
-                        cpslist.Add(Path.Combine(eventsdir, "0001.jpg"));
-                        cpslist.Add(Path.Combine(eventsdir, "00001.jpg"));
-                        foreach (var newcaption in cpslist)
-                        {
-                            if (File.Exists(newcaption))
-                            {
-                                File.Copy(newcaption, Path.Combine(dirname, "POSTER.jpg"), false);
-                                break;
-                            }
-                        }
 
-                    }
+                    //}
                 }
                 else
                 {

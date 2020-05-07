@@ -1,6 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using EPCat.Model;
+using Newtonsoft.Json;
 using StoGen.Classes;
 using StoGen.Classes.Transition;
+using StoGenerator.Persons.Fems;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -291,6 +293,69 @@ namespace StoGenerator
         {
             get { return _CurrentCell; }
             set { _CurrentCell = value; if (!_CurrentCell.Persons.Contains(this)) _CurrentCell.Persons.Add(this); }
+        }
+
+
+        public static void LoadPassportsFolder(string path)
+        {
+            if (!Directory.Exists(path)) return;
+            List<string> passportList = Directory.GetFiles(path, EpItem.p_PassportName).ToList();
+            foreach (var passport in passportList)
+            {
+                GetPassport(passport);
+            }
+            List<string> dirList = Directory.GetDirectories(path).ToList();
+            foreach (var dir in dirList)
+            {
+                LoadPassportsFolder(dir);
+            }
+        }
+        private static void GetPassport(string passportPath)
+        {
+            List<string> passport = new List<string>(File.ReadAllLines(passportPath));
+            if (passport != null)
+            {
+                EpItem item = EpItem.GetFromPassport(passport, passportPath);
+                if (item.GID == null || Guid.Empty.Equals(item.GID))
+                    item.GID = Guid.NewGuid();
+
+                _FemaleStandart person = new _FemaleStandart();
+                person.Age = item.Year;
+                person.Name = item.Name;
+                person.Tribe = item.PersonKind;
+                person.Sex = (item.PersonSex.ToUpper())[0];
+
+                string dir = Path.GetDirectoryName(passportPath);
+                string positionsFile = Path.Combine(dir, "POSITIONS.TXT");
+                if (File.Exists(positionsFile))
+                {
+                    var lines = File.ReadAllLines(positionsFile);
+                    foreach (var line in lines)
+                    {
+                        person.Positions.Add(Info_Scene.GenerateFromString(line));
+                    }                    
+                }
+                string dataPath = Path.Combine(dir, "DATA");
+                if (!Directory.Exists(dataPath))
+                    dataPath = string.Empty;
+                string filesFile = Path.Combine(dir, "FILES.TXT");
+                if (File.Exists(positionsFile))
+                {
+                    var lines = File.ReadAllLines(filesFile);
+                    foreach (var line in lines)
+                    {
+                        var vals = line.Split('|');
+                        ItemData id = new ItemData();
+                        id.Category = vals[0];
+                        id.Features = vals[1];                       
+                        id.File = Path.Combine(dataPath,vals[2]);
+                        id.Pose = vals[3];
+                        id.Figure = person.Name;
+                        person.Files.Add(id);
+                    }
+                }
+                Storage.Add(person);
+            }
         }
     }
 }
