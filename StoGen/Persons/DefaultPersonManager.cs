@@ -16,13 +16,21 @@ namespace StoGenerator.Persons
         {
             Persons = persons;
             Cells = cells;
-            SetPersonHome(JennyFord.PersonName, "Квартира N1,Дом N1,Жасминовая улица");
-            SetPersonHome(BobLulam.ArtName,  "Квартира N2,Дом N1,Жасминовая улица");
+            SetPersonHome(Persons[0].Name, "Квартира N1,Дом N1,Жасминовая улица");
+            SetPersonHome(Persons[1].Name, "Квартира N2,Дом N1,Жасминовая улица");
+            SetPersonHome(Persons[2].Name, "Квартира N3,Дом N1,Жасминовая улица");
+            SetPersonHome(Persons[3].Name, "Квартира N4,Дом N1,Жасминовая улица");
+            SetPersonHome(Persons[4].Name, "Квартира N5,Дом N1,Жасминовая улица");
+            SetPersonHome(Persons[5].Name, "Квартира N6,Дом N1,Жасминовая улица");
         }
         public void AllocateCurrentCells()
         {
-            SetPersonCurrentCell(JennyFord.PersonName, "Квартира N1,Дом N1,Жасминовая улица");
-            SetPersonCurrentCell(BobLulam.ArtName, "Квартира N2,Дом N1,Жасминовая улица");
+            SetPersonCurrentCell(Persons[0].Name, "Квартира N1,Дом N1,Жасминовая улица");
+            SetPersonCurrentCell(Persons[1].Name, "Квартира N2,Дом N1,Жасминовая улица");
+            SetPersonCurrentCell(Persons[2].Name, "Квартира N3,Дом N1,Жасминовая улица");
+            SetPersonCurrentCell(Persons[3].Name, "Квартира N4,Дом N1,Жасминовая улица");
+            SetPersonCurrentCell(Persons[4].Name, "Квартира N5,Дом N1,Жасминовая улица");
+            SetPersonCurrentCell(Persons[5].Name, "Квартира N6,Дом N1,Жасминовая улица");
         }
         private void SetPersonHome(string personName, string homeaddress)
         {

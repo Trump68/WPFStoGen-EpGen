@@ -119,10 +119,41 @@ namespace StoGenerator
         private static Cell AddStreetJasmineGardens(Cell owner)
         {
             Cell street = new Cell("Жасминовая улица", "Street City 001", owner, Kind.Area);
-            var house = AddHouseNumber1(street, street);
+            Cell building = null;
+            building = Add_HousingN1(street, street);
+            building = Add_SchoolN1(street, street);
             return street;
         }
-        private static Cell AddHouseNumber1(Cell owner, params Cell[] nearByExternal)
+        private static Cell Add_SchoolN1(Cell owner, params Cell[] nearByExternal)
+        {
+            Cell room = null;
+            Cell house = new Cell("Школа N1", "Building School 001", owner, Kind.House, nearByExternal);
+            Cell hall = new Cell($"Школьный коридор", "School Holl 001", house, Kind.Cell, house);
+
+            Cell classroom1 = new Cell($"Классная комната №1", "Door 002", house, Kind.Aparment, hall);
+            room = new Cell($"Помещение", "Classroom 001", classroom1, Kind.Cell, classroom1);
+
+            Cell classroom2 = new Cell($"Классная комната №2", "Door 002", house, Kind.Aparment, hall);
+            room = new Cell($"Помещение", "Classroom 002", classroom2, Kind.Cell, classroom2);
+
+            Cell lab = new Cell($"Лаборатория №1", "Door 002", house, Kind.Aparment, hall);
+            room = new Cell($"Помещение", "Lab 001", lab, Kind.Cell, lab);
+
+            Cell pool = new Cell($"Бассейн", "Door 002", house, Kind.Aparment, hall);
+            room = new Cell($"Помещение", "Swimming Pool 001", pool, Kind.Cell, pool);
+
+            Cell teacherroom = new Cell($"Учительская", "Door 002", house, Kind.Aparment, hall);
+            room = new Cell($"Помещение", "Teachroom 001", teacherroom, Kind.Cell, teacherroom);
+
+            Cell auditorium = new Cell($"Переговорная", "Door 002", house, Kind.Aparment, hall);
+            room = new Cell($"Помещение", "Teachroom 002", auditorium, Kind.Cell, auditorium);
+
+            Cell director = new Cell($"Кабинет директора", "Door 002", house, Kind.Aparment, hall);
+            room = new Cell($"Помещение", "Office 002", director, Kind.Cell, director);
+
+            return house;
+        }
+        private static Cell Add_HousingN1(Cell owner, params Cell[] nearByExternal)
         {
             Cell house = new Cell("Дом N1", "Municipal Building 001", owner, Kind.House, nearByExternal);
             Cell entrance = new Cell($"Подьезд", "Hallway 002", house, Kind.Cell, house);
@@ -138,6 +169,7 @@ namespace StoGenerator
             Cell ap8 = AddComfortApartNumber(house, "8", "Door 002", "Livingroom 002", "Kitchen 001", "Bathroom 001", "Bedroom 002", hall);
             return house;
         }
+     
 
         private static Cell AddApartNumber(Cell owner, string num, string c1,string c2, string c3, string c4, params Cell [] nearByExternal)
         {

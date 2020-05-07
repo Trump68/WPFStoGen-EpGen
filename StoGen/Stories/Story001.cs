@@ -21,27 +21,30 @@ namespace StoGenerator.Stories
         public static string StoryName = "Story 001";
         public static DateTime DateStart = new DateTime(2020, 6, 1, 8, 0, 0);
         public static string startAtAddress = "Квартира N1,Дом N1,Жасминовая улица";
-        public Story001():base(DateStart, startAtAddress)
+        public Story001():base(DateStart, startAtAddress, new DefaultPersonManager())
         {
             this.Name = Story001.StoryName;
             this.FileName = this.Name;
-
-            JFord = JennyFord.Load();
-            this.VisiblePersons.Add(JFord);
-           
-            //FCurrentPosition.Z = "1";
-            //FCurrentPosition.S = "1200";
-            //FCurrentPosition.X = "400";
-            //FCurrentPosition.Y = "70";
         }
 
-        protected JennyFord JFord;
         public override void Generate(string queue, string group)
         {
             base.Generate(queue, group);
-            //MakeTitle();
             FillData();
 
+        }
+        protected override void FillPersonStorage()
+        {
+            Person.Storage.Clear();
+
+            Person.Storage.Add(JennyFord.Load());
+            Person.Storage.Add(BobLulam.Load());
+            Person.Storage.Add(MariaKelmi.Load());
+            Person.Storage.Add(ElizabethScott.Load());
+            Person.Storage.Add(MarySimmons.Load());
+            Person.Storage.Add(JuliaSanders.Load());
+            
+            base.FillPersonStorage();
         }
         protected override void FillData()
         {

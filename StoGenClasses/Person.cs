@@ -65,7 +65,7 @@ namespace StoGenerator
         {
             Pose,
         }
-        public Person(string name, string type) : base(name, type) { }
+        public Person() : base(null, null) { }
         public Info_Scene GetPositionByName(string name)
         {
             var position = Positions.Where(x => x.Story == name).FirstOrDefault();
@@ -75,9 +75,10 @@ namespace StoGenerator
                 position = Positions.FirstOrDefault();
             return position;
         }
-
-
-
+        public string ImagePath { set; get; }
+        public string Tribe { set; get; }
+        public int Age { set; get; }
+        public char Sex { set; get; }
         protected override Info_Scene ToSceneInfo(ItemData item)
         {
             Info_Scene result = base.ToSceneInfo(item);

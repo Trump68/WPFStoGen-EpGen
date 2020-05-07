@@ -26,7 +26,7 @@ namespace StoGenerator
         {
             Storage.Clear();
             LocationStorage var = new LocationStorage(Sys_Background_White, "system");
-            var.Files.Add(new ItemData("system", "$$WHITE$$",null, null, var.Name));
+            var.Files.Add(new ItemData("system", "$$WHITE$$",null,null, var.Name));
             //комната в общаге/кондоминиуме
             Add_StudentRoom001("Student Room 001", "Student Room");
             Add_StudentRoom002("Student Room 002", "Student Room");
@@ -58,19 +58,19 @@ namespace StoGenerator
             Add_PoorePeopleRoom001("JanitorRoom 001", "Janitor Room");
 
             //класс
-            Add_Classroom001();
-            Add_Classroom002();
+            Add_Classroom001("Classroom 001", "Classroom");
+            Add_Classroom002("Classroom 002", "Classroom");
             //учительская 
-            Add_Teacheroom001();
-            Add_Teacheroom002();
+            Add_Teacheroom001("Teachroom 001", "Teachroom");
+            Add_Teacheroom002("Teachroom 002", "Teachroom");
             //лаба 
-            Add_Lab001();
+            Add_Lab001("Lab 001", "Lab");
             //бассейн
-            Add_SwimmingPool001();
+            Add_SwimmingPool001("Swimming Pool 001", "Swimming Pool");
             //здание школы
             Add_BuildingSchool001();
             //холл
-            Add_SchoolHoll001();
+            Add_SchoolHoll001("School Holl 001", "School Holl");
             //подвал
             Add_ApartmentUnderground001();
             //склад
@@ -94,8 +94,8 @@ namespace StoGenerator
             //купальня
             Add_HotSPA001();
             //office
-            Add_Office001();
-            Add_Office002();
+            Add_Office001("Office 001", "Office");
+            Add_Office002("Office 002", "Office");
             //улица в пригороде
             Add_StreetPrivateDisctrict001();
 
@@ -111,16 +111,16 @@ namespace StoGenerator
         private static void Add_ApartmentUnderground001()
         {
             LocationStorage var = new LocationStorage("Apartment Underground 001", "Apartment Underground");
-            var.Files.Add(new ItemData("day,night,evening", $@"{ImagePath}APARTMENT\UNDERGROUND\001\79.jpg", null, null, var.Name));
+            var.Files.Add(new ItemData("day,night,evening", $@"{ImagePath}APARTMENT\UNDERGROUND\001\072.jpg", null, null, var.Name));
             Storage.Add(var);
         }
-        private static void Add_SchoolHoll001()
+        private static void Add_SchoolHoll001(string name, string type)
         {
-            LocationStorage var = new LocationStorage("School Holl 001", "School Holl");
-            var.Files.Add(new ItemData("day,crowded", $@"{ImagePath}SHOOL\HOLL\001\79.jpg", null, null, var.Name));
-            var.Files.Add(new ItemData("day,empty", $@"{ImagePath}SHOOL\HOLL\001\79.jpg", null, null, var.Name));
-            var.Files.Add(new ItemData("night", $@"{ImagePath}SHOOL\HOLL\001\83.jpg", null, null, var.Name));
-            var.Files.Add(new ItemData("evening", $@"{ImagePath}SHOOL\HOLL\001\84.jpg", null, null, var.Name));
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new ItemData("day,crowded", $@"{ImagePath}SCHOOL\HOLL\001\079.jpg", null, null, var.Name));
+            var.Files.Add(new ItemData("day,empty", $@"{ImagePath}SCHOOL\HOLL\001\079.jpg", null, null, var.Name));
+            var.Files.Add(new ItemData("night", $@"{ImagePath}SCHOOL\HOLL\001\083.jpg", null, null, var.Name));
+            var.Files.Add(new ItemData("evening", $@"{ImagePath}SCHOOL\HOLL\001\084.jpg", null, null, var.Name));
             Storage.Add(var);
         }
         private static void Add_StreetPrivateDisctrict001()
@@ -131,18 +131,18 @@ namespace StoGenerator
             var.Files.Add(new ItemData("night", $@"{ImagePath}STREET\PRIVATE\001\66.jpg", null, null, var.Name));
             Storage.Add(var);
         }
-        private static void Add_Office001()
+        private static void Add_Office001(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Office 001", "Office");
-            var.Files.Add(new ItemData("day", $@"{ImagePath}OFFICE\001\60.jpg", null, null, var.Name));
-            var.Files.Add(new ItemData("night", $@"{ImagePath}OFFICE\001\61.jpg", null, null, var.Name));
-            var.Files.Add(new ItemData("evening", $@"{ImagePath}OFFICE\001\62.jpg", null, null, var.Name));
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new ItemData("day", $@"{ImagePath}OFFICE\001\060.jpg", null, null, var.Name));
+            var.Files.Add(new ItemData("night", $@"{ImagePath}OFFICE\001\061.jpg", null, null, var.Name));
+            var.Files.Add(new ItemData("evening", $@"{ImagePath}OFFICE\001\062.jpg", null, null, var.Name));
             Storage.Add(var);
         }
-        private static void Add_Office002()
+        private static void Add_Office002(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Office 001", "Office");
-            var.Files.Add(new ItemData("day", $@"{ImagePath}OFFICE\002\60.jpg", null, null, var.Name));
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new ItemData("day", $@"{ImagePath}OFFICE\002\073.jpg", null, null, var.Name));
             Storage.Add(var);
         }
         private static void Add_HotSPA001()
@@ -184,9 +184,9 @@ namespace StoGenerator
         private static void Add_Bedroom001(string name, string type)
         {
             LocationStorage var = new LocationStorage(name, type);
-            var.Files.Add(new ItemData("day", $@"{ImagePath}APARTMENT\BEDROOM\001\102.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night", $@"{ImagePath}APARTMENT\BEDROOM\001\104.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening", $@"{ImagePath}APARTMENT\BEDROOM\001\105.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day", $@"{ImagePath}APARTMENT\BEDROOM\001\102.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night", $@"{ImagePath}APARTMENT\BEDROOM\001\104.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening", $@"{ImagePath}APARTMENT\BEDROOM\001\105.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_Bedroom002(string name, string type)
@@ -198,9 +198,9 @@ namespace StoGenerator
         private static void Add_Hallway001(string name, string type)
         {
             LocationStorage var = new LocationStorage(name, type);//("Hallway 001", "Hallway");
-            var.Files.Add(new ItemData("day", $@"{ImagePath}APARTMENT\HALLWAY\001\132.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night", $@"{ImagePath}APARTMENT\HALLWAY\001\133.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening", $@"{ImagePath}APARTMENT\EVENING\001\134.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day", $@"{ImagePath}APARTMENT\HALLWAY\001\132.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night", $@"{ImagePath}APARTMENT\HALLWAY\001\133.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening", $@"{ImagePath}APARTMENT\EVENING\001\134.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_Hallway002(string name, string type)
@@ -212,9 +212,9 @@ namespace StoGenerator
         private static void Add_MunicipalBuilding001(string name, string type)
         {
             LocationStorage var = new LocationStorage(name, type);
-            var.Files.Add(new ItemData("day", $@"{ImagePath}MUNICIPAL\BUILDING\001\057.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening", $@"{ImagePath}MUNICIPAL\BUILDING\001\058.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night", $@"{ImagePath}MUNICIPAL\BUILDING\001\059.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day", $@"{ImagePath}MUNICIPAL\BUILDING\001\057.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening", $@"{ImagePath}MUNICIPAL\BUILDING\001\058.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night", $@"{ImagePath}MUNICIPAL\BUILDING\001\059.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_MunicipalBuilding002(string name, string type)
@@ -228,16 +228,16 @@ namespace StoGenerator
         private static void Add_BuildingSchool001()
         {
             LocationStorage var = new LocationStorage("Building School 001", "Building School");
-            var.Files.Add(new ItemData("day", $@"{ImagePath}SCHOOL\BUILDING\001\043.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night", $@"{ImagePath}SCHOOL\BUILDING\001\045.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day", $@"{ImagePath}SCHOOL\BUILDING\001\043.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night", $@"{ImagePath}SCHOOL\BUILDING\001\045.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_ForestPark001()
         {
             LocationStorage var = new LocationStorage("Forest Park 001", "Forest Park");
-            var.Files.Add(new ItemData("day", $@"{ImagePath}STREET\PARK\001\076.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night,smoke", $@"{ImagePath}STREET\PARK\001\075.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night", $@"{ImagePath}STREET\PARK\001\078.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day", $@"{ImagePath}STREET\PARK\001\076.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night,smoke", $@"{ImagePath}STREET\PARK\001\075.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night", $@"{ImagePath}STREET\PARK\001\078.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_ForestPark002()
@@ -250,56 +250,56 @@ namespace StoGenerator
         private static void Add_SquarePark001()
         {
             LocationStorage var = new LocationStorage("Square Park 001", "Square Park");
-            var.Files.Add(new ItemData("day", $@"{ImagePath}STREET\SQUAREPARK\001\025.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day", $@"{ImagePath}STREET\SQUAREPARK\001\025.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_StudentRoom001(string name, string type)
         {
             LocationStorage var = new LocationStorage(name, type);
-            var.Files.Add(new ItemData("day",              $@"{ImagePath}APARTMENT\ROOM\001\001.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening",          $@"{ImagePath}APARTMENT\ROOM\001\003.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night",            $@"{ImagePath}APARTMENT\ROOM\001\002.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day",              $@"{ImagePath}APARTMENT\ROOM\001\001.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening",          $@"{ImagePath}APARTMENT\ROOM\001\003.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night",            $@"{ImagePath}APARTMENT\ROOM\001\002.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_StudentRoom002(string name, string type)
         {
             LocationStorage var = new LocationStorage(name, type);
-            var.Files.Add(new ItemData("day",              $@"{ImagePath}APARTMENT\ROOM\002\001.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening,night",    $@"{ImagePath}APARTMENT\ROOM\002\002.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day",              $@"{ImagePath}APARTMENT\ROOM\002\001.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening,night",    $@"{ImagePath}APARTMENT\ROOM\002\002.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_StudentRoom003(string name, string type)
         {
             LocationStorage var = new LocationStorage(name, type);
-            var.Files.Add(new ItemData("day", $@"{ImagePath}APARTMENT\ROOM\003\135.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night", $@"{ImagePath}APARTMENT\ROOM\003\137.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening", $@"{ImagePath}APARTMENT\ROOM\003\138.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day", $@"{ImagePath}APARTMENT\ROOM\003\135.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night", $@"{ImagePath}APARTMENT\ROOM\003\137.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening", $@"{ImagePath}APARTMENT\ROOM\003\138.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_StudentRoom004(string name, string type)
         {
             LocationStorage var = new LocationStorage(name, type);
-            var.Files.Add(new ItemData("day", $@"{ImagePath}APARTMENT\ROOM\004\121.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night", $@"{ImagePath}APARTMENT\ROOM\004\122.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening", $@"{ImagePath}APARTMENT\ROOM\004\123.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day", $@"{ImagePath}APARTMENT\ROOM\004\121.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night", $@"{ImagePath}APARTMENT\ROOM\004\122.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening", $@"{ImagePath}APARTMENT\ROOM\004\123.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_StudentFemaleRoom005(string name, string type)
         {
             LocationStorage var = new LocationStorage(name,  type);
-            var.Files.Add(new ItemData("day,female", $@"{ImagePath}APARTMENT\ROOM\005\096.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night,female", $@"{ImagePath}APARTMENT\ROOM\005\097.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening,female", $@"{ImagePath}APARTMENT\ROOM\005\098.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening,female", $@"{ImagePath}APARTMENT\ROOM\005\094.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening,female,watching tv", $@"{ImagePath}APARTMENT\ROOM\005\095.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day,female", $@"{ImagePath}APARTMENT\ROOM\005\096.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night,female", $@"{ImagePath}APARTMENT\ROOM\005\097.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening,female", $@"{ImagePath}APARTMENT\ROOM\005\098.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening,female", $@"{ImagePath}APARTMENT\ROOM\005\094.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening,female,watching tv", $@"{ImagePath}APARTMENT\ROOM\005\095.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_StudentRoom006(string name, string type)
         {
             LocationStorage var = new LocationStorage(name, type);
-            var.Files.Add(new ItemData("day", $@"{ImagePath}APARTMENT\ROOM\006\111.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night", $@"{ImagePath}APARTMENT\ROOM\006\113.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening", $@"{ImagePath}APARTMENT\ROOM\006\114.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day", $@"{ImagePath}APARTMENT\ROOM\006\111.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night", $@"{ImagePath}APARTMENT\ROOM\006\113.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening", $@"{ImagePath}APARTMENT\ROOM\006\114.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_PoorePeopleRoom001(string name, string type)
@@ -312,94 +312,94 @@ namespace StoGenerator
             var.Files.Add(new ItemData("night,clean,empty", $@"{ImagePath}APARTMENT\ROOM\007\005.jpg", null, null, var.Name));
             Storage.Add(var);
         }
-        private static void Add_Lab001()
+        private static void Add_Lab001(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Lab 001", "Lab");
-            var.Files.Add(new ItemData("day", $@"{ImagePath}SCHOOL\LAB\001\054.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night", $@"{ImagePath}SCHOOL\LAB\001\055.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening", $@"{ImagePath}SCHOOL\LAB\001\056.jpg",null, null, var.Name));
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new ItemData("day", $@"{ImagePath}SCHOOL\LAB\001\054.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night", $@"{ImagePath}SCHOOL\LAB\001\055.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening", $@"{ImagePath}SCHOOL\LAB\001\056.jpg",null,null, var.Name));
             Storage.Add(var);
         }
-        private static void Add_Classroom001()
+        private static void Add_Classroom001(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Classroom 001", "Classroom");
-            var.Files.Add(new ItemData("day",              $@"{ImagePath}SCHOOL\CLASSROOM\001\001.jpg",null, null, var.Name));
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new ItemData("day",              $@"{ImagePath}SCHOOL\CLASSROOM\001\001.jpg",null,null, var.Name));
             Storage.Add(var);
         }
-        private static void Add_Classroom002()
+        private static void Add_Classroom002(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Classroom 002", "Classroom");
-            var.Files.Add(new ItemData("day,crowd", $@"{ImagePath}SCHOOL\CLASSROOM\002\049.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("day,crowd,lession", $@"{ImagePath}SCHOOL\CLASSROOM\002\050.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("day", $@"{ImagePath}SCHOOL\CLASSROOM\002\051.jpg",null, null, var.Name));
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new ItemData("day,crowd", $@"{ImagePath}SCHOOL\CLASSROOM\002\049.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("day,crowd,lession", $@"{ImagePath}SCHOOL\CLASSROOM\002\050.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("day", $@"{ImagePath}SCHOOL\CLASSROOM\002\051.jpg",null,null, var.Name));
             Storage.Add(var);
         }
-        private static void Add_Teacheroom001()
+        private static void Add_Teacheroom001(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Teachroom 001", "Teachroom");
-            var.Files.Add(new ItemData("day,evening", $@"{ImagePath}SCHOOL\TEACHEROOM\001\006.jpg",null, null, var.Name));
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new ItemData("day,evening", $@"{ImagePath}SCHOOL\TEACHEROOM\001\006.jpg",null,null, var.Name));
             Storage.Add(var);
         }
-        private static void Add_Teacheroom002()
+        private static void Add_Teacheroom002(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Teachroom 002", "Teachroom");
-            var.Files.Add(new ItemData("day", $@"{ImagePath}SCHOOL\TEACHEROOM\002\046.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening", $@"{ImagePath}SCHOOL\TEACHEROOM\002\048.jpg",null, null, var.Name));
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new ItemData("day", $@"{ImagePath}SCHOOL\TEACHEROOM\002\046.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening", $@"{ImagePath}SCHOOL\TEACHEROOM\002\048.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_Warehouse001()
         {
             LocationStorage var = new LocationStorage("Warehouse Hagnar 001", "Warehouse Hagnar");
-            var.Files.Add(new ItemData("night",            $@"{ImagePath}WAREHOUSE\HANGAR\001\004.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("day,evening",      $@"{ImagePath}WAREHOUSE\HANGAR\001\005.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("night",            $@"{ImagePath}WAREHOUSE\HANGAR\001\004.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("day,evening",      $@"{ImagePath}WAREHOUSE\HANGAR\001\005.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_StreetShopping001()
         {
             LocationStorage var = new LocationStorage("Street Shopping 001", "Street Shopping");
-            var.Files.Add(new ItemData("day,crowd",              $@"{ImagePath}STREET\SHOPPING\001\007.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("day",              $@"{ImagePath}STREET\SHOPPING\001\008.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night",            $@"{ImagePath}STREET\SHOPPING\001\009.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day,crowd",              $@"{ImagePath}STREET\SHOPPING\001\007.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("day",              $@"{ImagePath}STREET\SHOPPING\001\008.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night",            $@"{ImagePath}STREET\SHOPPING\001\009.jpg",null,null, var.Name));
             Storage.Add(var);
         }
 
         private static void Add_StreetShopping002()
         {
             LocationStorage var = new LocationStorage("Street Shopping 002", "Street Shopping");
-            var.Files.Add(new ItemData("day,crowd", $@"{ImagePath}STREET\SHOPPING\002\010.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("day", $@"{ImagePath}STREET\SHOPPING\002\012.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day,crowd", $@"{ImagePath}STREET\SHOPPING\002\010.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("day", $@"{ImagePath}STREET\SHOPPING\002\012.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_StreetShopping003()
         {
             LocationStorage var = new LocationStorage("Street Shopping 003", "Street Shopping");
-            var.Files.Add(new ItemData("day,crowd", $@"{ImagePath}STREET\SHOPPING\003\014.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("day", $@"{ImagePath}STREET\SHOPPING\003\015.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day,crowd", $@"{ImagePath}STREET\SHOPPING\003\014.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("day", $@"{ImagePath}STREET\SHOPPING\003\015.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_StreetRailwayStation001()
         {
             LocationStorage var = new LocationStorage("Street Railway Station 003", "Railway Station");
-            var.Files.Add(new ItemData("day,crowd", $@"{ImagePath}STREET\RAILWAY\001\016.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("day", $@"{ImagePath}STREET\RAILWAY\001\018.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening,crowd", $@"{ImagePath}STREET\RAILWAY\001\017.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening", $@"{ImagePath}STREET\RAILWAY\001\019.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day,crowd", $@"{ImagePath}STREET\RAILWAY\001\016.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("day", $@"{ImagePath}STREET\RAILWAY\001\018.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening,crowd", $@"{ImagePath}STREET\RAILWAY\001\017.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening", $@"{ImagePath}STREET\RAILWAY\001\019.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_StreetCity001()
         {
             LocationStorage var = new LocationStorage("Street City 001", "Street City");
-            var.Files.Add(new ItemData("day,crowd", $@"{ImagePath}STREET\CITY\001\020.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("day", $@"{ImagePath}STREET\CITY\001\022.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night", $@"{ImagePath}STREET\CITY\001\024.jpg",null, null, var.Name));
+            var.Files.Add(new ItemData("day,crowd", $@"{ImagePath}STREET\CITY\001\020.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("day", $@"{ImagePath}STREET\CITY\001\022.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night", $@"{ImagePath}STREET\CITY\001\024.jpg",null,null, var.Name));
             Storage.Add(var);
         }
-        private static void Add_SwimmingPool001()
+        private static void Add_SwimmingPool001(string name, string type)
         {
-            LocationStorage var = new LocationStorage("Swimming Pool 001", "Swimming Pool");
-            var.Files.Add(new ItemData("day", $@"{ImagePath}SCHOOL\SWIMMING\001\026.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("night", $@"{ImagePath}SCHOOL\SWIMMING\001\041.jpg",null, null, var.Name));
-            var.Files.Add(new ItemData("evening", $@"{ImagePath}SCHOOL\SWIMMING\001\029.jpg",null, null, var.Name));
+            LocationStorage var = new LocationStorage(name, type);
+            var.Files.Add(new ItemData("day", $@"{ImagePath}SCHOOL\SWIMMING\001\026.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("night", $@"{ImagePath}SCHOOL\SWIMMING\001\041.jpg",null,null, var.Name));
+            var.Files.Add(new ItemData("evening", $@"{ImagePath}SCHOOL\SWIMMING\001\029.jpg",null,null, var.Name));
             Storage.Add(var);
         }
         private static void Add_DoorBathroom001()

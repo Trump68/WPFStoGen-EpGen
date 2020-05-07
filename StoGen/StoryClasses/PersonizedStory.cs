@@ -17,19 +17,20 @@ namespace StoGenerator.StoryClasses
     public class PersonizedStory : CelledStory
     {
         public List<Person> VisiblePersons = new List<Person>();
-        IPersonManager PersonManager;
-        public PersonizedStory(DateTime date, string startAtAddress) :base(date, startAtAddress)
+        public IPersonManager PersonManager;
+        public PersonizedStory(DateTime date, string startAtAddress, IPersonManager personManager) :base(date, startAtAddress)
         {
+            PersonManager = personManager;
             FillPersonStorage();
         }
 
         protected virtual void FillPersonStorage()
         {
-            Person.Storage.Add(JennyFord.Load());
-            Person.Storage.Add(BobLulam.Load());
-            PersonManager = new DefaultPersonManager();
-            PersonManager.AllocateHomes(Person.Storage, Cell.Storage);
-            PersonManager.AllocateCurrentCells();
+            if (PersonManager != null)
+            {
+                PersonManager.AllocateHomes(Person.Storage, Cell.Storage);
+                PersonManager.AllocateCurrentCells();
+            }
         }
         protected override void FillCadreContent()
         {
