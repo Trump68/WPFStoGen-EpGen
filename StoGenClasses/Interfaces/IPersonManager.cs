@@ -1,4 +1,5 @@
-﻿using StoGenerator;
+﻿using StoGen.Classes.Persons;
+using StoGenerator;
 using System;
 using System.Collections.Generic;
 using System.Linq;

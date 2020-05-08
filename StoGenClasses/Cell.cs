@@ -1,4 +1,5 @@
 ﻿using StoGen.Classes;
+using StoGen.Classes.Persons;
 using StoGen.ModelClasses;
 using StoGenerator.CadreElements;
 using System.Collections.Generic;

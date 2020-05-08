@@ -1,28 +1,36 @@
 ﻿using EPCat.Model;
-using Newtonsoft.Json;
 using StoGen.Classes;
 using StoGen.Classes.Transition;
-using StoGenerator.Persons.Fems;
+using StoGenerator;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace StoGenerator
+
+namespace StoGen.Classes.Persons
 {
     public class Person : BaseGeneratorItem<Person>
     {
         public enum OutfitName
         {
-            CasHome_I,
-            OutfitDefault_I
+            OutfitHome_I,
+            OutfitWork_I,
+            OutfitDefault_I,
+            OutfitNaked_I,
+            OutfitDressing_I
         }
         public enum FaceName
         {
             FaceNeitral_I,
-            FaceDefault_I
+            FaceDefault_I,
+            FaceSmile_I,  //улыбка
+            FaceGigle_I, //хихи
+            FaceFear_I,  // страх
+            FaceResentment_I,  // обида
+            FaceShame_I,  // стыд
+            FaceAlarm_I,  // тревога
+            FaceCry_I  // слезы
         }
         public enum Generic
         {
@@ -67,6 +75,14 @@ namespace StoGenerator
         {
             Pose,
         }
+        public enum Eyes
+        {
+            EyesVar,
+        }
+        public enum Mouth
+        {
+            MouthVar,
+        }
         public Person() : base(null, null) { }
         public Info_Scene GetPositionByName(string name)
         {
@@ -79,6 +95,8 @@ namespace StoGenerator
         }
         public string ImagePath { set; get; }
         public string Tribe { set; get; }
+        public string CurrentHomeAddress { set; get; }
+        
         public int Age { set; get; }
         public char Sex { set; get; }
         protected override Info_Scene ToSceneInfo(ItemData item)
@@ -100,14 +118,19 @@ namespace StoGenerator
                 string itemgeneric = info.Features.Split(',')[1];
                 var newFeature = this.ToSceneInfo(info);
                 newFeature.Description = info.Category;
+                newFeature.FigureName = info.Figure;
                 if (newFeature.Kind == 0 && position != null)
                 {
                     newFeature.S = position.S;
                     newFeature.X = position.X;
                     newFeature.Y = position.Y;
                 }
-                var oldFeature = posture.Where(x => x.Tags.Contains(itemgeneric)).OrderBy(x => x.Z).FirstOrDefault();
-                posture.RemoveAll(x => x.Tags.Contains(itemgeneric));
+
+                var oldFeature = posture.Where(x => x.Tags.Contains(itemgeneric) && x.FigureName == newFeature.FigureName)
+                    .OrderBy(x => x.Z).FirstOrDefault();
+
+                posture.RemoveAll(x => x.Tags.Contains(itemgeneric) && x.FigureName == newFeature.FigureName);
+
                 if (!string.IsNullOrEmpty(tranOfNew))
                 {
                     newFeature.O = "0";
@@ -118,19 +141,31 @@ namespace StoGenerator
                     posture.Add(newFeature);
                 if (oldFeature != null)
                 {
+                    newFeature.Z = oldFeature.Z;
                     if (oldFeature.File != newFeature.File)// do not add same feature
                     {
                         oldFeature.O = "100";
                         oldFeature.T = tranOfPrev;
+                        oldFeature.Z = $"{(int.Parse(newFeature.Z)) + 1}";
                         posture.Add(oldFeature);
                     }
                 }
+                else
+                {
+
+                }
                 if (!AddBeforePrev)
                     posture.Add(newFeature);
+
                 var figure = posture.Where(x => x.Tags.Contains(Generic.FigureGeneric.ToString())).FirstOrDefault();
                 if (figure != null)
                 {
-                    posture.ForEach(x =>
+                    string lastZ = posture.Where(x => x.FigureName == newFeature.FigureName)
+                    .ToList().Max(x => x.Z);
+                    newFeature.Z = $"{(int.Parse(lastZ)) + 1}";
+
+                    posture.Where(x => x.FigureName == newFeature.FigureName)
+                    .ToList().ForEach(x =>
                     {
                         x.Group = figure.Group;
                         x.Queue = figure.Queue;
@@ -141,7 +176,6 @@ namespace StoGenerator
                             x.Y = figure.Y;
                         }
                     });
-
                 }
             }
             return posture;
@@ -171,13 +205,19 @@ namespace StoGenerator
         }
         public List<Info_Scene> GetFace(List<Info_Scene> posture, string face, Info_Scene position)
         {
+            if (string.IsNullOrEmpty(face))
+            {
+                face = $"{FaceName.FaceDefault_I}";
+            }
             var info = this.Files.FirstOrDefault(x => x.Features.Contains(face));
             if (info != null)
             {
                 var vals = info.File.Split(',');
                 string eyes = vals[0];
                 string mouth = vals[1];
-                string blink = vals[2];
+                string blink = null;
+                if (vals.Length>2)
+                 blink = vals[2];
                 return GetFace(posture, eyes, mouth, blink, position);
             }
             return posture;
@@ -194,23 +234,45 @@ namespace StoGenerator
                 info = this.Files.FirstOrDefault(x => x.Features.Contains(outfit));
             if (info != null)
             {
-                var newfigure = this.ToSceneInfo(info);
-                newfigure.Description = info.Category;                
+                //create new layer for the new figure
+                Info_Scene newfigure = this.ToSceneInfo(info);
+                newfigure.Description = info.Category;
+                newfigure.FigureName = info.Figure;
                 if (newfigure.Kind == 0 && position != null)
                 {
                     newfigure.S = position.S;
                     newfigure.X = position.X;
                     newfigure.Y = position.Y;
+                    if (!string.IsNullOrEmpty(position.Z))
+                        newfigure.Z = position.Z;
+                    else
+                        newfigure.Z = "1";
                 }
-                var oldFigure = layers.Where(x => x.Tags.Contains($"{Generic.FigureGeneric}")).OrderBy(x => x.Z).FirstOrDefault();
+
+                //try to find old layer figure of this person, and memorize it before deleting
+                var oldFigure = layers.Where(
+                    x => x.Tags.Contains($"{Generic.FigureGeneric}") 
+                    && x.FigureName == newfigure.FigureName).
+                    OrderBy(x => x.Z).FirstOrDefault();
+
+                // remove all older figures and features of this person
                 layers.RemoveAll(x =>
-                x.Tags.Contains($"{Generic.FigureGeneric}")
+                (x.FigureName == newfigure.FigureName) &&
+                (x.Tags.Contains($"{Generic.FigureGeneric}")
                 ||
-                (x.Tags.Contains($"{Generic.FeatureGeneric}")));
-                layers.Insert(0, newfigure);
-                if (oldFigure != null) // do not add same feature
+                (x.Tags.Contains($"{Generic.FeatureGeneric}"))));
+
+                // add new figure layer
+                layers.Add(newfigure);
+
+                //process old figure
+                if (oldFigure != null)
                 {
-                    layers.ForEach(x =>
+                    // Set level according to old figure
+                    newfigure.Z = oldFigure.Z;
+
+                    layers.Where(x=>x.FigureName == newfigure.FigureName)
+                    .ToList().ForEach(x =>
                     {
                         x.Group = oldFigure.Group;
                         x.Queue = oldFigure.Queue;
@@ -221,10 +283,12 @@ namespace StoGenerator
                             x.Y = oldFigure.Y;
                         }
                     });
-                    if (oldFigure.File != newfigure.File)
+
+                    if (oldFigure.File != newfigure.File) // do not add same feature
                     {
                         oldFigure.O = "100";
                         oldFigure.T = tranOfPrev;
+                        oldFigure.Z = $"{(int.Parse(newfigure.Z))+1}";
                         layers.Add(oldFigure);
                     }
                 }
@@ -266,7 +330,43 @@ namespace StoGenerator
             return list;
         }
 
-
+        public List<Info_Scene> SetFaceBehavour(Emotion.Type type, List<Info_Scene> layers, Info_Scene position)
+        {
+            switch (type)
+            {
+                case Emotion.Type.Smile:
+                    layers = GetFace(layers, $"{FaceName.FaceSmile_I}", position);
+                    break;
+                case Emotion.Type.Shame:
+                    layers = GetFace(layers, $"{FaceName.FaceShame_I}", position);
+                    break;
+                case Emotion.Type.Alarm:
+                    layers = GetFace(layers, $"{FaceName.FaceAlarm_I}", position);
+                    break;
+                case Emotion.Type.Cry:
+                    layers = GetFace(layers, $"{FaceName.FaceCry_I}", position);
+                    break;
+                case Emotion.Type.Default:
+                    layers = GetFace(layers, $"{FaceName.FaceDefault_I}", position);
+                    break;
+                case Emotion.Type.Fear:
+                    layers = GetFace(layers, $"{FaceName.FaceFear_I}", position);
+                    break;
+                case Emotion.Type.Gigle:
+                    layers = GetFace(layers, $"{FaceName.FaceGigle_I}", position);
+                    break;
+                case Emotion.Type.Neitral:
+                    layers = GetFace(layers, $"{FaceName.FaceNeitral_I}", position);
+                    break;
+                case Emotion.Type.Resentment:
+                    layers = GetFace(layers, $"{FaceName.FaceResentment_I}", position);
+                    break;
+                default:
+                    layers = GetFace(layers, $"{FaceName.FaceDefault_I}", position);
+                    break;
+            }
+            return layers;
+        }
 
 
         // Static Storage
@@ -319,11 +419,12 @@ namespace StoGenerator
                 if (item.GID == null || Guid.Empty.Equals(item.GID))
                     item.GID = Guid.NewGuid();
 
-                _FemaleStandart person = new _FemaleStandart();
+                Person person = new Person();
                 person.Age = item.Year;
                 person.Name = item.Name;
                 person.Tribe = item.PersonKind;
                 person.Sex = (item.PersonSex.ToUpper())[0];
+                person.CurrentHomeAddress = item.Studio;
 
                 string dir = Path.GetDirectoryName(passportPath);
                 string positionsFile = Path.Combine(dir, "POSITIONS.TXT");
@@ -344,11 +445,15 @@ namespace StoGenerator
                     var lines = File.ReadAllLines(filesFile);
                     foreach (var line in lines)
                     {
+                        if (string.IsNullOrEmpty(line.Trim())) continue;
+                        if (line.Trim().StartsWith("//")) continue;
                         var vals = line.Split('|');
                         ItemData id = new ItemData();
                         id.Category = vals[0];
-                        id.Features = vals[1];                       
-                        id.File = Path.Combine(dataPath,vals[2]);
+                        id.Features = vals[1];
+                        id.File =vals[2];
+                        if (!vals[2].Contains(","))                    
+                            id.File = Path.Combine(dataPath,vals[2]);
                         id.Pose = vals[3];
                         id.Figure = person.Name;
                         person.Files.Add(id);
@@ -358,4 +463,21 @@ namespace StoGenerator
             }
         }
     }
+
+    public class Emotion
+    {
+        public enum Type
+        {
+            Smile,
+            Shame,
+            Alarm,
+            Cry,
+            Default,
+            Fear,
+            Gigle,
+            Neitral,
+            Resentment
+        }      
+    }
+  
 }

@@ -1,19 +1,8 @@
-﻿using StoGen.Classes;
-using StoGen.Classes.Scene;
+﻿using StoGen.Classes.Persons;
 using StoGen.Classes.SceneCadres.CadreElements;
-using StoGen.Classes.Transition;
-using StoGen.ModelClasses;
-using StoGenerator.CadreElements;
 using StoGenerator.Persons;
-using StoGenerator.Persons.Fems;
 using StoGenerator.StoryClasses;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static StoGenerator.Person;
 
 namespace StoGenerator.Stories
 {
@@ -21,7 +10,7 @@ namespace StoGenerator.Stories
     {
         public static string StoryName = "Story 001";
         public static DateTime DateStart = new DateTime(2020, 6, 1, 8, 0, 0);
-        public static string startAtAddress = "Квартира N1,Дом N1,Жасминовая улица";
+        public static string startAtAddress = "Квартира N2,Дом N1,Жасминовая улица";
         public Story001():base(DateStart, startAtAddress, new DefaultPersonManager())
         {
             this.Name = Story001.StoryName;

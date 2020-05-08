@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using StoGen.Classes.Scene;
 using StoGenerator.Stories;
+using StoGen.Classes.Persons;
 
 namespace StoGenerator.Persons
 {
@@ -81,11 +82,19 @@ namespace StoGenerator.Persons
 
             int i = 1;
             
-            person.Files.Add(new ItemData($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i},{OutfitName.CasHome_I}{1}", $@"{person.ImagePath}Outfit04_1.png", "Вечерний домашний наряд - халатик", "Поза 1",person.Name)); ++i;
-            person.Files.Add(new ItemData($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i},{OutfitName.CasHome_I}{2}", $@"{person.ImagePath}Outfit04_2.png", "Вечерний домашний наряд - халатик", "Поза 2",person.Name)); ++i;
+            person.Files.Add(new ItemData($"{Generic.FigureGeneric},{OutfitName.OutfitHome_I}", $@"{person.ImagePath}DefaultHome_I_1.png", "Вечерний домашний наряд - халатик", "1", person.Name)); ++i;
+            person.Files.Add(new ItemData($"{Generic.FigureGeneric},{OutfitName.OutfitDressing_I}", $@"{person.ImagePath}DefaultHome_I_2.png", "Вечерний домашний наряд - халатик", "2", person.Name)); ++i;
 
-            person.Files.Add(new ItemData($"{FaceName.FaceNeitral_I}{1}", $@"{JennyFord_Eyes.Eyes1_67},{JennyFord_Mouth.Mouth1_67},{Feature.FeatureBlink}{1}", "Нейтральное лицо", "Поза 1", person.Name)); ++i;
+            person.Files.Add(new ItemData($"{FaceName.FaceSmile_I}", $@"{Eyes.EyesVar}{67},{Mouth.MouthVar}{67},{Feature.FeatureBlink}{1}", "По умолчанию", "1", person.Name)); ++i;
+            person.Files.Add(new ItemData($"{Generic.FeatureGeneric},{Generic.MouthGeneric},{Mouth.MouthVar}{67}", $@"{person.ImagePath}Mouth_1_067.png", null, $"1", person.Name));
+            person.Files.Add(new ItemData($"{Generic.FeatureGeneric},{Generic.EyesGeneric},{Eyes.EyesVar}{67}", $@"{person.ImagePath}Eyes_1_067.png", null, $"{Poses.Pose}{1}", person.Name));
+            person.Files.Add(new ItemData($"{Generic.FeatureGeneric},{Generic.BlinkGeneric},{Feature.FeatureBlink}{1}", $@"{person.ImagePath}Eyes_1_blink1.png", null, $"{Poses.Pose}{1}", person.Name));
 
+            person.Files.Add(new ItemData($"{FaceName.FaceNeitral_I}", $@"{Eyes.EyesVar}{68},{Mouth.MouthVar}{68},{Feature.FeatureBlink}{2}", "По умолчанию", "2", person.Name)); ++i;
+            person.Files.Add(new ItemData($"{Generic.FeatureGeneric},{Generic.MouthGeneric},{Mouth.MouthVar}{68}", $@"{person.ImagePath}Mouth_2_068.png", null, $"2", person.Name));            
+            person.Files.Add(new ItemData($"{Generic.FeatureGeneric},{Generic.EyesGeneric},{Eyes.EyesVar}{68}", $@"{person.ImagePath}Eyes_2_068.png", null, $"2", person.Name));
+
+            
 
             person.Files.Add(new ItemData($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}", $@"{person.ImagePath}Figure001_1.png", "Голая", "Поза 1",person.Name)); ++i;
             person.Files.Add(new ItemData($"{Generic.FigureGeneric},{Feature.FeatureFigure}{i}",

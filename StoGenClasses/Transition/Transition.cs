@@ -14,11 +14,11 @@ namespace StoGen.Classes.Transition
         {
             get
             {
-                List<string> result = new List<string>() { $"{SetInvisible}>{Wait(1000)}" };                
+                List<string> result = new List<string>() { $"{SetInvisible}>{Wait(rnd.Next(1000, 10000))}" };                
                 for (int i = 0; i < 50; i++)
                 {
                     result.Add("O.B.100.0>O.B.100.100>O.B.100.-100>");                   
-                    int wait = rnd.Next(100, 10000);
+                    int wait = rnd.Next(1000, 10000);
                     result.Add($"W..{wait}");
                 }
                 return string.Join(">", result.ToArray()) + "~";

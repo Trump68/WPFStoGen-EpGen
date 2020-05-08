@@ -607,30 +607,41 @@ namespace StoGen.Classes
                 }
             }
         }
-        private void DoRotate(double Cx, double Cy, int angle, TransformGroup tg)
+        private static void DoRotate(double Cx, double Cy, int angle, TransformGroup tg)
         {
             var roateTransform = new RotateTransform();
             roateTransform.Angle = angle;
             roateTransform.CenterX = Cx;
             roateTransform.CenterY = Cy;
+            var old = tg.Children.Where(x => x is RotateTransform).FirstOrDefault();
+            while (old != null)
+            {
+                tg.Children.Remove(old);
+                old = tg.Children.Where(x => x is RotateTransform).FirstOrDefault();
+            }
             tg.Children.Add(roateTransform);
         }
-        private void DoRotateFlip(PictureSourceProps pi, TransformGroup tg)
+        public static void DoRotateFlip(PictureSourceProps pi, TransformGroup tg)
         {
             var current = Projector.PicContainer.PicList[(int)pi.Level];
-            var controlCenter = new System.Windows.Point(current.Width / 2, current.Height / 2);
+            if (tg == null)
+                tg = current.RenderTransform as TransformGroup;
+            if (tg == null)
+                tg = new TransformGroup();
+            var controlCenter = new System.Windows.Point((current.Source as BitmapImage).PixelWidth / 2
+                , (current.Source as BitmapImage).PixelHeight / 2);
             if (pi.Rotate != 0)
-            {
-                double x = controlCenter.X + pi.X;
-                double y = controlCenter.Y + pi.Y;
+            {                
+                double x = controlCenter.X;
+                double y = controlCenter.Y;
                 DoRotate(x, y, pi.Rotate, tg);
 
             }
 
-            if (!string.IsNullOrEmpty(pi.Parent))
-            {
-                this.RotateAroundParent(pi.Parent, tg);
-            }
+            //if (!string.IsNullOrEmpty(pi.Parent))
+            //{
+            //    this.RotateAroundParent(pi.Parent, tg);
+            //}
 
             if ((int)pi.Flip > 0)
             {

@@ -1,14 +1,8 @@
 ﻿using StoGen.Classes;
-using StoGen.Classes.Transition;
-using StoGenerator.CadreElements;
+using StoGen.Classes.Persons;
 using StoGenerator.Persons;
-using StoGenerator.StoryClasses;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static StoGenerator.Person;
+
 
 namespace StoGenerator.Stories
 {
@@ -56,7 +50,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             Info_Scene position = new Info_Scene() { Z = "1", S = "1200", X = "500", Y = "0" };
             foreach (var item in person.Files)
             {
-                if (item.Features.Contains($"{Generic.FigureGeneric}"))
+                if (item.Features.Contains($"{Person.Generic.FigureGeneric}"))
                 {
                     Layers = person.CombinePerson(Layers, item, position, ms);                  
                     MakeNextCadre(Teller.Female, fs, $"{item.Pose}~~{item.Category}");

@@ -2,12 +2,7 @@
 using StoGen.Classes.Transition;
 using StoGenerator.Art;
 using StoGenerator.CadreElements;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static StoGenerator.Person;
+using static StoGen.Classes.Persons.Person;
 
 namespace StoGenerator.Stories
 {

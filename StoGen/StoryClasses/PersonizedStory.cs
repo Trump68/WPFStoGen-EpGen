@@ -1,6 +1,7 @@
 ﻿using Menu.Classes;
 using StoGen.Classes;
 using StoGen.Classes.Interfaces;
+using StoGen.Classes.Persons;
 using StoGen.Classes.Transition;
 using StoGenerator.Persons;
 using StoGenerator.Stories;
@@ -9,8 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static StoGenerator.Person;
-using static StoGenerator.Persons.JennyFord;
 
 namespace StoGenerator.StoryClasses
 {
@@ -18,7 +17,7 @@ namespace StoGenerator.StoryClasses
     {
         public List<Person> VisiblePersons = new List<Person>();
         public IPersonManager PersonManager;
-        public PersonizedStory(DateTime date, string startAtAddress, IPersonManager personManager) :base(date, startAtAddress)
+        public PersonizedStory(DateTime date, string startAtAddress, IPersonManager personManager) : base(date, startAtAddress)
         {
             PersonManager = personManager;
             FillPersonStorage();
@@ -39,31 +38,24 @@ namespace StoGenerator.StoryClasses
             {
                 ProcessPerson(person);
             }
-            
+
         }
         // Set person ===============================
         private void ProcessPerson(Person person)
         {
+            HangAroundHome activity = new HangAroundHome();
             Info_Scene position = person.GetPositionByName("Default");
-            Layers = SetPersonOutfit(person, $"{OutfitName.CasHome_I}", position);
-            Layers = GetPersonFace(person, Layers, $"{FaceName.FaceNeitral_I}", position);
+            Layers = SetPersonOutfit(person, $"{Person.OutfitName.OutfitNaked_I}", position);
+            Layers = person.SetFaceBehavour(Emotion.Type.Smile, Layers, position);
+            activity.SetActivity(person, Layers ,position);
         }
         private List<Info_Scene> SetPersonOutfit(Person person, string outfit, Info_Scene position)
         {
             if (string.IsNullOrEmpty(outfit))
             {
-                outfit = $"{OutfitName.OutfitDefault_I}";
+                outfit = $"{Person.OutfitName.OutfitDefault_I}";
             }
             var result = person.GetFigure(Layers, outfit, null, Trans.Appearing(500), position);
-            return result;
-        }
-        public List<Info_Scene> GetPersonFace(Person person, List<Info_Scene> layers, string face, Info_Scene position)
-        {
-            if (string.IsNullOrEmpty(face))
-            {
-                face = $"{FaceName.FaceDefault_I}";
-            }
-            var result = person.GetFace(layers, $"{face}", position);
             return result;
         }
 
@@ -81,7 +73,7 @@ namespace StoGenerator.StoryClasses
                     cap = caption;
                 }
             }
-            else if (type == MenuType.Default) 
+            else if (type == MenuType.Default)
             {
                 if (MenuIsLive)
                     itemlist = AddRootMenu(proc, null, goNextCadre, out caption);
@@ -90,9 +82,9 @@ namespace StoGenerator.StoryClasses
             ChoiceMenuItem.FinalizeShowMenu(proc, doShowMenu, itemlist, true, cap, type);
             return true;
         }
-        protected override List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist,bool goNextCadre, out string caption)
+        protected override List<ChoiceMenuItem> AddRootMenu(CadreController proc, List<ChoiceMenuItem> itemlist, bool goNextCadre, out string caption)
         {
-            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();         
+            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
             AddMenu_PersonSelection(proc, itemlist, out caption);
             caption = "Выбрать персонаж";
             return itemlist;
@@ -135,27 +127,27 @@ namespace StoGenerator.StoryClasses
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
 
-                ChoiceMenuItem item = new ChoiceMenuItem();
-                item.Name = "Поменять выражение лица";
-                item.itemData = person;
-                item.Executor = data =>
-                {
-                    string caption2;
-                    var itemlist1 = AddMenu_ChangingFace(proc, null, data as Person, out caption2);
-                    ShowSubmenu(proc, itemlist1, caption2);
-                };
-                itemlist.Add(item);
+            ChoiceMenuItem item = new ChoiceMenuItem();
+            item.Name = "Поменять выражение лица";
+            item.itemData = person;
+            item.Executor = data =>
+            {
+                string caption2;
+                var itemlist1 = AddMenu_ChangingFace(proc, null, data as Person, out caption2);
+                ShowSubmenu(proc, itemlist1, caption2);
+            };
+            itemlist.Add(item);
 
-                item = new ChoiceMenuItem();
-                item.Name = "Поменять фигуру";
-                item.itemData = person;
-                item.Executor = data =>
-                {
-                    string caption2;
-                    var itemlist1 = AddMenu_ChangingFigure(proc, null, data as Person, out caption2);
-                    ShowSubmenu(proc, itemlist1, caption2);
-                };
-                itemlist.Add(item);
+            item = new ChoiceMenuItem();
+            item.Name = "Поменять фигуру";
+            item.itemData = person;
+            item.Executor = data =>
+            {
+                string caption2;
+                var itemlist1 = AddMenu_ChangingFigure(proc, null, data as Person, out caption2);
+                ShowSubmenu(proc, itemlist1, caption2);
+            };
+            itemlist.Add(item);
 
             caption = "Выбрать действие";
             return itemlist;
@@ -176,7 +168,7 @@ namespace StoGenerator.StoryClasses
                 {
                     Tuple<string, string> v = (data as Tuple<string, string>);
                     Layers = PullCadreFromScene(proc, proc.CadreId);
-                    Layers = person.GetFace(Layers, v.Item2, v.Item1, $"{Feature.FeatureBlink}{1}",null);
+                    Layers = person.GetFace(Layers, v.Item2, v.Item1, $"{Person.Feature.FeatureBlink}{1}", null);
                     AddScenes(Layers, 1, false);
                     proc.RefreshCurrentCadre();
                 };
@@ -184,8 +176,8 @@ namespace StoGenerator.StoryClasses
             }
             caption = "Поменять выражение лица";
             return itemlist;
-        }     
-        protected List<ChoiceMenuItem> AddMenu_ChangingFigure(CadreController proc, List<ChoiceMenuItem> itemlist,Person person, out string caption)
+        }
+        protected List<ChoiceMenuItem> AddMenu_ChangingFigure(CadreController proc, List<ChoiceMenuItem> itemlist, Person person, out string caption)
         {
             if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
             var list = person.Files.Where(x => x.Features.Contains(Person.Generic.FigureGeneric.ToString())).ToList();
@@ -201,7 +193,7 @@ namespace StoGenerator.StoryClasses
                     int ms = 1000;
                     Layers = PullCadreFromScene(proc, proc.CadreId);
                     var feature = data as ItemData;
-                    Layers = person.CombinePerson(Layers, feature,null, ms);                              
+                    Layers = person.CombinePerson(Layers, feature, null, ms);
                     AddScenes(Layers, 1, false);
                     proc.RefreshCurrentCadre();
                 };
@@ -211,12 +203,10 @@ namespace StoGenerator.StoryClasses
             caption = "Поменять фигуру";
             return itemlist;
         }
-
-
-
         protected override void GenerateNewStoryStep(CadreController proc)
         {
             base.GenerateNewStoryStep(proc);
         }
     }
+  
 }

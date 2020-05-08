@@ -1,4 +1,5 @@
 ﻿using StoGen.Classes.Interfaces;
+using StoGen.Classes.Persons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,21 +17,34 @@ namespace StoGenerator.Persons
         {
             Persons = persons;
             Cells = cells;
-            for (int i = 0; i < 8; i++)
+            List<Person> homeless = new List<Person>();
+            List<Cell> availablehomes = new List<Cell>();
+            availablehomes.AddRange(Cells);
+            foreach (var pers in Persons)
             {
-                if (Persons.ElementAt(i) != null)
-                    SetPersonHome(Persons[i].Name, $"Квартира N{i+1},Дом N1,Жасминовая улица");
+                if (string.IsNullOrEmpty(pers.CurrentHomeAddress))
+                {
+                    homeless.Add(pers);
+                }
+                else
+                {
+                    availablehomes.RemoveAll(x=>x.FullName == pers.CurrentHomeAddress);
+                    SetPersonHome(pers.Name,pers.CurrentHomeAddress);
+                }
             }
+
+         
 
         }
         public void AllocateCurrentCells()
         {
-            for (int i = 0; i < 8; i++)
+            foreach (var pers in Persons)
             {
-                    if (Persons.ElementAt(i) != null)
-                    SetPersonCurrentCell(Persons[i].Name, $"Квартира N{i + 1},Дом N1,Жасминовая улица");
+                if (!string.IsNullOrEmpty(pers.CurrentHomeAddress))
+                {
+                    SetPersonCurrentCell(pers.Name, pers.CurrentHomeAddress);
+                }              
             }
-
         }
         private void SetPersonHome(string personName, string homeaddress)
         {

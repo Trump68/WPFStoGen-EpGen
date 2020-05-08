@@ -473,52 +473,92 @@ namespace StoGen.Classes.Transition
         {
 
             public TransitionRotate(string[] vals, int level) : base(vals, level) { }
+            private double _CurrentVal;
             public override double CurrentVal
             {
                 get
                 {
-                    var trn = (Projector.PicContainer.PicList[this.Level].RenderTransform as TransformGroup);
-                    if (trn == null) return 0;
-                    return (trn.Children.First() as RotateTransform).Angle;
+                    return _CurrentVal;
+                    //var trn = (Projector.PicContainer.PicList[this.Level].RenderTransform as TransformGroup);
+                    //if (trn != null)
+                    //{
+                    //    //var rt = trn.Children.FirstOrDefault();
+                    //    //if (rt is RotateTransform)
+                    //    //    return (rt as RotateTransform).Angle;
+                    //    //var rt = trn.Children.Where(x => x is RotateTransform).Select(x => x as RotateTransform).ToList();
+                    //    //if (rt.Any())
+                    //    //    return (rt.Sum(x => x.Angle));
+                    //}
+                    //return 0;
                 }
                 set
                 {
-                    var transformGroup = new TransformGroup();
-                    var roateTransform = new RotateTransform(value);
-                    transformGroup.Children.Add(roateTransform);
-                    Projector.PicContainer.PicList[this.Level].RenderTransform = transformGroup;
+                    _CurrentVal = value;
+                    var current = Projector.PicContainer.PicList[this.Level];                 
+                    PictureSourceProps sourceProps = new PictureSourceProps();
+                    sourceProps.Rotate = Convert.ToInt32(value);
+                    sourceProps.Level = (PicLevel)this.Level;
+                    FrameImage.DoRotateFlip(sourceProps, null);
                 }
             }
             public override bool Execute(out bool repaintNeed)
             {
                 repaintNeed = false;
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
+                double cr = CurrentVal;
+
                 if (this.Started == 0)
                 {
                     this.Started = now;
-                    if (IsRelative)
-                    {
-                        this.Begin = this.Begin;
-                        this.End = this.End;
-                    }
+                    this.Begin = cr;
+                    this.End = this.Begin + this.REnd;
+                    this.isReverse = this.Begin > this.End;
+                    return false;
                 }
                 repaintNeed = true;
-                this.Counter = this.Started + this.Span - now;
-                if (this.Counter <= 0)
+                if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
                 {
                     CurrentVal = this.End;
+                    this.Close();
                     return true;
                 }
-                else if (this.Counter != this.Span)
+
+                this.Counter = now - this.Started;
+                double delta = this.CalcTran();
+                if (delta != 0)
                 {
-                    if (!this.Option.StartsWith("A"))
-                    {
-                        double delta = this.CalcTran();
-                        CurrentVal = this.Begin + delta;
-                        var transformGroup = new TransformGroup();
-                    }
+                    CurrentVal = this.Begin + delta;
                 }
                 return false;
+                //repaintNeed = false;
+                //double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
+                //if (this.Started == 0)
+                //{
+                //    this.Started = now;
+                //    this.Begin = 0;
+                //    this.End = this.REnd;
+                //    if (IsRelative)
+                //    {
+                //        this.Begin = this.CurrentVal;
+                //        this.End = this.Begin + this.REnd;
+                //    }
+                //}
+                //repaintNeed = true;
+                //this.Counter = now - this.Started;
+                //if (this.Counter <= 0)
+                //{
+                //    CurrentVal = this.End;
+                //    this.Close();
+                //}
+                //else if (this.Counter != this.Span)
+                //{
+                //    if (!this.Option.StartsWith("A"))
+                //    {                       
+                //        double delta = this.CalcTran();
+                //        CurrentVal = this.Begin + delta;                       
+                //    }
+                //}
+                //return false;
             }
         }
         // Sound transitions

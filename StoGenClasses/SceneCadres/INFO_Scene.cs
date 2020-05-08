@@ -143,6 +143,7 @@ namespace StoGen.Classes
         public string Align { set; get; }// text align 0 -left, 1- right, 2-center, 3-justify
         public string VAlign { set; get; }// textbox align 0 -top, 1-center, 3-bottom
         public bool Active { get; set; } = false;
+        public string FigureName { get; set; }
 
         public string GenerateString()
         {
@@ -194,7 +195,8 @@ namespace StoGen.Classes
 
             if (!string.IsNullOrEmpty(Queue))
                 rez.Add($"QUEUE={Queue}");
-
+            if (!string.IsNullOrEmpty(FigureName))
+                rez.Add($"FIGURE={Queue}");
 
             if (!string.IsNullOrEmpty(File))
             {
@@ -250,6 +252,10 @@ namespace StoGen.Classes
                 else if (str.StartsWith("STR="))
                 {
                     this.Story = str.Replace("STR=", string.Empty);
+                }
+                else if (str.StartsWith("FIGURE="))
+                {
+                    this.FigureName = str.Replace("FIGURE=", string.Empty);
                 }
                 else if (str.StartsWith("X="))
                 {

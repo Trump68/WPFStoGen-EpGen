@@ -66,13 +66,13 @@ namespace StoGenerator
     public class ItemData
     {
         public ItemData() { }
-        public ItemData(string v1, string v2, string v3, string v4, string v5):this()
+        public ItemData(string features, string file, string categ, string pose, string figure):this()
         {
-            this.Features = v1;
-            this.File = v2;
-            this.Category = v3;
-            this.Pose = v4;
-            this.Figure = v5;
+            this.Features = features;
+            this.File = file;
+            this.Category = categ;
+            this.Pose = pose;
+            this.Figure = figure;
         }
         public string Figure { set; get; }
         public string Features { set; get; }

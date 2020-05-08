@@ -77,8 +77,8 @@
     <Compile Include="Interfaces\IPersonManager.cs" />
     <Compile Include="LocationStorage.cs" />
     <Compile Include="Menu\MenuClasses.cs" />
+    <Compile Include="Person\Activity.cs" />
     <Compile Include="Person\Person.cs" />
-    <Compile Include="Person\_FemaleStandart.cs" />
     <Compile Include="Scenario\IStoryGenerator.cs" />
     <Compile Include="Scenario\StoryGeneratorDefault.cs" />
     <Compile Include="SceneCadres\CE_Location.cs" />
