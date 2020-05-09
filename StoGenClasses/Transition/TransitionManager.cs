@@ -1,6 +1,7 @@
 ﻿using StoGen.ModelClasses;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -86,11 +87,11 @@ namespace StoGen.Classes.Transition
             string[] vals = data.Split('.');
             if (vals[0].StartsWith("O"))
             {
-                if (cadreType == 0)                
+                if (cadreType == 0)
                     result.Add(new TransitionOpacityImage(vals, level));
-                
+
                 else if (cadreType == 2)
-                     result.Add(new TransitionOpacityText(vals, level));
+                    result.Add(new TransitionOpacityText(vals, level));
             }
             else if (vals[0].StartsWith("X"))
             {
@@ -121,6 +122,10 @@ namespace StoGen.Classes.Transition
             {
                 result.Add(new TransitionRotate(vals, level));
             }
+            else if (vals[0].StartsWith("F"))
+            {
+                result.Add(new TransitionFlip(vals, level));
+            }
             else if (vals[0].StartsWith("p"))
             {
                 result.Add(new TransitionPlaySound(vals, level));
@@ -129,9 +134,9 @@ namespace StoGen.Classes.Transition
             {
                 result.Add(new TransitionVolume(vals, level));
             }
-            
-            
-            
+
+
+
             return result;
         }
         public class TransitionItem
@@ -164,7 +169,7 @@ namespace StoGen.Classes.Transition
             public virtual bool Execute(out bool repaintNeed)
             {
                 repaintNeed = false;
-                return true;
+                return false;
             }
             public void Close()
             {
@@ -321,9 +326,9 @@ namespace StoGen.Classes.Transition
                     this.End = this.Begin + this.REnd;
                     this.isReverse = this.Begin > this.End;
                     return false;
-                }                
+                }
                 if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
-                {                    
+                {
                     CurrentVal = this.End;
                     this.Close();
                     return true;
@@ -343,56 +348,96 @@ namespace StoGen.Classes.Transition
         {
             public TransitionXY(string[] vals, int level) : base(vals, level) { }
             public bool isYcoord = false;
-
-
+            private double _initVal;
+            private double _CurrentVal;
+            bool init = false;
             public override double CurrentVal
             {
                 get
                 {
-                    if (!isYcoord)
-                        return VisualTreeHelper.GetOffset(Projector.PicContainer.PicList[this.Level]).X;
-                    //return Canvas.GetLeft(Projector.PicContainer.PicList[this.Level]);
-                    else
-                        return VisualTreeHelper.GetOffset(Projector.PicContainer.PicList[this.Level]).Y;
-                    return Canvas.GetTop(Projector.PicContainer.PicList[this.Level]);
+                    if (!init)
+                    {
+                        if (!isYcoord)
+                            _initVal = VisualTreeHelper.GetOffset(Projector.PicContainer.PicList[this.Level]).X;
+                        else
+                            _initVal = VisualTreeHelper.GetOffset(Projector.PicContainer.PicList[this.Level]).Y;
+                        init = true;
+                    }
+                    return 0;
+                    //return Canvas.GetTop(Projector.PicContainer.PicList[this.Level]);
                 }
                 set
                 {
+                    _CurrentVal = value;
                     if (!isYcoord)
-                     
-                       Canvas.SetLeft(Projector.PicContainer.PicList[this.Level],value);
+                        Canvas.SetLeft(Projector.PicContainer.PicList[this.Level], _initVal + value);
                     else
-                        Canvas.SetTop(Projector.PicContainer.PicList[this.Level], value);
-                    //Projector.PicContainer.PicList[this.Level].Margin = new System.Windows.Thickness(Projector.PicContainer.PicList[this.Level].Margin.Left, value, 0, 0);
+                        Canvas.SetTop(Projector.PicContainer.PicList[this.Level], _initVal + value);
+
                 }
             }
+
             public override bool Execute(out bool repaintNeed)
             {
                 repaintNeed = false;
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
-                double cr = CurrentVal;
+                //double cr = CurrentVal;
 
                 if (this.Started == 0)
                 {
                     this.Started = now;
-                    this.Begin = cr;
+                    this.Begin = CurrentVal;
                     this.End = this.Begin + this.REnd;
                     this.isReverse = this.Begin > this.End;
+                    //if (isReverse)
+                    //    this.End = this.End * (-1);
                     return false;
                 }
                 repaintNeed = true;
-                if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
+                if (isReverse)
                 {
-                    CurrentVal = this.End;
-                    this.Close();
-                    return true;
+                    if (CurrentVal <= this.End)
+                    {
+                        CurrentVal = this.End;
+                        this.Close();
+                        return true;
+                    }
                 }
+                else
+                {
+                    if (CurrentVal >= this.End)
+                    {
+                        CurrentVal = this.End;
+                        this.Close();
+                        return true;
+                    }
+                }
+
 
                 this.Counter = now - this.Started;
                 double delta = this.CalcTran();
                 if (delta != 0)
                 {
-                    CurrentVal = this.Begin + delta;
+                    var rez = this.Begin + delta;
+                    if (this.isReverse)
+                    {
+                        if (rez <= this.End)
+                        {
+                            CurrentVal = this.End;
+                            this.Close();
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        if (rez >= this.End)
+                        {
+                            CurrentVal = this.End;
+                            this.Close();
+                            return true;
+                        }
+                    }
+                    CurrentVal = rez;
                 }
                 return false;
             }
@@ -413,7 +458,7 @@ namespace StoGen.Classes.Transition
                     if (value > 100)
                         Projector.PicContainer.PicList[this.Level].Opacity = 1;
                     else
-                    Projector.PicContainer.PicList[this.Level].Opacity = value / 100;
+                        Projector.PicContainer.PicList[this.Level].Opacity = value / 100;
                 }
             }
         }
@@ -479,86 +524,106 @@ namespace StoGen.Classes.Transition
                 get
                 {
                     return _CurrentVal;
-                    //var trn = (Projector.PicContainer.PicList[this.Level].RenderTransform as TransformGroup);
-                    //if (trn != null)
-                    //{
-                    //    //var rt = trn.Children.FirstOrDefault();
-                    //    //if (rt is RotateTransform)
-                    //    //    return (rt as RotateTransform).Angle;
-                    //    //var rt = trn.Children.Where(x => x is RotateTransform).Select(x => x as RotateTransform).ToList();
-                    //    //if (rt.Any())
-                    //    //    return (rt.Sum(x => x.Angle));
-                    //}
-                    //return 0;
                 }
                 set
                 {
                     _CurrentVal = value;
-                    var current = Projector.PicContainer.PicList[this.Level];                 
-                    PictureSourceProps sourceProps = new PictureSourceProps();
-                    sourceProps.Rotate = Convert.ToInt32(value);
-                    sourceProps.Level = (PicLevel)this.Level;
-                    FrameImage.DoRotateFlip(sourceProps, null);
+                    var current = Projector.PicContainer.PicList[this.Level];
+                    FrameImage.Pics.Where(it => it.Props.Level == (PicLevel)this.Level).FirstOrDefault().Props.Rotate = Convert.ToInt32(value);
+                    FrameImage.DoRotateFlip(null, (PicLevel)this.Level);
                 }
             }
             public override bool Execute(out bool repaintNeed)
             {
                 repaintNeed = false;
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
-                double cr = CurrentVal;
+                //double cr = CurrentVal;
 
                 if (this.Started == 0)
                 {
                     this.Started = now;
-                    this.Begin = cr;
+                    this.Begin = CurrentVal;
                     this.End = this.Begin + this.REnd;
                     this.isReverse = this.Begin > this.End;
+                    //if (isReverse)
+                    //    this.End = this.End * (-1);
                     return false;
                 }
                 repaintNeed = true;
-                if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
+                if (isReverse)
                 {
-                    CurrentVal = this.End;
-                    this.Close();
-                    return true;
+                    if (CurrentVal <= this.End)
+                    {
+                        CurrentVal = this.End;
+                        this.Close();
+                        return true;
+                    }
                 }
+                else
+                {
+                    if (CurrentVal >= this.End)
+                    {
+                        CurrentVal = this.End;
+                        this.Close();
+                        return true;
+                    }
+                }
+
 
                 this.Counter = now - this.Started;
                 double delta = this.CalcTran();
                 if (delta != 0)
                 {
-                    CurrentVal = this.Begin + delta;
+                    var rez = this.Begin + delta;
+                    if (this.isReverse)
+                    {
+                        if (rez <= this.End)
+                        {
+                            CurrentVal = this.End;
+                            this.Close();
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        if (rez >= this.End)
+                        {
+                            CurrentVal = this.End;
+                            this.Close();
+                            return true;
+                        }
+                    }
+                    CurrentVal = rez;
                 }
                 return false;
-                //repaintNeed = false;
-                //double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
-                //if (this.Started == 0)
-                //{
-                //    this.Started = now;
-                //    this.Begin = 0;
-                //    this.End = this.REnd;
-                //    if (IsRelative)
-                //    {
-                //        this.Begin = this.CurrentVal;
-                //        this.End = this.Begin + this.REnd;
-                //    }
-                //}
-                //repaintNeed = true;
-                //this.Counter = now - this.Started;
-                //if (this.Counter <= 0)
-                //{
-                //    CurrentVal = this.End;
-                //    this.Close();
-                //}
-                //else if (this.Counter != this.Span)
-                //{
-                //    if (!this.Option.StartsWith("A"))
-                //    {                       
-                //        double delta = this.CalcTran();
-                //        CurrentVal = this.Begin + delta;                       
-                //    }
-                //}
-                //return false;
+            }
+        }
+        public class TransitionFlip : TransitionItem
+        {
+
+            public TransitionFlip(string[] vals, int level) : base(vals, level) { }
+            private double _CurrentVal;
+            public override double CurrentVal
+            {
+                get
+                {
+                    return _CurrentVal;
+                }
+                set
+                {
+                    _CurrentVal = value;
+                    var current = Projector.PicContainer.PicList[this.Level];
+                    FrameImage.Pics.Where(it => it.Props.Level == (PicLevel)this.Level).FirstOrDefault().Props.Flip = (RotateFlipType)value;
+                    FrameImage.DoRotateFlip(null, (PicLevel)this.Level);
+                }
+            }
+
+            public override bool Execute(out bool repaintNeed)
+            {
+                repaintNeed = true;
+                CurrentVal = this.REnd;
+                this.Close();
+                return true;
             }
         }
         // Sound transitions
@@ -571,7 +636,7 @@ namespace StoGen.Classes.Transition
                 get
                 {
                     if (Playng) return 1;
-                       else return 0;
+                    else return 0;
                     //double val = Projector.Sound[Level].Position.TotalMilliseconds;
                     //if (val > 0) return 1;
                     //return 0;
@@ -579,16 +644,16 @@ namespace StoGen.Classes.Transition
                 set
                 {
 
-                   
+
                     Projector.Sound[Level].Dispatcher.Invoke(new Action(
                      () =>
                      {
                          if (value > 0 && !Playng)
-                         {                                                          
+                         {
                              Projector.Sound[Level].Play();
                              Playng = true;
                          }
-                         else if (value ==0 && Playng)
+                         else if (value == 0 && Playng)
                          {
                              Projector.Sound[Level].Stop();
                              Playng = false;
@@ -602,7 +667,7 @@ namespace StoGen.Classes.Transition
                 repaintNeed = false;
                 double now = DateTime.Now.TimeOfDay.TotalMilliseconds;
                 double cr = CurrentVal;
-                
+
                 if (this.Started == 0)
                 {
                     this.Started = now;
@@ -613,7 +678,7 @@ namespace StoGen.Classes.Transition
                 }
                 repaintNeed = true;
                 if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
-                {                    
+                {
                     this.Close();
                     return true;
                 }
@@ -664,7 +729,7 @@ namespace StoGen.Classes.Transition
                 {
                     Projector.TextCanvas.Opacity = value / 100;
                 }
-            }         
+            }
         }
     }
 }

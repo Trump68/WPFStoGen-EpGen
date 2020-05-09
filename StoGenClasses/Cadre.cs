@@ -68,7 +68,7 @@ namespace StoGen.Classes
                     ids.Level = (PicLevel)(info.VisionList.IndexOf(data));
                     PictureItem pic = new PictureItem();
                     pic.Props = new PictureSourceProps(ids);
-                    this.ImageFr.Pics.Add(pic);
+                    FrameImage.Pics.Add(pic);
                     
                 }
                 foreach (seSo data in info.SoundList)

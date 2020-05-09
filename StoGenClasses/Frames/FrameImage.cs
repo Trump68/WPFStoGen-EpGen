@@ -215,13 +215,13 @@ namespace StoGen.Classes
         }
 
 
-        public List<PictureItem> Pics { get; set; }
+        public static List<PictureItem> Pics { get; set; }
         public bool AutoShift { get; set; }
 
         public FrameImage()
             : base()
         {
-            this.Pics = new List<PictureItem>();
+            Pics = new List<PictureItem>();
             this.AutoShift = false;
             if (timer == null) timer = new System.Threading.Timer(new TimerCallback(TimerProc), null, TimerPeriod, TimerPeriod);
             Instance = this;
@@ -482,7 +482,7 @@ namespace StoGen.Classes
 
 
 
-            if (CadreShifted < 0) CadreShifted = this.Pics.Count - 1;
+            if (CadreShifted < 0) CadreShifted = Pics.Count - 1;
             for (int j = 0; j < Projector.PicContainer.PicList.Count; j++)
             {
                 if (Projector.PicContainer.PicList[j].Tag == null)
@@ -543,7 +543,7 @@ namespace StoGen.Classes
             #endregion
 
             #region Rotate
-            DoRotateFlip(sourceProps, tg);
+            DoRotateFlip(tg, sourceProps.Level);
             #endregion
 
             #region Parent flip
@@ -599,7 +599,7 @@ namespace StoGen.Classes
                     var controlCenter = new System.Windows.Point(ctrl.Width / 2, ctrl.Height / 2);
                     double x = controlCenter.X + pi.X;
                     double y = controlCenter.Y + pi.Y;
-                    DoRotate(x, y, pi.Rotate, tg);
+                    //DoRotate(x, y, pi.Rotate, tg);
                 }
                 if (!string.IsNullOrEmpty(pi.Parent))
                 {
@@ -607,12 +607,21 @@ namespace StoGen.Classes
                 }
             }
         }
-        private static void DoRotate(double Cx, double Cy, int angle, TransformGroup tg)
+        private static void DoRotate(Image current,double xc, double yc, int angle, TransformGroup tg)
         {
+           
+            if (tg == null)
+                tg = current.RenderTransform as TransformGroup;
+            if (tg == null)
+            {
+                tg = new TransformGroup();
+                current.RenderTransform = tg;
+            }
             var roateTransform = new RotateTransform();
             roateTransform.Angle = angle;
-            roateTransform.CenterX = Cx;
-            roateTransform.CenterY = Cy;
+            //current.RenderTransformOrigin = new Point(0.5, 0.5);
+            roateTransform.CenterX = xc;
+            roateTransform.CenterY = yc;
             var old = tg.Children.Where(x => x is RotateTransform).FirstOrDefault();
             while (old != null)
             {
@@ -621,43 +630,57 @@ namespace StoGen.Classes
             }
             tg.Children.Add(roateTransform);
         }
-        public static void DoRotateFlip(PictureSourceProps pi, TransformGroup tg)
+        private static void DoFlip(Image current, int val, TransformGroup tg)
         {
-            var current = Projector.PicContainer.PicList[(int)pi.Level];
+            current.RenderTransformOrigin = new Point(0.5, 0.5);
             if (tg == null)
-                tg = current.RenderTransform as TransformGroup;
+                tg = current.LayoutTransform as TransformGroup;
             if (tg == null)
+            {
                 tg = new TransformGroup();
-            var controlCenter = new System.Windows.Point((current.Source as BitmapImage).PixelWidth / 2
-                , (current.Source as BitmapImage).PixelHeight / 2);
-            if (pi.Rotate != 0)
-            {                
-                double x = controlCenter.X;
-                double y = controlCenter.Y;
-                DoRotate(x, y, pi.Rotate, tg);
-
+                current.LayoutTransform = tg;
             }
 
-            //if (!string.IsNullOrEmpty(pi.Parent))
-            //{
-            //    this.RotateAroundParent(pi.Parent, tg);
-            //}
-
-            if ((int)pi.Flip > 0)
+            var roateTransform = new ScaleTransform();           
+            var old = tg.Children.Where(x => x is ScaleTransform 
+            && 
+            (((x as ScaleTransform).ScaleX == -1 && val == 1)
+            ||
+            ((x as ScaleTransform).ScaleY == -1 && val == 2))
+            ).FirstOrDefault();
+            if (old != null)
+            {               
+                tg.Children.Remove(old);
+            }
+            else
             {
-
-                ScaleTransform flipTrans = new ScaleTransform();
-                flipTrans.CenterX = controlCenter.X + pi.X;
-                flipTrans.CenterY = controlCenter.Y + pi.Y;
-                if ((int)pi.Flip == 1)
+                if (val == 1)
                 {
-                    flipTrans.ScaleX = -1;
+                    roateTransform.ScaleX = -1;
                 }
-                else if ((int)pi.Flip == 2)
+                else if (val == 2)
                 {
-                    flipTrans.ScaleY = -1;
+                    roateTransform.ScaleY = -1;
                 }
-                tg.Children.Add(flipTrans);
+                tg.Children.Add(roateTransform);
+            }
+        }
+        public static void DoRotateFlip(TransformGroup tg, PicLevel level)
+        {
+            var im = Projector.PicContainer.PicList[(int)level];
+            //var controlCenter = new System.Windows.Point((im.Source as BitmapImage).PixelWidth / 2
+            //    , (im.Source as BitmapImage).PixelHeight / 2);
+             var controlCenter = new System.Windows.Point(im.Width / 2, im.Height / 2);
+            var d = Pics.Where(it => it.Props.Level == level).FirstOrDefault().Props;
+            double x = controlCenter.X + (d.X / 2);
+            double y = controlCenter.Y + (d.Y / 2);
+            if (d.Rotate != 0)
+            {
+                DoRotate(im, x, y, d.Rotate, tg);
+            }
+            if (d.Flip > 0)
+            {
+                DoFlip(im, (int)d.Flip, tg);
             }
         }
         private void DoLocation(PictureSourceProps pi, TransformGroup tg)
@@ -754,28 +777,28 @@ namespace StoGen.Classes
             {
                 if (e == Key.Right)
                 {
-                    foreach (var item in this.Pics)
+                    foreach (var item in Pics)
                     {
                         item.Props.X = item.Props.X + step;
                     }
                 }
                 else if (e == Key.Left)
                 {
-                    foreach (var item in this.Pics)
+                    foreach (var item in Pics)
                     {
                         item.Props.X = item.Props.X - step;
                     }
                 }
                 else if (e == Key.Up)
                 {
-                    foreach (var item in this.Pics)
+                    foreach (var item in Pics)
                     {
                         item.Props.Y = item.Props.Y - step;
                     }
                 }
                 else if (e == Key.Down)
                 {
-                    foreach (var item in this.Pics)
+                    foreach (var item in Pics)
                     {
                         item.Props.Y = item.Props.Y + step;
                     }
@@ -1044,11 +1067,11 @@ namespace StoGen.Classes
         {
             get
             {
-                for (int i = this.Pics.Count - 1; i > 0; i--)
+                for (int i = Pics.Count - 1; i > 0; i--)
                 {
-                    if (this.Pics[i].Props.Active) return this.Pics[i];
+                    if (Pics[i].Props.Active) return Pics[i];
                 }
-                return this.Pics[0];
+                return Pics[0];
             }
         }
         public override void Dispose()
@@ -1079,7 +1102,7 @@ namespace StoGen.Classes
                 }
             }
             */
-            this.Pics.Clear();
+            Pics.Clear();
             base.Dispose();
         }
 
