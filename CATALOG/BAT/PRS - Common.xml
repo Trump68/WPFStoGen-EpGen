@@ -14,7 +14,7 @@
     </property>
     <property name="SortInfo" iskey="true" value="1">
       <property name="Item1" isnull="true" iskey="true">
-        <property name="FieldName">Kind</property>
+        <property name="FieldName">Name</property>
         <property name="SortOrder">Ascending</property>
         <property name="MergeWithPreviousGroup">false</property>
       </property>
@@ -271,43 +271,43 @@
     <property name="TotalSummary" iskey="true" value="0" />
     <property name="MRUFilters" iskey="true" value="9">
       <property name="Item1" isnull="true" iskey="true">
+        <property name="FilterString">[Kind] = 'STOGEN'</property>
+        <property name="FilterText">[Kind] = 'STOGEN'</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Kind], 'STOGEN')</property>
         <property name="FilterText">Starts with([Kind], 'STOGEN')</property>
       </property>
-      <property name="Item2" isnull="true" iskey="true">
+      <property name="Item3" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'HCG - 01')</property>
         <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'HCG - 01')</property>
       </property>
-      <property name="Item3" isnull="true" iskey="true">
+      <property name="Item4" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'PRS'</property>
         <property name="FilterText">[Catalog] = 'PRS'</property>
       </property>
-      <property name="Item4" isnull="true" iskey="true">
+      <property name="Item5" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'Story 03 - Can''t Buy Me Love')</property>
         <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'Story 03 - Can''t Buy Me Love')</property>
       </property>
-      <property name="Item5" isnull="true" iskey="true">
+      <property name="Item6" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'IllustratedInterracial-site-rip-2016')</property>
         <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'IllustratedInterracial-site-rip-2016')</property>
       </property>
-      <property name="Item6" isnull="true" iskey="true">
+      <property name="Item7" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'LEONE FROLLO - Blancanieves - 02')</property>
         <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'LEONE FROLLO - Blancanieves - 02')</property>
       </property>
-      <property name="Item7" isnull="true" iskey="true">
+      <property name="Item8" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'Story 0')</property>
         <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'Story 0')</property>
       </property>
-      <property name="Item8" isnull="true" iskey="true">
+      <property name="Item9" isnull="true" iskey="true">
         <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'Story 03')</property>
         <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'Story 03')</property>
       </property>
-      <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">[Catalog] = 'PRS' And StartsWith([Name], 'story')</property>
-        <property name="FilterText">[Catalog] = 'PRS' And Starts with([Name], 'story')</property>
-      </property>
     </property>
-    <property name="FilterString">[Kind] = 'STOGEN'</property>
+    <property name="FilterString">StartsWith([Kind], 'STOGEN-ART')</property>
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>

@@ -21,10 +21,7 @@ namespace StoGenerator
             this.Name = name;
             this.Type = type;
         }
-        //public static void LoadFromFile(string file)
-        //{
-        //    //Storage.AddRange(JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(file)));
-        //}
+
         protected virtual Info_Scene ToSceneInfo(string spec, string queue, string group)
         {
             Info_Scene result = null;
@@ -51,6 +48,9 @@ namespace StoGenerator
             Info_Scene result = new Info_Scene();
             result.File = item.File;
             result.Tags = item.Features;
+            result.FigureName = item.Figure;
+            if (!string.IsNullOrEmpty(item.Direction))
+                result.Direction = int.Parse(item.Direction);
             return result;
         }
         public static Info_Scene GetByName(string name, string spec, string queue, string group)
@@ -79,5 +79,6 @@ namespace StoGenerator
         public string File { set; get; }
         public string Pose { set; get; }
         public string Category { set; get; }
+        public string Direction { get; internal set; }
     }
 }

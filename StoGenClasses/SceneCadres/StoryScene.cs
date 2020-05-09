@@ -217,6 +217,7 @@ namespace StoGen.Classes.Data.Games
                     string[] vals = story.Split('@');
                     string filename = vals[0];
                     string section = vals[1];
+                    story = string.Empty;
                     if (File.Exists(filename))
                     {
                         List<string> textlist = new List<string>(File.ReadAllLines(filename));

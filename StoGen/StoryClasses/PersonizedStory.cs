@@ -45,7 +45,7 @@ namespace StoGenerator.StoryClasses
         {
             HangAroundHome activity = new HangAroundHome();
             Info_Scene position = person.GetPositionByName("Default");
-            Layers = SetPersonOutfit(person, $"{Person.OutfitName.OutfitNaked_I}", position);
+            Layers = SetPersonOutfit(person, $"{Person.OutfitName.OutfitDefault_I}", position);
             Layers = person.SetFaceBehavour(Emotion.Type.Smile, Layers, position);
             activity.SetActivity(person, Layers ,position);
         }

@@ -248,7 +248,8 @@ namespace StoGen.Classes.Transition
                 {
                     if (_Power == -1)
                     {
-                        _Power = float.Parse(Owner.Option.Substring(1, 2)) / 10;
+                        string v = Owner.Option.Substring(1, 2);
+                        _Power = float.Parse(v) / 10;
                     }
                     return _Power;
                 }
@@ -263,7 +264,11 @@ namespace StoGen.Classes.Transition
                         if (Owner.Option.Length < 3)
                             _Threshhold = 0;
                         else
-                            _Threshhold = int.Parse(Owner.Option.Remove(0, 3));
+                        {
+                            _Threshhold = 0;
+                            //_Threshhold = int.Parse(Owner.Option.Remove(0, 3));
+                        }
+                           
                     }
                     return _Threshhold;
                 }

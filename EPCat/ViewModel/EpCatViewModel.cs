@@ -559,10 +559,10 @@ namespace EPCat
                 return @"d:\temp";
             }
         }
-        internal void LoadScenario(string fileName, string scenarioname)
+        internal void LoadScenario(string fileName, EpItem item)
         {            
             List<string> clipsinstr = new List<string>(File.ReadAllLines(fileName));
-            this.Story = Generator.LoadScenario(clipsinstr, scenarioname);
+            this.Story = Generator.LoadScenario(clipsinstr, item);
             this.Scenes = this.Story.SceneInfos;
             RefreshFolder();
         }
@@ -576,7 +576,7 @@ namespace EPCat
         {          
             SaveScenario();
             var dir = StoryWorkDir;
-            LoadScenario(Path.Combine(dir,$"{this.Story.FileName}.epcatsi"), this.Story.Name);
+            LoadScenario(Path.Combine(dir,$"{this.Story.FileName}.epcatsi"), this.CurrentFolder);
         }
 
 
@@ -612,12 +612,20 @@ namespace EPCat
             RaisePropertyChanged(() => this.RepeatedText);
         }
 
-        internal string  GoGenerateScenario(string storyname)
-        {         
-            string filename = Generator.MakeScenario(StoryWorkDir, storyname);
+        //internal string  GoGenerateScenario(string storyname)
+        //{         
+        //    string filename = Generator.MakeScenario(StoryWorkDir, storyname);
+        //    if (string.IsNullOrEmpty(filename))
+        //        return null;
+        //    return Path.Combine(StoryWorkDir, $"{filename}.epcatsi");
+        //}
+
+        internal string GoGenerateScenario(EpItem item)
+        {
+            string filename = Generator.MakeScenario(item);
             if (string.IsNullOrEmpty(filename))
                 return null;
-            return Path.Combine(StoryWorkDir, $"{filename}.epcatsi");
+            return Path.Combine(item.ItemDirectory, $"{filename}.epcatsi");
         }
     }
 

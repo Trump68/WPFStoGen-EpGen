@@ -160,22 +160,26 @@ namespace StoGen.Classes.Persons
                 var figure = posture.Where(x => x.Tags.Contains(Generic.FigureGeneric.ToString())).FirstOrDefault();
                 if (figure != null)
                 {
-                    string lastZ = posture.Where(x => x.FigureName == newFeature.FigureName)
-                    .ToList().Max(x => x.Z);
-                    newFeature.Z = $"{(int.Parse(lastZ)) + 1}";
-
-                    posture.Where(x => x.FigureName == newFeature.FigureName)
-                    .ToList().ForEach(x =>
+                    var post = posture.Where(x => x.FigureName == newFeature.FigureName).ToList();
+                    if (post != null && post.Any())
                     {
-                        x.Group = figure.Group;
-                        x.Queue = figure.Queue;
-                        if (x.Kind == 0 && position == null)
+                        string lastZ = post.Max(x => x.Z);
+                        if (!string.IsNullOrEmpty(lastZ))
                         {
-                            x.S = figure.S;
-                            x.X = figure.X;
-                            x.Y = figure.Y;
-                        }
-                    });
+                            newFeature.Z = $"{(int.Parse(lastZ)) + 1}";
+                        }                      
+                        post.ForEach(x =>
+                        {
+                            x.Group = figure.Group;
+                            x.Queue = figure.Queue;
+                            if (x.Kind == 0 && position == null)
+                            {
+                                x.S = figure.S;
+                                x.X = figure.X;
+                                x.Y = figure.Y;
+                            }
+                        });
+                    }                    
                 }
             }
             return posture;
@@ -456,6 +460,8 @@ namespace StoGen.Classes.Persons
                             id.File = Path.Combine(dataPath,vals[2]);
                         id.Pose = vals[3];
                         id.Figure = person.Name;
+                        if (vals.Length > 4)
+                            id.Direction = vals[4];
                         person.Files.Add(id);
                     }
                 }

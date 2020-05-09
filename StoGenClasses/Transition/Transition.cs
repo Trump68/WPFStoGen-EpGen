@@ -31,8 +31,12 @@ namespace StoGen.Classes.Transition
         public static string Dissapearing(int msec) { return $"O.B.{msec}.-100"; }
         public static string Appearing(int msec) { return $"O.B.{msec}.100"; }
         public static string Wait(int msec) { return $"W..{msec}"; }
-        public static string MoveH(int speed, int distance) { return $"{Wait(0)}>X.B.{speed}.{distance}"; }
-        
+        public static string WaitR(int msecMin, int msecMax) { return $"W..{rnd.Next(msecMin, msecMax)}"; }
+        public static string Turn(int ms) { return $"{Dissapearing(ms)}>F.A.0.1>{Appearing(ms)}"; }
+        public static string Turn() { return $"F.A.0.1"; }
+        public static string MoveH(int time, int distance) { return $"{Wait(0)}>X.B.{time}.{distance}"; }
+        public static string MoveHs(int speed, int distance) { return $"{Wait(0)}>X.C20.{(Math.Abs(distance) * 100) / speed}.{distance}"; }
+        public static string MoveVs(int speed, int distance) { return $"{Wait(0)}>Y.C20.{(Math.Abs(distance) * 100) / speed}.{distance}"; }
         public static string SetInvisible { get; } = "O.A.0.-100";
         public static string SetVisible { get; } = "O.A.0.100";
         public static string Obzor()

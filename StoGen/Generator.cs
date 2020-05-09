@@ -1,4 +1,5 @@
-﻿using StoGen.Classes.Scene;
+﻿using EPCat.Model;
+using StoGen.Classes.Scene;
 using StoGenerator.Stories;
 using System;
 using System.Collections.Generic;
@@ -11,25 +12,47 @@ namespace StoGenerator
 {
     public static class Generator
     {
-        public static string MakeScenario(string dir, string storyname)
-        {
+        //public static string MakeScenario(string dir, string storyname)
+        //{
 
-            StoryBase story = getScen(storyname);
+        //    StoryBase story = getScen(storyname);
+        //    if (story != null)
+        //    {
+        //        LocationStorage.InitDefaultLocations();
+        //        Sound.InitDefaultSounds();
+        //        story.Generate("001", "0001.001.001");
+        //        story.SaveToFile(dir, Path.Combine(dir, $"TMP"));
+        //        return story.FileName;
+        //    }
+        //    return null;
+        //}
+        public static string MakeScenario(EpItem item)
+        {
+            StoryBase story = new ArtGenerator(item); 
             if (story != null)
             {
                 LocationStorage.InitDefaultLocations();
                 Sound.InitDefaultSounds();
                 story.Generate("001", "0001.001.001");
-                story.SaveToFile(dir, Path.Combine(dir, $"TMP"));
+                story.SaveToFile(item.ItemDirectory, item.ItemTempDirectory);
                 return story.FileName;
             }
             return null;
         }
-        public static StoryBase LoadScenario(List<string> clipsinstr, string storyname)
+        public static StoryBase LoadScenario(List<string> clipsinstr, EpItem item)
         {
-            if (string.IsNullOrEmpty(storyname))
-                storyname = SCENARIO.GetNameFromData(clipsinstr);
-            StoryBase story = getScen(storyname);
+            StoryBase story = null;
+            if (item.Kind.Trim() == "STOGEN-ART")
+            {
+                story = new ArtGenerator(item);
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(item.Name))
+                    item.Name = SCENARIO.GetNameFromData(clipsinstr);
+                story = getScen(item.Name);
+            }
+
             story.LoadFrom(clipsinstr);
             return story;
         }
@@ -52,5 +75,6 @@ namespace StoGenerator
                 story = new LocationUnit_Aratments_01();
             return story;
         }
+
     }
 }

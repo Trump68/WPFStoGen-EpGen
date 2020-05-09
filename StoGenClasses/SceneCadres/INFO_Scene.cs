@@ -144,6 +144,7 @@ namespace StoGen.Classes
         public string VAlign { set; get; }// textbox align 0 -top, 1-center, 3-bottom
         public bool Active { get; set; } = false;
         public string FigureName { get; set; }
+        public int Direction { get; internal set; }
 
         public string GenerateString()
         {
@@ -187,6 +188,8 @@ namespace StoGen.Classes
                 rez.Add($"VAlign={VAlign}");
             if (!string.IsNullOrEmpty(Tags))
                 rez.Add($"Tags={Tags}");
+            if (Direction > 0)
+                rez.Add($"Direction={Direction}");
 
             if (!string.IsNullOrEmpty(Description))
                 rez.Add($"DSC={Description}");
@@ -256,6 +259,10 @@ namespace StoGen.Classes
                 else if (str.StartsWith("FIGURE="))
                 {
                     this.FigureName = str.Replace("FIGURE=", string.Empty);
+                }
+                else if (str.StartsWith("Direction="))
+                {
+                    this.Direction = int.Parse(str.Replace("Direction=", string.Empty));
                 }
                 else if (str.StartsWith("X="))
                 {

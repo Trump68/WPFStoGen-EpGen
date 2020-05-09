@@ -2868,6 +2868,7 @@
     <Day>0</Day>
     <Kind>STOGEN-PERSON</Kind>
     <Star>F</Star>
+    <Studio>Квартира N1,Дом N1,Жасминовая улица</Studio>
     <PersonSex>F</PersonSex>
     <PersonKind>Kazoku ~Haha To Shimai No Kyousei~</PersonKind>
     <PARENT>Person Jenny Ford</PARENT>
@@ -3118,6 +3119,7 @@
     <Day>0</Day>
     <Kind>STOGEN-PERSON</Kind>
     <Star>F</Star>
+    <Studio>Квартира N2,Дом N1,Жасминовая улица</Studio>
     <PersonSex>F</PersonSex>
     <PersonKind>Oosaki Shinya</PersonKind>
     <PARENT>Olivia Shaw</PARENT>
@@ -3202,6 +3204,7 @@
     <Day>0</Day>
     <Kind>STOGEN-PERSON</Kind>
     <Star>F</Star>
+    <Studio>Квартира N3,Дом N1,Жасминовая улица</Studio>
     <PersonSex>F</PersonSex>
     <PersonKind>Oosaki Shinya</PersonKind>
     <PARENT>Phoebe French</PARENT>
@@ -3223,6 +3226,7 @@
     <Day>0</Day>
     <Kind>STOGEN-PERSON</Kind>
     <Star>F</Star>
+    <Studio>Квартира N4,Дом N1,Жасминовая улица</Studio>
     <PersonSex>F</PersonSex>
     <PersonKind>Oosaki Shinya</PersonKind>
     <PARENT>Sara Morton</PARENT>
@@ -3412,6 +3416,7 @@
     <Day>0</Day>
     <Kind>STOGEN-PERSON</Kind>
     <Star>F</Star>
+    <Studio>Квартира N5,Дом N1,Жасминовая улица</Studio>
     <PersonSex>F</PersonSex>
     <PersonKind>Oosaki Shinya</PersonKind>
     <PARENT>Francis Adam</PARENT>
@@ -3433,6 +3438,7 @@
     <Day>0</Day>
     <Kind>STOGEN-PERSON</Kind>
     <Star>F</Star>
+    <Studio>Квартира N6,Дом N1,Жасминовая улица</Studio>
     <PersonSex>F</PersonSex>
     <PersonKind>Oosaki Shinya</PersonKind>
     <PARENT>Isabel Green</PARENT>
@@ -3605,7 +3611,9 @@
     <PersonKind>Oosaki Shinya</PersonKind>
     <PARENT>Adam Field</PARENT>
     <Size>0</Size>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
   </EpItem>
   <EpItem>
@@ -3624,7 +3632,9 @@
     <PersonKind>Oosaki Shinya</PersonKind>
     <PARENT>Barnabas Pritchard</PARENT>
     <Size>0</Size>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
   </EpItem>
   <EpItem>
@@ -3643,7 +3653,9 @@
     <PersonKind>Oosaki Shinya</PersonKind>
     <PARENT>Daniel Stinton</PARENT>
     <Size>0</Size>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
   </EpItem>
   <EpItem>
@@ -3662,7 +3674,9 @@
     <PersonKind>Oosaki Shinya</PersonKind>
     <PARENT>Don Barber</PARENT>
     <Size>0</Size>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
   </EpItem>
   <EpItem>
@@ -3681,7 +3695,9 @@
     <PersonKind>Oosaki Shinya</PersonKind>
     <PARENT>Isaac Griffith</PARENT>
     <Size>0</Size>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
   </EpItem>
   <EpItem>
@@ -3700,7 +3716,9 @@
     <PersonKind>Oosaki Shinya</PersonKind>
     <PARENT>Barnabas Pritchard</PARENT>
     <Size>0</Size>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
   </EpItem>
   <EpItem>
@@ -3719,7 +3737,9 @@
     <PersonKind>Oosaki Shinya</PersonKind>
     <PARENT>Peter Hansen</PARENT>
     <Size>0</Size>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
   </EpItem>
 </ArrayOfEpItem>

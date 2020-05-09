@@ -52,7 +52,7 @@
     <Compile Include="Persons\Fems\JennyFord.cs" />
     <Compile Include="Persons\DefaultPersonManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sound.cs" />
+    <Compile Include="Stories\ArtGenerator.cs" />
     <Compile Include="StoryClasses\CelledStory.cs" />
     <Compile Include="Stories\LocationUnit_Aratments_01.cs" />
     <Compile Include="Stories\Person_Jenny_Ford.cs" />

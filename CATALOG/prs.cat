@@ -3742,4 +3742,20 @@
     </Comments>
     <CommentsAsString />
   </EpItem>
+  <EpItem>
+    <GID>3164bbcf-d580-48ac-b688-6f3db3b043cc</GID>
+    <ItemPath>e:\!catalog\prs\!sto gen art\huanxiang neitu\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Huanxiang Neitu</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>STOGEN-ART</Kind>
+    <PARENT>Huanxiang Neitu</PARENT>
+    <Size>0</Size>
+    <Comments />
+    <CommentsAsString />
+  </EpItem>
 </ArrayOfEpItem>
