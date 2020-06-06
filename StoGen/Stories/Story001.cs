@@ -27,24 +27,6 @@ namespace StoGenerator.Stories
         {
             Person.Storage.Clear();
 
-            //Person.Storage.Add(JennyFord.Load());
-            //Person.Storage.Add(BobLulam.Load());
-            //Person.Storage.Add(MariaKelmi.Load());
-            //Person.Storage.Add(ElizabethScott.Load());
-            //Person.Storage.Add(MarySimmons.Load());
-            //Person.Storage.Add(JuliaSanders.Load());
-            //Person.Storage.Add(MariaSanchez.Load());
-            //Person.Storage.Add(OliviaShaw.Load());
-            //Person.Storage.Add(JessicaStone.Load());
-            //Person.Storage.Add(RachelStephens.Load());
-            //Person.Storage.Add(EmilySims.Load());
-            //Person.Storage.Add(SaraMorton.Load());
-            //Person.Storage.Add(DianaOliver.Load());
-            //Person.Storage.Add(OliviaSmith.Load());
-            //Person.Storage.Add(PhebeCurtis.Load());
-            //Person.Storage.Add(MaryLewis.Load());
-            //Person.Storage.Add(PhoebeFrench.Load());
-            //Person.Storage.Add(JuliaThomas.Load());
             Person.LoadPassportsFolder(@"e:\!CATALOG\PRS\!STO GEN PERSON\");
 
             base.FillPersonStorage();
@@ -270,3 +252,41 @@ namespace StoGenerator.Stories
 
     }
 }
+
+
+
+//Texture2D img;
+//// Start is called before the first frame update
+//void Start()
+//{
+//    StartCoroutine(LoadImg());
+//}
+
+//IEnumerator LoadImg()
+//{
+//    yield return 0;
+//    img = LoadPNG(@"e:\!CATALOG\PRS\!STO GEN ART\Quuni\DATA\001.png");
+//}
+//// Update is called once per frame
+//void Update()
+//{
+
+//}
+//private void OnGUI()
+//{
+//    GUILayout.Label(img);
+//}
+//public static Texture2D LoadPNG(string filePath)
+//{
+
+//    Texture2D tex = null;
+//    byte[] fileData;
+
+//    if (File.Exists(filePath))
+//    {
+//        fileData = File.ReadAllBytes(filePath);
+//        tex = new Texture2D(2, 2);
+//        tex.LoadImage(fileData); //..this will auto-resize the texture dimensions.
+//    }
+//    return tex;
+//}

@@ -48,14 +48,42 @@ namespace StoGenerator.StoryClasses
             Layers = SetPersonOutfit(person, $"{Person.OutfitName.OutfitDefault_I}", position);
             Layers = person.SetFaceBehavour(Emotion.Type.Smile, Layers, position);
             activity.SetActivity(person, Layers ,position);
+            
+            //Test!!
+            //addHeart(4);
+
         }
+        //private void addHeart(int count)
+        //{
+        //    int delta = count-1;
+        //    for (int i = 1; i <= count; i++)
+        //    {
+        //        Info_Scene info = new Info_Scene();
+        //        info.Kind = 0;
+        //        info.FigureName = "Heart";
+        //        info.File = $@"e:\!STOGENDB\READY\PARTS\EFFECTS\HART01\{((count + 1) - i).ToString("D3")}.png";
+        //        info.O = "100";
+        //        info.S = "80";
+        //        info.X = "400";
+        //        info.Y = "300";
+        //        string transX = $"{Trans.MoveH(5000, -200)}~*{Trans.MoveV(5000, -400)}~*{Trans.Wait(5000)}>{Trans.Dissapearing()}>{Trans.MoveH(1, 200)}>{Trans.MoveV(1, 400)}>{Trans.Appearing()}~";
+        //        if (i > 1)
+        //            info.T = $"{transX}*{Trans.Wait(100 * (count - i))}>{Trans.Dissapearing(100)}>{Trans.Wait(100 * (i - 2) * 2)}>{Trans.Appearing(100)}>{Trans.Wait(100 * (count - i))}~";
+        //        else
+        //            info.T = $"{transX}";
+
+        //        info.Z = Layers.Count().ToString();
+        //        info.Description = $"Pulsing Heart {i}";
+        //        Layers.Add(info);
+        //    }
+        //}
         private List<Info_Scene> SetPersonOutfit(Person person, string outfit, Info_Scene position)
         {
             if (string.IsNullOrEmpty(outfit))
             {
                 outfit = $"{Person.OutfitName.OutfitDefault_I}";
             }
-            var result = person.GetFigure(Layers, outfit, null, Trans.Appearing(500), position);
+            var result = person.GetFigure(Layers, outfit, null, Trans.Appearing(500), position);           
             return result;
         }
 

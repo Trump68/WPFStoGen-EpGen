@@ -204,6 +204,8 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         {
             var grupedlist = GetGroupedList();
             //lastgrouId++;
+            if (lastgrouId >= grupedlist.Count())
+                lastgrouId = grupedlist.Count() - 1;
             var last = grupedlist[lastgrouId].Select(x => x).ToList();
             if (!last.First().Active)
             {

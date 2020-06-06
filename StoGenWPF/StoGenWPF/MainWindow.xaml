@@ -27,6 +27,31 @@
                 <Image x:Name="Picture14" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
                 <Image x:Name="Picture15" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
                 <Image x:Name="Picture16" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture17" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture18" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture19" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture20" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture21" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture22" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture23" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture24" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture25" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture26" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture27" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture28" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture29" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture30" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture31" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture32" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture33" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture34" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture35" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture36" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture37" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture38" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture39" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <Image x:Name="Picture40" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+
             </Canvas>
         </Viewbox>
         <!--<TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="111" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="627" Opacity="0.8" Background="Blue" BorderThickness="0"  AcceptsReturn="True" Margin="139,0,0,65"/>-->

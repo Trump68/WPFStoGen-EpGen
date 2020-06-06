@@ -12,7 +12,13 @@
         <property name="Alignment">Default</property>
       </property>
     </property>
-    <property name="SortInfo" iskey="true" value="0" />
+    <property name="SortInfo" iskey="true" value="1">
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="FieldName">Studio</property>
+        <property name="SortOrder">Ascending</property>
+        <property name="MergeWithPreviousGroup">false</property>
+      </property>
+    </property>
     <property name="Columns" iskey="true" value="33">
       <property name="Item1" isnull="true" iskey="true">
         <property name="GridRow">0</property>

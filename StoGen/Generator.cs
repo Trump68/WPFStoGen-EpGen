@@ -28,7 +28,16 @@ namespace StoGenerator
         //}
         public static string MakeScenario(EpItem item)
         {
-            StoryBase story = new ArtGenerator(item); 
+            if (item.Kind == null) return null;
+            StoryBase story = null;
+            if (item.Kind.Trim() == "STOGEN-ART")
+            {
+                story = new ArtGenerator(item);
+            }
+            else
+            {
+                story = getScen(item.Name);
+            }
             if (story != null)
             {
                 LocationStorage.InitDefaultLocations();

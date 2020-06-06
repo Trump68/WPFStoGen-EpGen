@@ -3691,6 +3691,7 @@
     <Day>0</Day>
     <Kind>STOGEN-PERSON</Kind>
     <Star>M</Star>
+    <Studio>Квартира N2,Дом N1,Жасминовая улица</Studio>
     <PersonSex>M</PersonSex>
     <PersonKind>Oosaki Shinya</PersonKind>
     <PARENT>Isaac Griffith</PARENT>
@@ -3740,6 +3741,110 @@
     <Comments>
       <string />
     </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>3164bbcf-d580-48ac-b688-6f3db3b043cc</GID>
+    <ItemPath>e:\!catalog\prs\!sto gen art\huanxiang neitu\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Huanxiang Neitu</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>STOGEN-ART</Kind>
+    <PARENT>Huanxiang Neitu</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>7d51ce86-0bfe-447c-b73e-a31b95a712cd</GID>
+    <ItemPath>e:\!catalog\prs\!sto gen art\snowball22\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Snowball22</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>STOGEN-ART</Kind>
+    <PARENT>Snowball22</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>a8157bba-75cb-47fb-9f9c-146dc29a5c9c</GID>
+    <ItemPath>e:\!catalog\prs\!sto gen art\xretakex\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Xretakex</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>STOGEN-ART</Kind>
+    <PARENT>Xretakex</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>8dbbad32-cfd7-4e36-803a-bdf2bc0cfa74</GID>
+    <ItemPath>e:\!catalog\prs\!sto gen art\yoshiku (oden usagi)\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Yoshiku (Oden Usagi)</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>STOGEN-ART</Kind>
+    <PARENT>Yoshiku (Oden Usagi)</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>d342a6b2-9a27-421d-ad2d-c374cbfdad2f</GID>
+    <ItemPath>e:\!catalog\prs\!sto gen art\rorobomb\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Rorobomb</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>STOGEN-ART</Kind>
+    <PARENT>Rorobomb</PARENT>
+    <Size>0</Size>
+    <Comments />
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>55474fdc-9f2d-4f79-8f96-094f48ed9054</GID>
+    <ItemPath>e:\!catalog\prs\!sto gen art\taesi\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Taesi</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>STOGEN-ART</Kind>
+    <PARENT>Taesi</PARENT>
+    <Size>0</Size>
+    <Comments />
     <CommentsAsString />
   </EpItem>
 </ArrayOfEpItem>
