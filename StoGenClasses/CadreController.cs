@@ -154,6 +154,8 @@ namespace StoGen.Classes
                 SystemSounds.Beep.Play();
                 return result;
             }
+            if (CadreId > Cadres.Count())
+                CadreId = Cadres.Count();
             if (result == null)
             {
                 if (CadreId >= 1)

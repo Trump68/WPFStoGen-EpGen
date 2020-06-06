@@ -59,6 +59,8 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         public static string currentQueue;
         public static string currentGroup;
         public string Name { set; get; }
+        public bool IsGenerationAllowed { get; set; } = true;
+
         public void IncrementGroup()
         {
             var vals = currentGroup.Split('.');
@@ -192,12 +194,15 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         public List<Info_Scene> GoForwardStory(CadreController proc, int lastgrouId)
         {
             List<Info_Scene> result = null;
-            var grupedlist = GetGroupedList();
-            if (lastgrouId > grupedlist.Count() - 1)
+            if (IsGenerationAllowed)
             {
-                GenerateNewStoryStep(proc);
+                var grupedlist = GetGroupedList();
+                if (lastgrouId > grupedlist.Count() - 1)
+                {
+                    GenerateNewStoryStep(proc);
+                }
+                result = ShowReneratedStep(lastgrouId);
             }
-            result = ShowReneratedStep(lastgrouId);               
             return result;
         }
         private List<Info_Scene> ShowReneratedStep(int lastgrouId)

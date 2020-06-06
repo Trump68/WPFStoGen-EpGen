@@ -249,7 +249,7 @@ namespace StoGen.Classes
         public override Cadre Repaint()
         {
             Stopped = false;
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 40; i++)
             {
                 RecreateImage(i);
             }

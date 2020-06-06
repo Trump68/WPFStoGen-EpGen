@@ -61,22 +61,24 @@ namespace StoGen.Classes
             Projector.TextVisible = true;
             if (!this.AlignDataProcessed)
             {
-                this.AlignDataProcessed = true;
+                //this.AlignDataProcessed = true;
+                FrameImage.Pics.Clear();
                 foreach (seIm data in info.VisionList)
                 {                   
                     var ids = data.ToPictureDataSource();
                     ids.Level = (PicLevel)(info.VisionList.IndexOf(data));
                     PictureItem pic = new PictureItem();
                     pic.Props = new PictureSourceProps(ids);
-                    FrameImage.Pics.Add(pic);
-                    
+                    FrameImage.Pics.Add(pic);                    
                 }
+                this.SoundFr.SoundList.Clear();
                 foreach (seSo data in info.SoundList)
                 {
                     var sds = data.ToSoundDataSource();
                     sds.Position = info.SoundList.IndexOf(data);
                     this.SoundFr.SoundList.Add(sds);                    
                 }
+                this.TextFr.TextList.Clear();
                 foreach (seTe dataTe in info.TextList)
                 {
                     this.TextFr.SetData(dataTe);

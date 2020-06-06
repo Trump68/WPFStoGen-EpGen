@@ -39,7 +39,8 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             this.Name = CatalogItem.Name;
             this.FileName = this.Name;
             Art = new Person();
-            Art.ImagePath = Path.Combine(CatalogItem.ItemDirectory, "DATA");            
+            Art.ImagePath = Path.Combine(CatalogItem.ItemDirectory, "DATA");
+            this.IsGenerationAllowed = false;
         }
         public override void Generate(string queue, string group)
         {
