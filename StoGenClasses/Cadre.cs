@@ -108,6 +108,13 @@ namespace StoGen.Classes
                 item.BeforeLeave();
             }
         }
+        internal void Destroy()
+        {
+            foreach (Frame item in Frames)
+            {
+                item.Dispose();
+            }
+        }
     }
 
    }

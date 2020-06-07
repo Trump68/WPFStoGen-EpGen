@@ -63,7 +63,13 @@ namespace StoGen.Classes
                 cadre.Stop();
             }
         }
-
+        public void Destroy()
+        {
+            foreach (var cadre in Cadres)
+            {
+                cadre.Destroy();
+            }
+        }
         public int CadreId { get; set; } 
         // Navigation
         public bool AllowedForward

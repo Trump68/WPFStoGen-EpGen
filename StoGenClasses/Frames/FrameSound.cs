@@ -163,6 +163,15 @@ namespace StoGen.Classes
             timer.Change(Timeout.Infinite, Timeout.Infinite);
             FrameSound.tranManager.Clear();
         }
+        public override void Dispose()
+        {
+            base.Dispose();
+            foreach (SoundItem item in this.SoundList)
+            {
+                Projector.Sound[item.Position].Close();
+                StopPlayer(item.Position, true);
+            }
+        }
     }
     [Serializable]
     public class SoundItem

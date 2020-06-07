@@ -35,6 +35,7 @@ namespace StoGenWPF
         {
             if (CurrProc != null)
             {
+                CurrProc.Destroy();
                 CurrProc.Stop();
             }
         }
