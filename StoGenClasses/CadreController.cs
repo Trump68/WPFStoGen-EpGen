@@ -26,6 +26,9 @@ namespace StoGen.Classes
                 CreateCadre();
             }
             this.CadreId = -1;
+            if (startpage > Scene.CadreDataList.Count())
+                startpage = Scene.CadreDataList.Count();
+           // this.CadreId = startpage - 2;
             while (this.CadreId < startpage)
             {
                 this.GetNextCadre();

@@ -59,7 +59,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         public static string currentQueue;
         public static string currentGroup;
         public string Name { set; get; }
-        public bool IsGenerationAllowed { get; set; } = true;
+       
 
         public void IncrementGroup()
         {

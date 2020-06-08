@@ -71,6 +71,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         public string Category { set; get; }
         public string Variant { set; get; }
         public string RawParameters { set; get; }
+        public bool IsGenerationAllowed { get; set; } = false;
         private ObservableCollection<Info_Scene> _ObservableSceneInfoList = null;
         public ObservableCollection<Info_Scene> SceneInfos
         {
@@ -299,6 +300,11 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 {
                     this.StopWords = line.Replace("STOPWORDS:", string.Empty);
                 }
+                else if (line.StartsWith("ISGENERATIONALLOWED:"))
+                {
+                    string boolVal = line.Replace("ISGENERATIONALLOWED:", string.Empty);
+                    this.IsGenerationAllowed = bool.Parse(boolVal);
+                }
                 else if (line.StartsWith("DESCRIPTION:"))
                 {
                     isDescription = true;
@@ -356,6 +362,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             lines.Add($"CATEGORY:{this.Category}");
             lines.Add($"VARIANT:{this.Variant}");
             lines.Add($"STOPWORDS:{this.StopWords}");
+            lines.Add($"ISGENERATIONALLOWED:{this.IsGenerationAllowed}");
             lines.Add($"DESCRIPTION:");
             lines.Add($"{this.Description}");
             lines.Add($"RAWPARAMETERS:");
