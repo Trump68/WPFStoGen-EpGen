@@ -455,6 +455,7 @@ namespace StoGenMake.Scenes.Base
         public List<DifData> AlignList = new List<DifData>();
         public List<string> MarkList = new List<string>();
         public seTe TextData;
+        public seCtrl ControlData = new seCtrl();
         public List<Info_Scene> OriginalInfo = new List<Info_Scene>();
         public CadreData()
         {

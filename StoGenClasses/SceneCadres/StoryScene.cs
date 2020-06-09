@@ -121,6 +121,7 @@ namespace StoGen.Classes.Data.Games
         private CadreData DoCadreByGroup(List<Info_Scene> group, int? indexToInsert)
         {
             int i = 1; // picture index to correct add transitions
+           
             // sound
             this.VOLUME_M = 100;
             var sounds = group.Where(x => x.Kind == 6);
@@ -396,8 +397,19 @@ namespace StoGen.Classes.Data.Games
             }
             itl.AddRange(Pictures.Values.ToList());
 
+            var result = CreateCadreData($"{story}", itl, group, indexToInsert);
 
-            return CreateCadreData($"{story}", itl, group, indexToInsert);
+            //Control
+            Info_Scene control = group.Where(x => x.Kind == 10).FirstOrDefault();
+            if (control != null)
+            {
+                if (!string.IsNullOrEmpty(control.X))
+                    result.ControlData.TimeToShift = int.Parse(control.X);
+                if (!string.IsNullOrEmpty(control.Y))
+                    result.ControlData.ShiftStep = int.Parse(control.Y);
+            }
+
+            return result;
         }
 
         internal override List<CadreData> GetNextCadreData(CadreController proc, int cadreId)

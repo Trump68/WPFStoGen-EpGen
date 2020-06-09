@@ -551,6 +551,13 @@ namespace EPCat
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
+        private void AddSceneCtrlBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //save
+            (this.DataContext as EpCatViewModel).AddCombinedScene(false, false, 10);
+            // reset
+            (this.DataContext as EpCatViewModel).RefreshFolder();
+        }
 
         private void CopySceneBtn_Click(object sender, RoutedEventArgs e)
         {

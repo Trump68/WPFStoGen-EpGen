@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 
@@ -14,6 +15,7 @@ namespace StoGenMake.Elements
         public List<ScenElement> VisionList = new List<ScenElement>();
         public List<ScenElement> SoundList = new List<ScenElement>();
         public List<ScenElement> TextList = new List<ScenElement>();
+        public seCtrl Control = new seCtrl();
         public bool IsWhite = false;
 
         public CadreInfo()
@@ -101,6 +103,11 @@ namespace StoGenMake.Elements
         internal void AddText(seTe newtext)
         {
             this.TextList.Add(newtext);
+        }
+
+        internal void AddControl(seCtrl controlData)
+        {
+            this.Control = new seCtrl(controlData);
         }
     }
 

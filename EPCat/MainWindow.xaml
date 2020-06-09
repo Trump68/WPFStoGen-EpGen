@@ -353,7 +353,9 @@
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="ShowSceneBtn" Content="Play" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ShowSceneBtn_Click" />
                             </dxlc:LayoutItem>
-
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton  Content="Add Control" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneCtrlBtn_Click" />
+                            </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton  Content="Add Header" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneHeaderBtn_Click" />
                             </dxlc:LayoutItem>
@@ -440,8 +442,8 @@
                                         <dxg:GridColumn FieldName="KindOrder" IsSmart="True" AllowResizing="False" Width="0" MaxWidth="30" SortOrder="Ascending" SortIndex="3"/>
                                         <dxg:GridColumn FieldName="KindName" IsSmart="True" Width="35" IsEnabled="False"/>
                                         <dxg:GridColumn FieldName="Queue" IsSmart="True" Width="200" GroupIndex="0"/>
-                                        <dxg:GridColumn FieldName="Group" IsSmart="True" Width="90" SortOrder="Ascending" GroupIndex="1" SortIndex="1"/>
-                                        <dxg:GridColumn FieldName="Description" IsSmart="True"  Width="450"/>
+                                        <dxg:GridColumn FieldName="Group" IsSmart="True" Width="90" SortOrder="Ascending" GroupIndex="2" SortIndex="1"/>
+                                        <dxg:GridColumn FieldName="Description" IsSmart="True"  Width="450" SortOrder="Ascending" GroupIndex="1"/>
                                         <dxg:GridColumn FieldName="Story" IsSmart="True" Width="400"/>
                                         <dxg:GridColumn FieldName="File" IsSmart="True" Width="5"/>
 

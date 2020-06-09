@@ -43,15 +43,17 @@ namespace StoGen.Classes
                 {
 
                     case 0:
-                        return 4;
+                        return 5;
                     case 1: // 
-                        return 0;
-                    case 6: // 
-                        return 2;
-                    case 8: // 
-                        return 3;
-                    case 9: // 
                         return 1;
+                    case 6: // 
+                        return 3;
+                    case 8: // 
+                        return 4;
+                    case 9: // 
+                        return 2;
+                    case 10: // 
+                        return 0;
                     default: return 100;
                 }
             }
@@ -74,6 +76,8 @@ namespace StoGen.Classes
                         return "Mov";
                     case 9: // 
                         return "Bck";
+                    case 10: // 
+                        return "Ctr";
                     default: return "Oth";
                 }
             }
@@ -90,6 +94,7 @@ namespace StoGen.Classes
         // 7 -1+6 -- DEPRECATED
         // 8 - Movie Clip
         // 9 - background picture (auto added in every next scene)
+        // 10 - control flow
         public int Kind { set; get; } = 0;
         public string Description { set; get; } = string.Empty;
 
@@ -142,7 +147,7 @@ namespace StoGen.Classes
         public string Z { set; get; } //ZOrder
         public string Align { set; get; }// text align 0 -left, 1- right, 2-center, 3-justify
         public string VAlign { set; get; }// textbox align 0 -top, 1-center, 3-bottom
-        public bool Active { get; set; } = false;
+        public bool Active { get; set; } = true;
         public string FigureName { get; set; }
         public int Direction { get; internal set; }
 

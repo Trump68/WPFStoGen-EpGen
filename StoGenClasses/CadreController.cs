@@ -12,6 +12,7 @@ using StoGenMake.Elements;
 using StoGenMake;
 using Menu.Classes;
 
+
 namespace StoGen.Classes
 {
     public class CadreController
@@ -19,6 +20,7 @@ namespace StoGen.Classes
         public BaseScene Scene;
         public CadreController(BaseScene scene, int startpage)
         {
+            //FrameControl.CurrentProc = this;
             Cadres = new List<Cadre>();
             Scene = scene;
             foreach (var ad in Scene.CadreDataList)
@@ -29,10 +31,11 @@ namespace StoGen.Classes
             if (startpage > Scene.CadreDataList.Count())
                 startpage = Scene.CadreDataList.Count();
            // this.CadreId = startpage - 2;
-            while (this.CadreId < startpage)
+            while (this.CadreId < startpage -1)
             {
-                this.GetNextCadre();
+                this.GetNextCadre(false);
             }
+            this.GetNextCadre();
             //bool LiveMenu = (startpage == Cadres.Count()-1);
             //this.OldMenuCreator = this.MenuCreator;
             //this.MenuCreator = this.Scene.GetMenuCreator(LiveMenu);
@@ -122,7 +125,7 @@ namespace StoGen.Classes
         }
 
 
-        public virtual Cadre GetNextCadre()
+        public virtual Cadre GetNextCadre(bool paint = true)
         {
             CreateNextCadres();
             CadreId++;
@@ -145,7 +148,7 @@ namespace StoGen.Classes
             {
                 return null;
             }
-            if (result != null) RepaintCadre(result);
+            if (result != null) RepaintCadre(result, paint);
             else
             {
                 SystemSounds.Beep.Play();
@@ -276,6 +279,10 @@ namespace StoGen.Classes
             {
                 cadre.AddText(text);
             }
+            if (item.ControlData != null)
+            {
+                cadre.AddControl(item.ControlData);
+            }
             return cadre;
         }
 
@@ -293,10 +300,10 @@ namespace StoGen.Classes
                 }
             }
         }
-        public void RepaintCadre(Cadre cadre)
+        public void RepaintCadre(Cadre cadre, bool paint = true)
         {
             var info = this.MakeCadre(Scene.CadreDataList[CadreId]);
-            cadre.Repaint(info);
+            cadre.Repaint(info, paint);
         }
 
         public void RefreshCurrentCadre()

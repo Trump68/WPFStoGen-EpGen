@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors.Controls;
 using StoGen.Classes.Transition;
 using StoGen.ModelClasses;
+using StoGenMake.Elements;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,8 +22,10 @@ namespace StoGen.Classes
 {
 
     public delegate void RunNext();
+   
     public class FrameImage : Frame, IDisposable
     {
+        public static seCtrl Data = new seCtrl();
         public static System.Threading.Timer timer;
         public static TransitionManager tranManager = new TransitionManager();
         public static CadreController CurrentProc;
@@ -44,6 +47,15 @@ namespace StoGen.Classes
         public static int WaitEnd = -1;
         public static void ProcessLoopDelegate()
         {
+            if (Projector.TimerEnabled && (Data.TimeToShift > 0))
+            {
+                if (FrameImage.TimeStarted.AddMilliseconds(Data.TimeToShift) <= DateTime.Now)
+                {
+                    int num = CurrentProc.CadreId + Data.ShiftStep - 1;
+                    CurrentProc.GoToCadre(num);
+                    return;
+                }
+            }
             //Transition
             FrameImage.tranManager.Process();
 

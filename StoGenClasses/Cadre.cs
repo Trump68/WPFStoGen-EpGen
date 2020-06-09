@@ -5,6 +5,7 @@ using StoGenMake.Scenes.Base;
 using StoGenMake.Elements;
 using System;
 
+
 namespace StoGen.Classes
 {
     public class Cadre
@@ -19,7 +20,7 @@ namespace StoGen.Classes
         public CadreController Owner{ get; set; }
         public bool AllowedForward { get; set; }
         public bool AllowedBackward { get; set; }
-     
+        
         private Cadre() 
         {
             Frames = new List<Frame>();
@@ -27,10 +28,12 @@ namespace StoGen.Classes
             Frames.Add(this.TextFr);
             Frames.Add(this.SoundFr);
             Frames.Add(this.ImageFr);
+            //Frames.Add(this.ControlFr);
             this.ImageFr.Owner = this;
             this.ProcFr.Owner = this;
             this.SoundFr.Owner = this;
             this.TextFr.Owner = this;
+            //this.ControlFr.Owner = this;
             AllowedForward = true;
             AllowedBackward = true;
         }
@@ -53,23 +56,28 @@ namespace StoGen.Classes
         public FrameImage ImageFr = new FrameImage();
         public FrameProc ProcFr = new FrameProc();
         public FrameSound SoundFr = new FrameSound();
+       // public FrameControl ControlFr = new FrameControl();
         //public CadreInfo CadreInfo;
 
-        public virtual Cadre Repaint(CadreInfo info) 
+        public virtual Cadre Repaint(CadreInfo info, bool paint =true) 
         {            
             Cadre result = this;
             Projector.TextVisible = true;
             if (!this.AlignDataProcessed)
             {
-                //this.AlignDataProcessed = true;
-                FrameImage.Pics.Clear();
-                foreach (seIm data in info.VisionList)
-                {                   
-                    var ids = data.ToPictureDataSource();
-                    ids.Level = (PicLevel)(info.VisionList.IndexOf(data));
-                    PictureItem pic = new PictureItem();
-                    pic.Props = new PictureSourceProps(ids);
-                    FrameImage.Pics.Add(pic);                    
+                if (paint)
+                {
+                    //this.AlignDataProcessed = true;
+                    FrameImage.Pics.Clear();
+                    foreach (seIm data in info.VisionList)
+                    {
+                        var ids = data.ToPictureDataSource();
+                        ids.Level = (PicLevel)(info.VisionList.IndexOf(data));
+                        PictureItem pic = new PictureItem();
+                        pic.Props = new PictureSourceProps(ids);
+                        FrameImage.Pics.Add(pic);
+                    }
+                    FrameImage.Data = info.Control;
                 }
                 this.SoundFr.SoundList.Clear();
                 foreach (seSo data in info.SoundList)
@@ -84,10 +92,17 @@ namespace StoGen.Classes
                     this.TextFr.SetData(dataTe);
                 }                
             }
+            
+            //this.ControlFr.SetData(info.Control);
             foreach (Frame item in Frames)
             {
-                Cadre temp = item.Repaint();
-            }            
+                if (paint)
+                {
+                    Cadre temp = item.Repaint();
+                }
+            }
+            //FrameControl.SetData(info.Control);
+            //FrameControl.Repaint();
             return result;
         }         
             
