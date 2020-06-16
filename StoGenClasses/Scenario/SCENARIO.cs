@@ -60,6 +60,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             }
         }
         public string Description { set; get; }
+        public string Story { set; get; }
         public string Location { set; get; }
         public string Female { set; get; }
         public string Fgarment { set; get; }
@@ -231,8 +232,10 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             bool isMetadata = false;
             bool isDescription = false;
             bool isRawData = false;
+            bool isStory = false;
             List<string> lines = new List<string>();
             List<string> description_lines = new List<string>();
+            List<string> story_lines = new List<string>();
             List<string> rawdata_lines = new List<string>();
             foreach (var line in clipsinstr)
             {
@@ -309,11 +312,19 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 {
                     isDescription = true;
                     isRawData = false;
+                    isStory = false;
+                }
+                else if (line.StartsWith("STORY:"))
+                {
+                    isDescription = false;
+                    isRawData = false;
+                    isStory = true;
                 }
                 else if (line.StartsWith("RAWPARAMETERS:"))
                 {
                     isDescription = false;
                     isRawData = true;
+                    isStory = false;
                 }
                 else
                 {
@@ -329,6 +340,11 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                             rawdata_lines.Add(line);
                             //this.RawParameters = $"{this.RawParameters}{Environment.NewLine}{line}";
                         }
+                        else if (isStory)
+                        {
+                            story_lines.Add(line);
+                            //this.RawParameters = $"{this.RawParameters}{Environment.NewLine}{line}";
+                        }
                     }
                     else
                     {
@@ -338,6 +354,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             }
             this.Description = string.Join(Environment.NewLine, description_lines.ToArray());
             this.RawParameters = string.Join(Environment.NewLine, rawdata_lines.ToArray());
+            this.Story = string.Join(Environment.NewLine, story_lines.ToArray());
             this.SceneInfos.Clear();
             foreach (var line in lines)
             {
@@ -365,6 +382,8 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             lines.Add($"ISGENERATIONALLOWED:{this.IsGenerationAllowed}");
             lines.Add($"DESCRIPTION:");
             lines.Add($"{this.Description}");
+            lines.Add($"STORY:");
+            lines.Add($"{this.Story}");
             lines.Add($"RAWPARAMETERS:");
             lines.Add($"{this.RawParameters}");
             lines.Add($"****METADATA END****");

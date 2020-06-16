@@ -563,7 +563,7 @@ namespace EPCat
         internal void LoadScenario(string fileName, EpItem item)
         {            
             List<string> clipsinstr = new List<string>(File.ReadAllLines(fileName));
-            this.Story = Generator.LoadScenario(clipsinstr, item);
+            this.Story = Generator.LoadScenario(clipsinstr, item, fileName);
             this.Scenes = this.Story.SceneInfos;
             RefreshFolder();
         }

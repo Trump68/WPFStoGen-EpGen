@@ -77,7 +77,7 @@ namespace StoGen.Classes
                         pic.Props = new PictureSourceProps(ids);
                         FrameImage.Pics.Add(pic);
                     }
-                    FrameImage.Data = info.Control;
+                    FrameImage.ControlData = info.Control;
                 }
                 this.SoundFr.SoundList.Clear();
                 foreach (seSo data in info.SoundList)

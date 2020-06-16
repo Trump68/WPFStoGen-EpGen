@@ -121,8 +121,9 @@ namespace StoGen.Classes.Data.Games
         private CadreData DoCadreByGroup(List<Info_Scene> group, int? indexToInsert)
         {
             int i = 1; // picture index to correct add transitions
-           
+
             // sound
+            //this.RemoveMusic();
             this.VOLUME_M = 100;
             var sounds = group.Where(x => x.Kind == 6);
             foreach (var item in sounds)
@@ -132,7 +133,12 @@ namespace StoGen.Classes.Data.Games
                 {
                     rez.File = rez.File.Replace(@".\", $@"{Story.GamePath}\");
                 }
-                this.AddMusic(rez.File);
+                int volume = 100;
+                if (!string.IsNullOrEmpty(rez.X))
+                {
+                    volume = int.Parse(rez.X);
+                }
+                this.AddMusic(rez.File, volume);
             }
 
             Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
@@ -216,14 +222,27 @@ namespace StoGen.Classes.Data.Games
                 if (story.Contains("@"))
                 {
                     string[] vals = story.Split('@');
-                    string filename = vals[0];
-                    string section = vals[1];
-                    story = string.Empty;
-                    if (File.Exists(filename))
+                    List<string> storylines = new List<string>();
+                    List<string> textlist = null;
+                    string section = null;
+                    if (string.IsNullOrEmpty(vals[0]))
                     {
-                        List<string> textlist = new List<string>(File.ReadAllLines(filename));
+                        section = vals[1];
+                        textlist = this.Story.Story.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+                    }
+                    else
+                    {
+                        string filename = vals[0];
+                        section = vals[1];
+                        story = string.Empty;
+                        if (File.Exists(filename))
+                        {
+                            textlist = new List<string>(File.ReadAllLines(filename));
+                        }
+                    }
+                    if (!string.IsNullOrEmpty(section))
+                    {
                         bool gotcha = false;
-                        List<string> storylines = new List<string>();
                         foreach (string line in textlist)
                         {
 
@@ -405,8 +424,11 @@ namespace StoGen.Classes.Data.Games
             {
                 if (!string.IsNullOrEmpty(control.X))
                     result.ControlData.TimeToShift = int.Parse(control.X);
+                if (!string.IsNullOrEmpty(control.S))
+                    result.ControlData.TimeToShiftMax = int.Parse(control.S);
                 if (!string.IsNullOrEmpty(control.Y))
                     result.ControlData.ShiftStep = int.Parse(control.Y);
+
             }
 
             return result;

@@ -116,18 +116,19 @@ namespace StoGen.Classes
             {
                 
                 Projector.Sound[N].MediaEnded -= FrameSound_MediaEnded;
-                Projector.Sound[N].Volume = (double)item.Volume / 100;
+                Projector.Sound[N].Volume = (double)item.Volume / 1000;
                 Projector.Sound[N].Open(new Uri(soundfile));
                 Projector.Sound[N].MediaEnded += FrameSound_MediaEnded;
                 if (item.Start)
                 {
-                    Projector.Sound[N].Play();                    
+                    Projector.Sound[N].Play();
+                    Projector.Sound[N].Volume = (double)item.Volume / 1000;
                 }
             }));          
         }
         private void SetSoundOneItem(int position, SoundItem item)
         {
-            Projector.Sound[position].Volume = (double)item.Volume / 100;
+            Projector.Sound[position].Volume = (double)item.Volume / 1000;
             Projector.Sound[position].IsMuted = item.isMute;
             PlayingItems[position] = item;
             if (!string.IsNullOrEmpty(item.Transition))
@@ -150,6 +151,10 @@ namespace StoGen.Classes
                     else if (position == 2) { CurrItem2 = item; StartPlayer(2, item); }
                     else if (position == 3) { CurrItem3 = item; StartPlayer(3, item); }                
                     else if (position == 4) { CurrItem4 = item; StartPlayer(4, item); }
+                }
+                else if (Projector.Sound[position].Source.LocalPath == item.FileName)
+                {
+                    Projector.Sound[position].Volume = (double)item.Volume / 1000;
                 }
             }
             else

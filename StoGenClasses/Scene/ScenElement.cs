@@ -338,6 +338,7 @@ namespace StoGenMake.Elements
     public class seCtrl : ScenElement
     {      
         public int TimeToShift = 0;
+        public int TimeToShiftMax = 0;
         public int ShiftStep = 1;
 
 
@@ -346,6 +347,7 @@ namespace StoGenMake.Elements
         public seCtrl(seCtrl origin) : this()
         {
             this.TimeToShift = origin.TimeToShift;
+            this.TimeToShiftMax = origin.TimeToShiftMax;
             this.ShiftStep = origin.ShiftStep;
         }
         public override bool IsActivated { get { return this.TimeToShift > 0; } }

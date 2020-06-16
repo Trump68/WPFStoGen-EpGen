@@ -25,7 +25,24 @@ namespace StoGen.Classes
    
     public class FrameImage : Frame, IDisposable
     {
-        public static seCtrl Data = new seCtrl();
+        private static seCtrl _ControlData = new seCtrl();
+        public static seCtrl ControlData
+        {
+            set
+            {
+                _ControlData = value;
+                if (_ControlData.TimeToShiftMax == 0 && _ControlData.TimeToShift > 0)
+                    TimeShift = _ControlData.TimeToShift;
+                else if (_ControlData.TimeToShiftMax > 0 && _ControlData.TimeToShift > 0 && _ControlData.TimeToShiftMax >= _ControlData.TimeToShift)
+                {
+                    Random rnd = new Random();
+                    TimeShift = rnd.Next(_ControlData.TimeToShift, _ControlData.TimeToShiftMax);
+                }
+
+            }
+        }
+        static int TimeShift = 0;
+
         public static System.Threading.Timer timer;
         public static TransitionManager tranManager = new TransitionManager();
         public static CadreController CurrentProc;
@@ -45,13 +62,14 @@ namespace StoGen.Classes
         public static int TimeToNext = -1;
         public static int WaitStart = -1;
         public static int WaitEnd = -1;
+        
         public static void ProcessLoopDelegate()
         {
-            if (Projector.TimerEnabled && (Data.TimeToShift > 0))
+            if (Projector.TimerEnabled && (TimeShift > 0))
             {
-                if (FrameImage.TimeStarted.AddMilliseconds(Data.TimeToShift) <= DateTime.Now)
+                if (FrameImage.TimeStarted.AddMilliseconds(TimeShift) <= DateTime.Now)
                 {
-                    int num = CurrentProc.CadreId + Data.ShiftStep - 1;
+                    int num = CurrentProc.CadreId + _ControlData.ShiftStep - 1;
                     CurrentProc.GoToCadre(num);
                     return;
                 }

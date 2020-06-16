@@ -234,7 +234,7 @@ namespace StoGen.Classes
                 Projector.TextBlock2.Visibility = Visibility.Visible;
                 Projector.TextBlock3.Visibility = Visibility.Visible;
                 Projector.TextBlock4.Visibility = Visibility.Visible;
-                if (FontColor == "Black")
+                if (FontColor.ToUpper() == "BLACK")
                 {
                     br = System.Windows.Media.Brushes.Black;
                     Projector.SetShadowEffect(false);
@@ -242,19 +242,19 @@ namespace StoGen.Classes
                     Projector.TextBlock3.Visibility = Visibility.Hidden;
                     Projector.TextBlock4.Visibility = Visibility.Hidden;
                 }
-                else if (FontColor == "White")
+                else if (FontColor.ToUpper() == "WHITE")
                 {
                     br = System.Windows.Media.Brushes.White;
                 }
-                else if (FontColor == "Red")
+                else if (FontColor.ToUpper() == "RED")
                     br = System.Windows.Media.Brushes.Red;
-                else if (FontColor == "Blue")
+                else if (FontColor.ToUpper() == "BLUE")
                     br = System.Windows.Media.Brushes.Blue;
-                else if (FontColor == "Yellow")
+                else if (FontColor.ToUpper() == "YELLOW")
                     br = System.Windows.Media.Brushes.Yellow;
-                else if (FontColor == "Cyan")
+                else if (FontColor.ToUpper() == "CYAN")
                     br = System.Windows.Media.Brushes.Cyan;
-                else if (FontColor == "Coral")
+                else if (FontColor.ToUpper() == "CORAL")
                     br = System.Windows.Media.Brushes.Coral;
                 else
                 {

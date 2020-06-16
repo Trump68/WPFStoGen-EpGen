@@ -48,7 +48,7 @@ namespace StoGenerator
             }
             return null;
         }
-        public static StoryBase LoadScenario(List<string> clipsinstr, EpItem item)
+        public static StoryBase LoadScenario(List<string> clipsinstr, EpItem item, string filename = null)
         {
             StoryBase story = null;
             if (item.Kind.Trim() == "STOGEN-ART")
@@ -63,6 +63,10 @@ namespace StoGenerator
             }
 
             story.LoadFrom(clipsinstr);
+            if (!string.IsNullOrEmpty(filename))
+            {
+                story.FileName = Path.GetFileNameWithoutExtension(filename);
+            }
             return story;
         }
 
