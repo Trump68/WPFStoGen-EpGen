@@ -479,9 +479,17 @@ namespace EPCat
         }
         private string IncrementGroupToEnd(string v)
         {
+            int d = 999;
+            var ddd = Story.SceneInfos.LastOrDefault();
+            if (ddd != null)
+            {
+                var valsEnd = ddd.Queue.Split('.');
+                int max = int.Parse(valsEnd[0]);
+                d = ++max;
+            }
             var vals = v.Split('.');
             if (vals.Length == 0) return v;
-            int d = 999;
+
             vals[0] = d.ToString("D" + vals[0].Length);
 
             return string.Join(".", vals);
@@ -546,6 +554,7 @@ namespace EPCat
         }
         internal void SaveScenario()
         {
+            if (this.Story != null)
             this.Story.SaveToFile(this.CurrentFolder.ItemDirectory, this.CurrentFolder.ItemTempDirectory);
             //this.Story.SaveToFile(this.StoryWorkDir, Path.Combine(this.StoryWorkDir,"TMP"));             
         }

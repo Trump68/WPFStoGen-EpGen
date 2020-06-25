@@ -43,10 +43,18 @@ namespace StoGen.Classes.Data.Games
 
         private string GetAbsolutePath(string path)
         {
-            if (!string.IsNullOrEmpty(path) && path.StartsWith(@".\") && !string.IsNullOrEmpty(Story.GamePath))
+            if (!string.IsNullOrEmpty(path) && path.StartsWith(@".\"))
             {
-                return path.Replace(@".\", $@"{Story.GamePath}\");
+                if (!string.IsNullOrEmpty(Story.GamePath))
+                {
+                    return path.Replace(@".\", $@"{Story.GamePath}\");
+                }
+                else if (!string.IsNullOrEmpty(Story.DefVisFile))
+                {
+                    return path.Replace(@".\", $@"{Story.DefVisFile}\");
+                }
             }
+            
             return path;
         }
         private Info_Scene GetVisualByDefaultAndCurrent(Info_Scene current)

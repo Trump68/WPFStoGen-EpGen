@@ -5,6 +5,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
@@ -524,7 +525,22 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             if (File.Exists(zipPath))
                 File.Delete(zipPath);
             ZipFile.CreateFromDirectory(tempPath, zipPath, CompressionLevel.Optimal, false);
-            Directory.Delete(tempPath, true);
+            try
+            {
+                Directory.Delete(tempPath, true);
+            }
+            catch (Exception)
+            {
+                Thread.Sleep(3000);
+                try
+                {
+                    Directory.Delete(tempPath, true);
+                }
+                catch (Exception)
+                {
+                }
+            }
+            
         }
 
         public void LoadFromZip(string file)

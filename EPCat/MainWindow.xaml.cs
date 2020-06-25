@@ -650,7 +650,7 @@ namespace EPCat
 
         private void CompileScenarioBtn_Click(object sender, RoutedEventArgs e)
         {
-            SCENARIO.PackScenario(ViewModel.Story, ViewModel.StoryWorkDir);
+            SCENARIO.PackScenario(ViewModel.Story, ViewModel.CurrentFolder.ItemDirectory);
         }
         private void CopyGroupBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -687,6 +687,28 @@ namespace EPCat
         {
             if (ViewModel.CurrentFolder != null)
                 GenerateScenario(ViewModel.CurrentFolder);
+        }
+
+        private void CopyGroupBtn2_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.CopyCombinedScene(true);
+            ViewModel.AddCombinedScene(false, true, null);
+            // reset
+            ViewModel.RefreshFolder();
+        }
+
+        private void GVCombScen_KeyDown(object sender, KeyEventArgs e)
+        {
+          
+        }
+
+        private void GVCombScen_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space && (e.KeyboardDevice.Modifiers == ModifierKeys.Control))
+            {
+                ViewModel.SaveScenario();
+                ViewModel.ShowScene();
+            }
         }
     }
 }
