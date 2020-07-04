@@ -177,15 +177,20 @@
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopySceneBtn" Content="Copy" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopySceneBtn_Click" />
                             </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="CopGrBtn" Content="CopyGr" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn_Click" />
-                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left"/>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopGrBtn1" Content="CopyGr+1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn1_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="CopGrBtn3" Content="CopyGr+.1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn3_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopGrBtn2" Content="CopyGrToEnd" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn2_Click" />
                             </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="CopDescBtn1" Content="CopyD+1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyDescrBtn1_Click" />
+                            </dxlc:LayoutItem>
+
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CompileScenarioBtn" Content="Compile" Width="80" Margin="100,4,0,0" HorizontalAlignment="Left" Click="CompileScenarioBtn_Click" />
                             </dxlc:LayoutItem>

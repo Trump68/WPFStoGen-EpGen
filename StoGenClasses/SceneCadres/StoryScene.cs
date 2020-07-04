@@ -417,7 +417,12 @@ namespace StoGen.Classes.Data.Games
                         // if apper, dont forget to set Opacity to 0, as initially figure is invisible
                         //"W..0>O.B.400.100" //--appear
                         //"W..0>O.B.400.100*W..0>X.B.400.300"--appear+move from left
-                        Pictures[key].T = item.T;                                                                  
+                        if (item.T.ToUpper() == "BLINK")
+                        {
+                            Pictures[key].T = Trans.Eyes_Blink;
+                        }
+                        else
+                            Pictures[key].T = item.T;                                                                  
                     }
                     i++;
                 }

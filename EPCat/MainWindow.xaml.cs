@@ -3,6 +3,7 @@ using DevExpress.Xpf.Grid;
 using DevExpress.Xpf.LayoutControl;
 using EPCat.Model;
 using Microsoft.Win32;
+using StoGen.Classes;
 using StoGen.Classes.Scene;
 using System;
 using System.Collections;
@@ -188,6 +189,7 @@ namespace EPCat
         }
         private void ShowSceneBtn_Click(object sender, RoutedEventArgs e)
         {
+            ViewModel.SaveScenario();
             ViewModel.ShowScene();
         }
         private void btnLoad_Click(object sender, RoutedEventArgs e)
@@ -362,7 +364,7 @@ namespace EPCat
             this.ImportMedia(str3);
             if (addGroup)
             {
-                this.CopyGroup(true,false);
+                this.CopyGroup(true,false,0);
             }
         }
         private void ImportMedia(string path)
@@ -517,7 +519,7 @@ namespace EPCat
         private void AddSceneBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(true,true,null);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(true,true,0,null);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
@@ -526,35 +528,35 @@ namespace EPCat
             //copy
             (this.DataContext as EpCatViewModel).CopyCombinedScene(false);
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(true,false,6);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(true,false,0,6);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
         private void AddSceneSoundPlusBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(true,false,7);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(true,false,0,7);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
         private void AddClipBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(true,false,8);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(true,false,0,8);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
         private void AddSceneHeaderBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(false,false,1);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(false,false,0,1);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
         private void AddSceneCtrlBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(false, false, 10);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(false, false,0, 10);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
@@ -568,7 +570,7 @@ namespace EPCat
         private void btnSetPositionSave_Click(object sender, RoutedEventArgs e)
         {
             //save
-            CopyGroup(false,false);
+            CopyGroup(false,false,0);
             //save
             (this.DataContext as EpCatViewModel).SaveClipTemplate();            
             // reset
@@ -594,7 +596,7 @@ namespace EPCat
         }       
 
 
-        public void CopyGroup(bool atEnd, bool toEnd)
+        public void CopyGroup(bool atEnd, bool toEnd, int group)
         {
             if (atEnd)
             {
@@ -603,7 +605,7 @@ namespace EPCat
             }
             //save
             ViewModel.CopyCombinedScene(true);
-            ViewModel.AddCombinedScene(false, toEnd, null);
+            ViewModel.AddCombinedScene(false, toEnd, group, null);
             // reset
             ViewModel.RefreshFolder();
         }
@@ -654,12 +656,12 @@ namespace EPCat
         }
         private void CopyGroupBtn_Click(object sender, RoutedEventArgs e)
         {
-            CopyGroup(false, true);
+            CopyGroup(false, true,0);
         }
 
         private void CopyGroupBtn1_Click(object sender, RoutedEventArgs e)
         {
-            CopyGroup(false, false);
+            CopyGroup(false, false,0);
         }
 
         private void btnGoRepeatText_Click(object sender, RoutedEventArgs e)
@@ -692,7 +694,7 @@ namespace EPCat
         private void CopyGroupBtn2_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.CopyCombinedScene(true);
-            ViewModel.AddCombinedScene(false, true, null);
+            ViewModel.AddCombinedScene(false, true,0, null);
             // reset
             ViewModel.RefreshFolder();
         }
@@ -709,6 +711,16 @@ namespace EPCat
                 ViewModel.SaveScenario();
                 ViewModel.ShowScene();
             }
+        }
+
+        private void CopyGroupBtn3_Click(object sender, RoutedEventArgs e)
+        {
+            CopyGroup(false, false,1);
+        }
+
+        private void CopyDescrBtn1_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.CopyPasteDescriptionGroup();
         }
     }
 }

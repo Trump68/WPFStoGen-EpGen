@@ -271,43 +271,43 @@
     <property name="TotalSummary" iskey="true" value="0" />
     <property name="MRUFilters" iskey="true" value="9">
       <property name="Item1" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], '[a')</property>
+        <property name="FilterText">Starts with([Name], '[a')</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], '[ap')</property>
+        <property name="FilterText">Starts with([Name], '[ap')</property>
+      </property>
+      <property name="Item3" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], '[al')</property>
+        <property name="FilterText">Starts with([Name], '[al')</property>
+      </property>
+      <property name="Item4" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], 'ai')</property>
+        <property name="FilterText">Starts with([Name], 'ai')</property>
+      </property>
+      <property name="Item5" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], 'a')</property>
+        <property name="FilterText">Starts with([Name], 'a')</property>
+      </property>
+      <property name="Item6" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], 'produ')</property>
+        <property name="FilterText">Starts with([Name], 'produ')</property>
+      </property>
+      <property name="Item7" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'prod')</property>
         <property name="FilterText">Starts with([Name], 'prod')</property>
       </property>
-      <property name="Item2" isnull="true" iskey="true">
+      <property name="Item8" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'pro')</property>
         <property name="FilterText">Starts with([Name], 'pro')</property>
       </property>
-      <property name="Item3" isnull="true" iskey="true">
+      <property name="Item9" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'pr')</property>
         <property name="FilterText">Starts with([Name], 'pr')</property>
       </property>
-      <property name="Item4" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'p')</property>
-        <property name="FilterText">Starts with([Name], 'p')</property>
-      </property>
-      <property name="Item5" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'new')</property>
-        <property name="FilterText">Starts with([Name], 'new')</property>
-      </property>
-      <property name="Item6" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'ne')</property>
-        <property name="FilterText">Starts with([Name], 'ne')</property>
-      </property>
-      <property name="Item7" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'n')</property>
-        <property name="FilterText">Starts with([Name], 'n')</property>
-      </property>
-      <property name="Item8" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'т')</property>
-        <property name="FilterText">Starts with([Name], 'т')</property>
-      </property>
-      <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'ту')</property>
-        <property name="FilterText">Starts with([Name], 'ту')</property>
-      </property>
     </property>
-    <property name="FilterString">StartsWith([Name], 'produ')</property>
+    <property name="FilterString">StartsWith([Name], '[')</property>
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>

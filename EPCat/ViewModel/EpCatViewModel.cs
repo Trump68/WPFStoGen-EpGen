@@ -398,7 +398,7 @@ namespace EPCat
             }
         }
 
-        internal void AddCombinedScene(bool incurrentgroup,bool toEnd, int? kind)
+        internal void AddCombinedScene(bool incurrentgroup,bool toEnd, int group, int? kind)
         {
             if (this.CurrentFolder == null) return;
             //var last = this.CurrentFolder.CombinedScenes.LastOrDefault();
@@ -420,7 +420,7 @@ namespace EPCat
                     }
                     else
                     {
-                        string newgroup = IncrementGroup(newclipinfo.Group);
+                        string newgroup = IncrementGroup(newclipinfo.Group, group);
                         newclipinfo.Group = newgroup;
                     }
 
@@ -465,15 +465,15 @@ namespace EPCat
 
         }
 
-        private string IncrementGroup(string v)
+        private string IncrementGroup(string v, int group)
         {
             var vals = v.Split('.');
             if (vals.Length == 0) return v;
             int d;
-            if (int.TryParse(vals[0], out d))
+            if (int.TryParse(vals[group], out d))
             {
                 ++d;
-                vals[0] = (d.ToString("D" + vals[0].Length));
+                vals[group] = (d.ToString("D" + vals[group].Length));
             }    
             return string.Join(".", vals);
         }
@@ -622,13 +622,6 @@ namespace EPCat
             RaisePropertyChanged(() => this.RepeatedText);
         }
 
-        //internal string  GoGenerateScenario(string storyname)
-        //{         
-        //    string filename = Generator.MakeScenario(StoryWorkDir, storyname);
-        //    if (string.IsNullOrEmpty(filename))
-        //        return null;
-        //    return Path.Combine(StoryWorkDir, $"{filename}.epcatsi");
-        //}
 
         internal string GoGenerateScenario(EpItem item)
         {
@@ -636,6 +629,51 @@ namespace EPCat
             if (string.IsNullOrEmpty(filename))
                 return null;
             return Path.Combine(item.ItemDirectory, $"{filename}.epcatsi");
+        }
+
+        internal void CopyPasteDescriptionGroup()
+        {
+            string descr = CurrentCombinedScene.Description;
+            var tocopylist = Story.SceneInfos.Where(x => x.Description == descr).ToList();
+            TicTakToe.CopiedCombinedScene.Clear();
+            foreach (var item in tocopylist)
+            {
+                TicTakToe.CopiedCombinedScene.Add(item.GenerateString());
+            }
+            string newgroup = null;
+            string oldgroup = null;
+            foreach (var item in TicTakToe.CopiedCombinedScene)
+            {
+                Info_Scene newclipinfo = new Info_Scene();
+                newclipinfo.LoadFromString(item);
+                newclipinfo.Description = IncrementDescr(descr);
+               
+                if (oldgroup != newclipinfo.Group)
+                {
+                    oldgroup = newclipinfo.Group;
+                    newgroup = null;
+                }
+                if (newgroup == null)
+                {
+                   
+                    newgroup = this.Story.SceneInfos.Max(x => x.Group);
+                    newgroup = IncrementGroup(newgroup, 0);
+                }
+                newclipinfo.Group = newgroup;
+                addNewComb(newclipinfo);
+            }
+
+        }
+
+        private string IncrementDescr(string descr)
+        {
+            int d;
+            if (int.TryParse(descr, out d))
+            {
+                ++d;
+                descr = (d.ToString("D" + descr.Length));
+            }
+            return descr;
         }
     }
 
