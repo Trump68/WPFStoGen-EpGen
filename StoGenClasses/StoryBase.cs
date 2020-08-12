@@ -40,6 +40,7 @@ namespace StoGenerator
             SceneInfos.Add(title);
             IncrementGroup();
         }
+        public string CatalogPath;
         protected override string GetParameters()
         {
             return

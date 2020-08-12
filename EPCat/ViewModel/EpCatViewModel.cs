@@ -424,9 +424,22 @@ namespace EPCat
                         newclipinfo.Group = newgroup;
                     }
 
-                    if (clip != null && newclipinfo.Kind == 0)
+                    if (newclipinfo.Kind == 0)
                     {
-                        newclipinfo.File = clip;
+                        if (clip != null)
+                            newclipinfo.File = clip;
+                        else
+                        {
+                            string file = Path.GetFileNameWithoutExtension(newclipinfo.File);
+                            int val;
+                            if (int.TryParse(file, out val))
+                            {
+                                val++;
+                                string newval = val.ToString("D" + file.Length);
+                                newclipinfo.File = newclipinfo.File.Replace(file, $"{newval}");
+                            }
+                        }
+                            
                     }
                     else if (newclipinfo.Kind == 8)
                     {
@@ -616,12 +629,24 @@ namespace EPCat
             List<string> rez = new List<string>();
             for (int i = RepeatedTextStart; i <= RepeatedTextEnd; i++)
             {
-                rez.Add(RepeatedText.Replace("[x]",$"{i}"));
+                CopyGroup(false, false, 0);
             }
-            RepeatedText = string.Join(Environment.NewLine, rez.ToArray());
-            RaisePropertyChanged(() => this.RepeatedText);
+            //RaisePropertyChanged(() => this.RepeatedText);
         }
 
+        public void CopyGroup(bool atEnd, bool toEnd, int group)
+        {
+            if (atEnd)
+            {
+                CurrentCombinedScene =
+                Story.SceneInfos.LastOrDefault();
+            }
+            //save
+            CopyCombinedScene(true);
+            AddCombinedScene(false, toEnd, group, null);
+            // reset
+            RefreshFolder();
+        }
 
         internal string GoGenerateScenario(EpItem item)
         {

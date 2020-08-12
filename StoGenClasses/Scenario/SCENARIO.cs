@@ -420,7 +420,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             List<string> clipsinstr = new List<string>(File.ReadAllLines(origfile));
             scenario.LoadFrom(clipsinstr);
 
-            string tempPath = Path.Combine(ScenDir, "_ZIPTEMP");
+            string tempPath = Path.Combine(ScenDir, $"_ZIPTEMP_{DateTime.Now.Month}_{DateTime.Now.Day}_{DateTime.Now.Hour}_{DateTime.Now.Minute}_{DateTime.Now.Second}");
             if (Directory.Exists(tempPath))
             {
                 Directory.Delete(tempPath, true);
@@ -494,9 +494,23 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
 
             foreach (var file in files)
             {
-                if (File.Exists(file))
+                string f = file;
+                if (file.StartsWith(@".\"))
                 {
-                    string newfilename = Path.GetFileName(file);
+                    if (!string.IsNullOrEmpty(original.DefVisFile))
+                    {
+                        f = file.Replace(@".\", $@"{original.DefVisFile}\");
+                    }
+                    else
+                    {
+                        f = file.Replace(@".\", $@"{ScenDir}\DATA\");
+                        //return path.Replace(@".\", $@"{Story.CatalogPath}\DATA\");
+                    }
+                }
+
+                if (File.Exists(f))
+                {
+                    string newfilename = Path.GetFileName(f);
                     string ext = Path.GetExtension(newfilename).ToUpper();
                     string subdir = string.Empty;
                     if (ext == ".M4V")
@@ -514,7 +528,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                     subdir = Path.Combine(tempPath, subdir);
                     Directory.CreateDirectory(subdir);
                     string newfilepath = Path.Combine(subdir, newfilename);
-                    File.Copy(file, newfilepath, false);
+                    File.Copy(f, newfilepath, false);
                 }
             }
 

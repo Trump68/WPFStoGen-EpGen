@@ -15,7 +15,7 @@
         xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
         x:Class="EPCat.MainWindow"
         mc:Ignorable="d"
-        Title="EP CATALOGUE" Height="593.484" Width="1290.694" Closing="Window_Closing" 
+        Title="EP CATALOGUE" Height="782.484" Width="1302.694" Closing="Window_Closing" 
         Loaded="Window_Loaded"
         KeyDown="Window_KeyDown"
         WindowState="Maximized" Icon="Papirus-Team-Papirus-Apps-Rocket-league.ico">
@@ -561,8 +561,8 @@
                         <StackPanel>
                             <MediaElement x:Name="minionPlayer" Margin="0"                         
                              ScrubbingEnabled="True"
-                             MinHeight="200"
-                             MaxHeight="600"
+                             MinHeight="600"
+                             MaxHeight="1200"
                              LoadedBehavior="Manual"
                              HorizontalAlignment="Left"/>
                             <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarPosition"
@@ -628,7 +628,7 @@
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
 
-           
+
             <dx:DXTabItem Header="Tools">
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">

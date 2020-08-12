@@ -51,16 +51,17 @@ namespace StoGenerator
         public static StoryBase LoadScenario(List<string> clipsinstr, EpItem item, string filename = null)
         {
             StoryBase story = null;
-            if (item.Kind.Trim() == "STOGEN-ART")
-            {
-                story = new ArtGenerator(item);
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(item.Name))
-                    item.Name = SCENARIO.GetNameFromData(clipsinstr);
-                story = getScen(item.Name);
-            }
+            story = new ArtGenerator(item);
+            //if (item.Kind.Trim() == "STOGEN-ART")
+            //{
+            //    story = new ArtGenerator(item);
+            //}
+            //else
+            //{
+            //    if (string.IsNullOrEmpty(item.Name))
+            //        item.Name = SCENARIO.GetNameFromData(clipsinstr);
+            //    story = getScen(item.Name);
+            //}
 
             story.LoadFrom(clipsinstr);
             if (!string.IsNullOrEmpty(filename))

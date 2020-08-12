@@ -195,20 +195,31 @@ namespace EPCat
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
             this.NavTabGroup.SelectedContainer = this.EditTab;
-            if ((this.DataContext as EpCatViewModel).CurrentClip == null) return;
-            var videos = (this.DataContext as EpCatViewModel).CurrentFolder.Videos;
-            if (!videos.Any()) return;
-            string path = videos.First();
-            (this.DataContext as EpCatViewModel).ClipToProcess = path;
+            string path = null;
+            if ((this.DataContext as EpCatViewModel).CurrentClip != null)
+            {
+                var videos = (this.DataContext as EpCatViewModel).CurrentFolder.Videos;
+                if (videos.Any())
+                {
+                    path = videos.First();
+                    ViewModel.ClipToProcess = path;
+                }
+            }
+            if (string.IsNullOrEmpty(path) && !string.IsNullOrEmpty(ViewModel.ClipToProcess))
+            {
+                path = ViewModel.ClipToProcess;
+            }
+            if (string.IsNullOrEmpty(path)) return;
+
+
             minionPlayer.MediaOpened -= minionPlayer_MediaOpened;
             minionPlayer.MediaOpened += minionPlayer_MediaOpened;
-            if (!string.IsNullOrEmpty((this.DataContext as EpCatViewModel).ClipToProcess))
-            {
+
                 minionPlayer.Stop();
-                minionPlayer.Source = new Uri((this.DataContext as EpCatViewModel).ClipToProcess);
+                minionPlayer.Source = new Uri(ViewModel.ClipToProcess);
                 minionPlayer.Play();
                 minionPlayer.Pause();
-            }
+
         }
 
 
@@ -364,7 +375,7 @@ namespace EPCat
             this.ImportMedia(str3);
             if (addGroup)
             {
-                this.CopyGroup(true,false,0);
+                ViewModel.CopyGroup(true,false,0);
             }
         }
         private void ImportMedia(string path)
@@ -570,7 +581,7 @@ namespace EPCat
         private void btnSetPositionSave_Click(object sender, RoutedEventArgs e)
         {
             //save
-            CopyGroup(false,false,0);
+            ViewModel.CopyGroup(false,false,0);
             //save
             (this.DataContext as EpCatViewModel).SaveClipTemplate();            
             // reset
@@ -596,19 +607,7 @@ namespace EPCat
         }       
 
 
-        public void CopyGroup(bool atEnd, bool toEnd, int group)
-        {
-            if (atEnd)
-            {
-                ViewModel.CurrentCombinedScene =
-                ViewModel.Story.SceneInfos.LastOrDefault();
-            }
-            //save
-            ViewModel.CopyCombinedScene(true);
-            ViewModel.AddCombinedScene(false, toEnd, group, null);
-            // reset
-            ViewModel.RefreshFolder();
-        }
+      
         private void RestoreVideoPosition()
         {
             TimeSpan timespan = TimeSpan.FromSeconds(double.Parse(txtPosition.Text));
@@ -656,12 +655,12 @@ namespace EPCat
         }
         private void CopyGroupBtn_Click(object sender, RoutedEventArgs e)
         {
-            CopyGroup(false, true,0);
+            ViewModel.CopyGroup(false, true,0);
         }
 
         private void CopyGroupBtn1_Click(object sender, RoutedEventArgs e)
         {
-            CopyGroup(false, false,0);
+            ViewModel.CopyGroup(false, false,0);
         }
 
         private void btnGoRepeatText_Click(object sender, RoutedEventArgs e)
@@ -715,7 +714,7 @@ namespace EPCat
 
         private void CopyGroupBtn3_Click(object sender, RoutedEventArgs e)
         {
-            CopyGroup(false, false,1);
+            ViewModel.CopyGroup(false, false,1);
         }
 
         private void CopyDescrBtn1_Click(object sender, RoutedEventArgs e)

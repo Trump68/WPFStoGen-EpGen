@@ -33,12 +33,15 @@ DefVisFile =
 PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         }
         private EpItem CatalogItem;
+        
+
         public ArtGenerator(EpItem catalogItem) : base()
         {
             CatalogItem = catalogItem;
             this.Name = CatalogItem.Name;
             this.FileName = this.Name;
             Art = new Person();
+            this.CatalogPath = CatalogItem.ItemDirectory;
             Art.ImagePath = Path.Combine(CatalogItem.ItemDirectory, "DATA");
             this.IsGenerationAllowed = false;
         }

@@ -53,6 +53,10 @@ namespace StoGen.Classes.Data.Games
                 {
                     return path.Replace(@".\", $@"{Story.DefVisFile}\");
                 }
+                else 
+                {
+                    return path.Replace(@".\", $@"{Story.CatalogPath}\DATA\");
+                }
             }
             
             return path;
