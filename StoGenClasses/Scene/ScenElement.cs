@@ -219,7 +219,7 @@ namespace StoGenMake.Elements
 
     public class seSo : ScenElement
     {
-       
+        public bool Muted = false;
         public int V = 100;
         public string Group;
         public int StartPlay = -1;
@@ -253,6 +253,7 @@ namespace StoGenMake.Elements
             result.Start = (this.StartPlay == 1);
             result.Transition = this.T;
             result.Volume = this.V;
+            result.isMute = this.Muted;
             return result;
         }
     }

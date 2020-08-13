@@ -700,6 +700,42 @@ namespace EPCat
             }
             return descr;
         }
+
+        internal void CompileOne()
+        {
+            if (this.CurrentCombinedScene == null) return;
+            StoryBase StoryCopy = new StoryBase();
+            StoryCopy.FileName = this.CurrentCombinedScene.Group.Replace(".","_");
+            StoryCopy.RawParameters = this.Story.RawParameters;
+            StoryCopy.AssignRawParameters();
+            StoryCopy.Story = this.Story.Story;
+
+            var col = this.Story.SceneInfos.Where(x => x.Description.Contains("intro"));
+            foreach (var item in col)
+            {
+                TicTakToe.CopiedCombinedScene.Add(item.GenerateString());
+            }
+
+            col = this.Story.SceneInfos.Where(x => x.Group == this.CurrentCombinedScene.Group);
+            foreach (var item in col)
+            {
+                TicTakToe.CopiedCombinedScene.Add(item.GenerateString());
+            }
+
+            
+            //AddCombinedScene(true, true, 0, null);
+            if (TicTakToe.CopiedCombinedScene != null && TicTakToe.CopiedCombinedScene.Any())
+            {
+                foreach (var item in TicTakToe.CopiedCombinedScene)
+                {
+                    Info_Scene newclipinfo = new Info_Scene();
+                    newclipinfo.LoadFromString(item);
+                    StoryCopy.SceneInfos.Add(newclipinfo);
+                }
+                StoryCopy.SaveToFile(this.CurrentFolder.ItemDirectory, this.CurrentFolder.ItemTempDirectory);
+                SCENARIO.PackScenario(StoryCopy, CurrentFolder.ItemDirectory);
+            }
+        }
     }
 
 }

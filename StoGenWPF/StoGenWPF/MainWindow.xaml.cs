@@ -29,9 +29,25 @@ namespace StoGenWPF
         private MediaPlayer Sound03 = new MediaPlayer();
         private MediaPlayer Sound04 = new MediaPlayer();
         private MediaPlayer Sound05 = new MediaPlayer();
+        private MediaPlayer Sound06 = new MediaPlayer();
+        private MediaPlayer Sound07 = new MediaPlayer();
+        private MediaPlayer Sound08 = new MediaPlayer();
+        private MediaPlayer Sound09 = new MediaPlayer();
+        private MediaPlayer Sound10 = new MediaPlayer();
+        private MediaPlayer Sound11 = new MediaPlayer();
+        private MediaPlayer Sound12 = new MediaPlayer();
+        private MediaPlayer Sound13 = new MediaPlayer();
+        private MediaPlayer Sound14 = new MediaPlayer();
+        private MediaPlayer Sound15 = new MediaPlayer();
+        private MediaPlayer Sound16 = new MediaPlayer();
+        private MediaPlayer Sound17 = new MediaPlayer();
+        private MediaPlayer Sound18 = new MediaPlayer();
+        private MediaPlayer Sound19 = new MediaPlayer();
+        private MediaPlayer Sound20 = new MediaPlayer();
         public BaseScene Scene;
         
         public bool StartOnLoad { get; set; } = true;
+        SoundOptions SoundOptionsForm = new SoundOptions();
 
         public MainWindow()
         {
@@ -58,6 +74,21 @@ namespace StoGenWPF
             Projector.Sound.Add(this.Sound03);
             Projector.Sound.Add(this.Sound04);
             Projector.Sound.Add(this.Sound05);
+            Projector.Sound.Add(this.Sound06);
+            Projector.Sound.Add(this.Sound07);
+            Projector.Sound.Add(this.Sound08);
+            Projector.Sound.Add(this.Sound09);
+            Projector.Sound.Add(this.Sound10);
+            Projector.Sound.Add(this.Sound11);
+            Projector.Sound.Add(this.Sound12);
+            Projector.Sound.Add(this.Sound13);
+            Projector.Sound.Add(this.Sound14);
+            Projector.Sound.Add(this.Sound15);
+            Projector.Sound.Add(this.Sound16);
+            Projector.Sound.Add(this.Sound17);
+            Projector.Sound.Add(this.Sound18);
+            Projector.Sound.Add(this.Sound19);
+            Projector.Sound.Add(this.Sound20);
             Projector.PicContainer.PicList.Add(this.Picture1);
             Projector.PicContainer.PicList.Add(this.Picture2);
             Projector.PicContainer.PicList.Add(this.Picture3);
@@ -149,6 +180,13 @@ namespace StoGenWPF
             {
                 InfoLocation.Visibility = (InfoLocation.Visibility ==Visibility.Visible) ? Visibility.Hidden : Visibility.Visible;
                 InfoDate.Visibility = (InfoDate.Visibility == Visibility.Visible) ? Visibility.Hidden : Visibility.Visible;
+            }
+            else if (e.Key == Key.F6)
+            {
+                if (!SoundOptionsForm.Visible)
+                    SoundOptionsForm.ShowDialog();
+                else
+                    SoundOptionsForm.Hide();
             }
             else if (e.Key == Key.OemPeriod)
             {

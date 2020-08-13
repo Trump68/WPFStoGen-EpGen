@@ -670,14 +670,10 @@ namespace EPCat
 
         private void btnGoGenerate_Click(object sender, RoutedEventArgs e)
         {
-            GenerateScenario(null);
+            //GenerateScenario(null);
+            ViewModel.CompileOne();
         }
-        //private void GenerateScenario(string name)
-        //{
-        //    var fn = ViewModel.GoGenerateScenario(name);
-        //    if (!string.IsNullOrEmpty(fn))
-        //            ViewModel.LoadScenario(fn, name);
-        //}
+
         private void GenerateScenario(EpItem item)
         {
             var fn = ViewModel.GoGenerateScenario(item);

@@ -11,7 +11,7 @@ namespace StoGen.Classes
 
     public class FrameSound : Frame
     {
-        public static SoundItem[] PlayingItems = new SoundItem[] { null, null, null, null, null };
+        public static SoundItem[] PlayingItems = new SoundItem[] { null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null };
 
         public List<SoundItem> SoundList { get; set; }
         public Timer timer;
@@ -106,6 +106,22 @@ namespace StoGen.Classes
         SoundItem CurrItem2;
         SoundItem CurrItem3;
         SoundItem CurrItem4;
+        SoundItem CurrItem5;
+        SoundItem CurrItem6;
+        SoundItem CurrItem7;
+        SoundItem CurrItem8;
+        SoundItem CurrItem9;
+        SoundItem CurrItem10;
+        SoundItem CurrItem11;
+        SoundItem CurrItem12;
+        SoundItem CurrItem13;
+        SoundItem CurrItem14;
+        SoundItem CurrItem15;
+        SoundItem CurrItem16;
+        SoundItem CurrItem17;
+        SoundItem CurrItem18;
+        SoundItem CurrItem19;
+
         List<SoundItem> GroupItems = new List<SoundItem>();
 
         private void StartPlayer(int N, SoundItem item)
@@ -128,8 +144,10 @@ namespace StoGen.Classes
         }
         private void SetSoundOneItem(int position, SoundItem item)
         {
-            Projector.Sound[position].Volume = (double)item.Volume / 1000;
+            
             Projector.Sound[position].IsMuted = item.isMute;
+            Projector.Sound[position].Volume = (double)item.Volume / 1000;
+            
             PlayingItems[position] = item;
             if (!string.IsNullOrEmpty(item.Transition))
             {
@@ -150,7 +168,23 @@ namespace StoGen.Classes
                     else if (position == 1) { CurrItem1 = item; StartPlayer(1, item); }
                     else if (position == 2) { CurrItem2 = item; StartPlayer(2, item); }
                     else if (position == 3) { CurrItem3 = item; StartPlayer(3, item); }                
-                    else if (position == 4) { CurrItem4 = item; StartPlayer(4, item); }
+                    else if (position == 4) { CurrItem4 = item; StartPlayer(4, item); }                   
+                    else if (position == 5) { CurrItem5 = item; StartPlayer(5, item); }
+                    else if (position == 6) { CurrItem6 = item; StartPlayer(6, item); }
+                    else if (position == 7) { CurrItem7 = item; StartPlayer(7, item); }
+                    else if (position == 8) { CurrItem8 = item; StartPlayer(8, item); }
+                    else if (position == 9) { CurrItem9 = item; StartPlayer(9, item); }
+                    else if (position == 10) { CurrItem10 = item; StartPlayer(10, item); }
+                    else if (position == 11) { CurrItem11 = item; StartPlayer(11, item); }
+                    else if (position == 12) { CurrItem12 = item; StartPlayer(12, item); }
+                    else if (position == 13) { CurrItem13 = item; StartPlayer(13, item); }
+                    else if (position == 14) { CurrItem14 = item; StartPlayer(14, item); }
+                    else if (position == 15) { CurrItem15 = item; StartPlayer(15, item); }
+                    else if (position == 16) { CurrItem16 = item; StartPlayer(16, item); }
+                    else if (position == 17) { CurrItem17 = item; StartPlayer(17, item); }
+                    else if (position == 18) { CurrItem18 = item; StartPlayer(18, item); }
+                    else if (position == 19) { CurrItem19 = item; StartPlayer(19, item); }
+
                 }
                 else if (Projector.Sound[position].Source.LocalPath == item.FileName)
                 {

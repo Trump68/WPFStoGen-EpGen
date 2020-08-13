@@ -150,7 +150,8 @@ namespace StoGen.Classes.Data.Games
                 {
                     volume = int.Parse(rez.X);
                 }
-                this.AddMusic(rez.File, volume);
+                bool muted = (rez.Y == "1");
+                this.AddMusic(rez.File, volume, muted);
             }
 
             Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();

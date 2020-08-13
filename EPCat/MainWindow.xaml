@@ -195,7 +195,7 @@
                                 <dx:SimpleButton x:Name="CompileScenarioBtn" Content="Compile" Width="80" Margin="100,4,0,0" HorizontalAlignment="Left" Click="CompileScenarioBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="GoGenerateBtn2" Content="Generate One" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoGenerate_Click" FontWeight="Bold" Foreground="#FF3F55B8" />
+                                <dx:SimpleButton x:Name="GoGenerateBtn2" Content="Compile One" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoGenerate_Click" FontWeight="Bold" Foreground="#FF3F55B8" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="GoGenerateBtn3" Content="Generate Cur" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoGenerateDefault_Click" FontWeight="Bold" Background="#FF1DBB5E" Foreground="#FF1CD114" />

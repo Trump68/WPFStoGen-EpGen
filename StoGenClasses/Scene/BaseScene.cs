@@ -39,7 +39,7 @@ namespace StoGenMake.Scenes.Base
         {
             CurrentSounds.RemoveAll(x => x.Name == "MUSIC");
         }
-        public void AddMusic(string file, int volume)
+        public void AddMusic(string file, int volume, bool muted)
         {
             //RemoveMusic();
             var exist = CurrentSounds.Where(x => x.File == file).FirstOrDefault();
@@ -55,7 +55,8 @@ namespace StoGenMake.Scenes.Base
                     Name = "MUSIC",
                     StartPlay = 1,
                     IsLoop = true,
-                    V = volume
+                    V = volume,
+                    Muted = muted,
                 });
             }
         }

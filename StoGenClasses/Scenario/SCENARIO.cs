@@ -411,6 +411,8 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                     File.Delete(fn);
                 }
             }
+            if (!Directory.Exists(ScenDir))
+                Directory.CreateDirectory(ScenDir);
             File.WriteAllLines(fn, lines);
         }
         public static void PackScenario(SCENARIO original, string ScenDir)
