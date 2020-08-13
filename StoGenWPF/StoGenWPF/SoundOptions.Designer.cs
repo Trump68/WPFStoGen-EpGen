@@ -302,6 +302,7 @@
             this.Text = "SoundOptions";
             this.TopMost = true;
             this.Activated += new System.EventHandler(this.SoundOptions_Activated);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SoundOptions_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

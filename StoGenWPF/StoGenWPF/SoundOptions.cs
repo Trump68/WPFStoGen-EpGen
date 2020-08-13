@@ -186,5 +186,13 @@ namespace StoGenWPF
         {
             set(19, sender as CheckBox);
         }
+
+        private void SoundOptions_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Hide();
+            }
+        }
     }
 }
