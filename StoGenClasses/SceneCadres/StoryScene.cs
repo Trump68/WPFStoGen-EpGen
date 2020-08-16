@@ -6,6 +6,7 @@ using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -144,6 +145,91 @@ namespace StoGen.Classes.Data.Games
                 if (!string.IsNullOrEmpty(rez.File) && rez.File.StartsWith(@".\") && !string.IsNullOrEmpty(Story.GamePath))
                 {
                     rez.File = rez.File.Replace(@".\", $@"{Story.GamePath}\");
+                }
+                if (!string.IsNullOrEmpty(rez.File) && rez.File.StartsWith(@"zip:"))
+                {
+                    var val = rez.File.Split(':');
+                    string zipfile = val[1];
+                    string zipentry = val[2];
+                    string zipfullpath = Path.GetDirectoryName(zipfile);
+
+                    if (string.IsNullOrEmpty(zipfullpath))
+                    {
+                        string zippath = null;
+                        if (!string.IsNullOrEmpty(Story.GamePath))
+                        {
+                            zippath = Story.GamePath;
+                        }
+                        else if (!string.IsNullOrEmpty(Story.CatalogPath))
+                        {
+                            zippath = Story.CatalogPath;
+                        }
+                        zipfullpath = Path.Combine(zippath, zipfile);
+                        if (!File.Exists(zipfullpath))
+                        {
+                            var di = Directory.GetParent(Path.GetDirectoryName(zipfullpath));
+                            if (di != null)
+                            {
+                                zippath = di.FullName;
+                                zipfullpath = Path.Combine(zippath, zipfile);
+                                if (!File.Exists(zipfullpath))
+                                {
+                                    di = Directory.GetParent(Path.GetDirectoryName(zipfullpath));
+                                    if (di != null)
+                                    {
+                                        zippath = di.FullName;
+                                        zipfullpath = Path.Combine(zippath, zipfile);
+                                        if (!File.Exists(zipfullpath))
+                                        {
+                                            di = Directory.GetParent(Path.GetDirectoryName(zipfullpath));
+                                            if (di != null)
+                                            {
+                                                zippath = di.FullName;
+                                                zipfullpath = Path.Combine(zippath, zipfile);
+                                                if (!File.Exists(zipfullpath))
+                                                {
+                                                    di = Directory.GetParent(Path.GetDirectoryName(zipfullpath));
+                                                    if (di != null)
+                                                    {
+                                                        zippath = di.FullName;
+                                                        zipfullpath = Path.Combine(zippath, zipfile);
+                                                        if (!File.Exists(zipfullpath))
+                                                        {
+                                                            di = Directory.GetParent(Path.GetDirectoryName(zipfullpath));
+                                                            if (di != null)
+                                                            {
+                                                                zippath = di.FullName;
+                                                                zipfullpath = Path.Combine(zippath, zipfile);
+                                                                if (!File.Exists(zipfullpath))
+                                                                {
+                                                                    di = Directory.GetParent(Path.GetDirectoryName(zipfullpath));
+                                                                    if (di != null)
+                                                                    {
+                                                                        zippath = di.FullName;
+                                                                        zipfullpath = Path.Combine(zippath, zipfile);
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    string pathtoextract = Path.Combine(Path.GetDirectoryName(zipfullpath), Path.GetFileNameWithoutExtension(zipfile));
+                    if (!Directory.Exists(pathtoextract))
+                        Directory.CreateDirectory(pathtoextract);
+                    var za = ZipFile.OpenRead(zipfullpath);
+                    var ze = za.GetEntry(zipentry);
+                    pathtoextract = Path.Combine(pathtoextract, ze.FullName);
+                    if (!File.Exists(pathtoextract))
+                        ze.ExtractToFile(pathtoextract,false);                    
+                    rez.File = pathtoextract;
                 }
                 int volume = 100;
                 if (!string.IsNullOrEmpty(rez.X))

@@ -268,7 +268,7 @@ namespace StoGenWPF
                         int val;
                         if (int.TryParse(item.Replace("PAGE=", string.Empty), out val))
                         {
-                            StartPageNum = val;
+                            StartPageNum = (--val);
                         }
                     }
                     else if (item.StartsWith("FIXPAGE="))

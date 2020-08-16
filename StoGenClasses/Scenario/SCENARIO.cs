@@ -455,8 +455,11 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                         }
                         else if (scenario.packSound && (ext == ".MP3" || ext == ".WAV" || ext == ".OGG"))
                         {
-                            add = true;
-                            subdir = "SOUND";
+                            if (!scene.File.StartsWith("zip:"))
+                            {
+                                add = true;
+                                subdir = "SOUND";
+                            }
                         }
                         if (add)
                         {
@@ -464,8 +467,13 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                             if (!files.Contains(scene.File))
                             {
                                 files.Add(f);
-                            }                          
-                            scene.File = $@".\{subdir}\{Path.GetFileName(scene.File)}";
+                            }       
+                            if (subdir == "SOUND")
+                            {
+                                scene.File = $@"zip:sound.zip:{Path.GetFileName(scene.File)}";
+                            }
+                            else
+                                scene.File = $@".\{subdir}\{Path.GetFileName(scene.File)}";
                         }
 
                     }
@@ -536,6 +544,32 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
 
             scenario.SaveToFile(tempPath,null);
 
+
+            string sounddir = Path.Combine(tempPath, "SOUND");
+            if (Directory.Exists(sounddir))
+            {
+                string soundzip = Path.Combine(ScenDir, "sound.zip");
+                if (!File.Exists(soundzip))
+                {
+                    ZipFile.CreateFromDirectory(sounddir, soundzip,CompressionLevel.Optimal,false);
+                }
+                if (File.Exists(soundzip))
+                {
+                    var za = ZipFile.Open(soundzip,ZipArchiveMode.Update);
+                    var soundfiles = Directory.GetFiles(sounddir);
+                    foreach (var item in soundfiles)
+                    {
+                        var ze = za.GetEntry(Path.GetFileName(item));
+                        if (ze == null)
+                        {
+                            za.CreateEntryFromFile(item, Path.GetFileName(item));
+                        }                       
+                    }
+                    za.Dispose();
+                }
+                Directory.EnumerateFiles(sounddir).ToList().ForEach(x => File.Delete(x));
+                Directory.Delete(sounddir, true);
+            }
 
             string zipPath = Path.Combine(ScenDir, Path.ChangeExtension(scenario.FileName, ".epcatsz"));
             if (File.Exists(zipPath))
