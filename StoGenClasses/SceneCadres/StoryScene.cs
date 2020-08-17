@@ -339,7 +339,7 @@ namespace StoGen.Classes.Data.Games
                             textlist = new List<string>(File.ReadAllLines(filename));
                         }
                     }
-                    if (!string.IsNullOrEmpty(section))
+                    if (!string.IsNullOrEmpty(section) && (textlist!=null))
                     {
                         bool gotcha = false;
                         foreach (string line in textlist)

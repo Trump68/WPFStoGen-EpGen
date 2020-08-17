@@ -269,45 +269,49 @@
       </property>
     </property>
     <property name="TotalSummary" iskey="true" value="0" />
-    <property name="MRUFilters" iskey="true" value="9">
+    <property name="MRUFilters" iskey="true" value="10">
       <property name="Item1" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], '[') And StartsWith([Kind], 'STOGEN-STORY')</property>
-        <property name="FilterText">Starts with([Name], '[') And Starts with([Kind], 'STOGEN-STORY')</property>
+        <property name="FilterString">StartsWith([Name], 't')</property>
+        <property name="FilterText">Starts with([Name], 't')</property>
       </property>
       <property name="Item2" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], '[')</property>
-        <property name="FilterText">Starts with([Name], '[')</property>
+        <property name="FilterString">StartsWith([Name], 'p')</property>
+        <property name="FilterText">Starts with([Name], 'p')</property>
       </property>
       <property name="Item3" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], '[a')</property>
-        <property name="FilterText">Starts with([Name], '[a')</property>
+        <property name="FilterString">StartsWith([Name], 'pe')</property>
+        <property name="FilterText">Starts with([Name], 'pe')</property>
       </property>
       <property name="Item4" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], '[ap')</property>
-        <property name="FilterText">Starts with([Name], '[ap')</property>
+        <property name="FilterString">StartsWith([Name], 'pro')</property>
+        <property name="FilterText">Starts with([Name], 'pro')</property>
       </property>
       <property name="Item5" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], '[al')</property>
-        <property name="FilterText">Starts with([Name], '[al')</property>
+        <property name="FilterString">StartsWith([Name], 'pr')</property>
+        <property name="FilterText">Starts with([Name], 'pr')</property>
       </property>
       <property name="Item6" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'ai')</property>
-        <property name="FilterText">Starts with([Name], 'ai')</property>
+        <property name="FilterString">StartsWith([Name], 'NewInTheCity')</property>
+        <property name="FilterText">Starts with([Name], 'NewInTheCity')</property>
       </property>
       <property name="Item7" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'a')</property>
-        <property name="FilterText">Starts with([Name], 'a')</property>
+        <property name="FilterString">StartsWith([Name], 'Story 03 - Can''t Buy Me Love')</property>
+        <property name="FilterText">Starts with([Name], 'Story 03 - Can''t Buy Me Love')</property>
       </property>
       <property name="Item8" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'produ')</property>
-        <property name="FilterText">Starts with([Name], 'produ')</property>
+        <property name="FilterString">StartsWith([Name], 'ca')</property>
+        <property name="FilterText">Starts with([Name], 'ca')</property>
       </property>
       <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'prod')</property>
-        <property name="FilterText">Starts with([Name], 'prod')</property>
+        <property name="FilterString">StartsWith([Name], 'can')</property>
+        <property name="FilterText">Starts with([Name], 'can')</property>
+      </property>
+      <property name="Item10" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], 'c')</property>
+        <property name="FilterText">Starts with([Name], 'c')</property>
       </property>
     </property>
-    <property name="FilterString">StartsWith([Kind], 'STOGEN-STORY')</property>
+    <property name="FilterString">StartsWith([Name], 'tv')</property>
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>

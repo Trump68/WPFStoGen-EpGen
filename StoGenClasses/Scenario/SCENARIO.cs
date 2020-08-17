@@ -551,8 +551,44 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 string soundzip = Path.Combine(ScenDir, "sound.zip");
                 if (!File.Exists(soundzip))
                 {
-                    ZipFile.CreateFromDirectory(sounddir, soundzip,CompressionLevel.Optimal,false);
+                    var di = Directory.GetParent(Path.GetDirectoryName(soundzip));
+                    if (di != null)
+                    {
+                        soundzip = Path.Combine(di.FullName, "sound.zip");
+                        if (!File.Exists(soundzip))
+                        {
+                            di = Directory.GetParent(Path.GetDirectoryName(soundzip));
+                            if (di != null)
+                            {
+                                soundzip = Path.Combine(di.FullName, "sound.zip");
+                                if (!File.Exists(soundzip))
+                                {
+                                    di = Directory.GetParent(Path.GetDirectoryName(soundzip));
+                                    if (di != null)
+                                    {
+                                        soundzip = Path.Combine(di.FullName, "sound.zip");
+                                        if (!File.Exists(soundzip))
+                                        {
+                                            di = Directory.GetParent(Path.GetDirectoryName(soundzip));
+                                            if (di != null)
+                                            {
+                                                soundzip = Path.Combine(ScenDir, "sound.zip");                                                
+                                            }
+
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
                 }
+                if (!File.Exists(soundzip))
+                {
+                    soundzip = Path.Combine(ScenDir, "sound.zip");
+                    ZipFile.CreateFromDirectory(sounddir, soundzip, CompressionLevel.Optimal, false);
+                }
+                
                 if (File.Exists(soundzip))
                 {
                     var za = ZipFile.Open(soundzip,ZipArchiveMode.Update);
