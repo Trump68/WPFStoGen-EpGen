@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 
 namespace StoGen.Classes
@@ -34,7 +37,20 @@ namespace StoGen.Classes
                     this.Story = value;
             }
         }
-        [XmlIgnore]
+        private ImageSource _Poster;
+
+        public ImageSource Poster
+        {
+            get
+            {
+                return _Poster;               
+                //    return new BitmapImage(new Uri(@"e:\!CATALOG\JAV\PPT\PPT-017\StoryCaps\PPT-017a-0001.jpg"));
+            }
+            set
+            {
+                _Poster = value;
+            }
+        }
         public int KindOrder
         {
             get

@@ -11,7 +11,7 @@ using StoGenMake.Scenes.Base;
 using StoGenMake.Elements;
 using StoGenMake;
 using Menu.Classes;
-
+using StoGen.Classes.Data.Games;
 
 namespace StoGen.Classes
 {

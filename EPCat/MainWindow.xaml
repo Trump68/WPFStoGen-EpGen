@@ -15,7 +15,7 @@
         xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
         x:Class="EPCat.MainWindow"
         mc:Ignorable="d"
-        Title="EP CATALOGUE" Height="782.484" Width="1302.694" Closing="Window_Closing" 
+        Title="EP CATALOGUE" Height="782.484" Width="1429.694" Closing="Window_Closing" 
         Loaded="Window_Loaded"
         KeyDown="Window_KeyDown"
         WindowState="Maximized" Icon="Papirus-Team-Papirus-Apps-Rocket-league.ico">
@@ -426,6 +426,12 @@
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           TextWrapping="NoWrap"  AcceptsReturn="True" Text="{Binding Story.Story}" />
                                         </dxlc:LayoutItem>
+                                        
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0" Margin="0,0,0,-86">
+                                        <dxlc:LayoutItem Label="Poster" LabelPosition="Top">
+                                            <Image Source="{Binding SelectedItem.Poster, ElementName=GVCombScen}" Stretch="Uniform" Margin="0,102,190,10" />
+                                        </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
                                 </dxlc:LayoutGroup>
                             </dxlc:LayoutItem>
@@ -561,8 +567,8 @@
                         <StackPanel>
                             <MediaElement x:Name="minionPlayer" Margin="0"                         
                              ScrubbingEnabled="True"
-                             MinHeight="600"
-                             MaxHeight="1200"
+                             MinHeight="500"
+                             MaxHeight="1000"
                              LoadedBehavior="Manual"
                              HorizontalAlignment="Left"/>
                             <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarPosition"
@@ -607,8 +613,10 @@
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
                                 <Button Margin="5,0,0,0" Content="Set Position" Height="30"
                                   Name="btnSetPosition" Click="btnSetPosition_Click"/>
-                                <Button Margin="5,0,0,0" Content="Save" Height="30"
+                                <Button Margin="5,0,0,0" Content="Save Clip" Height="30"
                                   Name="btnSetPositionSave" Click="btnSetPositionSave_Click"/>
+                                <Button Margin="5,0,0,0" Content="Save Scene" Height="30"
+                                  Name="btnSetPositionSaveScene" Click="btnSetPositionSaveScene_Click"/>
                                 <Label Content="Position:" Margin="5,0,0,0" VerticalAlignment="Center"/>
                                 <TextBox Name="txtPosition" Width="65" Height="24" Text="0.0"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>

@@ -60,6 +60,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 return _FileName;
             }
         }
+        public string FullFileName { set; get; }
         public string Description { set; get; }
         public string Story { set; get; }
         public string Location { set; get; }
@@ -429,17 +430,38 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             }
 
 
+            string scenecapsdir = Path.Combine(Path.GetDirectoryName(origfile), "StoryCaps");
+            bool copycaps = Directory.Exists(scenecapsdir);
+            string tempcapspath = Path.Combine(tempPath, "StoryCaps");
+            if (copycaps && !Directory.Exists(tempcapspath))
+            {                
+                Directory.CreateDirectory(tempcapspath);
+            }
 
             HashSet<string> files = new HashSet<string>();
 
 
             foreach (var scene in scenario.SceneInfos)
             {
+
                 if (!string.IsNullOrEmpty(scene.File))
                 {
+                    if (copycaps)
+                    {
+                        string fn = $"{original.FileName}-{scene.Group}.jpg";
+                        string capspath = Path.Combine(scenecapsdir, fn);
+                        if (File.Exists(capspath))
+                        {                          
+                            string newfilepath = Path.Combine(tempcapspath, fn);
+                            if (!File.Exists(newfilepath))
+                            {
+                                File.Copy(capspath, newfilepath, false);
+                            }
+                        }
+                    }
+
                     if (scene.File.Contains(Path.DirectorySeparatorChar))
                     {
-
                         bool add = false;
                         string subdir = string.Empty;
                         string ext = Path.GetExtension(scene.File).ToUpper();

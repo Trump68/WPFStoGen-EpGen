@@ -553,9 +553,9 @@ namespace EPCat
         private void AddClipBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(true,false,0,8);
+            ViewModel.AddCombinedScene(true,false,0,8);
             // reset
-            (this.DataContext as EpCatViewModel).RefreshFolder();
+            ViewModel.RefreshFolder();
         }
         private void AddSceneHeaderBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -583,7 +583,7 @@ namespace EPCat
             //save
             ViewModel.CopyGroup(false,false,0);
             //save
-            (this.DataContext as EpCatViewModel).SaveClipTemplate();            
+            ViewModel.SaveClipTemplate();            
             // reset
             btnSetPositionReset_Click(null, null);
             (this.DataContext as EpCatViewModel).RefreshFolder();
@@ -629,12 +629,25 @@ namespace EPCat
 
         private void LoadOneSceneFromFileBtn_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = ViewModel.CurrentFolder.ItemDirectory;
-            openFileDialog.Filter = "Scenes|*.epcatsi";
-            if (openFileDialog.ShowDialog() == true)
+            string fn = null;
+            var files = Directory.GetFiles(ViewModel.CurrentFolder.ItemDirectory, "*.epcatsi");
+            if (files.Length == 1)
             {
-                ViewModel.LoadScenario(openFileDialog.FileName, ViewModel.CurrentFolder);
+                fn = files[0];
+            }
+            else
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.InitialDirectory = ViewModel.CurrentFolder.ItemDirectory;
+                openFileDialog.Filter = "Scenes|*.epcatsi";
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    fn = openFileDialog.FileName;
+                }
+            }
+            if (!string.IsNullOrEmpty(fn))
+            {
+                ViewModel.LoadScenario(fn, ViewModel.CurrentFolder);
             }
         }
 
@@ -717,5 +730,30 @@ namespace EPCat
         {
             ViewModel.CopyPasteDescriptionGroup();
         }
+
+        private void btnSetPositionSaveScene_Click(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.Story == null)
+                return;
+            ViewModel.SaveClipTemplate();
+            ViewModel.CopyGroup(true, true, 1);
+            //ViewModel.CurrentCombinedScene =  ViewModel.Story.SceneInfos.LastOrDefault();
+            //ViewModel.CopyCombinedScene(true);
+            var col = ViewModel.Story.SceneInfos.Where(x => x.Group == ViewModel.CurrentCombinedScene.Group && x.Kind == 8);
+            if (col.Any())
+            {
+                col.First().PositionStart = TicTakToe.ClipTemplate.PositionStart.ToString();
+                col.First().PositionEnd = TicTakToe.ClipTemplate.PositionEnd.ToString();
+                col.First().File = TicTakToe.ClipTemplate.File;
+                //col.First().Speed = $"{TicTakToe.ClipTemplate.Speed}";
+            }
+            else
+            {
+                ViewModel.AddCombinedScene(false, true, 0, 8);
+            }
+            ViewModel.RefreshFolder();
+
+        }
+    
     }
 }

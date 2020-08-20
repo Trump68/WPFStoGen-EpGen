@@ -63,9 +63,10 @@ namespace StoGenerator
             //    story = getScen(item.Name);
             //}
 
-            story.LoadFrom(clipsinstr);
+            story.LoadFrom(clipsinstr);            
             if (!string.IsNullOrEmpty(filename))
             {
+                story.FullFileName = filename;
                 story.FileName = Path.GetFileNameWithoutExtension(filename);
             }
             return story;

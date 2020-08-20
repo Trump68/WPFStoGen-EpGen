@@ -2,6 +2,7 @@
 using StoGen.Classes.Scene;
 using StoGen.Classes.Transition;
 using StoGenerator;
+using StoGenMake.Elements;
 using StoGenMake.Scenes.Base;
 using System;
 using System.Collections.Generic;
@@ -20,17 +21,13 @@ namespace StoGen.Classes.Data.Games
         {
             Name = "Scene_Game";
             EngineHiVer = 1;
-            EngineLoVer = 0;
+            EngineLoVer = 0;            
         }
-        StoryBase Story = null;
-        //List<Info_Scene> Queue;
-      
+        public StoryBase Story = null;
         private Info_Scene CurrentBackground;
-
-        //private Dictionary<string, Info_Combo> DefaultVisualDic = new Dictionary<string, Info_Combo>();
-
         public void SetScenario(StoryBase story, string queue)
         {
+            base.CatalogPath = story.CatalogPath;
             Story = story;
             var Queue = story.SceneInfos.Where(x => x.Queue == queue && x.Active).ToList();
             Queue.Sort(delegate (Info_Scene x, Info_Scene y)
@@ -135,6 +132,25 @@ namespace StoGen.Classes.Data.Games
         {
             int i = 1; // picture index to correct add transitions
 
+            seCtrl controldata = null;
+
+                  //Control
+            Info_Scene control = group.Where(x => x.Kind == 10).FirstOrDefault();
+            bool muteAll = false;
+            if (control != null)
+            {
+                controldata = new seCtrl();
+                if (!string.IsNullOrEmpty(control.X))
+                    controldata.TimeToShift = int.Parse(control.X);
+                if (!string.IsNullOrEmpty(control.S))
+                    controldata.TimeToShiftMax = int.Parse(control.S);
+                if (!string.IsNullOrEmpty(control.Y))
+                    controldata.ShiftStep = int.Parse(control.Y);
+                if (!string.IsNullOrEmpty(control.F))
+                    muteAll = (control.F == "1");
+
+            }
+
             // sound
             //this.RemoveMusic();
             this.VOLUME_M = 100;
@@ -236,7 +252,7 @@ namespace StoGen.Classes.Data.Games
                 {
                     volume = int.Parse(rez.X);
                 }
-                bool muted = (rez.Y == "1");
+                bool muted = (rez.Y == "1") || muteAll;
                 this.AddMusic(rez.File, volume, muted);
             }
 
@@ -523,16 +539,9 @@ namespace StoGen.Classes.Data.Games
             var result = CreateCadreData($"{story}", itl, group, indexToInsert);
 
             //Control
-            Info_Scene control = group.Where(x => x.Kind == 10).FirstOrDefault();
-            if (control != null)
+            if (controldata != null)
             {
-                if (!string.IsNullOrEmpty(control.X))
-                    result.ControlData.TimeToShift = int.Parse(control.X);
-                if (!string.IsNullOrEmpty(control.S))
-                    result.ControlData.TimeToShiftMax = int.Parse(control.S);
-                if (!string.IsNullOrEmpty(control.Y))
-                    result.ControlData.ShiftStep = int.Parse(control.Y);
-
+                result.ControlData = controldata;
             }
 
             return result;

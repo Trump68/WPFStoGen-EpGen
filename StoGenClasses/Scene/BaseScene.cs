@@ -201,6 +201,8 @@ namespace StoGenMake.Scenes.Base
         public string Description { get; set; }
         public string Name { get; set; }
         public List<CadreInfo> Cadres { get; set; } = new List<CadreInfo>();
+        public string CatalogPath { get; internal set; }
+
         public string FileToProcess = null;
 
 

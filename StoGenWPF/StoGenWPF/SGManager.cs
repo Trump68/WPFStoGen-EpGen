@@ -10,6 +10,10 @@ using System.Windows.Input;
 using StoGen.Classes.Interfaces;
 using StoGenMake.Scenes.Base;
 using Menu.Classes;
+using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
+using System.IO;
+using StoGen.Classes.Data.Games;
 
 namespace StoGenWPF
 {
@@ -22,14 +26,10 @@ namespace StoGenWPF
 
         #region Runtime compile
 
-        
-        static BaseScene Scene;
+
         internal static void StartMainProc(BaseScene scene,int startpage)
         {
-           // SetMainProcedure(scene, startpage);
-            CurrProc = new CadreController(scene, startpage);
-            //if (startpage != 1)
-            //    CurrProc.GoToCadre(startpage);
+            CurrProc = new CadreController(scene, startpage);            
         }
         internal static void Stop()
         {
@@ -39,14 +39,6 @@ namespace StoGenWPF
                 CurrProc.Stop();
             }
         }
-           
-        //public static void SetMainProcedure(BaseScene scene, int startpage)
-        //{
-        //    CurrProc = new CadreController(scene, startpage);
-        //    if (startpage != 1)
-        //        CurrProc.GoToCadre(startpage);
-        //}
-
 
         internal static void ProcessKeyData(int v)
         {
@@ -86,9 +78,7 @@ namespace StoGenWPF
         internal static void ApplayVisibleChoiceMenu()
         {
             if (CurrProc != null) CurrProc.ApplyContextMenu();
-        }
-
-       
+        }      
         #endregion
 
 

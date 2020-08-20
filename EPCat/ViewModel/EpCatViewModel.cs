@@ -24,6 +24,7 @@ using StoGen.Classes.Data.Games;
 using StoGen.Classes.Scene;
 using StoGenerator;
 using StoGenerator.Stories;
+using System.Windows.Media.Imaging;
 
 namespace EPCat
 {
@@ -138,13 +139,37 @@ namespace EPCat
                             _CurrentCombinedScene = this.Story.SceneInfos.First();
                     }
                 }
+                if (_CurrentCombinedScene != null)
+                    recalculatePoster(_CurrentCombinedScene.Group);
                 return _CurrentCombinedScene;
             }
             set
             {
                 _CurrentCombinedScene = value;
+               
             }
         }
+
+        private void recalculatePoster(string group)
+        {
+            if (Story == null)
+                return;
+            if (_CurrentCombinedScene == null)
+                return;           
+
+            string fn = $"{Story.FileName}-{_CurrentCombinedScene.Group}.jpg";//"PPT-017a-0001.jpg";
+            string fnpath = Path.Combine(Path.GetDirectoryName(Story.FullFileName), "StoryCaps",fn);
+            Uri path = new Uri(fnpath, UriKind.Absolute);
+            if (File.Exists(path.LocalPath))
+            {
+                _CurrentCombinedScene.Poster = new BitmapImage(path);
+            }
+            else
+            {
+                _CurrentCombinedScene.Poster = null;
+            }
+        }
+
         StoryBase _Story;
         public StoryBase Story
         {
@@ -157,6 +182,8 @@ namespace EPCat
                 _Story = value;
             }
         }
+
+
 
         public string PosterPath
         {
@@ -291,12 +318,9 @@ namespace EPCat
             newclipinfo.PositionEnd = TicTakToe.ClipTemplate.PositionEnd;
             if (string.IsNullOrEmpty(TicTakToe.ClipTemplate.File))
             {
-                newclipinfo.File = this.CurrentFolder.Videos[0];
+                TicTakToe.ClipTemplate.File = this.CurrentFolder.Videos[0];
             }
-            else
-            {
-                newclipinfo.File = TicTakToe.ClipTemplate.File;
-            }
+            newclipinfo.File = TicTakToe.ClipTemplate.File;
             if (last != null)
             {
                 newclipinfo.Antagonist = last.Antagonist;
@@ -327,8 +351,8 @@ namespace EPCat
             this.CurrentClip = this.CurrentFolder.Clips.Last();
             //this.CurrentCombinedScene = this.CurrentFolder.CombinedScenes.Last();
 
-            TicTakToe.ClipTemplate.PositionEnd = 0;
-            TicTakToe.ClipTemplate.PositionStart = 0;
+            //TicTakToe.ClipTemplate.PositionEnd = 0;
+            //TicTakToe.ClipTemplate.PositionStart = 0;
 
         }
         internal void AddMedia()
@@ -405,22 +429,24 @@ namespace EPCat
             var clip = TicTakToe.GetClipScreenShot();
             if (kind == null && TicTakToe.CopiedCombinedScene != null && TicTakToe.CopiedCombinedScene.Any())
             {
+                Info_Scene newclipinfo = new Info_Scene();
+                newclipinfo.LoadFromString(TicTakToe.CopiedCombinedScene.First());
+                string newgroup = string.Empty;
+                if  (toEnd)
+                    newgroup = IncrementGroupToEnd(newclipinfo.Group);
+                else
+                    newgroup = IncrementGroup(newclipinfo.Group, group);
+
                 foreach (var item in TicTakToe.CopiedCombinedScene)
                 {
-                    Info_Scene newclipinfo = new Info_Scene();
+                    newclipinfo = new Info_Scene();
                     newclipinfo.LoadFromString(item);
                     if (incurrentgroup)
                     {
                         newclipinfo.Group = this.CurrentCombinedScene.Group;
                     }
-                    else if (toEnd)
-                    {
-                        string newgroup = IncrementGroupToEnd(newclipinfo.Group);
-                        newclipinfo.Group = newgroup;
-                    }
-                    else
-                    {
-                        string newgroup = IncrementGroup(newclipinfo.Group, group);
+                    else 
+                    {                        
                         newclipinfo.Group = newgroup;
                     }
 
@@ -445,6 +471,7 @@ namespace EPCat
                     {
                         newclipinfo.PositionStart = TicTakToe.ClipTemplate.PositionStart.ToString();
                         newclipinfo.PositionEnd = TicTakToe.ClipTemplate.PositionEnd.ToString();
+                        newclipinfo.File = TicTakToe.ClipTemplate.File;
                     }
                     addNewComb(newclipinfo);
                 }
@@ -454,24 +481,34 @@ namespace EPCat
             {
                 if (kind.HasValue)
                 {
-                    Info_Scene newclipinfo = new Info_Scene();
-                    newclipinfo.Kind = kind.Value;
-                    if (TicTakToe.CopiedCombinedScene != null && TicTakToe.CopiedCombinedScene.Any())
-                    {
-                        Info_Scene v = new Info_Scene();
-                        v.LoadFromString(TicTakToe.CopiedCombinedScene[0]);
-                        if (incurrentgroup)
+                  
+                        Info_Scene newclipinfo = new Info_Scene();
+                        newclipinfo.Kind = kind.Value;
+                        if (TicTakToe.CopiedCombinedScene != null && TicTakToe.CopiedCombinedScene.Any())
                         {
-                            newclipinfo.Group = this.CurrentCombinedScene.Group;
+                            Info_Scene v = new Info_Scene();
+                            v.LoadFromString(TicTakToe.CopiedCombinedScene[0]);
+                            if (incurrentgroup)
+                            {
+                                newclipinfo.Group = this.CurrentCombinedScene.Group;
+                                newclipinfo.Description = this.CurrentCombinedScene.Description;
+                            }
+                            else
+                            {
+                                newclipinfo.Group = v.Group;
+                                newclipinfo.Description = v.Description;
+                            }
+                            newclipinfo.Queue = v.Queue;
+                            if (newclipinfo.Kind == 8 && TicTakToe.ClipTemplate != null)
+                            {
+                                newclipinfo.PositionStart = TicTakToe.ClipTemplate.PositionStart.ToString();
+                                newclipinfo.PositionEnd = TicTakToe.ClipTemplate.PositionEnd.ToString();
+                                newclipinfo.File = TicTakToe.ClipTemplate.File;
+                                newclipinfo.Speed = "100";
+                            }
                         }
-                        else
-                        {
-                            newclipinfo.Group = v.Group;
-                        }
-                        newclipinfo.Queue = v.Queue;
-                       
-                    }                    
-                    addNewComb(newclipinfo);
+                        addNewComb(newclipinfo);
+                    
                 }
 
             }
@@ -496,7 +533,7 @@ namespace EPCat
             var ddd = Story.SceneInfos.LastOrDefault();
             if (ddd != null)
             {
-                var valsEnd = ddd.Queue.Split('.');
+                var valsEnd = ddd.Group.Split('.');
                 int max = int.Parse(valsEnd[0]);
                 d = ++max;
             }
@@ -510,6 +547,7 @@ namespace EPCat
         private void addNewComb(Info_Scene newclipinfo)
         {
             //newclipinfo.ID = Guid.NewGuid().ToString();
+            if (this.Story == null) return;
             this.Story.SceneInfos.Add(newclipinfo);
             this.CurrentCombinedScene = newclipinfo;
             RaisePropertyChanged(() => this.CurrentFolder);
