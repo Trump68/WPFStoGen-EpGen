@@ -9,7 +9,7 @@ namespace EPCat.Model
 {
     public static class TicTakToe
     {
-        private static string ClipScreenShot = null;
+        public static string ClipScreenShot = null;
         public static List<string> CopiedCombinedScene = new List<string>();
         public static void SetClipScreenShot(string v)
         {

@@ -25,6 +25,7 @@ using StoGen.Classes.Scene;
 using StoGenerator;
 using StoGenerator.Stories;
 using System.Windows.Media.Imaging;
+using System.Net;
 
 namespace EPCat
 {
@@ -506,6 +507,10 @@ namespace EPCat
                                 newclipinfo.File = TicTakToe.ClipTemplate.File;
                                 newclipinfo.Speed = "100";
                             }
+                            else if (newclipinfo.Kind == 0 && TicTakToe.ClipScreenShot != null)
+                            {
+                            newclipinfo.File = TicTakToe.GetClipScreenShot();
+                        }
                         }
                         addNewComb(newclipinfo);
                     
@@ -728,6 +733,204 @@ namespace EPCat
 
         }
 
+        internal void JavLibraryDo()
+        {
+            if (string.IsNullOrEmpty(RepeatedText))
+                RepeatedText = "GVG";
+            if (RepeatedTextStart == 0)
+                RepeatedTextStart = 1;
+            int start = RepeatedTextStart;
+            string keyword = $"{RepeatedText}-{start.ToString("D3")}";
+            bool go = JavLibraryDoOne(RepeatedText,keyword);
+            while (go)
+            {
+                start++;
+                keyword = $"{RepeatedText}-{start.ToString("D3")}";
+                go = JavLibraryDoOne(RepeatedText,keyword);
+            }
+        }
+
+        internal bool JavLibraryDoOne(string serie, string keyword)
+        {
+            WebRequest request = WebRequest.Create($"http://www.javlibrary.com/en/vl_searchbyid.php?keyword={keyword}");
+            request.Method = "GET";
+            WebResponse response = request.GetResponse();
+            Stream stream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(stream);
+            string content = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
+           
+
+            int pos = -1;
+            if (content.Contains(@"<div class=""videos"">"))
+            {
+                pos = content.IndexOf(@"<div class=""videos"">");
+                content = content.Substring(pos);
+                pos = content.IndexOf(@"<a href=");
+                content = content.Substring(pos+10,14);                
+                request = WebRequest.Create($"http://www.javlibrary.com/en{content}");
+                request.Method = "GET";
+                try
+                {
+                    response = request.GetResponse();
+                    stream = response.GetResponseStream();
+                    reader = new StreamReader(stream);
+                    content = reader.ReadToEnd();
+                    reader.Close();
+                    response.Close();
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+
+            }
+
+            if (content.Contains("Search returned no result"))
+                return false;
+
+            // 1. title
+            pos = content.IndexOf(@"post-title text");
+            string title = content.Substring(pos + 30);
+            pos = title.IndexOf(@">");
+            title = title.Substring(pos + 1);
+            pos = title.IndexOf(@"<");
+            title = title.Substring(0, pos);
+            // 2. year
+            pos = content.IndexOf(@"video_date");
+            string year = content.Substring(pos);
+            pos = year.IndexOf(@"text");
+            year = year.Substring(pos + 6, 4);
+            // 3. star
+            pos = content.IndexOf(@"video_cast");
+            string starall = content.Substring(pos);
+            List<string> stars = new List<string>();
+            pos = starall.IndexOf(@"rel=""tag"">");
+            while (pos > 0)
+            {
+                starall = starall.Substring(pos + 10);
+                pos = starall.IndexOf(@"<");
+                stars.Add(starall.Substring(0, pos));
+                pos = starall.IndexOf(@"rel=""tag"">");
+            }
+            //4. Genre
+            pos = content.IndexOf(@"video_genres");
+            string genreall = content.Substring(pos);
+            List<string> genres = new List<string>();
+            pos = genreall.IndexOf(@"rel=""category tag"">");
+            while (pos > 0)
+            {
+                genreall = genreall.Substring(pos + 19);
+                pos = genreall.IndexOf(@"<");
+                genres.Add(genreall.Substring(0, pos));
+                pos = genreall.IndexOf(@"rel=""category tag"">");
+            }
+            //5. Director
+            pos = content.IndexOf(@"video_director");
+            string directorall = content.Substring(pos);
+            pos = directorall.IndexOf(@"</div> <!-- end of video_director -->");
+            directorall = directorall.Substring(0, pos);
+            List<string> directors = new List<string>();
+            pos = directorall.IndexOf(@"rel=""tag"">");
+            while (pos > 0)
+            {
+                directorall = directorall.Substring(pos + 10);
+                pos = directorall.IndexOf(@"<");
+                directors.Add(directorall.Substring(0, pos));
+                pos = directorall.IndexOf(@"rel=""tag"">");
+            }
+            //6. Picture
+            pos = content.IndexOf(@"video_jacket_img");
+            string pic = content.Substring(pos + 25);
+            pos = pic.IndexOf(@".jpg");
+            pic = $"http://{pic.Substring(0, pos+4)}";
+
+         
+
+            string path = $@"e:\!CATALOG\JAV\{serie}";
+            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+            path = $@"{path}\{keyword}";
+            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+            string passortpath = Path.Combine(path, EpItem.p_PassportName);
+            string posterpath = Path.Combine(path,"POSTER.jpg");
+            if (!File.Exists(passortpath))
+            {
+                EpItem item = new EpItem(0);
+                item.Name = keyword;
+                item.AltTitle = title;
+                item.Catalog = "JAV";
+                item.Year = Convert.ToInt32(year);
+                item.Star = string.Join(",", stars.ToArray());
+                item.Serie = serie;
+                item.Type = string.Join(",", genres.ToArray());
+                item.Stage = "Stub";
+                item.Director = string.Join(",", directors.ToArray());
+                List<string> lines = EpItem.SetToPassport(item);
+                File.WriteAllLines(passortpath, lines);
+            }
+            else
+            {
+                List<string> passport = new List<string>(File.ReadAllLines(passortpath));
+                if (passport != null)
+                {
+                    EpItem item = EpItem.GetFromPassport(passport, passortpath);
+                    bool edited = false;
+                    if (item.Year < 1)
+                    {
+                        item.Year = Convert.ToInt32(year);
+                        edited = true;
+                    }
+                    if (string.IsNullOrEmpty(item.Star) && stars.Any())
+                    {
+                        item.Star = string.Join(",", stars.ToArray());
+                        edited = true;
+                    }
+                    if (string.IsNullOrEmpty(item.Director) && directors.Any())
+                    {
+                        item.Director = string.Join(",", directors.ToArray());
+                        edited = true;
+                    }
+                    if (string.IsNullOrEmpty(item.Serie))
+                    {
+                        item.Serie = serie;
+                        edited = true;
+                    }
+                    if (string.IsNullOrEmpty(item.AltTitle))
+                    {
+                        item.AltTitle = title;
+                        edited = true;
+                    }
+                    if (string.IsNullOrEmpty(item.Type) && genres.Any())
+                    {
+                        item.Type = string.Join(",", genres.ToArray());
+                        edited = true;
+                    }
+                    if (item.Catalog != "JAV")
+                    {
+                        item.Catalog = "JAV";
+                        edited = true;
+                    }
+                    if (edited)
+                    {
+                        ++item.LastEdit;
+                        List<string> lines = EpItem.SetToPassport(item);
+                        File.WriteAllLines(passortpath, lines);
+                    }
+                }
+
+            }
+            if (!File.Exists(posterpath))
+            {
+                using (WebClient client = new WebClient())
+                {
+                    client.DownloadFile(pic, posterpath);
+                }
+            }
+
+
+            return true;
+        }
         private string IncrementDescr(string descr)
         {
             int d;

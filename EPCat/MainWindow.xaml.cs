@@ -678,13 +678,15 @@ namespace EPCat
 
         private void btnGoRepeatText_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.GoRepeatText();
+            //ViewModel.GoRepeatText();
+            ViewModel.JavLibraryDo();
         }
 
         private void btnGoGenerate_Click(object sender, RoutedEventArgs e)
         {
             //GenerateScenario(null);
             ViewModel.CompileOne();
+            
         }
 
         private void GenerateScenario(EpItem item)
@@ -731,21 +733,18 @@ namespace EPCat
             ViewModel.CopyPasteDescriptionGroup();
         }
 
-        private void btnSetPositionSaveScene_Click(object sender, RoutedEventArgs e)
+        private void btnSetPositionSaveSceneVideo_Click(object sender, RoutedEventArgs e)
         {
             if (ViewModel.Story == null)
                 return;
             ViewModel.SaveClipTemplate();
             ViewModel.CopyGroup(true, true, 1);
-            //ViewModel.CurrentCombinedScene =  ViewModel.Story.SceneInfos.LastOrDefault();
-            //ViewModel.CopyCombinedScene(true);
             var col = ViewModel.Story.SceneInfos.Where(x => x.Group == ViewModel.CurrentCombinedScene.Group && x.Kind == 8);
             if (col.Any())
             {
                 col.First().PositionStart = TicTakToe.ClipTemplate.PositionStart.ToString();
                 col.First().PositionEnd = TicTakToe.ClipTemplate.PositionEnd.ToString();
                 col.First().File = TicTakToe.ClipTemplate.File;
-                //col.First().Speed = $"{TicTakToe.ClipTemplate.Speed}";
             }
             else
             {
@@ -754,6 +753,43 @@ namespace EPCat
             ViewModel.RefreshFolder();
 
         }
-    
+        private void btnSetPositionSaveScenePicture_Click(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.Story == null)
+                return;
+
+            string path = System.IO.Path.Combine(ViewModel.Story.CatalogPath, "DATA");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string str3 = string.Empty;
+            path = path + System.IO.Path.DirectorySeparatorChar.ToString() + "SC";
+
+            int num = 0;
+            string str2 = num.ToString("D4");
+            str3 = $"{path}-{str2}.jpg";
+            while (File.Exists(str3))
+            {
+                  num++;
+                  str2 = num.ToString("D4");
+                  str3 = $"{path}-{str2}.jpg";
+             }
+
+            this.ImportMedia(str3);
+            TicTakToe.SetClipScreenShot(str3);
+            ViewModel.CopyGroup(true, true, 1);
+            var col = ViewModel.Story.SceneInfos.Where(x => x.Group == ViewModel.CurrentCombinedScene.Group && x.Kind == 0);
+            if (col.Any())
+            {
+                col.First().File = str3;
+            }
+            else
+            {
+                ViewModel.AddCombinedScene(false, true, 0, 0);
+            }
+            ViewModel.RefreshFolder();
+
+        }
     }
 }
