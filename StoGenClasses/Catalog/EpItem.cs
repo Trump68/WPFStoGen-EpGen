@@ -401,6 +401,8 @@ namespace EPCat.Model
 
         public static string CurrentPassportImage = p_PassportCapsName;
         public static string CatalogPosterDir;
+        [XmlIgnore]
+        public bool Edited = false;
 
         public static void SetCurrentImagePassort(int selectedIndex)
         {

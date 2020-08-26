@@ -676,12 +676,14 @@ namespace EPCat
             ViewModel.CopyGroup(false, false,0);
         }
 
-        private void btnGoRepeatText_Click(object sender, RoutedEventArgs e)
+        private void btnGoRepeatText3_Click(object sender, RoutedEventArgs e)
         {
-            //ViewModel.GoRepeatText();
-            ViewModel.JavLibraryDo();
+            ViewModel.JavLibraryDo(3);
         }
-
+        private void btnGoRepeatText4_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.JavLibraryDo(4);
+        }
         private void btnGoGenerate_Click(object sender, RoutedEventArgs e)
         {
             //GenerateScenario(null);
@@ -791,5 +793,11 @@ namespace EPCat
             ViewModel.RefreshFolder();
 
         }
+
+        private void MainGridView_HiddenEditor(object sender, EditorEventArgs e)
+        {
+            ViewModel.CurrentFolder.Edited = true;
+        }
+    
     }
 }

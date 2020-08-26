@@ -80,14 +80,15 @@
                                          SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell" AutoExpandAllGroups="False">
                             <dxg:GridControl.TotalSummary>
                                 <dxg:GridSummaryItem DisplayFormat="{}{0}" FieldName="Name" SummaryType="Count" ShowInColumn="Name"/>
+                                <dxg:GridSummaryItem DisplayFormat="{}{0}" FieldName="Size" ShowInColumn="Size" SummaryType="Sum"/>
                             </dxg:GridControl.TotalSummary>
                             <dxg:GridControl.GroupSummary>
-                                <dxg:GridSummaryItem FieldName="Year" SummaryType="Count" ShowInColumn="" DisplayFormat="{}{0}" Alignment="Default" />
+                                <dxg:GridSummaryItem FieldName="Year" SummaryType="Count" ShowInColumn="Year" DisplayFormat="{}{0}" Alignment="Default" />
                             </dxg:GridControl.GroupSummary>
                             <dxg:GridControl.View>
                                 <dxg:TableView Name="MainGridView"
                                     AllowConditionalFormattingMenu="True" 
-                                    AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow" AllowGrouping="True" AllowPartialGrouping="False" AllowFixedGroups="True" ShowGroupedColumns="True" ShowFixedTotalSummary="True" ShowCriteriaInAutoFilterRow="False">
+                                    AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow" AllowGrouping="True" AllowPartialGrouping="False" AllowFixedGroups="True" ShowGroupedColumns="True" ShowFixedTotalSummary="True" ShowCriteriaInAutoFilterRow="False" HiddenEditor="MainGridView_HiddenEditor">
                                     <dxg:TableView.FormatConditions>
                                         <dxg:ColorScaleFormatCondition Expression="[VideoPresent] = True" FieldName="ItemPath" PredefinedFormatName="YellowGreenColorScale" />
                                     </dxg:TableView.FormatConditions>
@@ -426,7 +427,7 @@
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           TextWrapping="NoWrap"  AcceptsReturn="True" Text="{Binding Story.Story}" />
                                         </dxlc:LayoutItem>
-                                        
+
                                     </dxlc:LayoutGroup>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0" Margin="0,0,0,-86">
                                         <dxlc:LayoutItem Label="Poster" LabelPosition="Top">
@@ -649,7 +650,10 @@
                             <TextBox Name="txtRepeatTextEnd" Text="{Binding RepeatedTextEnd}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="GoRepeatTextBtn" Content="Go [x]" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoRepeatText_Click" />
+                            <dx:SimpleButton x:Name="GoRepeatTextBtn3" Content="Go [3]" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoRepeatText3_Click" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="GoRepeatTextBtn4" Content="Go [4]" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoRepeatText4_Click" />
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
@@ -658,6 +662,12 @@
                                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding RepeatedText}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Status" LabelPosition="Left">
+                            <dxe:TextEdit MaxHeight="320"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding StatusText , UpdateSourceTrigger=PropertyChanged}" />
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>

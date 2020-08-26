@@ -61,6 +61,8 @@ namespace EPCat
                 _FolderListView = value;
             }
         }
+
+
         private ObservableCollection<Info_Scene> _Scenes = new ObservableCollection<Info_Scene>();
         public ObservableCollection<Info_Scene> Scenes
         {
@@ -591,7 +593,8 @@ namespace EPCat
         }
         internal void Save()
         {
-            _Loader.SaveCatalog();
+            var list = this.FolderListView.ToList();
+            _Loader.SaveCatalog(list);
         }
 
 
@@ -663,7 +666,7 @@ namespace EPCat
                 _RepeatedText = value;
             }
         }
-
+        public string StatusText { set; get; }
         public int RepeatedTextStart { set; get; }
         public int RepeatedTextEnd { set; get; }
 
@@ -733,33 +736,68 @@ namespace EPCat
 
         }
 
-        internal void JavLibraryDo()
+        internal void JavLibraryDo(int ND)
         {
             if (string.IsNullOrEmpty(RepeatedText))
                 RepeatedText = "GVG";
-            if (RepeatedTextStart == 0)
-                RepeatedTextStart = 1;
-            int start = RepeatedTextStart;
-            string keyword = $"{RepeatedText}-{start.ToString("D3")}";
-            bool go = JavLibraryDoOne(RepeatedText,keyword);
-            while (go)
+
+            string[] series = RepeatedText.Split(',');
+            foreach (var item in series)
             {
-                start++;
-                keyword = $"{RepeatedText}-{start.ToString("D3")}";
-                go = JavLibraryDoOne(RepeatedText,keyword);
+                if (RepeatedTextStart == 0)
+                    RepeatedTextStart = 1;
+
+                int start = RepeatedTextStart;
+                int proc = 0;
+                int failure = 0;
+                StatusText = $"{proc},{failure}";
+
+                string keyword = $"{item}-{start.ToString($"D{ND}")}";
+                bool go = JavLibraryDoOne(item, keyword);
+
+                while (failure < 50)
+                {
+                    start++;
+                    keyword = $"{item}-{start.ToString($"D{ND}")}";
+                    go = JavLibraryDoOne(item, keyword);
+                    if (go)
+                    {
+                        proc++;
+                        failure = 0;
+                    }
+                    else
+                        failure++;
+                    //StatusText = $"{proc},{failure}-run";
+                }
+                //StatusText = $"{proc},{failure}-stopped";
             }
+
+
+
         }
 
         internal bool JavLibraryDoOne(string serie, string keyword)
         {
             WebRequest request = WebRequest.Create($"http://www.javlibrary.com/en/vl_searchbyid.php?keyword={keyword}");
             request.Method = "GET";
-            WebResponse response = request.GetResponse();
-            Stream stream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(stream);
-            string content = reader.ReadToEnd();
-            reader.Close();
-            response.Close();
+            string content = null;
+            WebResponse response = null;
+            StreamReader reader = null;
+            Stream stream = null;
+            try
+            {
+                response = request.GetResponse();
+                stream = response.GetResponseStream();
+                reader = new StreamReader(stream);
+                content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
            
 
             int pos = -1;
@@ -924,13 +962,24 @@ namespace EPCat
             {
                 using (WebClient client = new WebClient())
                 {
-                    client.DownloadFile(pic, posterpath);
+                    try
+                    {
+                        client.DownloadFile(pic, posterpath);
+                    }
+                    catch (Exception)
+                    {
+                        
+                    }
+                    
                 }
             }
 
 
             return true;
         }
+
+      
+
         private string IncrementDescr(string descr)
         {
             int d;

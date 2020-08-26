@@ -14,7 +14,7 @@
     </property>
     <property name="SortInfo" iskey="true" value="1">
       <property name="Item1" isnull="true" iskey="true">
-        <property name="FieldName">Serie</property>
+        <property name="FieldName">Size</property>
         <property name="SortOrder">Ascending</property>
         <property name="MergeWithPreviousGroup">false</property>
       </property>
@@ -44,7 +44,7 @@
         <property name="GridRow">0</property>
         <property name="FieldName">Country</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">17</property>
+        <property name="VisibleIndex">20</property>
         <property name="ActualWidth">35.997601918465193</property>
       </property>
       <property name="Item5" isnull="true" iskey="true">
@@ -58,35 +58,35 @@
         <property name="GridRow">0</property>
         <property name="FieldName">Scenes</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">12</property>
+        <property name="VisibleIndex">15</property>
         <property name="ActualWidth">80.242319689706349</property>
       </property>
       <property name="Item7" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Month</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">17</property>
+        <property name="VisibleIndex">20</property>
         <property name="ActualWidth">35.997601918465193</property>
       </property>
       <property name="Item8" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Day</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">17</property>
+        <property name="VisibleIndex">20</property>
         <property name="ActualWidth">35.997601918465193</property>
       </property>
       <property name="Item9" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Rated</property>
-        <property name="Visible">false</property>
-        <property name="VisibleIndex">17</property>
+        <property name="Visible">true</property>
+        <property name="VisibleIndex">10</property>
         <property name="ActualWidth">35.997601918465193</property>
       </property>
       <property name="Item10" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">XRated</property>
-        <property name="Visible">false</property>
-        <property name="VisibleIndex">17</property>
+        <property name="Visible">true</property>
+        <property name="VisibleIndex">8</property>
         <property name="ActualWidth">35.997601918465193</property>
       </property>
       <property name="Item11" isnull="true" iskey="true">
@@ -100,21 +100,21 @@
         <property name="GridRow">0</property>
         <property name="FieldName">Brand</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">18</property>
+        <property name="VisibleIndex">21</property>
         <property name="ActualWidth">35.997601918465193</property>
       </property>
       <property name="Item13" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Stage</property>
         <property name="Visible">true</property>
-        <property name="VisibleIndex">9</property>
+        <property name="VisibleIndex">11</property>
         <property name="ActualWidth">47.042623709454922</property>
       </property>
       <property name="Item14" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Variant</property>
-        <property name="Visible">false</property>
-        <property name="VisibleIndex">3</property>
+        <property name="Visible">true</property>
+        <property name="VisibleIndex">9</property>
         <property name="ActualWidth">41.820359281437121</property>
       </property>
       <property name="Item15" isnull="true" iskey="true">
@@ -140,83 +140,84 @@
         <property name="GridRow">0</property>
         <property name="FieldName">MyDescr</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">16</property>
+        <property name="VisibleIndex">19</property>
         <property name="ActualWidth">25</property>
       </property>
       <property name="Item19" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Director</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">20</property>
+        <property name="VisibleIndex">23</property>
         <property name="ActualWidth">32.389233624187113</property>
       </property>
       <property name="Item20" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Studio</property>
-        <property name="VisibleIndex">8</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">11</property>
         <property name="ActualWidth">63.945560431306355</property>
       </property>
       <property name="Item21" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">IMDB</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">21</property>
+        <property name="VisibleIndex">24</property>
         <property name="ActualWidth">32.389233624187113</property>
       </property>
       <property name="Item22" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">ItemPath</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">13</property>
+        <property name="VisibleIndex">16</property>
         <property name="ActualWidth">159</property>
       </property>
       <property name="Item23" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">PersonName</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">16</property>
+        <property name="VisibleIndex">19</property>
         <property name="ActualWidth">53.657307741858531</property>
       </property>
       <property name="Item24" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">PersonAge</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">16</property>
+        <property name="VisibleIndex">19</property>
         <property name="ActualWidth">53.657307741858531</property>
       </property>
       <property name="Item25" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">PersonSex</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">16</property>
+        <property name="VisibleIndex">19</property>
         <property name="ActualWidth">53.657307741858531</property>
       </property>
       <property name="Item26" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">PersonType</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">16</property>
+        <property name="VisibleIndex">19</property>
         <property name="ActualWidth">53.657307741858531</property>
       </property>
       <property name="Item27" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">PersonKind</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">16</property>
+        <property name="VisibleIndex">19</property>
         <property name="ActualWidth">53.657307741858531</property>
       </property>
       <property name="Item28" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">LastCheck</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">16</property>
+        <property name="VisibleIndex">19</property>
         <property name="ActualWidth">53.657307741858531</property>
       </property>
       <property name="Item29" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">PARENT</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">10</property>
+        <property name="VisibleIndex">13</property>
         <property name="ActualWidth">62.424923475609411</property>
       </property>
       <property name="Item30" isnull="true" iskey="true">
@@ -229,14 +230,14 @@
         <property name="GridRow">0</property>
         <property name="FieldName">Length</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">11</property>
+        <property name="VisibleIndex">14</property>
         <property name="ActualWidth">NaN</property>
       </property>
       <property name="Item32" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">VideoPresent</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">21</property>
+        <property name="VisibleIndex">24</property>
         <property name="Width">20</property>
         <property name="ActualWidth">8.5725087335896291</property>
       </property>
@@ -244,12 +245,12 @@
         <property name="GridRow">0</property>
         <property name="FieldName">SourceFolderExist</property>
         <property name="Visible">false</property>
-        <property name="VisibleIndex">8</property>
+        <property name="VisibleIndex">11</property>
         <property name="ActualWidth">38.89565772024261</property>
       </property>
     </property>
     <property name="View" isnull="true" iskey="true">
-      <property name="FormatConditions" iskey="true" value="11">
+      <property name="FormatConditions" iskey="true" value="16">
         <property name="Item1" isnull="true" iskey="true">
           <property name="FieldName">ItemPath</property>
           <property name="Expression">[VideoPresent] = True</property>
@@ -348,6 +349,51 @@
           <property name="Expression">[Serie] = '!!!Actors'</property>
           <property name="TypeName">FormatCondition</property>
         </property>
+        <property name="Item12" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FF008000</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">XRated</property>
+          <property name="Expression">[XRated] = '5'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item13" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFC1BFB4</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Star</property>
+          <property name="Expression">Contains([Star], 'Rei Sasaki') Or Contains([Star], 'ASUKA') Or Contains([Star], 'Minako Uchida') Or Contains([Star], 'Agoha Kinashita') Or Contains([Star], 'China Mimura') Or Contains([Star], 'Saki Kozakura') Or Contains([Star], 'Yuzu Shiina') Or Contains([Star], 'Yayoi Yanagida') Or Contains([Star], 'Rin Saotome') Or Contains([Star], 'Ririka Suzuki') Or Contains([Star], 'Oshikawa Yuuri') Or Contains([Star], 'Shinoda Ayumi') Or Contains([Star], 'Ooba Yui')</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item14" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFFFFF00</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Star</property>
+          <property name="Expression">Contains([Star], 'Shinoda Yuu') Or Contains([Star], 'Yuuki Misa') Or Contains([Star], 'Kawakami Nanami') Or Contains([Star], 'Hayakawa Serina') Or Contains([Star], 'Aida Yua') Or Contains([Star], 'AIKA') Or Contains([Star], 'Usami Mai') Or Contains([Star], 'Junko Hayama') Or Contains([Star], 'Mafuyu Hanasaki') Or Contains([Star], 'Ruri Hayami') Or Contains([Star], 'Manami Komukai') Or Contains([Star], 'Hime Sakura') Or Contains([Star], 'Maki Hojo') Or Contains([Star], 'Emiri Seo') Or Contains([Star], 'Rosa Kawashima') Or Contains([Star], 'Chika Ishihara') Or Contains([Star], 'Akira Eri') Or Contains([Star], 'Sakasaki Miho')</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item15" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FF90EE90</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Star</property>
+          <property name="Expression">Contains([Star], 'Memori Shizuku') Or Contains([Star], 'Konishi Yuu') Or Contains([Star], 'Takizawa Lora') Or Contains([Star], 'Mizuho Uehara') Or Contains([Star], 'Mori Nanako') Or Contains([Star], 'Ozawa Maria') Or Contains([Star], 'Fukada Eimi') Or Contains([Star], 'Kimijima Mio') Or Contains([Star], 'Kijima Airi') Or Contains([Star], 'Kirihara Erika') Or Contains([Star], 'Itou Chinami') Or Contains([Star], 'Kizaki Jessica') Or Contains([Star], 'Yoshizawa Akiho') Or Contains([Star], 'Sasaki Eri') Or Contains([Star], 'Yoshikawa Aimi') Or Contains([Star], 'Aizawa Jun') Or Contains([Star], 'Asuka Kirara') Or Contains([Star], 'Honda Misaki') Or Contains([Star], 'Kitahara Takako') Or Contains([Star], 'Amami Tsubasa') Or Contains([Star], 'Meguro Megumi') Or Contains([Star], 'Maria Ozawa') Or Contains([Star], 'Haneda Yuka') Or Contains([Star], 'Aida Nana')</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item16" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FF008000</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Star</property>
+          <property name="Expression">Contains([Star], 'Hayashi Yuna') Or Contains([Star], 'Kasumi Risa') Or Contains([Star], 'Natsume Iroha')</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
       </property>
       <property name="ShowGroupPanel">false</property>
       <property name="ColumnChooserState" isnull="true" iskey="true">
@@ -357,45 +403,49 @@
       <property name="SearchString" isnull="true" />
     </property>
     <property name="TotalSummary" iskey="true" value="0" />
-    <property name="MRUFilters" iskey="true" value="9">
+    <property name="MRUFilters" iskey="true" value="10">
       <property name="Item1" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'GV')</property>
-        <property name="FilterText">Starts with([Serie], 'GV')</property>
+        <property name="FilterString">StartsWith([Star], 'Fukada Eimi')</property>
+        <property name="FilterText">Starts with([Star], 'Fukada Eimi')</property>
       </property>
       <property name="Item2" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'G')</property>
-        <property name="FilterText">Starts with([Serie], 'G')</property>
+        <property name="FilterString">StartsWith([Name], 'abp')</property>
+        <property name="FilterText">Starts with([Name], 'abp')</property>
       </property>
       <property name="Item3" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'DASD')</property>
-        <property name="FilterText">Starts with([Serie], 'DASD')</property>
+        <property name="FilterString">StartsWith([Name], 'ab')</property>
+        <property name="FilterText">Starts with([Name], 'ab')</property>
       </property>
       <property name="Item4" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'ATID')</property>
-        <property name="FilterText">Starts with([Serie], 'ATID')</property>
+        <property name="FilterString">StartsWith([Name], 'a')</property>
+        <property name="FilterText">Starts with([Name], 'a')</property>
       </property>
       <property name="Item5" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'ATI')</property>
-        <property name="FilterText">Starts with([Serie], 'ATI')</property>
+        <property name="FilterString">StartsWith([Name], 'ф')</property>
+        <property name="FilterText">Starts with([Name], 'ф')</property>
       </property>
       <property name="Item6" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'AT')</property>
-        <property name="FilterText">Starts with([Serie], 'AT')</property>
+        <property name="FilterString">StartsWith([Name], 'фи')</property>
+        <property name="FilterText">Starts with([Name], 'фи')</property>
       </property>
       <property name="Item7" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'A')</property>
-        <property name="FilterText">Starts with([Serie], 'A')</property>
+        <property name="FilterString">StartsWith([Name], 'физ')</property>
+        <property name="FilterText">Starts with([Name], 'физ')</property>
       </property>
       <property name="Item8" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'SHKD')</property>
-        <property name="FilterText">Starts with([Serie], 'SHKD')</property>
+        <property name="FilterString">Contains([Type], 'bride')</property>
+        <property name="FilterText">Contains([Type], 'bride')</property>
       </property>
       <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'SHK')</property>
-        <property name="FilterText">Starts with([Serie], 'SHK')</property>
+        <property name="FilterString">StartsWith([Type], 'bride')</property>
+        <property name="FilterText">Starts with([Type], 'bride')</property>
+      </property>
+      <property name="Item10" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Type], 'brid')</property>
+        <property name="FilterText">Starts with([Type], 'brid')</property>
       </property>
     </property>
-    <property name="FilterString">StartsWith([Serie], 'GVG')</property>
+    <property name="FilterString" />
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>

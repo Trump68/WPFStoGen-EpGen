@@ -50,6 +50,7 @@ namespace EPCat.Model
 
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList)
         {
+            FoldersToUpdate.Clear();
             Source = sourceList;
 
             string commandf = "commandscript.txt";
@@ -668,8 +669,23 @@ namespace EPCat.Model
             }
         }
         private string CurrentCatalog;
-        internal void SaveCatalog()
+        internal void SaveCatalog(List<EpItem> list)
         {
+            list.Where(x => x.Edited).ToList().ForEach(x=>
+            {
+                if (Directory.Exists(x.ItemDirectory))
+                {
+                    List<string> lines = EpItem.SetToPassport(x);
+                    File.WriteAllLines(Path.Combine(x.ItemDirectory, EpItem.p_PassportName), lines);
+                }
+            }
+            );
+
+            foreach (var item in FoldersToUpdate)
+            {
+                UpdateFolder(item);
+            }
+           
             if (string.IsNullOrEmpty(CurrentCatalog)) return;
             if (File.Exists(CurrentCatalog))
                 File.Copy(CurrentCatalog, Path.ChangeExtension(CurrentCatalog, "bak"), true);
@@ -677,19 +693,12 @@ namespace EPCat.Model
             using (var writer = new StreamWriter(CurrentCatalog))
             {
                 serializer.Serialize(writer, Source);
-            }
-            foreach (EpItem item in Source)
-            {
-                if (Directory.Exists(item.ItemDirectory))
-                {
-                    List<string> lines = EpItem.SetToPassport(item);
-                    File.WriteAllLines(Path.Combine(item.ItemDirectory, EpItem.p_PassportName), lines);
-                }
-            }
+            }         
         }
-
+        List<string> FoldersToUpdate = new List<string>();
         internal void ParseLine(string line)
         {
+
             line = line.Trim();
             if (line.StartsWith(c_SortToCatalog))
             {
@@ -704,7 +713,8 @@ namespace EPCat.Model
             }
             else if (line.StartsWith(c_UpdateFolder))
             {
-                UpdateFolder(line.Replace(c_UpdateFolder, string.Empty));
+                FoldersToUpdate.Add(line.Replace(c_UpdateFolder, string.Empty));
+                //UpdateFolder(line.Replace(c_UpdateFolder, string.Empty));
             }
             else if (line.StartsWith(c_LoadCatalog))
             {
