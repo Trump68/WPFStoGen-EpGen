@@ -687,15 +687,15 @@ namespace EPCat.Model
                 UpdateFolder(item);
             }
 
-            list.Where(x => x.Edited).ToList().ForEach(x =>
-            {
-                if (Directory.Exists(x.ItemDirectory))
-                {
-                    List<string> lines = EpItem.SetToPassport(x);
-                    File.WriteAllLines(Path.Combine(x.ItemDirectory, EpItem.p_PassportName), lines);
-                }
-            }
-            );
+            //list.Where(x => x.Edited).ToList().ForEach(x =>
+            //{
+            //    if (Directory.Exists(x.ItemDirectory))
+            //    {
+            //        List<string> lines = EpItem.SetToPassport(x);
+            //        File.WriteAllLines(Path.Combine(x.ItemDirectory, EpItem.p_PassportName), lines);
+            //    }
+            //}
+            //);
 
             if (string.IsNullOrEmpty(CurrentCatalog)) return;
             if (File.Exists(CurrentCatalog))
@@ -1060,6 +1060,15 @@ namespace EPCat.Model
                                 }
                             }
                         }
+                    }
+                }
+
+                if (item.Edited)
+                {
+                    if (Directory.Exists(item.ItemDirectory))
+                    {
+                        List<string> lines = EpItem.SetToPassport(item);
+                        File.WriteAllLines(Path.Combine(item.ItemDirectory, EpItem.p_PassportName), lines);
                     }
                 }
 
