@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -685,7 +686,17 @@ namespace EPCat.Model
             {
                 UpdateFolder(item);
             }
-           
+
+            list.Where(x => x.Edited).ToList().ForEach(x =>
+            {
+                if (Directory.Exists(x.ItemDirectory))
+                {
+                    List<string> lines = EpItem.SetToPassport(x);
+                    File.WriteAllLines(Path.Combine(x.ItemDirectory, EpItem.p_PassportName), lines);
+                }
+            }
+            );
+
             if (string.IsNullOrEmpty(CurrentCatalog)) return;
             if (File.Exists(CurrentCatalog))
                 File.Copy(CurrentCatalog, Path.ChangeExtension(CurrentCatalog, "bak"), true);
@@ -940,6 +951,46 @@ namespace EPCat.Model
             File.WriteAllLines(item.ItemPath, passportData);
         }
 
+        //private static string javStarRating1 = @"Rei Sasaki,ASUKA,Minako Uchida,Agoha Kinashita,China Mimura,Saki Kozakura,Yuzu Shiina,Yayoi Yanagida,Rin Saotome,Ririka Suzuki,Oshikawa Yuuri,Shinoda Ayumi,Ooba Yui,Hachino Tsubasa,Kururigi Aoi,Kaname Yukina,Kurokawa Sumire,Takechi Sayo,Yuzuhara Aya,Nonoura Non,Saitou Amiri,Kawai Asuna,Aine Maria,Kawaguchi Kana";
+        //private static string javStarRating2 = @"";
+        //private static string javStarRating3 = @"Shinoda Yuu,Yuuki Misa,Kawakami Nanami,Hayakawa Serina,Aida Yua,AIKA,Usami Mai,Junko Hayama,Mafuyu Hanasaki,Ruri Hayami,Manami Komukai,Hime Sakura,Maki Hojo,Emiri Seo,Rosa Kawashima,Chika Ishihara,Akira Eri,Sakasaki Miho,Kamihata Ichika,Suzumura Airi,Yamakawa Aozora,Sasaki Emi,Ayami Shunka,Sakura Kokomi,Souraku Iroha,Kawana Misuzu,Tamana Yoshihadaka,Momodani Erika,Ansaki Nozomi,Oto Sakino,Nagase Minamo,Matsuoka Suzu,Shiraishi Ako,Yuiki Rumina";
+        //private static string javStarRating4 = @"";
+        //private static string javStarRating5 = @"Memori Shizuku,Konishi Yuu,Takizawa Lora,Mizuho Uehara,Mori Nanako,Ozawa Maria,Maria Ozawa,Fukada Eimi,Kimijima Mio,Kijima Airi,Kirihara Erika,Itou Chinami,Kizaki Jessica,Yoshizawa Akiho,Sasaki Eri,Yoshikawa Aimi,Aizawa Jun,Asuka Kirara,Honda Misaki,Kitahara Takako,Amami Tsubasa,Meguro Megumi,Haneda Yuka,Aida Nana,Aoki Karen,Kawamura Maya,Fujii Aisa,Hashimoto Ryou,Houshou Riri,Arai Azusa,Mitsumi An,Suzumori Remu,Harusaki Ryou,Kashima Reina";
+        //private static string javStarRating6 = @"";
+        //private static string javStarRating7 = @"Natsume Iroha,Kasumi Risa,Hayashi Yuna";
+        //private static string javStarRating8 = "";
+        private static List<string> javStarR1;
+        private static List<string> javStarR2;
+        private static List<string> javStarR3;
+        private static List<string> javStarR4;
+        private static List<string> javStarR5;
+        private static List<string> javStarR6;
+        private static List<string> javStarR7;
+        private static List<string> javStarR8;
+        private static List<string> JavStarR1 {  get { if (javStarR1 == null) { javStarR1 = (ConfigurationManager.AppSettings["javStarRating1"]).Split(',').ToList(); } return javStarR1; }  }
+        private static List<string> JavStarR2 { get { if (javStarR2 == null) { javStarR2 = (ConfigurationManager.AppSettings["javStarRating2"]).Split(',').ToList(); } return javStarR2; } }
+        private static List<string> JavStarR3 { get { if (javStarR3 == null) { javStarR3 = (ConfigurationManager.AppSettings["javStarRating3"]).Split(',').ToList(); } return javStarR3; } }
+        private static List<string> JavStarR4 { get { if (javStarR4 == null) { javStarR4 = (ConfigurationManager.AppSettings["javStarRating4"]).Split(',').ToList(); } return javStarR4; } }
+        private static List<string> JavStarR5 { get { if (javStarR5 == null) { javStarR5 = (ConfigurationManager.AppSettings["javStarRating5"]).Split(',').ToList(); } return javStarR5; } }
+        private static List<string> JavStarR6 { get { if (javStarR6 == null) { javStarR6 = (ConfigurationManager.AppSettings["javStarRating6"]).Split(',').ToList(); } return javStarR6; } }
+        private static List<string> JavStarR7 { get { if (javStarR7 == null) { javStarR7 = (ConfigurationManager.AppSettings["javStarRating7"]).Split(',').ToList(); } return javStarR7; } }
+        private static List<string> JavStarR8 { get { if (javStarR8 == null) { javStarR8 = (ConfigurationManager.AppSettings["javStarRating8"]).Split(',').ToList(); } return javStarR8; } }
+        private bool SetRating(List<string> list, string rating, EpItem item)
+        {            
+            if (!string.IsNullOrEmpty(item.Star))
+            {
+                foreach (var name in list)
+                {                    
+                    if (!string.IsNullOrEmpty(name) && item.Star.Contains(name))
+                    {
+                        item.PersonKind = rating;
+                        item.Edited = true;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
         private void CreateUpdateFromPassport(string passportPath)
         {
             List<string> passport = new List<string>(File.ReadAllLines(passportPath));
@@ -980,55 +1031,36 @@ namespace EPCat.Model
                     {
                         string studio = Directory.GetParent(dirname).Name;
                         item.Studio = studio.ToUpper();
-                    }
-
-
-                    //string eventsdir = Path.Combine(dirname, "EVENTS");
-                    //if (!Directory.Exists(eventsdir))
-                    //{
-                    //    Directory.CreateDirectory(eventsdir);
-                    //    var filesjpg = Directory.GetFiles(dirname, "*.jpg").ToList();
-                    //    var i = 0;
-                    //    foreach (string fn in filesjpg)
-                    //    {
-                    //        i++;
-                    //        string filename = Path.GetFileName(fn);
-                    //        if (filename.Length > 100)
-                    //            filename = filename.Substring(0, 100) + i.ToString() + ".jpg";
-                    //        string newpath = Path.Combine(eventsdir, filename);
-                    //        File.Move(fn, newpath);
-                    //    }
-                    //    var filespng = Directory.GetFiles(dirname, "*.png").ToList();
-                    //    i = 0;
-                    //    foreach (string fn in filespng)
-                    //    {
-                    //        i++;
-                    //        string filename = Path.GetFileName(fn);
-                    //        if (filename.Length > 100)
-                    //            filename = filename.Substring(0, 100) + i.ToString() + ".png";
-                    //        string newpath = Path.Combine(eventsdir, filename);
-                    //        File.Move(fn, newpath);
-                    //    }
-                    //    List<String> cpslist = new List<string>();
-                    //    cpslist.Add(Path.Combine(eventsdir, "1.jpg"));
-                    //    cpslist.Add(Path.Combine(eventsdir, "01.jpg"));
-                    //    cpslist.Add(Path.Combine(eventsdir, "001.jpg"));
-                    //    cpslist.Add(Path.Combine(eventsdir, "0001.jpg"));
-                    //    cpslist.Add(Path.Combine(eventsdir, "00001.jpg"));
-                    //    foreach (var newcaption in cpslist)
-                    //    {
-                    //        if (File.Exists(newcaption))
-                    //        {
-                    //            File.Copy(newcaption, Path.Combine(dirname, "POSTER.jpg"), false);
-                    //            break;
-                    //        }
-                    //    }
-
-                    //}
+                    }                  
                 }
-                else
+                // JAV person rating
+                if (item.Catalog == "JAV")
                 {
-
+                    if (!string.IsNullOrEmpty(item.Star))
+                    {
+                        if (!SetRating(JavStarR8, "8", item))
+                        {
+                            if (!SetRating(JavStarR7, "7", item))
+                            {
+                                if (!SetRating(JavStarR6, "6", item))
+                                {
+                                    if (!SetRating(JavStarR5, "5", item))
+                                    {
+                                        if (!SetRating(JavStarR4, "4", item))
+                                        {
+                                            if (!SetRating(JavStarR3, "3", item))
+                                            {
+                                                if (!SetRating(JavStarR2, "2", item))
+                                                {
+                                                    SetRating(JavStarR1, "1", item);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
 
 

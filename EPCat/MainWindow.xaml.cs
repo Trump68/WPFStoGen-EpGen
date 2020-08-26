@@ -796,7 +796,8 @@ namespace EPCat
 
         private void MainGridView_HiddenEditor(object sender, EditorEventArgs e)
         {
-            ViewModel.CurrentFolder.Edited = true;
+            if (ViewModel.CurrentFolder != null)
+                ViewModel.CurrentFolder.Edited = true;
         }
     
     }
