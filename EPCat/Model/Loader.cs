@@ -670,7 +670,7 @@ namespace EPCat.Model
             }
         }
         private string CurrentCatalog;
-        internal void SaveCatalog(List<EpItem> list)
+        internal void SaveCatalog(ref List<EpItem> list)
         {
             list.Where(x => x.Edited).ToList().ForEach(x=>
             {
@@ -684,18 +684,9 @@ namespace EPCat.Model
 
             foreach (var item in FoldersToUpdate)
             {
-                UpdateFolder(item);
+                UpdateFolder(item, ref list);
             }
 
-            //list.Where(x => x.Edited).ToList().ForEach(x =>
-            //{
-            //    if (Directory.Exists(x.ItemDirectory))
-            //    {
-            //        List<string> lines = EpItem.SetToPassport(x);
-            //        File.WriteAllLines(Path.Combine(x.ItemDirectory, EpItem.p_PassportName), lines);
-            //    }
-            //}
-            //);
 
             if (string.IsNullOrEmpty(CurrentCatalog)) return;
             if (File.Exists(CurrentCatalog))
@@ -703,7 +694,8 @@ namespace EPCat.Model
             System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<EpItem>));
             using (var writer = new StreamWriter(CurrentCatalog))
             {
-                serializer.Serialize(writer, Source);
+
+                serializer.Serialize(writer, list);
             }         
         }
         List<string> FoldersToUpdate = new List<string>();
@@ -928,19 +920,19 @@ namespace EPCat.Model
             Source = list;
             CurrentCatalog = itemPath;
         }
-        private void UpdateFolder(string parameters)
+        private void UpdateFolder(string parameters, ref List<EpItem> list)
         {
             string itemPath = parameters.ToLower();
             if (!Directory.Exists(itemPath)) return;
             List<string> passportList = Directory.GetFiles(itemPath, EpItem.p_PassportName).ToList();
             foreach (var passport in passportList)
             {
-                CreateUpdateFromPassport(passport);
+                CreateUpdateFromPassport(passport, ref list);
             }
             List<string> dirList = Directory.GetDirectories(itemPath).ToList();
             foreach (var dir in dirList)
             {
-                UpdateFolder(dir);
+                UpdateFolder(dir, ref list);
             }
         }
 
@@ -991,7 +983,7 @@ namespace EPCat.Model
             }
             return false;
         }
-        private void CreateUpdateFromPassport(string passportPath)
+        private void CreateUpdateFromPassport(string passportPath, ref List<EpItem> list)
         {
             List<string> passport = new List<string>(File.ReadAllLines(passportPath));
             if (passport != null)
@@ -1031,7 +1023,7 @@ namespace EPCat.Model
                     {
                         string studio = Directory.GetParent(dirname).Name;
                         item.Studio = studio.ToUpper();
-                    }                  
+                    }
                 }
                 // JAV person rating
                 if (item.Catalog == "JAV")
@@ -1063,15 +1055,7 @@ namespace EPCat.Model
                     }
                 }
 
-                if (item.Edited)
-                {
-                    if (Directory.Exists(item.ItemDirectory))
-                    {
-                        List<string> lines = EpItem.SetToPassport(item);
-                        File.WriteAllLines(Path.Combine(item.ItemDirectory, EpItem.p_PassportName), lines);
-                    }
-                }
-
+              
 
 
                 item.SourceFolderExist = true;
@@ -1095,14 +1079,61 @@ namespace EPCat.Model
                 if (s > 0)
                     item.Size = Convert.ToInt32((s / d));
 
-                //poster
-                bool copyPoster = false;
-                bool reversecopyPoster = false;
-                var existingItem = Source.Where(x => x.GID == item.GID).FirstOrDefault();
+                var existingItem = list.Where(x => x.GID == item.GID).FirstOrDefault();
+                if (EpCatViewModel.IsSynchPosterAllowed)
+                {
+                    //poster
+                    bool copyPoster = false;
+                    bool reversecopyPoster = false;
+                    string dirPoster = EpItem.GetCatalogPosterDir(CurrentCatalog);
+                    string newPostername = Path.Combine(dirPoster, $"{item.GID}.jpg");
 
-                string dirPoster = EpItem.GetCatalogPosterDir(CurrentCatalog);
-                string newPostername = Path.Combine(dirPoster, $"{item.GID}.jpg");
-
+                    if (existingItem == null)
+                    {
+                        copyPoster = true;
+                    }
+                    else
+                    {
+                        if (existingItem.LastEdit < item.LastEdit)
+                        {
+                            copyPoster = true;
+                        }
+                        else
+                        {
+                            copyPoster = !File.Exists(newPostername);
+                            reversecopyPoster = !copyPoster;
+                        }
+                    }
+                    if (copyPoster)
+                    {
+                        bool posterExist = File.Exists(item.PosterPath);
+                        if (posterExist)
+                        {
+                            try
+                            {
+                                File.Copy(item.PosterPath, newPostername, true);
+                            }
+                            catch (Exception)
+                            {
+                            }
+                        }
+                    }
+                    else if (reversecopyPoster)
+                    {
+                        bool posterExist = File.Exists(newPostername);
+                        if (posterExist)
+                        {
+                            try
+                            {
+                                if (!File.Exists(item.PosterPath))
+                                    File.Copy(newPostername, item.PosterPath, false);
+                            }
+                            catch (Exception)
+                            {
+                            }
+                        }
+                    }
+                }
                 if (existingItem == null)
                 {
                     if (string.IsNullOrEmpty(item.Name))
@@ -1110,62 +1141,28 @@ namespace EPCat.Model
                         string name = Path.GetFileName(Path.GetDirectoryName(passportPath)).ToLower();
                         TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
                         item.Name = cultInfo.ToTitleCase(name);
+                        item.Edited = true;
                     }
-                    Source.Add(item);
-                    UpdateItem(item);
-                    copyPoster = true;
+                    list.Add(item);
                 }
                 else
                 {
                     if (existingItem.LastEdit < item.LastEdit)
                     {
                         existingItem.UpdateFrom(item);
-                        copyPoster = true;
                     }
                     else
                     {
-                        if (string.IsNullOrEmpty(existingItem.PARENT))
-                        {
-                            existingItem.PARENT = item.Name;
-                        }
+                        // always
                         existingItem.Size = item.Size;
-                        existingItem.SetItemPath(item.ItemPath); 
+                        existingItem.SetItemPath(item.ItemPath);
                         existingItem.SourceFolderExist = item.SourceFolderExist;
-                        copyPoster = !File.Exists(newPostername);
-                        reversecopyPoster = !copyPoster;
+                        existingItem.PersonKind = item.PersonKind;
                     }
                 }
-                if (copyPoster)
+                if (item.Edited)
                 {
-                    bool posterExist = File.Exists(item.PosterPath);
-                    if (posterExist)
-                    {
-                        try
-                        {
-                            File.Copy(item.PosterPath, newPostername, true);
-                        }
-                        catch (Exception)
-                        {
-
-                        }
-
-                    }
-                }
-                else if (reversecopyPoster)
-                {
-                    bool posterExist = File.Exists(newPostername);
-                    if (posterExist)
-                    {
-                        try
-                        {
-                            if (!File.Exists(item.PosterPath))
-                                File.Copy(newPostername, item.PosterPath, false);
-                        }
-                        catch (Exception)
-                        {
-
-                        }
-                    }
+                    UpdateItem(item);
                 }
             }
         }

@@ -79,14 +79,14 @@
         <property name="GridRow">0</property>
         <property name="FieldName">Rated</property>
         <property name="Visible">true</property>
-        <property name="VisibleIndex">11</property>
+        <property name="VisibleIndex">10</property>
         <property name="ActualWidth">35.997601918465193</property>
       </property>
       <property name="Item10" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">XRated</property>
         <property name="Visible">true</property>
-        <property name="VisibleIndex">9</property>
+        <property name="VisibleIndex">8</property>
         <property name="ActualWidth">35.997601918465193</property>
       </property>
       <property name="Item11" isnull="true" iskey="true">
@@ -107,14 +107,14 @@
         <property name="GridRow">0</property>
         <property name="FieldName">Stage</property>
         <property name="Visible">true</property>
-        <property name="VisibleIndex">12</property>
+        <property name="VisibleIndex">11</property>
         <property name="ActualWidth">47.042623709454922</property>
       </property>
       <property name="Item14" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Variant</property>
         <property name="Visible">true</property>
-        <property name="VisibleIndex">10</property>
+        <property name="VisibleIndex">9</property>
         <property name="ActualWidth">41.820359281437121</property>
       </property>
       <property name="Item15" isnull="true" iskey="true">
@@ -202,7 +202,7 @@
       <property name="Item27" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">PersonKind</property>
-        <property name="Visible">true</property>
+        <property name="Visible">false</property>
         <property name="VisibleIndex">8</property>
         <property name="ActualWidth">53.657307741858531</property>
       </property>
@@ -373,7 +373,7 @@
             <property name="TextDecorations">None</property>
           </property>
           <property name="FieldName">Star</property>
-          <property name="Expression">[PersonKind] = '2'</property>
+          <property name="Expression">[PersonKind] = '2' Or Contains([Star], 'Hasumi Yuka') Or Contains([Star], 'Ichinose Ayame') Or Contains([Star], 'Nanami Yuuki') Or Contains([Star], 'Kubo Kyouko') Or Contains([Star], 'Shiroyama Wakana')</property>
           <property name="TypeName">FormatCondition</property>
         </property>
         <property name="Item15" isnull="true" iskey="true">
@@ -382,7 +382,7 @@
             <property name="TextDecorations">None</property>
           </property>
           <property name="FieldName">Star</property>
-          <property name="Expression">[PersonKind] = '3'</property>
+          <property name="Expression">[PersonKind] = '3' Or Contains([Star], 'Yoshioka Anna') Or Contains([Star], 'Inou Ayami') Or Contains([Star], 'Aiura Marika') Or Contains([Star], 'Shinozaki Kanna') Or Contains([Star], 'Mayama Riko') Or Contains([Star], 'Hobana Sae') Or Contains([Star], 'Hasegawa Mina')</property>
           <property name="TypeName">FormatCondition</property>
         </property>
         <property name="Item16" isnull="true" iskey="true">
@@ -391,7 +391,7 @@
             <property name="TextDecorations">None</property>
           </property>
           <property name="FieldName">Star</property>
-          <property name="Expression">[PersonKind] = '4'</property>
+          <property name="Expression">[PersonKind] = '4' Or Contains([Star], 'Yuki Mei') Or Contains([Star], 'Rinne Touka') Or Contains([Star], 'Izumi Tsukasa') Or Contains([Star], 'Takeuchi Natsuki')</property>
           <property name="TypeName">FormatCondition</property>
         </property>
         <property name="Item17" isnull="true" iskey="true">
@@ -400,7 +400,7 @@
             <property name="TextDecorations">None</property>
           </property>
           <property name="FieldName">Star</property>
-          <property name="Expression">[PersonKind] = '5'</property>
+          <property name="Expression">[PersonKind] = '5' Or Contains([Star], 'Hashimoto Reika') Or Contains([Star], 'Nagano Tsukasa') Or Contains([Star], 'Nagakura Sena') Or Contains([Star], 'Akane Erina')</property>
           <property name="TypeName">FormatCondition</property>
         </property>
         <property name="Item18" isnull="true" iskey="true">
@@ -441,43 +441,43 @@
     <property name="TotalSummary" iskey="true" value="0" />
     <property name="MRUFilters" iskey="true" value="9">
       <property name="Item1" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'AB')</property>
-        <property name="FilterText">Starts with([Serie], 'AB')</property>
+        <property name="FilterString">StartsWith([Serie], 'DTT') And Contains([AltTitle], 'sle')</property>
+        <property name="FilterText">Starts with([Serie], 'DTT') And Contains([Alt Title], 'sle')</property>
       </property>
       <property name="Item2" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'A')</property>
-        <property name="FilterText">Starts with([Serie], 'A')</property>
+        <property name="FilterString">StartsWith([Serie], 'DTT') And StartsWith([AltTitle], 'sle')</property>
+        <property name="FilterText">Starts with([Serie], 'DTT') And Starts with([Alt Title], 'sle')</property>
       </property>
       <property name="Item3" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Serie], 'GVG')</property>
-        <property name="FilterText">Starts with([Serie], 'GVG')</property>
+        <property name="FilterString">StartsWith([Serie], 'DTT') And StartsWith([AltTitle], 'sl')</property>
+        <property name="FilterText">Starts with([Serie], 'DTT') And Starts with([Alt Title], 'sl')</property>
       </property>
       <property name="Item4" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Star], 'Fukada Eimi')</property>
-        <property name="FilterText">Starts with([Star], 'Fukada Eimi')</property>
+        <property name="FilterString">StartsWith([Serie], 'DTT') And StartsWith([AltTitle], 's')</property>
+        <property name="FilterText">Starts with([Serie], 'DTT') And Starts with([Alt Title], 's')</property>
       </property>
       <property name="Item5" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'abp')</property>
-        <property name="FilterText">Starts with([Name], 'abp')</property>
+        <property name="FilterString">StartsWith([Serie], 'DT')</property>
+        <property name="FilterText">Starts with([Serie], 'DT')</property>
       </property>
       <property name="Item6" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'ab')</property>
-        <property name="FilterText">Starts with([Name], 'ab')</property>
+        <property name="FilterString">StartsWith([Serie], 'D')</property>
+        <property name="FilterText">Starts with([Serie], 'D')</property>
       </property>
       <property name="Item7" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'a')</property>
-        <property name="FilterText">Starts with([Name], 'a')</property>
+        <property name="FilterString">StartsWith([Serie], 'KBI')</property>
+        <property name="FilterText">Starts with([Serie], 'KBI')</property>
       </property>
       <property name="Item8" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'ф')</property>
-        <property name="FilterText">Starts with([Name], 'ф')</property>
+        <property name="FilterString">StartsWith([Serie], 'KB')</property>
+        <property name="FilterText">Starts with([Serie], 'KB')</property>
       </property>
       <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'фи')</property>
-        <property name="FilterText">Starts with([Name], 'фи')</property>
+        <property name="FilterString">StartsWith([Serie], 'K')</property>
+        <property name="FilterText">Starts with([Serie], 'K')</property>
       </property>
     </property>
-    <property name="FilterString">StartsWith([Serie], 'ABP')</property>
+    <property name="FilterString">StartsWith([Serie], 'DTT')</property>
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>

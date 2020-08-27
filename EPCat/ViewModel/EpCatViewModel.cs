@@ -197,6 +197,7 @@ namespace EPCat
 
         public bool IsDeletingAllowed { get; set; } = false;
         public bool IsSavingAllowed { get; set; } = false;
+        public static bool IsSynchPosterAllowed { get; set; } = false;
 
         public int CapsViewMode = 0;
 
@@ -594,7 +595,7 @@ namespace EPCat
         internal void Save()
         {
             var list = this.FolderListView.ToList();
-            _Loader.SaveCatalog(list);
+            _Loader.SaveCatalog(ref list);
         }
 
 

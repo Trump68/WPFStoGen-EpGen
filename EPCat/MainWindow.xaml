@@ -67,7 +67,9 @@
                         <dxlc:LayoutItem Margin="0,0,0,0" Width="50">
                             <dxe:CheckEdit x:Name="SavingAllowed" Content="Save" IsChecked="{Binding IsSavingAllowed}" />
                         </dxlc:LayoutItem>
-
+                        <dxlc:LayoutItem Margin="0,0,0,0" Width="100">
+                            <dxe:CheckEdit x:Name="SyncPosterAllowed" Content="Sync Poster" IsChecked="{Binding IsSynchPosterAllowed}" />
+                        </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Margin="0,0,0,0" Width="400"/>
 
