@@ -799,6 +799,10 @@ namespace EPCat
             if (ViewModel.CurrentFolder != null)
                 ViewModel.CurrentFolder.Edited = true;
         }
-    
+
+        private void btnGoCalculateRating_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.CalculateRating();
+        }
     }
 }

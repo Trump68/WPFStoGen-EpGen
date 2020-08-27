@@ -668,6 +668,7 @@ namespace EPCat
             }
         }
         public string StatusText { set; get; }
+        public string RatingText { set; get; }
         public int RepeatedTextStart { set; get; }
         public int RepeatedTextEnd { set; get; }
 
@@ -756,7 +757,7 @@ namespace EPCat
                 string keyword = $"{item}-{start.ToString($"D{ND}")}";
                 bool go = JavLibraryDoOne(item, keyword);
 
-                while (failure < 50)
+                while (failure < 100)
                 {
                     start++;
                     keyword = $"{item}-{start.ToString($"D{ND}")}";
@@ -979,7 +980,7 @@ namespace EPCat
             return true;
         }
 
-      
+     
 
         private string IncrementDescr(string descr)
         {
@@ -1026,6 +1027,37 @@ namespace EPCat
                 StoryCopy.SaveToFile(this.CurrentFolder.ItemDirectory, this.CurrentFolder.ItemTempDirectory);
                 SCENARIO.PackScenario(StoryCopy, CurrentFolder.ItemDirectory);
             }
+        }
+        internal void CalculateRating()
+        {
+            //List<Tuple<string, int>> ratingCont = new List<Tuple<string, int>>();
+            Dictionary<string, int> ratingCont = new Dictionary<string, int>();
+            foreach (var item in this._FolderList)
+            {
+                if (!string.IsNullOrEmpty(item.Star))
+                {
+                    var vals = item.Star.Split(',');
+                    foreach (var val in vals)
+                    {
+                        if (!ratingCont.ContainsKey(val))
+                        {
+                            ratingCont.Add(val, 0);
+                        }
+                        ratingCont[val] = ratingCont[val] + 1;
+                    }
+                }
+            }
+            string dd = string.Empty;
+            var f = ratingCont.OrderByDescending(x => x.Value);
+            var i = 1;
+            foreach (var item in f)
+            {
+                dd = $"{dd}{Environment.NewLine}{item.Value}:{item.Key} - {i}";
+                i++;
+            }
+
+            this.RatingText = dd;
+            RaisePropertyChanged(() => this.RatingText);
         }
     }
 

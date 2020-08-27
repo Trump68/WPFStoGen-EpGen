@@ -75,7 +75,7 @@
 
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup>
-                        <dxg:GridControl x:Name="GV" Width="800"
+                        <dxg:GridControl x:Name="GV" Width="1400"
                                          AutoGenerateColumns="None"
                                          EnableSmartColumnsGeneration="True"
                                          ItemsSource="{Binding FolderListView}"
@@ -100,12 +100,12 @@
                             <dxg:GridColumn FieldName="Name" IsSmart="True" />
                             <dxg:GridColumn FieldName="AltTitle" IsSmart="True" />
                             <dxg:GridColumn FieldName="Country" MaxWidth="35" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Year" MaxWidth="25" IsSmart="True" AllowGrouping="True" />
-                            <dxg:GridColumn FieldName="Scenes" MaxWidth="35" IsSmart="True" AllowGrouping="True" />
-                            <dxg:GridColumn FieldName="Month" MaxWidth="35" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Day" MaxWidth="35" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Rated" MaxWidth="35" IsSmart="True" />
-                            <dxg:GridColumn FieldName="XRated" MaxWidth="35" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Year" Width="25" FixedWidth="True" IsSmart="True" AllowGrouping="True" />
+                            <dxg:GridColumn FieldName="Scenes" Width="35" FixedWidth="True" IsSmart="True" AllowGrouping="True" />
+                            <dxg:GridColumn FieldName="Month" Width="35" FixedWidth="True" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Day" Width="35" FixedWidth="True" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Rated" Width="35" FixedWidth="True" IsSmart="True" />
+                            <dxg:GridColumn FieldName="XRated" Width="35" FixedWidth="True" IsSmart="True" />
                             <dxg:GridColumn FieldName="Kind" IsSmart="True" />
                             <dxg:GridColumn FieldName="Brand" IsSmart="True" />
                             <dxg:GridColumn FieldName="Stage" IsSmart="True" />
@@ -125,9 +125,9 @@
                             <dxg:GridColumn FieldName="PersonKind" IsSmart="True" />
                             <dxg:GridColumn FieldName="LastCheck" IsSmart="True" />
                             <dxg:GridColumn FieldName="PARENT" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Size" IsSmart="True" MaxWidth="25"/>
+                            <dxg:GridColumn FieldName="Size" IsSmart="True" FixedWidth="True" Width="25"/>
                             <dxg:GridColumn FieldName="Length" IsSmart="True" />
-                            <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" Width="20" Header="." />
+                            <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" FixedWidth="True" Width="20" Header="." />
                             <dxg:GridColumn FieldName="SourceFolderExist" IsSmart="True" />
                         </dxg:GridControl>
                         <dxlc:LayoutGroup View="Group" Orientation="Vertical" Margin="0,0,0,0" Padding="0">
@@ -657,6 +657,9 @@
                         <dxlc:LayoutItem HorizontalAlignment="Left">
                             <dx:SimpleButton x:Name="GoRepeatTextBtn4" Content="Go [4]" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoRepeatText4_Click" />
                         </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="GoCalculateRating" Content="Go Rating" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoCalculateRating_Click" />
+                        </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                         <dxlc:LayoutItem Label="Story" LabelPosition="Left">
@@ -670,6 +673,14 @@
                                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding StatusText , UpdateSourceTrigger=PropertyChanged}" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                        <dxlc:LayoutItem Label="Rating" LabelPosition="Top">
+                            <dxe:TextEdit MaxHeight="900"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="NoWrap"  AcceptsReturn="True" Text="{Binding RatingText}" />
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
