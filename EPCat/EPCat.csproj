@@ -76,6 +76,7 @@
     <Compile Include="Model\InterfaceLayout.cs" />
     <Compile Include="Model\Loader.cs" />
     <Compile Include="CurrentDataRowTemplates.xaml.cs" />
+    <Compile Include="Model\StarRating.cs" />
     <Compile Include="Model\TicTakToe.cs" />
     <Compile Include="ViewModel\EpCatViewModel.cs" />
     <Page Include="MainWindow.xaml">
@@ -121,7 +122,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StoGenClasses\StoGenClasses.csproj">

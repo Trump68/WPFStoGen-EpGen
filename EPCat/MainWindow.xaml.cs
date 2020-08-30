@@ -1,29 +1,17 @@
 ﻿using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Grid;
-using DevExpress.Xpf.LayoutControl;
 using EPCat.Model;
 using Microsoft.Win32;
-using StoGen.Classes;
 using StoGen.Classes.Scene;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace EPCat
@@ -803,6 +791,40 @@ namespace EPCat
         private void btnGoCalculateRating_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.CalculateRating();
+        }
+
+        private void CopyPoster_Click(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.CurrentFolder==null) return;
+            string poster1 = ViewModel.CurrentFolder.PosterPath.ToLower();
+            string poster2 = poster1.Replace(".jpg","2.jpg");
+            if (!File.Exists(poster1)) return;
+            BitmapSource bmpCopied = null;
+            if (File.Exists(poster2))
+                bmpCopied = new BitmapImage(new Uri(poster2));
+            else
+                bmpCopied = new BitmapImage(new Uri(poster1));
+            var tries = 3;
+            while (tries-- > 0)
+            {
+                try
+                {
+                    // This must be executed on the calling dispatcher.
+                    Clipboard.SetImage(bmpCopied);
+                  
+                }
+                catch (COMException)
+                {
+                    // Windows clipboard is optimistic concurrency. On fail (as in use by another process), retry.
+                    Task.Delay(TimeSpan.FromMilliseconds(100));
+                }
+            }
+        }
+
+        private void CopyPosterName_Click(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.CurrentFolder == null) return;
+                 Clipboard.SetText(ViewModel.CurrentFolder.PosterPath);
         }
     }
 }

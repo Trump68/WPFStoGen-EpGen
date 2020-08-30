@@ -15,7 +15,7 @@
         xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
         x:Class="EPCat.MainWindow"
         mc:Ignorable="d"
-        Title="EP CATALOGUE" Height="782.484" Width="1429.694" Closing="Window_Closing" 
+        Title="EP CATALOGUE" Height="782.484" Width="1844.694" Closing="Window_Closing" 
         Loaded="Window_Loaded"
         KeyDown="Window_KeyDown"
         WindowState="Maximized" Icon="Papirus-Team-Papirus-Apps-Rocket-league.ico">
@@ -58,6 +58,12 @@
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
                             <dx:SimpleButton x:Name="GidJPGBtn" Content="JPG" Width="50" HorizontalAlignment="Left" Click="GidJPGBtn_Click"  />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
+                            <dx:SimpleButton x:Name="CopyPosterBtn" Content="Copy Poster" Width="100" HorizontalAlignment="Left" Click="CopyPoster_Click"  />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
+                            <dx:SimpleButton x:Name="CopyPosterABtn" Content="Copy Poster Name" Width="120" HorizontalAlignment="Left" Click="CopyPosterName_Click"  />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Margin="20,0,0,0" Width="50">
                             <dxe:CheckEdit x:Name="EditAllowed" Content="Edit" />
