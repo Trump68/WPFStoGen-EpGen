@@ -666,12 +666,10 @@ namespace EPCat
 
         private void btnGoRepeatText3_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.JavLibraryDo(3);
+            JAV.JavLibraryDo(ViewModel.RepeatedText, ViewModel.RepeatedTextStart, ViewModel.StatusText);
+            
         }
-        private void btnGoRepeatText4_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.JavLibraryDo(4);
-        }
+
         private void btnGoGenerate_Click(object sender, RoutedEventArgs e)
         {
             //GenerateScenario(null);
@@ -825,6 +823,18 @@ namespace EPCat
         {
             if (ViewModel.CurrentFolder == null) return;
                  Clipboard.SetText(ViewModel.CurrentFolder.PosterPath);
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.CurrentFolder == null) return;
+            ViewModel.CurrentFolder.ToDelete = !ViewModel.CurrentFolder.ToDelete;
+            ViewModel.RefreshFolder();
+        }
+
+        private void btnUpdateJAV_Click(object sender, RoutedEventArgs e)
+        {
+            JAV.JavUpdate();
         }
     }
 }

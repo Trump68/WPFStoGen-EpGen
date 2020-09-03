@@ -673,17 +673,29 @@ namespace EPCat.Model
         private string CurrentCatalog;
         internal void SaveCatalog(ref List<EpItem> list)
         {
-                  
 
-        list.Where(x => x.Edited).ToList().ForEach(x=>
+            list.Where(x => x.ToDelete).ToList().ForEach(x =>
+            {
+                if (Directory.Exists(x.ItemDirectory))
+                {
+                    Directory.Delete(x.ItemDirectory, true);
+                }
+                string dirPoster = EpItem.GetCatalogPosterDir(CurrentCatalog);
+                string newPostername = Path.Combine(dirPoster, $"{x.GID}.jpg");
+                if (File.Exists(newPostername))
+                    File.Delete(newPostername);
+            });
+            list.RemoveAll(x => x.ToDelete);
+
+
+            list.Where(x => x.Edited).ToList().ForEach(x=>
             {
                 if (Directory.Exists(x.ItemDirectory))
                 {
                     List<string> lines = EpItem.SetToPassport(x);
                     File.WriteAllLines(Path.Combine(x.ItemDirectory, EpItem.p_PassportName), lines);
                 }
-            }
-            );
+            });
 
             foreach (var item in FoldersToUpdate)
             {
@@ -701,6 +713,7 @@ namespace EPCat.Model
                 serializer.Serialize(writer, list);
             }         
         }
+
         List<string> FoldersToUpdate = new List<string>();
         internal void ParseLine(string line)
         {

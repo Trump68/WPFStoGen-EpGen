@@ -17,7 +17,7 @@ namespace EPCat.Model
     {
         public static string TEMPDIR = "_TMP";
         public Guid GID { get; set; }
-
+        public bool ToDelete { get; set; } = false;
         private string _ItemPath;
         public string ItemPath
         {
@@ -39,23 +39,39 @@ namespace EPCat.Model
         {
             get
             {
+                BitmapImage orig = null;
                 // try to get from source dir
                 Uri path = new Uri(PosterPath, UriKind.Absolute);
-                if (File.Exists(path.LocalPath)) return new BitmapImage(path);
-                GetLeastNumImage(Path.GetDirectoryName(ItemPath), PosterPath);
-                if (File.Exists(path.LocalPath)) return new BitmapImage(path);
-                //GetLeastNumImage(Path.GetDirectoryName(ItemPath) + @"\EVENTS\", PosterPath);
-                //if (File.Exists(path.LocalPath)) return new BitmapImage(path);
 
-
-                // try to get from catalog poster dir
-                string dirPoster = EpItem.CatalogPosterDir;
-                dirPoster = Path.Combine(dirPoster, $"{GID}.jpg");
-                path = new Uri(dirPoster, UriKind.Absolute);
-                if (File.Exists(path.LocalPath)) return new BitmapImage(path);
-
+                if (File.Exists(path.LocalPath))
+                    orig = BitmapFromUri(path);                
+                else
+                {
+                    GetLeastNumImage(Path.GetDirectoryName(ItemPath), PosterPath);
+                    if (File.Exists(path.LocalPath))
+                        orig = BitmapFromUri(path);
+                    else
+                    {
+                        string dirPoster = EpItem.CatalogPosterDir;
+                        dirPoster = Path.Combine(dirPoster, $"{GID}.jpg");
+                        path = new Uri(dirPoster, UriKind.Absolute);
+                        if (File.Exists(path.LocalPath))
+                            orig = BitmapFromUri(path);
+                    }
+                }
+                if (orig != null)
+                    return orig;
                 return null;
             }
+        }
+        private static BitmapImage BitmapFromUri(Uri source)
+        {
+            var bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = source;
+            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            bitmap.EndInit();
+            return bitmap;
         }
         private bool GetLeastNumImage(string ItemPath, string PosterPath)
         {
@@ -242,28 +258,7 @@ namespace EPCat.Model
                 return _Clips;
             }
         }
-       // [XmlIgnore]
-        //private StoryBase _Scenario = null;
-        //[XmlIgnore]
-        //public SCENARIO Scenario
-        //{
-        //    get
-        //    {
-        //        //if (_Scenario == null)
-        //        //{
-        //        //    _Scenario = new SCENARIO();
 
-        //        //}               
-        //        return _Scenario;
-        //    }
-        //    set
-        //    {
-            
-        //        _Scenario = value;
-        //    }
-        //}
-        
-       
 
         [XmlIgnore]
         public bool SourceFolderExist { get; set; } = false;
@@ -403,6 +398,7 @@ namespace EPCat.Model
         public static string CatalogPosterDir;
         [XmlIgnore]
         public bool Edited = false;
+
 
         public static void SetCurrentImagePassort(int selectedIndex)
         {

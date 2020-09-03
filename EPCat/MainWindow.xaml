@@ -53,6 +53,10 @@
                             <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" 
                                              Click="simpleButton_Click" />
                         </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="DeleteBtn" Content="Delete" Width="70" Margin="10,4,0,0" HorizontalAlignment="Left" 
+                                             Click="DeleteButton_Click" />
+                        </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
                             <dx:SimpleButton x:Name="CollapseBtn" Content="Hide" Width="50" HorizontalAlignment="Left" Click="Collapse_Click" />
                         </dxlc:LayoutItem>
@@ -135,6 +139,7 @@
                             <dxg:GridColumn FieldName="Length" IsSmart="True" />
                             <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" FixedWidth="True" Width="20" Header="." />
                             <dxg:GridColumn FieldName="SourceFolderExist" IsSmart="True" />
+                            <dxg:GridColumn FieldName="ToDelete" IsSmart="True" />
                         </dxg:GridControl>
                         <dxlc:LayoutGroup View="Group" Orientation="Vertical" Margin="0,0,0,0" Padding="0">
                             <dxlc:LayoutGroup x:Name="MainDetail" View="Group" Margin="0,0,0,0" Padding="0" Orientation="Horizontal">
@@ -661,10 +666,10 @@
                             <dx:SimpleButton x:Name="GoRepeatTextBtn3" Content="Go [3]" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoRepeatText3_Click" />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="GoRepeatTextBtn4" Content="Go [4]" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoRepeatText4_Click" />
+                            <dx:SimpleButton x:Name="GoCalculateRating" Content="Go Rating" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoCalculateRating_Click" />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="GoCalculateRating" Content="Go Rating" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoCalculateRating_Click" />
+                            <dx:SimpleButton x:Name="UpdateJAV" Content="Update JAV" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnUpdateJAV_Click" />
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
