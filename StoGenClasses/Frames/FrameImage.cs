@@ -756,13 +756,16 @@ namespace StoGen.Classes
             Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
             Projector.PicContainer.Clip.Visibility = System.Windows.Visibility.Visible;
             FrameImage.TimeStarted = DateTime.Now;
-            timer.Change(TimerPeriod, TimerPeriod);
-            Projector.PicContainer.Clip.Play();
-            Projector.ClipSound.Play();
-            if (FrameImage.IsLoop == 4 || FrameImage.WaitStart > 0)
+            if (timer != null)
             {
-                Projector.PicContainer.Clip.Pause();
-                Projector.ClipSound.Pause();
+                timer.Change(TimerPeriod, TimerPeriod);
+                Projector.PicContainer.Clip.Play();
+                Projector.ClipSound.Play();
+                if (FrameImage.IsLoop == 4 || FrameImage.WaitStart > 0)
+                {
+                    Projector.PicContainer.Clip.Pause();
+                    Projector.ClipSound.Pause();
+                }
             }
         }
 
