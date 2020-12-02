@@ -769,7 +769,7 @@ namespace StoGen.Classes
             if (timer != null)
             {
                 timer.Change(TimerPeriod, TimerPeriod);
-                Projector.PicContainer.Clip.Visibility = System.Windows.Visibility.Visible;
+                //Projector.PicContainer.Clip.Visibility = System.Windows.Visibility.Visible;
                 Projector.PicContainer.Clip.Play();
                 Projector.PicContainer.Clip.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
                
@@ -797,7 +797,7 @@ namespace StoGen.Classes
 
             timer.Change(Timeout.Infinite, Timeout.Infinite);
 
-            Projector.PicContainer.Clip.Visibility = System.Windows.Visibility.Hidden;
+            //Projector.PicContainer.Clip.Visibility = System.Windows.Visibility.Hidden;
 
         }
         public override void BeforeLeave()
