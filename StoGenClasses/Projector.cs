@@ -120,6 +120,7 @@ namespace StoGen.ModelClasses
         public List<System.Windows.Controls.Image> PicList = new List<System.Windows.Controls.Image>();
         public Canvas OwnerCanvas;        
         public MediaElement Clip;
+        public MediaElement Clip2;
         public Viewbox OwnerViewbox;
     }
 }

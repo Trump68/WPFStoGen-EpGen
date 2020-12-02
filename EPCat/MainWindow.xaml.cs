@@ -184,7 +184,11 @@ namespace EPCat
         {
             this.NavTabGroup.SelectedContainer = this.EditTab;
             string path = null;
-            if ((this.DataContext as EpCatViewModel).CurrentClip != null)
+            if (!string.IsNullOrEmpty(ViewModel.ClipToProcess))
+            {
+                path = ViewModel.ClipToProcess;
+            }
+            if ((path==null) && (this.DataContext as EpCatViewModel).CurrentClip != null)
             {
                 var videos = (this.DataContext as EpCatViewModel).CurrentFolder.Videos;
                 if (videos.Any())
@@ -193,10 +197,7 @@ namespace EPCat
                     ViewModel.ClipToProcess = path;
                 }
             }
-            if (string.IsNullOrEmpty(path) && !string.IsNullOrEmpty(ViewModel.ClipToProcess))
-            {
-                path = ViewModel.ClipToProcess;
-            }
+           
             if (string.IsNullOrEmpty(path)) return;
 
 

@@ -16,6 +16,7 @@
                 <Image x:Name="Picture3" ClipToBounds="False" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
                 <Image x:Name="Picture4" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
                 <Image x:Name="Picture5" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
+                <MediaElement x:Name="Clip2" ScrubbingEnabled="True" HorizontalAlignment="Left" Height="505" Margin="90,47,0,0" VerticalAlignment="Top" Width="853" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>
                 <MediaElement x:Name="Clip1" ScrubbingEnabled="True" HorizontalAlignment="Left" Height="505" Margin="90,47,0,0" VerticalAlignment="Top" Width="853" LoadedBehavior="Manual" RenderTransformOrigin="0.5,0.5"/>
                 <Image x:Name="Picture6" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
                 <Image x:Name="Picture7" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>

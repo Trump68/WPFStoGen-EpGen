@@ -99,7 +99,7 @@ namespace StoGen.Classes
                     {
                         FrameImage.WaitStart = -1;
                         Projector.PicContainer.Clip.Play();
-                        Projector.ClipSound.Play();
+                        //Projector.ClipSound.Play();
                         FrameImage.TimeStarted = DateTime.Now;
                     }
                     return;
@@ -125,8 +125,8 @@ namespace StoGen.Classes
                         else
                         {
                             Projector.PicContainer.Clip.Pause();
-                            Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
-                            Projector.ClipSound.Play();
+                            //Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
+                            //Projector.ClipSound.Play();
                             FrameImage.NowReverse = !FrameImage.NowReverse;
                             Thread.Sleep((int)(PausePeriod1 * Projector.PicContainer.Clip.SpeedRatio));
                             lastupdated = DateTime.Now;
@@ -143,8 +143,8 @@ namespace StoGen.Classes
                             Thread.Sleep((int)(PausePeriod2 * Projector.PicContainer.Clip.SpeedRatio));
                             Projector.PicContainer.Clip.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
                             Projector.PicContainer.Clip.Play();
-                            Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
-                            Projector.ClipSound.Play();
+                            //Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
+                            //Projector.ClipSound.Play();
                             FrameImage.NowReverse = !FrameImage.NowReverse;
                             return;
                         }
@@ -167,7 +167,7 @@ namespace StoGen.Classes
                 {
                     FrameImage.LoopProcessed = true;
                     Projector.PicContainer.Clip.Pause();
-                    Projector.ClipSound.Pause();
+                    //Projector.ClipSound.Pause();
 
                     if (FrameImage.WaitEnd > 0)// замереть на время
                     {
@@ -188,7 +188,7 @@ namespace StoGen.Classes
                 {
                     FrameImage.LoopProcessed = true;
                     Projector.PicContainer.Clip.Pause();
-                    Projector.ClipSound.Pause();
+                    //Projector.ClipSound.Pause();
                 }
                 else if (FrameImage.IsLoop == 1)// в начало
                 {
@@ -206,10 +206,10 @@ namespace StoGen.Classes
                         {
                             Projector.PicContainer.Clip.Source = new Uri(FrameImage.Animations[FrameImage.AnimationIndex].Source);
                             Projector.PicContainer.Clip.Play();
-                            Projector.ClipSound.Open(new Uri(FrameImage.Animations[FrameImage.AnimationIndex].Source));
-                            Projector.ClipSound.Play();
+                            //Projector.ClipSound.Open(new Uri(FrameImage.Animations[FrameImage.AnimationIndex].Source));
+                            //Projector.ClipSound.Play();
                         }
-                        Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
+                        //Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
                     }
 
                     FrameImage.IsLoop = FrameImage.Animations[FrameImage.AnimationIndex].ALM;
@@ -218,8 +218,8 @@ namespace StoGen.Classes
                     FrameImage.WaitStart = FrameImage.Animations[FrameImage.AnimationIndex].AWS;
                     FrameImage.WaitEnd = FrameImage.Animations[FrameImage.AnimationIndex].AWE;
                     Projector.PicContainer.Clip.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
-                    Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
-                    Projector.ClipSound.Volume = ((float)FrameImage.Animations[FrameImage.AnimationIndex].AV /100);
+                    //Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
+                    //Projector.ClipSound.Volume = ((float)FrameImage.Animations[FrameImage.AnimationIndex].AV /100);
                     float rate = ((float)FrameImage.Animations[FrameImage.AnimationIndex].AR / 100);
                     Projector.PicContainer.Clip.SpeedRatio = rate;
                 }
@@ -356,6 +356,13 @@ namespace StoGen.Classes
                 #region Video
                 if (Pics[i].Props.isVideo || ext == ".mp4" || ext == ".mpg" || ext == ".avi" || ext == ".wmv" || ext == ".m4v")
                 {
+                    //caching
+                    if (Pics[i].Props.Merge) // video for cashing
+                    {
+                        Projector.PicContainer.Clip2.Source = new Uri(Pics[i].Props.FileName);
+                        continue;
+                    }
+
                     FrameImage.TimeToNext = -1;
                     videoactive = true;
 
@@ -368,22 +375,25 @@ namespace StoGen.Classes
                     FrameImage.WaitStart = pi.Props.CurrentAnimation.AWS;
                     FrameImage.WaitEnd = pi.Props.CurrentAnimation.AWE;
 
+                    Projector.PicContainer.Clip.Stop();
                     if (Projector.PicContainer.Clip.Source == null || (Projector.PicContainer.Clip.Source.LocalPath != Pics[i].Props.FileName))
                     {
-                        
-                        Projector.PicContainer.Clip.Source = new Uri(Pics[i].Props.FileName);
-                        Projector.ClipSound.Open(new Uri(Pics[i].Props.FileName));
+                        Projector.PicContainer.Clip.LoadedBehavior = MediaState.Manual;
+                       
                         Projector.PicContainer.Clip.MediaOpened -= Clip_MediaOpened;
                         Projector.PicContainer.Clip.MediaOpened += Clip_MediaOpened;
-                        Projector.ClipSound.Play();
-                        Projector.PicContainer.Clip.Play();
+                        Projector.PicContainer.Clip.Source = new Uri(Pics[i].Props.FileName);
+                        //Projector.ClipSound.Open(new Uri(Pics[i].Props.FileName));
+
+                        //Projector.ClipSound.Play();
+                        //Projector.PicContainer.Clip.Play();
                     }
                     else
                     {
                         SetClip();
                     }
                     Projector.PicContainer.Clip.Volume = 0;
-                    Projector.ClipSound.Volume = ((float)pi.Props.CurrentAnimation.AV / 100);
+                    //Projector.ClipSound.Volume = ((float)pi.Props.CurrentAnimation.AV / 100);
 
                     float rate = ((float)Pics[i].Props.CurrentAnimation.AR / 100);
                     Projector.PicContainer.Clip.SpeedRatio = rate;
@@ -750,21 +760,25 @@ namespace StoGen.Classes
         }
         private void SetClip()
         {
-            Projector.PicContainer.Clip.LoadedBehavior = MediaState.Manual;
+            
             Projector.PicContainer.Clip.MediaOpened -= Clip_MediaOpened;
-            Projector.PicContainer.Clip.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
-            Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
-            Projector.PicContainer.Clip.Visibility = System.Windows.Visibility.Visible;
+            
+            //Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
+           
             FrameImage.TimeStarted = DateTime.Now;
             if (timer != null)
             {
                 timer.Change(TimerPeriod, TimerPeriod);
+                Projector.PicContainer.Clip.Visibility = System.Windows.Visibility.Visible;
                 Projector.PicContainer.Clip.Play();
-                Projector.ClipSound.Play();
+                Projector.PicContainer.Clip.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
+               
+
+                //Projector.ClipSound.Play();
                 if (FrameImage.IsLoop == 4 || FrameImage.WaitStart > 0)
                 {
                     Projector.PicContainer.Clip.Pause();
-                    Projector.ClipSound.Pause();
+                    //Projector.ClipSound.Pause();
                 }
             }
         }
