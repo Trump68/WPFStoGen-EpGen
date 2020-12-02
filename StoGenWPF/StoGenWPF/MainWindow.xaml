@@ -12,7 +12,7 @@
         <Viewbox x:Name ="ViewboxControl" Height="5000" Width="5000">
             <Canvas Grid.Row="1" x:Name="CanvasControl" ClipToBounds="False" Height="5000" Width="5000">
                 <Image x:Name="Picture1" ClipToBounds="False" HorizontalAlignment="Left" Height="5000" VerticalAlignment="Top" Width="5000"/>
-                <Image x:Name="Picture2" ClipToBounds="False" HorizontalAlignment="Left" Height="5000" VerticalAlignment="Top" Width="5000"/>
+                <Image x:Name="Picture2" ClipToBounds="False" HorizontalAlignment="Left" Height="5000" VerticalAlignment="Top" Width="5000" Canvas.Top="-63"/>
                 <Image x:Name="Picture3" ClipToBounds="False" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
                 <Image x:Name="Picture4" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>
                 <Image x:Name="Picture5" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="1030"/>

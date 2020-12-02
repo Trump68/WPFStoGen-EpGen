@@ -143,9 +143,14 @@ namespace EPCat.Model
             {
                 if (_Videos == null || !_Videos.Any())
                 {
-                    if (string.IsNullOrEmpty(ItemDirectory)) _Videos =  new List<string>();
-                    else if (!Directory.Exists(ItemDirectory)) _Videos =  new List<string>();
-                    else _Videos =  Directory.GetFiles(ItemDirectory, "*.m4v").ToList();
+                    if (string.IsNullOrEmpty(ItemDirectory)) _Videos = new List<string>();
+                    else if (!Directory.Exists(ItemDirectory)) _Videos = new List<string>();
+                    else
+                    {
+                        _Videos =//  Directory.GetFiles(ItemDirectory, "*.m4v").ToList();
+                         getfiles(ItemDirectory, "*.m4v");
+                        _Videos.AddRange(getfiles(ItemDirectory, "*.mp4"));
+                    }
                 }
                 List<string> rez = new List<string>();
                 rez.AddRange(_Videos);
@@ -154,6 +159,17 @@ namespace EPCat.Model
             }
         }
 
+        private List<string> getfiles(string dir, string template)
+        {
+            List<string> result = new List<string>();
+            result.AddRange(Directory.GetFiles(dir, template).ToList());
+            var dirs = Directory.GetDirectories(dir).ToList();
+            foreach (var item in dirs)
+            {
+                result.AddRange(getfiles(item, template));
+            }
+            return result;
+        }
 
         private List<string> _Sounds = null;
         [XmlIgnore]
@@ -165,7 +181,8 @@ namespace EPCat.Model
                 {
                     if (string.IsNullOrEmpty(SoundDirectory)) _Sounds =  new List<string>();
                     else if (!Directory.Exists(SoundDirectory)) _Sounds = new List<string>();
-                    else _Sounds = Directory.GetFiles(SoundDirectory, "*.mp3").ToList();
+                    else _Sounds = //Directory.GetFiles(SoundDirectory, "*.mp3").ToList();
+                            getfiles(SoundDirectory, "*.m4v");
                 }
                 return _Sounds;
             }
@@ -591,6 +608,11 @@ namespace EPCat.Model
                     if (Guid.TryParse(term.Trim(), out temp))
                     {
                         result.GID = temp;
+                    }
+                    else
+                    {
+                        result.GID = Guid.NewGuid();
+                        result.Edited = true;
                     }
                 }
                 else if (term.StartsWith(p_Name))

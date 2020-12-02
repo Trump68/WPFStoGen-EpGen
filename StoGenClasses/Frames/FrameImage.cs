@@ -473,10 +473,18 @@ namespace StoGen.Classes
                 int ImH = 0;
                 if (!Pics[i].Props.FileName.EndsWith("CANVAS"))
                 {
-                    BitmapImage imageSource = new BitmapImage(new Uri(fn));
-                    Projector.PicContainer.PicList[(int)pi.Props.Level].Source = imageSource;
-                    ImW = imageSource.PixelWidth;
-                    ImH = imageSource.PixelHeight;
+                    try
+                    {
+                        BitmapImage imageSource = new BitmapImage(new Uri(fn));
+                        Projector.PicContainer.PicList[(int)pi.Props.Level].Source = imageSource;
+                        ImW = imageSource.PixelWidth;
+                        ImH = imageSource.PixelHeight;
+                    }
+                    catch (Exception e)
+                    {
+                        XtraMessageBox.Show(Pics[i].Props.FileName,e.Message, System.Windows.Forms.MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                   
                 }
 
                 #region Size

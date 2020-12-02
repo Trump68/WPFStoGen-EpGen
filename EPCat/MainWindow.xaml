@@ -435,7 +435,7 @@
                                     </dxlc:LayoutGroup>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                         <dxlc:LayoutItem Label="Story" LabelPosition="Top">
-                                            <dxe:TextEdit MaxHeight="320"
+                                            <dxe:TextEdit MaxHeight="200"
                                           ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           TextWrapping="NoWrap"  AcceptsReturn="True" Text="{Binding Story.Story}" />
@@ -582,7 +582,7 @@
                             <MediaElement x:Name="minionPlayer" Margin="0"                         
                              ScrubbingEnabled="True"
                              MinHeight="500"
-                             MaxHeight="1000"
+                             MaxHeight="700"
                              LoadedBehavior="Manual"
                              HorizontalAlignment="Left"/>
                             <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarPosition"

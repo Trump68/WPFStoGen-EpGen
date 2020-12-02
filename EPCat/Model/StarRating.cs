@@ -43,11 +43,14 @@ namespace EPCat.Model
         }
         public static void SetRating(ref EpItem item)
         {
+            
             // JAV person rating
             if (item.Catalog == "JAV")
             {
                 if (!string.IsNullOrEmpty(item.Star))
                 {
+                    //item.Star.Replace();
+
                     if (!SetRating(JavStarR8, "8", ref item))
                     {
                         if (!SetRating(JavStarR7, "7", ref item))

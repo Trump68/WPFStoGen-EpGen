@@ -962,12 +962,20 @@ namespace EPCat.Model
     
         private void CreateUpdateFromPassport(string passportPath, ref List<EpItem> list)
         {
+            if (passportPath.Contains(@"006"))
+            {
+                var asdasd = 0;
+            }
             List<string> passport = new List<string>(File.ReadAllLines(passportPath));
             if (passport != null)
             {
+                
                 EpItem item = EpItem.GetFromPassport(passport, passportPath);
                 if (item.GID == null || Guid.Empty.Equals(item.GID))
+                {
                     item.GID = Guid.NewGuid();
+                    item.Edited = true;
+                }
 
                 string dirname = Path.GetDirectoryName(passportPath);
                 if (string.IsNullOrEmpty(item.Name))

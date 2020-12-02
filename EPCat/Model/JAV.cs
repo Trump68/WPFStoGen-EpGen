@@ -252,26 +252,130 @@ namespace EPCat.Model
         }
         public static void JavUpdate()
         {
+            //Emanuel
+            JavUpdateSerie("SOAV", 1);
+            JavUpdateSerie("MYBA", 26);
+
+
+
+            //Crystal Eizou
+            JavUpdateSerie("NITR", 504);
+            JavUpdateSerie("EKDV", 644);
+            JavUpdateSerie("CADV", 783);
+            JavUpdateSerie("GEKI", 1);
+            JavUpdateSerie("MADM", 1);
+            JavUpdateSerie("SON", 1);
+            JavUpdateSerie("MAMA", 1);
+            JavUpdateSerie("MADV", 1);
+            JavUpdateSerie("GRDV", 1);
+            JavUpdateSerie("HEDV", 1);
+            JavUpdateSerie("FVDV", 1);
+            JavUpdateSerie("HEDV", 1);
+            JavUpdateSerie("TMHK", 1);
+            JavUpdateSerie("GESU", 1);
+            JavUpdateSerie("TBTB", 1);
+
+            //Hibino
+            JavUpdateSerie("HBAD", 552);
+            JavUpdateSerie("NTR", 1);
+            JavUpdateSerie("HAVD", 1);
+            JavUpdateSerie("SW", 1);
+
+            //Glory Quest
+            JavUpdateSerie("RVG", 1);
+            JavUpdateSerie("GVH", 1);
+            JavUpdateSerie("OVG", 1);
+            JavUpdateSerie("GVG", 989);
+            JavUpdateSerie("WCD", 1);
+            JavUpdateSerie("DRS", 1);
+            JavUpdateSerie("GG", 1);
+            JavUpdateSerie("QQ", 1);
+            
+            //Olga
+            JavUpdateSerie("ANGR", 1);
+            JavUpdateSerie("TORX", 1);
+            JavUpdateSerie("NAFI", 1);
+            JavUpdateSerie("NACS", 1);
+            JavUpdateSerie("TAMZ", 1);
+            JavUpdateSerie("TORG", 1);
+            JavUpdateSerie("TAMO", 1);
+            JavUpdateSerie("ORG", 1);
+
+            //PRESIGE
+            JavUpdateSerie("ONEZ", 256);
+            JavUpdateSerie("ABW", 10);
+            JavUpdateSerie("KBI", 44);
+            JavUpdateSerie("DTT", 65);
+            JavUpdateSerie("SKSK", 35);
+            JavUpdateSerie("PPT", 100);
+            JavUpdateSerie("KPB", 11);
+            JavUpdateSerie("DIC", 78);
+            JavUpdateSerie("SIM", 91);
+            JavUpdateSerie("KUM", 6);
+            JavUpdateSerie("DOCP", 249);
+            JavUpdateSerie("TRD", 88);
+            JavUpdateSerie("EZD", 419);
+            JavUpdateSerie("MBD", 163);
+            JavUpdateSerie("EYE", 10);
+            JavUpdateSerie("DAY", 28);
+            JavUpdateSerie("YOK", 37);
+            JavUpdateSerie("JKS", 165);
+            JavUpdateSerie("ZZR", 82);
+            JavUpdateSerie("COB", 22);
+            JavUpdateSerie("XND", 30);
+            JavUpdateSerie("BAN", 51);
+            JavUpdateSerie("EVO", 144);
+            JavUpdateSerie("ATOM", 396);
+            JavUpdateSerie("WIL", 58);
+            JavUpdateSerie("SGA", 144);
+            JavUpdateSerie("BGN", 60);
+            JavUpdateSerie("NRS", 54);
+            //JavUpdateSerie("APB", 999); -completed
+
+            //IDEA POCKET
+            JavUpdateSerie("IPX", 544);
+            JavUpdateSerie("IPIT", 6);
+            //JavUpdateSerie("IPZ", 999);- completed
+            //JavUpdateSerie("IPTD", 1);-completed
+            JavUpdateSerie("IDBD", 831);
+            JavUpdateSerie("SUPD", 142);
+            JavUpdateSerie("AND", 189);
+
+            //Rocket
+            JavUpdateSerie("RCTD", 353);
+            JavUpdateSerie("RCT", 996);
+
+            //Nagira
+            JavUpdateSerie("GNAX", 34);
+
+            //Venus
+            JavUpdateSerie("VENU", 964);
+            JavUpdateSerie("VEMA", 147);
+            JavUpdateSerie("VEC", 441);
+            JavUpdateSerie("VERO", 96);
+            JavUpdateSerie("VEQ", 176);
+            JavUpdateSerie("VAGU", 232);
+            JavUpdateSerie("VOSS", 200);
+
             //MOODYZ
             JavUpdateSerie("MIAA", 319);
-            JavUpdateSerie("MIZD", 1);
-            JavUpdateSerie("MIMK", 1);
-            JavUpdateSerie("MIFD", 1);
+            JavUpdateSerie("MIZD", 202);
+            JavUpdateSerie("MIMK", 74);
+            JavUpdateSerie("MIFD", 131);
             JavUpdateSerie("MIDE", 826);
             JavUpdateSerie("MIAE", 359);
-            JavUpdateSerie("MIGD", 787);
-            JavUpdateSerie("MDYD", 1);
-            JavUpdateSerie("MDLD", 1);
-            JavUpdateSerie("MDED", 1);
+            JavUpdateSerie("MIGD", 787);            
+            JavUpdateSerie("MDLD", 469);
+            JavUpdateSerie("MDED", 449);
             JavUpdateSerie("MIID", 203);
-            JavUpdateSerie("RMID", 203);
+            //JavUpdateSerie("MDYD", 999);- completed
             //JavUpdateSerie("MIBD", 999); - completed
             //JavUpdateSerie("MIDD", 999); - completed
             //JavUpdateSerie("MIAD", 999); - completed
 
 
             //LUNATICS
-            JavUpdateSerie("LULU", 1);
+            JavUpdateSerie("LULU", 37);
 
             //Attakers
             //JavUpdateSerie("ATVR", 1); - VR
@@ -340,7 +444,7 @@ namespace EPCat.Model
             int failure = 0;
             string keyword = $"{serie}-{start.ToString($"D3")}";
             bool go = JavLibraryDoOne(serie, keyword);
-            while (failure < 50)
+            while (failure < 2)
             {
                 start++;
                 keyword = $"{serie}-{start.ToString($"D3")}";
