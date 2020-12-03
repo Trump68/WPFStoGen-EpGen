@@ -63,6 +63,7 @@ namespace StoGen.Classes
         {            
             Cadre result = this;
             Projector.TextVisible = true;
+            FrameImage.PausePeriod1 = info.DefClipPause1;
             if (!this.AlignDataProcessed)
             {
                 if (paint)

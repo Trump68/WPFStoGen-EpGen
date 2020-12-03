@@ -30,15 +30,13 @@ namespace StoGen.Classes
             this.CadreId = -1;
             if (startpage >= Scene.CadreDataList.Count())
                 startpage = Scene.CadreDataList.Count()-1;
-           // this.CadreId = startpage - 2;
+
             while (this.CadreId < startpage -1)
             {
                 this.GetNextCadre(false);
             }
             this.GetNextCadre();
-            //bool LiveMenu = (startpage == Cadres.Count()-1);
-            //this.OldMenuCreator = this.MenuCreator;
-            //this.MenuCreator = this.Scene.GetMenuCreator(LiveMenu);
+
         }
         public void CreateCadre()
         {
@@ -230,12 +228,14 @@ namespace StoGen.Classes
             }
             return this.CreateCadre(item, isWhite, te);
         }
+
         // => Here the magic happens (TO DO: recode this)
         public CadreInfo CreateCadre(CadreData item, bool isWhite = false, seTe text = null)
         {
             var cadre = new CadreInfo();
             cadre.IsWhite = isWhite;
             cadre.Name = $"Cadre {this.Cadres.Count + 1}";
+            cadre.DefClipPause1 = item.DefClipPause1;
             foreach (var ai in item.AlignList)
             {
                 //faind main image info in storage

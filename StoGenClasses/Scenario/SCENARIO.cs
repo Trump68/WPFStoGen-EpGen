@@ -28,7 +28,7 @@ namespace StoGen.Classes.Scene
 DefTextSize=200;DefTextShift=30;DefTextWidth=1800;DefFontSize=40;DefFontColor=Cyan;DefTextAlignH=2;DefTextAlignV=1;DefTextBck=Cyan;DefTextBck=$$WHITE$$
 //Visual
 //DefVisLM: 0-next cadre, 1-loop, 2-stop, 3- backward?
-DefVisX = 700; DefVisY = 0; DefVisSize = 900; DefVisSpeed = 100; DefVisLM = 1; DefVisLC = 1
+DefVisX=700; DefVisY=0; DefVisSize=900;DefVisSpeed=100;DefVisLM=0;DefVisLC=1;DefClipPause1=1000
 //DefVisX=0;DefVisY=0;DefVisSize=-3;DefVisSpeed=100;DefVisLM=1;DefVisLC=1
 DefVisFile =
 //Other
@@ -114,6 +114,8 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         public string DefVisLM;
         public string DefVisLC;
         public string DefVisFile;
+        //movie
+        public string DefClipPause1;
         //Other
         public string GamePath;
         private bool packStory = true;
@@ -226,6 +228,10 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 else if (item.StartsWith("PackVideo="))
                 {
                     packVideo = (item.Replace("PackVideo=", string.Empty) == "1");
+                }
+                else if (item.StartsWith("DefClipPause1="))
+                {
+                    DefClipPause1 = item.Replace("DefClipPause1=", string.Empty);
                 }
             }
         }

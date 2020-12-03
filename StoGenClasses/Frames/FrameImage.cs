@@ -99,7 +99,6 @@ namespace StoGen.Classes
                     {
                         FrameImage.WaitStart = -1;
                         Projector.PicContainer.Clip.Play();
-                        //Projector.ClipSound.Play();
                         FrameImage.TimeStarted = DateTime.Now;
                     }
                     return;
@@ -128,7 +127,7 @@ namespace StoGen.Classes
                             //Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
                             //Projector.ClipSound.Play();
                             FrameImage.NowReverse = !FrameImage.NowReverse;
-                            Thread.Sleep((int)(PausePeriod1 * Projector.PicContainer.Clip.SpeedRatio));
+                            Thread.Sleep(PausePeriod1);
                             lastupdated = DateTime.Now;
                             return;
                         }
@@ -161,7 +160,12 @@ namespace StoGen.Classes
             #endregion
 
             #region Normal loops
-            if (FrameImage.IsLoop != 3 && Projector.PicContainer.Clip.Position >= TimeSpan.FromSeconds(FrameImage.ClipEndPos))
+            TimeSpan ts1 = Projector.PicContainer.Clip.Position;
+            TimeSpan ts2 = TimeSpan.FromSeconds(FrameImage.ClipEndPos);
+            bool isEnded = false;
+            if (Projector.PicContainer.Clip.NaturalDuration.HasTimeSpan)
+                isEnded = (Projector.PicContainer.Clip.NaturalDuration.TimeSpan <= Projector.PicContainer.Clip.Position);
+            if (FrameImage.IsLoop != 3 && (ts1 >= ts2 || isEnded))
             {
                 if (FrameImage.IsLoop == 0 && !Projector.EndlessVideo)//остановить
                 {
@@ -178,7 +182,7 @@ namespace StoGen.Classes
                     }
                     else// перейти дальше
                     {
-                        Thread.Sleep((int)(PausePeriod1 * Projector.PicContainer.Clip.SpeedRatio));
+                        Thread.Sleep(PausePeriod1);
                         FrameImage.CurrentProc.GetNextCadre();
                     }
 
@@ -440,9 +444,10 @@ namespace StoGen.Classes
                     Projector.PicContainer.Clip.Margin = new System.Windows.Thickness(Pics[i].Props.X + 0, Pics[i].Props.Y + 0, 0, 0);
                     runClip = true;
                     //FrameImage.debugcount++;
-                    if (Pics[i].Props.CurrentAnimation.AWS > 0) PausePeriod1 = Pics[i].Props.CurrentAnimation.AWS;
-                    else PausePeriod1 = 40;
-                    if (Pics[i].Props.CurrentAnimation.AWE > 0) PausePeriod2 = Pics[i].Props.CurrentAnimation.AWE;
+                    if (Pics[i].Props.CurrentAnimation.AWS > 0)
+                        PausePeriod1 = Pics[i].Props.CurrentAnimation.AWS;
+                    if (Pics[i].Props.CurrentAnimation.AWE > 0)
+                        PausePeriod2 = Pics[i].Props.CurrentAnimation.AWE;
                     else PausePeriod2 = 40;
                     continue;
                 }
@@ -1132,6 +1137,8 @@ namespace StoGen.Classes
                 return Pics[0];
             }
         }
+
+
         public override void Dispose()
         {
 

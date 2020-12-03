@@ -119,12 +119,17 @@ namespace StoGen.Classes.Data.Games
 
             foreach (var group in data)
             {
-
-                result.Add(DoCadreByGroup(group, indexToInsert));
+                var cadre = DoCadreByGroup(group, indexToInsert);
+                result.Add(cadre);
                 if (indexToInsert.HasValue)
                 {
                     indexToInsert++;
                 }
+            }
+            if (!string.IsNullOrEmpty(Story.DefClipPause1))
+            {
+                int DefClipPause1 = int.Parse(Story.DefClipPause1);
+                this.CadreDataList.ForEach(x => x.DefClipPause1 = DefClipPause1);
             }
             return result;
         }
@@ -450,10 +455,17 @@ namespace StoGen.Classes.Data.Games
                 if (item.Kind == 8) //Clip
                 {
                     int volume = 0;
+                    double PosStart = 0;
+                    if (!string.IsNullOrEmpty(item.PositionStart))
+                        PosStart = Convert.ToDouble(item.PositionStart);
+                    double PosEnd = 0;
+                    if (!string.IsNullOrEmpty(item.PositionEnd))
+                        PosEnd = Convert.ToDouble(item.PositionEnd);
+
                     var anim = new AP(item.File)
                     {
-                        APS = Convert.ToDouble(item.PositionStart),
-                        APE = Convert.ToDouble(item.PositionEnd),
+                        APS = PosStart,
+                        APE = PosEnd,
                         ALM = Convert.ToInt32(item.LoopMode),
                         ALC = Convert.ToInt32(item.LoopCount),
                         AR = Convert.ToInt32(item.Speed),
@@ -543,6 +555,9 @@ namespace StoGen.Classes.Data.Games
             {
                 result.ControlData = controldata;
             }
+
+
+           
 
             return result;
         }

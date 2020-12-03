@@ -468,6 +468,7 @@ namespace StoGenMake.Scenes.Base
         public seTe TextData;
         public seCtrl ControlData = new seCtrl();
         public List<Info_Scene> OriginalInfo = new List<Info_Scene>();
+        public int DefClipPause1 = 40;
         public CadreData()
         {
 

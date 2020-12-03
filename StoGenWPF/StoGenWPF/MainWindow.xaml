@@ -88,7 +88,7 @@
         </Canvas>
         <Rectangle x:Name="LmpAuto" Fill="#FF06069B" HorizontalAlignment="Left" Height="10" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>
         <Rectangle x:Name="LmpEndless" Fill="#FFB60B49" HorizontalAlignment="Left" Height="10" Margin="10,0,0,0" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>
-        <GroupBox x:Name="PictureCadreDS" HorizontalAlignment="Right" Height="78" Width="650" Background="#FFF9F9F9" BorderBrush="#FFF9FCFD" VerticalAlignment="Bottom" Margin="300,0,0,0">
+        <GroupBox x:Name="PictureCadreDS" HorizontalAlignment="Right" Height="78" Width="650" Background="#FFF9F9F9" BorderBrush="#FFF9FCFD" VerticalAlignment="Bottom" Margin="300,0,0,0" Visibility="Hidden">
             <StackPanel Margin="1,-1,1,3" Orientation="Vertical">
                 <StackPanel Margin="1" Orientation="Horizontal" Background="#FFF9F9F9">
                     <TextBlock Text="     X:+NP6-NP4          Y:+NP2-NP8          Size:+NP7-NP9         Rot:+NP1-NP3         ClipX:+A-S          ClipW:+D-F         ClipY:+G-H        ClipH:+J-K"/>

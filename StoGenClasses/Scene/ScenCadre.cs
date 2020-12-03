@@ -11,6 +11,8 @@ namespace StoGenMake.Elements
         public string Description { set; get; }
         public virtual bool IsActivated { get { return this.VisionList.Any(x=>x.IsActivated); } }
 
+        public int DefClipPause1 { get; internal set; }
+
         public int Timer = -1;
         public List<ScenElement> VisionList = new List<ScenElement>();
         public List<ScenElement> SoundList = new List<ScenElement>();
