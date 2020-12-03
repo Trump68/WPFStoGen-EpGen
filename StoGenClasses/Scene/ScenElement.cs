@@ -30,17 +30,18 @@ namespace StoGenMake.Elements
     }
     public class seIm : ScenElement
     {
-        public seIm(
-            int x, int y, int sX, int sY, int rot, int opac,
-            string file, string name = null) : this(file,name)
-        {
-            this.X = x;
-            this.Y = y;
-            this.Sx = sX;
-            this.Sy = sY;
-            this.R = rot;
-            this.O = opac;
-        }
+        //public seIm(
+        //    int x, int y, int z, int sX, int sY, int rot, int opac,
+        //    string file, string name) : this(file,name)
+        //{
+        //    this.X = x;
+        //    this.Y = y;
+        //    this.Z =z;
+        //    this.Sx = sX;
+        //    this.Sy = sY;
+        //    this.R = rot;
+        //    this.O = opac;
+        //}
 
         public void Reset()
         {
@@ -71,7 +72,7 @@ namespace StoGenMake.Elements
             if (dd.R.HasValue) this.R = dd.R.Value;
             if (dd.F.HasValue) this.F = dd.F.Value;
             if (dd.O.HasValue) this.O = dd.O.Value;
-            //if (dd.Z.HasValue) this. = dd.O.Value;
+            if (dd.Z.HasValue) this.Z = dd.Z.Value;
             this.Animations.Clear();
             this.Animations.AddRange(dd.AL);
 
@@ -93,6 +94,7 @@ namespace StoGenMake.Elements
             pi.Rotate = this.R;
             pi.X = this.X;
             pi.Y = this.Y;
+            pi.Z = this.Z;
             pi.Animations.Clear();
             pi.Animations.AddRange(this.Animations);
             //if (this.AR.HasValue) pi.Rate = (AnimationRate)this.AR.Value;
@@ -126,6 +128,8 @@ namespace StoGenMake.Elements
         public int O = 100;
         public int Timer = -1;
         public int F = 0;
+        public int Z = 0;
+
         //public int? AR { set; get; } //animation ratio
         //public int? AV { set; get; } //animation volume
         //public double? APS { set; get; } //animation start pos
@@ -199,6 +203,7 @@ namespace StoGenMake.Elements
             this.Sy = image.Sy;
             this.X = image.X;
             this.Y = image.Y;
+            this.Z = image.Z;
             this.R = image.R;
             this.Part = image.Part;
             this.File = image.File;

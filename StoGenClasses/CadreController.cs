@@ -246,6 +246,8 @@ namespace StoGen.Classes
                 im.Name = isi.Name;
                 im.Parent = ai.Parent;
                 im.File = isi.File;
+                if (ai.Z.HasValue)
+                    im.Z = ai.Z.Value;              
                 // there is 2 alt: assign from parent-child align or from delta align, not combined!
                 if (!string.IsNullOrEmpty(ai.Parent)) //if has parent image
                 {

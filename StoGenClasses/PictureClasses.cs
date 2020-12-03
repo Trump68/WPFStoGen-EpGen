@@ -228,7 +228,7 @@ namespace StoGen.Classes
         {
 
         }
-        public PictureBaseProp(int x, int y, int zoom, PicLevel level)
+        public PictureBaseProp(int x, int y, int zoom, int level)
         {
             this.X = x;
             this.Y = y;
@@ -242,7 +242,7 @@ namespace StoGen.Classes
         public int X { get; set; }
         public int Y { get; set; }
         public int Z { get; set; }
-        public PicLevel Level { get; set; } = PicLevel.None;
+        public int Level { get; set; }
         public bool Merge = false;
         public int Timer = 0;
         public int Timer2 = 0;
@@ -252,31 +252,7 @@ namespace StoGen.Classes
         public bool Reload = false;
     }
 
-    public enum PicLevel : int
-    {
-        None = -1,
-        Background = 0,
-        OnBackground = 1,
-        UnderActor0 = 2,
-        Actor0 = 3,
-        OnActor0 = 4,
-        UnderActor1 = 5,
-        Actor1 = 6,
-        OnActor1 = 7,
-        UnderActor2 = 8,
-        Actor2 = 9,
-        OnActor2 = 10,
-        Foreground = 11,
-        L01 =12,
-        L02 = 13,
-        L03 = 14,
-        L04 = 15,
-        L05 = 16,
-        L06 = 17,
-        L07 = 18,
-        L08 = 19,
-        L09 = 20
-    }
+   
 
     public static class ImageHelper
     {

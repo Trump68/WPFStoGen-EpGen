@@ -72,7 +72,8 @@ namespace StoGen.Classes
                     foreach (seIm data in info.VisionList)
                     {
                         var ids = data.ToPictureDataSource();
-                        ids.Level = (PicLevel)(info.VisionList.IndexOf(data));
+                        //ids.Level = info.VisionList.IndexOf(data);
+                        ids.Level = data.Z;
                         PictureItem pic = new PictureItem();
                         pic.Props = new PictureSourceProps(ids);
                         FrameImage.Pics.Add(pic);

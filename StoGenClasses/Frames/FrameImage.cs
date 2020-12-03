@@ -260,21 +260,22 @@ namespace StoGen.Classes
 
         private void RecreateImage(int index)
         {
+            
             var it = Projector.PicContainer.PicList[index];
-            Projector.PicContainer.OwnerCanvas.Children.Remove(it);
-            Projector.PicContainer.PicList.RemoveAt(index);
-            Image im = new Image();
-            im.Name = $"Picture{index}";
-            im.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            im.VerticalAlignment = VerticalAlignment.Top;
-            im.Width = 0;
-            im.Height = 0;
-            im.ClipToBounds = false;
-            im.Margin = new Thickness(0, 0, 0, 0);
+            it.RenderTransform = null;
 
-
-            Projector.PicContainer.OwnerCanvas.Children.Insert(index, im);
-            Projector.PicContainer.PicList.Insert(index, im);
+            //Projector.PicContainer.OwnerCanvas.Children.Remove(it);
+            //Projector.PicContainer.PicList.RemoveAt(index);
+            //Image im = new Image();
+            //im.Name = $"Picture{index}";
+            //im.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            //im.VerticalAlignment = VerticalAlignment.Top;
+            //im.Width = 0;
+            //im.Height = 0;
+            //im.ClipToBounds = false;
+            //im.Margin = new Thickness(0, 0, 0, 0);
+            //Projector.PicContainer.OwnerCanvas.Children.Insert(index, im);
+            //Projector.PicContainer.PicList.Insert(index, im);
         }
         public override Cadre Repaint()
         {
@@ -301,7 +302,7 @@ namespace StoGen.Classes
                 Pics.RemoveAt(0);
                 isPrevious = true;
                 int indexEmpty = Projector.PicContainer.PicList.IndexOf(Projector.PicContainer.PicList.First(x => x.Tag == null));
-                Pics.ForEach(x => x.Props.Level = (PicLevel)(indexEmpty++));
+                Pics.ForEach(x => x.Props.Level = (indexEmpty++));
             }
             else
             {
@@ -335,12 +336,12 @@ namespace StoGen.Classes
                     continue;
                 }
 
-                if (Projector.PicContainer.PicList[(int)pi.Props.Level].Tag != null
+                if (Projector.PicContainer.PicList[pi.Props.Level].Tag != null
                     &&
-                    ((PictureSourceProps)Projector.PicContainer.PicList[(int)pi.Props.Level].Tag).FileName == fn
+                    ((PictureSourceProps)Projector.PicContainer.PicList[pi.Props.Level].Tag).FileName == fn
                     && !pi.Props.Reload)
                 {
-                    Projector.PicContainer.PicList[(int)pi.Props.Level].Tag = pi.Props;
+                    Projector.PicContainer.PicList[pi.Props.Level].Tag = pi.Props;
                     continue;
                 }
 
@@ -359,7 +360,7 @@ namespace StoGen.Classes
                     //caching
                     if (Pics[i].Props.Merge) // video for cashing
                     {
-                        Projector.PicContainer.Clip2.Source = new Uri(Pics[i].Props.FileName);
+                        //Projector.PicContainer.Clip2.Source = new Uri(Pics[i].Props.FileName);
                         continue;
                     }
 
@@ -449,7 +450,7 @@ namespace StoGen.Classes
 
                 #region Opacity
                 // Opacity
-                if (pi.Props.Opacity > -1) Projector.PicContainer.PicList[(int)pi.Props.Level].Opacity = (pi.Props.Opacity / 100.0);
+                if (pi.Props.Opacity > -1) Projector.PicContainer.PicList[pi.Props.Level].Opacity = (pi.Props.Opacity / 100.0);
 
                 #endregion
 
@@ -459,11 +460,11 @@ namespace StoGen.Classes
                 {
                     System.Windows.Media.Effects.BlurEffect be = new System.Windows.Media.Effects.BlurEffect();
                     be.Radius = pi.Props.Blur;
-                    Projector.PicContainer.PicList[(int)pi.Props.Level].Effect = be;
+                    Projector.PicContainer.PicList[pi.Props.Level].Effect = be;
                 }
                 else
                 {
-                    Projector.PicContainer.PicList[(int)pi.Props.Level].Effect = null;
+                    Projector.PicContainer.PicList[pi.Props.Level].Effect = null;
                 }
                 #endregion
 
@@ -472,7 +473,7 @@ namespace StoGen.Classes
                 if (!string.IsNullOrEmpty(pi.Props.Transition))
                 {
                     TransitionData trandata = new TransitionData();
-                    trandata.Level = (int)pi.Props.Level;
+                    trandata.Level = pi.Props.Level;
                     trandata.Parse(pi.Props.Transition, 0);
                     FrameImage.tranManager.Add(trandata);
                 }
@@ -486,7 +487,7 @@ namespace StoGen.Classes
                     try
                     {
                         BitmapImage imageSource = new BitmapImage(new Uri(fn));
-                        Projector.PicContainer.PicList[(int)pi.Props.Level].Source = imageSource;
+                        Projector.PicContainer.PicList[pi.Props.Level].Source = imageSource;
                         ImW = imageSource.PixelWidth;
                         ImH = imageSource.PixelHeight;
                     }
@@ -517,15 +518,15 @@ namespace StoGen.Classes
                     {
                         clipH = pi.Props.SizeY;
                     }
-                    Projector.PicContainer.PicList[(int)pi.Props.Level].Clip = new RectangleGeometry(new System.Windows.Rect(pi.Props.ClipX, pi.Props.ClipY, clipW, clipH));
+                    Projector.PicContainer.PicList[pi.Props.Level].Clip = new RectangleGeometry(new System.Windows.Rect(pi.Props.ClipX, pi.Props.ClipY, clipW, clipH));
                 }
                 else
                 {
-                    Projector.PicContainer.PicList[(int)pi.Props.Level].Clip = null;
+                    Projector.PicContainer.PicList[pi.Props.Level].Clip = null;
                 }
                 #endregion
 
-                Projector.PicContainer.PicList[(int)pi.Props.Level].Tag = pi.Props;
+                Projector.PicContainer.PicList[pi.Props.Level].Tag = pi.Props;
             }
 
 
@@ -535,9 +536,12 @@ namespace StoGen.Classes
             {
                 if (Projector.PicContainer.PicList[j].Tag == null)
                     Projector.PicContainer.PicList[j].Visibility = Visibility.Hidden;
+                else
+                    Projector.PicContainer.PicList[j].Visibility = Visibility.Visible;
             }
 
-            DoTransformAll();
+           DoTransformAll();
+
             if (!runClip)
                 timer.Change(TimerPeriod, TimerPeriod);
             FrameImage.TimeStarted = DateTime.Now;
@@ -547,7 +551,7 @@ namespace StoGen.Classes
         }
         private void DoResize(PictureSourceProps pi, int imW, int imH)
         {
-            Projector.PicContainer.PicList[(int)pi.Level].Stretch = Stretch.Uniform;
+            Projector.PicContainer.PicList[pi.Level].Stretch = Stretch.Uniform;
             if (pi.SizeX == -1 || pi.SizeY == -1)
             {
                 if (pi.SizeX == -1) pi.SizeX = imW;
@@ -565,76 +569,28 @@ namespace StoGen.Classes
                 pi.SizeY = activeScreen.WorkingArea.Height;
                 //pi.SizeMode = PictureSizeMode.Stretch;
                 pi.ScreenStretch = true;
-                Projector.PicContainer.PicList[(int)pi.Level].Stretch = Stretch.Fill;
+                Projector.PicContainer.PicList[pi.Level].Stretch = Stretch.Fill;
 
             }
             else
             {
                 if (pi.SizeMode == PictureSizeMode.Clip)
-                    Projector.PicContainer.PicList[(int)pi.Level].Stretch = Stretch.Fill;
+                    Projector.PicContainer.PicList[pi.Level].Stretch = Stretch.Fill;
             }
-            Projector.PicContainer.PicList[(int)pi.Level].Width = pi.SizeX;
-            Projector.PicContainer.PicList[(int)pi.Level].ClipToBounds = false;
-            Projector.PicContainer.PicList[(int)pi.Level].Height = pi.SizeY;
+            Projector.PicContainer.PicList[pi.Level].Width = pi.SizeX;
+            Projector.PicContainer.PicList[pi.Level].ClipToBounds = false;
+            Projector.PicContainer.PicList[pi.Level].Height = pi.SizeY;
         }
-        private void RefreshImage(PictureSourceProps sourceProps)
-        {
-            var current = Projector.PicContainer.PicList[(int)sourceProps.Level];
-            TransformGroup tg = current.RenderTransform as TransformGroup;
-            if (tg == null)
-                tg = new TransformGroup();
-
-            #region Move
-
-            DoLocation(sourceProps, tg);
-
-            #endregion
-
-            #region Rotate
-            DoRotateFlip(tg, sourceProps.Level);
-            #endregion
-
-            #region Parent flip
-            if (!string.IsNullOrEmpty(sourceProps.ParFlip))
-            {
-                string[] vals = sourceProps.ParFlip.Split(',');
-                foreach (var item in vals)
-                {
-                    string parname = item;
-                    var parent = Pics.Where(x => x.Props.Name == parname).FirstOrDefault();
-                    if (parent != null)
-                    {
-                        var ctrl = Projector.PicContainer.PicList[(int)parent.Props.Level];
-                        var controlCenter = new System.Windows.Point(
-                               (ctrl.Width / 2) + parent.Props.X,
-                               (ctrl.Height / 2) + parent.Props.Y);
-                        var sss = ctrl.PointToScreen(controlCenter);
-
-                        var childControlCenter = current.PointFromScreen(sss);
-
-                        ScaleTransform flipTrans = new ScaleTransform();
-                        flipTrans.CenterX = childControlCenter.X;
-                        flipTrans.CenterY = childControlCenter.Y;
-                        flipTrans.ScaleX = -1;
-                        tg.Children.Add(flipTrans);
-                    }
-                }
-                sourceProps.ParFlip = null;
-            }
-            #endregion
-
-            current.RenderTransform = tg;
-        }
+        
         private void RecreateAndRefreshImage(PictureSourceProps sourceProps)
         {
             if (sourceProps.FileName.EndsWith("CANVAS")) return;
-            RecreateImage((int)sourceProps.Level);
+            RecreateImage(sourceProps.Level);
             BitmapImage imageSource = new BitmapImage(new Uri(sourceProps.FileName));
             Projector.PicContainer.PicList[(int)sourceProps.Level].Source = imageSource;
             DoResize(sourceProps, imageSource.PixelWidth, imageSource.PixelHeight);
             RefreshImage(sourceProps);
         }
-
         private void RotateAroundParent(string parent, TransformGroup tg)
         {
             var item = Pics.Where(x => x.Props.Name == parent).FirstOrDefault();
@@ -643,7 +599,7 @@ namespace StoGen.Classes
                 var pi = item.Props;
                 if (pi.Rotate != 0)
                 {
-                    var ctrl = Projector.PicContainer.PicList[(int)pi.Level];
+                    var ctrl = Projector.PicContainer.PicList[pi.Level];
                     var controlCenter = new System.Windows.Point(ctrl.Width / 2, ctrl.Height / 2);
                     double x = controlCenter.X + pi.X;
                     double y = controlCenter.Y + pi.Y;
@@ -713,7 +669,7 @@ namespace StoGen.Classes
                 tg.Children.Add(roateTransform);
             }
         }
-        public static void DoRotateFlip(TransformGroup tg, PicLevel level)
+        public static void DoRotateFlip(TransformGroup tg, int level)
         {
             var im = Projector.PicContainer.PicList[(int)level];
             //var controlCenter = new System.Windows.Point((im.Source as BitmapImage).PixelWidth / 2
@@ -753,7 +709,54 @@ namespace StoGen.Classes
                 }
             }
         }
+        private void RefreshImage(PictureSourceProps sourceProps)
+        {
+            var current = Projector.PicContainer.PicList[(int)sourceProps.Level];
+            TransformGroup tg = current.RenderTransform as TransformGroup;
+            if (tg == null)
+                tg = new TransformGroup();
 
+            //#region Move
+
+            DoLocation(sourceProps, tg);
+
+            //#endregion
+
+            #region Rotate
+            DoRotateFlip(tg, sourceProps.Level);
+            #endregion
+
+            #region Parent flip
+            if (!string.IsNullOrEmpty(sourceProps.ParFlip))
+            {
+                string[] vals = sourceProps.ParFlip.Split(',');
+                foreach (var item in vals)
+                {
+                    string parname = item;
+                    var parent = Pics.Where(x => x.Props.Name == parname).FirstOrDefault();
+                    if (parent != null)
+                    {
+                        var ctrl = Projector.PicContainer.PicList[(int)parent.Props.Level];
+                        var controlCenter = new System.Windows.Point(
+                               (ctrl.Width / 2) + parent.Props.X,
+                               (ctrl.Height / 2) + parent.Props.Y);
+                        var sss = ctrl.PointToScreen(controlCenter);
+
+                        var childControlCenter = current.PointFromScreen(sss);
+
+                        ScaleTransform flipTrans = new ScaleTransform();
+                        flipTrans.CenterX = childControlCenter.X;
+                        flipTrans.CenterY = childControlCenter.Y;
+                        flipTrans.ScaleX = -1;
+                        tg.Children.Add(flipTrans);
+                    }
+                }
+                sourceProps.ParFlip = null;
+            }
+            #endregion
+
+            current.RenderTransform = tg;
+        }
         private void Clip_MediaOpened(object sender, System.Windows.RoutedEventArgs e)
         {
             SetClip();
@@ -1096,11 +1099,11 @@ namespace StoGen.Classes
                     clipH = pi.Props.SizeY;
                 }
                 RecreateAndRefreshImage(pi.Props);
-                //Projector.PicContainer.PicList[(int)pi.Props.Level].Clip = new RectangleGeometry(new System.Windows.Rect(pi.Props.ClipX, pi.Props.ClipY, clipW, clipH));
+                //Projector.PicContainer.PicList[pi.Props.Level].Clip = new RectangleGeometry(new System.Windows.Rect(pi.Props.ClipX, pi.Props.ClipY, clipW, clipH));
             }
             else
             {
-                //Projector.PicContainer.PicList[(int)pi.Props.Level].Clip = null;
+                //Projector.PicContainer.PicList[pi.Props.Level].Clip = null;
             }
             List<string> rez = new List<string>();
             if (pi.Props.ClipX != 0) rez.Add($"ClipX = {pi.Props.ClipX}");

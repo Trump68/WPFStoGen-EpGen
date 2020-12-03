@@ -60,7 +60,7 @@ namespace StoGenWPF
             InitializeComponent();
             Projector.Owner = this;
             Projector.PicContainer.Clip = this.Clip1;
-            Projector.PicContainer.Clip2 = this.Clip2;
+            //Projector.PicContainer.Clip2 = this.Clip2;
             Projector.TextCanvas = this.TextCanvas;
             Projector.TextBlock1 = this.Tb1;
             Projector.TextBlock2 = this.Tb2;

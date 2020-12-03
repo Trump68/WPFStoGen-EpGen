@@ -534,8 +534,8 @@ namespace StoGen.Classes.Transition
                 {
                     _CurrentVal = value;
                     var current = Projector.PicContainer.PicList[this.Level];
-                    FrameImage.Pics.Where(it => it.Props.Level == (PicLevel)this.Level).FirstOrDefault().Props.Rotate = Convert.ToInt32(value);
-                    FrameImage.DoRotateFlip(null, (PicLevel)this.Level);
+                    FrameImage.Pics.Where(it => it.Props.Level == this.Level).FirstOrDefault().Props.Rotate = Convert.ToInt32(value);
+                    FrameImage.DoRotateFlip(null, this.Level);
                 }
             }
             public override bool Execute(out bool repaintNeed)
@@ -618,8 +618,8 @@ namespace StoGen.Classes.Transition
                 {
                     _CurrentVal = value;
                     var current = Projector.PicContainer.PicList[this.Level];
-                    FrameImage.Pics.Where(it => it.Props.Level == (PicLevel)this.Level).FirstOrDefault().Props.Flip = (RotateFlipType)value;
-                    FrameImage.DoRotateFlip(null, (PicLevel)this.Level);
+                    FrameImage.Pics.Where(it => it.Props.Level == this.Level).FirstOrDefault().Props.Flip = (RotateFlipType)value;
+                    FrameImage.DoRotateFlip(null, this.Level);
                 }
             }
 
