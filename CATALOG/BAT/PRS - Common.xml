@@ -277,43 +277,43 @@
     <property name="TotalSummary" iskey="true" value="0" />
     <property name="MRUFilters" iskey="true" value="9">
       <property name="Item1" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], 'CM3D2')</property>
+        <property name="FilterText">Starts with([Name], 'CM3D2')</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Name], 'CM3D2 - 001')</property>
+        <property name="FilterText">Starts with([Name], 'CM3D2 - 001')</property>
+      </property>
+      <property name="Item3" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'cm')</property>
         <property name="FilterText">Starts with([Name], 'cm')</property>
       </property>
-      <property name="Item2" isnull="true" iskey="true">
+      <property name="Item4" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'c')</property>
         <property name="FilterText">Starts with([Name], 'c')</property>
       </property>
-      <property name="Item3" isnull="true" iskey="true">
+      <property name="Item5" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'Artist: Tsusauto')</property>
         <property name="FilterText">Starts with([Name], 'Artist: Tsusauto')</property>
       </property>
-      <property name="Item4" isnull="true" iskey="true">
+      <property name="Item6" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'Artist:')</property>
         <property name="FilterText">Starts with([Name], 'Artist:')</property>
       </property>
-      <property name="Item5" isnull="true" iskey="true">
+      <property name="Item7" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'Artist: Hado')</property>
         <property name="FilterText">Starts with([Name], 'Artist: Hado')</property>
       </property>
-      <property name="Item6" isnull="true" iskey="true">
+      <property name="Item8" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'Art')</property>
         <property name="FilterText">Starts with([Name], 'Art')</property>
       </property>
-      <property name="Item7" isnull="true" iskey="true">
+      <property name="Item9" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'Ar')</property>
         <property name="FilterText">Starts with([Name], 'Ar')</property>
       </property>
-      <property name="Item8" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'A')</property>
-        <property name="FilterText">Starts with([Name], 'A')</property>
-      </property>
-      <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], '010')</property>
-        <property name="FilterText">Starts with([Name], '010')</property>
-      </property>
     </property>
-    <property name="FilterString">StartsWith([Name], 'CM3D2 - 001')</property>
+    <property name="FilterString">StartsWith([Name], 'CM3D2 - 002')</property>
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>

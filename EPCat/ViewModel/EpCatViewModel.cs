@@ -473,9 +473,18 @@ namespace EPCat
                     }
                     else if (newclipinfo.Kind == 8)
                     {
-                        newclipinfo.PositionStart = TicTakToe.ClipTemplate.PositionStart.ToString();
+                        if (TicTakToe.ClipTemplate.PositionStart > 0)
+                        {
+                            newclipinfo.PositionStart = (TicTakToe.ClipTemplate.PositionStart + (decimal)0.1).ToString();
+                        }
+                        if (TicTakToe.ClipTemplate.PositionEnd > 0)
+                        {
+                            newclipinfo.PositionEnd = (TicTakToe.ClipTemplate.PositionEnd - (decimal)0.1).ToString();
+                        }
                         newclipinfo.PositionEnd = TicTakToe.ClipTemplate.PositionEnd.ToString();
-                        newclipinfo.File = TicTakToe.ClipTemplate.File;
+                        if (!string.IsNullOrEmpty(TicTakToe.ClipTemplate.File))
+                            newclipinfo.File = TicTakToe.ClipTemplate.File;
+
                     }
                     addNewComb(newclipinfo);
                 }
@@ -863,6 +872,72 @@ namespace EPCat
                     total[vals[0]] = $"{vals[1]}";
                 else
                     total[vals[0]] = $"{total[vals[0]]},{vals[1]}";
+            }
+        }
+
+        internal void CalculateCameraPosition()
+        {
+            try
+            {
+                Double cx = 0;
+                Double cy = 0;
+                Double cz = 0;
+                Double r = 0;
+                Double rx = 0;
+                Double ry = 0;
+
+                string input = Clipboard.GetText();
+                string[] vals = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                string pos = vals[0].Replace(@"<Position>", string.Empty).Replace(@"</Position>", string.Empty);
+                string rot = vals[1].Replace(@"<Rotation>", string.Empty).Replace(@"</Rotation>", string.Empty);
+                string di = vals[2].Replace(@"<Distance>", string.Empty).Replace(@"</Distance>", string.Empty);
+                vals = pos.Split(',');
+                cx = Convert.ToDouble(vals[0]);
+                cy = Convert.ToDouble(vals[1]);
+                cz = Convert.ToDouble(vals[2]);
+                vals = rot.Split(',');
+                rx = Convert.ToDouble(vals[1]);
+                ry = Convert.ToDouble(vals[0]);
+                r = Convert.ToDouble(di);
+                string output = $"@Camera cx={cx} cy={cy} cz={cz} radius={r} rx={rx} ry={ry}";
+
+                Clipboard.Clear();
+                Clipboard.SetText(output);
+            }
+            catch 
+            {
+
+               
+            }            
+        }
+        internal void ReformatMotion()
+        {
+            try
+            {
+                
+                string input = Clipboard.GetText();
+                string output = @"@if exp= ""tf['ABB_MOTION_BLEND']>-1"""+Environment.NewLine;
+                string[] vals = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string val in vals)
+                {
+                    int pos = val.IndexOf("blend");
+                    string s = val.Substring(0,pos) + "blend=&tf['ABB_MOTION_BLEND']";
+                    output += (s + Environment.NewLine);
+                }
+                output += ("@else" + Environment.NewLine);
+                foreach (string val in vals)
+                {
+                    output += (val + Environment.NewLine);
+                }
+                output += ("@endif" + Environment.NewLine);
+                output += (@"@eval exp=""tf['ABB_MOTION_BLEND']=-1""" + Environment.NewLine);
+                Clipboard.Clear();
+                Clipboard.SetText(output);
+            }
+            catch
+            {
+
+
             }
         }
     }

@@ -65,6 +65,7 @@ namespace StoGen.Classes
         
         public static void ProcessLoopDelegate()
         {
+            //Control data
             if (Projector.TimerEnabled && (TimeShift > 0))
             {
                 if (FrameImage.TimeStarted.AddMilliseconds(TimeShift) <= DateTime.Now)
@@ -74,90 +75,94 @@ namespace StoGen.Classes
                     return;
                 }
             }
-            //Transition
-            FrameImage.tranManager.Process();
 
-            if (FrameImage.Animations == null) return;
+            if (false) // - disabled for spped of animation - test!!!!!!!!!
+            {
+                //Transition
+                FrameImage.tranManager.Process();
+                if (FrameImage.Animations == null) return;
                 #region Other
-            if (Projector.TimerEnabled && (FrameImage.TimeToNext > 0))
-            {
-                if (FrameImage.TimeStarted.AddMilliseconds(FrameImage.TimeToNext) <= DateTime.Now)
+                if (Projector.TimerEnabled && (FrameImage.TimeToNext > 0))
                 {
-                    FrameImage.CurrentProc.GetNextCadre();
-                    return;
-                }
-            }
-            if (Projector.TimerEnabled && (FrameImage.WaitStart > 0))
-            {
-                if (FrameImage.TimeStarted.AddMilliseconds(FrameImage.WaitStart) <= DateTime.Now)
-                {
-                    if (FrameImage.IsLoop == 4)
+                    if (FrameImage.TimeStarted.AddMilliseconds(FrameImage.TimeToNext) <= DateTime.Now)
                     {
                         FrameImage.CurrentProc.GetNextCadre();
-                    }
-                    else
-                    {
-                        FrameImage.WaitStart = -1;
-                        Projector.PicContainer.Clip.Play();
-                        FrameImage.TimeStarted = DateTime.Now;
-                    }
-                    return;
-                }
-            }
-            #endregion 
-
-            if (!videoactive) return;
-
-            #region Reverse loops
-            if (!FrameImage.LoopProcessed && FrameImage.ClipEndPos > 0)
-            {
-                if (FrameImage.IsLoop == 3) //назад
-                {
-                    if (!FrameImage.NowReverse && Projector.PicContainer.Clip.Position >= TimeSpan.FromSeconds(FrameImage.ClipEndPos))
-                    {
-                        FrameImage.Loops++;
-                        if (FrameImage.Animations[FrameImage.AnimationIndex].ALC <= FrameImage.Loops)
-                        {
-                            FrameImage.IsLoop = 1;
-                            FrameImage.LoopProcessed = true;
-                        }
-                        else
-                        {
-                            Projector.PicContainer.Clip.Pause();
-                            //Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
-                            //Projector.ClipSound.Play();
-                            FrameImage.NowReverse = !FrameImage.NowReverse;
-                            Thread.Sleep(PausePeriod1);
-                            lastupdated = DateTime.Now;
-                            return;
-                        }
-                    }
-                    else if (FrameImage.NowReverse && Projector.PicContainer.Clip.Position <= TimeSpan.FromSeconds(FrameImage.ClipStartPos))
-                    {
-                        FrameImage.Loops++;
-                        if (FrameImage.Animations[FrameImage.AnimationIndex].ALC < FrameImage.Loops)
-                        { FrameImage.IsLoop = 1; }
-                        else
-                        {
-                            Thread.Sleep((int)(PausePeriod2 * Projector.PicContainer.Clip.SpeedRatio));
-                            Projector.PicContainer.Clip.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
-                            Projector.PicContainer.Clip.Play();
-                            //Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
-                            //Projector.ClipSound.Play();
-                            FrameImage.NowReverse = !FrameImage.NowReverse;
-                            return;
-                        }
-                    }
-                    else if (FrameImage.NowReverse)
-                    {
-                        Projector.PicContainer.Clip.Position = Projector.PicContainer.Clip.Position.Subtract(TimeSpan.FromMilliseconds(DateTime.Now.Subtract(lastupdated).TotalMilliseconds * Projector.PicContainer.Clip.SpeedRatio));
-                        //Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
-                        lastupdated = DateTime.Now;
                         return;
                     }
                 }
+                if (Projector.TimerEnabled && (FrameImage.WaitStart > 0))
+                {
+                    if (FrameImage.TimeStarted.AddMilliseconds(FrameImage.WaitStart) <= DateTime.Now)
+                    {
+                        if (FrameImage.IsLoop == 4)
+                        {
+                            FrameImage.CurrentProc.GetNextCadre();
+                        }
+                        else
+                        {
+                            FrameImage.WaitStart = -1;
+                            Projector.PicContainer.Clip.Play();
+                            FrameImage.TimeStarted = DateTime.Now;
+                        }
+                        return;
+                    }
+                }
+
+                #endregion
+
+                if (!videoactive) return;
+
+                #region Reverse loops
+                    if (!FrameImage.LoopProcessed && FrameImage.ClipEndPos > 0)
+                    {
+                        if (FrameImage.IsLoop == 3) //назад
+                        {
+                            if (!FrameImage.NowReverse && Projector.PicContainer.Clip.Position >= TimeSpan.FromSeconds(FrameImage.ClipEndPos))
+                            {
+                                FrameImage.Loops++;
+                                if (FrameImage.Animations[FrameImage.AnimationIndex].ALC <= FrameImage.Loops)
+                                {
+                                    FrameImage.IsLoop = 1;
+                                    FrameImage.LoopProcessed = true;
+                                }
+                                else
+                                {
+                                    Projector.PicContainer.Clip.Pause();
+                                    //Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
+                                    //Projector.ClipSound.Play();
+                                    FrameImage.NowReverse = !FrameImage.NowReverse;
+                                    Thread.Sleep(PausePeriod1);
+                                    lastupdated = DateTime.Now;
+                                    return;
+                                }
+                            }
+                            else if (FrameImage.NowReverse && Projector.PicContainer.Clip.Position <= TimeSpan.FromSeconds(FrameImage.ClipStartPos))
+                            {
+                                FrameImage.Loops++;
+                                if (FrameImage.Animations[FrameImage.AnimationIndex].ALC < FrameImage.Loops)
+                                { FrameImage.IsLoop = 1; }
+                                else
+                                {
+                                    Thread.Sleep((int)(PausePeriod2 * Projector.PicContainer.Clip.SpeedRatio));
+                                    Projector.PicContainer.Clip.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
+                                    Projector.PicContainer.Clip.Play();
+                                    //Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
+                                    //Projector.ClipSound.Play();
+                                    FrameImage.NowReverse = !FrameImage.NowReverse;
+                                    return;
+                                }
+                            }
+                            else if (FrameImage.NowReverse)
+                            {
+                                Projector.PicContainer.Clip.Position = Projector.PicContainer.Clip.Position.Subtract(TimeSpan.FromMilliseconds(DateTime.Now.Subtract(lastupdated).TotalMilliseconds * Projector.PicContainer.Clip.SpeedRatio));
+                                //Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
+                                lastupdated = DateTime.Now;
+                                return;
+                            }
+                        }
+                    }
+                    #endregion
             }
-            #endregion
 
             #region Normal loops
             TimeSpan ts1 = Projector.PicContainer.Clip.Position;
@@ -380,7 +385,7 @@ namespace StoGen.Classes
                     FrameImage.WaitStart = pi.Props.CurrentAnimation.AWS;
                     FrameImage.WaitEnd = pi.Props.CurrentAnimation.AWE;
 
-                    Projector.PicContainer.Clip.Stop();
+                    //Projector.PicContainer.Clip.Stop();
                     if (Projector.PicContainer.Clip.Source == null || (Projector.PicContainer.Clip.Source.LocalPath != Pics[i].Props.FileName))
                     {
                         Projector.PicContainer.Clip.LoadedBehavior = MediaState.Manual;

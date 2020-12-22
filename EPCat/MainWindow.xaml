@@ -671,6 +671,12 @@
                         <dxlc:LayoutItem HorizontalAlignment="Left">
                             <dx:SimpleButton x:Name="UpdateJAV" Content="Update JAV" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnUpdateJAV_Click" />
                         </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="Camera" Content="Cam Position" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnCameraPosition_Click" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="Reformat" Content="Reformat" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnReformat_Click" />
+                        </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                         <dxlc:LayoutItem Label="Story" LabelPosition="Left">

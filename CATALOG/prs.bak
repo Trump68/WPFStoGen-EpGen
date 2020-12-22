@@ -4935,6 +4935,28 @@
     <Studio>Tsusauto</Studio>
     <PARENT>Artist: Tsusauto</PARENT>
     <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>366cb0a2-47f4-4b88-a2aa-2a3feb9313b8</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\cm3d2\001\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>CM3D2 - 001</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>CM3D2 - 001</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>CM3D2</Kind>
+    <Director>CM3D2</Director>
+    <Studio>CM3D2</Studio>
+    <PARENT>CM3D2 - 001</PARENT>
+    <Size>0</Size>
     <Comments />
     <CommentsAsString />
   </EpItem>

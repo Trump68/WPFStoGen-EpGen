@@ -837,5 +837,14 @@ namespace EPCat
         {
             JAV.JavUpdate();
         }
+        private void btnCameraPosition_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.CalculateCameraPosition();
+        }
+
+        private void btnReformat_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.ReformatMotion();
+        }
     }
 }
