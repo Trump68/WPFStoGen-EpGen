@@ -629,7 +629,7 @@
                                   Name="btnSetPosition" Click="btnSetPosition_Click"/>
                                 <Button Margin="5,0,0,0" Content="Save Clip" Height="30"
                                   Name="btnSetPositionSave" Click="btnSetPositionSave_Click"/>
-                                <Button Margin="5,0,0,0" Content="Save SV" Height="30"
+                                <Button Margin="5,0,0,0" Content="Save Scene" Height="30"
                                   Name="btnSetPositionSaveSceneVideo" Click="btnSetPositionSaveSceneVideo_Click"/>
                                 <Button Margin="5,0,0,0" Content="Save SP" Height="30"
                                   Name="btnSetPositionSaveScenePicture" Click="btnSetPositionSaveScenePicture_Click"/>

@@ -277,8 +277,8 @@
     <property name="TotalSummary" iskey="true" value="0" />
     <property name="MRUFilters" iskey="true" value="9">
       <property name="Item1" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'CM3D2')</property>
-        <property name="FilterText">Starts with([Name], 'CM3D2')</property>
+        <property name="FilterString">StartsWith([Name], 'CM3D2 - 002')</property>
+        <property name="FilterText">Starts with([Name], 'CM3D2 - 002')</property>
       </property>
       <property name="Item2" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([Name], 'CM3D2 - 001')</property>
@@ -313,7 +313,7 @@
         <property name="FilterText">Starts with([Name], 'Ar')</property>
       </property>
     </property>
-    <property name="FilterString">StartsWith([Name], 'CM3D2 - 002')</property>
+    <property name="FilterString">StartsWith([Name], 'CM3D2')</property>
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>

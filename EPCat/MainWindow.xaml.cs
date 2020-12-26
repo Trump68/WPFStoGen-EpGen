@@ -187,6 +187,7 @@ namespace EPCat
             if (!string.IsNullOrEmpty(ViewModel.ClipToProcess))
             {
                 path = ViewModel.ClipToProcess;
+                TicTakToe.ClipTemplate.File = path;
             }
             if ((path==null) && (this.DataContext as EpCatViewModel).CurrentClip != null)
             {
@@ -574,7 +575,7 @@ namespace EPCat
             //save
             ViewModel.SaveClipTemplate();            
             // reset
-            btnSetPositionReset_Click(null, null);
+            //btnSetPositionReset_Click(null, null);
             (this.DataContext as EpCatViewModel).RefreshFolder();
             // MadeShot();
         }
@@ -724,15 +725,17 @@ namespace EPCat
 
         private void btnSetPositionSaveSceneVideo_Click(object sender, RoutedEventArgs e)
         {
+            
             if (ViewModel.Story == null)
                 return;
             ViewModel.SaveClipTemplate();
-            ViewModel.CopyGroup(true, true, 1);
+            //ViewModel.CopyGroup(true, true, 1);
+            ViewModel.CopyGroup(false, false, 0);
             var col = ViewModel.Story.SceneInfos.Where(x => x.Group == ViewModel.CurrentCombinedScene.Group && x.Kind == 8);
             if (col.Any())
             {
-                col.First().PositionStart = TicTakToe.ClipTemplate.PositionStart.ToString();
-                col.First().PositionEnd = TicTakToe.ClipTemplate.PositionEnd.ToString();
+                col.First().PositionStart = (TicTakToe.ClipTemplate.PositionStart + (decimal)0.1).ToString();
+                col.First().PositionEnd = (TicTakToe.ClipTemplate.PositionEnd - (decimal)0.1).ToString();
                 col.First().File = TicTakToe.ClipTemplate.File;
             }
             else
