@@ -451,99 +451,108 @@ namespace StoGen.Classes.Data.Games
             List<DifData> itl = new List<DifData>();
             foreach (var item in visualsCopy)
             {
-                if (string.IsNullOrEmpty(item.File)) continue;
-                if (item.Kind == 8) //Clip
+                try
                 {
-                    int volume = 0;
-                    double PosStart = 0;
-                    if (!string.IsNullOrEmpty(item.PositionStart))
-                        PosStart = Convert.ToDouble(item.PositionStart);
-                    double PosEnd = 0;
-                    if (!string.IsNullOrEmpty(item.PositionEnd))
-                        PosEnd = Convert.ToDouble(item.PositionEnd);
-
-                    var anim = new AP(item.File)
+                    if (string.IsNullOrEmpty(item.File)) continue;
+                    if (item.Kind == 8) //Clip
                     {
-                        APS = PosStart,
-                        APE = PosEnd,
-                        ALM = Convert.ToInt32(item.LoopMode),
-                        ALC = Convert.ToInt32(item.LoopCount),
-                        AR = Convert.ToInt32(item.Speed),
-                        AV = volume
-                    };
+                        int volume = 0;
+                        double PosStart = 0;
+                        if (!string.IsNullOrEmpty(item.PositionStart))
+                            PosStart = Convert.ToDouble(item.PositionStart);
+                        double PosEnd = 0;
+                        if (!string.IsNullOrEmpty(item.PositionEnd))
+                            PosEnd = Convert.ToDouble(item.PositionEnd);
 
-                    //if (string.IsNullOrEmpty(item.S) || item.S == "0") item.S = "800";
+                        var anim = new AP(item.File)
+                        {
+                            APS = PosStart,
+                            APE = PosEnd,
+                            ALM = Convert.ToInt32(item.LoopMode),
+                            ALC = Convert.ToInt32(item.LoopCount),
+                            AR = Convert.ToInt32(item.Speed),
+                            AV = volume
+                        };
 
-                    DifData size = new DifData() { S = Convert.ToInt32(item.S) };
-                    size.Name = anim.File;
-                    if (!string.IsNullOrEmpty(item.X))
-                        size.X = Convert.ToInt32(item.X);
-                    if (!string.IsNullOrEmpty(item.Y))
-                        size.Y = Convert.ToInt32(item.Y);
-                    if (!string.IsNullOrEmpty(item.O))
-                        size.O = Convert.ToInt32(item.O);
-                    if (!string.IsNullOrEmpty(item.R))
-                        size.R = Convert.ToInt32(item.R);
-                    if (!string.IsNullOrEmpty(item.Z))
-                        size.Z = Convert.ToInt32(item.Z);
-                    //else
-                    //    size.Z = 2;
+                        //if (string.IsNullOrEmpty(item.S) || item.S == "0") item.S = "800";
 
-                    size.AL.Add(anim);
-                    var dd = new List<DifData>();
-                    itl.AddRange(dd);
-                    itl.Insert(0, size);
-                    //DoC2($"{story}", itl, null);
-                    //AddAnim(anim.File, item.Story, itl, anim);
-                }
-                else
-                {
-                    int opacity = 100;
+                        DifData size = new DifData() { S = Convert.ToInt32(item.S) };
+                        size.Name = anim.File;
+                        if (!string.IsNullOrEmpty(item.X))
+                            size.X = Convert.ToInt32(item.X);
+                        if (!string.IsNullOrEmpty(item.Y))
+                            size.Y = Convert.ToInt32(item.Y);
+                        if (!string.IsNullOrEmpty(item.O))
+                            size.O = Convert.ToInt32(item.O);
+                        if (!string.IsNullOrEmpty(item.R))
+                            size.R = Convert.ToInt32(item.R);
+                        if (!string.IsNullOrEmpty(item.Z))
+                            size.Z = Convert.ToInt32(item.Z);
+                        //else
+                        //    size.Z = 2;
 
-                    string key = item.File;
-                    Pictures.Add(key, new DifData(item.File) { });
-                    if (!string.IsNullOrEmpty(item.X))
-                        Pictures[key].X = Convert.ToInt32(item.X);
-                    if (!string.IsNullOrEmpty(item.Y))
-                        Pictures[key].Y = Convert.ToInt32(item.Y);
-                    if (!string.IsNullOrEmpty(item.O))
-                    {
-                        Pictures[key].O = Convert.ToInt32(item.O);
-                        opacity = Pictures[key].O.Value;
-                    }
-                    if (!string.IsNullOrEmpty(item.S))
-                    {
-                        Pictures[key].S = Convert.ToInt32(item.S);
-                    }
-                    if (!string.IsNullOrEmpty(item.F))
-                    {
-                        Pictures[key].F = Convert.ToInt32(item.F);
-                    }
-                    if (!string.IsNullOrEmpty(item.Z))
-                    {
-                        Pictures[key].Z = Convert.ToInt32(item.Z);
+                        size.AL.Add(anim);
+                        var dd = new List<DifData>();
+                        itl.AddRange(dd);
+                        itl.Insert(0, size);
+                        //DoC2($"{story}", itl, null);
+                        //AddAnim(anim.File, item.Story, itl, anim);
                     }
                     else
                     {
-                        Pictures[key].Z = 2;
-                    }
-                    if (!string.IsNullOrEmpty(item.R))
-                    {
-                        Pictures[key].R = Convert.ToInt32(item.R);
-                    }
-                    if (!string.IsNullOrEmpty(item.T))
-                    {
-                        // if apper, dont forget to set Opacity to 0, as initially figure is invisible
-                        //"W..0>O.B.400.100" //--appear
-                        //"W..0>O.B.400.100*W..0>X.B.400.300"--appear+move from left
-                        if (item.T.ToUpper() == "BLINK")
+                        int opacity = 100;
+
+                        string key = item.File;
+                        Pictures.Add(key, new DifData(item.File) { });
+                        if (!string.IsNullOrEmpty(item.X))
+                            Pictures[key].X = Convert.ToInt32(item.X);
+                        if (!string.IsNullOrEmpty(item.Y))
+                            Pictures[key].Y = Convert.ToInt32(item.Y);
+                        if (!string.IsNullOrEmpty(item.O))
                         {
-                            Pictures[key].T = Trans.Eyes_Blink;
+                            Pictures[key].O = Convert.ToInt32(item.O);
+                            opacity = Pictures[key].O.Value;
+                        }
+                        if (!string.IsNullOrEmpty(item.S))
+                        {
+                            Pictures[key].S = Convert.ToInt32(item.S);
+                        }
+                        if (!string.IsNullOrEmpty(item.F))
+                        {
+                            Pictures[key].F = Convert.ToInt32(item.F);
+                        }
+                        if (!string.IsNullOrEmpty(item.Z))
+                        {
+                            Pictures[key].Z = Convert.ToInt32(item.Z);
                         }
                         else
-                            Pictures[key].T = item.T;                                                                  
+                        {
+                            Pictures[key].Z = 2;
+                        }
+                        if (!string.IsNullOrEmpty(item.R))
+                        {
+                            Pictures[key].R = Convert.ToInt32(item.R);
+                        }
+                        if (!string.IsNullOrEmpty(item.T))
+                        {
+                            // if apper, dont forget to set Opacity to 0, as initially figure is invisible
+                            //"W..0>O.B.400.100" //--appear
+                            //"W..0>O.B.400.100*W..0>X.B.400.300"--appear+move from left
+                            if (item.T.ToUpper() == "BLINK")
+                            {
+                                Pictures[key].T = Trans.Eyes_Blink;
+                            }
+                            else
+                                Pictures[key].T = item.T;
+                        }
+                        i++;
                     }
-                    i++;
+
+                }
+                catch (Exception ex)
+                {
+
+                    
                 }
             }
             itl.AddRange(Pictures.Values.ToList());

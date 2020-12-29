@@ -16,14 +16,15 @@ namespace StoGen.Classes
         {
             InitializeComponent();
         }
-        public static DialogResult ShowInputBox(out string m)
+        public static DialogResult ShowInputBox(out string m, string ins = null)
         {
             m = null;
             DialogResult result = DialogResult.Cancel;
             using (frmInputBox frm = new frmInputBox())
             {
-               
-                result = frm.ShowDialog();
+                if (!string.IsNullOrEmpty(ins))
+                    frm.textEdit1.Text = ins;
+                 result = frm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     m= frm.textEdit1.Text;

@@ -431,6 +431,23 @@ namespace EPCat
             if (this.CurrentFolder == null) return;
             //var last = this.CurrentFolder.CombinedScenes.LastOrDefault();
             var clip = TicTakToe.GetClipScreenShot();
+            if (string.IsNullOrEmpty(clip))
+            {
+                string clipFile = Clipboard.GetText();
+                if (!string.IsNullOrEmpty(clipFile))
+                {
+                    try
+                    {
+                        Path.GetFileName(clipFile);
+                        if (File.Exists(clipFile))
+                            clip = clipFile;
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
             if (kind == null && TicTakToe.CopiedCombinedScene != null && TicTakToe.CopiedCombinedScene.Any())
             {
                 Info_Scene newclipinfo = new Info_Scene();
@@ -441,10 +458,21 @@ namespace EPCat
                 else
                     newgroup = IncrementGroup(newclipinfo.Group, group);
 
+                string descr = null;
+                bool fileinserted = false;
                 foreach (var item in TicTakToe.CopiedCombinedScene)
                 {
                     newclipinfo = new Info_Scene();
                     newclipinfo.LoadFromString(item);
+                    if (descr == null)
+                    {
+                        string str;
+                        if (frmInputBox.ShowInputBox(out str, newclipinfo.Description) == System.Windows.Forms.DialogResult.OK)
+                            descr = str;
+                        else
+                            descr = newclipinfo.Description;
+                    }
+                    newclipinfo.Description = descr;
                     if (incurrentgroup)
                     {
                         newclipinfo.Group = this.CurrentCombinedScene.Group;
@@ -456,8 +484,12 @@ namespace EPCat
 
                     if (newclipinfo.Kind == 0)
                     {
-                        if (clip != null)
+                        if (clip != null && !fileinserted)
+                        {
                             newclipinfo.File = clip;
+                            fileinserted = true;
+
+                        }                            
                         else
                         {
                             string file = Path.GetFileNameWithoutExtension(newclipinfo.File);
