@@ -573,8 +573,17 @@ namespace EPCat
             {
                 ++d;
                 vals[group] = (d.ToString("D" + vals[group].Length));
-            }    
-            return string.Join(".", vals);
+            }
+            string rez = string.Join(".", vals);
+            var exists = Story.SceneInfos.Where(x => x.Group == rez).FirstOrDefault();
+            while (exists != null)
+            {
+                d++;
+                vals[group] = d.ToString("D" + vals[group].Length);
+                rez = string.Join(".", vals);
+                exists = Story.SceneInfos.Where(x => x.Group == rez).FirstOrDefault();
+            }
+            return rez;
         }
         private string IncrementGroupToEnd(string v)
         {
@@ -587,11 +596,19 @@ namespace EPCat
                 d = ++max;
             }
             var vals = v.Split('.');
-            if (vals.Length == 0) return v;
+            if (vals.Length == 0) return v;            
 
             vals[0] = d.ToString("D" + vals[0].Length);
-
-            return string.Join(".", vals);
+            string rez = string.Join(".", vals);
+            var exists = Story.SceneInfos.Where(x => x.Group == rez).FirstOrDefault();
+            while (exists != null)
+            {
+                d++;
+                vals[0] = d.ToString("D" + vals[0].Length);
+                rez = string.Join(".", vals);
+                exists = Story.SceneInfos.Where(x => x.Group == rez).FirstOrDefault();
+            }
+            return rez;
         }
         private void addNewComb(Info_Scene newclipinfo)
         {
