@@ -74,6 +74,7 @@
                         </dxlc:LayoutItem>
 
 
+
                         <dxlc:LayoutItem Margin="0,0,0,0" Width="50">
                             <dxe:CheckEdit x:Name="SavingAllowed" Content="Save" IsChecked="{Binding IsSavingAllowed}" />
                         </dxlc:LayoutItem>
@@ -204,7 +205,12 @@
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopDescBtn1" Content="CopyD+1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyDescrBtn1_Click" />
                             </dxlc:LayoutItem>
-
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
+                                <dx:SimpleButton x:Name="CollapseGroups" Content="+" Width="30" HorizontalAlignment="Left" Click="CollapseGroup_Click"  />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
+                                <dx:SimpleButton x:Name="ExpandGroups" Content="-" Width="30" HorizontalAlignment="Left" Click="ExpandGroup_Click"  />
+                            </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CompileScenarioBtn" Content="Compile" Width="80" Margin="100,4,0,0" HorizontalAlignment="Left" Click="CompileScenarioBtn_Click" />
                             </dxlc:LayoutItem>
@@ -250,29 +256,29 @@
                                 ShowDataNavigator="True"
                                 DataNavigatorButtons="DeleteFocusedRow" ShowGroupedColumns="True" AllowPartialGrouping="False" AllowFixedGroups="True" ShowGroupFooters="False" ShowFilterPanelMode="ShowAlways">
                                                 <dxg:TableView.FormatConditions>
-                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Tit'" FieldName="Queue">
+                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Tit'" FieldName="Group">
                                                         <dx:Format Background="#FFB6FAB6" FontWeight="Bold" TextDecorations="{x:Null}"/>
                                                     </dxg:FormatCondition>
-                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindOrder] = 'Pic'" FieldName="Queue">
+                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindOrder] = 'Pic'" FieldName="Group">
                                                         <dx:Format Background="#FFFCD4D4"/>
                                                     </dxg:FormatCondition>
-                                                    <dxg:FormatCondition Expression="[KindName] = 'Snd'" FieldName="Queue" ApplyToRow="False">
+                                                    <dxg:FormatCondition Expression="[KindName] = 'Snd'" FieldName="Group" ApplyToRow="False">
                                                         <dx:Format Background="#FFD8D6CB" FontStyle="Italic" TextDecorations="{x:Null}"/>
                                                     </dxg:FormatCondition>
-                                                    <dxg:FormatCondition Expression="[KindName] = 'Bck'" FieldName="Queue" ApplyToRow="False" IsEnabled="True">
+                                                    <dxg:FormatCondition Expression="[KindName] = 'Bck'" FieldName="Group" ApplyToRow="False" IsEnabled="True">
                                                         <dx:Format Background="#FFE3CFFA"/>
                                                     </dxg:FormatCondition>
-                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Mov'" FieldName="Queue">
+                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Mov'" FieldName="Group">
                                                         <dx:Format Background="#FF5CDCFF"/>
                                                     </dxg:FormatCondition>
                                                 </dxg:TableView.FormatConditions>
                                             </dxg:TableView>
                                         </dxg:GridControl.View>
-                                        <dxg:GridColumn FieldName="KindOrder" IsSmart="True" AllowResizing="False" Width="0" MaxWidth="30" SortOrder="Ascending" SortIndex="3"/>
+                                        <dxg:GridColumn FieldName="KindOrder" IsSmart="True" AllowResizing="False" Width="0" MaxWidth="30"/>
                                         <dxg:GridColumn FieldName="KindName" IsSmart="True" Width="35" IsEnabled="False" AutoFilterCondition="Contains"/>
-                                        <dxg:GridColumn FieldName="Queue" IsSmart="True" Width="200" GroupIndex="0" AutoFilterCondition="Contains"/>
-                                        <dxg:GridColumn FieldName="Group" IsSmart="True" Width="90" SortOrder="Ascending" GroupIndex="2" SortIndex="1" AutoFilterCondition="Contains"/>
-                                        <dxg:GridColumn FieldName="Description" IsSmart="True"  Width="450" SortOrder="Ascending" GroupIndex="1" AutoFilterCondition="Contains"/>
+                                        <!--<dxg:GridColumn FieldName="Queue" IsSmart="True" Width="0" AutoFilterCondition="Contains" SortOrder="Descending"/>-->
+                                        <dxg:GridColumn FieldName="Group" IsSmart="True" Width="90" SortOrder="Ascending" GroupIndex="1" AutoFilterCondition="Contains"/>
+                                        <dxg:GridColumn FieldName="Description" IsSmart="True"  Width="450" SortOrder="Ascending" GroupIndex="0" AutoFilterCondition="Contains"/>
                                         <dxg:GridColumn FieldName="Story" IsSmart="True" Width="400" AutoFilterCondition="Contains"/>
                                         <dxg:GridColumn FieldName="File" IsSmart="True" Width="5" AutoFilterCondition="Contains"/>
 

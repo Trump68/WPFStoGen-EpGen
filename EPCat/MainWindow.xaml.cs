@@ -620,6 +620,7 @@ namespace EPCat
         private void LoadOneSceneFromFileBtn_Click(object sender, RoutedEventArgs e)
         {
             string fn = null;
+            if (ViewModel.CurrentFolder == null) return;
             var files = Directory.GetFiles(ViewModel.CurrentFolder.ItemDirectory, "*.epcatsi");
             if (files.Length == 1)
             {
@@ -848,6 +849,16 @@ namespace EPCat
         private void btnReformat_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.ReformatMotion();
+        }
+
+        private void CollapseGroup_Click(object sender, RoutedEventArgs e)
+        {
+            this.GVCombScen.CollapseAllGroups();
+        }
+
+        private void ExpandGroup_Click(object sender, RoutedEventArgs e)
+        {
+            this.GVCombScen.ExpandAllGroups();
         }
     }
 }
