@@ -1,0 +1,519 @@
+﻿<XtraSerializer version="1.0" application="GridControl">
+  <property name="#LayoutVersion" isnull="true" />
+  <property name="$GridControl" iskey="true" value="GridControl">
+    <property name="UseFieldNameForSerialization">true</property>
+    <property name="GroupCount">0</property>
+    <property name="GroupSummary" iskey="true" value="1">
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="SummaryType">Count</property>
+        <property name="FieldName">Year</property>
+        <property name="DisplayFormat">{0}</property>
+        <property name="ShowInColumn" />
+        <property name="Alignment">Default</property>
+      </property>
+    </property>
+    <property name="SortInfo" iskey="true" value="1">
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="FieldName">Name</property>
+        <property name="SortOrder">Ascending</property>
+        <property name="MergeWithPreviousGroup">false</property>
+      </property>
+    </property>
+    <property name="Columns" iskey="true" value="34">
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Catalog</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">2</property>
+        <property name="ActualWidth">37.786177105831506</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Name</property>
+        <property name="VisibleIndex">1</property>
+        <property name="ActualWidth">111</property>
+      </property>
+      <property name="Item3" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">AltTitle</property>
+        <property name="Visible">true</property>
+        <property name="VisibleIndex">5</property>
+        <property name="ActualWidth">174.85570646799636</property>
+      </property>
+      <property name="Item4" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Country</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">24</property>
+        <property name="ActualWidth">35.997601918465193</property>
+      </property>
+      <property name="Item5" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Year</property>
+        <property name="Visible">true</property>
+        <property name="VisibleIndex">7</property>
+        <property name="ActualWidth">41</property>
+      </property>
+      <property name="Item6" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Scenes</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">19</property>
+        <property name="ActualWidth">80.242319689706349</property>
+      </property>
+      <property name="Item7" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Month</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">24</property>
+        <property name="ActualWidth">35.997601918465193</property>
+      </property>
+      <property name="Item8" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Day</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">24</property>
+        <property name="ActualWidth">35.997601918465193</property>
+      </property>
+      <property name="Item9" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Rated</property>
+        <property name="Visible">true</property>
+        <property name="VisibleIndex">11</property>
+        <property name="ActualWidth">50</property>
+      </property>
+      <property name="Item10" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">XRated</property>
+        <property name="Visible">true</property>
+        <property name="VisibleIndex">9</property>
+        <property name="ActualWidth">73</property>
+      </property>
+      <property name="Item11" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Kind</property>
+        <property name="Visible">true</property>
+        <property name="VisibleIndex">3</property>
+        <property name="ActualWidth">62.533047894078216</property>
+      </property>
+      <property name="Item12" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Brand</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">25</property>
+        <property name="ActualWidth">35.997601918465193</property>
+      </property>
+      <property name="Item13" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Stage</property>
+        <property name="Visible">true</property>
+        <property name="VisibleIndex">13</property>
+        <property name="ActualWidth">47.2605953096262</property>
+      </property>
+      <property name="Item14" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Variant</property>
+        <property name="Visible">true</property>
+        <property name="VisibleIndex">10</property>
+        <property name="ActualWidth">30.918980954615858</property>
+      </property>
+      <property name="Item15" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Type</property>
+        <property name="Visible">true</property>
+        <property name="VisibleIndex">2</property>
+        <property name="ActualWidth">112.39502273561263</property>
+      </property>
+      <property name="Item16" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Star</property>
+        <property name="VisibleIndex">6</property>
+        <property name="ActualWidth">226.20833344104418</property>
+      </property>
+      <property name="Item17" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Serie</property>
+        <property name="Visible">true</property>
+        <property name="VisibleIndex">0</property>
+        <property name="ActualWidth">46.999999999999993</property>
+      </property>
+      <property name="Item18" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">MyDescr</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">23</property>
+        <property name="ActualWidth">25</property>
+      </property>
+      <property name="Item19" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Director</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">27</property>
+        <property name="ActualWidth">32.389233624187113</property>
+      </property>
+      <property name="Item20" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Studio</property>
+        <property name="Visible">true</property>
+        <property name="VisibleIndex">12</property>
+        <property name="ActualWidth">61.8828863064422</property>
+      </property>
+      <property name="Item21" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">IMDB</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">28</property>
+        <property name="ActualWidth">32.389233624187113</property>
+      </property>
+      <property name="Item22" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">ItemPath</property>
+        <property name="Visible">true</property>
+        <property name="VisibleIndex">8</property>
+        <property name="ActualWidth">221.50071076002632</property>
+      </property>
+      <property name="Item23" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">PersonName</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">23</property>
+        <property name="ActualWidth">53.657307741858531</property>
+      </property>
+      <property name="Item24" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">PersonAge</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">23</property>
+        <property name="ActualWidth">53.657307741858531</property>
+      </property>
+      <property name="Item25" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">PersonSex</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">23</property>
+        <property name="ActualWidth">53.657307741858531</property>
+      </property>
+      <property name="Item26" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">PersonType</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">23</property>
+        <property name="ActualWidth">53.657307741858531</property>
+      </property>
+      <property name="Item27" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">PersonKind</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">10</property>
+        <property name="ActualWidth">53.657307741858531</property>
+      </property>
+      <property name="Item28" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">LastCheck</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">23</property>
+        <property name="ActualWidth">53.657307741858531</property>
+      </property>
+      <property name="Item29" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">PARENT</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">17</property>
+        <property name="ActualWidth">62.424923475609411</property>
+      </property>
+      <property name="Item30" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Size</property>
+        <property name="VisibleIndex">4</property>
+        <property name="ActualWidth">50</property>
+      </property>
+      <property name="Item31" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">Length</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">18</property>
+        <property name="ActualWidth">NaN</property>
+      </property>
+      <property name="Item32" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">VideoPresent</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">28</property>
+        <property name="Width">20</property>
+        <property name="ActualWidth">8.5725087335896291</property>
+      </property>
+      <property name="Item33" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">SourceFolderExist</property>
+        <property name="Visible">false</property>
+        <property name="VisibleIndex">15</property>
+        <property name="ActualWidth">38.89565772024261</property>
+      </property>
+      <property name="Item34" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">ToDelete</property>
+        <property name="VisibleIndex">14</property>
+        <property name="ActualWidth">55.444716130557943</property>
+      </property>
+    </property>
+    <property name="View" isnull="true" iskey="true">
+      <property name="FormatConditions" iskey="true" value="23">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFFFA500</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Type</property>
+          <property name="Expression">Contains([Type], 'Cuckold')</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item2" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFFF9B98</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Type</property>
+          <property name="Expression">Contains([Type], 'Anal')</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item3" isnull="true" iskey="true">
+          <property name="FieldName">ItemPath</property>
+          <property name="Expression">[VideoPresent] = True</property>
+          <property name="PredefinedFormatName">YellowGreenColorScale</property>
+          <property name="TypeName">ColorScaleFormatCondition</property>
+        </property>
+        <property name="Item4" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="TextDecorations">None</property>
+            <property name="Icon">pack://application:,,,/DevExpress.Xpf.Core.v17.1;component/Core/ConditionalFormatting/Images/IconSets/Symbols3_2.png</property>
+          </property>
+          <property name="FieldName">Kind</property>
+          <property name="Expression">[Kind] = '1'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item5" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FF90EE90</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">AltTitle</property>
+          <property name="Expression">[SourceFolderExist] = True</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item6" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FF90EE90</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Size</property>
+          <property name="Expression">[Size] &lt; 999.0m</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item7" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFFFFF00</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Size</property>
+          <property name="Expression">[Size] &lt;= 600.0m</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item8" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFFF0000</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Size</property>
+          <property name="Expression">[Size] &lt;= 300.0m</property>
+          <property name="IsEnabled">true</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item9" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FF008000</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Size</property>
+          <property name="Expression">[Size] &gt;= 999.0m</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item10" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FF7E7C71</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Size</property>
+          <property name="Expression">[Size] &lt; 1.1m</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item11" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFFF9B98</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">AltTitle</property>
+          <property name="Expression">[Serie] = '!!!Actors'</property>
+          <property name="ApplyToRow">true</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item12" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFFF9B98</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">AltTitle</property>
+          <property name="Expression">[Serie] = '!!!Actors'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item13" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFFF9B98</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Size</property>
+          <property name="Expression">[Serie] = '!!!Actors'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item14" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FF008000</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">XRated</property>
+          <property name="Expression">[XRated] = '5'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item15" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFFF0000</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Star</property>
+          <property name="Expression">[PersonKind] = '1'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item16" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFFC9A9A</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Star</property>
+          <property name="Expression">[PersonKind] = '2'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item17" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFC1BFB4</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Star</property>
+          <property name="Expression">[PersonKind] = '3' Or Contains([Star], 'Tsuno Miho') Or Contains([Star], 'Azuma Rin') Or Contains([Star], 'Ooura Manami')</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item18" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FF9ACCFF</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Star</property>
+          <property name="Expression">[PersonKind] = '4' Or Contains([Star], 'Kazama Yumi')</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item19" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FF90EE90</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Star</property>
+          <property name="Expression">[PersonKind] = '5' Or Contains([Star], 'Hatano Yui') Or Contains([Star], 'Ootsuki Hibiki')</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item20" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FF008000</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Star</property>
+          <property name="Expression">[PersonKind] = '6'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item21" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFFFA500</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Star</property>
+          <property name="Expression">[PersonKind] = '7'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item22" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FFFFFF00</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">Star</property>
+          <property name="Expression">[PersonKind] = '8'</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+        <property name="Item23" isnull="true" iskey="true">
+          <property name="Format" isnull="true" iskey="true">
+            <property name="Background">#FF7F7F7F</property>
+            <property name="TextDecorations">None</property>
+          </property>
+          <property name="FieldName">ItemPath</property>
+          <property name="Expression">[ToDelete] = True</property>
+          <property name="ApplyToRow">true</property>
+          <property name="TypeName">FormatCondition</property>
+        </property>
+      </property>
+      <property name="ShowGroupPanel">true</property>
+      <property name="ColumnChooserState" isnull="true" iskey="true">
+        <property name="Location">-2,-21</property>
+        <property name="Size">220,250</property>
+      </property>
+      <property name="SearchString" isnull="true" />
+    </property>
+    <property name="TotalSummary" iskey="true" value="0" />
+    <property name="MRUFilters" iskey="true" value="9">
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Star], 'Natsume Iroha')</property>
+        <property name="FilterText">Starts with([Star], 'Natsume Iroha')</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Star], 'Matsumoto Ichika')</property>
+        <property name="FilterText">Starts with([Star], 'Matsumoto Ichika')</property>
+      </property>
+      <property name="Item3" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Star], 'Memori Shizuku')</property>
+        <property name="FilterText">Starts with([Star], 'Memori Shizuku')</property>
+      </property>
+      <property name="Item4" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([Star], 'Konishi Yuu')</property>
+        <property name="FilterText">Starts with([Star], 'Konishi Yuu')</property>
+      </property>
+      <property name="Item5" isnull="true" iskey="true">
+        <property name="FilterString">Contains([Type], 'drama')</property>
+        <property name="FilterText">Contains([Type], 'drama')</property>
+      </property>
+      <property name="Item6" isnull="true" iskey="true">
+        <property name="FilterString">Contains([Type], 'kimono')</property>
+        <property name="FilterText">Contains([Type], 'kimono')</property>
+      </property>
+      <property name="Item7" isnull="true" iskey="true">
+        <property name="FilterString">Contains([Type], 'kimono') And Contains([Star], 'momono')</property>
+        <property name="FilterText">Contains([Type], 'kimono') And Contains([Star], 'momono')</property>
+      </property>
+      <property name="Item8" isnull="true" iskey="true">
+        <property name="FilterString">Contains([Type], 'kimon') And Contains([Star], 'momono')</property>
+        <property name="FilterText">Contains([Type], 'kimon') And Contains([Star], 'momono')</property>
+      </property>
+      <property name="Item9" isnull="true" iskey="true">
+        <property name="FilterString">Contains([Type], 'kimo') And Contains([Star], 'momono')</property>
+        <property name="FilterText">Contains([Type], 'kimo') And Contains([Star], 'momono')</property>
+      </property>
+    </property>
+    <property name="FilterString">StartsWith([Star], 'Asami Yuma')</property>
+    <property name="IsFilterEnabled">true</property>
+    <property name="GroupSummarySortInfo" iskey="true" value="0" />
+  </property>
+</XtraSerializer>

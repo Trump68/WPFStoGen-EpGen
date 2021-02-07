@@ -69,6 +69,9 @@
                         <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
                             <dx:SimpleButton x:Name="CopyPosterABtn" Content="Copy Poster Name" Width="120" HorizontalAlignment="Left" Click="CopyPosterName_Click"  />
                         </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
+                            <dx:SimpleButton x:Name="JAVupdatefiltered" Content="JAV update filtered" Width="120" HorizontalAlignment="Left" Click="JAVupdatefiltered_Click"  />
+                        </dxlc:LayoutItem>
                         <dxlc:LayoutItem Margin="20,0,0,0" Width="50">
                             <dxe:CheckEdit x:Name="EditAllowed" Content="Edit" />
                         </dxlc:LayoutItem>
@@ -123,7 +126,7 @@
                             <dxg:GridColumn FieldName="Variant" IsSmart="True" />
                             <dxg:GridColumn FieldName="Type" IsSmart="True" />
                             <dxg:GridColumn FieldName="Star" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Serie" IsSmart="True" />
+                            <dxg:GridColumn Name="gcSerie" FieldName="Serie" IsSmart="True" />
                             <dxg:GridColumn FieldName="MyDescr" IsSmart="True" />
                             <dxg:GridColumn FieldName="Director" IsSmart="True" />
                             <dxg:GridColumn FieldName="Studio" IsSmart="True" />
@@ -669,19 +672,22 @@
                             <TextBox Name="txtRepeatTextEnd" Text="{Binding RepeatedTextEnd}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="GoRepeatTextBtn3" Content="Go [3]" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoRepeatText3_Click" />
+                            <dx:SimpleButton x:Name="GoRepeatTextBtn3" Content="JAV 1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoRepeatText3_Click" />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left">
                             <dx:SimpleButton x:Name="GoCalculateRating" Content="Go Rating" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoCalculateRating_Click" />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="UpdateJAV" Content="Update JAV" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnUpdateJAV_Click" />
+                            <dx:SimpleButton x:Name="UpdateJAV" Content="JAV all" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnUpdateJAV_Click" />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left">
                             <dx:SimpleButton x:Name="Camera" Content="Cam Position" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnCameraPosition_Click" />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left">
                             <dx:SimpleButton x:Name="Reformat" Content="Reformat" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnReformat_Click" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="MakeJAVbat" Content="JAV bat" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnJAVbat_Click" />
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
@@ -704,6 +710,14 @@
                                           ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           TextWrapping="NoWrap"  AcceptsReturn="True" Text="{Binding RatingText}" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                        <dxlc:LayoutItem Label="Help" LabelPosition="Top">
+                            <dxe:TextEdit MaxHeight="900"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="NoWrap"  AcceptsReturn="True" Text="JAV1- Story:serie, Start:1, Rating: disc letter" />
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>

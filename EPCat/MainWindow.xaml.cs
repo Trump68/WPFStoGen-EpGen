@@ -4,6 +4,7 @@ using EPCat.Model;
 using Microsoft.Win32;
 using StoGen.Classes.Scene;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -667,11 +668,7 @@ namespace EPCat
             ViewModel.CopyGroup(false, false,0);
         }
 
-        private void btnGoRepeatText3_Click(object sender, RoutedEventArgs e)
-        {
-            JAV.JavLibraryDo(ViewModel.RepeatedText, ViewModel.RepeatedTextStart, ViewModel.StatusText);
-            
-        }
+      
 
         private void btnGoGenerate_Click(object sender, RoutedEventArgs e)
         {
@@ -837,10 +834,7 @@ namespace EPCat
             ViewModel.RefreshFolder();
         }
 
-        private void btnUpdateJAV_Click(object sender, RoutedEventArgs e)
-        {
-            JAV.JavUpdate();
-        }
+       
         private void btnCameraPosition_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.CalculateCameraPosition();
@@ -859,6 +853,40 @@ namespace EPCat
         private void ExpandGroup_Click(object sender, RoutedEventArgs e)
         {
             this.GVCombScen.ExpandAllGroups();
+        }
+        private void btnUpdateJAV_Click(object sender, RoutedEventArgs e)
+        {
+                JAV.JavUpdate();
+        }
+        private void btnGoRepeatText3_Click(object sender, RoutedEventArgs e)
+        {
+            JAV.JavLibraryDo(ViewModel.RepeatedText, ViewModel.RepeatedTextStart, ViewModel.StatusText, ViewModel.RatingText);
+
+        }
+
+        private void btnJAVbat_Click(object sender, RoutedEventArgs e)
+        {
+            JAV.JavLibraryMakeBat(ViewModel.RepeatedText);
+        }
+
+        private void JAVupdatefiltered_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> list = new List<string>();
+            for (int i = 0; i < GV.VisibleRowCount; i++)
+            {
+                int rowHandle = GV.GetRowHandleByVisibleIndex(i);
+                if (!GV.IsGroupRowExpanded(rowHandle))
+                {
+                    var val = GV.GetCellValue(rowHandle, gcSerie);
+                    if (val != null)
+                    {
+                        string s = Convert.ToString(val);
+                        if (!list.Contains(s))
+                            list.Add(s);
+                    }
+                }                              
+            }
+            JAV.UpdateBySerieList(list);
         }
     }
 }

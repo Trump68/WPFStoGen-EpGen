@@ -939,6 +939,27 @@ namespace EPCat.Model
         private void UpdateFolder(string parameters, ref List<EpItem> list)
         {
             string itemPath = parameters.ToLower();
+            if (!JAV.JAVCollections.ContainsKey("ALL"))
+            {
+                string pathJAV1 = @"f:\!CATALOG\JAV\";
+                string pathJAV2 = @"e:\!CATALOG\JAV\";
+                if ((itemPath.Length > pathJAV1.Length))
+                {
+                    if (itemPath.ToUpper().Contains(pathJAV1.ToUpper()) || itemPath.ToUpper().Contains(pathJAV2.ToUpper()))
+                    {
+                        DirectoryInfo dir = new DirectoryInfo(itemPath);
+                        string dirname = dir.Name.ToUpper();
+                        if (dirname.Length < 6)
+                        {
+                            if (!JAV.JAVCollections.ContainsKey(dirname) || !JAV.JAVCollections[dirname])
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+
             if (!Directory.Exists(itemPath)) return;
             List<string> passportList = Directory.GetFiles(itemPath, EpItem.p_PassportName).ToList();
             foreach (var passport in passportList)
