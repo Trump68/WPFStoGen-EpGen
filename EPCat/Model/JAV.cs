@@ -315,6 +315,8 @@ namespace EPCat.Model
 
         private static void JavUpdateSerie(string serie, int start, string disc)
         {
+            if (start == 0)
+                start++;
             string path = $@"{disc}:\!CATALOG\JAV\{serie}";
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);
             else
@@ -337,6 +339,17 @@ namespace EPCat.Model
             while (failure < 2)
             {
                 start++;
+
+                while (true)
+                {
+                    string existing = $"{serie}-{start.ToString($"D3")}";
+                    if (!Directory.Exists(Path.Combine(path, existing)))
+                    {
+                        break;
+                    }
+                    start++;
+                }
+
                 keyword = $"{serie}-{start.ToString($"D3")}";
                 go = JavLibraryDoOne(serie, keyword, disc);
                 if (go)
@@ -366,10 +379,10 @@ namespace EPCat.Model
             lines.Add(@"UPDATE FOLDER f:\!CATALOG\JAV\");
             File.WriteAllLines(Path.Combine(path, file), lines);
 
-            string fileorig= $@"JAV - Kasumi Risa.xml";
+            string fileorig= $@"JAV - SarasaHara.xml";
             string content = File.ReadAllText(Path.Combine(path,fileorig));
             file = $@"JAV - {marker}.xml";
-            content = content.Replace("Kasumi Risa", marker);
+            content = content.Replace("Natsume Iroha", marker);
             File.WriteAllText(Path.Combine(path, file),content);
 
             //fileorig = @"c:\Users\Boss\Desktop\CTLG\CTLG-JAV-Kasumi Risa.lnk";
@@ -379,11 +392,100 @@ namespace EPCat.Model
             //File.WriteAllText(filedest, content);
         }
 
+        public static Dictionary<string, string> _JAVupdated;
+        private static int threshold_days = 0;
+        private static int threshold_hours = 0;
+        private static void LoadThreshold()
+        {
+            string file = $@"f:\!CATALOG\JAV\updated.txt";
+            var strings = File.ReadAllLines(file);
+
+            _JAVupdated = new Dictionary<string, string>();
+            foreach (var item in strings)
+            {
+                if (item.Contains("threshold_days="))
+                {
+                    string td = item.Replace("threshold_days=", string.Empty);
+                    if (!string.IsNullOrEmpty(td))
+                    {
+                        threshold_days = Convert.ToInt32(td);
+                    }
+                }
+                else if (item.Contains("threshold_hours="))
+                {
+                    string td = item.Replace("threshold_hours=", string.Empty);
+                    if (!string.IsNullOrEmpty(td))
+                    {
+                        threshold_hours = Convert.ToInt32(td);
+                    }
+                }
+                else
+                {
+                    var vals = item.Split('=');
+                    string serie = vals[0];
+                    string updated = vals[1];
+                    if (!_JAVupdated.ContainsKey(serie))
+                    {
+                        _JAVupdated.Add(serie, updated);
+                    }
+                    else
+                    {
+                        _JAVupdated[serie] = updated;
+                    }
+                }
+            }
+        }
+        private static bool CheckThreshold(string serie)
+        {
+            bool result = false;
+            if (!_JAVupdated.ContainsKey(serie))
+            {
+                _JAVupdated.Add(serie, DateTime.Now.ToString());
+                return true;
+            }
+            else
+            {
+                DateTime dt = DateTime.Parse(_JAVupdated[serie]);
+                DateTime treshold = dt.AddDays(threshold_days).AddHours(threshold_hours);
+                if (DateTime.Now> treshold)
+                {
+                    _JAVupdated[serie] = DateTime.Now.ToString();
+                    return true;
+                }                
+            }
+            return result;
+        }
+        private static void SaveThreshold()
+        {
+            List<string> lines = new List<string>();
+            lines.Add($"threshold_days={threshold_days}");
+            lines.Add($"threshold_hours={threshold_hours}");
+            foreach (var item in _JAVupdated)
+            {
+                lines.Add($"{item.Key}={item.Value}");
+            }
+            string file = $@"f:\!CATALOG\JAV\updated.txt";
+            File.WriteAllLines(file, lines);
+        }
+        private static void SaveUpdate()
+        {
+            List<string> lines = new List<string>();
+            foreach (var item in _JAVupdated)
+            {
+                lines.Add($"{item.Key}");
+            }
+            string file = $@"f:\!CATALOG\JAV\update.txt";
+            File.WriteAllLines(file, lines);
+        }
         internal static void UpdateBySerieList(List<string> list)
         {
+            LoadThreshold();
             _JAVCollections = new Dictionary<string, bool>();
             foreach (var serie in list)
             {
+                _JAVCollections.Add(serie, true);
+                if (!CheckThreshold(serie))
+                    continue;
                 string disc = "f";
                 string path = $@"{disc}:\!CATALOG\JAV\{serie}";
                 if (!Directory.Exists(path))
@@ -391,9 +493,9 @@ namespace EPCat.Model
                     disc = "e";
                 }
                 JavUpdateSerie(serie, 0, disc);
-                _JAVCollections.Add(serie, true);
             }
-
+            SaveThreshold();
+            SaveUpdate();
             System.Windows.Application.Current.Shutdown();
         }
     }

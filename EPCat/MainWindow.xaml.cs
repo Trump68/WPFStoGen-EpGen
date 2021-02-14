@@ -871,6 +871,24 @@ namespace EPCat
 
         private void JAVupdatefiltered_Click(object sender, RoutedEventArgs e)
         {
+            //string dirSource1 = @"e:\!TO_SORT2\";
+            //if (Directory.Exists(dirSource1))
+            //{
+            //    var files = Directory.GetFiles("*.m4v");
+            //    foreach (var item in files)
+            //    {
+            //        var fn = Path.GetFileName(item);
+            //        var val = fn.Split('-');
+            //        if (val.Length > 1)
+            //        {
+            //            if (Directory.Exists($@"e:\!CATALOG\JAV\{val[0]}\{Path.GetFileNameWithoutExtension(item)}"))
+            //            {
+            //                File.Move();
+            //            }
+            //        }
+            //    }
+            //}
+
             List<string> list = new List<string>();
             for (int i = 0; i < GV.VisibleRowCount; i++)
             {
