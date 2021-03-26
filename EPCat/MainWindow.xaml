@@ -624,6 +624,11 @@
                                   x:Name="btnScreenshot" Click="btnScreenshot_Click"/>
                                 <Button Margin="5,0,0,0" Content="Scr+" Height="30" Width="60"
                                   x:Name="btnScreenshot1" Click="btnScreenshotAddGroup_Click"/>
+                                <Button Margin="5,0,0,0" Content="Screenshots" Height="30" Width="100"
+                                  x:Name="btnScreenshot2" Click="btnScreenshots_Click"/>
+                                <CheckBox Margin="5,0,0,0" Content="Gray" Height="30" Width="50"
+                                  x:Name="cbGray"/>
+
                                 <Button Margin="5,0,0,0" Content="Reset" Height="30"
                                   Name="btnSetPositionReset" Click="btnSetPositionReset_Click"/>
                                 <Button Margin="5,0,0,0" Content="Start" Height="30"

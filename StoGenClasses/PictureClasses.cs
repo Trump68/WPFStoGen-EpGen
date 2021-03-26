@@ -494,10 +494,10 @@ namespace StoGen.Classes
 
     public class ImageTools
     {
-        public static Bitmap GrayScaleFilter(Image image)
+        public static Bitmap GrayScaleFilter(Bitmap SourceImage)
         {
-            Bitmap grayScale = new Bitmap(image.Width, image.Height);
-            Bitmap SourceImage = new Bitmap(image);
+            Bitmap grayScale = new Bitmap(SourceImage.Width, SourceImage.Height);
+
 
             for (Int32 y = 0; y < grayScale.Height; y++)
                 for (Int32 x = 0; x < grayScale.Width; x++)
@@ -619,5 +619,36 @@ namespace StoGen.Classes
 
         private static int min(int a, int b) { return Math.Min(a, b); }
         private static int max(int a, int b) { return Math.Max(a, b); }
+    }
+    public static class BitmapExtensions
+    {
+        public static void SaveJPG100(this Bitmap bmp, string filename)
+        {
+            EncoderParameters encoderParameters = new EncoderParameters(1);
+            encoderParameters.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100L);
+            bmp.Save(filename, GetEncoder(ImageFormat.Jpeg), encoderParameters);
+        }
+
+        public static void SaveJPG100(this Bitmap bmp, Stream stream)
+        {
+            EncoderParameters encoderParameters = new EncoderParameters(1);
+            encoderParameters.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100L);
+            bmp.Save(stream, GetEncoder(ImageFormat.Jpeg), encoderParameters);
+        }
+
+        public static ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+
+            return null;
+        }
     }
 }

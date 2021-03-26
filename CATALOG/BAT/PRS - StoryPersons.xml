@@ -19,7 +19,7 @@
         <property name="MergeWithPreviousGroup">false</property>
       </property>
     </property>
-    <property name="Columns" iskey="true" value="33">
+    <property name="Columns" iskey="true" value="34">
       <property name="Item1" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Catalog</property>
@@ -135,8 +135,8 @@
       <property name="Item17" isnull="true" iskey="true">
         <property name="GridRow">0</property>
         <property name="FieldName">Serie</property>
-        <property name="Visible">false</property>
-        <property name="VisibleIndex">29</property>
+        <property name="Name">gcSerie</property>
+        <property name="VisibleIndex">5</property>
         <property name="ActualWidth">NaN</property>
       </property>
       <property name="Item18" isnull="true" iskey="true">
@@ -250,6 +250,12 @@
         <property name="FieldName">SourceFolderExist</property>
         <property name="Visible">false</property>
         <property name="VisibleIndex">32</property>
+        <property name="ActualWidth">NaN</property>
+      </property>
+      <property name="Item34" isnull="true" iskey="true">
+        <property name="GridRow">0</property>
+        <property name="FieldName">ToDelete</property>
+        <property name="VisibleIndex">6</property>
         <property name="ActualWidth">NaN</property>
       </property>
     </property>

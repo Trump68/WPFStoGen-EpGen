@@ -26,6 +26,7 @@ using StoGenerator;
 using StoGenerator.Stories;
 using System.Windows.Media.Imaging;
 using System.Net;
+using System.Linq.Expressions;
 
 namespace EPCat
 {
@@ -214,7 +215,12 @@ namespace EPCat
             RaisePropertyChanged(() => this.FolderListView);
 
         }
-     
+        public void SetRatingText(string dd)
+        {
+            RatingText = dd;
+            RaisePropertyChanged(() => RatingText);
+        }
+
         public void UpdateCurrentItem()
         {
             //if (updateenabled)
@@ -843,86 +849,9 @@ namespace EPCat
                 SCENARIO.PackScenario(StoryCopy, CurrentFolder.ItemDirectory);
             }
         }
-        internal void CalculateRating()
-        {
+        
 
-            Dictionary<string, int> ratingCont = new Dictionary<string, int>();
-            foreach (var item in this._FolderList)
-            {
-                if (!string.IsNullOrEmpty(item.Star))
-                {
-                    var vals = item.Star.Split(',');
-                    foreach (var val in vals)
-                    {
-                        if (!ratingCont.ContainsKey(val))
-                        {
-                            ratingCont.Add(val, 0);
-                        }
-                        ratingCont[val] = ratingCont[val] + 1;
-                    }
-                }
-            }
-            string dd = string.Empty;
-            var f = ratingCont.OrderByDescending(x => x.Value);
-            var i = 1;
-            List<string> csv = new List<string>();
-            
-            foreach (var item in f)
-            {
-                string r = StarRating.GetRating(item.Key);
-                if (string.IsNullOrEmpty(r))
-                    r = "??????";
-                dd = $"{dd}{Environment.NewLine}{item.Value}:{item.Key} - {i}, rating {r}";
-                csv.Add($"{item.Key},{item.Value}");
-                i++;
-
-            }
-            string datev = $"{DateTime.Now.Month}-{DateTime.Now.Day}-{DateTime.Now.Hour}-{DateTime.Now.Minute}.csv";
-            
-            File.WriteAllLines($@"d:\Work\WPFStoGen-EpGen\CATALOG\BAT\{datev}", csv);
-
-
-            Dictionary<string, string> total = new Dictionary<string, string>();
-            var old = File.ReadAllLines(@"d:\Work\WPFStoGen-EpGen\CATALOG\BAT\8-29-16-47.csv").ToList();
-            int n = 0;
-            processCsvFile(ref total, n, old);
-            n++;
-            old = File.ReadAllLines($@"d:\Work\WPFStoGen-EpGen\CATALOG\BAT\{datev}").ToList();
-            processCsvFile(ref total, n, old);
-
-            List<string> totals = new List<string>();
-            foreach (var item in total)
-            {
-                totals.Add($"{item.Key},{item.Value}");
-            }
-            File.WriteAllLines($@"d:\Work\WPFStoGen-EpGen\CATALOG\BAT\total.csv", totals);
-
-            this.RatingText = dd;
-            RaisePropertyChanged(() => this.RatingText);
-        }
-
-        private void processCsvFile(ref Dictionary<string, string> total,int n, List<string> old)
-        {
-            foreach (var item in old)
-            {
-                var vals = item.Split(',');
-                
-               
-                if (!total.ContainsKey(vals[0]))
-                {
-                    List<string> sl = new List<string>();
-                    for (int i = 0; i < n; i++)
-                    {
-                        sl.Add("0");
-                    }
-                    total.Add(vals[0], string.Join(",", sl.ToArray()));
-                }
-                if (string.IsNullOrEmpty(total[vals[0]]))
-                    total[vals[0]] = $"{vals[1]}";
-                else
-                    total[vals[0]] = $"{total[vals[0]]},{vals[1]}";
-            }
-        }
+        
 
         internal void CalculateCameraPosition()
         {

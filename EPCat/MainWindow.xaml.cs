@@ -2,12 +2,16 @@
 using DevExpress.Xpf.Grid;
 using EPCat.Model;
 using Microsoft.Win32;
+using StoGen.Classes;
 using StoGen.Classes.Scene;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -323,9 +327,9 @@ namespace EPCat
                
         private void btnScreenshot_Click(object sender, RoutedEventArgs e)
         {
-            this.MadeShot();
+            this.MadeShot(false,false);
         }
-        private void MadeShot(bool addGroup = false)
+        private void MadeShot(bool addGroup, bool Gray)
         {
             string path = 
                 System.IO.Path.GetDirectoryName(this.minionPlayer.Source.LocalPath)
@@ -363,13 +367,13 @@ namespace EPCat
             }
 
             TicTakToe.SetClipScreenShot(str3);
-            this.ImportMedia(str3);
+            this.ImportMedia(str3,Gray);
             if (addGroup)
             {
                 ViewModel.CopyGroup(true,false,0);
             }
         }
-        private void ImportMedia(string path)
+        private void ImportMedia(string path, bool isGrayscale = false)
         {
             RenderTargetBitmap source = 
                 new RenderTargetBitmap(
@@ -379,14 +383,34 @@ namespace EPCat
                     96.0,
                     PixelFormats.Pbgra32);
             source.Render(this.minionPlayer);
-            using (FileStream stream = new FileStream(path, FileMode.Create))
+
+            if (isGrayscale)
             {
-                new JpegBitmapEncoder
-                {
-                    QualityLevel = 100,
-                    Frames = { BitmapFrame.Create(source) }
-                }.Save(stream);
+                MemoryStream stream = new MemoryStream();
+                BitmapEncoder encoder = new BmpBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(source));
+                encoder.Save(stream);
+                Bitmap bitmap = new Bitmap(stream);
+                Bitmap gray = ImageTools.GrayScaleFilter(bitmap);
+                BitmapExtensions.SaveJPG100(gray, path);
             }
+            else
+            {
+
+                BitmapFrame bf = BitmapFrame.Create(source);
+                using (FileStream stream = new FileStream(path, FileMode.Create))
+                {
+                    new JpegBitmapEncoder
+                    {
+                        QualityLevel = 100,
+                        Frames = { bf }
+                    }.Save(stream);
+                }
+            }
+            source.Clear();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
         }
 
         private bool isNavigationByKey = true;
@@ -452,7 +476,7 @@ namespace EPCat
                 }
                 else if (e.Key == Key.M)
                 {
-                    this.MadeShot();
+                    this.MadeShot(false,false);
                 }
                 else if (e.Key == Key.LeftShift)
                 {
@@ -514,7 +538,7 @@ namespace EPCat
             {
                 btnSetPositionEnd_Click(null, null);
                 btnSetPositionSave_Click(null, null);
-                MadeShot();
+                MadeShot(false,false);
             }
         }
 
@@ -608,7 +632,7 @@ namespace EPCat
 
         private void btnScreenshotAddGroup_Click(object sender, RoutedEventArgs e)
         {
-            this.MadeShot(true);
+            this.MadeShot(true,false);
         }
 
 
@@ -790,7 +814,8 @@ namespace EPCat
 
         private void btnGoCalculateRating_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.CalculateRating();
+            string dd = JAV.CalculateRating(ViewModel._FolderList);
+            ViewModel.SetRatingText(dd);
         }
 
         private void CopyPoster_Click(object sender, RoutedEventArgs e)
@@ -905,6 +930,29 @@ namespace EPCat
                 }                              
             }
             JAV.UpdateBySerieList(list);
+        }
+
+        private void btnScreenshots_Click(object sender, RoutedEventArgs e)
+        {
+            double pos = 0;
+            if (!string.IsNullOrEmpty(txtPosition.Text))
+            {
+                pos = double.Parse(txtPosition.Text);
+            }
+            while (sbarPosition.Maximum>pos)
+            {
+                TimeSpan timespan = TimeSpan.FromSeconds(pos);
+                minionPlayer.Position = timespan;
+                ShowPosition();
+                //Thread.Sleep(300);
+                bool ischecked = false;
+                if (cbGray.IsChecked.HasValue)
+                {
+                    ischecked = cbGray.IsChecked.Value;
+                }
+                this.MadeShot(false, ischecked);
+                pos=pos+0.5;                
+            }
         }
     }
 }
