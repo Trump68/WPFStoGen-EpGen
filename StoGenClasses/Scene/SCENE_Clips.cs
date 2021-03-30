@@ -76,7 +76,7 @@ namespace StoGen.Classes.Data.Movie
         public void VideoFrame800(List<List<AP>> anims, List<string> music,string text, List<DifData> pics = null)
         {
             if (music.Any())
-                AddMusic(music[0],100, false);
+                AddMusic(music[0],100, false,false);
             foreach (var item in anims)
             {
                 List<DifData> itl = new List<DifData>();

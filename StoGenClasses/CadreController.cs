@@ -135,9 +135,9 @@ namespace StoGen.Classes
 
             if (CadreId <= Cadres.Count - 1)
             {
-                if (CadreId > 0)
+                if (paint && CadreId > 0)
                 {
-                    var prev = Cadres[CadreId - 1];
+                    var prev = Cadres[CadreId - 1];                    
                     prev.Stop();
                 }
                 result = Cadres[CadreId];

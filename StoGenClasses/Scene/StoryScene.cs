@@ -258,7 +258,8 @@ namespace StoGen.Classes.Data.Games
                     volume = int.Parse(rez.X);
                 }
                 bool muted = (rez.Y == "1") || muteAll;
-                this.AddMusic(rez.File, volume, muted);
+                bool randomstart = (rez.F == "1");
+                this.AddMusic(rez.File, volume, muted, randomstart);
             }
 
             Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();

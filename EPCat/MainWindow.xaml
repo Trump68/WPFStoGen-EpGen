@@ -435,6 +435,16 @@
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Control: F=1 (MuteAll)" LabelPosition="Top"></dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Sound: X=Volume; Y=1 (Mute); F=1 (random position); FileName: STOP" LabelPosition="Top"></dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Video: " LabelPosition="Top"></dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                    
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                         <dxlc:LayoutItem Label="Raw Parameters" LabelPosition="Top">
                                             <dxe:TextEdit MaxHeight="320"
                                           ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         

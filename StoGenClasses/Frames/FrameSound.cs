@@ -134,9 +134,25 @@ namespace StoGen.Classes
                 Projector.Sound[N].MediaEnded -= FrameSound_MediaEnded;
                 Projector.Sound[N].Volume = (double)item.Volume / 1000;
                 Projector.Sound[N].Open(new Uri(soundfile));
+
+
+                int pos = 0;
+                if (item.isRandom)
+                {
+                    while (!Projector.Sound[N].NaturalDuration.HasTimeSpan)
+                    {
+                        Thread.SpinWait(100);
+                    }
+                    double total =Math.Floor(Projector.Sound[N].NaturalDuration.TimeSpan.TotalSeconds);
+                    Random rnd = new Random();
+                    int val = rnd.Next(100);
+                    pos = Convert.ToInt32((total * val) / 100);
+                }
+
                 Projector.Sound[N].MediaEnded += FrameSound_MediaEnded;
                 if (item.Start)
                 {
+                    Projector.Sound[N].Position = new TimeSpan(0,0,pos);
                     Projector.Sound[N].Play();
                     Projector.Sound[N].Volume = (double)item.Volume / 1000;
                 }
@@ -228,6 +244,7 @@ namespace StoGen.Classes
         public bool isLoop { get; set; }
         public int Position { get; set; } = -1;
         public bool isMute { get; set; }
+        public bool isRandom { get; set; } = false;
         public int Silence { get; set; }
         public string RawData { get; set; }
 

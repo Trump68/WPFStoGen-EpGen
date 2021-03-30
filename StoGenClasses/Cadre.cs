@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using StoGenMake.Scenes.Base;
 using StoGenMake.Elements;
-using System;
+using System.Linq;
 
 
 namespace StoGen.Classes
@@ -56,11 +56,11 @@ namespace StoGen.Classes
         public FrameImage ImageFr = new FrameImage();
         public FrameProc ProcFr = new FrameProc();
         public FrameSound SoundFr = new FrameSound();
-       // public FrameControl ControlFr = new FrameControl();
+        // public FrameControl ControlFr = new FrameControl();
         //public CadreInfo CadreInfo;
 
-        public virtual Cadre Repaint(CadreInfo info, bool paint =true) 
-        {            
+        public virtual Cadre Repaint(CadreInfo info, bool paint = true)
+        {
             Cadre result = this;
             Projector.TextVisible = true;
             FrameImage.PausePeriod1 = info.DefClipPause1;
@@ -86,21 +86,26 @@ namespace StoGen.Classes
                 {
                     var sds = data.ToSoundDataSource();
                     sds.Position = info.SoundList.IndexOf(data);
-                    this.SoundFr.SoundList.Add(sds);                    
+                    this.SoundFr.SoundList.Add(sds);
                 }
                 this.TextFr.TextList.Clear();
                 foreach (seTe dataTe in info.TextList)
                 {
                     this.TextFr.SetData(dataTe);
-                }                
+                }
             }
-            
+
             //this.ControlFr.SetData(info.Control);
-            foreach (Frame item in Frames)
+
+
+            if (paint)
             {
-                if (paint)
+                var fi = Frames.FirstOrDefault(x => (x is FrameImage));
+                if (fi != null) fi.Repaint();
+                foreach (Frame item in Frames.Where(x => !(x is FrameImage)))
                 {
-                    Cadre temp = item.Repaint();
+
+                        Cadre temp = item.Repaint();
                 }
             }
             //FrameControl.SetData(info.Control);

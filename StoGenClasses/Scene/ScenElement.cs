@@ -227,6 +227,7 @@ namespace StoGenMake.Elements
         public bool Muted = false;
         public int V = 100;
         public string Group;
+        public bool isRandom = false;
         public int StartPlay = -1;
         public override bool IsActivated { get { return !string.IsNullOrEmpty(this.File); } }
 
@@ -256,6 +257,7 @@ namespace StoGenMake.Elements
             result.Name = this.Name;
             result.isLoop = this.IsLoop;            
             result.Start = (this.StartPlay == 1);
+            result.isRandom = this.isRandom;
             result.Transition = this.T;
             result.Volume = this.V;
             result.isMute = this.Muted;
