@@ -197,10 +197,13 @@
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left"/>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="CopGrBtn1" Content="CopyGr+1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn1_Click" />
+                                <dx:SimpleButton x:Name="CopGrBtn1" Content="CGr+1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn1_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="CopGrBtn3" Content="CopyGr+.1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn3_Click" />
+                                <dx:SimpleButton x:Name="CopGrBtn10" Content="CGr+1(10)" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn1_10_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="CopGrBtn3" Content="CGr+.1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn3_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopGrBtn2" Content="CopyGrToEnd" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn2_Click" />

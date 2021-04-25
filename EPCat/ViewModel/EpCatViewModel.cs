@@ -432,7 +432,7 @@ namespace EPCat
             }
         }
 
-        internal void AddCombinedScene(bool incurrentgroup,bool toEnd, int group, int? kind)
+        internal void AddCombinedScene(bool incurrentgroup,bool toEnd, int group, int kind, bool ask)
         {
             if (this.CurrentFolder == null) return;
             //var last = this.CurrentFolder.CombinedScenes.LastOrDefault();
@@ -454,7 +454,7 @@ namespace EPCat
                     }
                 }
             }
-            if (kind == null && TicTakToe.CopiedCombinedScene != null && TicTakToe.CopiedCombinedScene.Any())
+            if (kind < 0 && TicTakToe.CopiedCombinedScene != null && TicTakToe.CopiedCombinedScene.Any())
             {
                 Info_Scene newclipinfo = new Info_Scene();
                 newclipinfo.LoadFromString(TicTakToe.CopiedCombinedScene.First());
@@ -473,7 +473,7 @@ namespace EPCat
                     if (descr == null)
                     {
                         string str;
-                        if (frmInputBox.ShowInputBox(out str, newclipinfo.Description) == System.Windows.Forms.DialogResult.OK)
+                        if (ask && frmInputBox.ShowInputBox(out str, newclipinfo.Description) == System.Windows.Forms.DialogResult.OK)
                             descr = str;
                         else
                             descr = newclipinfo.Description;
@@ -530,11 +530,10 @@ namespace EPCat
             }
             else
             {
-                if (kind.HasValue)
-                {
+
                   
                         Info_Scene newclipinfo = new Info_Scene();
-                        newclipinfo.Kind = kind.Value;
+                        newclipinfo.Kind = kind;
                         if (TicTakToe.CopiedCombinedScene != null && TicTakToe.CopiedCombinedScene.Any())
                         {
                             Info_Scene v = new Info_Scene();
@@ -564,7 +563,7 @@ namespace EPCat
                         }
                         addNewComb(newclipinfo);
                     
-                }
+                
 
             }
 
@@ -741,12 +740,12 @@ namespace EPCat
             List<string> rez = new List<string>();
             for (int i = RepeatedTextStart; i <= RepeatedTextEnd; i++)
             {
-                CopyGroup(false, false, 0);
+                CopyGroup(false, false, 0,false);
             }
             //RaisePropertyChanged(() => this.RepeatedText);
         }
 
-        public void CopyGroup(bool atEnd, bool toEnd, int group)
+        public void CopyGroup(bool atEnd, bool toEnd, int group, bool ask)
         {
             if (atEnd)
             {
@@ -755,7 +754,7 @@ namespace EPCat
             }
             //save
             CopyCombinedScene(true);
-            AddCombinedScene(false, toEnd, group, null);
+            AddCombinedScene(false, toEnd, group, -1, ask);
             // reset
             RefreshFolder();
         }

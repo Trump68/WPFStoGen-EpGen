@@ -5067,6 +5067,42 @@
     <Studio>CM3D2</Studio>
     <PARENT>CM3D2 - Vibe</PARENT>
     <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>92d17d39-1376-4b7a-a840-01c682a08d59</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\hentai\nishieda\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Nishieda</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>STOGEN-ARTIST</Kind>
+    <PARENT>Nishieda</PARENT>
+    <Size>0</Size>
+    <Comments />
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>77e94fb3-01f7-4192-94f3-c448f8d12c9b</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\storywithtext\003\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>003</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>STOGEN-ART</Kind>
+    <PARENT>003</PARENT>
+    <Size>0</Size>
     <Comments />
     <CommentsAsString />
   </EpItem>

@@ -939,7 +939,7 @@ namespace EPCat.Model
         private void UpdateFolder(string parameters, ref List<EpItem> list)
         {
             string itemPath = parameters.ToLower();
-            if (!JAV.JAVCollections.ContainsKey("ALL"))
+            if (!JAV.JAVCollections.ContainsKey("ALL") && JAV.JAVCollections.Any())
             {
                 string pathJAV1 = @"f:\!CATALOG\JAV\";
                 string pathJAV2 = @"e:\!CATALOG\JAV\";

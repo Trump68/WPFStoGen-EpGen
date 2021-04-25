@@ -267,17 +267,20 @@ namespace EPCat.Model
             var list = new Dictionary<string, bool>();
 
             string file = $@"f:\!CATALOG\JAV\update.txt";
-            var strings = File.ReadAllLines(file);
-            if (strings.Contains("ALL"))
+            if (File.Exists(file))
             {
-                list.Add("ALL", true);
-            }
-            else
-            {
-                string path = @"f:\!CATALOG\JAV\";
-                ProcessPath(ref list, strings, path);
-                path = @"e:\!CATALOG\JAV\";
-                ProcessPath(ref list, strings, path);
+                var strings = File.ReadAllLines(file);
+                if (strings.Contains("ALL"))
+                {
+                    list.Add("ALL", true);
+                }
+                else
+                {
+                    string path = @"f:\!CATALOG\JAV\";
+                    ProcessPath(ref list, strings, path);
+                    path = @"e:\!CATALOG\JAV\";
+                    ProcessPath(ref list, strings, path);
+                }
             }
             return list;
 
