@@ -166,7 +166,7 @@ namespace StoGen.Classes
         public bool Active { get; set; } = true;
         public string FigureName { get; set; }
         public int Direction { get; internal set; }
-
+        public string Template { get; set; }
         public string GenerateString()
         {
             List<string> rez = new List<string>();
@@ -221,7 +221,8 @@ namespace StoGen.Classes
                 rez.Add($"QUEUE={Queue}");
             if (!string.IsNullOrEmpty(FigureName))
                 rez.Add($"FIGURE={Queue}");
-
+            if (!string.IsNullOrEmpty(Template))
+                rez.Add($"TEMPLATE={Template}");
             if (!string.IsNullOrEmpty(File))
             {
                 if (File.Contains(";"))
@@ -325,6 +326,10 @@ namespace StoGen.Classes
                 else if (str.StartsWith("GROUP="))
                 {
                     this.Group = str.Replace("GROUP=", string.Empty);
+                }
+                else if (str.StartsWith("TEMPLATE="))
+                {
+                    this.Template = str.Replace("TEMPLATE=", string.Empty);
                 }
                 else if (str.StartsWith("QUEUE="))
                 {

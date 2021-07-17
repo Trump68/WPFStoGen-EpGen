@@ -575,15 +575,19 @@ namespace StoGen.Classes
             }
             else if (pi.SizeY == -2 || pi.SizeY == -2 || pi.ScreenStretch)
             {
-                System.Windows.Window w = Projector.ProjectorWindow;
-                if (w == null)
-                    w = System.Windows.Application.Current.MainWindow;
+                //System.Windows.Window w = Projector.ProjectorWindow;
+                //if (w == null)
+                //    w = System.Windows.Application.Current.MainWindow;
 
-                var interopHelper = new WindowInteropHelper(w);
-                var activeScreen = Screen.FromHandle(interopHelper.Handle);
-                pi.SizeX = activeScreen.WorkingArea.Width;
-                pi.SizeY = activeScreen.WorkingArea.Height;
+                //var interopHelper = new WindowInteropHelper(w);
+                //var activeScreen = Screen.FromHandle(interopHelper.Handle);
+                //pi.SizeX = activeScreen.WorkingArea.Width;
+                //pi.SizeY = activeScreen.WorkingArea.Height;
                 //pi.SizeMode = PictureSizeMode.Stretch;
+                pi.SizeX = pi.X;
+                pi.SizeY = pi.Y;
+                pi.X = 0;
+                pi.Y = 0;
                 pi.ScreenStretch = true;
                 Projector.PicContainer.PicList[pi.Level].Stretch = Stretch.Fill;
 

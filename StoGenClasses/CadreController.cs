@@ -20,7 +20,7 @@ namespace StoGen.Classes
         public BaseScene Scene;
         public CadreController(BaseScene scene, int startpage)
         {
-            //FrameControl.CurrentProc = this;
+            if (scene == null) return;
             Cadres = new List<Cadre>();
             Scene = scene;
             foreach (var ad in Scene.CadreDataList)

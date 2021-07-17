@@ -163,10 +163,19 @@ namespace EPCat
 
             string fn = $"{Story.FileName}-{_CurrentCombinedScene.Group}.jpg";//"PPT-017a-0001.jpg";
             string fnpath = Path.Combine(Path.GetDirectoryName(Story.FullFileName), "StoryCaps",fn);
-            Uri path = new Uri(fnpath, UriKind.Absolute);
-            if (File.Exists(path.LocalPath))
+
+            if (File.Exists(fnpath))
             {
-                _CurrentCombinedScene.Poster = new BitmapImage(path);
+                MemoryStream ms = new MemoryStream();
+                BitmapImage bi = new BitmapImage();
+
+                byte[] bytArray = File.ReadAllBytes(fnpath);
+                ms.Write(bytArray, 0, bytArray.Length); ms.Position = 0;
+                bi.BeginInit();
+                bi.StreamSource = ms;
+                bi.EndInit();
+
+                _CurrentCombinedScene.Poster = bi;
             }
             else
             {

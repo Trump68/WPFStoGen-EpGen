@@ -83,9 +83,14 @@ namespace StoGen.Classes.Data.Games
 
             return rez;
         }
-        public List<CadreData> Process(List<Info_Scene> Queue, int? indexToInsert)
-        {
-            if (Queue == null) return null;
+        public List<CadreData> Process(List<Info_Scene> queue, int? indexToInsert)
+        {            
+            if (queue == null) return null;
+            List<Info_Scene> Queue = new List<Info_Scene>();
+            foreach (var item in queue)
+            {                        
+                Queue.Add(Info_Scene.GenerateFromString(item.GenerateString()));
+            }
             List<CadreData> result = new List<CadreData>();
             List<List<Info_Scene>> data = new List<List<Info_Scene>>();
             //this.currentGr = Queue.First().ID;
@@ -117,6 +122,8 @@ namespace StoGen.Classes.Data.Games
             if (!string.IsNullOrEmpty(Story.DefFontName))
                 this.DefaultSceneText.FontName = Story.DefFontName;
 
+            ProcessTemplates(data);
+
             foreach (var group in data)
             {
                 var cadre = DoCadreByGroup(group, indexToInsert);
@@ -133,6 +140,53 @@ namespace StoGen.Classes.Data.Games
             }
             return result;
         }
+
+        private void ProcessTemplates(List<List<Info_Scene>> data)
+        {
+            List<List<Info_Scene>> templates = new List<List<Info_Scene>>();
+            foreach (var item in data)
+            {
+                if (item.Exists(x => x.Kind == 1 && !string.IsNullOrEmpty(x.Template) && x.Template.Contains("~")))
+                    templates.Add(item);
+            }
+            foreach (var item in data)
+            {
+                var it = item.FirstOrDefault(x => x.Kind == 1 && !string.IsNullOrEmpty(x.Template) && !x.Template.Contains("~"));
+                if (it != null)
+                {
+                    var templategrop = templates.FirstOrDefault(x=>x.FirstOrDefault(y=>y.Kind == 1 && y.Template == $"~{it.Template}") != null);
+                    if (templategrop != null)
+                    {
+                        foreach (var info in item)
+                        {
+                            var infotemplate = templategrop.FirstOrDefault(x=>x.Kind == info.Kind);
+                            if (infotemplate != null)
+                            {
+                                CopyParams(info, infotemplate);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CopyParams(Info_Scene info, Info_Scene infotemplate)
+        {
+            if (string.IsNullOrEmpty(info.X))
+                info.X = infotemplate.X;
+            if (string.IsNullOrEmpty(info.Y))
+                info.Y = infotemplate.Y;
+            if (string.IsNullOrEmpty(info.Z))
+                info.Z = infotemplate.Z;
+            if (string.IsNullOrEmpty(info.S))
+                info.S = infotemplate.S;
+            if (string.IsNullOrEmpty(info.O))
+                info.O = infotemplate.O;
+            if (string.IsNullOrEmpty(info.R))
+                info.R = infotemplate.R;
+
+        }
+
         private CadreData DoCadreByGroup(List<Info_Scene> group, int? indexToInsert)
         {
             int i = 1; // picture index to correct add transitions
@@ -439,9 +493,9 @@ namespace StoGen.Classes.Data.Games
                 it.File = GetAbsolutePath(it.File);
                 it.Group = group.First().Group;
                 it.Queue = group.First().Queue;
-                it.Z = "0";
-                it.X = "0";
-                it.X = "0";
+                //it.Z = "0";
+                //it.X = "0";
+                //it.Y = "0";
                 it.S = "-2";
                 visualsCopy.Add(it);
                 if (!string.IsNullOrEmpty(it.File))

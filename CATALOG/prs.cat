@@ -5086,7 +5086,9 @@
     <Kind>STOGEN-ARTIST</Kind>
     <PARENT>Nishieda</PARENT>
     <Size>0</Size>
-    <Comments />
+    <Comments>
+      <string />
+    </Comments>
     <CommentsAsString />
   </EpItem>
   <EpItem>
@@ -5102,6 +5104,160 @@
     <Day>0</Day>
     <Kind>STOGEN-ART</Kind>
     <PARENT>003</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>3b2a4d2f-d9b4-485d-8c1b-9ac3b98eefa7</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\hentai\unfairr\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Unfairr</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>STOGEN-ARTIST</Kind>
+    <PARENT>Unfairr</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>3c4e308b-8c5f-47d5-9eae-38bb4b4c7b57</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\hentai\ero kojiki\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Ero Kojiki</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>STOGEN-ARTIST</Kind>
+    <PARENT>Ero Kojiki</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>e13ebb78-8d8d-43ef-a425-edbe354e15c4</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\comix\elvifranse\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>ELVIFRANSE</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>STOGEN-ARTIST</Kind>
+    <PARENT>ELVIFRANSE</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>b0d2e033-90e4-446d-b1e7-456bc50c4845</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\comix\pixiv\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>PIXIV</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>STOGEN-ARTIST</Kind>
+    <PARENT>PIXIV</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>d6fe3ee4-c5cc-4c03-bd66-616bce51b438</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\comix\pixiv-3d\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>PIXIV-3D</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>STOGEN-ARTIST</Kind>
+    <PARENT>PIXIV-3D</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>5696d6a7-c69a-4143-930d-8928192d43ff</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\!daz3d\001\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>DAZ3D</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>DAZ3D</Kind>
+    <PARENT>DAZ3D</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>1b6b2319-c52a-4e5e-80a0-0de32580a3e9</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\storywithtext\artist - combined\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Artist - Combined artists</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle> Combined</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>Art</Kind>
+    <PARENT>Artist - Combined artists</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>b1547ed6-784f-4c2a-b72d-15ccc9c32e1a</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\storywithtext\artist - airi hitori\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Artist - Aori Hitori</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle> Aori Hitori</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>Art</Kind>
+    <PARENT>Artist - Aori Hitori</PARENT>
     <Size>0</Size>
     <Comments />
     <CommentsAsString />
