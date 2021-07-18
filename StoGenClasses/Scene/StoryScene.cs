@@ -151,20 +151,17 @@ namespace StoGen.Classes.Data.Games
             }
             foreach (var item in data)
             {
-                var it = item.FirstOrDefault(x => x.Kind == 1 && !string.IsNullOrEmpty(x.Template) && !x.Template.Contains("~"));
-                if (it != null)
+                var it = item.Where(x =>!string.IsNullOrEmpty(x.Template) && !x.Template.Contains("~"));
+                foreach (var infoitem in it)
                 {
-                    var templategrop = templates.FirstOrDefault(x=>x.FirstOrDefault(y=>y.Kind == 1 && y.Template == $"~{it.Template}") != null);
+                    var templategrop = templates.FirstOrDefault(x => x.FirstOrDefault(y => y.Kind == 1 && y.Template == $"~{infoitem.Template}") != null);
                     if (templategrop != null)
-                    {
-                        foreach (var info in item)
-                        {
-                            var infotemplate = templategrop.FirstOrDefault(x=>x.Kind == info.Kind);
+                    {                        
+                            var infotemplate = templategrop.FirstOrDefault(x => x.Kind == infoitem.Kind);
                             if (infotemplate != null)
                             {
-                                CopyParams(info, infotemplate);
-                            }
-                        }
+                                CopyParams(infoitem, infotemplate);
+                            }                        
                     }
                 }
             }
