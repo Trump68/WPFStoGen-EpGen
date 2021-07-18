@@ -207,6 +207,8 @@ FakesAssemblies/
 *.opt
 
 # LightSwitch generated files
+/CATALOG/
+/Renpy/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
@@ -229,3 +231,4 @@ ModelManifest.xml
 /Renpy/MovieBrowser/game/gui
 /Sims 4 Python Script Workspace
 /WPFSTOGEN/
+
