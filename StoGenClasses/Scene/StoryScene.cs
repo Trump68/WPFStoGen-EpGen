@@ -143,25 +143,20 @@ namespace StoGen.Classes.Data.Games
 
         private void ProcessTemplates(List<List<Info_Scene>> data)
         {
-            List<List<Info_Scene>> templates = new List<List<Info_Scene>>();
+            List<Info_Scene> templates = new List<Info_Scene>();
             foreach (var item in data)
-            {
-                if (item.Exists(x => x.Kind == 1 && !string.IsNullOrEmpty(x.Template) && x.Template.Contains("~")))
-                    templates.Add(item);
+            {                
+                    templates.AddRange(item.Where(x => !string.IsNullOrEmpty(x.Template) && x.Template.Contains("~")));
             }
             foreach (var item in data)
             {
                 var it = item.Where(x =>!string.IsNullOrEmpty(x.Template) && !x.Template.Contains("~"));
                 foreach (var infoitem in it)
                 {
-                    var templategrop = templates.FirstOrDefault(x => x.FirstOrDefault(y => y.Kind == 1 && y.Template == $"~{infoitem.Template}") != null);
-                    if (templategrop != null)
+                    var template = templates.FirstOrDefault(x => x.Kind == infoitem.Kind && x.Template == $"~{infoitem.Template}");
+                    if (template != null)
                     {                        
-                            var infotemplate = templategrop.FirstOrDefault(x => x.Kind == infoitem.Kind);
-                            if (infotemplate != null)
-                            {
-                                CopyParams(infoitem, infotemplate);
-                            }                        
+                        CopyParams(infoitem, template);
                     }
                 }
             }
