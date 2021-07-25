@@ -5239,6 +5239,46 @@
     <Kind>Art</Kind>
     <PARENT>Artist - Combined artists</PARENT>
     <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>b1547ed6-784f-4c2a-b72d-15ccc9c32e1a</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\storywithtext\artist - airi hitori\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Artist - Aori Hitori</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle> Aori Hitori</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>Art</Kind>
+    <PARENT>Artist - Aori Hitori</PARENT>
+    <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>29cca3f2-969c-45bf-99f8-763980ade588</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\storywithtext\pixiv\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Pixiv</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Pixiv</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>Art</Kind>
+    <PARENT>Pixiv</PARENT>
+    <Size>0</Size>
     <Comments />
     <CommentsAsString />
   </EpItem>
