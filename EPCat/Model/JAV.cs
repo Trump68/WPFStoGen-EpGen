@@ -251,6 +251,7 @@ namespace EPCat.Model
 
             return true;
         }
+
         private static Dictionary<string, bool> _JAVCollections = null;
         public static Dictionary<string, bool> JAVCollections
         {
