@@ -622,6 +622,12 @@ namespace StoGen.Classes
     }
     public static class BitmapExtensions
     {
+        public static void SavePNG(this Bitmap bmp, string filename)
+        {
+            EncoderParameters encoderParameters = new EncoderParameters(1);
+            encoderParameters.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100L);
+            bmp.Save(filename, GetEncoder(ImageFormat.Png), encoderParameters);
+        }
         public static void SaveJPG100(this Bitmap bmp, string filename)
         {
             EncoderParameters encoderParameters = new EncoderParameters(1);

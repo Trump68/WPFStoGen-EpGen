@@ -114,6 +114,7 @@ namespace EPCat
             set
             {
                 _ClipToProcess = value;
+                RefreshFolder();
             }
         }
 
@@ -249,6 +250,8 @@ namespace EPCat
             RaisePropertyChanged(() => this.CurrentCombinedScene);
             RaisePropertyChanged(() => this.Story);
             RaisePropertyChanged(() => this.Scenes);
+            RaisePropertyChanged(() => this.ClipToProcess);
+            
         }
 
 

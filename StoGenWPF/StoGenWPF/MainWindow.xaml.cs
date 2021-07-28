@@ -162,6 +162,7 @@ namespace StoGenWPF
             else if (e.Key == Key.X)
             {
                 SGManager.ProcessNextCadre();
+                DoScreenShot(30, false);
             }
             else if (e.Key == Key.F12)
             {
@@ -187,7 +188,7 @@ namespace StoGenWPF
             {
                 //InfoLocation.Visibility = (InfoLocation.Visibility ==Visibility.Visible) ? Visibility.Hidden : Visibility.Visible;
                 //InfoDate.Visibility = (InfoDate.Visibility == Visibility.Visible) ? Visibility.Hidden : Visibility.Visible;
-                DoScreenShot(30);
+                DoScreenShot(30, true);
             }
             else if (e.Key == Key.F6)
             {
@@ -342,8 +343,21 @@ namespace StoGenWPF
         ///   "pixelish-units"; so really what you want, is the scale factor between 96DPI and the current screen DPI (so like 1.5 for
         ///   144DPI) - Paul Betts."
         /// </remarks>
-        public async Task<bool> TryScreenshotToClipboardAsync(FrameworkElement frameworkElement, int quality)
+        public async Task<bool> TryScreenshotToClipboardAsync(FrameworkElement frameworkElement, int quality, bool force)
         {
+            if (!force)
+            {
+                var cp = SGManager.CurrProc.Scene.CatalogPath;
+                if (!string.IsNullOrEmpty(cp))
+                {
+                    string scd = Path.Combine(cp, "StoryCaps");
+                    string group = SGManager.CurrProc.Scene.CadreDataList[SGManager.CurrProc.CurrentCadreNum()].OriginalInfo[0].Group;
+                    string fn = $"{(SGManager.CurrProc.Scene as StoryScene).Story.FileName}-{group}.jpg";
+                    fn = Path.Combine(scd, fn);
+                    if (File.Exists(fn)) return true;
+                }                
+            }
+            
             frameworkElement.ClipToBounds = true; // Can remove if everything still works when the screen is maximised.
 
             Rect relativeBounds = VisualTreeHelper.GetDescendantBounds(frameworkElement);
@@ -425,9 +439,9 @@ namespace StoGenWPF
             }
                     
         }
-        public async void DoScreenShot(int quality)
+        public async void DoScreenShot(int quality, bool force)
         {
-            var result = await this.TryScreenshotToClipboardAsync(this.MainGrid, quality);
+            var result = await this.TryScreenshotToClipboardAsync(this.MainGrid, quality, force);
             if (result)
             {
                 SystemSounds.Beep.Play();

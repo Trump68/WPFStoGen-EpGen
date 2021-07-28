@@ -90,32 +90,32 @@ namespace EPCat.Model
             DoRenameList(fromPath);
 
             DoTempWork1_OneCountry("JAP", fromPath, toPath);
-            DoTempWork1_OneCountry("CHE", fromPath, toPath);
-            DoTempWork1_OneCountry("FRA", fromPath, toPath);
-            DoTempWork1_OneCountry("GBR", fromPath, toPath);
-            DoTempWork1_OneCountry("TWN", fromPath, toPath);
-            DoTempWork1_OneCountry("KOR", fromPath, toPath);
-            DoTempWork1_OneCountry("ITA", fromPath, toPath);
-            DoTempWork1_OneCountry("USA", fromPath, toPath);
-            DoTempWork1_OneCountry("HKG", fromPath, toPath);
-            DoTempWork1_OneCountry("SWZ", fromPath, toPath);
-            DoTempWork1_OneCountry("CAN", fromPath, toPath);
-            DoTempWork1_OneCountry("NLD", fromPath, toPath);
-            DoTempWork1_OneCountry("HSP", fromPath, toPath);
-            DoTempWork1_OneCountry("THA", fromPath, toPath);
-            DoTempWork1_OneCountry("GER", fromPath, toPath);
-            DoTempWork1_OneCountry("CHN", fromPath, toPath);
-            DoTempWork1_OneCountry("PHI", fromPath, toPath);
-            DoTempWork1_OneCountry("BRA", fromPath, toPath);
-            DoTempWork1_OneCountry("AUS", fromPath, toPath);
-            DoTempWork1_OneCountry("MEX", fromPath, toPath);
-            DoTempWork1_OneCountry("CHI", fromPath, toPath);
-            DoTempWork1_OneCountry("IND", fromPath, toPath);
-            DoTempWork1_OneCountry("SWE", fromPath, toPath);
-            DoTempWork1_OneCountry("SNG", fromPath, toPath);
-            DoTempWork1_OneCountry("HOL", fromPath, toPath);
-            DoTempWork1_OneCountry("PRT", fromPath, toPath);
-            DoTempWork1_OneCountry("GRE", fromPath, toPath);
+            //DoTempWork1_OneCountry("CHE", fromPath, toPath);
+            //DoTempWork1_OneCountry("FRA", fromPath, toPath);
+            //DoTempWork1_OneCountry("GBR", fromPath, toPath);
+            //DoTempWork1_OneCountry("TWN", fromPath, toPath);
+            //DoTempWork1_OneCountry("KOR", fromPath, toPath);
+            //DoTempWork1_OneCountry("ITA", fromPath, toPath);
+            //DoTempWork1_OneCountry("USA", fromPath, toPath);
+            //DoTempWork1_OneCountry("HKG", fromPath, toPath);
+            //DoTempWork1_OneCountry("SWZ", fromPath, toPath);
+            //DoTempWork1_OneCountry("CAN", fromPath, toPath);
+            //DoTempWork1_OneCountry("NLD", fromPath, toPath);
+            //DoTempWork1_OneCountry("HSP", fromPath, toPath);
+            //DoTempWork1_OneCountry("THA", fromPath, toPath);
+            //DoTempWork1_OneCountry("GER", fromPath, toPath);
+            //DoTempWork1_OneCountry("CHN", fromPath, toPath);
+            //DoTempWork1_OneCountry("PHI", fromPath, toPath);
+            //DoTempWork1_OneCountry("BRA", fromPath, toPath);
+            //DoTempWork1_OneCountry("AUS", fromPath, toPath);
+            //DoTempWork1_OneCountry("MEX", fromPath, toPath);
+            //DoTempWork1_OneCountry("CHI", fromPath, toPath);
+            //DoTempWork1_OneCountry("IND", fromPath, toPath);
+            //DoTempWork1_OneCountry("SWE", fromPath, toPath);
+            //DoTempWork1_OneCountry("SNG", fromPath, toPath);
+            //DoTempWork1_OneCountry("HOL", fromPath, toPath);
+            //DoTempWork1_OneCountry("PRT", fromPath, toPath);
+            //DoTempWork1_OneCountry("GRE", fromPath, toPath);
 
 
 
@@ -723,7 +723,7 @@ namespace EPCat.Model
             {
 
                 DoTempWork1(line);
-                DoTempwork2(@"d:\!CATALOG\MOV\");
+                //DoTempwork2(@"d:\!CATALOG\MOV\");
                 Environment.Exit(0);
             }
             else if (line.StartsWith(c_PrepareFolder))

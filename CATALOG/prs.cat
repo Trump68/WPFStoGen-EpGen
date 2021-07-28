@@ -5299,6 +5299,26 @@
     <Kind>Art</Kind>
     <PARENT>Manhwa</PARENT>
     <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>c0198100-6dea-4f70-ba13-ba1f78430da9</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\jav\usui saryuu [ipz-115]\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>[JAV] Usui Saryuu [IPZ-115]</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>[JAV] Usui Saryuu [IPZ-115]</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>JAV</Kind>
+    <PARENT>[JAV] Usui Saryuu [IPZ-115]</PARENT>
+    <Size>0</Size>
     <Comments />
     <CommentsAsString />
   </EpItem>

@@ -237,6 +237,7 @@ namespace EPCat.Model
                 {
                     try
                     {
+
                         client.DownloadFile(pic, posterpath);
                     }
                     catch (Exception)
@@ -300,7 +301,7 @@ namespace EPCat.Model
 
                         if (strings.Any(x => dirname.StartsWith(x)))
                             list.Add(dirname, true);
-                        else
+                        else if (!list.ContainsKey(dirname))
                             list.Add(dirname, false);
                     }
                 }
@@ -312,14 +313,23 @@ namespace EPCat.Model
             foreach (var item in JAVCollections)
             {
                 if (item.Value)
-                    JavUpdateSerie(item.Key, 1, "f");
+                    JavUpdateSerie(item.Key, 1, "f,e");
             }
         }
 
-        private static void JavUpdateSerie(string serie, int start, string disc)
+        private static void JavUpdateSerie(string serie, int start, string disclist)
         {
             if (start == 0)
                 start++;
+            var discs = disclist.Split(',');
+            string disc = string.Empty;
+            foreach (var item in discs)
+            {
+                disc = item;
+                string alreadyexist = $@"{item}:\!CATALOG\JAV\{serie}";
+                if (Directory.Exists(alreadyexist)) break;
+            }
+
             string path = $@"{disc}:\!CATALOG\JAV\{serie}";
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);
             else

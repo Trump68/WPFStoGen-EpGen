@@ -277,43 +277,43 @@
     <property name="TotalSummary" iskey="true" value="0" />
     <property name="MRUFilters" iskey="true" value="9">
       <property name="Item1" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([AltTitle], 'Man') And StartsWith([Kind], 'JAV')</property>
+        <property name="FilterText">Starts with([Alt Title], 'Man') And Starts with([Kind], 'JAV')</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([AltTitle], 'Man') And StartsWith([Kind], 'JA')</property>
+        <property name="FilterText">Starts with([Alt Title], 'Man') And Starts with([Kind], 'JA')</property>
+      </property>
+      <property name="Item3" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([AltTitle], 'Man') And StartsWith([Kind], 'JAB')</property>
+        <property name="FilterText">Starts with([Alt Title], 'Man') And Starts with([Kind], 'JAB')</property>
+      </property>
+      <property name="Item4" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([AltTitle], 'Man') And StartsWith([Kind], 'J')</property>
+        <property name="FilterText">Starts with([Alt Title], 'Man') And Starts with([Kind], 'J')</property>
+      </property>
+      <property name="Item5" isnull="true" iskey="true">
+        <property name="FilterString">StartsWith([AltTitle], 'Man')</property>
+        <property name="FilterText">Starts with([Alt Title], 'Man')</property>
+      </property>
+      <property name="Item6" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([AltTitle], 'Ma')</property>
         <property name="FilterText">Starts with([Alt Title], 'Ma')</property>
       </property>
-      <property name="Item2" isnull="true" iskey="true">
+      <property name="Item7" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([AltTitle], 'M')</property>
         <property name="FilterText">Starts with([Alt Title], 'M')</property>
       </property>
-      <property name="Item3" isnull="true" iskey="true">
+      <property name="Item8" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([AltTitle], 'Pixiv')</property>
         <property name="FilterText">Starts with([Alt Title], 'Pixiv')</property>
       </property>
-      <property name="Item4" isnull="true" iskey="true">
+      <property name="Item9" isnull="true" iskey="true">
         <property name="FilterString">StartsWith([AltTitle], 'Pixi')</property>
         <property name="FilterText">Starts with([Alt Title], 'Pixi')</property>
       </property>
-      <property name="Item5" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([AltTitle], 'Pix')</property>
-        <property name="FilterText">Starts with([Alt Title], 'Pix')</property>
-      </property>
-      <property name="Item6" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([AltTitle], 'Pi')</property>
-        <property name="FilterText">Starts with([Alt Title], 'Pi')</property>
-      </property>
-      <property name="Item7" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([AltTitle], 'P')</property>
-        <property name="FilterText">Starts with([Alt Title], 'P')</property>
-      </property>
-      <property name="Item8" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'Pi')</property>
-        <property name="FilterText">Starts with([Name], 'Pi')</property>
-      </property>
-      <property name="Item9" isnull="true" iskey="true">
-        <property name="FilterString">StartsWith([Name], 'P')</property>
-        <property name="FilterText">Starts with([Name], 'P')</property>
-      </property>
     </property>
-    <property name="FilterString">StartsWith([AltTitle], 'Man')</property>
+    <property name="FilterString">StartsWith([Kind], 'JAV')</property>
     <property name="IsFilterEnabled">true</property>
     <property name="GroupSummarySortInfo" iskey="true" value="0" />
   </property>

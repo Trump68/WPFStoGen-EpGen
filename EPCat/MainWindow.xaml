@@ -15,7 +15,7 @@
         xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
         x:Class="EPCat.MainWindow"
         mc:Ignorable="d"
-        Title="EP CATALOGUE" Height="782.484" Width="1844.694" Closing="Window_Closing" 
+        Title="EP CATALOGUE" Height="1272.984" Width="1844.694" Closing="Window_Closing" 
         Loaded="Window_Loaded"
         KeyDown="Window_KeyDown"
         WindowState="Maximized" Icon="Papirus-Team-Papirus-Apps-Rocket-league.ico">
@@ -617,21 +617,30 @@
                             <MediaElement x:Name="minionPlayer" Margin="0"                         
                              ScrubbingEnabled="True"
                              MinHeight="500"
-                             MaxHeight="700"
+                             SnapsToDevicePixels="True"
+                             Stretch="Uniform"
+                             Height="900"
+                             MaxHeight="900"
                              LoadedBehavior="Manual"
                              HorizontalAlignment="Left"/>
-                            <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarPosition"
-                            VerticalAlignment="Center" Scroll="sbarPosition_Scroll"
-                             PreviewMouseDown="sbarPosition_PreviewMouseDown" Margin="0,1"/>
-                            <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarSeek"
-                            VerticalAlignment="Center"  Scroll="sbarSeek_Scroll"
-                             PreviewMouseUp="sbarSeek_PreviewMouseUp"
-                             PreviewMouseDown="sbarSeek_PreviewMouseDown" Margin="0,1"/>
-                            <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarScale"
-                            VerticalAlignment="Center"  Scroll="sbarScale_Scroll"
-                             PreviewMouseUp="sbarScale_PreviewMouseUp"
-                             PreviewMouseDown="sbarScale_PreviewMouseDown" Margin="0,1"/>
-                            <StackPanel Orientation="Horizontal"
+                          
+                            <StackPanel Orientation="Vertical"                                        
+                                HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarPosition"
+                                    VerticalAlignment="Center" Scroll="sbarPosition_Scroll"
+                                        PreviewMouseDown="sbarPosition_PreviewMouseDown" Margin="0,1"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <TextBlock>Q-W</TextBlock>
+                                    <ScrollBar Orientation="Horizontal" Name="sbarSeek"
+                                            VerticalAlignment="Center" Width="300" Scroll="sbarSeek_Scroll"
+                                            PreviewMouseUp="sbarSeek_PreviewMouseUp"  PreviewMouseDown="sbarSeek_PreviewMouseDown" Margin="0,1"/>
+                                    <TextBlock>A-S</TextBlock>
+                                    <ScrollBar Orientation="Horizontal" Name="sbarScale"
+                                            VerticalAlignment="Center" Width="300" Scroll="sbarScale_Scroll"
+                                            PreviewMouseUp="sbarScale_PreviewMouseUp"   PreviewMouseDown="sbarScale_PreviewMouseDown" Margin="0,1"/>
+                                </StackPanel>
+                               
+                                <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Left" VerticalAlignment="Top">
 
                                 <StackPanel.Resources>
@@ -643,11 +652,12 @@
                                 <Button x:Name="btnPlay" Click="btnPlay_Click" Opacity ="0.5">
                                     <Image Source="/EPCat;component/play.png"/>
                                 </Button>
-
                                 <Button Margin="5,0,0,0" Content="Load" Height="30" Width="50"
                                   x:Name="btnLoad" Click="btnLoad_Click"/>
                                 <Button Margin="5,0,0,0" Content="Scr" Height="30" Width="60"
                                   x:Name="btnScreenshot" Click="btnScreenshot_Click"/>
+                                <Button Margin="5,0,0,0" Content="Scr simple" Height="30" Width="60"
+                                  x:Name="btnScreenshotSimple" Click="btnScreenshotSimple_Click"/>
                                 <Button Margin="5,0,0,0" Content="Scr+" Height="30" Width="60"
                                   x:Name="btnScreenshot1" Click="btnScreenshotAddGroup_Click"/>
                                 <Button Margin="5,0,0,0" Content="Screenshots" Height="30" Width="100"
@@ -679,11 +689,8 @@
                                 <Label Content="File:" Margin="5,0,0,0" VerticalAlignment="Center"/>
                                 <TextBox Text="{Binding ClipToProcess, UpdateSourceTrigger=PropertyChanged}"
                                          Width="200" Height="24" />
-
-
-
                             </StackPanel>
-
+                        </StackPanel>
 
 
                         </StackPanel>

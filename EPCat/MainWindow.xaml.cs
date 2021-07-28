@@ -189,22 +189,31 @@ namespace EPCat
         {
             this.NavTabGroup.SelectedContainer = this.EditTab;
             string path = null;
-            if (!string.IsNullOrEmpty(ViewModel.ClipToProcess))
-            {
-                path = ViewModel.ClipToProcess;
-                TicTakToe.ClipTemplate.File = path;
-            }
-            if ((path==null) && (this.DataContext as EpCatViewModel).CurrentClip != null)
+            if ((this.DataContext as EpCatViewModel).CurrentClip != null)
             {
                 var videos = (this.DataContext as EpCatViewModel).CurrentFolder.Videos;
                 if (videos.Any())
                 {
                     path = videos.First();
-                    ViewModel.ClipToProcess = path;
+                    ViewModel.ClipToProcess = path;                   
                 }
             }
-           
+            if (!string.IsNullOrEmpty(ViewModel.ClipToProcess))
+            {
+                path = ViewModel.ClipToProcess;
+                TicTakToe.ClipTemplate.File = path;
+            }
+
             if (string.IsNullOrEmpty(path)) return;
+
+            PresentationSource src = PresentationSource.FromVisual(this);
+            double dpiX = 96.0;
+            double dpiY = 96.0;
+            if (src != null)
+            {
+                dpiX = 96.0 * src.CompositionTarget.TransformToDevice.M11;
+                dpiY = 96.0 * src.CompositionTarget.TransformToDevice.M22;
+            }
 
 
             minionPlayer.MediaOpened -= minionPlayer_MediaOpened;
@@ -213,7 +222,9 @@ namespace EPCat
                 minionPlayer.Stop();
                 minionPlayer.Source = new Uri(ViewModel.ClipToProcess);
                 minionPlayer.Play();
-                minionPlayer.Pause();
+            minionPlayer.Width = minionPlayer.NaturalVideoWidth * (96.0/dpiX);
+            minionPlayer.Height = minionPlayer.NaturalVideoHeight * (96.0 / dpiY);
+            minionPlayer.Pause();
 
         }
 
@@ -327,45 +338,52 @@ namespace EPCat
                
         private void btnScreenshot_Click(object sender, RoutedEventArgs e)
         {
-            this.MadeShot(false,false);
+            this.MadeShot(false,false,false);
         }
-        private void MadeShot(bool addGroup, bool Gray)
+        private void MadeShot(bool addGroup, bool Gray, bool simple)
         {
             string path = 
                 System.IO.Path.GetDirectoryName(this.minionPlayer.Source.LocalPath)
                 + System.IO.Path.DirectorySeparatorChar.ToString() + "CLIPCAPS";
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
             string str3 = string.Empty;
-            if ((this.DataContext as EpCatViewModel).CurrentClip != null)
+            if (simple)
             {
-                int num = 0;
-                string str2 = num.ToString("D4");
-                str3 = System.IO.Path.Combine(path,$"{str2}.{(this.DataContext as EpCatViewModel).CurrentClip.ID}.jpg");
-                while (File.Exists(str3))
-                {
-                    num++;
-                    str2 = num.ToString("D4");
-                    str3 = System.IO.Path.Combine(path, $"{str2}.{(this.DataContext as EpCatViewModel).CurrentClip.ID}.jpg");
-                }
+                str3 = System.IO.Path.Combine(path, "image.png");
             }
             else
             {
-                path = path + System.IO.Path.DirectorySeparatorChar.ToString() + "SC";
-
-                int num = 0;
-                string str2 = num.ToString("D4");
-                 str3 = $"{path}-{str2}.jpg";
-                while (File.Exists(str3))
+                if (!Directory.Exists(path))
                 {
-                    num++;
-                    str2 = num.ToString("D4");
-                    str3 = $"{path}-{str2}.jpg";
+                    Directory.CreateDirectory(path);
+                }
+
+                if ((this.DataContext as EpCatViewModel).CurrentClip != null)
+                {
+                    int num = 0;
+                    string str2 = num.ToString("D4");
+                    str3 = System.IO.Path.Combine(path, $"{str2}.{(this.DataContext as EpCatViewModel).CurrentClip.ID}.png");
+                    while (File.Exists(str3))
+                    {
+                        num++;
+                        str2 = num.ToString("D4");
+                        str3 = System.IO.Path.Combine(path, $"{str2}.{(this.DataContext as EpCatViewModel).CurrentClip.ID}.png");
+                    }
+                }
+                else
+                {
+                    path = path + System.IO.Path.DirectorySeparatorChar.ToString() + "SC";
+
+                    int num = 0;
+                    string str2 = num.ToString("D4");
+                    str3 = $"{path}-{str2}.png";
+                    while (File.Exists(str3))
+                    {
+                        num++;
+                        str2 = num.ToString("D4");
+                        str3 = $"{path}-{str2}.png";
+                    }
                 }
             }
-
             TicTakToe.SetClipScreenShot(str3);
             this.ImportMedia(str3,Gray);
             if (addGroup)
@@ -375,38 +393,48 @@ namespace EPCat
         }
         private void ImportMedia(string path, bool isGrayscale = false)
         {
+
+            PresentationSource src = PresentationSource.FromVisual(this);
+            double dpiX = 96.0;
+            double dpiY = 96.0;
+            if (src != null)
+            {
+                dpiX = 96.0 * src.CompositionTarget.TransformToDevice.M11;
+                dpiY = 96.0 * src.CompositionTarget.TransformToDevice.M22;
+            }
+
             RenderTargetBitmap source = 
                 new RenderTargetBitmap(
-                    Convert.ToInt32(this.minionPlayer.RenderSize.Width),
-                    Convert.ToInt32(this.minionPlayer.RenderSize.Height),
-                    96.0,
-                    96.0,
+                    //Convert.ToInt32(this.minionPlayer.RenderSize.Width),
+                    //Convert.ToInt32(this.minionPlayer.RenderSize.Height),
+                    Convert.ToInt32(this.minionPlayer.RenderSize.Width * (dpiX / 96.0)),
+                    Convert.ToInt32(this.minionPlayer.RenderSize.Height * (dpiY / 96.0)),
+                    //this.minionPlayer.NaturalVideoWidth,
+                    //this.minionPlayer.NaturalVideoHeight,
+                    dpiX,
+                    dpiY,
                     PixelFormats.Pbgra32);
             source.Render(this.minionPlayer);
-
-            if (isGrayscale)
-            {
-                MemoryStream stream = new MemoryStream();
-                BitmapEncoder encoder = new BmpBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(source));
-                encoder.Save(stream);
-                Bitmap bitmap = new Bitmap(stream);
-                Bitmap gray = ImageTools.GrayScaleFilter(bitmap);
-                BitmapExtensions.SaveJPG100(gray, path);
-            }
-            else
-            {
-
-                BitmapFrame bf = BitmapFrame.Create(source);
-                using (FileStream stream = new FileStream(path, FileMode.Create))
+                using (MemoryStream stream = new MemoryStream())
                 {
-                    new JpegBitmapEncoder
+                    BitmapEncoder encoder = new BmpBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(source));
+                    encoder.Save(stream);
+                    using (Bitmap bitmap = new Bitmap(stream))
                     {
-                        QualityLevel = 100,
-                        Frames = { bf }
-                    }.Save(stream);
+                        if (isGrayscale)
+                        {
+                            using (Bitmap gray = ImageTools.GrayScaleFilter(bitmap))
+                            {
+                                BitmapExtensions.SaveJPG100(gray, path);
+                            }                                                        
+                        }
+                        else
+                            BitmapExtensions.SaveJPG100(bitmap, path);
+                    }                                        
                 }
-            }
+
+            
             source.Clear();
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -476,7 +504,11 @@ namespace EPCat
                 }
                 else if (e.Key == Key.M)
                 {
-                    this.MadeShot(false,false);
+                    this.MadeShot(false,false,false);
+                }
+                else if (e.Key == Key.N)
+                {
+                    this.MadeShot(false, false, true);
                 }
                 else if (e.Key == Key.LeftShift)
                 {
@@ -538,7 +570,7 @@ namespace EPCat
             {
                 btnSetPositionEnd_Click(null, null);
                 btnSetPositionSave_Click(null, null);
-                MadeShot(false,false);
+                MadeShot(false,false,false);
             }
         }
 
@@ -632,7 +664,7 @@ namespace EPCat
 
         private void btnScreenshotAddGroup_Click(object sender, RoutedEventArgs e)
         {
-            this.MadeShot(true,false);
+            this.MadeShot(true,false,false);
         }
 
 
@@ -950,7 +982,7 @@ namespace EPCat
                 {
                     ischecked = cbGray.IsChecked.Value;
                 }
-                this.MadeShot(false, ischecked);
+                this.MadeShot(false, ischecked,false);
                 pos=pos+0.5;                
             }
         }
@@ -961,6 +993,11 @@ namespace EPCat
             {
                 ViewModel.CopyGroup(false, false, 0,false);
             }
+        }
+
+        private void btnScreenshotSimple_Click(object sender, RoutedEventArgs e)
+        {
+            this.MadeShot(false, false, true);
         }
     }
 }

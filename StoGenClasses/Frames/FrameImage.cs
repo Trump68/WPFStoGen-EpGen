@@ -5,8 +5,10 @@ using StoGen.ModelClasses;
 using StoGenMake.Elements;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -288,6 +290,20 @@ namespace StoGen.Classes
             //Projector.PicContainer.OwnerCanvas.Children.Insert(index, im);
             //Projector.PicContainer.PicList.Insert(index, im);
         }
+
+        //If you get 'dllimport unknown'-, then add 'using System.Runtime.InteropServices;'
+        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool DeleteObject([In] IntPtr hObject);
+        public ImageSource ImageSourceFromBitmap(Bitmap bmp)
+        {
+            var handle = bmp.GetHbitmap();
+            try
+            {
+                return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            }
+            finally { DeleteObject(handle); }
+        }
         public override Cadre Repaint()
         {
             Stopped = false;
@@ -370,9 +386,10 @@ namespace StoGen.Classes
                     FrameImage.TimeToNext = pi.Props.Timer;
 
                 #region Video
-                if (Pics[i].Props.isVideo || ext == ".mp4" || ext == ".mpg" || ext == ".avi" || ext == ".wmv" || ext == ".m4v")
+                if ((pi.Props.CurrentAnimation != null) && (Pics[i].Props.isVideo || ext == ".mp4" || ext == ".mpg" || ext == ".avi" || ext == ".wmv" || ext == ".m4v"))
                 {
-                    //caching
+
+                        //caching
                     if (Pics[i].Props.Merge) // video for cashing
                     {
                         //Projector.PicContainer.Clip2.Source = new Uri(Pics[i].Props.FileName);
@@ -385,12 +402,11 @@ namespace StoGen.Classes
                     FrameImage.Loops = 0;
                     FrameImage.AnimationIndex = 0;
                     FrameImage.Animations = pi.Props.Animations;
-                    FrameImage.IsLoop = pi.Props.CurrentAnimation.ALM;
-                    FrameImage.ClipStartPos = pi.Props.CurrentAnimation.APS;
-                    FrameImage.ClipEndPos = pi.Props.CurrentAnimation.APE;
-                    FrameImage.WaitStart = pi.Props.CurrentAnimation.AWS;
-                    FrameImage.WaitEnd = pi.Props.CurrentAnimation.AWE;
-
+                        FrameImage.IsLoop = pi.Props.CurrentAnimation.ALM;
+                        FrameImage.ClipStartPos = pi.Props.CurrentAnimation.APS;
+                        FrameImage.ClipEndPos = pi.Props.CurrentAnimation.APE;
+                        FrameImage.WaitStart = pi.Props.CurrentAnimation.AWS;
+                        FrameImage.WaitEnd = pi.Props.CurrentAnimation.AWE;
                     //Projector.PicContainer.Clip.Stop();
                     if (Projector.PicContainer.Clip.Source == null || (Projector.PicContainer.Clip.Source.LocalPath != Pics[i].Props.FileName))
                     {
@@ -502,10 +518,14 @@ namespace StoGen.Classes
                 {
                     try
                     {
-                        BitmapImage imageSource = new BitmapImage(new Uri(fn));
-                        Projector.PicContainer.PicList[pi.Props.Level].Source = imageSource;
-                        ImW = imageSource.PixelWidth;
-                        ImH = imageSource.PixelHeight;
+                        Bitmap bm = new Bitmap(fn);
+
+                        //BitmapImage imageSource = new BitmapImage();
+                        //imageSource = new BitmapImage(new Uri(fn));
+                        
+                        Projector.PicContainer.PicList[pi.Props.Level].Source = ImageSourceFromBitmap(bm);                        
+                        ImW = bm.Width;
+                        ImH = bm.Height;
                     }
                     catch (Exception e)
                     {
@@ -631,7 +651,7 @@ namespace StoGen.Classes
                 }
             }
         }
-        private static void DoRotate(Image current,double xc, double yc, int angle, TransformGroup tg)
+        private static void DoRotate(System.Windows.Controls.Image current,double xc, double yc, int angle, TransformGroup tg)
         {
            
             if (tg == null)
@@ -654,9 +674,9 @@ namespace StoGen.Classes
             }
             tg.Children.Add(roateTransform);
         }
-        private static void DoFlip(Image current, int val, TransformGroup tg)
+        private static void DoFlip(System.Windows.Controls.Image current, int val, TransformGroup tg)
         {
-            current.RenderTransformOrigin = new Point(0.5, 0.5);
+            current.RenderTransformOrigin = new System.Windows.Point(0.5, 0.5);
             if (tg == null)
                 tg = current.LayoutTransform as TransformGroup;
             if (tg == null)
@@ -691,7 +711,7 @@ namespace StoGen.Classes
         }
         public static void DoRotateFlip(TransformGroup tg, int level)
         {
-            var im = Projector.PicContainer.PicList[(int)level];
+            System.Windows.Controls.Image im = Projector.PicContainer.PicList[(int)level];
             //var controlCenter = new System.Windows.Point((im.Source as BitmapImage).PixelWidth / 2
             //    , (im.Source as BitmapImage).PixelHeight / 2);
              var controlCenter = new System.Windows.Point(im.Width / 2, im.Height / 2);

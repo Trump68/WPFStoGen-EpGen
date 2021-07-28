@@ -14,8 +14,8 @@
     </property>
     <property name="SortInfo" iskey="true" value="1">
       <property name="Item1" isnull="true" iskey="true">
-        <property name="FieldName">Name</property>
-        <property name="SortOrder">Ascending</property>
+        <property name="FieldName">Year</property>
+        <property name="SortOrder">Descending</property>
         <property name="MergeWithPreviousGroup">false</property>
       </property>
     </property>
@@ -495,7 +495,7 @@
       </property>
       <property name="ShowGroupPanel">true</property>
       <property name="ColumnChooserState" isnull="true" iskey="true">
-        <property name="Location">1698,873</property>
+        <property name="Location">1698,754</property>
         <property name="Size">220,250</property>
       </property>
       <property name="SearchString" isnull="true" />

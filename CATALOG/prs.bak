@@ -5279,6 +5279,26 @@
     <Kind>Art</Kind>
     <PARENT>Pixiv</PARENT>
     <Size>0</Size>
+    <Comments>
+      <string />
+    </Comments>
+    <CommentsAsString />
+  </EpItem>
+  <EpItem>
+    <GID>f3abd797-f237-4924-91c0-e1e9014c2392</GID>
+    <ToDelete>false</ToDelete>
+    <ItemPath>e:\!catalog\prs\storywithtext\manhwa\PASSPORT.TXT</ItemPath>
+    <ParentID>0</ParentID>
+    <Name>Manhwa</Name>
+    <Catalog>PRS</Catalog>
+    <LastEdit>1</LastEdit>
+    <AltTitle>Manhwa</AltTitle>
+    <Year>0</Year>
+    <Month>0</Month>
+    <Day>0</Day>
+    <Kind>Art</Kind>
+    <PARENT>Manhwa</PARENT>
+    <Size>0</Size>
     <Comments />
     <CommentsAsString />
   </EpItem>
