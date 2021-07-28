@@ -649,14 +649,13 @@
                                     </Style>
                                 </StackPanel.Resources>
 
-                                <Button x:Name="btnPlay" Click="btnPlay_Click" Opacity ="0.5">
-                                    <Image Source="/EPCat;component/play.png"/>
-                                </Button>
+                                    <Button x:Name="btnPlay" Content="Play(SPACE)" Click="btnPlay_Click">
+                                    </Button>
                                 <Button Margin="5,0,0,0" Content="Load" Height="30" Width="50"
                                   x:Name="btnLoad" Click="btnLoad_Click"/>
-                                <Button Margin="5,0,0,0" Content="Scr" Height="30" Width="60"
+                                <Button Margin="5,0,0,0" Content="Scr(M)" Height="30" Width="60"
                                   x:Name="btnScreenshot" Click="btnScreenshot_Click"/>
-                                <Button Margin="5,0,0,0" Content="Scr simple" Height="30" Width="60"
+                                <Button Margin="5,0,0,0" Content="ScrS(N)" Height="30" Width="70"
                                   x:Name="btnScreenshotSimple" Click="btnScreenshotSimple_Click"/>
                                 <Button Margin="5,0,0,0" Content="Scr+" Height="30" Width="60"
                                   x:Name="btnScreenshot1" Click="btnScreenshotAddGroup_Click"/>
