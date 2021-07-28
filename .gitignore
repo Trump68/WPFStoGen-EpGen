@@ -231,4 +231,5 @@ ModelManifest.xml
 /Renpy/MovieBrowser/game/gui
 /Sims 4 Python Script Workspace
 /WPFSTOGEN/
-
+*.jpg
+*.png
