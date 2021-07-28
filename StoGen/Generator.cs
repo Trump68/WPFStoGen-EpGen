@@ -32,7 +32,7 @@ namespace StoGenerator
             StoryBase story = null;
             if (item.Kind.Trim() == "STOGEN-ART")
             {
-                story = new ArtGenerator(item);
+               // story = new ArtGenerator(item);
             }
             else
             {
@@ -50,8 +50,8 @@ namespace StoGenerator
         }
         public static StoryBase LoadScenario(List<string> clipsinstr, EpItem item, string filename = null)
         {
-            StoryBase story = null;
-            story = new ArtGenerator(item);
+            StoryBase story = new StoryBase();
+            //story = new ArtGenerator(item);
             //if (item.Kind.Trim() == "STOGEN-ART")
             //{
             //    story = new ArtGenerator(item);
@@ -75,19 +75,7 @@ namespace StoGenerator
         private static StoryBase getScen(string storyname)
         {
             StoryBase story = null;
-            if (string.IsNullOrEmpty(storyname))
-                story = new Works_Horikawa_Gorou(); //default
-
-            else if (storyname == Works_Momofuki_Rio.StoryName)
-                story = new Works_Momofuki_Rio();
-            else if (storyname == Works_Horikawa_Gorou.StoryName)
-                story = new Works_Horikawa_Gorou();
-            else if (storyname == Story001.StoryName)
-                story = new Story001();
-            else if (storyname == Person_Jenny_Ford.StoryName)
-                story = new Person_Jenny_Ford();
-            else if (storyname == LocationUnit_Aratments_01.StoryName)
-                story = new LocationUnit_Aratments_01();
+           
             return story;
         }
 
