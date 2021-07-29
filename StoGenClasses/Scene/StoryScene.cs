@@ -27,7 +27,7 @@ namespace StoGen.Classes.Data.Games
         private Info_Scene CurrentBackground;
         public void SetScenario(StoryBase story, string queue)
         {
-            base.CatalogPath = story.CatalogPath;
+            //base.CatalogPath = story.CatalogPath;
             Story = story;
             var Queue = story.SceneInfos.Where(x => x.Queue == queue && x.Active).ToList();
             Queue.Sort(delegate (Info_Scene x, Info_Scene y)
@@ -176,7 +176,12 @@ namespace StoGen.Classes.Data.Games
                 info.O = infotemplate.O;
             if (string.IsNullOrEmpty(info.R))
                 info.R = infotemplate.R;
-
+            if (string.IsNullOrEmpty(info.LoopMode))
+                info.LoopMode = infotemplate.LoopMode;
+            if (string.IsNullOrEmpty(info.LoopCount))
+                info.LoopCount = infotemplate.LoopCount;
+            if (string.IsNullOrEmpty(info.Speed))
+                info.Speed = infotemplate.Speed;
         }
 
         private CadreData DoCadreByGroup(List<Info_Scene> group, int? indexToInsert)

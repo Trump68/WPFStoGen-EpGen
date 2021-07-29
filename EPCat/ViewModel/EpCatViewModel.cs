@@ -646,6 +646,7 @@ namespace EPCat
             
            // GameWorldFactory.GameWorld.LoadData();
             StoryScene scene = new StoryScene();
+            scene.CatalogPath = this.CurrentFolder.ItemDirectory;
             scene.SetScenario(this.Story, this.CurrentCombinedScene.Queue);
 
             if (projector == null)

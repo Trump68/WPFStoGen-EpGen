@@ -441,10 +441,18 @@ namespace StoGenWPF
         }
         public async void DoScreenShot(int quality, bool force)
         {
-            var result = await this.TryScreenshotToClipboardAsync(this.MainGrid, quality, force);
-            if (result)
+            try
             {
-                SystemSounds.Beep.Play();
+                var result = await this.TryScreenshotToClipboardAsync(this.MainGrid, quality, force);
+                if (result)
+                {
+                    SystemSounds.Beep.Play();
+                }
+
+            }
+            catch (Exception)
+            {
+                
             }
         }
     }

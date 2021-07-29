@@ -454,7 +454,7 @@
                                             <dxlc:LayoutItem Label="Sound: X=Volume; Y=1 (Mute); F=1 (random position); FileName: STOP" LabelPosition="Top"></dxlc:LayoutItem>
                                         </dxlc:LayoutGroup>
                                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
-                                            <dxlc:LayoutItem Label="Video: " LabelPosition="Top"></dxlc:LayoutItem>
+                                            <dxlc:LayoutItem Label="Video: Loop 0-go next, 1-loop, 2-stop, 3-no stop" LabelPosition="Top"></dxlc:LayoutItem>
                                         </dxlc:LayoutGroup>
                                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                             <dxlc:LayoutItem Label="Raw Parameters" LabelPosition="Top">
