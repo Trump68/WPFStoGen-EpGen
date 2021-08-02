@@ -311,7 +311,9 @@ namespace EPCat
             }
             else
             {
+                //txtPositionStart.Text = TicTakToe.ClipTemplate.PositionStart.ToString();                
                 minionPlayer.Play();
+                RestoreVideoPosition();
                 EnableButtons(true);
             }
         }
@@ -657,6 +659,8 @@ namespace EPCat
       
         private void RestoreVideoPosition()
         {
+            if (string.IsNullOrEmpty(txtPosition.Text))
+                return;
             TimeSpan timespan = TimeSpan.FromSeconds(double.Parse(txtPosition.Text));
             minionPlayer.Position = timespan;
             ShowPosition();

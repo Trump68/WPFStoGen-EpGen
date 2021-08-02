@@ -495,7 +495,7 @@ namespace EPCat.Model
                                 List<string> lines = EpItem.SetToPassport(item);
                                 File.WriteAllLines(Path.Combine(newPath, EpItem.p_PassportName), lines);
                             }
-                            
+
                             File.Move(source, Path.Combine(newPath, "video") + ".m4v");
                         }
                     }
@@ -688,7 +688,7 @@ namespace EPCat.Model
             list.RemoveAll(x => x.ToDelete);
 
 
-            list.Where(x => x.Edited).ToList().ForEach(x=>
+            list.Where(x => x.Edited).ToList().ForEach(x =>
             {
                 if (Directory.Exists(x.ItemDirectory))
                 {
@@ -697,6 +697,7 @@ namespace EPCat.Model
                 }
             });
 
+            JAV.ReloadCollection();
             foreach (var item in FoldersToUpdate)
             {
                 UpdateFolder(item, ref list);
@@ -711,7 +712,7 @@ namespace EPCat.Model
             {
 
                 serializer.Serialize(writer, list);
-            }         
+            }
         }
 
         List<string> FoldersToUpdate = new List<string>();
@@ -939,26 +940,22 @@ namespace EPCat.Model
         private void UpdateFolder(string parameters, ref List<EpItem> list)
         {
             string itemPath = parameters.ToLower();
-            if (!JAV.JAVCollections.ContainsKey("ALL") && JAV.JAVCollections.Any())
+            string dirname = Path.GetDirectoryName(itemPath);
+
+            string pathJAV1 = @"f:\!CATALOG\JAV\";
+            string pathJAV2 = @"e:\!CATALOG\JAV\";
+            if (itemPath.ToUpper().Contains(pathJAV1.ToUpper()) || itemPath.ToUpper().Contains(pathJAV2.ToUpper()))
             {
-                string pathJAV1 = @"f:\!CATALOG\JAV\";
-                string pathJAV2 = @"e:\!CATALOG\JAV\";
-                if ((itemPath.Length > pathJAV1.Length))
+                if (itemPath.ToUpper() != (pathJAV1.ToUpper()) && itemPath.ToUpper() != (pathJAV2.ToUpper()))
                 {
-                    if (itemPath.ToUpper().Contains(pathJAV1.ToUpper()) || itemPath.ToUpper().Contains(pathJAV2.ToUpper()))
+                    if (!JAV.JAVCollections.ContainsKey("ALL") && JAV.JAVCollections.Any())
                     {
-                        DirectoryInfo dir = new DirectoryInfo(itemPath);
-                        string dirname = dir.Name.ToUpper();
-                        if (dirname.Length < 6)
-                        {
-                            if (!JAV.JAVCollections.ContainsKey(dirname) || !JAV.JAVCollections[dirname])
-                            {
-                                return;
-                            }
-                        }
+                        if (!JAV.JAVCollections.ContainsKey(dirname)) return;
                     }
                 }
             }
+
+
 
             if (!Directory.Exists(itemPath)) return;
             List<string> passportList = Directory.GetFiles(itemPath, EpItem.p_PassportName).ToList();
@@ -980,18 +977,24 @@ namespace EPCat.Model
             File.WriteAllLines(item.ItemPath, passportData);
         }
 
-    
+
         private void CreateUpdateFromPassport(string passportPath, ref List<EpItem> list)
         {
-            if (passportPath.Contains(@"006"))
-            {
-                var asdasd = 0;
-            }
             List<string> passport = new List<string>(File.ReadAllLines(passportPath));
             if (passport != null)
             {
-                
+
                 EpItem item = EpItem.GetFromPassport(passport, passportPath);
+                if (item.Catalog == "JAV" && !string.IsNullOrEmpty(item.Type))
+                {
+                    foreach (var exclusion in JAV.JAVExclusions)
+                    {
+                        if (item.Type.Contains(exclusion))
+                        {
+                            return;
+                        }
+                    }
+                }
                 if (item.GID == null || Guid.Empty.Equals(item.GID))
                 {
                     item.GID = Guid.NewGuid();
@@ -1041,8 +1044,12 @@ namespace EPCat.Model
                 var filesmp3 = Directory.GetFiles(dirname, "*.m4v").ToList();
                 long s = 0;
                 int d = 1000000;
+                bool isUncensored = false;
                 foreach (string fn in filesmp3)
                 {
+                    string pf = fn.ToUpper();
+                    if (pf.Contains("UNCENSORED"))
+                        isUncensored = true;
                     try
                     {
                         FileInfo fi = new FileInfo(fn);
@@ -1125,6 +1132,11 @@ namespace EPCat.Model
                 }
                 else
                 {
+                    if (isUncensored && (item.Catalog == "JAV") && (existingItem.Kind != "UNC"))
+                    {
+                        item.Kind = "UNC";
+                        item.LastEdit++;
+                    }
                     if (existingItem.LastEdit < item.LastEdit)
                     {
                         existingItem.UpdateFrom(item);

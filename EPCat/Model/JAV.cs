@@ -252,6 +252,19 @@ namespace EPCat.Model
             return true;
         }
 
+
+        private static List<string> _JAVExclusions = null;
+        public static List<string> JAVExclusions
+        {
+            get
+            {
+                if (_JAVExclusions == null)
+                {
+                    _JAVExclusions = new List<string>();
+                }
+                return _JAVExclusions;
+            }
+        }
         private static Dictionary<string, bool> _JAVCollections = null;
         public static Dictionary<string, bool> JAVCollections
         {
@@ -272,40 +285,57 @@ namespace EPCat.Model
             if (File.Exists(file))
             {
                 var strings = File.ReadAllLines(file);
-                if (strings.Contains("ALL"))
+                List<string> listtocheck = new List<string>();
+                foreach (string str in strings)
                 {
-                    list.Add("ALL", true);
+                    if (str.Trim() == "ALL")
+                        list.Add("ALL", true);
+                    else if (str.Contains("!NO_TYPE_"))
+                        JAVExclusions.Add(str.Trim().Replace("!NO_TYPE_",string.Empty));
+                    else
+                        listtocheck.Add(str);
                 }
-                else
-                {
+
                     string path = @"f:\!CATALOG\JAV\";
-                    ProcessPath(ref list, strings, path);
+                    ProcessPath(ref list, ref listtocheck, path);
                     path = @"e:\!CATALOG\JAV\";
-                    ProcessPath(ref list, strings, path);
-                }
+                    ProcessPath(ref list, ref listtocheck, path);
             }
             return list;
 
         }
 
-        private static void ProcessPath(ref Dictionary<string, bool> list, string[] strings, string path)
+        private static void ProcessPath(ref Dictionary<string, bool> list, ref List<string> strings, string path)
         {
             if (Directory.Exists(path))
             {
                 var dirs = Directory.GetDirectories(path);
                 foreach (var item in dirs)
                 {
-                    DirectoryInfo dir = new DirectoryInfo(item);
-                    string dirname = dir.Name.ToUpper();
-                    if (dirname.Length <= 5)
+                    string dir = Path.GetDirectoryName(item);
+                    if (strings.Contains(dir))
                     {
-
-                        if (strings.Any(x => dirname.StartsWith(x)))
-                            list.Add(dirname, true);
-                        else if (!list.ContainsKey(dirname))
-                            list.Add(dirname, false);
+                        list.Add(dir, true);
+                        strings.Remove(dir);
                     }
+                    //else
+                    //{
+                    //    list.Add(dir, false);
+                    //}
                 }
+                //foreach (var item in dirs)
+                //{
+                //    DirectoryInfo dir = new DirectoryInfo(item);
+                //    string dirname = dir.Name.ToUpper();
+                //    if (dirname.Length <= 5)
+                //    {
+
+                //        if (strings.Any(x => dirname.StartsWith(x)))
+                //            list.Add(dirname, true);
+                //        else if (!list.ContainsKey(dirname))
+                //            list.Add(dirname, false);
+                //    }
+                //}
             }
         }
 
@@ -378,32 +408,30 @@ namespace EPCat.Model
 
         internal static void JavLibraryMakeBat(string marker)
         {
-            string path = @"D:\Work\WPFStoGen-EpGen\CATALOG\BAT";
-            string file = $@"JAV - {marker}.bat";
+            string path = @"d:\Work\WPFStoGen-EpGen\CATALOG\BAT\!JAV_ARTIST\";
+            string file = $@"{marker}.bat";
             List<string> lines = new List<string>();
-            lines.Add($@"START """" ""d:\Work\WPFStoGen-EpGen\EPCat\bin\Release\EPCat.exe"" ""d:\Work\WPFStoGen-EpGen\CATALOG\BAT\JAV - {marker}.txt"" ""d:\Work\WPFStoGen-EpGen\CATALOG\BAT\JAV - {marker}.xml"" LOAD");
+            lines.Add($@"START """" ""d:\Work\WPFStoGen-EpGen\EPCat\bin\Release\EPCat.exe"" "".\RES\{marker}.txt"" "".\RES\{marker}.xml"" LOAD");
             lines.Add("EXIT");
             string f = Path.Combine(path, file);
             File.WriteAllLines(f, lines);
 
-            file = $@"JAV - {marker}.txt";
+            string pathRes = Path.Combine(path, @"RES");
+
+
+            file = $@"{marker}.txt";
             lines.Clear();
             lines.Add($@"LOAD CATALOG d:\Work\WPFStoGen-EpGen\CATALOG\jav.cat");
             lines.Add(@"UPDATE FOLDER e:\!CATALOG\JAV\");
             lines.Add(@"UPDATE FOLDER f:\!CATALOG\JAV\");
-            File.WriteAllLines(Path.Combine(path, file), lines);
+            File.WriteAllLines(Path.Combine(pathRes, file), lines);
 
-            string fileorig= $@"JAV - SarasaHara.xml";
-            string content = File.ReadAllText(Path.Combine(path,fileorig));
-            file = $@"JAV - {marker}.xml";
-            content = content.Replace("Natsume Iroha", marker);
-            File.WriteAllText(Path.Combine(path, file),content);
+            string fileorig= $@"Hayashi Yuna.xml";
+            string content = File.ReadAllText(Path.Combine(pathRes, fileorig));
+            file = $@"{marker}.xml";
+            content = content.Replace("Hayashi Yuna", marker);
+            File.WriteAllText(Path.Combine(pathRes, file),content);
 
-            //fileorig = @"c:\Users\Boss\Desktop\CTLG\CTLG-JAV-Kasumi Risa.lnk";
-            //string filedest = $@"c:\Users\Boss\Desktop\CTLG\CTLG-JAV-{marker}.lnk";
-            //content = File.ReadAllText(fileorig);
-            //content = content.Replace("Kasumi Risa", marker);
-            //File.WriteAllText(filedest, content);
         }
 
         public static Dictionary<string, string> _JAVupdated;
@@ -592,5 +620,9 @@ namespace EPCat.Model
             }
         }
 
+        internal static void ReloadCollection()
+        {
+            _JAVCollections = null;
+        }
     }
 }
