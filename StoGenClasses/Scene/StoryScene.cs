@@ -176,6 +176,8 @@ namespace StoGen.Classes.Data.Games
                 info.O = infotemplate.O;
             if (string.IsNullOrEmpty(info.R))
                 info.R = infotemplate.R;
+            if (string.IsNullOrEmpty(info.T))
+                info.T = infotemplate.T;
             if (string.IsNullOrEmpty(info.LoopMode))
                 info.LoopMode = infotemplate.LoopMode;
             if (string.IsNullOrEmpty(info.LoopCount))
@@ -526,29 +528,31 @@ namespace StoGen.Classes.Data.Games
                             AV = volume
                         };
 
-                        //if (string.IsNullOrEmpty(item.S) || item.S == "0") item.S = "800";
 
-                        DifData size = new DifData() { S = Convert.ToInt32(item.S) };
-                        size.Name = anim.File;
+                        DifData dif = new DifData() { S = Convert.ToInt32(item.S) };
+                        dif.Name = anim.File;
                         if (!string.IsNullOrEmpty(item.X))
-                            size.X = Convert.ToInt32(item.X);
+                            dif.X = Convert.ToInt32(item.X);
                         if (!string.IsNullOrEmpty(item.Y))
-                            size.Y = Convert.ToInt32(item.Y);
+                            dif.Y = Convert.ToInt32(item.Y);
                         if (!string.IsNullOrEmpty(item.O))
-                            size.O = Convert.ToInt32(item.O);
-                        if (!string.IsNullOrEmpty(item.R))
-                            size.R = Convert.ToInt32(item.R);
-                        if (!string.IsNullOrEmpty(item.Z))
-                            size.Z = Convert.ToInt32(item.Z);
-                        //else
-                        //    size.Z = 2;
+                            dif.O = Convert.ToInt32(item.O);
+                        else
+                            dif.O = 100;
 
-                        size.AL.Add(anim);
+                        if (!string.IsNullOrEmpty(item.R))
+                            dif.R = Convert.ToInt32(item.R);
+                        if (!string.IsNullOrEmpty(item.Z))
+                            dif.Z = Convert.ToInt32(item.Z);
+                        if (!string.IsNullOrEmpty(item.T))
+                            dif.T = item.T;
+
+
+                        dif.AL.Add(anim);
                         var dd = new List<DifData>();
                         itl.AddRange(dd);
-                        itl.Insert(0, size);
-                        //DoC2($"{story}", itl, null);
-                        //AddAnim(anim.File, item.Story, itl, anim);
+                        itl.Insert(0, dif);
+
                     }
                     else
                     {

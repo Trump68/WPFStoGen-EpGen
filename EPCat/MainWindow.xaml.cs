@@ -932,40 +932,30 @@ namespace EPCat
 
         private void JAVupdatefiltered_Click(object sender, RoutedEventArgs e)
         {
-            //string dirSource1 = @"e:\!TO_SORT2\";
-            //if (Directory.Exists(dirSource1))
-            //{
-            //    var files = Directory.GetFiles("*.m4v");
-            //    foreach (var item in files)
-            //    {
-            //        var fn = Path.GetFileName(item);
-            //        var val = fn.Split('-');
-            //        if (val.Length > 1)
-            //        {
-            //            if (Directory.Exists($@"e:\!CATALOG\JAV\{val[0]}\{Path.GetFileNameWithoutExtension(item)}"))
-            //            {
-            //                File.Move();
-            //            }
-            //        }
-            //    }
-            //}
-
-            List<string> list = new List<string>();
-            for (int i = 0; i < GV.VisibleRowCount; i++)
-            {
-                int rowHandle = GV.GetRowHandleByVisibleIndex(i);
-                if (!GV.IsGroupRowExpanded(rowHandle))
-                {
-                    var val = GV.GetCellValue(rowHandle, gcSerie);
-                    if (val != null)
-                    {
-                        string s = Convert.ToString(val);
-                        if (!list.Contains(s))
-                            list.Add(s);
-                    }
-                }                              
+            StarRating.LoadJAVActress();
+            var list = ViewModel.FolderListView.ToList();
+            foreach (var item in list)
+            {           
+                StarRating.SetRating(item);
             }
-            JAV.UpdateBySerieList(list);
+            ViewModel._Loader.SaveCatalog(ref list);
+            Application.Current.MainWindow.Close();
+            //List<string> list = new List<string>();
+            //for (int i = 0; i < GV.VisibleRowCount; i++)
+            //{
+            //    int rowHandle = GV.GetRowHandleByVisibleIndex(i);
+            //    if (!GV.IsGroupRowExpanded(rowHandle))
+            //    {
+            //        var val = GV.GetCellValue(rowHandle, gcSerie);
+            //        if (val != null)
+            //        {
+            //            string s = Convert.ToString(val);
+            //            if (!list.Contains(s))
+            //                list.Add(s);
+            //        }
+            //    }                              
+            //}
+            //JAV.UpdateBySerieList(list);
         }
 
         private void btnScreenshots_Click(object sender, RoutedEventArgs e)

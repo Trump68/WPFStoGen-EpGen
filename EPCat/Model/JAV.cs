@@ -280,8 +280,8 @@ namespace EPCat.Model
         private static Dictionary<string, bool> getJAVCollections()
         {
             var list = new Dictionary<string, bool>();
-
-            string file = $@"f:\!CATALOG\JAV\update.txt";
+            
+            string file = Path.Combine(Loader.FoldersToUpdate.Last(), "update.txt");
             if (File.Exists(file))
             {
                 var strings = File.ReadAllLines(file);
@@ -296,10 +296,11 @@ namespace EPCat.Model
                         listtocheck.Add(str);
                 }
 
-                    string path = @"f:\!CATALOG\JAV\";
+                foreach (var path in Loader.FoldersToUpdate)
+                {
                     ProcessPath(ref list, ref listtocheck, path);
-                    path = @"e:\!CATALOG\JAV\";
-                    ProcessPath(ref list, ref listtocheck, path);
+
+                }
             }
             return list;
 
@@ -312,7 +313,7 @@ namespace EPCat.Model
                 var dirs = Directory.GetDirectories(path);
                 foreach (var item in dirs)
                 {
-                    string dir = Path.GetDirectoryName(item);
+                    string dir = Path.GetFileName(item);
                     if (strings.Contains(dir))
                     {
                         list.Add(dir, true);
@@ -422,8 +423,10 @@ namespace EPCat.Model
             file = $@"{marker}.txt";
             lines.Clear();
             lines.Add($@"LOAD CATALOG d:\Work\WPFStoGen-EpGen\CATALOG\jav.cat");
-            lines.Add(@"UPDATE FOLDER e:\!CATALOG\JAV\");
-            lines.Add(@"UPDATE FOLDER f:\!CATALOG\JAV\");
+            foreach (var lpath in Loader.FoldersToUpdate)
+            {
+                lines.Add($@"UPDATE FOLDER {lpath}");
+            }
             File.WriteAllLines(Path.Combine(pathRes, file), lines);
 
             string fileorig= $@"Hayashi Yuna.xml";
@@ -439,7 +442,8 @@ namespace EPCat.Model
         private static int threshold_hours = 0;
         private static void LoadThreshold()
         {
-            string file = $@"f:\!CATALOG\JAV\updated.txt";
+
+            string file = Path.Combine(Loader.FoldersToUpdate.Last(), "updated.txt");
             var strings = File.ReadAllLines(file);
 
             _JAVupdated = new Dictionary<string, string>();
@@ -506,7 +510,8 @@ namespace EPCat.Model
             {
                 lines.Add($"{item.Key}={item.Value}");
             }
-            string file = $@"f:\!CATALOG\JAV\updated.txt";
+
+            string file = Path.Combine(Loader.FoldersToUpdate.Last(), "updated.txt");
             File.WriteAllLines(file, lines);
         }
         private static void SaveUpdate()
@@ -516,7 +521,7 @@ namespace EPCat.Model
             {
                 lines.Add($"{item.Key}");
             }
-            string file = $@"f:\!CATALOG\JAV\update.txt";
+            string file = Path.Combine(Loader.FoldersToUpdate.Last(), "update.txt");            
             File.WriteAllLines(file, lines);
         }
         internal static void UpdateBySerieList(List<string> list)
@@ -528,11 +533,13 @@ namespace EPCat.Model
                 _JAVCollections.Add(serie, true);
                 if (!CheckThreshold(serie))
                     continue;
-                string disc = "f";
-                string path = $@"{disc}:\!CATALOG\JAV\{serie}";
-                if (!Directory.Exists(path))
+                string disc = string.Empty;
+                foreach (var lpath in Loader.FoldersToUpdate)
                 {
-                    disc = "e";
+                    disc = lpath[0].ToString();
+                    string path = Path.Combine(lpath, serie);
+                    if (Directory.Exists(path))
+                        break;
                 }
                 JavUpdateSerie(serie, 0, disc);
             }
@@ -622,7 +629,9 @@ namespace EPCat.Model
 
         internal static void ReloadCollection()
         {
-            _JAVCollections = null;
+            _JAVCollections = getJAVCollections();
+            //StarRating.SaveJAVActress();
         }
+      
     }
 }

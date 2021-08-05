@@ -70,7 +70,7 @@
                             <dx:SimpleButton x:Name="CopyPosterABtn" Content="Copy Poster Name" Width="120" HorizontalAlignment="Left" Click="CopyPosterName_Click"  />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
-                            <dx:SimpleButton x:Name="JAVupdatefiltered" Content="JAV update filtered" Width="120" HorizontalAlignment="Left" Click="JAVupdatefiltered_Click"  />
+                            <dx:SimpleButton x:Name="JAVupdatefiltered" Content="JAV set rating" Width="120" HorizontalAlignment="Left" Click="JAVupdatefiltered_Click"  />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Margin="20,0,0,0" Width="50">
                             <dxe:CheckEdit x:Name="EditAllowed" Content="Edit" />

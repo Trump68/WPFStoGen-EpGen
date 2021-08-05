@@ -34,7 +34,7 @@ namespace EPCat
   
     public class EpCatViewModel: ViewModelBase
     {
-        Loader _Loader = new Loader();
+        public Loader _Loader = new Loader();
         public EpCatViewModel()
         {
             Instance = this;

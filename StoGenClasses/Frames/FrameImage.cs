@@ -78,7 +78,7 @@ namespace StoGen.Classes
                 }
             }
 
-            if (false) // - disabled for spped of animation - test!!!!!!!!!
+            if (true) // - disabled for spped of animation - test!!!!!!!!!
             {
                 //Transition
                 FrameImage.tranManager.Process();
@@ -385,6 +385,10 @@ namespace StoGen.Classes
                 if (pi.Props.Timer > 0)
                     FrameImage.TimeToNext = pi.Props.Timer;
 
+                #region Transition
+                
+
+
                 #region Video
                 if ((pi.Props.CurrentAnimation != null) && (Pics[i].Props.isVideo || ext == ".mp4" || ext == ".mpg" || ext == ".avi" || ext == ".wmv" || ext == ".m4v"))
                 {
@@ -476,9 +480,33 @@ namespace StoGen.Classes
                     if (Pics[i].Props.CurrentAnimation.AWE > 0)
                         PausePeriod2 = Pics[i].Props.CurrentAnimation.AWE;
                     else PausePeriod2 = 40;
+
+                    // Transition video
+                    if (!string.IsNullOrEmpty(pi.Props.Transition))
+                    {
+                        TransitionData trandata = new TransitionData();
+                        trandata.Level = pi.Props.Level;
+                        trandata.Parse(pi.Props.Transition, 3);
+                        FrameImage.tranManager.Add(trandata);
+                    }
+
+                    // Opacity
+                    if (pi.Props.Opacity > -1)
+                        Projector.PicContainer.Clip.Opacity = (pi.Props.Opacity / 100.0);
+
+
                     continue;
                 }
                 #endregion     
+
+                // Transition image
+                if (!string.IsNullOrEmpty(pi.Props.Transition))
+                {
+                    TransitionData trandata = new TransitionData();
+                    trandata.Level = pi.Props.Level;
+                    trandata.Parse(pi.Props.Transition, 0);
+                    FrameImage.tranManager.Add(trandata);
+                }
 
                 #region Opacity
                 // Opacity
@@ -499,16 +527,7 @@ namespace StoGen.Classes
                     Projector.PicContainer.PicList[pi.Props.Level].Effect = null;
                 }
                 #endregion
-
-                #region Transition
-                // Transition
-                if (!string.IsNullOrEmpty(pi.Props.Transition))
-                {
-                    TransitionData trandata = new TransitionData();
-                    trandata.Level = pi.Props.Level;
-                    trandata.Parse(pi.Props.Transition, 0);
-                    FrameImage.tranManager.Add(trandata);
-                }
+                
 
                 #endregion
 

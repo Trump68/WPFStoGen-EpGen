@@ -698,9 +698,10 @@ namespace EPCat.Model
             });
 
             JAV.ReloadCollection();
+            //StarRating.LoadJAVActress();
             foreach (var item in FoldersToUpdate)
             {
-                UpdateFolder(item, ref list);
+                UpdateFolder(item, ref list,true);
             }
 
 
@@ -715,7 +716,7 @@ namespace EPCat.Model
             }
         }
 
-        List<string> FoldersToUpdate = new List<string>();
+        public static List<string> FoldersToUpdate = new List<string>();
         internal void ParseLine(string line)
         {
 
@@ -733,8 +734,8 @@ namespace EPCat.Model
             }
             else if (line.StartsWith(c_UpdateFolder))
             {
-                FoldersToUpdate.Add(line.Replace(c_UpdateFolder, string.Empty));
-                //UpdateFolder(line.Replace(c_UpdateFolder, string.Empty));
+                FoldersToUpdate.Add(line.Replace(c_UpdateFolder, string.Empty).ToUpper());
+
             }
             else if (line.StartsWith(c_LoadCatalog))
             {
@@ -937,22 +938,24 @@ namespace EPCat.Model
             Source = list;
             CurrentCatalog = itemPath;
         }
-        private void UpdateFolder(string parameters, ref List<EpItem> list)
+        private void UpdateFolder(string parameters, ref List<EpItem> list, bool isCheck)
         {
-            string itemPath = parameters.ToLower();
-            string dirname = Path.GetDirectoryName(itemPath);
-
-            string pathJAV1 = @"f:\!CATALOG\JAV\";
-            string pathJAV2 = @"e:\!CATALOG\JAV\";
-            if (itemPath.ToUpper().Contains(pathJAV1.ToUpper()) || itemPath.ToUpper().Contains(pathJAV2.ToUpper()))
+            string itemPath = parameters.ToUpper();
+            if (isCheck)
             {
-                if (itemPath.ToUpper() != (pathJAV1.ToUpper()) && itemPath.ToUpper() != (pathJAV2.ToUpper()))
-                {
-                    if (!JAV.JAVCollections.ContainsKey("ALL") && JAV.JAVCollections.Any())
+                string dirname = Path.GetFileName(itemPath);
+              
+                    if (FoldersToUpdate.Exists(x=>itemPath.Contains(x)))
                     {
-                        if (!JAV.JAVCollections.ContainsKey(dirname)) return;
-                    }
-                }
+                        if (!FoldersToUpdate.Exists(x => itemPath==x))
+                        {
+                            if (!JAV.JAVCollections.ContainsKey("ALL") && JAV.JAVCollections.Any())
+                            {
+                                if (!JAV.JAVCollections.ContainsKey(dirname.ToUpper())) return;
+                                isCheck = false;
+                            }
+                        }
+                    }                
             }
 
 
@@ -966,7 +969,7 @@ namespace EPCat.Model
             List<string> dirList = Directory.GetDirectories(itemPath).ToList();
             foreach (var dir in dirList)
             {
-                UpdateFolder(dir, ref list);
+                UpdateFolder(dir, ref list, isCheck);
             }
         }
 
@@ -1035,8 +1038,8 @@ namespace EPCat.Model
                     }
                 }
 
-                // JAV person rating
-                StarRating.SetRating(ref item);
+                // JAV person rating                
+                //StarRating.SetRating(item);
 
 
                 item.SourceFolderExist = true;

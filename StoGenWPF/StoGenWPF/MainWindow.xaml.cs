@@ -354,7 +354,7 @@ namespace StoGenWPF
                     string group = SGManager.CurrProc.Scene.CadreDataList[SGManager.CurrProc.CurrentCadreNum()].OriginalInfo[0].Group;
                     string fn = $"{(SGManager.CurrProc.Scene as StoryScene).Story.FileName}-{group}.jpg";
                     fn = Path.Combine(scd, fn);
-                    if (File.Exists(fn)) return true;
+                    if (File.Exists(fn)) return false;
                 }                
             }
             

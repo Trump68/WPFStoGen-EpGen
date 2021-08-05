@@ -82,6 +82,7 @@ namespace StoGen.Classes.Transition
             // 0 - image
             // 1 - sound
             // 2 - text
+            // 3 - video
             List<TransitionItem> result = new List<TransitionItem>();
 
             string[] vals = data.Split('.');
@@ -89,9 +90,10 @@ namespace StoGen.Classes.Transition
             {
                 if (cadreType == 0)
                     result.Add(new TransitionOpacityImage(vals, level));
-
                 else if (cadreType == 2)
                     result.Add(new TransitionOpacityText(vals, level));
+                else if (cadreType == 3)
+                    result.Add(new TransitionOpacityVideo(vals, level));
             }
             else if (vals[0].StartsWith("X"))
             {
@@ -464,6 +466,26 @@ namespace StoGen.Classes.Transition
                         Projector.PicContainer.PicList[this.Level].Opacity = 1;
                     else
                         Projector.PicContainer.PicList[this.Level].Opacity = value / 100;
+                }
+            }
+        }
+        public class TransitionOpacityVideo : TransitionPercent
+        {
+            public TransitionOpacityVideo(string[] vals, int level) : base(vals, level) { }
+            public override double CurrentVal
+            {
+                get
+                {
+                    if (Projector.PicContainer.Clip.Opacity > 1)
+                        return 100;
+                    return Projector.PicContainer.Clip.Opacity * 100;
+                }
+                set
+                {
+                    if (value > 100)
+                        Projector.PicContainer.Clip.Opacity = 1;
+                    else
+                        Projector.PicContainer.Clip.Opacity = value / 100;
                 }
             }
         }
