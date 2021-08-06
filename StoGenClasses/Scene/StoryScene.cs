@@ -27,7 +27,6 @@ namespace StoGen.Classes.Data.Games
         private Info_Scene CurrentBackground;
         public void SetScenario(StoryBase story, string queue)
         {
-            //base.CatalogPath = story.CatalogPath;
             Story = story;
             var Queue = story.SceneInfos.Where(x => x.Queue == queue && x.Active).ToList();
             Queue.Sort(delegate (Info_Scene x, Info_Scene y)
@@ -88,9 +87,12 @@ namespace StoGen.Classes.Data.Games
             if (queue == null) return null;
             List<Info_Scene> Queue = new List<Info_Scene>();
             foreach (var item in queue)
-            {                        
-                Queue.Add(Info_Scene.GenerateFromString(item.GenerateString()));
-            }
+            {
+                //Process Parameter File
+                string s = ProcessParameterFile(item.GenerateString());
+                Queue.Add(Info_Scene.GenerateFromString(s));
+            }          
+
             List<CadreData> result = new List<CadreData>();
             List<List<Info_Scene>> data = new List<List<Info_Scene>>();
             //this.currentGr = Queue.First().ID;
@@ -139,6 +141,26 @@ namespace StoGen.Classes.Data.Games
                 this.CadreDataList.ForEach(x => x.DefClipPause1 = DefClipPause1);
             }
             return result;
+        }
+
+        //Dictionary<string, string> ParameterDict = new Dictionary<string, string>();
+        private string ProcessParameterFile(string origin)
+        {
+            //ParameterDict.Clear();
+            string filepath = Path.Combine(this.CatalogPath, "parameters.txt");
+            if (File.Exists(filepath))
+            {
+                var lines = File.ReadAllLines(filepath);
+                foreach (string line in lines)
+                {
+                    if (!line.StartsWith("//"))
+                    {
+                        var vals = line.Split('=');
+                        origin = origin.Replace(vals[0], vals[1]);
+                    }
+                }
+            }
+            return origin;
         }
 
         private void ProcessTemplates(List<List<Info_Scene>> data)
