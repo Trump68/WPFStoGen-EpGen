@@ -34,10 +34,8 @@ namespace StoGenerator
         {
             Info_Scene title = new Info_Scene();
             title.Kind = 1;
-            //title.File = "$$WHITE$$";
-            title.Queue = currentQueue;
             title.Group = currentGroup;
-            SceneInfos.Add(title);
+            this.SceneCadres.Last().Infos.Add(title);
             IncrementGroup();
         }
         public string CatalogPath;
@@ -79,105 +77,72 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             currentGroup = group;
             currentQueue = queue;
         }
-        protected virtual void FillData()
-        {
-        }     
-
-        public void RemoveAllGroupsAfter(int index)
-        {
-            var group = this.GetGroupedList()[index].Key;
-            while (this.SceneInfos.Last().Group != group)
-            {
-                this.SceneInfos.Remove(this.SceneInfos.Last());
-            }
-        }
-        public void RemoveGroupAt(int index)
-        {
-            var group = this.GetGroupedList()[index].Key;
-            for (int i = 0; i < this.SceneInfos.Count(); i++)
-            {
-                if (this.SceneInfos[i].Group == group)
-                {
-                    this.SceneInfos.RemoveAt(i);
-                    i--;
-                }
-            }
-        }
+    
         public void AddScenes(List<Info_Scene> list,int startLevel,bool active)
         {
-            foreach (var item in list)
-            {
-                if (item.Kind == 0)
-                    item.Z = (startLevel++).ToString();
-                item.Group = StoryBase.currentGroup;
-                item.Queue = StoryBase.currentQueue;
-                item.Active = active;
-                if (!SceneInfos.Contains(item))
-                {
-                    SceneInfos.Add(item);
-                }
-            }
+            //foreach (var item in list)
+            //{
+            //    if (item.Kind == 0)
+            //        item.Z = (startLevel++).ToString();
+            //    item.Group = StoryBase.currentGroup;
+            //    item.Active = active;
+            //    if (!SceneInfos.Contains(item))
+            //    {
+            //        SceneInfos.Add(item);
+            //    }
+            //}
         }
-        protected List<Info_Scene> PullCadreFromScene(CadreController proc, int cadreId)
-        {
-            List<Info_Scene> result = proc.Scene.CadreDataList[cadreId].OriginalInfo;
-            currentGroup = result.First().Group;
-            currentQueue = result.First().Queue;
-            proc.Cadres.RemoveAt(cadreId);
-            proc.Scene.CadreDataList.RemoveAt(cadreId);
-            RemoveGroupAt(cadreId);
-            return result;
-        }
+    
         protected void AddText(string story, Teller who, bool slow, bool active, int? fontSize = null)
         {
-            string tran = "W..500>O.B.400.100";
-            string fs = null;
-            if (fontSize.HasValue)
-                fs = $"{fontSize.Value}";
-            if (who == Teller.Female)
-            {
-                if (slow)
-                    tran = "W..1500>O.B.400.100";
-                SceneInfos.Add(new Info_Scene(1)
-                { Active = active, Story = story, Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0", R = "2" });
-            }
-            else if (who == Teller.Male)
-            {
-                SceneInfos.Add(new Info_Scene(1)
-                { Active = active, Story = $"{story}", Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0", R = "2" });
-            }
-            else if (who == Teller.MaleThoughts)
-            {
-                SceneInfos.Add(new Info_Scene(1)
-                { Active = active, Story = $"[{story}]", Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0",  R = "3" });
-            }
-            else if (who == Teller.Author)
-            {
-                SceneInfos.Add(new Info_Scene(1)
-                { Active = active, Story = $"[{story}]", Description = story, Group = currentGroup, Queue = currentQueue, S = fs, T = tran, O = "0", R = "3" });
-            }
+            //string tran = "W..500>O.B.400.100";
+            //string fs = null;
+            //if (fontSize.HasValue)
+            //    fs = $"{fontSize.Value}";
+            //if (who == Teller.Female)
+            //{
+            //    if (slow)
+            //        tran = "W..1500>O.B.400.100";
+            //    SceneInfos.Add(new Info_Scene(1)
+            //    { Active = active, Story = story, Description = story, Group = currentGroup,S = fs, T = tran, O = "0", R = "2" });
+            //}
+            //else if (who == Teller.Male)
+            //{
+            //    SceneInfos.Add(new Info_Scene(1)
+            //    { Active = active, Story = $"{story}", Description = story, Group = currentGroup, S = fs, T = tran, O = "0", R = "2" });
+            //}
+            //else if (who == Teller.MaleThoughts)
+            //{
+            //    SceneInfos.Add(new Info_Scene(1)
+            //    { Active = active, Story = $"[{story}]", Description = story, Group = currentGroup, S = fs, T = tran, O = "0",  R = "3" });
+            //}
+            //else if (who == Teller.Author)
+            //{
+            //    SceneInfos.Add(new Info_Scene(1)
+            //    { Active = active, Story = $"[{story}]", Description = story, Group = currentGroup, S = fs, T = tran, O = "0", R = "3" });
+            //}
         }
-        protected void MakeNextCadre(Teller who, string story)
-        {
-            MakeNextCadre(who, null, story);
-        }
-        protected void MakeNextCadre(Teller who, int? fontSize, string story)
-        {
-            //Layers.ForEach(x =>
-            //{                
-            //    if (x.Kind == 0)
-            //    {
-            //        x.S = FCurrentPosition.S;
-            //        x.Y = FCurrentPosition.Y;
-            //        x.X = FCurrentPosition.X;
-            //    }
-            //});
-            AddScenes(Layers, 1, false); 
-            if (!string.IsNullOrEmpty(story))                        
-                AddText(story, who, false, false);
-            Layers = ResetPosture(Layers);
-            IncrementGroup();
-        }
+        //protected void MakeNextCadre(Teller who, string story)
+        //{
+        //    MakeNextCadre(who, null, story);
+        //}
+        //protected void MakeNextCadre(Teller who, int? fontSize, string story)
+        //{
+        //    //Layers.ForEach(x =>
+        //    //{                
+        //    //    if (x.Kind == 0)
+        //    //    {
+        //    //        x.S = FCurrentPosition.S;
+        //    //        x.Y = FCurrentPosition.Y;
+        //    //        x.X = FCurrentPosition.X;
+        //    //    }
+        //    //});
+        //    AddScenes(Layers, 1, false); 
+        //    if (!string.IsNullOrEmpty(story))                        
+        //        AddText(story, who, false, false);
+        //    Layers = ResetPosture(Layers);
+        //    IncrementGroup();
+        //}
         protected List<Info_Scene> ResetPosture(List<Info_Scene> posture)
         {
             List<Info_Scene> result = new List<Info_Scene>();
@@ -191,34 +156,34 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         }
 
 
-        // MAIN! Miving story AHEAD
-        public List<Info_Scene> GoForwardStory(CadreController proc, int lastgrouId)
-        {
-            List<Info_Scene> result = null;
-            if (IsGenerationAllowed)
-            {
-                var grupedlist = GetGroupedList();
-                if (lastgrouId > grupedlist.Count() - 1)
-                {
-                    GenerateNewStoryStep(proc);
-                }
-                result = ShowReneratedStep(lastgrouId);
-            }
-            return result;
-        }
-        private List<Info_Scene> ShowReneratedStep(int lastgrouId)
-        {
-            var grupedlist = GetGroupedList();
-            //lastgrouId++;
-            if (lastgrouId >= grupedlist.Count())
-                lastgrouId = grupedlist.Count() - 1;
-            var last = grupedlist[lastgrouId].Select(x => x).ToList();
-            if (!last.First().Active)
-            {
-                last.ForEach(x => x.Active = true);
-            }
-            return last;
-        }
+        //// MAIN! Miving story AHEAD
+        //public List<Info_Scene> GoForwardStory(CadreController proc, int lastgrouId)
+        //{
+        //    List<Info_Scene> result = null;
+        //    if (IsGenerationAllowed)
+        //    {
+        //        var grupedlist = GetGroupedList();
+        //        if (lastgrouId > grupedlist.Count() - 1)
+        //        {
+        //            GenerateNewStoryStep(proc);
+        //        }
+        //        result = ShowReneratedStep(lastgrouId);
+        //    }
+        //    return result;
+        //}
+        //private List<Info_Scene> ShowReneratedStep(int lastgrouId)
+        //{
+        //    var grupedlist = GetGroupedList();
+        //    //lastgrouId++;
+        //    if (lastgrouId >= grupedlist.Count())
+        //        lastgrouId = grupedlist.Count() - 1;
+        //    var last = grupedlist[lastgrouId].Select(x => x).ToList();
+        //    if (!last.First().Active)
+        //    {
+        //        last.ForEach(x => x.Active = true);
+        //    }
+        //    return last;
+        //}
         protected virtual void GenerateNewStoryStep(CadreController proc)
         {
             var MenuCreator = GetMenuCreator(true);
@@ -254,43 +219,43 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             {
                 //proc.MenuCreator = proc.OldMenuCreator;
                 string str1;
-                var itemlist1 = CreateMenuCadreTravel(proc, null, out str1);
-                ShowMenuGoToCadre(proc, itemlist1);
+                //var itemlist1 = CreateMenuCadreTravel(proc, null, out str1);
+                //ShowMenuGoToCadre(proc, itemlist1);
             };
             itemlist.Add(item);
             caption = "Actions:";
             return itemlist;
         }
-        protected List<ChoiceMenuItem> CreateMenuCadreTravel(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
-        {
-            if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
-            ChoiceMenuItem item = null;
-            var grupedlist = SceneInfos.Where(x => x.Active && x.Kind == 1).GroupBy(x => x.Group).ToList();
-            foreach (var it in grupedlist)
-            {
-                item = new ChoiceMenuItem();
-                item.Name = it.First().Story;
-                item.itemData = it;
-                MenuDescriptopnItem mdi1 = new MenuDescriptopnItem(" ", it.First().Description, true);                
-                item.Props = (new List<MenuDescriptopnItem>() { mdi1 }).ToArray();
-                item.Executor = data =>
-                {
-                   // proc.MenuCreator = proc.OldMenuCreator;
-                    var index = grupedlist.IndexOf(it);
-                    proc.GoToCadre(++index);
+        //protected List<ChoiceMenuItem> CreateMenuCadreTravel(CadreController proc, List<ChoiceMenuItem> itemlist, out string caption)
+        //{
+        //    if (itemlist == null) itemlist = new List<ChoiceMenuItem>();
+        //    ChoiceMenuItem item = null;
+        //    var grupedlist = SceneInfos.Where(x => x.Active && x.Kind == 1).GroupBy(x => x.Group).ToList();
+        //    foreach (var it in grupedlist)
+        //    {
+        //        item = new ChoiceMenuItem();
+        //        item.Name = it.First().Story;
+        //        item.itemData = it;
+        //        MenuDescriptopnItem mdi1 = new MenuDescriptopnItem(" ", it.First().Description, true);                
+        //        item.Props = (new List<MenuDescriptopnItem>() { mdi1 }).ToArray();
+        //        item.Executor = data =>
+        //        {
+        //           // proc.MenuCreator = proc.OldMenuCreator;
+        //            var index = grupedlist.IndexOf(it);
+        //            proc.GoToCadre(++index);
 
-                };
-                itemlist.Add(item);
-            }
-            caption = "Go To Cadre:";
-            return itemlist;
-        }       
+        //        };
+        //        itemlist.Add(item);
+        //    }
+        //    caption = "Go To Cadre:";
+        //    return itemlist;
+        //}       
         public bool ShowMenuGoToCadre(CadreController proc, List<ChoiceMenuItem> itemlist)
         {
-            string caption;
-            // just for current cadre selecting
-            itemlist = CreateMenuCadreTravel(proc, null, out caption);
-            ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, true, caption);
+            //string caption;
+            //// just for current cadre selecting
+            //itemlist = CreateMenuCadreTravel(proc, null, out caption);
+            //ChoiceMenuItem.FinalizeShowMenu(proc, true, itemlist, true, caption);
             return true;
         }
         public bool ShowSubmenu(CadreController proc, List<ChoiceMenuItem> itemlist, string caption)

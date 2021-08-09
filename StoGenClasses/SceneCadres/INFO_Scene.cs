@@ -37,20 +37,7 @@ namespace StoGen.Classes
                     this.Story = value;
             }
         }
-        private ImageSource _Poster;
 
-        public ImageSource Poster
-        {
-            get
-            {
-                return _Poster;               
-                //    return new BitmapImage(new Uri(@"e:\!CATALOG\JAV\PPT\PPT-017\StoryCaps\PPT-017a-0001.jpg"));
-            }
-            set
-            {
-                _Poster = value;
-            }
-        }
         public int KindOrder
         {
             get
@@ -115,9 +102,8 @@ namespace StoGen.Classes
         public string Description { set; get; } = string.Empty;
 
         public string Story { set; get; }
-        public string Group { set; get; }
-        public string Queue { set; get; }
-    
+        public string Group { set; get; }        
+        public int Order { set; get; } = -1;
         public string Tags { set; get; } = string.Empty;// for work in person's posture
 
         public static Info_Scene GenerateFromString(string item)
@@ -217,12 +203,10 @@ namespace StoGen.Classes
             if (!string.IsNullOrEmpty(Story))
                 rez.Add($"STR={Story}");
 
-            if (!string.IsNullOrEmpty(Queue))
-                rez.Add($"QUEUE={Queue}");
-            if (!string.IsNullOrEmpty(FigureName))
-                rez.Add($"FIGURE={Queue}");
             if (!string.IsNullOrEmpty(Template))
                 rez.Add($"TEMPLATE={Template}");
+            if (Order>=0)
+                rez.Add($"ORD={Order}");
             if (!string.IsNullOrEmpty(File))
             {
                 if (File.Contains(";"))
@@ -278,6 +262,10 @@ namespace StoGen.Classes
                 {
                     this.Story = str.Replace("STR=", string.Empty);
                 }
+                else if (str.StartsWith("ORD="))
+                {
+                    this.Order = int.Parse(str.Replace("ORD=", string.Empty));
+                }
                 else if (str.StartsWith("FIGURE="))
                 {
                     this.FigureName = str.Replace("FIGURE=", string.Empty);
@@ -321,7 +309,8 @@ namespace StoGen.Classes
 
                 else if (str.StartsWith("Tags="))
                 {
-                    this.Tags = str.Replace("Tags=", string.Empty);
+                    if (!str.Contains("FigureGeneric"))
+                        this.Tags = str.Replace("Tags=", string.Empty);
                 }
                 else if (str.StartsWith("GROUP="))
                 {
@@ -330,10 +319,6 @@ namespace StoGen.Classes
                 else if (str.StartsWith("TEMPLATE="))
                 {
                     this.Template = str.Replace("TEMPLATE=", string.Empty);
-                }
-                else if (str.StartsWith("QUEUE="))
-                {
-                    this.Queue = str.Replace("QUEUE=", string.Empty);
                 }
                 else if (str.StartsWith("PositionStart="))
                 {                    

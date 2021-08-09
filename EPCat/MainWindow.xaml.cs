@@ -706,7 +706,7 @@ namespace EPCat
 
         public void SetGVCurrent(int ind)
         {
-            GVCombScen.View.FocusedRowHandle = GVCombScen.GetRowHandleByListIndex(ind);
+            GVCombScen2.View.FocusedRowHandle = GVCombScen2.GetRowHandleByListIndex(ind);
         }
 
         private void ReloadScenarioFromFileBtn_Click(object sender, RoutedEventArgs e)
@@ -757,18 +757,13 @@ namespace EPCat
             ViewModel.RefreshFolder();
         }
 
-        private void GVCombScen_KeyDown(object sender, KeyEventArgs e)
-        {
-          
-        }
-
         private void GVCombScen_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Space && (e.KeyboardDevice.Modifiers == ModifierKeys.Control))
-            {
-                ViewModel.SaveScenario();
-                ViewModel.ShowScene();
-            }
+            //if (e.Key == Key.Space && (e.KeyboardDevice.Modifiers == ModifierKeys.Control))
+            //{
+            //    ViewModel.SaveScenario();
+            //    ViewModel.ShowScene();
+            //}
         }
 
         private void CopyGroupBtn3_Click(object sender, RoutedEventArgs e)
@@ -776,10 +771,10 @@ namespace EPCat
             ViewModel.CopyGroup(false, false,1,true);
         }
 
-        private void CopyDescrBtn1_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.CopyPasteDescriptionGroup();
-        }
+        //private void CopyDescrBtn1_Click(object sender, RoutedEventArgs e)
+        //{
+        //    ViewModel.CopyPasteDescriptionGroup();
+        //}
 
         private void btnSetPositionSaveSceneVideo_Click(object sender, RoutedEventArgs e)
         {
@@ -787,60 +782,59 @@ namespace EPCat
             if (ViewModel.Story == null)
                 return;
             ViewModel.SaveClipTemplate();
-            //ViewModel.CopyGroup(true, true, 1);
             ViewModel.CopyGroup(false, false, 0,true);
-            var col = ViewModel.Story.SceneInfos.Where(x => x.Group == ViewModel.CurrentCombinedScene.Group && x.Kind == 8);
-            if (col.Any())
-            {
-                col.First().PositionStart = (TicTakToe.ClipTemplate.PositionStart + (decimal)0.1).ToString();
-                col.First().PositionEnd = (TicTakToe.ClipTemplate.PositionEnd - (decimal)0.1).ToString();
-                col.First().File = TicTakToe.ClipTemplate.File;
-            }
-            else
-            {
+            //var col = ViewModel.Story.SceneInfos.Where(x => x.Group == ViewModel.CurrentElement.Group && x.Kind == 8);
+            //if (col.Any())
+            //{
+            //    col.First().PositionStart = (TicTakToe.ClipTemplate.PositionStart + (decimal)0.1).ToString();
+            //    col.First().PositionEnd = (TicTakToe.ClipTemplate.PositionEnd - (decimal)0.1).ToString();
+            //    col.First().File = TicTakToe.ClipTemplate.File;
+            //}
+            //else
+            //{
                 ViewModel.AddCombinedScene(false, true, 0, 8, true);
-            }
+            //}
             ViewModel.RefreshFolder();
 
         }
-        private void btnSetPositionSaveScenePicture_Click(object sender, RoutedEventArgs e)
-        {
-            if (ViewModel.Story == null)
-                return;
+        //private void btnSetPositionSaveScenePicture_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (ViewModel.Story == null)
+        //        return;
 
-            string path = System.IO.Path.Combine(ViewModel.Story.CatalogPath, "DATA");
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-            string str3 = string.Empty;
-            path = path + System.IO.Path.DirectorySeparatorChar.ToString() + "SC";
+        //    string path = System.IO.Path.Combine(ViewModel.Story.CatalogPath, "DATA");
+        //    if (!Directory.Exists(path))
+        //    {
+        //        Directory.CreateDirectory(path);
+        //    }
+        //    string str3 = string.Empty;
+        //    path = path + System.IO.Path.DirectorySeparatorChar.ToString() + "SC";
 
-            int num = 0;
-            string str2 = num.ToString("D4");
-            str3 = $"{path}-{str2}.jpg";
-            while (File.Exists(str3))
-            {
-                  num++;
-                  str2 = num.ToString("D4");
-                  str3 = $"{path}-{str2}.jpg";
-             }
+        //    int num = 0;
+        //    string str2 = num.ToString("D4");
+        //    str3 = $"{path}-{str2}.jpg";
+        //    while (File.Exists(str3))
+        //    {
+        //          num++;
+        //          str2 = num.ToString("D4");
+        //          str3 = $"{path}-{str2}.jpg";
+        //     }
 
-            this.ImportMedia(str3);
-            TicTakToe.SetClipScreenShot(str3);
-            ViewModel.CopyGroup(true, true, 1, true);
-            var col = ViewModel.Story.SceneInfos.Where(x => x.Group == ViewModel.CurrentCombinedScene.Group && x.Kind == 0);
-            if (col.Any())
-            {
-                col.First().File = str3;
-            }
-            else
-            {
-                ViewModel.AddCombinedScene(false, true, 0, 0, true);
-            }
-            ViewModel.RefreshFolder();
+        //    this.ImportMedia(str3);
+        //    TicTakToe.SetClipScreenShot(str3);
+        //    ViewModel.CopyGroup(true, true, 1, true);
+        //    var col = ViewModel.Story.SceneInfos.Where(x => x.Group == ViewModel.CurrentElement.Group && x.Kind == 0);
+        //    if (col.Any())
+        //    {
+        //        col.First().File = str3;
+        //    }
+        //    else
+        //    {
+        //        ViewModel.AddCombinedScene(false, true, 0, 0, true);
+        //    }
+        //    ViewModel.RefreshFolder();
 
-        }
+        //}
 
         private void MainGridView_HiddenEditor(object sender, EditorEventArgs e)
         {
@@ -908,12 +902,12 @@ namespace EPCat
 
         private void CollapseGroup_Click(object sender, RoutedEventArgs e)
         {
-            this.GVCombScen.CollapseAllGroups();
+            this.GVCombScen2.CollapseAllGroups();
         }
 
         private void ExpandGroup_Click(object sender, RoutedEventArgs e)
         {
-            this.GVCombScen.ExpandAllGroups();
+            this.GVCombScen2.ExpandAllGroups();
         }
         private void btnUpdateJAV_Click(object sender, RoutedEventArgs e)
         {

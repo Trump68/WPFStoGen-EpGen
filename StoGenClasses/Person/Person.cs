@@ -171,7 +171,6 @@ namespace StoGen.Classes.Persons
                         post.ForEach(x =>
                         {
                             x.Group = figure.Group;
-                            x.Queue = figure.Queue;
                             if (x.Kind == 0 && position == null)
                             {
                                 x.S = figure.S;
@@ -200,7 +199,6 @@ namespace StoGen.Classes.Persons
                 posture.ForEach(x =>
                 {
                     x.Group = figure.Group;
-                    x.Queue = figure.Queue;
                 });
 
             }
@@ -279,7 +277,6 @@ namespace StoGen.Classes.Persons
                     .ToList().ForEach(x =>
                     {
                         x.Group = oldFigure.Group;
-                        x.Queue = oldFigure.Queue;
                         if (x.Kind == 0 && position == null)
                         {
                             x.S = oldFigure.S;

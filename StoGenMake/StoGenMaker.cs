@@ -69,7 +69,8 @@ namespace StoGenMake
             else if (story != null)
             {
                 scene = new StoryScene();
-                ((StoryScene)scene).SetScenario(story, story.SceneInfos[0].Queue);
+                var list = story.SceneCadres.OrderBy(x => x.Group).ThenBy(u => u.Order).ToList();
+                ((StoryScene)scene).SetScenario(story, list);
             }
 
             StoGenWPF.MainWindow window = new StoGenWPF.MainWindow();

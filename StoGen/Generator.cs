@@ -1,7 +1,4 @@
 ﻿using EPCat.Model;
-using StoGen.Classes.Scene;
-using StoGenerator.Stories;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -51,17 +48,6 @@ namespace StoGenerator
         public static StoryBase LoadScenario(List<string> clipsinstr, EpItem item, string filename = null)
         {
             StoryBase story = new StoryBase();
-            //story = new ArtGenerator(item);
-            //if (item.Kind.Trim() == "STOGEN-ART")
-            //{
-            //    story = new ArtGenerator(item);
-            //}
-            //else
-            //{
-            //    if (string.IsNullOrEmpty(item.Name))
-            //        item.Name = SCENARIO.GetNameFromData(clipsinstr);
-            //    story = getScen(item.Name);
-            //}
 
             story.LoadFrom(clipsinstr);            
             if (!string.IsNullOrEmpty(filename))

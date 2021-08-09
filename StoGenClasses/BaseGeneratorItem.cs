@@ -38,7 +38,6 @@ namespace StoGenerator
                 }
                 result = new Info_Scene();
                 result.File = file.File;
-                result.Queue = queue;
                 result.Group = group;
             }
             return result;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoGen.Classes.SceneCadres;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -63,37 +64,43 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         public string FullFileName { set; get; }
         public string Description { set; get; }
         public string Story { set; get; }
-        public string Location { set; get; }
-        public string Female { set; get; }
-        public string Fgarment { set; get; }
-        public string Male { set; get; }
-        public string Mgarment { set; get; }
         public string StopWords { set; get; }
-        public string Action { set; get; }
         public string Kind { set; get; }
         public string Category { set; get; }
         public string Variant { set; get; }
         public string RawParameters { set; get; }
         public bool IsGenerationAllowed { get; set; } = false;
-        private ObservableCollection<Info_Scene> _ObservableSceneInfoList = null;
-        public ObservableCollection<Info_Scene> SceneInfos
+        //private ObservableCollection<Info_Scene> _ObservableSceneInfoList = null;
+        //public ObservableCollection<Info_Scene> SceneInfos
+        //{
+        //    get
+        //    {
+        //        if (_ObservableSceneInfoList == null)
+        //        {
+        //            _ObservableSceneInfoList = new ObservableCollection<Info_Scene>();
+
+        //        }
+        //        return _ObservableSceneInfoList;
+        //    }
+        //}
+        private ObservableCollection<INFO_SceneCadre> _ObservableCadreList = null;
+        public ObservableCollection<INFO_SceneCadre> SceneCadres
         {
             get
             {
-                if (_ObservableSceneInfoList == null)
+                if (_ObservableCadreList == null)
                 {
-                    _ObservableSceneInfoList = new ObservableCollection<Info_Scene>();
+                    _ObservableCadreList = new ObservableCollection<INFO_SceneCadre>();
 
                 }
-                return _ObservableSceneInfoList;
+                return _ObservableCadreList;
             }
         }
 
-
-        public List<IGrouping<string,Info_Scene>> GetGroupedList()
-        {
-            return SceneInfos.GroupBy(x => x.Group).OrderBy(x=>x.Key).ToList();
-        }
+        //public List<IGrouping<string, Info_Scene>> GetGroupedList()
+        //{
+        //    return SceneInfos.GroupBy(x => x.Group).OrderBy(x => x.Key).ToList();
+        //}
         //text
         public string DefTextSize;
         public string DefTextShift;
@@ -271,30 +278,6 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 {
                     this.FileName = line.Replace("FILENAME:", string.Empty);
                 }
-                else if (line.StartsWith("LOCATION:"))
-                {
-                    this.Location = line.Replace("LOCATION:", string.Empty);
-                }
-                else if (line.StartsWith("FEMALE:"))
-                {
-                    this.Female = line.Replace("FEMALE:", string.Empty);
-                }
-                else if (line.StartsWith("FGARMENT:"))
-                {
-                    this.Fgarment = line.Replace("FGARMENT:", string.Empty);
-                }
-                else if (line.StartsWith("MALE:"))
-                {
-                    this.Male = line.Replace("MALE:", string.Empty);
-                }
-                else if (line.StartsWith("MGARMENT:"))
-                {
-                    this.Mgarment = line.Replace("MGARMENT:", string.Empty);
-                }
-                else if (line.StartsWith("ACTION:"))
-                {
-                    this.Action = line.Replace("ACTION:", string.Empty);
-                }
                 else if (line.StartsWith("KIND:"))
                 {
                     this.Kind = line.Replace("KIND:", string.Empty);
@@ -341,17 +324,14 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                         if (isDescription)
                         {
                             description_lines.Add(line);
-                            //this.Description = $"{this.Description}{Environment.NewLine}{line}";
                         }
                         else if (isRawData)
                         {
                             rawdata_lines.Add(line);
-                            //this.RawParameters = $"{this.RawParameters}{Environment.NewLine}{line}";
                         }
                         else if (isStory)
                         {
                             story_lines.Add(line);
-                            //this.RawParameters = $"{this.RawParameters}{Environment.NewLine}{line}";
                         }
                     }
                     else
@@ -362,11 +342,31 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             }
             this.Description = string.Join(Environment.NewLine, description_lines.ToArray());
             this.RawParameters = string.Join(Environment.NewLine, rawdata_lines.ToArray());
-            this.Story = string.Join(Environment.NewLine, story_lines.ToArray());
-            this.SceneInfos.Clear();
+            this.Story = string.Join(Environment.NewLine, story_lines.ToArray());            
+            this.SceneCadres.Clear();
             foreach (var line in lines)
             {
-                this.SceneInfos.Add(Info_Scene.GenerateFromString(line));
+                if (line.StartsWith("Id="))
+                {
+                    INFO_SceneCadre cadre = INFO_SceneCadre.GenerateFromString(line, this.SceneCadres);
+                    this.SceneCadres.Add(cadre);
+                }
+                else
+                {
+                    Info_Scene info = Info_Scene.GenerateFromString(line);
+                    var cadre = this.SceneCadres.FirstOrDefault(x => x.Id == info.Group);
+                    if (cadre == null)
+                    {
+                        cadre = new INFO_SceneCadre(info.Group, this.SceneCadres);
+                        cadre.Group = info.Description;
+                        this.SceneCadres.Add(cadre);
+                        cadre.Order = this.SceneCadres.Count;
+                    }
+                    if (info.Order < 0)
+                        info.Order = cadre.Infos.Count;
+                    cadre.Infos.Add(info);                    
+
+                }
             }
             AssignRawParameters();
         }
@@ -377,12 +377,6 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             lines.Add($"NAME:{this.Name}");
             lines.Add($"ID:{this.Id}");
             lines.Add($"FILENAME:{this.FileName}");
-            lines.Add($"LOCATION:{this.Location}");
-            lines.Add($"FEMALE:{this.Female}");
-            lines.Add($"FGARMENT:{this.Fgarment}");
-            lines.Add($"MALE:{this.Male}");
-            lines.Add($"MGARMENT:{this.Mgarment}");
-            lines.Add($"ACTION:{this.Action}");
             lines.Add($"KIND:{this.Kind}");
             lines.Add($"CATEGORY:{this.Category}");
             lines.Add($"VARIANT:{this.Variant}");
@@ -396,17 +390,17 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             lines.Add($"{this.RawParameters}");
             lines.Add($"****METADATA END****");
 
-            List<string> queues = SceneInfos.Select(x => x.Queue).Distinct().ToList();
+            //List<string> queues = SceneInfos.Select(x => x.Queue).Distinct().ToList();
 
-            foreach (var item in queues)
+            foreach (var cadre in this.SceneCadres)
             {
-
-                var selectedQueue = SceneInfos.Where(x => x.Queue == item).OrderBy(x => x.Group).ToList();
-                foreach (var queue in selectedQueue)
+                lines.Add(cadre.GenerateString());
+                foreach (var info in cadre.Infos)
                 {
-                    lines.Add(queue.GenerateString());
+                    lines.Add(info.GenerateString());
                 }
             }
+            
             string fn = Path.Combine(ScenDir, $"{FileName}.epcatsi");
             if (tempDir != null)
             {
@@ -440,92 +434,94 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             bool copycaps = Directory.Exists(scenecapsdir);
             string tempcapspath = Path.Combine(tempPath, "StoryCaps");
             if (copycaps && !Directory.Exists(tempcapspath))
-            {                
+            {
                 Directory.CreateDirectory(tempcapspath);
             }
 
             HashSet<string> files = new HashSet<string>();
 
 
-            foreach (var scene in scenario.SceneInfos)
+            foreach (var cadre in scenario.SceneCadres)
             {
-
-                if (!string.IsNullOrEmpty(scene.File))
+                foreach (var scene in cadre.Infos)
                 {
-                    if (copycaps)
+                    if (!string.IsNullOrEmpty(scene.File))
                     {
-                        string fn = $"{original.FileName}-{scene.Group}.jpg";
-                        string capspath = Path.Combine(scenecapsdir, fn);
-                        if (File.Exists(capspath))
-                        {                          
-                            string newfilepath = Path.Combine(tempcapspath, fn);
-                            if (!File.Exists(newfilepath))
+                        if (copycaps)
+                        {
+                            string fn = $"{original.FileName}-{scene.Group}.jpg";
+                            string capspath = Path.Combine(scenecapsdir, fn);
+                            if (File.Exists(capspath))
                             {
-                                File.Copy(capspath, newfilepath, false);
+                                string newfilepath = Path.Combine(tempcapspath, fn);
+                                if (!File.Exists(newfilepath))
+                                {
+                                    File.Copy(capspath, newfilepath, false);
+                                }
                             }
                         }
-                    }
 
-                    if (scene.File.Contains(Path.DirectorySeparatorChar))
-                    {
-                        bool add = false;
-                        string subdir = string.Empty;
-                        string ext = Path.GetExtension(scene.File).ToUpper();
-                        if (scenario.packImage && (ext == ".JPG" || ext == ".PNG"))
+                        if (scene.File.Contains(Path.DirectorySeparatorChar))
                         {
-                            add = true;
-                            subdir = "IMAGE";
-                        }
-                        else if (scenario.packVideo && (ext == ".M4V"))
-                        {
-                            add = true;
-                            subdir = "VIDEO";
-                        }
-                        else if (scenario.packSound && (ext == ".MP3" || ext == ".WAV" || ext == ".OGG"))
-                        {
-                            if (!scene.File.StartsWith("zip:"))
+                            bool add = false;
+                            string subdir = string.Empty;
+                            string ext = Path.GetExtension(scene.File).ToUpper();
+                            if (scenario.packImage && (ext == ".JPG" || ext == ".PNG"))
                             {
                                 add = true;
-                                subdir = "SOUND";
+                                subdir = "IMAGE";
                             }
-                        }
-                        if (add)
-                        {
-                            string f = scene.File;
-                            if (!files.Contains(scene.File))
+                            else if (scenario.packVideo && (ext == ".M4V"))
                             {
-                                files.Add(f);
-                            }       
-                            if (subdir == "SOUND")
-                            {
-                                scene.File = $@"zip:sound.zip:{Path.GetFileName(scene.File)}";
+                                add = true;
+                                subdir = "VIDEO";
                             }
-                            else
-                                scene.File = $@".\{subdir}\{Path.GetFileName(scene.File)}";
-                        }
-
-                    }
-                }
-
-                if (scenario.packStory)
-                {
-                    if (!string.IsNullOrEmpty(scene.Story))
-                    {
-                        string v = scene.Story;
-                        if (scene.Story.Contains("@"))
-                        {
-                            var vals = scene.Story.Split('@');
-                            v = vals[0];
-                            if (v.Contains(Path.DirectorySeparatorChar))
+                            else if (scenario.packSound && (ext == ".MP3" || ext == ".WAV" || ext == ".OGG"))
+                            {
+                                if (!scene.File.StartsWith("zip:"))
+                                {
+                                    add = true;
+                                    subdir = "SOUND";
+                                }
+                            }
+                            if (add)
                             {
                                 string f = scene.File;
-                                
-                                if (!files.Contains(v))
-                                    files.Add(v);
-                                scene.Story = $@".\{Path.GetFileName(v)}@{vals[1]}";
+                                if (!files.Contains(scene.File))
+                                {
+                                    files.Add(f);
+                                }
+                                if (subdir == "SOUND")
+                                {
+                                    scene.File = $@"zip:sound.zip:{Path.GetFileName(scene.File)}";
+                                }
+                                else
+                                    scene.File = $@".\{subdir}\{Path.GetFileName(scene.File)}";
                             }
-                        }
 
+                        }
+                    }
+
+                    if (scenario.packStory)
+                    {
+                        if (!string.IsNullOrEmpty(scene.Story))
+                        {
+                            string v = scene.Story;
+                            if (scene.Story.Contains("@"))
+                            {
+                                var vals = scene.Story.Split('@');
+                                v = vals[0];
+                                if (v.Contains(Path.DirectorySeparatorChar))
+                                {
+                                    string f = scene.File;
+
+                                    if (!files.Contains(v))
+                                        files.Add(v);
+                                    scene.Story = $@".\{Path.GetFileName(v)}@{vals[1]}";
+                                }
+                            }
+
+                        }
                     }
                 }
             }
@@ -570,7 +566,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 }
             }
 
-            scenario.SaveToFile(tempPath,null);
+            scenario.SaveToFile(tempPath, null);
 
 
             string sounddir = Path.Combine(tempPath, "SOUND");
@@ -600,7 +596,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                                             di = Directory.GetParent(Path.GetDirectoryName(soundzip));
                                             if (di != null)
                                             {
-                                                soundzip = Path.Combine(ScenDir, "sound.zip");                                                
+                                                soundzip = Path.Combine(ScenDir, "sound.zip");
                                             }
 
                                         }
@@ -616,10 +612,10 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                     soundzip = Path.Combine(ScenDir, "sound.zip");
                     ZipFile.CreateFromDirectory(sounddir, soundzip, CompressionLevel.Optimal, false);
                 }
-                
+
                 if (File.Exists(soundzip))
                 {
-                    var za = ZipFile.Open(soundzip,ZipArchiveMode.Update);
+                    var za = ZipFile.Open(soundzip, ZipArchiveMode.Update);
                     var soundfiles = Directory.GetFiles(sounddir);
                     foreach (var item in soundfiles)
                     {
@@ -627,7 +623,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                         if (ze == null)
                         {
                             za.CreateEntryFromFile(item, Path.GetFileName(item));
-                        }                       
+                        }
                     }
                     za.Dispose();
                 }
@@ -654,7 +650,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 {
                 }
             }
-            
+
         }
 
         public void LoadFromZip(string file)
@@ -681,7 +677,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         {
             foreach (var line in clipsinstr)
             {
-               
+
                 if (line.StartsWith("NAME:"))
                 {
                     return line.Replace("NAME:", string.Empty);
@@ -691,3 +687,4 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         }
     }
 }
+

@@ -1,5 +1,6 @@
 ﻿using Menu.Classes;
 using StoGen.Classes.Scene;
+using StoGen.Classes.SceneCadres;
 using StoGen.Classes.Transition;
 using StoGenerator;
 using StoGenMake.Elements;
@@ -25,17 +26,12 @@ namespace StoGen.Classes.Data.Games
         }
         public StoryBase Story = null;
         private Info_Scene CurrentBackground;
-        public void SetScenario(StoryBase story, string queue)
+        public List<INFO_SceneCadre> Cadres;
+        public void SetScenario(StoryBase story, List<INFO_SceneCadre> list)
         {
             Story = story;
-            var Queue = story.SceneInfos.Where(x => x.Queue == queue && x.Active).ToList();
-            Queue.Sort(delegate (Info_Scene x, Info_Scene y)
-            {
-                if (x.Group == null) x.Group = string.Empty;
-                if (y.Group == null) y.Group = string.Empty;
-                return x.Group.CompareTo(y.Group);
-            });
-            this.Process(Queue, null);
+            Cadres = list;
+            this.Process(null);
         }
 
         private string GetAbsolutePath(string path)
@@ -82,15 +78,19 @@ namespace StoGen.Classes.Data.Games
 
             return rez;
         }
-        public List<CadreData> Process(List<Info_Scene> queue, int? indexToInsert)
+        public List<CadreData> Process(int? indexToInsert)
         {            
-            if (queue == null) return null;
+            if (Cadres == null) return null;
             List<Info_Scene> Queue = new List<Info_Scene>();
-            foreach (var item in queue)
+            foreach (var item in Cadres)
             {
-                //Process Parameter File
-                string s = ProcessParameterFile(item.GenerateString());
-                Queue.Add(Info_Scene.GenerateFromString(s));
+                foreach (var info in item.Infos)
+                {
+                    //Process Parameter File
+                    string s = ProcessParameterFile(info.GenerateString());
+                    Queue.Add(Info_Scene.GenerateFromString(s));
+                }
+
             }          
 
             List<CadreData> result = new List<CadreData>();
@@ -513,7 +513,6 @@ namespace StoGen.Classes.Data.Games
                 CurrentBackground.O = "100"; // after 1st adding, set visible
                 it.File = GetAbsolutePath(it.File);
                 it.Group = group.First().Group;
-                it.Queue = group.First().Queue;
                 //it.Z = "0";
                 //it.X = "0";
                 //it.Y = "0";
@@ -649,11 +648,11 @@ namespace StoGen.Classes.Data.Games
             return result;
         }
 
-        internal override List<CadreData> GetNextCadreData(CadreController proc, int cadreId)
-        {
-            List<Info_Scene> list = this.Story.GoForwardStory(proc, cadreId);
-            return Process(list, cadreId);
-        }
+        //internal override List<CadreData> GetNextCadreData(CadreController proc, int cadreId)
+        //{
+        //    List<Info_Scene> list = this.Story.GoForwardStory(proc, cadreId);
+        //    return Process(list, cadreId);
+        //}
 
 
         public override MenuCreatorDelegate GetMenuCreator(bool live)

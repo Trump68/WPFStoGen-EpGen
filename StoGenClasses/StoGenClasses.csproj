@@ -106,6 +106,7 @@
       <DependentUpon>frmTextEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Scenario\SCENARIO.cs" />
+    <Compile Include="SceneCadres\INFO_SceneCadre.cs" />
     <Compile Include="Scene\STORYScene.cs" />
     <Compile Include="Scene\SCENE_Clips.cs" />
     <Compile Include="Frames\Frame.cs" />
