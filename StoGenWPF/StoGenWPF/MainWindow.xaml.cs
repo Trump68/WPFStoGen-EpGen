@@ -16,6 +16,7 @@ using System.Runtime.InteropServices;
 using System.Media;
 using StoGenerator;
 using StoGen.Classes.Data.Games;
+using StoGen.Classes;
 
 namespace StoGenWPF
 {
@@ -217,12 +218,22 @@ namespace StoGenWPF
            
             else if (e.Key == Key.Space)
             {
-                if (paused)                
+                if (FrameImage.LoopProcessed)
+                {
+                    Projector.PicContainer.Clip.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
+                    FrameImage.LoopProcessed = false;
                     Projector.PicContainer.Clip.Play();
-                
+                }
                 else
-                    Projector.PicContainer.Clip.Pause();
-                paused = !paused;
+                {
+
+                    if (paused)
+                        Projector.PicContainer.Clip.Play();
+
+                    else
+                        Projector.PicContainer.Clip.Pause();
+                    paused = !paused;
+                }
             }
             else if (e.Key == Key.F3)
             {

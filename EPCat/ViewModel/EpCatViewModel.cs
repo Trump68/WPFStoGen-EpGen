@@ -523,27 +523,27 @@ namespace EPCat
                     }
                 }
             }
-            INFO_SceneCadre cadre = new INFO_SceneCadre(null, this.Cadres);
+            bool fileinserted = false;
+            INFO_SceneCadre cadre = this.CurrentCadre;
+            if (!incurrentgroup)
+            {
+                cadre = new INFO_SceneCadre(null, this.Cadres);
+            }
             if (kind < 0 && TicTakToe.CopiedCombinedScene != null && TicTakToe.CopiedCombinedScene.Any())
             {
                 Info_Scene newclipinfo = new Info_Scene();
                 newclipinfo.LoadFromString(TicTakToe.CopiedCombinedScene.First());
-                string newgroup = string.Empty;
-                //if  (toEnd)
-                //    newgroup = IncrementGroupToEnd(newclipinfo.Group);
-                //else
-                newgroup = "(New Cadre)";
 
-
-                bool fileinserted = false;
-
-                cadre.Group = this.CurrentCadre.Group;
-
-                string str;
-                if (ask && frmInputBox.ShowInputBox(out str, this.CurrentCadre.Description) == System.Windows.Forms.DialogResult.OK)
-                    cadre.Description = str;
-                else
-                    cadre.Description = this.CurrentCadre.Description;
+                
+                if (!incurrentgroup)
+                {
+                    cadre.Group = this.CurrentCadre.Group;
+                    string str;
+                    if (ask && frmInputBox.ShowInputBox(out str, this.CurrentCadre.Description) == System.Windows.Forms.DialogResult.OK)
+                        cadre.Description = str;
+                    else
+                        cadre.Description = this.CurrentCadre.Description;
+                }
 
                 foreach (var item in TicTakToe.CopiedCombinedScene)
                 {
@@ -590,8 +590,8 @@ namespace EPCat
                     }
                     cadre.Infos.Add(newclipinfo);
                 }
-                addNewComb(cadre);
-                //TicTakToe.CopiedCombinedScene.Clear();
+                if (!incurrentgroup) addNewComb(cadre);
+                
             }
             else
             {

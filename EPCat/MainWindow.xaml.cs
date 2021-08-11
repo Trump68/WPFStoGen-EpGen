@@ -601,10 +601,8 @@ namespace EPCat
         }
         private void AddClipBtn_Click(object sender, RoutedEventArgs e)
         {
-            //save
-            ViewModel.AddCombinedScene(true,false,0,8, true);
-            // reset
-            ViewModel.RefreshFolder();
+            ViewModel.AddCombinedScene(false, true, 0, -1, true);
+            ViewModel.RefreshFolder();            
         }
         private void AddSceneHeaderBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -751,10 +749,13 @@ namespace EPCat
 
         private void CopyGroupBtn2_Click(object sender, RoutedEventArgs e)
         {
+            //ViewModel.CopyCombinedScene(true);
+            //ViewModel.AddCombinedScene(false, true,0, -1, true);
+            //// reset
+            //ViewModel.RefreshFolder();
             ViewModel.CopyCombinedScene(true);
-            ViewModel.AddCombinedScene(false, true,0, -1, true);
-            // reset
-            ViewModel.RefreshFolder();
+            //ViewModel.AddCombinedScene(false, true, 0, -1, true);
+            //ViewModel.RefreshFolder();
         }
 
         private void GVCombScen_KeyUp(object sender, KeyEventArgs e)

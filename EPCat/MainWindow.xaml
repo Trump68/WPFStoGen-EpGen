@@ -192,13 +192,16 @@
                             <dxlc:LayoutItem HorizontalAlignment="Left"/>
                             <dxlc:LayoutItem HorizontalAlignment="Left"/>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton  Content="Add Clip" Width="80" Margin="5,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
+                                <dx:SimpleButton  Content="Add Cadre" Width="80" Margin="5,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="AddSceneBtn2" Content="Add" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneBtn_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopySceneBtn2" Content="Copy" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopySceneBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="CopyCadre" Content="Copy Cadre" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn2_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left"/>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
@@ -209,9 +212,6 @@
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopGrBtn32" Content="CGr+.1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn3_Click" />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="CopGrBtn22" Content="CopyGrToEnd" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn2_Click" />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
                                 <dx:SimpleButton x:Name="CollapseGroups2" Content="+" Width="30" HorizontalAlignment="Left" Click="CollapseGroup_Click"  />
