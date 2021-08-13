@@ -117,6 +117,7 @@ namespace EPCat
             }
             //(this.DataContext as ECadreListViewModel).RefreshStart = RefreshStart;
         }
+
         private void minionPlayer_MediaOpened(object sender, RoutedEventArgs e)
         {
             minionPlayer.MediaOpened -= minionPlayer_MediaOpened;
@@ -133,7 +134,22 @@ namespace EPCat
             sbarPosition.Minimum = 0;
             sbarPosition.Maximum = minionPlayer.NaturalDuration.TimeSpan.TotalSeconds;
             sbarPosition.Visibility = Visibility.Visible;
+
+            PresentationSource src = PresentationSource.FromVisual(this);
+            double dpiX = 96.0;
+            double dpiY = 96.0;
+            if (src != null)
+            {
+                dpiX = 96.0 * src.CompositionTarget.TransformToDevice.M11;
+                dpiY = 96.0 * src.CompositionTarget.TransformToDevice.M22;
+            }
+
+            minionPlayer.Width = minionPlayer.NaturalVideoWidth * (96.0 / dpiX);
+            minionPlayer.Height = minionPlayer.NaturalVideoHeight * (96.0 / dpiY);
+
+            txtPosition.Text = ClipPosition.ToString();            
             minionPlayer.Pause();
+            RestoreVideoPosition();
         }
 
         private void Collapse_Click(object sender, RoutedEventArgs e)
@@ -185,7 +201,9 @@ namespace EPCat
             ViewModel.SaveScenario();
             ViewModel.ShowScene();
         }
-        private void btnLoad_Click(object sender, RoutedEventArgs e)
+
+        public static double ClipPosition = 0.0;
+        private void LoadClip(double position)
         {
             this.NavTabGroup.SelectedContainer = this.EditTab;
             string path = null;
@@ -195,7 +213,7 @@ namespace EPCat
                 if (videos.Any())
                 {
                     path = videos.First();
-                    ViewModel.ClipToProcess = path;                   
+                    ViewModel.ClipToProcess = path;
                 }
             }
             if (!string.IsNullOrEmpty(ViewModel.ClipToProcess))
@@ -206,26 +224,22 @@ namespace EPCat
 
             if (string.IsNullOrEmpty(path)) return;
 
-            PresentationSource src = PresentationSource.FromVisual(this);
-            double dpiX = 96.0;
-            double dpiY = 96.0;
-            if (src != null)
-            {
-                dpiX = 96.0 * src.CompositionTarget.TransformToDevice.M11;
-                dpiY = 96.0 * src.CompositionTarget.TransformToDevice.M22;
-            }
 
 
             minionPlayer.MediaOpened -= minionPlayer_MediaOpened;
             minionPlayer.MediaOpened += minionPlayer_MediaOpened;
 
-                minionPlayer.Stop();
-                minionPlayer.Source = new Uri(ViewModel.ClipToProcess);
-                minionPlayer.Play();
-            minionPlayer.Width = minionPlayer.NaturalVideoWidth * (96.0/dpiX);
-            minionPlayer.Height = minionPlayer.NaturalVideoHeight * (96.0 / dpiY);
-            minionPlayer.Pause();
+            minionPlayer.Stop();
+            minionPlayer.Source = new Uri(ViewModel.ClipToProcess);
+            ClipPosition = position;
+            //minionPlayer.Play();
 
+            //minionPlayer.Pause();
+        }
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
+        {
+
+            LoadClip(0.0);
         }
 
 
@@ -313,6 +327,7 @@ namespace EPCat
             {
                 //txtPositionStart.Text = TicTakToe.ClipTemplate.PositionStart.ToString();                
                 minionPlayer.Play();
+               
                 RestoreVideoPosition();
                 EnableButtons(true);
             }
@@ -987,6 +1002,49 @@ namespace EPCat
         private void btnScreenshotSimple_Click(object sender, RoutedEventArgs e)
         {
             this.MadeShot(false, false, true);
+        }
+
+        private void GoToClip(object sender, RoutedEventArgs e)
+        {
+            if (this.ViewModel.CurrentCadre.KindName != "Mov") return;
+            var info = this.ViewModel.CurrentCadre.Infos.FirstOrDefault(x => x.KindName == "Mov");
+            if (info == null) return;
+
+            double val;
+            if (double.TryParse(info.PositionStart, out val))
+            {
+                if (!string.IsNullOrEmpty(info.File))
+                {
+                    string clipfile = info.File;
+                    if (clipfile.StartsWith("__"))
+                    {
+                        string filepath = Path.Combine(this.ViewModel.CurrentFolder.ItemDirectory, "parameters.txt");
+                        if (File.Exists(filepath))
+                        {
+                            var lines = File.ReadAllLines(filepath);
+                            foreach (string line in lines)
+                            {
+                                if (!line.StartsWith("//"))
+                                {
+                                    var vals = line.Split('=');
+                                    if (vals[0] == clipfile)
+                                    {
+                                        clipfile = vals[1];
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    NavTabGroup.SelectTabItem(EditTab);
+                    if (string.IsNullOrEmpty(ClipFile.Text))
+                    {
+                        ClipFile.Text = clipfile;
+                        
+                    }
+                    LoadClip(val);
+                }
+            }
         }
     }
 }

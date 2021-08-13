@@ -294,7 +294,9 @@
                                         <dxg:GridColumn FieldName="Group" IsSmart="True" IsEnabled="True" Width="100" AutoFilterCondition="Contains"/>
                                     </dxg:GridControl>
                                 </dxlc:LayoutItem>
-
+                                <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
+                                    <dx:SimpleButton x:Name="SbGotoClip" Content="Go to Clip" Width="90" HorizontalAlignment="Left" Click="GoToClip"  />
+                                </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Name ="Grid2" Margin="0,0,0,0" VerticalAlignment="Stretch">
                                     <dxg:GridControl x:Name="GVCombScen2"
                                          AutoGenerateColumns="None"
@@ -422,6 +424,7 @@
                                         <dxlc:LayoutItem Label="Template" MaxWidth="100">
                                             <TextBox Name="txtTemplate2" Text="{Binding SelectedItem.Template, ElementName=GVCombScen2}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
                                         </dxlc:LayoutItem>
+
                                     </dxlc:LayoutGroup>
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                         <dxlc:LayoutItem Label="Transition" LabelPosition="Left">
@@ -732,7 +735,7 @@
                                     <TextBox Name="txtPosition" Width="65" Height="24" Text="0.0"
                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
                                     <Label Content="File:" Margin="5,0,0,0" VerticalAlignment="Center"/>
-                                    <TextBox Text="{Binding ClipToProcess, UpdateSourceTrigger=PropertyChanged}"
+                                    <TextBox Name="ClipFile" Text="{Binding ClipToProcess, UpdateSourceTrigger=PropertyChanged}"
                                          Width="200" Height="24" />
                                 </StackPanel>
                             </StackPanel>
