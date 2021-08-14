@@ -455,7 +455,7 @@ namespace StoGenWPF
             try
             {
                 var result = await this.TryScreenshotToClipboardAsync(this.MainGrid, quality, force);
-                if (result)
+                if (result && force)
                 {
                     SystemSounds.Beep.Play();
                 }

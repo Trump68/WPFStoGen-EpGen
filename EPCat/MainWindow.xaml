@@ -103,15 +103,20 @@
                             </dxg:GridControl.GroupSummary>
                             <dxg:GridControl.View>
                                 <dxg:TableView Name="MainGridView"
-                                    AllowConditionalFormattingMenu="True" 
-                                    AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow" AllowGrouping="True" AllowPartialGrouping="False" AllowFixedGroups="True" ShowGroupedColumns="True" ShowFixedTotalSummary="True" ShowCriteriaInAutoFilterRow="False" HiddenEditor="MainGridView_HiddenEditor">
+                                    AllowConditionalFormattingMenu="True"                                     
+                                    AllowEditing="False" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow" AllowGrouping="True" AllowPartialGrouping="False" AllowFixedGroups="True" ShowGroupedColumns="True" ShowFixedTotalSummary="True" ShowCriteriaInAutoFilterRow="False" HiddenEditor="MainGridView_HiddenEditor">
                                     <dxg:TableView.FormatConditions>
                                         <dxg:ColorScaleFormatCondition Expression="[VideoPresent] = True" FieldName="ItemPath" PredefinedFormatName="YellowGreenColorScale" />
                                     </dxg:TableView.FormatConditions>
                                 </dxg:TableView>
                             </dxg:GridControl.View>
                             <dxg:GridColumn FieldName="Catalog" MaxWidth="30" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Name" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Name" IsSmart="True"/>
+                            <!--<dxg:GridColumn FieldName="Icon1">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:ImageEditSettings MaxWidth="18"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>-->
                             <dxg:GridColumn FieldName="AltTitle" IsSmart="True" />
                             <dxg:GridColumn FieldName="Country" MaxWidth="35" IsSmart="True" />
                             <dxg:GridColumn FieldName="Year" Width="25" FixedWidth="True" IsSmart="True" AllowGrouping="True" />

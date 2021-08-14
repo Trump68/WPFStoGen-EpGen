@@ -416,6 +416,16 @@ namespace EPCat.Model
         [XmlIgnore]
         public bool Edited = false;
 
+        //private ImageSource _Icon1;
+        //public ImageSource Icon1
+        //{
+        //    get
+        //    {
+        //        if (_Icon1 == null)
+        //            _Icon1 = BitmapFromUri(new Uri(@"d:\Work\WPFStoGen-EpGen\Icons\001.png"));
+        //        return _Icon1;
+        //    }            
+        //}
 
         public static void SetCurrentImagePassort(int selectedIndex)
         {

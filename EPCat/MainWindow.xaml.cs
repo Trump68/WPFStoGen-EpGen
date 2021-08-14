@@ -918,12 +918,12 @@ namespace EPCat
 
         private void CollapseGroup_Click(object sender, RoutedEventArgs e)
         {
-            this.GVCombScen2.CollapseAllGroups();
+            this.GVCombScen3.CollapseAllGroups();
         }
 
         private void ExpandGroup_Click(object sender, RoutedEventArgs e)
         {
-            this.GVCombScen2.ExpandAllGroups();
+            this.GVCombScen3.ExpandAllGroups();
         }
         private void btnUpdateJAV_Click(object sender, RoutedEventArgs e)
         {
