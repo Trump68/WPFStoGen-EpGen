@@ -10,7 +10,7 @@ namespace StoGen.Classes.SceneCadres
 {
     public class INFO_SceneCadre
     {
-        public INFO_SceneCadre(string id, ObservableCollection<INFO_SceneCadre> owner)
+        public INFO_SceneCadre(string id, ObservableCollection<INFO_SceneGroup> owner)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -20,7 +20,7 @@ namespace StoGen.Classes.SceneCadres
                 this.Id = id;
             Owner = owner;
         }
-        private ObservableCollection<INFO_SceneCadre> Owner = null;
+        public ObservableCollection<INFO_SceneGroup> Owner { set; get; }
         private List<Info_Scene> _Infos = new List<Info_Scene>();
         public List<Info_Scene> Infos
         {
@@ -72,9 +72,13 @@ namespace StoGen.Classes.SceneCadres
                     var list = Infos.Where(x => x.Template != null && !x.Template.StartsWith("~"));
                     foreach (var item in list)
                     {                        
-                        foreach (var cadre in Owner)
+                        foreach (var group in Owner)
                         {
-                            gr = cadre.Infos.FirstOrDefault(x => x.Template != null && x.Template ==($"~{item.Template}") && x.Tags != null && x.Tags.Contains("main"));
+                            foreach (var cadre in group.Cadres)
+                            {
+                                gr = cadre.Infos.FirstOrDefault(x => x.Template != null && x.Template == ($"~{item.Template}") && x.Tags != null && x.Tags.Contains("main"));
+                                if (gr != null) break;
+                            }
                             if (gr != null) break;
                         }
                         if (gr != null) break;
@@ -114,7 +118,7 @@ namespace StoGen.Classes.SceneCadres
             return string.Join(";", rez.ToArray());
         }
 
-        internal static INFO_SceneCadre GenerateFromString(string line, ObservableCollection<INFO_SceneCadre> owner)
+        internal static INFO_SceneCadre GenerateFromString(string line, ObservableCollection<INFO_SceneGroup> owner)
         {
             INFO_SceneCadre Rez = null; 
             List <string> data = line.Split(';').ToList();
@@ -122,7 +126,7 @@ namespace StoGen.Classes.SceneCadres
             {
                 if (str.StartsWith("Id="))
                 {
-                    Rez = new INFO_SceneCadre(str.Replace("Id=",string.Empty),owner);
+                    Rez = new INFO_SceneCadre(str.Replace("Id=",string.Empty), owner);
                 }
                 else if (str.StartsWith("DSC="))
                 {

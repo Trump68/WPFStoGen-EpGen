@@ -26,11 +26,11 @@ namespace StoGen.Classes.Data.Games
         }
         public StoryBase Story = null;
         private Info_Scene CurrentBackground;
-        public List<INFO_SceneCadre> Cadres;
+        public List<INFO_SceneCadre> CadreList;
         public void SetScenario(StoryBase story, List<INFO_SceneCadre> list)
         {
             Story = story;
-            Cadres = list;
+            CadreList = list;
             this.Process(null);
         }
 
@@ -82,16 +82,19 @@ namespace StoGen.Classes.Data.Games
         {            
             if (Cadres == null) return null;
             List<Info_Scene> Queue = new List<Info_Scene>();
-            foreach (var item in Cadres)
-            {
-                foreach (var info in item.Infos)
+
+                foreach (var cadre in CadreList)
                 {
-                    //Process Parameter File
-                    string s = ProcessParameterFile(info.GenerateString());
-                    Queue.Add(Info_Scene.GenerateFromString(s));
+                    foreach (var info in cadre.Infos)
+                    {
+                        //Process Parameter File
+                        string s = ProcessParameterFile(info.GenerateString());
+                        Queue.Add(Info_Scene.GenerateFromString(s));
+                    }
                 }
 
-            }          
+
+                      
 
             List<CadreData> result = new List<CadreData>();
             List<List<Info_Scene>> data = new List<List<Info_Scene>>();

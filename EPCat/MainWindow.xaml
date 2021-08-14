@@ -104,7 +104,7 @@
                             <dxg:GridControl.View>
                                 <dxg:TableView Name="MainGridView"
                                     AllowConditionalFormattingMenu="True"                                     
-                                    AllowEditing="False" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow" AllowGrouping="True" AllowPartialGrouping="False" AllowFixedGroups="True" ShowGroupedColumns="True" ShowFixedTotalSummary="True" ShowCriteriaInAutoFilterRow="False" HiddenEditor="MainGridView_HiddenEditor">
+                                    AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow" AllowGrouping="True" AllowPartialGrouping="False" AllowFixedGroups="True" ShowGroupedColumns="True" ShowFixedTotalSummary="True" ShowCriteriaInAutoFilterRow="False" HiddenEditor="MainGridView_HiddenEditor">
                                     <dxg:TableView.FormatConditions>
                                         <dxg:ColorScaleFormatCondition Expression="[VideoPresent] = True" FieldName="ItemPath" PredefinedFormatName="YellowGreenColorScale" />
                                     </dxg:TableView.FormatConditions>
@@ -248,30 +248,56 @@
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Name ="GridScenario2" View="Group" Orientation="Horizontal" Padding="0,0">
                             <dxlc:LayoutGroup Name="GridSceneProps2" View="Group" Orientation="Vertical" Padding="0,0" HorizontalAlignment="Left">
-
+                                <dxlc:LayoutItem Name ="Grid4" Margin="0,0,0,0" VerticalAlignment="Stretch">
+                                    <dxg:GridControl x:Name="GVCombScen4"
+                                         AutoGenerateColumns="None"
+                                         EnableSmartColumnsGeneration="True"
+                                         ItemsSource="{Binding Groups}"
+                                         SelectedItem="{Binding CurrentGroup}"
+                                         SelectionMode="Cell" AutoExpandAllGroups="True" IsRecursiveExpand="True" KeyUp="GVCombScen_KeyUp">
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView 
+                                Name= "CombinedScenGV4"
+                                AllowPerPixelScrolling="True"
+                                AllowEditing= "True"
+                                ShowTotalSummary="False"
+                                AutoWidth="False"
+                                ShowDataNavigator="True"
+                                DataNavigatorButtons="DeleteFocusedRow" 
+                                ShowGroupedColumns="False" 
+                                AllowPartialGrouping="False" 
+                                AllowFixedGroups="True" 
+                                ShowGroupFooters="False" AllowGrouping="True" ShowGroupPanel="False" >
+                                            </dxg:TableView>
+                                        </dxg:GridControl.View>
+                                        <dxg:GridColumn FieldName="Order" IsSmart="True" Width="30" SortOrder="Ascending" />
+                                        <dxg:GridColumn FieldName="Description" IsSmart="True" Width="400" AutoFilterCondition="Contains"/>
+                                    </dxg:GridControl>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
+                                    <dx:SimpleButton x:Name="SbGotoClip" Content="Go to Clip" Width="90" HorizontalAlignment="Left" Click="GoToClip"  />
+                                </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Name ="Grid3" Margin="0,0,0,0" VerticalAlignment="Stretch">
                                     <dxg:GridControl x:Name="GVCombScen3"
                                          AutoGenerateColumns="None"
                                          EnableSmartColumnsGeneration="True"
-                                         ItemsSource="{Binding Cadres}"
+                                         ItemsSource="{Binding GroupCadres}"
                                          SelectedItem="{Binding CurrentCadre}"
                                          SelectionMode="Cell" AutoExpandAllGroups="True" IsRecursiveExpand="True" KeyUp="GVCombScen_KeyUp">
                                         <dxg:GridControl.View>
                                             <dxg:TableView 
                                 Name= "CombinedScenGV3"
                                 AllowPerPixelScrolling="True"
-                                ShowAutoFilterRow="True"
                                 AllowEditing= "True"
                                 ShowTotalSummary="False"
                                 AutoWidth="False"
-                                ShowGroupPanel="True"
                                 ShowDataNavigator="True"
                                 DataNavigatorButtons="DeleteFocusedRow" 
                                 ShowGroupedColumns="False" 
                                 AllowPartialGrouping="False" 
                                 AllowFixedGroups="True" 
                                 ShowGroupFooters="False" 
-                                ShowFilterPanelMode="ShowAlways">
+                                ShowFilterPanelMode="ShowAlways" ShowGroupPanel="False">
                                                 <dxg:TableView.FormatConditions>
                                                     <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Tit'" FieldName="KindName">
                                                         <dx:Format Background="#FFB6FAB6" FontWeight="Bold" TextDecorations="{x:Null}"/>
@@ -293,16 +319,13 @@
                                         </dxg:GridControl.View>
                                         <dxg:GridColumn FieldName="Order" IsSmart="True" Width="30" SortOrder="Ascending" />
                                         <dxg:GridColumn FieldName="KindName" IsSmart="True" Width="35" IsEnabled="False"/>
-                                        <dxg:GridColumn FieldName="Group" IsSmart="True" Width="300" IsEnabled="False" GroupIndex="0" AutoFilterCondition="Contains"/>
                                         <dxg:GridColumn FieldName="Description" IsSmart="True" Width="400" AutoFilterCondition="Contains"/>
                                         <dxg:GridColumn FieldName="Story" IsSmart="True" IsEnabled="False" Width="700" AutoFilterCondition="Contains"/>
                                         <dxg:GridColumn FieldName="Group" IsSmart="True" IsEnabled="True" Width="100" AutoFilterCondition="Contains"/>
                                     </dxg:GridControl>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
-                                    <dx:SimpleButton x:Name="SbGotoClip" Content="Go to Clip" Width="90" HorizontalAlignment="Left" Click="GoToClip"  />
-                                </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Name ="Grid2" Margin="0,0,0,0" VerticalAlignment="Stretch">
+
+                                <dxlc:LayoutItem Name ="Grid2" Margin="0,0,0,0" VerticalAlignment="Stretch" Height="250">
                                     <dxg:GridControl x:Name="GVCombScen2"
                                          AutoGenerateColumns="None"
                                          EnableSmartColumnsGeneration="True"                                         

@@ -72,18 +72,26 @@ namespace EPCat
                 return CurrentCadre.Infos;
             }
         }
-
-        private ObservableCollection<INFO_SceneCadre> _Cadres = new ObservableCollection<INFO_SceneCadre>();
-        public ObservableCollection<INFO_SceneCadre> Cadres
+        public List<INFO_SceneCadre> GroupCadres
         {
             get
             {
-                return _Cadres;
+                if (CurrentGroup == null) return null;
+                return CurrentGroup.Cadres;
+            }
+        }
+
+        private ObservableCollection<INFO_SceneGroup> _Groups = new ObservableCollection<INFO_SceneGroup>();
+        public ObservableCollection<INFO_SceneGroup> Groups
+        {
+            get
+            {
+                return _Groups;
 
             }
             set
             {
-                _Cadres = value;
+                _Groups = value;
             }
         }
 
@@ -163,30 +171,27 @@ namespace EPCat
         //}
 
 
-        Info_Scene _CurrentElement;
-        public Info_Scene CurrentElement
+        Info_Scene _CurrentInfo;
+        public Info_Scene CurrentInfo
         {
             get
             {
                 if (this.Story != null)
                 {
-                    if (_CurrentElement == null)
+                    if (_CurrentInfo == null)
                     {
-                        if (this.Story.SceneCadres.Any() && this.Story.SceneCadres.First().Infos.Any())
-                            _CurrentElement = this.Story.SceneCadres.First().Infos.First();
+                        if (Story.GroupList.Any() && Story.GroupList.First().Cadres.Any() && Story.GroupList.First().Cadres.First().Infos.Any())
+                            _CurrentInfo = Story.GroupList.First().Cadres.First().Infos.First();
                     }
                 }
-                return _CurrentElement;
+                return _CurrentInfo;
             }
             set
             {
-                _CurrentElement = value;
+                _CurrentInfo = value;
 
             }
         }
-
-
-
         INFO_SceneCadre _CurrentCadre;
         public INFO_SceneCadre CurrentCadre
         {
@@ -196,18 +201,46 @@ namespace EPCat
                 {
                     if (_CurrentCadre == null)
                     {
-                        if (this.Story.SceneCadres.Any())
-                            _CurrentCadre = this.Story.SceneCadres.First();
+                        if (Story.GroupList.Any() && Story.GroupList.First().Cadres.Any())
+                            _CurrentCadre = Story.GroupList.First().Cadres.First();
                     }
                 }
-                if (_CurrentCadre != null)
-                    recalculatePoster(_CurrentCadre.Id);
                 return _CurrentCadre;
             }
             set
             {
                 _CurrentCadre = value;
+                if (_CurrentCadre != null)
+                    recalculatePoster(_CurrentCadre.Id);
                 RaisePropertyChanged(() => this.Scenes);
+                RaisePropertyChanged(() => this.CurrentCadre);
+            }
+        }
+        INFO_SceneGroup _CurrentGroup;
+        public INFO_SceneGroup CurrentGroup
+        {
+            get
+            {
+                if (this.Story != null)
+                {
+                    if (_CurrentGroup == null)
+                    {
+                        if (Story.GroupList.Any())
+                            _CurrentGroup = Story.GroupList.First();
+                    }
+                }
+                
+                return _CurrentGroup;
+            }
+            set
+            {
+                _CurrentGroup = value;
+                if (_CurrentGroup != null)
+                {
+                    CurrentCadre = _CurrentGroup.Cadres.First();
+                }
+                RaisePropertyChanged(() => this.Groups);
+                RaisePropertyChanged(() => this.GroupCadres);
             }
         }
 
@@ -306,7 +339,8 @@ namespace EPCat
             RaisePropertyChanged(() => this.CurrentClip);
             RaisePropertyChanged(() => this.Story);
             RaisePropertyChanged(() => this.Scenes);
-            RaisePropertyChanged(() => this.Cadres);
+            RaisePropertyChanged(() => this.Groups);
+            RaisePropertyChanged(() => this.GroupCadres);
             RaisePropertyChanged(() => this.ClipToProcess);
 
         }
@@ -484,12 +518,12 @@ namespace EPCat
 
         internal void CopyCombinedScene(bool allgroup)
         {
-            if (this.CurrentElement == null)
+            if (this.CurrentInfo == null)
                 return;
             TicTakToe.CopiedCombinedScene.Clear();
             if (allgroup)
             {
-                //var col = this.Story.SceneInfos.Where(x => x.Group == this.CurrentElement.Group);
+                //var col = this.Story.SceneInfos.Where(x => x.Group == this.CurrentInfo.Group);
                 foreach (var item in this.CurrentCadre.Infos)
                 {
                     TicTakToe.CopiedCombinedScene.Add(item.GenerateString());
@@ -497,7 +531,7 @@ namespace EPCat
             }
             else
             {
-                TicTakToe.CopiedCombinedScene.Add(this.CurrentElement.GenerateString());
+                TicTakToe.CopiedCombinedScene.Add(this.CurrentInfo.GenerateString());
             }
         }
 
@@ -527,7 +561,7 @@ namespace EPCat
             INFO_SceneCadre cadre = this.CurrentCadre;
             if (!incurrentgroup)
             {
-                cadre = new INFO_SceneCadre(null, this.Cadres);
+                cadre = new INFO_SceneCadre(null, this.Groups);
             }
             if (kind < 0 && TicTakToe.CopiedCombinedScene != null && TicTakToe.CopiedCombinedScene.Any())
             {
@@ -605,8 +639,8 @@ namespace EPCat
                     v.LoadFromString(TicTakToe.CopiedCombinedScene[0]);
                     if (incurrentgroup)
                     {
-                        newclipinfo.Group = this.CurrentElement.Group;
-                        newclipinfo.Description = this.CurrentElement.Description;
+                        newclipinfo.Group = this.CurrentInfo.Group;
+                        newclipinfo.Description = this.CurrentInfo.Description;
                     }
                     else
                     {
@@ -633,28 +667,34 @@ namespace EPCat
 
 
 
-        private void addNewComb(INFO_SceneCadre newclipinfo)
+        private void addNewComb(INFO_SceneCadre newcadre)
         {
 
             if (this.Story == null) return;
-            this.Story.SceneCadres.Add(newclipinfo);
-            this.CurrentCadre = newclipinfo;
+            if (this.CurrentGroup == null) return;
+            this.CurrentGroup.Cadres.Add(newcadre);
+            this.CurrentCadre = newcadre;
             RaisePropertyChanged(() => this.CurrentFolder);
-            RaisePropertyChanged(() => this.CurrentElement);
+            RaisePropertyChanged(() => this.CurrentInfo);
             RaisePropertyChanged(() => this.Scenes);
-            RaisePropertyChanged(() => this.Cadres);
-            MainWindow.Instance.SetGVCurrent(this.Story.SceneCadres.IndexOf(this.CurrentCadre));
+            RaisePropertyChanged(() => this.GroupCadres);
+            MainWindow.Instance.SetGVCurrent(this.CurrentGroup.Cadres.IndexOf(this.CurrentCadre));
 
         }
 
         internal void ShowScene()
         {
-            if (this.CurrentElement == null) return;
+            if (this.CurrentInfo == null) return;
 
             // GameWorldFactory.GameWorld.LoadData();
             StoryScene scene = new StoryScene();
             scene.CatalogPath = this.CurrentFolder.ItemDirectory;
-            var list = Story.SceneCadres.OrderBy(x => x.Group).ThenBy(u => u.Order).ToList();
+            List<INFO_SceneCadre> list = new List<INFO_SceneCadre>();
+            foreach (var group in Story.GroupList.OrderBy(x => x.Order))
+            {
+                list.AddRange(group.Cadres.OrderBy(x => x.Order));
+            }
+            
             scene.SetScenario(this.Story, list);
 
             if (projector == null)
@@ -716,7 +756,7 @@ namespace EPCat
             List<string> clipsinstr = new List<string>(File.ReadAllLines(fileName));
             this.Story = Generator.LoadScenario(clipsinstr, item, fileName);
             //this.Scenes = this.Story.SceneInfos;
-            this.Cadres = this.Story.SceneCadres;
+            this.Groups = this.Story.GroupList;
             RefreshFolder();
         }
 
@@ -783,7 +823,7 @@ namespace EPCat
 
         //internal void CopyPasteDescriptionGroup()
         //{
-        //    string descr = CurrentElement.Description;
+        //    string descr = CurrentInfo.Description;
         //    var tocopylist = Story.SceneInfos.Where(x => x.Description == descr).ToList();
         //    TicTakToe.CopiedCombinedScene.Clear();
         //    foreach (var item in tocopylist)
@@ -829,9 +869,9 @@ namespace EPCat
 
         internal void CompileOne()
         {
-            //if (this.CurrentElement == null) return;
+            //if (this.CurrentInfo == null) return;
             //StoryBase StoryCopy = new StoryBase();
-            //StoryCopy.FileName = this.CurrentElement.Group.Replace(".","_");
+            //StoryCopy.FileName = this.CurrentInfo.Group.Replace(".","_");
             //StoryCopy.RawParameters = this.Story.RawParameters;
             //StoryCopy.AssignRawParameters();
             //StoryCopy.Story = this.Story.Story;
@@ -842,7 +882,7 @@ namespace EPCat
             //    TicTakToe.CopiedCombinedScene.Add(item.GenerateString());
             //}
 
-            //col = this.Story.SceneInfos.Where(x => x.Group == this.CurrentElement.Group);
+            //col = this.Story.SceneInfos.Where(x => x.Group == this.CurrentInfo.Group);
             //foreach (var item in col)
             //{
             //    TicTakToe.CopiedCombinedScene.Add(item.GenerateString());

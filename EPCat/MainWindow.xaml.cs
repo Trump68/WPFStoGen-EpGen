@@ -799,7 +799,7 @@ namespace EPCat
                 return;
             ViewModel.SaveClipTemplate();
             ViewModel.CopyGroup(false, false, 0,true);
-            //var col = ViewModel.Story.SceneInfos.Where(x => x.Group == ViewModel.CurrentElement.Group && x.Kind == 8);
+            //var col = ViewModel.Story.SceneInfos.Where(x => x.Group == ViewModel.CurrentInfo.Group && x.Kind == 8);
             //if (col.Any())
             //{
             //    col.First().PositionStart = (TicTakToe.ClipTemplate.PositionStart + (decimal)0.1).ToString();
@@ -839,7 +839,7 @@ namespace EPCat
         //    this.ImportMedia(str3);
         //    TicTakToe.SetClipScreenShot(str3);
         //    ViewModel.CopyGroup(true, true, 1, true);
-        //    var col = ViewModel.Story.SceneInfos.Where(x => x.Group == ViewModel.CurrentElement.Group && x.Kind == 0);
+        //    var col = ViewModel.Story.SceneInfos.Where(x => x.Group == ViewModel.CurrentInfo.Group && x.Kind == 0);
         //    if (col.Any())
         //    {
         //        col.First().File = str3;
@@ -1006,8 +1006,15 @@ namespace EPCat
 
         private void GoToClip(object sender, RoutedEventArgs e)
         {
-            if (this.ViewModel.CurrentCadre.KindName != "Mov") return;
-            var info = this.ViewModel.CurrentCadre.Infos.FirstOrDefault(x => x.KindName == "Mov");
+            var cadre = ViewModel.CurrentCadre;
+            if (ViewModel.CurrentCadre.KindName != "Mov")
+            {
+                cadre = ViewModel.CurrentGroup.Cadres.Where(x => x.KindName == "Mov").FirstOrDefault();
+            }
+            if (cadre == null) return;
+            
+            var info = cadre.Infos.FirstOrDefault(x => x.KindName == "Mov");
+
             if (info == null) return;
 
             double val;

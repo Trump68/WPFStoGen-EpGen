@@ -10,6 +10,7 @@ using System.Windows;
 using StoGen.Classes.Scene;
 using StoGen.ModelClasses;
 using StoGenerator;
+using StoGen.Classes.SceneCadres;
 
 namespace StoGenMake
 {
@@ -69,7 +70,12 @@ namespace StoGenMake
             else if (story != null)
             {
                 scene = new StoryScene();
-                var list = story.SceneCadres.OrderBy(x => x.Group).ThenBy(u => u.Order).ToList();
+                List<INFO_SceneCadre> list = new List<INFO_SceneCadre>();
+                foreach (var group in story.GroupList.OrderBy(x => x.Order))
+                {
+                    list.AddRange(group.Cadres.OrderBy(x => x.Order));
+                }
+
                 ((StoryScene)scene).SetScenario(story, list);
             }
 

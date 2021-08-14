@@ -70,38 +70,20 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
         public string Variant { set; get; }
         public string RawParameters { set; get; }
         public bool IsGenerationAllowed { get; set; } = false;
-        //private ObservableCollection<Info_Scene> _ObservableSceneInfoList = null;
-        //public ObservableCollection<Info_Scene> SceneInfos
-        //{
-        //    get
-        //    {
-        //        if (_ObservableSceneInfoList == null)
-        //        {
-        //            _ObservableSceneInfoList = new ObservableCollection<Info_Scene>();
-
-        //        }
-        //        return _ObservableSceneInfoList;
-        //    }
-        //}
-        private ObservableCollection<INFO_SceneCadre> _ObservableCadreList = null;
-        public ObservableCollection<INFO_SceneCadre> SceneCadres
+        private ObservableCollection<INFO_SceneGroup> _GroupList = null;
+        public ObservableCollection<INFO_SceneGroup> GroupList
         {
             get
             {
-                if (_ObservableCadreList == null)
+                if (_GroupList == null)
                 {
-                    _ObservableCadreList = new ObservableCollection<INFO_SceneCadre>();
+                    _GroupList = new ObservableCollection<INFO_SceneGroup>();
 
                 }
-                return _ObservableCadreList;
+                return _GroupList;
             }
         }
 
-        //public List<IGrouping<string, Info_Scene>> GetGroupedList()
-        //{
-        //    return SceneInfos.GroupBy(x => x.Group).OrderBy(x => x.Key).ToList();
-        //}
-        //text
         public string DefTextSize;
         public string DefTextShift;
         public string DefTextWidth;
@@ -342,29 +324,53 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             }
             this.Description = string.Join(Environment.NewLine, description_lines.ToArray());
             this.RawParameters = string.Join(Environment.NewLine, rawdata_lines.ToArray());
-            this.Story = string.Join(Environment.NewLine, story_lines.ToArray());            
-            this.SceneCadres.Clear();
+            this.Story = string.Join(Environment.NewLine, story_lines.ToArray());
+            this.GroupList.Clear();
             foreach (var line in lines)
             {
-                if (line.StartsWith("Id="))
+                if (line.StartsWith("GroupId="))
                 {
-                    INFO_SceneCadre cadre = INFO_SceneCadre.GenerateFromString(line, this.SceneCadres);
-                    this.SceneCadres.Add(cadre);
+                    INFO_SceneGroup group = INFO_SceneGroup.GenerateFromString(line);
+                    if (string.IsNullOrEmpty(group.Description))
+                    {
+                        group.Description = group.Id;
+                    }
+                    this.GroupList.Add(group);
+                }
+                else if (line.StartsWith("Id="))
+                {
+                    INFO_SceneCadre cadre = INFO_SceneCadre.GenerateFromString(line, this.GroupList);
+                    var group = this.GroupList.FirstOrDefault(x => x.Id == cadre.Group);
+                    if (group == null)
+                    {
+                        group = new INFO_SceneGroup(cadre.Group);                       
+                        group.Description = cadre.Group;                        
+                        this.GroupList.Add(group);
+                        group.Order = this.GroupList.Count;
+                    }
+                    cadre.Owner = this.GroupList;
+                    group.Cadres.Add(cadre);
                 }
                 else
                 {
                     Info_Scene info = Info_Scene.GenerateFromString(line);
-                    var cadre = this.SceneCadres.FirstOrDefault(x => x.Id == info.Group);
+                    INFO_SceneCadre cadre = null;
+                    foreach (var group in GroupList)
+                    {
+                        cadre = group.Cadres.FirstOrDefault(x => x.Id == info.Group);
+                        if (cadre != null) break;
+                    }
+
                     if (cadre == null)
                     {
-                        cadre = new INFO_SceneCadre(info.Group, this.SceneCadres);
+                        cadre = new INFO_SceneCadre(info.Group, this.GroupList);
                         cadre.Group = info.Description;
-                        this.SceneCadres.Add(cadre);
-                        cadre.Order = this.SceneCadres.Count;
+                        this.GroupList.First().Cadres.Add(cadre);
+                        cadre.Order = this.GroupList.First().Cadres.Count;
                     }
                     if (info.Order < 0)
                         info.Order = cadre.Infos.Count;
-                    cadre.Infos.Add(info);                    
+                    cadre.Infos.Add(info);
 
                 }
             }
@@ -392,15 +398,19 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
 
             //List<string> queues = SceneInfos.Select(x => x.Queue).Distinct().ToList();
 
-            foreach (var cadre in this.SceneCadres)
+            foreach (var group in this.GroupList)
             {
-                lines.Add(cadre.GenerateString());
-                foreach (var info in cadre.Infos)
+                lines.Add(group.GenerateString());
+                foreach (var cadre in group.Cadres)
                 {
-                    lines.Add(info.GenerateString());
+                    lines.Add(cadre.GenerateString());
+                    foreach (var info in cadre.Infos)
+                    {
+                        lines.Add(info.GenerateString());
+                    }
                 }
             }
-            
+
             string fn = Path.Combine(ScenDir, $"{FileName}.epcatsi");
             if (tempDir != null)
             {
@@ -440,92 +450,93 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
 
             HashSet<string> files = new HashSet<string>();
 
-
-            foreach (var cadre in scenario.SceneCadres)
+            foreach (var group in scenario.GroupList)
             {
-                foreach (var scene in cadre.Infos)
+                foreach (var cadre in group.Cadres)
                 {
-                    if (!string.IsNullOrEmpty(scene.File))
+                    foreach (var scene in cadre.Infos)
                     {
-                        if (copycaps)
+                        if (!string.IsNullOrEmpty(scene.File))
                         {
-                            string fn = $"{original.FileName}-{scene.Group}.jpg";
-                            string capspath = Path.Combine(scenecapsdir, fn);
-                            if (File.Exists(capspath))
+                            if (copycaps)
                             {
-                                string newfilepath = Path.Combine(tempcapspath, fn);
-                                if (!File.Exists(newfilepath))
+                                string fn = $"{original.FileName}-{scene.Group}.jpg";
+                                string capspath = Path.Combine(scenecapsdir, fn);
+                                if (File.Exists(capspath))
                                 {
-                                    File.Copy(capspath, newfilepath, false);
+                                    string newfilepath = Path.Combine(tempcapspath, fn);
+                                    if (!File.Exists(newfilepath))
+                                    {
+                                        File.Copy(capspath, newfilepath, false);
+                                    }
                                 }
                             }
-                        }
 
-                        if (scene.File.Contains(Path.DirectorySeparatorChar))
-                        {
-                            bool add = false;
-                            string subdir = string.Empty;
-                            string ext = Path.GetExtension(scene.File).ToUpper();
-                            if (scenario.packImage && (ext == ".JPG" || ext == ".PNG"))
+                            if (scene.File.Contains(Path.DirectorySeparatorChar))
                             {
-                                add = true;
-                                subdir = "IMAGE";
-                            }
-                            else if (scenario.packVideo && (ext == ".M4V"))
-                            {
-                                add = true;
-                                subdir = "VIDEO";
-                            }
-                            else if (scenario.packSound && (ext == ".MP3" || ext == ".WAV" || ext == ".OGG"))
-                            {
-                                if (!scene.File.StartsWith("zip:"))
+                                bool add = false;
+                                string subdir = string.Empty;
+                                string ext = Path.GetExtension(scene.File).ToUpper();
+                                if (scenario.packImage && (ext == ".JPG" || ext == ".PNG"))
                                 {
                                     add = true;
-                                    subdir = "SOUND";
+                                    subdir = "IMAGE";
                                 }
-                            }
-                            if (add)
-                            {
-                                string f = scene.File;
-                                if (!files.Contains(scene.File))
+                                else if (scenario.packVideo && (ext == ".M4V"))
                                 {
-                                    files.Add(f);
+                                    add = true;
+                                    subdir = "VIDEO";
                                 }
-                                if (subdir == "SOUND")
+                                else if (scenario.packSound && (ext == ".MP3" || ext == ".WAV" || ext == ".OGG"))
                                 {
-                                    scene.File = $@"zip:sound.zip:{Path.GetFileName(scene.File)}";
+                                    if (!scene.File.StartsWith("zip:"))
+                                    {
+                                        add = true;
+                                        subdir = "SOUND";
+                                    }
                                 }
-                                else
-                                    scene.File = $@".\{subdir}\{Path.GetFileName(scene.File)}";
-                            }
-
-                        }
-                    }
-
-                    if (scenario.packStory)
-                    {
-                        if (!string.IsNullOrEmpty(scene.Story))
-                        {
-                            string v = scene.Story;
-                            if (scene.Story.Contains("@"))
-                            {
-                                var vals = scene.Story.Split('@');
-                                v = vals[0];
-                                if (v.Contains(Path.DirectorySeparatorChar))
+                                if (add)
                                 {
                                     string f = scene.File;
-
-                                    if (!files.Contains(v))
-                                        files.Add(v);
-                                    scene.Story = $@".\{Path.GetFileName(v)}@{vals[1]}";
+                                    if (!files.Contains(scene.File))
+                                    {
+                                        files.Add(f);
+                                    }
+                                    if (subdir == "SOUND")
+                                    {
+                                        scene.File = $@"zip:sound.zip:{Path.GetFileName(scene.File)}";
+                                    }
+                                    else
+                                        scene.File = $@".\{subdir}\{Path.GetFileName(scene.File)}";
                                 }
-                            }
 
+                            }
+                        }
+
+                        if (scenario.packStory)
+                        {
+                            if (!string.IsNullOrEmpty(scene.Story))
+                            {
+                                string v = scene.Story;
+                                if (scene.Story.Contains("@"))
+                                {
+                                    var vals = scene.Story.Split('@');
+                                    v = vals[0];
+                                    if (v.Contains(Path.DirectorySeparatorChar))
+                                    {
+                                        string f = scene.File;
+
+                                        if (!files.Contains(v))
+                                            files.Add(v);
+                                        scene.Story = $@".\{Path.GetFileName(v)}@{vals[1]}";
+                                    }
+                                }
+
+                            }
                         }
                     }
                 }
             }
-
             foreach (var file in files)
             {
                 string f = file;
@@ -652,7 +663,6 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             }
 
         }
-
         public void LoadFromZip(string file)
         {
             string rootpath = Path.GetDirectoryName(file);

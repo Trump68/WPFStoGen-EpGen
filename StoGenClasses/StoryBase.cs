@@ -35,7 +35,7 @@ namespace StoGenerator
             Info_Scene title = new Info_Scene();
             title.Kind = 1;
             title.Group = currentGroup;
-            this.SceneCadres.Last().Infos.Add(title);
+            this.GroupList.Last().Cadres.Last().Infos.Add(title);
             IncrementGroup();
         }
         public string CatalogPath;
