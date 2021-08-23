@@ -10,26 +10,54 @@ namespace EPCat.Model
 {
     public static class JAV
     {
-        public static void JavLibraryDo(string serie, int startstr, string StatusText, string disc)
+        public static void JavLibraryDo(string serie, int startstr, string disc, int failureTreshold)
         {
             if (string.IsNullOrEmpty(serie))
                 serie = "GVG";
-
-            string[] series = serie.Split(',');
+            DateTime today = DateTime.Now.Date;
+            List<string> series = serie.Split(',').ToList();
+            if (serie == "ALL")
+            {
+                series = Directory.GetDirectories($@"{disc}:\!CATALOG\JAV\").Select(x=>Path.GetFileName(x)).ToList();
+                
+            }
             foreach (var item in series)
             {
+                Console.WriteLine($"{item} - start");
+                string check = Path.Combine($@"{disc}:\!CATALOG\JAV\{item}\", "updated.txt");
+                if (File.Exists(check))
+                {
+                    var lines = File.ReadAllLines(check);
+                    if (lines.Any())
+                    {
+                       if (lines[0] == "completed")
+                       {
+                            Console.WriteLine($"{item} - completed");
+                            continue;
+                       }                       
+                       DateTime last;
+                       if (DateTime.TryParse(lines[0], out last))
+                       {
+                            if (last.Date == today)
+                            {
+                                Console.WriteLine($"{item} - refreshed today");
+                                continue;
+                            }
+                       }                           
+                    }
+                }
+
                 if (startstr == 0)
                     startstr = 1;
 
                 int start = startstr;
                 int proc = 0;
                 int failure = 0;
-                StatusText = $"{proc},{failure}";
 
                 string keyword = $"{item}-{start.ToString($"D3")}";
                 bool go = JavLibraryDoOne(item, keyword, disc);
 
-                while (failure < 100)
+                while (failure < failureTreshold)
                 {
                     start++;
                     keyword = $"{item}-{start.ToString($"D3")}";
@@ -40,10 +68,13 @@ namespace EPCat.Model
                         failure = 0;
                     }
                     else
+                    {
+                        Console.Write($"{keyword} - fail {failure}");
                         failure++;
-                    //StatusText = $"{proc},{failure}-run";
+                    }                 
                 }
-                //StatusText = $"{proc},{failure}-stopped";
+                Console.WriteLine($"{item} - complete");
+                File.WriteAllText(check,$"{today}");
             }
 
 
@@ -51,6 +82,14 @@ namespace EPCat.Model
         }
         private static bool JavLibraryDoOne(string serie, string keyword, string disc)
         {
+
+            string check = Path.Combine($@"{disc}:\!CATALOG\JAV\{serie}\{keyword}", EpItem.p_PassportName);
+            if (File.Exists(check))
+            {
+                return true;
+            }
+
+            Console.WriteLine($"Get {keyword}");
             WebRequest request = WebRequest.Create($"http://www.javlibrary.com/en/vl_searchbyid.php?keyword={keyword}");
             request.Method = "GET";
             string content = null;
@@ -70,8 +109,6 @@ namespace EPCat.Model
             {
                 return false;
             }
-
-
 
             int pos = -1;
             if (content.Contains(@"<div class=""videos"">"))
@@ -248,7 +285,6 @@ namespace EPCat.Model
                 }
             }
 
-
             return true;
         }
 
@@ -277,11 +313,12 @@ namespace EPCat.Model
                 return _JAVCollections;
             }
         }
+        public static List<string> FoldersToUpdate = new List<string>();
         private static Dictionary<string, bool> getJAVCollections()
         {
             var list = new Dictionary<string, bool>();
             
-            string file = Path.Combine(Loader.FoldersToUpdate.Last(), "update.txt");
+            string file = Path.Combine(FoldersToUpdate.Last(), "update.txt");
             if (File.Exists(file))
             {
                 var strings = File.ReadAllLines(file);
@@ -296,7 +333,7 @@ namespace EPCat.Model
                         listtocheck.Add(str);
                 }
 
-                foreach (var path in Loader.FoldersToUpdate)
+                foreach (var path in FoldersToUpdate)
                 {
                     ProcessPath(ref list, ref listtocheck, path);
 
@@ -407,7 +444,7 @@ namespace EPCat.Model
             }
         }
 
-        internal static void JavLibraryMakeBat(string marker)
+        public static void JavLibraryMakeBat(string marker)
         {
             string path = @"d:\Work\WPFStoGen-EpGen\CATALOG\BAT\!JAV_ARTIST\";
             string file = $@"{marker}.bat";
@@ -423,7 +460,7 @@ namespace EPCat.Model
             file = $@"{marker}.txt";
             lines.Clear();
             lines.Add($@"LOAD CATALOG d:\Work\WPFStoGen-EpGen\CATALOG\jav.cat");
-            foreach (var lpath in Loader.FoldersToUpdate)
+            foreach (var lpath in FoldersToUpdate)
             {
                 lines.Add($@"UPDATE FOLDER {lpath}");
             }
@@ -443,7 +480,7 @@ namespace EPCat.Model
         private static void LoadThreshold()
         {
 
-            string file = Path.Combine(Loader.FoldersToUpdate.Last(), "updated.txt");
+            string file = Path.Combine(FoldersToUpdate.Last(), "updated.txt");
             var strings = File.ReadAllLines(file);
 
             _JAVupdated = new Dictionary<string, string>();
@@ -511,7 +548,7 @@ namespace EPCat.Model
                 lines.Add($"{item.Key}={item.Value}");
             }
 
-            string file = Path.Combine(Loader.FoldersToUpdate.Last(), "updated.txt");
+            string file = Path.Combine(FoldersToUpdate.Last(), "updated.txt");
             File.WriteAllLines(file, lines);
         }
         private static void SaveUpdate()
@@ -521,7 +558,7 @@ namespace EPCat.Model
             {
                 lines.Add($"{item.Key}");
             }
-            string file = Path.Combine(Loader.FoldersToUpdate.Last(), "update.txt");            
+            string file = Path.Combine(FoldersToUpdate.Last(), "update.txt");            
             File.WriteAllLines(file, lines);
         }
         internal static void UpdateBySerieList(List<string> list)
@@ -534,7 +571,7 @@ namespace EPCat.Model
                 if (!CheckThreshold(serie))
                     continue;
                 string disc = string.Empty;
-                foreach (var lpath in Loader.FoldersToUpdate)
+                foreach (var lpath in FoldersToUpdate)
                 {
                     disc = lpath[0].ToString();
                     string path = Path.Combine(lpath, serie);
@@ -548,7 +585,7 @@ namespace EPCat.Model
             System.Windows.Application.Current.Shutdown();
         }
 
-        internal static string CalculateRating(List<EpItem> _FolderList)
+        public static string CalculateRating(List<EpItem> _FolderList)
         {
 
             Dictionary<string, int> ratingCont = new Dictionary<string, int>();
@@ -627,7 +664,7 @@ namespace EPCat.Model
             }
         }
 
-        internal static void ReloadCollection()
+        public static void ReloadCollection()
         {
             _JAVCollections = getJAVCollections();
             //StarRating.SaveJAVActress();

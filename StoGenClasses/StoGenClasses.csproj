@@ -78,6 +78,8 @@
     <Compile Include="Catalog\EpItem.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="Interfaces\IPersonManager.cs" />
+    <Compile Include="JAV\JAV.cs" />
+    <Compile Include="JAV\StarRating.cs" />
     <Compile Include="LocationStorage.cs" />
     <Compile Include="Menu\MenuClasses.cs" />
     <Compile Include="Person\Activity.cs" />

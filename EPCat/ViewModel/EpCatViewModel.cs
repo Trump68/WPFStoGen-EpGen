@@ -970,6 +970,15 @@ namespace EPCat
 
             }
         }
+
+        internal void AddGroup()
+        {
+            if (this.CurrentFolder == null) return;
+            bool fileinserted = false;
+            INFO_SceneGroup group = new INFO_SceneGroup(null);
+            group.Description = "New Group";
+            this.CurrentGroup = group;
+        }
     }
 
 }

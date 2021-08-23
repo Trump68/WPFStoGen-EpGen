@@ -74,10 +74,8 @@
     </ApplicationDefinition>
     <Compile Include="ConditionaFormattingEx.cs" />
     <Compile Include="Model\InterfaceLayout.cs" />
-    <Compile Include="Model\JAV.cs" />
     <Compile Include="Model\Loader.cs" />
     <Compile Include="CurrentDataRowTemplates.xaml.cs" />
-    <Compile Include="Model\StarRating.cs" />
     <Compile Include="Model\TicTakToe.cs" />
     <Compile Include="ViewModel\EpCatViewModel.cs" />
     <Page Include="MainWindow.xaml">

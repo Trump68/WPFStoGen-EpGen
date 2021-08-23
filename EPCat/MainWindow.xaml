@@ -188,26 +188,11 @@
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="ShowSceneBtn2" Content="Play" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ShowSceneBtn_Click" />
                             </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton  Content="Add Control" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneCtrlBtn_Click" />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton  Content="Add Header" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneHeaderBtn_Click" />
-                            </dxlc:LayoutItem>
+
                             <dxlc:LayoutItem HorizontalAlignment="Left"/>
                             <dxlc:LayoutItem HorizontalAlignment="Left"/>
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton  Content="Add Cadre" Width="80" Margin="5,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="AddSceneBtn2" Content="Add" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneBtn_Click" />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="CopySceneBtn2" Content="Copy" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopySceneBtn_Click" />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="CopyCadre" Content="Copy Cadre" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn2_Click" />
-                            </dxlc:LayoutItem>
+
+
                             <dxlc:LayoutItem HorizontalAlignment="Left"/>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopGrBtn12" Content="CGr+1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn1_Click" />
@@ -215,15 +200,9 @@
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CopGrBtn102" Content="CGr+1(10)" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn1_10_Click" />
                             </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton x:Name="CopGrBtn32" Content="CGr+.1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn3_Click" />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
-                                <dx:SimpleButton x:Name="CollapseGroups2" Content="+" Width="30" HorizontalAlignment="Left" Click="CollapseGroup_Click"  />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
-                                <dx:SimpleButton x:Name="ExpandGroups2" Content="-" Width="30" HorizontalAlignment="Left" Click="ExpandGroup_Click"  />
-                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left"/>
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0"/>
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0"/>
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CompileScenarioBtn2" Content="Compile" Width="80" Margin="100,4,0,0" HorizontalAlignment="Left" Click="CompileScenarioBtn_Click" />
                             </dxlc:LayoutItem>
@@ -274,9 +253,14 @@
                                         <dxg:GridColumn FieldName="Description" IsSmart="True" Width="400" AutoFilterCondition="Contains"/>
                                     </dxg:GridControl>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
-                                    <dx:SimpleButton x:Name="SbGotoClip" Content="Go to Clip" Width="90" HorizontalAlignment="Left" Click="GoToClip"  />
-                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                    <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
+                                        <dx:SimpleButton x:Name="SbGotoClip" Content="Go to Clip" Width="90" HorizontalAlignment="Left" Click="GoToClip"  />
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                                        <dx:SimpleButton Content="Add" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddGroup_Click" />
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
                                 <dxlc:LayoutItem Name ="Grid3" Margin="0,0,0,0" VerticalAlignment="Stretch">
                                     <dxg:GridControl x:Name="GVCombScen3"
                                          AutoGenerateColumns="None"
@@ -324,7 +308,20 @@
                                         <dxg:GridColumn FieldName="Group" IsSmart="True" IsEnabled="True" Width="100" AutoFilterCondition="Contains"/>
                                     </dxg:GridControl>
                                 </dxlc:LayoutItem>
-
+                                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                    <dx:SimpleButton x:Name="CopyCadre" Content="Copy Cadre" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn2_Click" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                    <dx:SimpleButton  Content="Add Cadre" Width="80" Margin="5,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
+                                </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                                        <dx:SimpleButton  Content="Add Control" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneCtrlBtn_Click" />
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                                        <dx:SimpleButton  Content="Add Header" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneHeaderBtn_Click" />
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
                                 <dxlc:LayoutItem Name ="Grid2" Margin="0,0,0,0" VerticalAlignment="Stretch" Height="250">
                                     <dxg:GridControl x:Name="GVCombScen2"
                                          AutoGenerateColumns="None"
@@ -379,7 +376,14 @@
 
                                     </dxg:GridControl>
                                 </dxlc:LayoutItem>
-
+                                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                                        <dx:SimpleButton x:Name="CopySceneBtn2" Content="Copy" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopySceneBtn_Click" />
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                                        <dx:SimpleButton x:Name="AddSceneBtn2" Content="Add" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneBtn_Click" />
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
                                 <dxlc:LayoutGroup Name="SceneProps2" View="Group" Orientation="Vertical" Padding="0,0">
                                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                         <dxlc:LayoutItem Label="File">

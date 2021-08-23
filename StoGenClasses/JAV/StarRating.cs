@@ -65,13 +65,13 @@ namespace EPCat.Model
             {
                 lines.Add($"{item.Key}|{item.Value}");
             }
-            string file = Path.Combine(Loader.FoldersToUpdate.Last(), "Actress.txt");
+            string file = Path.Combine(JAV.FoldersToUpdate.Last(), "Actress.txt");
             File.WriteAllLines(file, lines);
         }
         public static void LoadJAVActress()
         {
             Ratings.Clear();
-            string file = Path.Combine(Loader.FoldersToUpdate.Last(), "Actress.txt");
+            string file = Path.Combine(JAV.FoldersToUpdate.Last(), "Actress.txt");
             var lines = File.ReadAllLines(file);
             foreach (string item in lines)
             {

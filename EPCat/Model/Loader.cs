@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EPCat.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
@@ -52,7 +53,7 @@ namespace EPCat.Model
 
         public List<EpItem> ProcessScriptFile(List<EpItem> sourceList)
         {
-            FoldersToUpdate.Clear();
+            JAV.FoldersToUpdate.Clear();
             Source = sourceList;
 
             string commandf = "commandscript.txt";
@@ -699,7 +700,7 @@ namespace EPCat.Model
 
             JAV.ReloadCollection();
             //StarRating.LoadJAVActress();
-            foreach (var item in FoldersToUpdate)
+            foreach (var item in JAV.FoldersToUpdate)
             {
                 UpdateFolder(item, ref list,true);
             }
@@ -716,7 +717,7 @@ namespace EPCat.Model
             }
         }
 
-        public static List<string> FoldersToUpdate = new List<string>();
+        
         internal void ParseLine(string line)
         {
 
@@ -734,7 +735,7 @@ namespace EPCat.Model
             }
             else if (line.StartsWith(c_UpdateFolder))
             {
-                FoldersToUpdate.Add(line.Replace(c_UpdateFolder, string.Empty).ToUpper());
+                JAV.FoldersToUpdate.Add(line.Replace(c_UpdateFolder, string.Empty).ToUpper());
 
             }
             else if (line.StartsWith(c_LoadCatalog))
@@ -945,9 +946,9 @@ namespace EPCat.Model
             {
                 string dirname = Path.GetFileName(itemPath);
               
-                    if (FoldersToUpdate.Exists(x=>itemPath.Contains(x)))
+                    if (JAV.FoldersToUpdate.Exists(x=>itemPath.Contains(x)))
                     {
-                        if (!FoldersToUpdate.Exists(x => itemPath==x))
+                        if (!JAV.FoldersToUpdate.Exists(x => itemPath==x))
                         {
                             if (!JAV.JAVCollections.ContainsKey("ALL") && JAV.JAVCollections.Any())
                             {
