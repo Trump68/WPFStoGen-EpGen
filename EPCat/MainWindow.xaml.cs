@@ -931,7 +931,7 @@ namespace EPCat
         }
         private void btnGoRepeatText3_Click(object sender, RoutedEventArgs e)
         {
-            JAV.JavLibraryDo(ViewModel.RepeatedText, ViewModel.RepeatedTextStart, ViewModel.RatingText, 10);
+            JAV.JavLibraryDo(ViewModel.RepeatedText, ViewModel.RepeatedTextStart, ViewModel.RatingText, 10, 3);
 
         }
 

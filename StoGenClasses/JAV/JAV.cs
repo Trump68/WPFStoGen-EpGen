@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoGen.Classes.Catalog;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace EPCat.Model
 {
     public static class JAV
     {
-        public static void JavLibraryDo(string serie, int startstr, string disc, int failureTreshold)
+        public static void JavLibraryDo(string serie, int startstr, string disc, int failureTreshold, int daysTreshold)
         {
             if (string.IsNullOrEmpty(serie))
                 serie = "GVG";
@@ -21,32 +22,35 @@ namespace EPCat.Model
                 series = Directory.GetDirectories($@"{disc}:\!CATALOG\JAV\").Select(x=>Path.GetFileName(x)).ToList();
                 
             }
+            List<string> Total = new List<string>();
+            int total = 0;
             foreach (var item in series)
             {
-                Console.WriteLine($"{item} - start");
-                string check = Path.Combine($@"{disc}:\!CATALOG\JAV\{item}\", "updated.txt");
+                
+                string check = Path.Combine($@"{disc}:\!CATALOG\JAV\{item}\", "updated.txt");                
                 if (File.Exists(check))
                 {
                     var lines = File.ReadAllLines(check);
                     if (lines.Any())
                     {
                        if (lines[0] == "completed")
-                       {
+                       {                            
                             Console.WriteLine($"{item} - completed");
                             continue;
                        }                       
                        DateTime last;
                        if (DateTime.TryParse(lines[0], out last))
                        {
-                            if (last.Date == today)
-                            {
-                                Console.WriteLine($"{item} - refreshed today");
+                            if (last.Date.AddDays(daysTreshold) >= today)
+                            {                                
+                                Console.WriteLine($"{item} - too early");
                                 continue;
                             }
                        }                           
                     }
                 }
 
+                Console.WriteLine($"{item} - start");
                 if (startstr == 0)
                     startstr = 1;
 
@@ -55,41 +59,54 @@ namespace EPCat.Model
                 int failure = 0;
 
                 string keyword = $"{item}-{start.ToString($"D3")}";
-                bool go = JavLibraryDoOne(item, keyword, disc);
-
+                JavLibraryDoOne(item, keyword, disc) ;
+                
                 while (failure < failureTreshold)
                 {
                     start++;
                     keyword = $"{item}-{start.ToString($"D3")}";
-                    go = JavLibraryDoOne(item, keyword, disc);
-                    if (go)
-                    {
+                    int go = JavLibraryDoOne(item, keyword, disc);
+                    if (go == 100)
+                    {                        
                         proc++;
+                        total++;
+                        failure = 0;
+                        Console.Write($" - done {total}\n");
+                    }
+                    if (go == 50)
+                    {
                         failure = 0;
                     }
                     else
                     {
-                        Console.Write($"{keyword} - fail {failure}");
+                        if (failure>0)
+                            Console.Write($" - skipped {failure}\n");
                         failure++;
                     }                 
                 }
-                Console.WriteLine($"{item} - complete");
+                string str = $"{item} - complete {proc}\n";
+                Console.WriteLine(str);
+                Total.Add(str);
                 File.WriteAllText(check,$"{today}");
             }
 
-
+            Console.WriteLine("Added total:");
+            foreach (string item in Total)
+            {
+                Console.WriteLine(item);
+            }            
 
         }
-        private static bool JavLibraryDoOne(string serie, string keyword, string disc)
+        private static int JavLibraryDoOne(string serie, string keyword, string disc)
         {
 
             string check = Path.Combine($@"{disc}:\!CATALOG\JAV\{serie}\{keyword}", EpItem.p_PassportName);
             if (File.Exists(check))
             {
-                return true;
+                return 50;
             }
 
-            Console.WriteLine($"Get {keyword}");
+            Console.Write($"    Get {keyword}");
             WebRequest request = WebRequest.Create($"http://www.javlibrary.com/en/vl_searchbyid.php?keyword={keyword}");
             request.Method = "GET";
             string content = null;
@@ -107,7 +124,7 @@ namespace EPCat.Model
             }
             catch (Exception)
             {
-                return false;
+                return 0;
             }
 
             int pos = -1;
@@ -130,13 +147,13 @@ namespace EPCat.Model
                 }
                 catch (Exception)
                 {
-                    return false;
+                    return 0;
                 }
 
             }
 
             if (content.Contains("Search returned no result"))
-                return false;
+                return 1;
 
             // 1. title
             pos = content.IndexOf(@"post-title text");
@@ -279,13 +296,13 @@ namespace EPCat.Model
                     }
                     catch (Exception)
                     {
-
+                                              
                     }
 
                 }
             }
 
-            return true;
+            return 100;
         }
 
 
@@ -417,7 +434,7 @@ namespace EPCat.Model
             int proc = 0;
             int failure = 0;
             string keyword = $"{serie}-{start.ToString($"D3")}";
-            bool go = JavLibraryDoOne(serie, keyword, disc);
+            int go = JavLibraryDoOne(serie, keyword, disc);
             while (failure < 2)
             {
                 start++;
@@ -434,7 +451,7 @@ namespace EPCat.Model
 
                 keyword = $"{serie}-{start.ToString($"D3")}";
                 go = JavLibraryDoOne(serie, keyword, disc);
-                if (go)
+                if (go == 100)
                 {
                     proc++;
                     failure = 0;
@@ -670,5 +687,63 @@ namespace EPCat.Model
             //StarRating.SaveJAVActress();
         }
       
+        public static void SaveCatalog(ref List<EpItem> list, bool IsSynchPosterAllowed,string CurrentCatalog, List<string> folders)
+        {
+            Console.WriteLine($"Reload JAV collection..");
+            JAV.ReloadCollection();
+            CatalogLoader.AddedTotal = 0;
+            foreach (var item in folders)
+            {
+                CatalogLoader.UpdateFolder(item, ref list, false, IsSynchPosterAllowed, CurrentCatalog,false);
+            }
+            Console.WriteLine($"Added Total: {CatalogLoader.AddedTotal}");
+
+            Console.WriteLine($"Backup catalog..");
+            if (string.IsNullOrEmpty(CurrentCatalog)) return;
+            if (File.Exists(CurrentCatalog))
+                File.Copy(CurrentCatalog, Path.ChangeExtension(CurrentCatalog, "bak"), true);
+            System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<EpItem>));
+            Console.WriteLine($"Save catalog..");
+            using (var writer = new StreamWriter(CurrentCatalog))
+            {
+
+                serializer.Serialize(writer, list);
+            }
+        }
+
+        //private static void UpdateFolder(string parameters, ref List<EpItem> list, bool isCheck, bool synchCaption, string CurrentCatalog, List<string> folders)
+        //{
+        //    string itemPath = parameters.ToUpper();
+        //    if (isCheck)
+        //    {
+        //        string dirname = Path.GetFileName(itemPath);
+
+        //        if (folders.Exists(x => itemPath.Contains(x)))
+        //        {
+        //            if (!folders.Exists(x => itemPath == x))
+        //            {
+        //                if (!JAV.FoldersToUpdate.Contains("ALL") && JAV.FoldersToUpdate.Any())
+        //                {
+        //                    if (!JAV.FoldersToUpdate.Contains(dirname.ToUpper())) return;
+        //                    isCheck = false;
+        //                }
+        //            }
+        //        }
+        //    }
+
+
+        //    Console.WriteLine($"Update folder {itemPath}..");
+        //    if (!Directory.Exists(itemPath)) return;
+        //    List<string> passportList = Directory.GetFiles(itemPath, EpItem.p_PassportName).ToList();
+        //    foreach (var passport in passportList)
+        //    {
+        //        CatalogLoader.CreateUpdateFromPassport(passport, ref list, synchCaption, CurrentCatalog);
+        //    }
+        //    List<string> dirList = Directory.GetDirectories(itemPath).ToList();
+        //    foreach (var dir in dirList)
+        //    {
+        //        CatalogLoader.UpdateFolder(dir, ref list, isCheck, synchCaption, CurrentCatalog);
+        //    }
+        //}
     }
 }

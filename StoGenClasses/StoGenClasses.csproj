@@ -75,6 +75,7 @@
     <Compile Include="BaseGeneratorItem.cs" />
     <Compile Include="Cadre.cs" />
     <Compile Include="CadreData.cs" />
+    <Compile Include="Catalog\CatalogLoader.cs" />
     <Compile Include="Catalog\EpItem.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="Interfaces\IPersonManager.cs" />

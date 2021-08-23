@@ -27,6 +27,7 @@ using System.Windows.Media.Imaging;
 using System.Net;
 using System.Linq.Expressions;
 using StoGen.Classes.SceneCadres;
+using StoGen.Classes.Catalog;
 
 namespace EPCat
 {
@@ -327,7 +328,7 @@ namespace EPCat
             //{
             if (this.CurrentFolder != null)
             {
-                _Loader.UpdateItem(this.CurrentFolder);
+                CatalogLoader.UpdateItem(this.CurrentFolder);
             }
             //}
         }
