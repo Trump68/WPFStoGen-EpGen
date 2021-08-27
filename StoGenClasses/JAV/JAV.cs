@@ -26,8 +26,14 @@ namespace EPCat.Model
             int total = 0;
             foreach (var item in series)
             {
-                
-                string check = Path.Combine($@"{disc}:\!CATALOG\JAV\{item}\", "updated.txt");                
+
+                string check = Path.Combine($@"{disc}:\!CATALOG\JAV\{item}\", "complated");
+                if (File.Exists(check))
+                {
+                    Console.WriteLine($"{item} - completed");
+                    continue;
+                }
+                check = Path.Combine($@"{disc}:\!CATALOG\JAV\{item}\", "updated.txt");                
                 if (File.Exists(check))
                 {
                     var lines = File.ReadAllLines(check);
@@ -59,13 +65,29 @@ namespace EPCat.Model
                 int failure = 0;
 
                 string keyword = $"{item}-{start.ToString($"D3")}";
-                JavLibraryDoOne(item, keyword, disc) ;
-                
+                int go = JavLibraryDoOne(item, keyword, disc) ;
+                if (go == 100)
+                {
+                    proc++;
+                    total++;
+                    failure = 0;
+                    Console.Write($" - done {total}\n");
+                }
+                if (go == 50)
+                {
+                    failure = 0;
+                }
+                else
+                {
+                    if (failure > 0)
+                        Console.Write($" - skipped {failure}\n");
+                    failure++;
+                }
                 while (failure < failureTreshold)
                 {
                     start++;
                     keyword = $"{item}-{start.ToString($"D3")}";
-                    int go = JavLibraryDoOne(item, keyword, disc);
+                    go = JavLibraryDoOne(item, keyword, disc);
                     if (go == 100)
                     {                        
                         proc++;
@@ -87,7 +109,10 @@ namespace EPCat.Model
                 string str = $"{item} - complete {proc}\n";
                 Console.WriteLine(str);
                 Total.Add(str);
-                File.WriteAllText(check,$"{today}");
+                if (Directory.Exists($@"{disc}:\!CATALOG\JAV\{item}\"))
+                {
+                    File.WriteAllText(check, $"{today}");
+                }
             }
 
             Console.WriteLine("Added total:");

@@ -34,16 +34,19 @@ namespace JAVUpdater
                 {
                     Console.WriteLine($"Loading Catalog {Catalog}..");
                     List<EpItem> list = CatalogLoader.LoadCatalog(Catalog);
+                    if (list == null)
+                        list = new List<EpItem>();
                     Console.WriteLine($"- done.");
+                    StarRating.LoadJAVActress(FOLDERS.First());
                     JAV.SaveCatalog(ref list, (SYNCHPOSTER != 0), Catalog, FOLDERS);
                     Console.WriteLine($"- done. Press key to exit");
                 }
-            }
+        }
             catch (Exception ex)
             {
                 Console.WriteLine($"Exception: {ex.Message}");
             }
-            Console.ReadKey();
+    Console.ReadKey();
         }
         private static void ReadIni()
         {

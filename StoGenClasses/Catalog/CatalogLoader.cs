@@ -96,7 +96,7 @@ namespace StoGen.Classes.Catalog
                 }
 
                 // JAV person rating                
-                //StarRating.SetRating(item);
+                StarRating.SetRating(item);
 
 
                 item.SourceFolderExist = true;
@@ -105,15 +105,24 @@ namespace StoGen.Classes.Catalog
                 long s = 0;
                 int d = 1000000;
                 bool isUncensored = false;
+                bool isUncensoredByMe = false;
                 foreach (string fn in filesmp3)
                 {
                     string pf = fn.ToUpper();
-                    if (pf.Contains("UNCENSORED"))
+                                           
+                    if (pf.Contains("UNCENSOREDBM"))
+                    {
+                        isUncensoredByMe = true;
+                    }
+                    else if (pf.Contains("UNCENSORED"))
+                    {
                         isUncensored = true;
+                    }
                     try
                     {
                         FileInfo fi = new FileInfo(fn);
                         s += fi.Length;
+                        item.M4V += 1;
                     }
                     catch (Exception)
                     {
@@ -123,8 +132,66 @@ namespace StoGen.Classes.Catalog
                 }
                 if (s > 0)
                     item.Size = Convert.ToInt32((s / d));
+                    
 
                 var existingItem = list.Where(x => x.GID == item.GID).FirstOrDefault();
+
+                if (existingItem == null)
+                {
+                    if (string.IsNullOrEmpty(item.Type) || (!item.Type.ToUpper().Contains("OMNIBUS")))
+                    {
+                        if (string.IsNullOrEmpty(item.Kind) || (!item.Kind.ToUpper().Contains("SKIP")))
+                        {
+
+                            if (string.IsNullOrEmpty(item.Name))
+                            {
+                                string name = Path.GetFileName(Path.GetDirectoryName(passportPath)).ToLower();
+                                TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
+                                item.Name = cultInfo.ToTitleCase(name);
+                                item.Edited = true;
+                            }
+                            if (isUncensored && (item.Catalog == "JAV"))
+                            {
+                                item.Kind = "UNC";
+                            }
+                            list.Add(item);
+                            Console.WriteLine($"{item.Name} - new! {AddedTotal}");
+                            result = 1;
+                        }
+                    }
+                }
+                else
+                {
+                    if (item.Catalog == "JAV")
+                    {
+                        if (isUncensoredByMe && existingItem.Kind != "UNCBM")
+                        {
+                            item.Kind = "UNCBM";
+                            item.LastEdit++;
+                        } else if (isUncensored && existingItem.Kind != "UNC")
+                        {
+                            item.Kind = "UNC";
+                            item.LastEdit++;
+                        }
+                    }
+                    if (existingItem.LastEdit < item.LastEdit)
+                    {
+                        existingItem.UpdateFrom(item);
+                    }
+                    else
+                    {
+                        // always
+                        existingItem.Size = item.Size;
+                        existingItem.SetItemPath(item.ItemPath);
+                        existingItem.SourceFolderExist = item.SourceFolderExist;
+                        existingItem.PersonKind = item.PersonKind;
+                    }
+                    
+                }
+                if (item.Edited)
+                {
+                    UpdateItem(item);
+                }
                 if (IsSynchPosterAllowed)
                 {
                     //poster
@@ -179,44 +246,6 @@ namespace StoGen.Classes.Catalog
                         }
                     }
                 }
-                if (existingItem == null)
-                {
-                    if (string.IsNullOrEmpty(item.Name))
-                    {
-                        string name = Path.GetFileName(Path.GetDirectoryName(passportPath)).ToLower();
-                        TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
-                        item.Name = cultInfo.ToTitleCase(name);
-                        item.Edited = true;
-                    }
-                    list.Add(item);
-                    Console.WriteLine($"{item.Name} - new! {AddedTotal}");
-                    result = 1;
-                }
-                else
-                {
-                    if (isUncensored && (item.Catalog == "JAV") && (existingItem.Kind != "UNC"))
-                    {
-                        item.Kind = "UNC";
-                        item.LastEdit++;
-                    }
-                    if (existingItem.LastEdit < item.LastEdit)
-                    {
-                        existingItem.UpdateFrom(item);
-                    }
-                    else
-                    {
-                        // always
-                        existingItem.Size = item.Size;
-                        existingItem.SetItemPath(item.ItemPath);
-                        existingItem.SourceFolderExist = item.SourceFolderExist;
-                        existingItem.PersonKind = item.PersonKind;
-                    }
-                    
-                }
-                if (item.Edited)
-                {
-                    UpdateItem(item);
-                }
             }
             return result;
         }
@@ -243,6 +272,10 @@ namespace StoGen.Classes.Catalog
                         if (JAV.FoldersToUpdate.Exists(x => dirname == x))
                         {
                             inner = true;
+                        }
+                        else
+                        {
+                            return;
                         }
                     }
                     else

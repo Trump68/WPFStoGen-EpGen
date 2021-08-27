@@ -942,7 +942,7 @@ namespace EPCat
 
         private void JAVupdatefiltered_Click(object sender, RoutedEventArgs e)
         {
-            StarRating.LoadJAVActress();
+            StarRating.LoadJAVActress(@"n:\!CATALOG\JAV");
             var list = ViewModel.FolderListView.ToList();
             foreach (var item in list)
             {           

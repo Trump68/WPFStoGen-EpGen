@@ -26,13 +26,13 @@ namespace EPCat.Model
                         int rat;
                         if (Ratings.TryGetValue(it, out rat))
                         {
-                            if (rat> ratingMax)
+                            if (rat > ratingMax)
                             {
                                 ratingMax = rat;
                             }
                         }
                     }
-                    if (ratingMax > 0 && item.PersonKind != ratingMax.ToString())
+                    if ((ratingMax > 0) && (item.PersonKind != ratingMax.ToString()))
                     {
                         item.PersonKind = ratingMax.ToString();
                         item.Edited = true;
@@ -68,10 +68,10 @@ namespace EPCat.Model
             string file = Path.Combine(JAV.FoldersToUpdate.Last(), "Actress.txt");
             File.WriteAllLines(file, lines);
         }
-        public static void LoadJAVActress()
+        public static void LoadJAVActress(string where)
         {
             Ratings.Clear();
-            string file = Path.Combine(JAV.FoldersToUpdate.Last(), "Actress.txt");
+            string file = Path.Combine(where, "Actress.txt");
             var lines = File.ReadAllLines(file);
             foreach (string item in lines)
             {

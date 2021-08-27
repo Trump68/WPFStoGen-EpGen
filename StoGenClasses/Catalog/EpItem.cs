@@ -239,6 +239,7 @@ namespace EPCat.Model
         public string PARENT { get; set; }
 
         public int Size { get; set; }
+        public int M4V { get; set; }
         public string Length { get; set; }
         //
         public List<string> Comments { get; set; } = new List<string>();
@@ -320,6 +321,7 @@ namespace EPCat.Model
             this.IMDB = item.IMDB;
             this.LastCheck = item.LastCheck;
             this.PARENT = item.PARENT;
+            this.M4V = item.M4V;
 
             this.PersonName = item.PersonName;
             this.PersonAge = item.PersonAge;
@@ -513,7 +515,6 @@ namespace EPCat.Model
                 result.Add(p_Studio + item.Studio);
             if (!string.IsNullOrEmpty(item.IMDB))
                 result.Add(p_IMDB + item.IMDB);
-
             if (!string.IsNullOrEmpty(item.PersonName))
                 result.Add(p_PersonName + item.PersonName);
             if (!string.IsNullOrEmpty(item.PersonAge))
@@ -531,6 +532,8 @@ namespace EPCat.Model
 
             if (item.Size > 0)
                 result.Add(p_Size + item.Size.ToString());
+            if (item.M4V > 0)
+                result.Add($"M4V={item.M4V}");
             if (!string.IsNullOrEmpty(item.Length))
                 result.Add(p_Length + item.Length);
 
@@ -849,6 +852,18 @@ namespace EPCat.Model
                         }                        
                     }
                 }
+                else if (term.StartsWith("M4V="))
+                {
+                    term = term.Replace("M4V=", string.Empty);
+                    if (!string.IsNullOrWhiteSpace(term))
+                    {
+                        int size;
+                        if (int.TryParse(term, out size))
+                        {
+                            result.M4V = size;
+                        }
+                    }
+                }
                 else if (term.StartsWith(p_Length))
                 {
                     term = term.Replace(p_Length, string.Empty);
@@ -857,7 +872,7 @@ namespace EPCat.Model
                         result.Length = term;
                     }
                 }
-
+               
                 else if (term.StartsWith(p_LastCheck))
                 {
                     term = term.Replace(p_LastCheck, string.Empty);

@@ -123,6 +123,7 @@
                             <dxg:GridColumn FieldName="Scenes" Width="35" FixedWidth="True" IsSmart="True" AllowGrouping="True" />
                             <dxg:GridColumn FieldName="Month" Width="35" FixedWidth="True" IsSmart="True" />
                             <dxg:GridColumn FieldName="Day" Width="35" FixedWidth="True" IsSmart="True" />
+                            <dxg:GridColumn FieldName="M4V" Width="35" FixedWidth="True" IsSmart="True" />
                             <dxg:GridColumn FieldName="Rated" Width="35" FixedWidth="True" IsSmart="True" />
                             <dxg:GridColumn FieldName="XRated" Width="35" FixedWidth="True" IsSmart="True" />
                             <dxg:GridColumn FieldName="Kind" IsSmart="True" />
