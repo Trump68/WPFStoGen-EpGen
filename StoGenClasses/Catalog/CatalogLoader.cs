@@ -182,6 +182,7 @@ namespace StoGen.Classes.Catalog
                     {
                         // always
                         existingItem.Size = item.Size;
+                        existingItem.M4V = item.M4V;
                         existingItem.SetItemPath(item.ItemPath);
                         existingItem.SourceFolderExist = item.SourceFolderExist;
                         existingItem.PersonKind = item.PersonKind;
