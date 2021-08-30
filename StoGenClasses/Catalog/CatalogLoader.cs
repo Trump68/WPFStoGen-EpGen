@@ -36,7 +36,7 @@ namespace StoGen.Classes.Catalog
             }
             return new string(array);
         }
-        public static int CreateUpdateFromPassport(string passportPath, ref List<EpItem> list, bool IsSynchPosterAllowed, string CurrentCatalog)
+        public static int CreateUpdateFromPassport(string passportPath, ref List<EpItem> list, bool IsSynchPosterAllowed, string CurrentCatalog, string BackupCatalog)
         {
             int result = 0;
             List<string> passport = new List<string>(File.ReadAllLines(passportPath));
@@ -44,16 +44,7 @@ namespace StoGen.Classes.Catalog
             {
 
                 EpItem item = EpItem.GetFromPassport(passport, passportPath);
-                //if (item.Catalog == "JAV" && !string.IsNullOrEmpty(item.Type))
-                //{
-                //    //foreach (var exclusion in JAV.JAVExclusions)
-                //    //{
-                //    //    if (item.Type.Contains(exclusion))
-                //    //    {
-                //    //        return;
-                //    //    }
-                //    //}
-                //}
+
                 if (item.GID == null || Guid.Empty.Equals(item.GID))
                 {
                     item.GID = Guid.NewGuid();
@@ -142,21 +133,23 @@ namespace StoGen.Classes.Catalog
                     {
                         if (string.IsNullOrEmpty(item.Kind) || (!item.Kind.ToUpper().Contains("SKIP")))
                         {
-
-                            if (string.IsNullOrEmpty(item.Name))
+                            if (!string.IsNullOrEmpty(item.Star))
                             {
-                                string name = Path.GetFileName(Path.GetDirectoryName(passportPath)).ToLower();
-                                TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
-                                item.Name = cultInfo.ToTitleCase(name);
-                                item.Edited = true;
+                                if (string.IsNullOrEmpty(item.Name))
+                                {
+                                    string name = Path.GetFileName(Path.GetDirectoryName(passportPath)).ToLower();
+                                    TextInfo cultInfo = new CultureInfo("en-US", false).TextInfo;
+                                    item.Name = cultInfo.ToTitleCase(name);
+                                    item.Edited = true;
+                                }
+                                if (isUncensored && (item.Catalog == "JAV"))
+                                {
+                                    item.Kind = "UNC";
+                                }
+                                list.Add(item);
+                                Console.WriteLine($"{item.Name} - new! {AddedTotal}");
+                                result = 1;
                             }
-                            if (isUncensored && (item.Catalog == "JAV"))
-                            {
-                                item.Kind = "UNC";
-                            }
-                            list.Add(item);
-                            Console.WriteLine($"{item.Name} - new! {AddedTotal}");
-                            result = 1;
                         }
                     }
                 }
@@ -192,6 +185,47 @@ namespace StoGen.Classes.Catalog
                 if (item.Edited)
                 {
                     UpdateItem(item);
+                }
+
+                //Backup
+                if (!string.IsNullOrEmpty(BackupCatalog))
+                {        
+                    bool dod = false;            
+                    if (item.Kind == "UNCBM")
+                    {
+                        dod = true;
+                    }
+                    else if (item.Kind == "UNC")
+                    {
+                        dod = true;
+                    }
+                    else if (!string.IsNullOrEmpty(item.Star))
+                    {
+                        var vals = item.Star.Split(',');
+                        if (vals.Any(x=> CatalogLoader.BACKUP_ACTRESS_LIST.Contains(x)))
+                        {
+                            dod = true;
+                        }                                               
+                    }
+
+                    if (dod)
+                    {
+                        string targetPath = Path.Combine(BackupCatalog, item.Serie, item.Name);
+                        if (!Directory.Exists(targetPath))
+                        {
+                            Directory.CreateDirectory(targetPath);
+                        }
+                        foreach (string fn in filesmp3)
+                        {
+                            string file = Path.GetFileName(fn);
+                            string filedest = Path.Combine(targetPath, file);
+                            if (!File.Exists(filedest))
+                            {
+                                Console.WriteLine($"Backup file:{file}");
+                                File.Copy(fn, filedest, false);
+                            }
+                        }
+                    }
                 }
                 if (IsSynchPosterAllowed)
                 {
@@ -258,7 +292,9 @@ namespace StoGen.Classes.Catalog
             File.WriteAllLines(item.ItemPath, passportData);
         }
         public static int AddedTotal = 0;
-        public static void UpdateFolder(string parameters, ref List<EpItem> list, bool isCheck, bool IsSynchPosterAllowed,string CurrentCatalog, bool inner)
+        public static List<string> BACKUP_ACTRESS_LIST;
+
+        public static void UpdateFolder(string parameters, ref List<EpItem> list, bool isCheck, bool IsSynchPosterAllowed, string BackupCatalog, string CurrentCatalog, bool inner)
         {
             int result = 0;
             string itemPath = parameters.ToUpper();
@@ -293,7 +329,7 @@ namespace StoGen.Classes.Catalog
             List<string> passportList = Directory.GetFiles(itemPath, EpItem.p_PassportName).ToList();
             foreach (var passport in passportList)
             {
-                AddedTotal = AddedTotal + CatalogLoader.CreateUpdateFromPassport(passport, ref list, IsSynchPosterAllowed, CurrentCatalog);
+                AddedTotal = AddedTotal + CatalogLoader.CreateUpdateFromPassport(passport, ref list, IsSynchPosterAllowed, CurrentCatalog, BackupCatalog);
             }
             //result = added;
             //if (added > 0)
@@ -301,7 +337,7 @@ namespace StoGen.Classes.Catalog
             List<string> dirList = Directory.GetDirectories(itemPath).ToList();
             foreach (var dir in dirList)
             {
-                UpdateFolder(dir, ref list, isCheck, IsSynchPosterAllowed, CurrentCatalog,inner);
+                UpdateFolder(dir, ref list, isCheck, IsSynchPosterAllowed,  BackupCatalog, CurrentCatalog,inner);
             }
         }
         public static List<EpItem> LoadCatalog(string parameters)

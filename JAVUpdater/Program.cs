@@ -14,13 +14,15 @@ namespace JAVUpdater
         public static string JavSerie;
         
         public static List<string> FOLDERS;
-        public static int From = 0;
         public static string DISC = "n";
+        public static int From = 0;
+        public static string BACKUPFOLDER = @"f:\!CATALOG\JAV";
         public static int FAILURE = 10;
         public static int DAYTHRESHOLD = 3;
         public static int SYNCHPOSTER = 0;
         public static int INTERNETUPDATE = 0;
         public static int CATALOGUPDATE = 0;
+        public static int DOBACKUP = 0;
         static void Main(string[] args)
         {
             try
@@ -38,7 +40,11 @@ namespace JAVUpdater
                         list = new List<EpItem>();
                     Console.WriteLine($"- done.");
                     StarRating.LoadJAVActress(FOLDERS.First());
-                    JAV.SaveCatalog(ref list, (SYNCHPOSTER != 0), Catalog, FOLDERS);
+                    if (DOBACKUP == 0  || !Directory.Exists(BACKUPFOLDER))
+                    {
+                        BACKUPFOLDER = null;
+                    }
+                    JAV.SaveCatalog(ref list, (SYNCHPOSTER != 0), Catalog, FOLDERS, BACKUPFOLDER);                    
                     Console.WriteLine($"- done. Press key to exit");
                 }
         }
@@ -51,6 +57,8 @@ namespace JAVUpdater
         private static void ReadIni()
         {
             List<string> lines = File.ReadAllLines("..\\..\\JAVUpdater.ini").ToList();
+            bool isSectionBACKUPACTRESS = false;
+            CatalogLoader.BACKUP_ACTRESS_LIST = new List<string>();
             foreach (var line in lines)
             {
                 if (line.StartsWith("SERIE="))
@@ -60,6 +68,10 @@ namespace JAVUpdater
                 else if (line.StartsWith("FOLDERS="))
                 {
                     FOLDERS = line.Replace("FOLDERS=", string.Empty).Split(',').ToList();
+                }
+                else if (line.StartsWith("BACKUPFOLDER="))
+                {
+                    BACKUPFOLDER = line.Replace("BACKUPFOLDER=", string.Empty);
                 }
                 else if (line.StartsWith("DISC="))
                 {
@@ -89,6 +101,12 @@ namespace JAVUpdater
                     if (!string.IsNullOrEmpty(fromstr))
                         SYNCHPOSTER = int.Parse(fromstr);
                 }
+                else if (line.StartsWith("DOBACKUP="))
+                {
+                    string fromstr = line.Replace("DOBACKUP=", string.Empty);
+                    if (!string.IsNullOrEmpty(fromstr))
+                        DOBACKUP = int.Parse(fromstr);
+                }
                 else if (line.StartsWith("INTERNETUPDATE="))
                 {
                     string fromstr = line.Replace("INTERNETUPDATE=", string.Empty);
@@ -100,6 +118,15 @@ namespace JAVUpdater
                     string fromstr = line.Replace("CATALOGUPDATE=", string.Empty);
                     if (!string.IsNullOrEmpty(fromstr))
                         CATALOGUPDATE = int.Parse(fromstr);
+                }
+                else if (line.StartsWith("<=BACKUPACTRESS=>"))
+                {
+                    isSectionBACKUPACTRESS = true;
+                }
+                else if (isSectionBACKUPACTRESS)
+                {
+                    isSectionBACKUPACTRESS = true;
+                    CatalogLoader.BACKUP_ACTRESS_LIST.Add(line.Trim());
                 }
             }
         }

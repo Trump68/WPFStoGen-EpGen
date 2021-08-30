@@ -712,14 +712,15 @@ namespace EPCat.Model
             //StarRating.SaveJAVActress();
         }
       
-        public static void SaveCatalog(ref List<EpItem> list, bool IsSynchPosterAllowed,string CurrentCatalog, List<string> folders)
+        public static void SaveCatalog(ref List<EpItem> list, bool IsSynchPosterAllowed,string CurrentCatalog, List<string> folders, string BackupFolder)
         {
             Console.WriteLine($"Reload JAV collection..");
             JAV.ReloadCollection();
             CatalogLoader.AddedTotal = 0;
+
             foreach (var item in folders)
             {
-                CatalogLoader.UpdateFolder(item, ref list, false, IsSynchPosterAllowed, CurrentCatalog,false);
+                CatalogLoader.UpdateFolder(item, ref list, false, IsSynchPosterAllowed, BackupFolder, CurrentCatalog, false);
             }
             Console.WriteLine($"Added Total: {CatalogLoader.AddedTotal}");
 
@@ -736,39 +737,5 @@ namespace EPCat.Model
             }
         }
 
-        //private static void UpdateFolder(string parameters, ref List<EpItem> list, bool isCheck, bool synchCaption, string CurrentCatalog, List<string> folders)
-        //{
-        //    string itemPath = parameters.ToUpper();
-        //    if (isCheck)
-        //    {
-        //        string dirname = Path.GetFileName(itemPath);
-
-        //        if (folders.Exists(x => itemPath.Contains(x)))
-        //        {
-        //            if (!folders.Exists(x => itemPath == x))
-        //            {
-        //                if (!JAV.FoldersToUpdate.Contains("ALL") && JAV.FoldersToUpdate.Any())
-        //                {
-        //                    if (!JAV.FoldersToUpdate.Contains(dirname.ToUpper())) return;
-        //                    isCheck = false;
-        //                }
-        //            }
-        //        }
-        //    }
-
-
-        //    Console.WriteLine($"Update folder {itemPath}..");
-        //    if (!Directory.Exists(itemPath)) return;
-        //    List<string> passportList = Directory.GetFiles(itemPath, EpItem.p_PassportName).ToList();
-        //    foreach (var passport in passportList)
-        //    {
-        //        CatalogLoader.CreateUpdateFromPassport(passport, ref list, synchCaption, CurrentCatalog);
-        //    }
-        //    List<string> dirList = Directory.GetDirectories(itemPath).ToList();
-        //    foreach (var dir in dirList)
-        //    {
-        //        CatalogLoader.UpdateFolder(dir, ref list, isCheck, synchCaption, CurrentCatalog);
-        //    }
-        //}
     }
 }
