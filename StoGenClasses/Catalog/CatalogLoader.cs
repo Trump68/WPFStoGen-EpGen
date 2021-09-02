@@ -211,9 +211,24 @@ namespace StoGen.Classes.Catalog
                     if (dod)
                     {
                         string targetPath = Path.Combine(BackupCatalog, item.Serie, item.Name);
+                        List<string> existingFiles = new List<string>();
                         if (!Directory.Exists(targetPath))
                         {
                             Directory.CreateDirectory(targetPath);
+                        }
+                        else
+                        {
+                            existingFiles = Directory.GetFiles(targetPath, "*.m4v").ToList();
+                            foreach (string fn in existingFiles)
+                            {
+                                string file = Path.GetFileName(fn);
+                                string filedest = Path.Combine(dirname, file);
+                                if (!File.Exists(filedest))
+                                {
+                                    Console.WriteLine($"Delete file:{file}");
+                                    File.Delete(fn);
+                                }
+                            }
                         }
                         foreach (string fn in filesmp3)
                         {
@@ -223,8 +238,9 @@ namespace StoGen.Classes.Catalog
                             {
                                 Console.WriteLine($"Backup file:{file}");
                                 File.Copy(fn, filedest, false);
-                            }
-                        }
+                            }                            
+                        }                       
+                        
                     }
                 }
                 if (IsSynchPosterAllowed)
