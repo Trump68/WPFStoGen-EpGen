@@ -21,6 +21,7 @@ namespace JAVUpdater
         public static int DAYTHRESHOLD = 3;
         public static int SYNCHPOSTER = 0;
         public static int INTERNETUPDATE = 0;
+        public static int INTERNETUPDATEAFTER = 0;
         public static int CATALOGUPDATE = 0;
         public static int DOBACKUP = 0;
         static void Main(string[] args)
@@ -30,6 +31,7 @@ namespace JAVUpdater
                 ReadIni();
                 string Catalog = $@"d:\Work\WPFStoGen-EpGen\CATALOG\jav.cat";
                 JAV.FoldersToUpdate = JavSerie.Split(',').ToList();
+                JAV.ApdateAfter = INTERNETUPDATEAFTER;
                 if (INTERNETUPDATE > 0)
                     DoUpdate();
                 if (CATALOGUPDATE > 0)
@@ -112,6 +114,12 @@ namespace JAVUpdater
                     string fromstr = line.Replace("INTERNETUPDATE=", string.Empty);
                     if (!string.IsNullOrEmpty(fromstr))
                         INTERNETUPDATE = int.Parse(fromstr);
+                }
+                else if (line.StartsWith("INTERNETUPDATEAFTER="))
+                {
+                    string fromstr = line.Replace("INTERNETUPDATEAFTER=", string.Empty);
+                    if (!string.IsNullOrEmpty(fromstr))
+                        INTERNETUPDATEAFTER = int.Parse(fromstr);
                 }
                 else if (line.StartsWith("CATALOGUPDATE="))
                 {

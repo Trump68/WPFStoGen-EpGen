@@ -26,8 +26,7 @@ namespace EPCat.Model
             int total = 0;
             foreach (var item in series)
             {
-
-                string check = Path.Combine($@"{disc}:\!CATALOG\JAV\{item}\", "complated");
+                string check = Path.Combine($@"{disc}:\!CATALOG\JAV\{item}\", "completed");
                 if (File.Exists(check))
                 {
                     Console.WriteLine($"{item} - completed");
@@ -499,17 +498,13 @@ namespace EPCat.Model
             string pathRes = Path.Combine(path, @"RES");
 
 
-            file = $@"{marker}.txt";
-            lines.Clear();
-            lines.Add($@"LOAD CATALOG d:\Work\WPFStoGen-EpGen\CATALOG\jav.cat");
-            foreach (var lpath in FoldersToUpdate)
-            {
-                lines.Add($@"UPDATE FOLDER {lpath}");
-            }
-            File.WriteAllLines(Path.Combine(pathRes, file), lines);
-
-            string fileorig= $@"Hayashi Yuna.xml";
+            string fileorig = $@"Hayashi Yuna.txt";
             string content = File.ReadAllText(Path.Combine(pathRes, fileorig));
+            file = $@"{marker}.txt";
+            File.WriteAllText(Path.Combine(pathRes, file), content);
+
+            fileorig= $@"Hayashi Yuna.xml";
+            content = File.ReadAllText(Path.Combine(pathRes, fileorig));
             file = $@"{marker}.xml";
             content = content.Replace("Hayashi Yuna", marker);
             File.WriteAllText(Path.Combine(pathRes, file),content);
@@ -519,6 +514,8 @@ namespace EPCat.Model
         public static Dictionary<string, string> _JAVupdated;
         private static int threshold_days = 0;
         private static int threshold_hours = 0;
+        public static int ApdateAfter;
+
         private static void LoadThreshold()
         {
 

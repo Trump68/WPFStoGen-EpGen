@@ -100,7 +100,7 @@ namespace StoGen.Classes.Catalog
                 foreach (string fn in filesmp3)
                 {
                     string pf = fn.ToUpper();
-                                           
+
                     if (pf.Contains("UNCENSOREDBM"))
                     {
                         isUncensoredByMe = true;
@@ -123,7 +123,7 @@ namespace StoGen.Classes.Catalog
                 }
                 if (s > 0)
                     item.Size = Convert.ToInt32((s / d));
-                    
+
 
                 var existingItem = list.Where(x => x.GID == item.GID).FirstOrDefault();
 
@@ -142,10 +142,10 @@ namespace StoGen.Classes.Catalog
                                     item.Name = cultInfo.ToTitleCase(name);
                                     item.Edited = true;
                                 }
-                                if (isUncensored && (item.Catalog == "JAV"))
-                                {
+                                if (isUncensoredByMe)
+                                    item.Kind = "UNCBM";
+                                else if (isUncensored)
                                     item.Kind = "UNC";
-                                }
                                 list.Add(item);
                                 Console.WriteLine($"{item.Name} - new! {AddedTotal}");
                                 result = 1;
@@ -155,17 +155,15 @@ namespace StoGen.Classes.Catalog
                 }
                 else
                 {
-                    if (item.Catalog == "JAV")
+                    if (isUncensoredByMe && (string.IsNullOrEmpty(existingItem.Kind) || existingItem.Kind != "UNCBM"))
                     {
-                        if (isUncensoredByMe && existingItem.Kind != "UNCBM")
-                        {
-                            item.Kind = "UNCBM";
-                            item.LastEdit++;
-                        } else if (isUncensored && existingItem.Kind != "UNC")
-                        {
-                            item.Kind = "UNC";
-                            item.LastEdit++;
-                        }
+                        item.Kind = "UNCBM";
+                        item.LastEdit++;
+                    }
+                    else if (isUncensored && (string.IsNullOrEmpty(existingItem.Kind) || existingItem.Kind != "UNC"))
+                    {
+                        item.Kind = "UNC";
+                        item.LastEdit++;
                     }
                     if (existingItem.LastEdit < item.LastEdit)
                     {
@@ -180,7 +178,7 @@ namespace StoGen.Classes.Catalog
                         existingItem.SourceFolderExist = item.SourceFolderExist;
                         existingItem.PersonKind = item.PersonKind;
                     }
-                    
+
                 }
                 if (item.Edited)
                 {
@@ -189,8 +187,8 @@ namespace StoGen.Classes.Catalog
 
                 //Backup
                 if (!string.IsNullOrEmpty(BackupCatalog))
-                {        
-                    bool dod = false;            
+                {
+                    bool dod = false;
                     if (item.Kind == "UNCBM")
                     {
                         dod = true;
@@ -202,10 +200,10 @@ namespace StoGen.Classes.Catalog
                     else if (!string.IsNullOrEmpty(item.Star))
                     {
                         var vals = item.Star.Split(',');
-                        if (vals.Any(x=> CatalogLoader.BACKUP_ACTRESS_LIST.Contains(x)))
+                        if (vals.Any(x => CatalogLoader.BACKUP_ACTRESS_LIST.Contains(x)))
                         {
                             dod = true;
-                        }                                               
+                        }
                     }
 
                     if (dod)
@@ -238,9 +236,9 @@ namespace StoGen.Classes.Catalog
                             {
                                 Console.WriteLine($"Backup file:{file}");
                                 File.Copy(fn, filedest, false);
-                            }                            
-                        }                       
-                        
+                            }
+                        }
+
                     }
                 }
                 if (IsSynchPosterAllowed)
@@ -353,7 +351,7 @@ namespace StoGen.Classes.Catalog
             List<string> dirList = Directory.GetDirectories(itemPath).ToList();
             foreach (var dir in dirList)
             {
-                UpdateFolder(dir, ref list, isCheck, IsSynchPosterAllowed,  BackupCatalog, CurrentCatalog,inner);
+                UpdateFolder(dir, ref list, isCheck, IsSynchPosterAllowed, BackupCatalog, CurrentCatalog, inner);
             }
         }
         public static List<EpItem> LoadCatalog(string parameters)
