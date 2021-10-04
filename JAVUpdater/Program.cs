@@ -140,7 +140,12 @@ namespace JAVUpdater
         }
         private static void DoUpdate()
         {
-            JAV.JavLibraryDo(JavSerie, From, DISC, FAILURE, DAYTHRESHOLD);
+            var disks = DISC.Split(',');
+            foreach (var item in disks)
+            {
+                JAV.JavLibraryDo(JavSerie, From, item, FAILURE, DAYTHRESHOLD);
+            }
+            
         }
     }
 }

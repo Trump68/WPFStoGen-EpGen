@@ -101,7 +101,8 @@ namespace StoGen.Classes
             if (paint)
             {
                 var fi = Frames.FirstOrDefault(x => (x is FrameImage));
-                if (fi != null) fi.Repaint();
+                if (fi != null) 
+                    fi.Repaint();
                 foreach (Frame item in Frames.Where(x => !(x is FrameImage)))
                 {
 

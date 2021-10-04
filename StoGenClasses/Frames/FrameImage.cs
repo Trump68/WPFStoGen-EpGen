@@ -244,16 +244,22 @@ namespace StoGen.Classes
 
         private void TimerProc(object state)
         {
-            if (timer != null)
+            try
             {
-                timer.Change(Timeout.Infinite, Timeout.Infinite);
-            }
-            RunNext op1 = new RunNext(FrameImage.ProcessLoopDelegate);
-            Projector.PicContainer.Clip.Dispatcher.Invoke(op1, System.Windows.Threading.DispatcherPriority.Render);
+                if (timer != null)
+                {
+                    timer.Change(Timeout.Infinite, Timeout.Infinite);
+                }
+                RunNext op1 = new RunNext(FrameImage.ProcessLoopDelegate);
+                Projector.PicContainer.Clip.Dispatcher.Invoke(op1, System.Windows.Threading.DispatcherPriority.Render);
 
-            if (timer != null)
-            {
+                if (timer != null)
+                {
                     timer.Change(TimerPeriod, TimerPeriod);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -273,22 +279,8 @@ namespace StoGen.Classes
 
         private void RecreateImage(int index)
         {
-            
             var it = Projector.PicContainer.PicList[index];
             it.RenderTransform = null;
-
-            //Projector.PicContainer.OwnerCanvas.Children.Remove(it);
-            //Projector.PicContainer.PicList.RemoveAt(index);
-            //Image im = new Image();
-            //im.Name = $"Picture{index}";
-            //im.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            //im.VerticalAlignment = VerticalAlignment.Top;
-            //im.Width = 0;
-            //im.Height = 0;
-            //im.ClipToBounds = false;
-            //im.Margin = new Thickness(0, 0, 0, 0);
-            //Projector.PicContainer.OwnerCanvas.Children.Insert(index, im);
-            //Projector.PicContainer.PicList.Insert(index, im);
         }
 
         //If you get 'dllimport unknown'-, then add 'using System.Runtime.InteropServices;'
@@ -307,7 +299,7 @@ namespace StoGen.Classes
         public override Cadre Repaint()
         {
             Stopped = false;
-            Projector.PicContainer.Clip.Opacity = 0;
+            //Projector.PicContainer.Clip.Opacity = 0;
             for (int i = 0; i < 40; i++)
             {
                 RecreateImage(i);
@@ -345,6 +337,7 @@ namespace StoGen.Classes
             FrameImage.TimeToNext = -1;
             FrameImage.WaitStart = -1;
             FrameImage.WaitEnd = -1;
+            bool videoPresent = false;
             for (int i = 0; i < Pics.Count; i++)
             {
                 if (Pics[i].Props.NextCadre > 0) FrameImage.NextCadre = Pics[i].Props.NextCadre;
@@ -387,20 +380,12 @@ namespace StoGen.Classes
                     FrameImage.TimeToNext = pi.Props.Timer;
 
                 #region Transition
+
                 
-
-
                 #region Video
                 if ((pi.Props.CurrentAnimation != null) && (Pics[i].Props.isVideo || ext == ".mp4" || ext == ".mpg" || ext == ".avi" || ext == ".wmv" || ext == ".m4v"))
                 {
-
-                        //caching
-                    if (Pics[i].Props.Merge) // video for cashing
-                    {
-                        //Projector.PicContainer.Clip2.Source = new Uri(Pics[i].Props.FileName);
-                        continue;
-                    }
-
+                    videoPresent = true;
                     FrameImage.TimeToNext = -1;
                     videoactive = true;
 
@@ -412,25 +397,19 @@ namespace StoGen.Classes
                         FrameImage.ClipEndPos = pi.Props.CurrentAnimation.APE;
                         FrameImage.WaitStart = pi.Props.CurrentAnimation.AWS;
                         FrameImage.WaitEnd = pi.Props.CurrentAnimation.AWE;
-                    //Projector.PicContainer.Clip.Stop();
-                    if (Projector.PicContainer.Clip.Source == null || (Projector.PicContainer.Clip.Source.LocalPath != Pics[i].Props.FileName))
+                    if (Projector.PicContainer.Clip.Source == null || (Projector.PicContainer.Clip.Source.LocalPath.ToLower() != Pics[i].Props.FileName.ToLower()))
                     {
                         Projector.PicContainer.Clip.LoadedBehavior = MediaState.Manual;
                        
                         Projector.PicContainer.Clip.MediaOpened -= Clip_MediaOpened;
                         Projector.PicContainer.Clip.MediaOpened += Clip_MediaOpened;
                         Projector.PicContainer.Clip.Source = new Uri(Pics[i].Props.FileName);
-                        //Projector.ClipSound.Open(new Uri(Pics[i].Props.FileName));
-
-                        //Projector.ClipSound.Play();
-                        //Projector.PicContainer.Clip.Play();
                     }
                     else
                     {
                         SetClip();
                     }
                     Projector.PicContainer.Clip.Volume = 0;
-                    //Projector.ClipSound.Volume = ((float)pi.Props.CurrentAnimation.AV / 100);
 
                     float rate = ((float)Pics[i].Props.CurrentAnimation.AR / 100);
                     Projector.PicContainer.Clip.SpeedRatio = rate;
@@ -499,7 +478,7 @@ namespace StoGen.Classes
                     continue;
                 }
                 #endregion     
-
+             
                 // Transition image
                 if (!string.IsNullOrEmpty(pi.Props.Transition))
                 {
@@ -585,7 +564,10 @@ namespace StoGen.Classes
                 Projector.PicContainer.PicList[pi.Props.Level].Tag = pi.Props;
             }
 
-
+            if (!videoPresent)
+            {
+                Projector.PicContainer.Clip.Opacity = 0;
+            }
 
             if (CadreShifted < 0) CadreShifted = Pics.Count - 1;
             for (int j = 0; j < Projector.PicContainer.PicList.Count; j++)
@@ -825,23 +807,15 @@ namespace StoGen.Classes
         {
             
             Projector.PicContainer.Clip.MediaOpened -= Clip_MediaOpened;
-            
-            //Projector.ClipSound.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
-           
             FrameImage.TimeStarted = DateTime.Now;
             if (timer != null)
             {
                 timer.Change(TimerPeriod, TimerPeriod);
-                //Projector.PicContainer.Clip.Visibility = System.Windows.Visibility.Visible;
                 Projector.PicContainer.Clip.Play();
                 Projector.PicContainer.Clip.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
-               
-
-                //Projector.ClipSound.Play();
                 if (FrameImage.IsLoop == 4 || FrameImage.WaitStart > 0)
                 {
                     Projector.PicContainer.Clip.Pause();
-                    //Projector.ClipSound.Pause();
                 }
             }
         }
@@ -857,11 +831,7 @@ namespace StoGen.Classes
         }
         public void Clear()
         {
-
             timer.Change(Timeout.Infinite, Timeout.Infinite);
-
-            //Projector.PicContainer.Clip.Visibility = System.Windows.Visibility.Hidden;
-
         }
         public override void BeforeLeave()
         {

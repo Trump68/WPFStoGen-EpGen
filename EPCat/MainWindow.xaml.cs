@@ -46,7 +46,7 @@ namespace EPCat
         }
         void Serialization_Loaded(object sender, RoutedEventArgs e)
         {
-            if (PathToGridSave != null)
+            if (PathToGridSave == null)
             {
                 PathToGridSave = "D:\temp\temp.xml";
             }
@@ -207,7 +207,7 @@ namespace EPCat
         {
             this.NavTabGroup.SelectedContainer = this.EditTab;
             string path = null;
-            if ((this.DataContext as EpCatViewModel).CurrentClip != null)
+            if ((this.DataContext as EpCatViewModel).CurrentClip != null && string.IsNullOrEmpty(ViewModel.ClipToProcess))
             {
                 var videos = (this.DataContext as EpCatViewModel).CurrentFolder.Videos;
                 if (videos.Any())
@@ -674,7 +674,18 @@ namespace EPCat
         {
             if (string.IsNullOrEmpty(txtPosition.Text))
                 return;
-            TimeSpan timespan = TimeSpan.FromSeconds(double.Parse(txtPosition.Text));
+
+            double val = 0.0;
+            try
+            {
+                val = double.Parse(txtPosition.Text);
+            }
+            catch (Exception)
+            {
+                
+            }
+            
+            TimeSpan timespan = TimeSpan.FromSeconds(val);
             minionPlayer.Position = timespan;
             ShowPosition();
         }
@@ -716,6 +727,8 @@ namespace EPCat
             }
         }
 
+       
+
 
         public void SetGVCurrent(int ind)
         {
@@ -750,17 +763,17 @@ namespace EPCat
             
         }
 
-        private void GenerateScenario(EpItem item)
-        {
-            var fn = ViewModel.GoGenerateScenario(item);
-            if (!string.IsNullOrEmpty(fn))
-                ViewModel.LoadScenario(fn, item);
-        }
-        private void btnGoGenerateDefault_Click(object sender, RoutedEventArgs e)
-        {
-            if (ViewModel.CurrentFolder != null)
-                GenerateScenario(ViewModel.CurrentFolder);
-        }
+        //private void GenerateScenario(EpItem item)
+        //{
+        //    var fn = ViewModel.GoGenerateScenario(item);
+        //    if (!string.IsNullOrEmpty(fn))
+        //        ViewModel.LoadScenario(fn, item);
+        //}
+        //private void btnGoGenerateDefault_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (ViewModel.CurrentFolder != null)
+        //        GenerateScenario(ViewModel.CurrentFolder);
+        //}
 
         private void CopyGroupBtn2_Click(object sender, RoutedEventArgs e)
         {

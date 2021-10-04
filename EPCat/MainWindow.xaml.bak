@@ -2,20 +2,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:dxc="clr-namespace:DevExpress.Xpf.Core.ConditionalFormatting;assembly=DevExpress.Xpf.Core.v16.1"
+        xmlns:dxc="clr-namespace:DevExpress.Xpf.Core.ConditionalFormatting;assembly=DevExpress.Xpf.Core.v17.1"
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
         xmlns:local="clr-namespace:EPCat"        
         xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"     
-        xmlns:Serialization="clr-namespace:DevExpress.Xpf.LayoutControl.Serialization;assembly=DevExpress.Xpf.LayoutControl.v16.1" 
+        xmlns:Serialization="clr-namespace:DevExpress.Xpf.LayoutControl.Serialization;assembly=DevExpress.Xpf.LayoutControl.v17.1" 
         xmlns:dxca="http://schemas.devexpress.com/winfx/2008/xaml/carousel" 
         xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
         xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
         xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
         x:Class="EPCat.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="674.484" Width="1290.694" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="EP CATALOGUE" Height="1272.984" Width="1844.694" Closing="Window_Closing" 
+        Loaded="Window_Loaded"
+        KeyDown="Window_KeyDown"
+        WindowState="Maximized" Icon="Papirus-Team-Papirus-Apps-Rocket-league.ico">
 
     <Window.DataContext>
         <local:EpCatViewModel />
@@ -23,9 +26,7 @@
     <!--<local:MaximizedElementConverter x:Key="con"/>-->
 
     <Window.Resources>
-        <local:QuickIconSetFormatExExtension x:Key="{local:FormatThemeKeyEx ResourceKey=Arrows3ColoredIconSet2}" 
-                                         Path="pack://application:,,,/Images/" 
-                                             NameEx="Arrows3_" ElementCount="3" XlIconSetType="Arrows3" />
+
     </Window.Resources>
     <Grid>
 
@@ -39,371 +40,808 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <dx:DXTabControl Margin="0" SelectionChanged="TabPageChanged">
-            <dx:DXTabItem Name="TabMain" Header="Main">
+        <dx:DXTabControl Name="NavTabGroup" Margin="0,0,0,0" Padding="0" SelectionChanged="TabPageChanged" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <dx:DXTabItem Name="TabMain" Header="Main" Height="22" VerticalAlignment="Top">
 
                 <dxlc:LayoutControl Orientation="Vertical" Margin="0" Padding="0">
                     <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem HorizontalAlignment="Left"/>
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left"/>
+
                         <dxlc:LayoutItem HorizontalAlignment="Left">
-                            <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" HorizontalAlignment="Left" Click="simpleButton_Click" />
+                            <dx:SimpleButton x:Name="LoadBtn" Content="Load" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" 
+                                             Click="simpleButton_Click" />
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="100,0,0,0">
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="DeleteBtn" Content="Delete" Width="70" Margin="10,4,0,0" HorizontalAlignment="Left" 
+                                             Click="DeleteButton_Click" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
                             <dx:SimpleButton x:Name="CollapseBtn" Content="Hide" Width="50" HorizontalAlignment="Left" Click="Collapse_Click" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
+                            <dx:SimpleButton x:Name="GidJPGBtn" Content="JPG" Width="50" HorizontalAlignment="Left" Click="GidJPGBtn_Click"  />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
+                            <dx:SimpleButton x:Name="CopyPosterBtn" Content="Copy Poster" Width="100" HorizontalAlignment="Left" Click="CopyPoster_Click"  />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
+                            <dx:SimpleButton x:Name="CopyPosterABtn" Content="Copy Poster Name" Width="120" HorizontalAlignment="Left" Click="CopyPosterName_Click"  />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
+                            <dx:SimpleButton x:Name="JAVupdatefiltered" Content="JAV set rating" Width="120" HorizontalAlignment="Left" Click="JAVupdatefiltered_Click"  />
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Margin="20,0,0,0" Width="50">
                             <dxe:CheckEdit x:Name="EditAllowed" Content="Edit" />
                         </dxlc:LayoutItem>
+
+
+
                         <dxlc:LayoutItem Margin="0,0,0,0" Width="50">
-                            <dxe:CheckEdit x:Name="DeletingAllowed" Content="Delete" IsChecked="{Binding IsDeletingAllowed}" />
+                            <dxe:CheckEdit x:Name="SavingAllowed" Content="Save" IsChecked="{Binding IsSavingAllowed}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Margin="0,0,0,0" Width="100">
+                            <dxe:CheckEdit x:Name="SyncPosterAllowed" Content="Sync Poster" IsChecked="{Binding IsSynchPosterAllowed}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Margin="0,0,0,0" Width="140">
-                            <dxe:ListBoxEdit x:Name="rgCapsMode" ShowBorder="True" EditValueChanged="SetCapsMode" SelectedIndex="0">
-                                <dxe:ListBoxEdit.StyleSettings>
-                                    <dxe:RadioListBoxEditStyleSettings />
-                                </dxe:ListBoxEdit.StyleSettings>
-                                <dxe:ListBoxEdit.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal" />
-                                    </ItemsPanelTemplate>
-                                </dxe:ListBoxEdit.ItemsPanel>
-                                <dxe:ListBoxEditItem Content="All" />
-                                <dxe:ListBoxEditItem Content="Parent" />
-                            </dxe:ListBoxEdit>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Margin="0,0,0,0" Width="500">
-                            <dxe:ListBoxEdit x:Name="rgCapsPassport" ShowBorder="True" EditValueChanged="SetCurrentImagePassort" SelectedIndex="0">
-                                <dxe:ListBoxEdit.StyleSettings>
-                                    <dxe:RadioListBoxEditStyleSettings />
-                                </dxe:ListBoxEdit.StyleSettings>
-                                <dxe:ListBoxEdit.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal" />
-                                    </ItemsPanelTemplate>
-                                </dxe:ListBoxEdit.ItemsPanel>
-                                <dxe:ListBoxEditItem Content="Caps" />
-                                <dxe:ListBoxEditItem Content="Events" />
-                                <dxe:ListBoxEditItem Content="Figures" />
-                                <dxe:ListBoxEditItem Content="Parts" />
-                                <dxe:ListBoxEditItem Content="Backg" />
-                                <dxe:ListBoxEditItem Content="Compos" />
-                            </dxe:ListBoxEdit>
-                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Margin="0,0,0,0" Width="400"/>
 
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup>
-                        <dxg:GridControl x:Name="GV" Width="800" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" ItemsSource="{Binding FolderListView}" SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell">
+                        <dxg:GridControl x:Name="GV" Width="1400"
+                                         AutoGenerateColumns="None"
+                                         EnableSmartColumnsGeneration="True"
+                                         ItemsSource="{Binding FolderListView}"
+                                         SelectedItem="{Binding CurrentFolder}" SelectionMode="Cell" AutoExpandAllGroups="False">
+                            <dxg:GridControl.TotalSummary>
+                                <dxg:GridSummaryItem DisplayFormat="{}{0}" FieldName="Name" SummaryType="Count" ShowInColumn="Name"/>
+                                <dxg:GridSummaryItem DisplayFormat="{}{0}" FieldName="Size" ShowInColumn="Size" SummaryType="Sum"/>
+                            </dxg:GridControl.TotalSummary>
                             <dxg:GridControl.GroupSummary>
-                                <dxg:GridSummaryItem FieldName="Year" SummaryType="Count" ShowInColumn="" DisplayFormat="{}{0}" Alignment="Default"/>
+                                <dxg:GridSummaryItem FieldName="Year" SummaryType="Count" ShowInColumn="Year" DisplayFormat="{}{0}" Alignment="Default" />
                             </dxg:GridControl.GroupSummary>
-
                             <dxg:GridControl.View>
-
-
-                                <dxg:TableView AllowConditionalFormattingMenu="True" AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow">
-
-
-                                    <dxg:TableView.PredefinedIconSetFormats>
-                                        <dxc:FormatInfoCollection>
-                                            <local:StandardIconSetFormatInfoExExtension FormatName="Arrows3ColoredIconSet2" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows3GrayIconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Triangles3IconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows4GrayIconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows4ColoredIconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows5GrayIconSet" Group="DirectionalGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows5ColoredIconSet" Group="DirectionalGroup" />
-
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights3UnrimmedIconSet" Group="ShapesGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights3RimmedIconSet" Group="ShapesGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Signs3IconSet" Group="ShapesGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights4IconSet" Group="ShapesGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="RedToBlackIconSet" Group="ShapesGroup" />
-
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Symbols3CircledIconSet" Group="IndicatorsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Symbols3UncircledIconSet" Group="IndicatorsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Flags3IconSet" Group="IndicatorsGroup" />
-
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Stars3IconSet" Group="RatingsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Ratings4IconSet" Group="RatingsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Quarters5IconSet" Group="RatingsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Ratings5IconSet" Group="RatingsGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="Boxes5IconSet" Group="RatingsGroup" />
-
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeArrowsColoredIconSet" Group="PositiveNegativeGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeArrowsGrayIconSet" Group="PositiveNegativeGroup" />
-                                            <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeTrianglesIconSet" Group="PositiveNegativeGroup" />
-                                        </dxc:FormatInfoCollection>
-                                    </dxg:TableView.PredefinedIconSetFormats>
-
-
-
+                                <dxg:TableView Name="MainGridView"
+                                    AllowConditionalFormattingMenu="True"                                     
+                                    AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="True" DataNavigatorButtons="DeleteFocusedRow" AllowGrouping="True" AllowPartialGrouping="False" AllowFixedGroups="True" ShowGroupedColumns="True" ShowFixedTotalSummary="True" ShowCriteriaInAutoFilterRow="False" HiddenEditor="MainGridView_HiddenEditor">
                                     <dxg:TableView.FormatConditions>
                                         <dxg:ColorScaleFormatCondition Expression="[VideoPresent] = True" FieldName="ItemPath" PredefinedFormatName="YellowGreenColorScale" />
                                     </dxg:TableView.FormatConditions>
                                 </dxg:TableView>
                             </dxg:GridControl.View>
-                            <!--<dxg:GridControl.TotalSummary>
-                                <dxg:GridSummaryItem FieldName="Name" SummaryType="Count"/>
-                                <dxg:GridSummaryItem SummaryType="Count" Alignment="Right"/>
-                            </dxg:GridControl.TotalSummary>-->
-                            <dxg:GridColumn FieldName="Name" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Catalog" MaxWidth="30" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Name" IsSmart="True"/>
+                            <!--<dxg:GridColumn FieldName="Icon1">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:ImageEditSettings MaxWidth="18"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>-->
                             <dxg:GridColumn FieldName="AltTitle" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Country" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Year" IsSmart="True" AllowGrouping="True" />
-                            <dxg:GridColumn FieldName="Month" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Day" IsSmart="True" />
-                            <dxg:GridColumn FieldName="Rated" IsSmart="True" />
-                            <dxg:GridColumn FieldName="XRated" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Country" MaxWidth="35" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Year" Width="25" FixedWidth="True" IsSmart="True" AllowGrouping="True" />
+                            <dxg:GridColumn FieldName="Scenes" Width="35" FixedWidth="True" IsSmart="True" AllowGrouping="True" />
+                            <dxg:GridColumn FieldName="Month" Width="35" FixedWidth="True" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Day" Width="35" FixedWidth="True" IsSmart="True" />
+                            <dxg:GridColumn FieldName="M4V" Width="35" FixedWidth="True" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Rated" Width="35" FixedWidth="True" IsSmart="True" />
+                            <dxg:GridColumn FieldName="XRated" Width="35" FixedWidth="True" IsSmart="True" />
                             <dxg:GridColumn FieldName="Kind" IsSmart="True" />
                             <dxg:GridColumn FieldName="Brand" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Stage" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Variant" IsSmart="True" />
                             <dxg:GridColumn FieldName="Type" IsSmart="True" />
                             <dxg:GridColumn FieldName="Star" IsSmart="True" />
+                            <dxg:GridColumn Name="gcSerie" FieldName="Serie" IsSmart="True" />
                             <dxg:GridColumn FieldName="MyDescr" IsSmart="True" />
                             <dxg:GridColumn FieldName="Director" IsSmart="True" />
                             <dxg:GridColumn FieldName="Studio" IsSmart="True" />
                             <dxg:GridColumn FieldName="IMDB" IsSmart="True" />
                             <dxg:GridColumn FieldName="ItemPath" IsSmart="True" />
-                            <dxg:GridColumn FieldName="CodesA" IsSmart="True" />
-                            <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" Width="20" Header="." />
+                            <dxg:GridColumn FieldName="PersonName" IsSmart="True" />
+                            <dxg:GridColumn FieldName="PersonAge" IsSmart="True" />
+                            <dxg:GridColumn FieldName="PersonSex" IsSmart="True" />
+                            <dxg:GridColumn FieldName="PersonType" IsSmart="True" />
+                            <dxg:GridColumn FieldName="PersonKind" IsSmart="True" />
+                            <dxg:GridColumn FieldName="LastCheck" IsSmart="True" />
+                            <dxg:GridColumn FieldName="PARENT" IsSmart="True" />
+                            <dxg:GridColumn FieldName="Size" IsSmart="True" FixedWidth="True" Width="25"/>
+                            <dxg:GridColumn FieldName="Length" IsSmart="True" />
+                            <dxg:GridColumn FieldName="VideoPresent" IsSmart="True" FixedWidth="True" Width="20" Header="." />
+                            <dxg:GridColumn FieldName="SourceFolderExist" IsSmart="True" />
+                            <dxg:GridColumn FieldName="ToDelete" IsSmart="True" />
                         </dxg:GridControl>
-                        <dxlc:LayoutGroup View="Group" Orientation="Vertical">
-                            <dxlc:LayoutGroup x:Name="MainDetail" View="Group" Orientation="Horizontal">
-                                <dxlc:LayoutGroup Header="LayoutGroup" View="Tabs" Height="600">
-                                    <dxlc:LayoutGroup Header="Tab">
-                                        <dxlc:LayoutItem Margin="0" Padding="0" ElementSpace="0" MinHeight="100" VerticalAlignment="Stretch" LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
-                                            <Image Source="{Binding SelectedItem.Poster, ElementName=GV}" Stretch="Uniform" />
-                                        </dxlc:LayoutItem>
+                        <dxlc:LayoutGroup View="Group" Orientation="Vertical" Margin="0,0,0,0" Padding="0">
+                            <dxlc:LayoutGroup x:Name="MainDetail" View="Group" Margin="0,0,0,0" Padding="0" Orientation="Horizontal">
+                                <dxlc:LayoutGroup Orientation="Vertical">
+                                    <dxlc:LayoutGroup Header="LayoutGroup" View="Tabs" Margin="0,0,0,0">
+                                        <dxlc:LayoutGroup Header="Main" Margin="0,0,0,0" Padding="0">
+                                            <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0"
+                                                MinHeight="100"
+                                                VerticalAlignment="Stretch"
+                                                LabelHorizontalAlignment="Stretch"
+                                                LabelVerticalAlignment="Stretch">
+                                                <Image Source="{Binding SelectedItem.Poster, ElementName=GV}" Stretch="Uniform" />
+                                            </dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
+                                        <dxlc:LayoutGroup Header="Details" RenderTransformOrigin="0.5,0.5" Margin="-3,0,0,32">
+                                            <dxlc:LayoutItem Margin="0" Padding="0" ElementSpace="0">
+                                                <ContentPresenter x:Name="DetailView" Grid.Row="0" Grid.Column="1" Content="{Binding SelectedItem, ElementName=GV}"
+                                                    ContentTemplate="{StaticResource rowDetailTemplate}"
+                                                    HorizontalAlignment="Stretch" />
+                                            </dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
                                     </dxlc:LayoutGroup>
-                                    <dxlc:LayoutGroup Header="Tab">
-                                        <dxlc:LayoutItem Margin="0" Padding="0" ElementSpace="0">
-                                            <ContentPresenter x:Name="DetailView" Grid.Row="0" Grid.Column="1" Content="{Binding SelectedItem, ElementName=GV}" ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch" />
-                                        </dxlc:LayoutItem>
-                                    </dxlc:LayoutGroup>
+
                                 </dxlc:LayoutGroup>
 
                             </dxlc:LayoutGroup>
-                            <dxlc:LayoutItem Label="Comments" LabelPosition="Top">
-                                <dxe:TextEdit Text="{Binding SelectedItem.CommentsAsString, ElementName=GV}" 
-                                            TextWrapping="WrapWithOverflow"
-                                            AcceptsReturn="True"
-                                            VerticalContentAlignment="Top" 
-                                            MaxHeight="300" />
-                            </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutControl>
             </dx:DXTabItem>
-            <dx:DXTabItem Name="TabCaps" Header="Caps" Padding="10,0" KeyUp="ShowHideChildCaps">
-
-                <dxlc:FlowLayoutControl x:Name="layoutImages" ItemsSource="{Binding CurrentCaps}"
-                              AllowItemMoving="False" 
-                              AllowLayerSizing="True"
-                              AllowMaximizedElementMoving="False"
-                              AnimateScrolling="False"
-                              AnimateItemMaximization="False"
-                              AnimateItemMoving="False"
-                              DragScrolling="False"                                        
-                              Background="Black" ShowLayerSeparators="False" Padding="0" ItemSpace="0" LayerSpace="0" Margin="0"  
-                              
-                              >
-                    <dxlc:FlowLayoutControl.ItemTemplate>
-                        <DataTemplate>
-                            <dxlc:GroupBox Header="{Binding}" Content="{Binding}" Width="150" Height="150" Padding="0" 
-                                 Margin="0,0,0,0"                                                                                       
-                                 MaximizeElementVisibility="Visible"
-                                 Loaded="GroupBox_Loaded"                                 
-                                 FontFamily="Segoe UI Light" FontSize="12" Cursor="Hand"                                             
-                                 >
-
-                                <!--HeaderTemplate-->
-                                <dxlc:GroupBox.HeaderTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock LineHeight="0" TextAlignment="Left" Text="{Binding ShortId}" FontFamily="Consolas" FontSize="14" FontWeight="Heavy" Padding="0,0,0,0" Margin="0,0,0,0" />
-                                            <Button Content="." Click="Caps_Delete" Width="15" Height="15" Margin="50,0,0,0" HorizontalAlignment="Right" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </dxlc:GroupBox.HeaderTemplate>
-
-                                <!--ContentTemplate-->
-                                <dxlc:GroupBox.ContentTemplate>
-                                    <DataTemplate>
-                                        <Image Source="{Binding Thumb}" Stretch="Uniform" HorizontalAlignment="Center" MouseLeftButtonUp="GroupBox_MouseLeftButtonUp" />
-                                    </DataTemplate>
-                                </dxlc:GroupBox.ContentTemplate>
-
-                                <!--MaximizedContentTemplate-->
-                                <dxlc:GroupBox.MaximizedContentTemplate>
-                                    <DataTemplate>
-
-                                        <dxlc:LayoutControl ItemSpace="0" Margin="0,0,0,0" Padding="0,0,0,0">
-
-                                            <dxlc:LayoutGroup Background="White" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Padding="0,0,0,0" MaxWidth="600">
-                                                <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Vertical" MaxWidth="600">
-
-                                                    <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Horizontal" HorizontalAlignment="Left">
-
-                                                        <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Vertical" HorizontalAlignment="Left">
-                                                            <dxlc:LayoutItem Label="Id" LabelPosition="Top">
-                                                                <dxe:TextEdit Text="{Binding Id}" IsReadOnly="True" />
-                                                            </dxlc:LayoutItem>
-                                                            <dxlc:LayoutItem Label="Parent:" LabelPosition="Top">
-                                                                <dxe:TextEdit Text="{Binding ParentId}" />
-                                                            </dxlc:LayoutItem>
-                                                            <dxlc:LayoutItem Label="Name" LabelPosition="Top">
-                                                                <dxe:TextEdit Text="{Binding Name}" TextWrapping="Wrap" />
-                                                            </dxlc:LayoutItem>
-                                                        </dxlc:LayoutGroup>
-
-                                                        <dxlc:LayoutGroup View="Group" Header="Source" Orientation="Vertical" HorizontalAlignment="Left">
-                                                            <dxlc:LayoutItem Label="Description" LabelPosition="Top">
-                                                                <dxe:TextEdit Text="{Binding Description}" TextWrapping="Wrap" />
-                                                            </dxlc:LayoutItem>
-                                                            <dxlc:LayoutItem Label="Star" LabelPosition="Top">
-                                                                <dxe:TextEdit Text="{Binding Star}" TextWrapping="Wrap" />
-                                                            </dxlc:LayoutItem>
-                                                        </dxlc:LayoutGroup>
-
-                                                    </dxlc:LayoutGroup>
-
-                                                    <dxlc:LayoutGroup View="Group" Header="Source2" Orientation="Vertical" HorizontalAlignment="Stretch">
-                                                        <dxlc:LayoutItem Margin="0" Padding="0" VerticalAlignment="Stretch" ElementSpace="0" HorizontalAlignment="Stretch">
-                                                            <ContentPresenter x:Name="DetailView" Content="{Binding}" ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch" />
-                                                        </dxlc:LayoutItem>
-                                                    </dxlc:LayoutGroup>
-
-                                                </dxlc:LayoutGroup>
-                                            </dxlc:LayoutGroup>
 
 
-                                            <Image Source="{Binding Picture}" Stretch="Uniform" MouseLeftButtonUp="GroupBox_MouseLeftButtonUp" />
+            <dx:DXTabItem Header="Scenes2" HorizontalAlignment="Left" Width="80">
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                        <dxlc:LayoutGroup Name ="Buttons2" View="Group" Orientation="Horizontal" Padding="0,0">
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="ShowSceneBtn2" Content="Play" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ShowSceneBtn_Click" />
+                            </dxlc:LayoutItem>
 
-                                        </dxlc:LayoutControl>
-                                    </DataTemplate>
-                                </dxlc:GroupBox.MaximizedContentTemplate>
-
-                            </dxlc:GroupBox>
-                        </DataTemplate>
-                    </dxlc:FlowLayoutControl.ItemTemplate>
-                </dxlc:FlowLayoutControl>
-
-            </dx:DXTabItem>
-            <dx:DXTabItem Name="TabGroups" Header="Groups">
+                            <dxlc:LayoutItem HorizontalAlignment="Left"/>
+                            <dxlc:LayoutItem HorizontalAlignment="Left"/>
 
 
+                            <dxlc:LayoutItem HorizontalAlignment="Left"/>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="CopGrBtn12" Content="CGr+1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn1_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="CopGrBtn102" Content="CGr+1(10)" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn1_10_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left"/>
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0"/>
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0"/>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="CompileScenarioBtn2" Content="Compile" Width="80" Margin="100,4,0,0" HorizontalAlignment="Left" Click="CompileScenarioBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="GoGenerateBtn22" Content="Compile One" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoGenerate_Click" FontWeight="Bold" Foreground="#FF3F55B8" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="GoGenerateBtn32" Content="Generate Cur" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoGenerateDefault_Click" FontWeight="Bold" Background="#FF1DBB5E" Foreground="#FF1CD114" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <dx:SimpleButton x:Name="ReloadFileBtn2" Content="Reload" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ReloadScenarioFromFileBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <dx:SimpleButton x:Name="LoadOneFileBtn2" Content="Load" Width="60" Margin="10,4,0,0" HorizontalAlignment="Left" Click="LoadOneSceneFromFileBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Right"/>
+                            <dxlc:LayoutItem HorizontalAlignment="Right"/>
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <dx:SimpleButton x:Name="SaveToFileBtn2" Content="Save" Width="50" Margin="100,4,0,0" HorizontalAlignment="Left" Click="SaveScenesToFileBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Right"/>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Name ="GridScenario2" View="Group" Orientation="Horizontal" Padding="0,0">
+                            <dxlc:LayoutGroup Name="GridSceneProps2" View="Group" Orientation="Vertical" Padding="0,0" HorizontalAlignment="Left">
+                                <dxlc:LayoutItem Name ="Grid4" Margin="0,0,0,0" VerticalAlignment="Stretch">
+                                    <dxg:GridControl x:Name="GVCombScen4"
+                                         AutoGenerateColumns="None"
+                                         EnableSmartColumnsGeneration="True"
+                                         ItemsSource="{Binding Groups}"
+                                         SelectedItem="{Binding CurrentGroup}"
+                                         SelectionMode="Cell" AutoExpandAllGroups="True" IsRecursiveExpand="True" KeyUp="GVCombScen_KeyUp">
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView 
+                                Name= "CombinedScenGV4"
+                                AllowPerPixelScrolling="True"
+                                AllowEditing= "True"
+                                ShowTotalSummary="False"
+                                AutoWidth="False"
+                                ShowDataNavigator="True"
+                                DataNavigatorButtons="DeleteFocusedRow" 
+                                ShowGroupedColumns="False" 
+                                AllowPartialGrouping="False" 
+                                AllowFixedGroups="True" 
+                                ShowGroupFooters="False" AllowGrouping="True" ShowGroupPanel="False" >
+                                            </dxg:TableView>
+                                        </dxg:GridControl.View>
+                                        <dxg:GridColumn FieldName="Order" IsSmart="True" Width="30" SortOrder="Ascending" />
+                                        <dxg:GridColumn FieldName="Description" IsSmart="True" Width="400" AutoFilterCondition="Contains"/>
+                                    </dxg:GridControl>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                    <dxlc:LayoutItem HorizontalAlignment="Left" Margin="10,4,0,0">
+                                        <dx:SimpleButton x:Name="SbGotoClip" Content="Go to Clip" Width="90" HorizontalAlignment="Left" Click="GoToClip"  />
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                                        <dx:SimpleButton Content="Add" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddGroup_Click" />
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutItem Name ="Grid3" Margin="0,0,0,0" VerticalAlignment="Stretch">
+                                    <dxg:GridControl x:Name="GVCombScen3"
+                                         AutoGenerateColumns="None"
+                                         EnableSmartColumnsGeneration="True"
+                                         ItemsSource="{Binding GroupCadres}"
+                                         SelectedItem="{Binding CurrentCadre}"
+                                         SelectionMode="Cell" AutoExpandAllGroups="True" IsRecursiveExpand="True" KeyUp="GVCombScen_KeyUp">
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView 
+                                Name= "CombinedScenGV3"
+                                AllowPerPixelScrolling="True"
+                                AllowEditing= "True"
+                                ShowTotalSummary="False"
+                                AutoWidth="False"
+                                ShowDataNavigator="True"
+                                DataNavigatorButtons="DeleteFocusedRow" 
+                                ShowGroupedColumns="False" 
+                                AllowPartialGrouping="False" 
+                                AllowFixedGroups="True" 
+                                ShowGroupFooters="False" 
+                                ShowFilterPanelMode="ShowAlways" ShowGroupPanel="False">
+                                                <dxg:TableView.FormatConditions>
+                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Tit'" FieldName="KindName">
+                                                        <dx:Format Background="#FFB6FAB6" FontWeight="Bold" TextDecorations="{x:Null}"/>
+                                                    </dxg:FormatCondition>
+                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Pic'" FieldName="KindName">
+                                                        <dx:Format Background="#FFFCD4D4"/>
+                                                    </dxg:FormatCondition>
+                                                    <dxg:FormatCondition Expression="[KindName] = 'Snd'" FieldName="KindName" ApplyToRow="False">
+                                                        <dx:Format Background="#FFD8D6CB" FontStyle="Italic" TextDecorations="{x:Null}"/>
+                                                    </dxg:FormatCondition>
+                                                    <dxg:FormatCondition Expression="[KindName] = 'Bck'" FieldName="KindName" ApplyToRow="False" IsEnabled="True">
+                                                        <dx:Format Background="#FFE3CFFA"/>
+                                                    </dxg:FormatCondition>
+                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Mov'" FieldName="KindName">
+                                                        <dx:Format Background="#FF5CDCFF"/>
+                                                    </dxg:FormatCondition>
+                                                </dxg:TableView.FormatConditions>
+                                            </dxg:TableView>
+                                        </dxg:GridControl.View>
+                                        <dxg:GridColumn FieldName="Order" IsSmart="True" Width="30" SortOrder="Ascending" />
+                                        <dxg:GridColumn FieldName="KindName" IsSmart="True" Width="35" IsEnabled="False"/>
+                                        <dxg:GridColumn FieldName="Description" IsSmart="True" Width="400" AutoFilterCondition="Contains"/>
+                                        <dxg:GridColumn FieldName="Story" IsSmart="True" IsEnabled="False" Width="700" AutoFilterCondition="Contains"/>
+                                        <dxg:GridColumn FieldName="Group" IsSmart="True" IsEnabled="True" Width="100" AutoFilterCondition="Contains"/>
+                                    </dxg:GridControl>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                    <dx:SimpleButton x:Name="CopyCadre" Content="Copy Cadre" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn2_Click" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                    <dx:SimpleButton  Content="Add Cadre" Width="80" Margin="5,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
+                                </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                                        <dx:SimpleButton  Content="Add Control" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneCtrlBtn_Click" />
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                                        <dx:SimpleButton  Content="Add Header" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneHeaderBtn_Click" />
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutItem Name ="Grid2" Margin="0,0,0,0" VerticalAlignment="Stretch" Height="250">
+                                    <dxg:GridControl x:Name="GVCombScen2"
+                                         AutoGenerateColumns="None"
+                                         EnableSmartColumnsGeneration="True"                                         
+                                         ItemsSource="{Binding Scenes}" 
+                                         SelectedItem="{Binding CurrentElement}"
+                                         SelectionMode="Cell" AutoExpandAllGroups="True" IsRecursiveExpand="True" KeyUp="GVCombScen_KeyUp">
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView 
+                                Name= "CombinedScenGV2"
+                                AllowPerPixelScrolling="True"
+                                ShowAutoFilterRow="False"
+                                AllowEditing= "True"
+                                ShowTotalSummary="False"
+                                AutoWidth="False"
+                                ShowGroupPanel="False"
+                                ShowDataNavigator="True"
+                                DataNavigatorButtons="DeleteFocusedRow" ShowGroupedColumns="True" AllowPartialGrouping="False" AllowFixedGroups="True" ShowGroupFooters="False" ShowFilterPanelMode="ShowAlways">
+                                                <dxg:TableView.FormatConditions>
+                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Tit'" FieldName="Description">
+                                                        <dx:Format Background="#FFB6FAB6" FontWeight="Bold" TextDecorations="{x:Null}"/>
+                                                    </dxg:FormatCondition>
+                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Pic'" FieldName="Description">
+                                                        <dx:Format Background="#FFFCD4D4"/>
+                                                    </dxg:FormatCondition>
+                                                    <dxg:FormatCondition Expression="[KindName] = 'Snd'" FieldName="Description" ApplyToRow="False">
+                                                        <dx:Format Background="#FFD8D6CB" FontStyle="Italic" TextDecorations="{x:Null}"/>
+                                                    </dxg:FormatCondition>
+                                                    <dxg:FormatCondition Expression="[KindName] = 'Bck'" FieldName="Description" ApplyToRow="False" IsEnabled="True">
+                                                        <dx:Format Background="#FFE3CFFA"/>
+                                                    </dxg:FormatCondition>
+                                                    <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Mov'" FieldName="Description">
+                                                        <dx:Format Background="#FF5CDCFF"/>
+                                                    </dxg:FormatCondition>
+                                                    <dxg:FormatCondition Expression="[Template] Is Not Null" FieldName="Template">
+                                                        <dx:Format Background="LightGreen"/>
+                                                    </dxg:FormatCondition>
+                                                    <dxg:FormatCondition ApplyToRow="False" Expression="Contains([Template],'~')" FieldName="Template">
+                                                        <dx:Format Background="#FF5CDCFF"/>
+                                                    </dxg:FormatCondition>
+                                                </dxg:TableView.FormatConditions>
+                                            </dxg:TableView>
+                                        </dxg:GridControl.View>
+                                        <dxg:GridColumn FieldName="Order" IsSmart="True"  Width="40" SortOrder="Ascending"/>
+                                        <dxg:GridColumn FieldName="KindOrder" IsSmart="True" AllowResizing="False" Width="50" MaxWidth="30"/>
+                                        <dxg:GridColumn FieldName="KindName" IsSmart="True" Width="35" IsEnabled="False" AutoFilterCondition="Contains"/>
+                                        <dxg:GridColumn FieldName="Template" IsSmart="True" AllowResizing="False" Width="50" MaxWidth="50" AutoFilterCondition="Contains"/>
+                                        <dxg:GridColumn FieldName="Tags" IsSmart="True"  Width="200" AutoFilterCondition="Contains"/>
+                                        <dxg:GridColumn FieldName="Description" IsSmart="True"  Width="200" AutoFilterCondition="Contains"/>
+                                        <dxg:GridColumn FieldName="Story" IsSmart="True" Width="400" AutoFilterCondition="Contains"/>
+                                        <dxg:GridColumn FieldName="File" IsSmart="True" Width="5" AutoFilterCondition="Contains"/>
 
-                <dxlc:DockLayoutControl Margin="0" Padding="0" AllowItemSizing="True">
-                    <dxlc:GroupBox dxlc:DockLayoutControl.Dock="Left" Width="500" Name="CapsLayout" Padding="0,0" dxlc:DockLayoutControl.AllowHorizontalSizing="True">
+                                    </dxg:GridControl>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                                        <dx:SimpleButton x:Name="CopySceneBtn2" Content="Copy" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopySceneBtn_Click" />
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                                        <dx:SimpleButton x:Name="AddSceneBtn2" Content="Add" Width="45" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneBtn_Click" />
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup Name="SceneProps2" View="Group" Orientation="Vertical" Padding="0,0">
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="File">
+                                            <TextBox Name="txtFile2" Text="{Binding SelectedItem.File, ElementName=GVCombScen2}"
+                                 HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Kind" MaxWidth="60">
+                                            <TextBox Name="txtKind2" Text="{Binding SelectedItem.Kind, ElementName=GVCombScen2}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="X (Text Width)" MaxWidth="130">
+                                            <TextBox Name="txtPosX2" Text="{Binding SelectedItem.X, ElementName=GVCombScen2}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Y (Text Size)" MaxWidth="130">
+                                            <TextBox Name="txtPosY2" Text="{Binding SelectedItem.Y, ElementName=GVCombScen2}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="S (Text Shift)" MaxWidth="130">
+                                            <TextBox Name="txtSize2" Text="{Binding SelectedItem.S, ElementName=GVCombScen2}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="F (FontSize)" MaxWidth="130">
+                                            <TextBox Name="txtFlip2" Text="{Binding SelectedItem.F, ElementName=GVCombScen2}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Z (FontColor)" MaxWidth="130">
+                                            <TextBox Name="txtZOrder2" Text="{Binding SelectedItem.Z, ElementName=GVCombScen2}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Align" MaxWidth="60">
+                                            <TextBox Name="txtAlign2" Text="{Binding SelectedItem.Align, ElementName=GVCombScen2}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="VAlign" MaxWidth="60">
+                                            <TextBox Name="txtVAlign2" Text="{Binding SelectedItem.VAlign, ElementName=GVCombScen2}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
 
-                        <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
-                            <dxg:GridControl x:Name="GVGroups" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" ItemsSource="{Binding CapsListView}" SelectedItem="{Binding CurrentCapsGroup}" SelectionMode="Cell" SelectedItemChanged="RefreshGroup">
-                                <dxg:GridControl.View>
-                                    <dxg:TableView AllowConditionalFormattingMenu="True" AllowEditing="{Binding IsChecked, ElementName=EditAllowed}" AllowPerPixelScrolling="True" ShowAutoFilterRow="True" ShowTotalSummary="True" AutoWidth="True" ShowDataNavigator="False" CellValueChanged="UpdateGroup">
-                                        <dxg:TableView.PredefinedIconSetFormats>
-                                            <dxc:FormatInfoCollection>
-                                                <local:StandardIconSetFormatInfoExExtension FormatName="Arrows3ColoredIconSet2" Group="DirectionalGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows3GrayIconSet" Group="DirectionalGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Triangles3IconSet" Group="DirectionalGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows4GrayIconSet" Group="DirectionalGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows4ColoredIconSet" Group="DirectionalGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows5GrayIconSet" Group="DirectionalGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows5ColoredIconSet" Group="DirectionalGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights3UnrimmedIconSet" Group="ShapesGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights3RimmedIconSet" Group="ShapesGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Signs3IconSet" Group="ShapesGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="TrafficLights4IconSet" Group="ShapesGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="RedToBlackIconSet" Group="ShapesGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Symbols3CircledIconSet" Group="IndicatorsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Symbols3UncircledIconSet" Group="IndicatorsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Flags3IconSet" Group="IndicatorsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Stars3IconSet" Group="RatingsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Ratings4IconSet" Group="RatingsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Quarters5IconSet" Group="RatingsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Ratings5IconSet" Group="RatingsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="Boxes5IconSet" Group="RatingsGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeArrowsColoredIconSet" Group="PositiveNegativeGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeArrowsGrayIconSet" Group="PositiveNegativeGroup" />
-                                                <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeTrianglesIconSet" Group="PositiveNegativeGroup" />
-                                            </dxc:FormatInfoCollection>
-                                        </dxg:TableView.PredefinedIconSetFormats>
+                                        <dxlc:LayoutItem Label="O" MaxWidth="50">
+                                            <TextBox Name="txtOpacity2" Text="{Binding SelectedItem.O, ElementName=GVCombScen2}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="R" MaxWidth="50">
+                                            <TextBox Name="txtRotation2" Text="{Binding SelectedItem.R, ElementName=GVCombScen2}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Start" MaxWidth="120">
+                                            <TextBox Name="txtPosStart2" Text="{Binding SelectedItem.PositionStart, ElementName=GVCombScen2}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="End" MaxWidth="120">
+                                            <TextBox Name="txtPosEnd2" Text="{Binding SelectedItem.PositionEnd, ElementName=GVCombScen2}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Loop mode" MaxWidth="100">
+                                            <TextBox Name="txtLM2" Text="{Binding SelectedItem.LoopMode, ElementName=GVCombScen2}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Loop count" MaxWidth="100">
+                                            <TextBox Name="txtLC2" Text="{Binding SelectedItem.LoopCount, ElementName=GVCombScen2}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Speed" MaxWidth="100">
+                                            <TextBox Name="txtSpeed2" Text="{Binding SelectedItem.Speed, ElementName=GVCombScen2}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Controls" MaxWidth="100">
+                                            <TextBox Name="txtControls2" Text="{Binding SelectedItem.ShowMovieControl, ElementName=GVCombScen2}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Template" MaxWidth="100">
+                                            <TextBox Name="txtTemplate2" Text="{Binding SelectedItem.Template, ElementName=GVCombScen2}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
 
-                                    </dxg:TableView>
-                                </dxg:GridControl.View>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Transition" LabelPosition="Left">
+                                            <dxe:TextEdit 
+                                MaxHeight="320"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding SelectedItem.T, ElementName=GVCombScen2}" />
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                        <dxlc:LayoutItem Label="Story" LabelPosition="Left">
+                                            <dxe:TextEdit MaxHeight="320"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding SelectedItem.StoryAsString, ElementName=GVCombScen2}" />
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
 
-                                <dxg:GridControl.TotalSummary>
-                                    <dxg:GridSummaryItem FieldName="Name" SummaryType="Count" />
-                                    <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
-                                </dxg:GridControl.TotalSummary>
-                                <dxg:GridColumn FieldName="Id" IsSmart="True" Width="10" />
-                                <dxg:GridColumn FieldName="Name" IsSmart="True" Width="40" />
-                                <dxg:GridColumn FieldName="Description" IsSmart="True" Width="40" />
-                                <dxg:GridColumn FieldName="Star" IsSmart="True" />
-                                <dxg:GridColumn FieldName="PassportPath" IsSmart="True" />
-                            </dxg:GridControl>
+                            <dxlc:LayoutGroup Name ="Scenario2" Margin="0,0,0,0" Padding="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                <dxlc:LayoutGroup Header="LayoutGroup" View="Tabs" Margin="0,0,0,0" HorizontalAlignment="Stretch">
+                                    <dxlc:LayoutGroup Header="Details" Orientation="Vertical" Margin="0,0,0,0" Padding="0" HorizontalAlignment="Stretch">
+                                        <dxlc:LayoutItem Label="Name" FontWeight="ExtraBold">
+                                            <TextBox FontWeight="Bold" TextWrapping="WrapWithOverflow" Foreground="Blue" Text="{Binding Story.Name}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="File name">
+                                            <TextBox Text="{Binding Story.FileName}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                            <dxlc:LayoutItem Label="Fm">
+                                                <TextBox Text="{Binding Story.Female}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            </dxlc:LayoutItem>
+                                            <dxlc:LayoutItem Label="Garment">
+                                                <TextBox Text="{Binding Story.Fgarment}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            </dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
+                                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                            <dxlc:LayoutItem Label="Ml">
+                                                <TextBox Text="{Binding Story.Male}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            </dxlc:LayoutItem>
+                                            <dxlc:LayoutItem Label="Garment">
+                                                <TextBox Text="{Binding Story.Mgarment}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            </dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
+                                        <dxlc:LayoutItem Label="Location" >
+                                            <TextBox TextWrapping="WrapWithOverflow" Text="{Binding Story.Location}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="Action" >
+                                            <TextBox TextWrapping="WrapWithOverflow" Text="{Binding Story.Action}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                            <dxlc:LayoutItem Label="Kind">
+                                                <TextBox Text="{Binding Story.Kind}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            </dxlc:LayoutItem>
+                                            <dxlc:LayoutItem Label="Category">
+                                                <TextBox Text="{Binding Story.Category}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            </dxlc:LayoutItem>
+                                            <dxlc:LayoutItem Label="Variant">
+                                                <TextBox Text="{Binding Story.Variant}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                            </dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
+                                        <dxlc:LayoutItem Label="Stopwords" >
+                                            <TextBox TextWrapping="WrapWithOverflow" Text="{Binding Story.StopWords}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                            <dxlc:LayoutItem Label="Description" LabelPosition="Top">
+                                                <dxe:TextEdit MaxHeight="320"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="NoWrap" AcceptsReturn="True" Text="{Binding Story.Description}" />
+                                            </dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
+                                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                            <dxlc:LayoutItem Label="Control: F=1 (MuteAll)" LabelPosition="Top"></dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
+                                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                            <dxlc:LayoutItem Label="Sound: X=Volume; Y=1 (Mute); F=1 (random position); FileName: STOP" LabelPosition="Top"></dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
+                                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                            <dxlc:LayoutItem Label="Video: Loop 0-go next, 1-loop, 2-stop, 3-no stop" LabelPosition="Top"></dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
+                                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                            <dxlc:LayoutItem Label="Raw Parameters" LabelPosition="Top">
+                                                <dxe:TextEdit MaxHeight="320"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="NoWrap"  AcceptsReturn="True" Text="{Binding Story.RawParameters}" />
+                                            </dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
+
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup Header="Caption" Orientation="Vertical" Margin="0,0,0,0" Padding="0">
+                                        <dxlc:LayoutItem Label="Story" LabelPosition="Top">
+                                            <dxe:TextEdit MaxHeight="200"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="NoWrap"  AcceptsReturn="True" Text="{Binding Story.Story}" />
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem MinHeight="100"
+                                                VerticalAlignment="Stretch"
+                                                LabelHorizontalAlignment="Stretch"
+                                                LabelVerticalAlignment="Stretch">
+                                            <Image Source="{Binding SelectedItem.Poster, ElementName=GVCombScen3}" Stretch="Uniform" Margin="0,0,0,0" />
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
                         </dxlc:LayoutGroup>
 
-                    </dxlc:GroupBox>
+                    </dxlc:LayoutGroup>
 
-                    <dxlc:GroupBox dxlc:DockLayoutControl.Dock="Client" dxlc:DockLayoutControl.AllowHorizontalSizing="True">
-                        <dxlc:FlowLayoutControl x:Name="layoutGroupCaps" ItemsSource="{Binding CurrentCapsForGroup}"
-                              AllowItemMoving="False" 
-                              AllowLayerSizing="True"
-                                                
-                              AllowMaximizedElementMoving="False"
-                              AnimateScrolling="False"
-                              AnimateItemMaximization="False"
-                              AnimateItemMoving="False"
-                              DragScrolling="False"                                                                              
-                              Background="Black" ShowLayerSeparators="True" Padding="0" ItemSpace="0" LayerSpace="0" Margin="0"  
-                              
-                              >
-                            <dxlc:FlowLayoutControl.ItemTemplate>
-                                <DataTemplate>
-                                    <dxlc:GroupBox Header="{Binding}" Content="{Binding}" Width="150" Height="150" Padding="0" 
-                                 Margin="0,0,0,0"                                                 
-                                 MaximizeElementVisibility="Visible"
-                                 FontFamily="Segoe UI Light" FontSize="12" Cursor="Hand" 
-                                 Loaded="GroupBox_Loaded2"                                 
-                                 >
-
-                                        <!--HeaderTemplate-->
-                                        <dxlc:GroupBox.HeaderTemplate>
-                                            <DataTemplate>
-                                                <TextBlock LineHeight="0" TextAlignment="Center" Text="{Binding ShortId}" FontFamily="Consolas" FontSize="14" FontWeight="Heavy" Padding="0,0,0,0" Margin="0,0,0,0" />
-                                            </DataTemplate>
-                                        </dxlc:GroupBox.HeaderTemplate>
-
-                                        <!--ContentTemplate-->
-                                        <dxlc:GroupBox.ContentTemplate>
-                                            <DataTemplate>
-                                                <Image Source="{Binding Thumb}" Stretch="Uniform" HorizontalAlignment="Center" MouseLeftButtonUp="GroupBox_NaximizeMinimize" />
-                                            </DataTemplate>
-                                        </dxlc:GroupBox.ContentTemplate>
-
-                                        <!--MaximizedContentTemplate-->
-                                        <dxlc:GroupBox.MaximizedContentTemplate>
-                                            <DataTemplate>
-
-                                                <dxlc:LayoutControl ItemSpace="0" Margin="0,0,0,0" Padding="0,0,0,0">
-
-
-                                                    <Image Source="{Binding Picture}" Stretch="Uniform" MouseLeftButtonUp="GroupBox_NaximizeMinimize" />
-
-                                                </dxlc:LayoutControl>
-                                            </DataTemplate>
-                                        </dxlc:GroupBox.MaximizedContentTemplate>
-
-                                    </dxlc:GroupBox>
-                                </DataTemplate>
-                            </dxlc:FlowLayoutControl.ItemTemplate>
-                        </dxlc:FlowLayoutControl>
-
-                        <!--<ContentPresenter x:Name ="CapsListView" Content="{Binding SelectedItem, ElementName=GVGroups}" ContentTemplate="{StaticResource rowDetailTemplate}" HorizontalAlignment="Stretch"/>-->
-                    </dxlc:GroupBox>
-                </dxlc:DockLayoutControl>
-
+                </dxlc:LayoutGroup>
             </dx:DXTabItem>
+
+            <dx:DXTabItem x:Name="tabCaption" Header="Poster">
+                <Grid Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="170*"/>
+                        <ColumnDefinition Width="62*"/>
+                        <ColumnDefinition Width="1049*"/>
+                    </Grid.ColumnDefinitions>
+                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch" Grid.ColumnSpan="3">
+                        <Image Source="{Binding SelectedItem.Poster, ElementName=GV}" Stretch="Uniform" />
+                    </dxlc:LayoutItem>
+                </Grid>
+            </dx:DXTabItem>
+
+            <!--<dx:DXTabItem Header="Scen data">
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="UpdateScenDataBtn" Content="Update" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="UpdateScenDataBtn_Click" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0">
+                        <dxe:TextEdit 
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                          TextWrapping="Wrap" AcceptsReturn="True" 
+                            Text="{Binding SelectedItem.ScenDataAsString, ElementName=GV}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                
+            </dx:DXTabItem>-->
+
+            <dx:DXTabItem Header="Clips" Height="22" VerticalAlignment="Bottom">
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="ShowVideoBtn" Content="Play" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="ShowVideoBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="EditStartVideoBtn" Content="Go Start" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="EditVideoBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="EditEndVideoBtn" Content="Go End" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="EditEndVideoBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="AddMediaBtn" Content="Add" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AdMediaBtn_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton x:Name="SaveCurrentClipBtn" Content="Save" Width="50" Margin="10,4,0,0" HorizontalAlignment="Left" Click="SaveCurrentClipBtn_Click" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0" VerticalAlignment="Stretch" 
+                                     LabelHorizontalAlignment="Stretch" LabelVerticalAlignment="Stretch">
+                            <dxg:GridControl x:Name="GVScen"
+                                         AutoGenerateColumns="None"
+                                         EnableSmartColumnsGeneration="True"
+                                         ItemsSource="{Binding SelectedItem.Clips, ElementName=GV}"
+                                         SelectedItem="{Binding CurrentClip}"
+                                         SelectionMode="Cell">
+                                <!--SelectedItem="{Binding CurrentFolder}"-->
+                                <dxg:GridControl.View>
+                                    <dxg:TableView 
+                                Name= "ScenGV"
+                                AllowPerPixelScrolling="True"
+                                ShowAutoFilterRow="False"
+                                AllowEditing= "True"
+                                ShowTotalSummary="False"
+                                AutoWidth="False"
+                                ShowGroupPanel="false"
+                                ShowDataNavigator="True"
+                                DataNavigatorButtons="DeleteFocusedRow">
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                                <dxg:GridColumn FieldName="N" IsSmart="True" AllowResizing="False" Width="30" MaxWidth="30"/>
+                                <dxg:GridColumn FieldName="Description" IsSmart="True" Width="300"/>
+                                <dxg:GridColumn FieldName="Protogonist" IsSmart="True" Width="150"/>
+                                <dxg:GridColumn FieldName="Antagonist" IsSmart="True" Width="150"/>
+                                <dxg:GridColumn FieldName="Story" IsSmart="True" Width="350"/>
+                                <dxg:GridColumn FieldName="Grade" IsSmart="True" AllowResizing="False" Width="30" MaxWidth="30"/>
+                                <dxg:GridColumn FieldName="Length" IsSmart="True" AllowResizing="False"  Width="50" MaxWidth="100" />
+                                <dxg:GridColumn FieldName="PositionStart" IsSmart="True" AllowResizing="False"  Width="50" MaxWidth="100" />
+                                <dxg:GridColumn FieldName="PositionEnd" IsSmart="True" AllowResizing="False" Width="50" MaxWidth="100"/>
+                                <dxg:GridColumn FieldName="LoopMode" Header="Mode" IsSmart="True" AllowResizing="False" Width="30" MaxWidth="30"/>
+                                <dxg:GridColumn FieldName="LoopCount" Header="Loops" IsSmart="True" AllowResizing="False" Width="30" MaxWidth="30"/>
+                                <dxg:GridColumn FieldName="Speed" IsSmart="True" AllowResizing="False" Width="30" MaxWidth="30"/>
+                            </dxg:GridControl>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                            <dxlc:LayoutItem Label="File">
+                                <TextBox Name="txtFile202" Text="{Binding SelectedItem.File, ElementName=GVScen}"
+                                 HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                            <dxlc:LayoutItem Label="Story" LabelPosition="Left">
+                                <dxe:TextEdit 
+                                MaxHeight="320"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding SelectedItem.Story, ElementName=GVScen}" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" MaxWidth="700" MaxHeight="200" Height="200">
+                        <Image Source="{Binding SelectedItem.Poster, ElementName=GVScen}" Stretch="Uniform" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dx:DXTabItem>
+
+
+            <dx:DXTabItem Name ="EditTab" Header="Edit" Height="22" VerticalAlignment="Top">
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                    <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" >
+                        <StackPanel>
+                            <MediaElement x:Name="minionPlayer" Margin="0"                         
+                             ScrubbingEnabled="True"
+                             MinHeight="500"
+                             SnapsToDevicePixels="True"
+                             Stretch="Uniform"
+                             Height="900"
+                             MaxHeight="900"
+                             LoadedBehavior="Manual"
+                             HorizontalAlignment="Left"/>
+
+                            <StackPanel Orientation="Vertical"                                        
+                                HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <ScrollBar Orientation="Horizontal" Grid.Row="1" Name="sbarPosition"
+                                    VerticalAlignment="Center" Scroll="sbarPosition_Scroll"
+                                        PreviewMouseDown="sbarPosition_PreviewMouseDown" Margin="0,1"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <TextBlock>Q-W</TextBlock>
+                                    <ScrollBar Orientation="Horizontal" Name="sbarSeek"
+                                            VerticalAlignment="Center" Width="300" Scroll="sbarSeek_Scroll"
+                                            PreviewMouseUp="sbarSeek_PreviewMouseUp"  PreviewMouseDown="sbarSeek_PreviewMouseDown" Margin="0,1"/>
+                                    <TextBlock>A-S</TextBlock>
+                                    <ScrollBar Orientation="Horizontal" Name="sbarScale"
+                                            VerticalAlignment="Center" Width="300" Scroll="sbarScale_Scroll"
+                                            PreviewMouseUp="sbarScale_PreviewMouseUp"   PreviewMouseDown="sbarScale_PreviewMouseDown" Margin="0,1"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                                    <StackPanel.Resources>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Margin" Value="2"/>
+                                        </Style>
+                                    </StackPanel.Resources>
+
+                                    <Button x:Name="btnPlay" Content="Play(SPACE)" Click="btnPlay_Click">
+                                    </Button>
+                                    <Button Margin="5,0,0,0" Content="Load" Height="30" Width="50"
+                                  x:Name="btnLoad" Click="btnLoad_Click"/>
+                                    <Button Margin="5,0,0,0" Content="Scr(M)" Height="30" Width="60"
+                                  x:Name="btnScreenshot" Click="btnScreenshot_Click"/>
+                                    <Button Margin="5,0,0,0" Content="ScrS(N)" Height="30" Width="70"
+                                  x:Name="btnScreenshotSimple" Click="btnScreenshotSimple_Click"/>
+                                    <Button Margin="5,0,0,0" Content="Scr+" Height="30" Width="60"
+                                  x:Name="btnScreenshot1" Click="btnScreenshotAddGroup_Click"/>
+                                    <Button Margin="5,0,0,0" Content="Screenshots" Height="30" Width="100"
+                                  x:Name="btnScreenshot2" Click="btnScreenshots_Click"/>
+                                    <CheckBox Margin="5,0,0,0" Content="Gray" Height="30" Width="50"
+                                  x:Name="cbGray"/>
+
+                                    <Button Margin="5,0,0,0" Content="Reset" Height="30"
+                                  Name="btnSetPositionReset" Click="btnSetPositionReset_Click"/>
+                                    <Button Margin="5,0,0,0" Content="Start" Height="30"
+                                  Name="btnSetPositionStart" Click="btnSetPositionStart_Click"/>
+                                    <TextBox Name="txtPositionStart" Width="65" Height="24" Text="{Binding ClipTemplate.PositionStart, UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                                    <Button Margin="5,0,0,0" Content="End" Height="30"
+                                  Name="btnSetPositionEnd" Click="btnSetPositionEnd_Click"/>
+                                    <TextBox Name="txtPositionEnd" Width="65" Height="24" Text="{Binding ClipTemplate.PositionEnd, UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                                    <Button Margin="5,0,0,0" Content="Set Position" Height="30"
+                                  Name="btnSetPosition" Click="btnSetPosition_Click"/>
+                                    <Button Margin="5,0,0,0" Content="Save Clip" Height="30"
+                                  Name="btnSetPositionSave" Click="btnSetPositionSave_Click"/>
+                                    <Button Margin="5,0,0,0" Content="Save Scene" Height="30"
+                                  Name="btnSetPositionSaveSceneVideo" Click="btnSetPositionSaveSceneVideo_Click"/>
+                                    <Label Content="Position:" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                    <TextBox Name="txtPosition" Width="65" Height="24" Text="0.0"
+                                 HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                                    <Label Content="File:" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                    <TextBox Name="ClipFile" Text="{Binding ClipToProcess, UpdateSourceTrigger=PropertyChanged}"
+                                         Width="200" Height="24" />
+                                </StackPanel>
+                            </StackPanel>
+
+
+                        </StackPanel>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+            </dx:DXTabItem>
+
+
+            <dx:DXTabItem Header="Tools">
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,0">
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                        <dxlc:LayoutItem Label="Start" MaxWidth="120">
+                            <TextBox Name="txtRepeatTextStart" Text="{Binding RepeatedTextStart}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="End" MaxWidth="120">
+                            <TextBox Name="txtRepeatTextEnd" Text="{Binding RepeatedTextEnd}" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="GoRepeatTextBtn3" Content="JAV 1" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoRepeatText3_Click" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="GoCalculateRating" Content="Go Rating" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoCalculateRating_Click" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="UpdateJAV" Content="JAV all" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnUpdateJAV_Click" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="Camera" Content="Cam Position" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnCameraPosition_Click" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="Reformat" Content="Reformat" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnReformat_Click" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="MakeJAVbat" Content="JAV bat" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnJAVbat_Click" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                        <dxlc:LayoutItem Label="Story" LabelPosition="Left">
+                            <dxe:TextEdit MaxHeight="320"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding RepeatedText}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Status" LabelPosition="Left">
+                            <dxe:TextEdit MaxHeight="320"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding StatusText , UpdateSourceTrigger=PropertyChanged}" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                        <dxlc:LayoutItem Label="Rating" LabelPosition="Top">
+                            <dxe:TextEdit MaxHeight="900"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="NoWrap"  AcceptsReturn="True" Text="{Binding RatingText}" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                        <dxlc:LayoutItem Label="Help" LabelPosition="Top">
+                            <dxe:TextEdit MaxHeight="900"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          TextWrapping="NoWrap"  AcceptsReturn="True" Text="JAV1- Story:serie, Start:1, Rating: disc letter" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+            </dx:DXTabItem>
+
         </dx:DXTabControl>
 
 

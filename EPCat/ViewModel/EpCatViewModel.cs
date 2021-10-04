@@ -28,6 +28,7 @@ using System.Net;
 using System.Linq.Expressions;
 using StoGen.Classes.SceneCadres;
 using StoGen.Classes.Catalog;
+using System.Globalization;
 
 namespace EPCat
 {
@@ -236,7 +237,7 @@ namespace EPCat
             set
             {
                 _CurrentGroup = value;
-                if (_CurrentGroup != null)
+                if (_CurrentGroup != null && _CurrentGroup.Cadres.Any())
                 {
                     CurrentCadre = _CurrentGroup.Cadres.First();
                 }
@@ -755,7 +756,7 @@ namespace EPCat
         internal void LoadScenario(string fileName, EpItem item)
         {
             List<string> clipsinstr = new List<string>(File.ReadAllLines(fileName));
-            this.Story = Generator.LoadScenario(clipsinstr, item, fileName);
+            this.Story = LoadScenario(clipsinstr, item, fileName);
             //this.Scenes = this.Story.SceneInfos;
             this.Groups = this.Story.GroupList;
             RefreshFolder();
@@ -768,6 +769,18 @@ namespace EPCat
             LoadScenario(Path.Combine(dir, $"{this.Story.FileName}.epcatsi"), this.CurrentFolder);
         }
 
+        public static StoryBase LoadScenario(List<string> clipsinstr, EpItem item, string filename = null)
+        {
+            StoryBase story = new StoryBase();
+
+            story.LoadFrom(clipsinstr);
+            if (!string.IsNullOrEmpty(filename))
+            {
+                story.FullFileName = filename;
+                story.FileName = Path.GetFileNameWithoutExtension(filename);
+            }
+            return story;
+        }
 
 
 
@@ -814,13 +827,13 @@ namespace EPCat
             RefreshFolder();
         }
 
-        internal string GoGenerateScenario(EpItem item)
-        {
-            string filename = Generator.MakeScenario(item);
-            if (string.IsNullOrEmpty(filename))
-                return null;
-            return Path.Combine(item.ItemDirectory, $"{filename}.epcatsi");
-        }
+        //internal string GoGenerateScenario(EpItem item)
+        //{
+        //    string filename = Generator.MakeScenario(item);
+        //    if (string.IsNullOrEmpty(filename))
+        //        return null;
+        //    return Path.Combine(item.ItemDirectory, $"{filename}.epcatsi");
+        //}
 
         //internal void CopyPasteDescriptionGroup()
         //{
@@ -923,14 +936,15 @@ namespace EPCat
                 string rot = vals[1].Replace(@"<Rotation>", string.Empty).Replace(@"</Rotation>", string.Empty);
                 string di = vals[2].Replace(@"<Distance>", string.Empty).Replace(@"</Distance>", string.Empty);
                 vals = pos.Split(',');
-                cx = Convert.ToDouble(vals[0]);
-                cy = Convert.ToDouble(vals[1]);
-                cz = Convert.ToDouble(vals[2]);
+                var ci = new CultureInfo("en-EN");
+                cx = Convert.ToDouble(vals[0], ci);
+                cy = Convert.ToDouble(vals[1], ci);
+                cz = Convert.ToDouble(vals[2], ci);
                 vals = rot.Split(',');
-                rx = Convert.ToDouble(vals[1]);
-                ry = Convert.ToDouble(vals[0]);
-                r = Convert.ToDouble(di);
-                string output = $"@Camera cx={cx} cy={cy} cz={cz} radius={r} rx={rx} ry={ry}";
+                rx = Convert.ToDouble(vals[1], ci);
+                ry = Convert.ToDouble(vals[0], ci);
+                r = Convert.ToDouble(di, ci);
+                string output = $"@Camera cx={Convert.ToString(cx, ci)} cy={Convert.ToString(cy, ci)} cz={Convert.ToString(cz, ci)} radius={Convert.ToString(r, ci)} rx={Convert.ToString(rx, ci)} ry={Convert.ToString(ry, ci)}";
 
                 Clipboard.Clear();
                 Clipboard.SetText(output);
