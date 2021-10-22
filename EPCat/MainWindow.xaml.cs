@@ -777,22 +777,12 @@ namespace EPCat
 
         private void CopyGroupBtn2_Click(object sender, RoutedEventArgs e)
         {
-            //ViewModel.CopyCombinedScene(true);
-            //ViewModel.AddCombinedScene(false, true,0, -1, true);
-            //// reset
-            //ViewModel.RefreshFolder();
             ViewModel.CopyCombinedScene(true);
-            //ViewModel.AddCombinedScene(false, true, 0, -1, true);
-            //ViewModel.RefreshFolder();
         }
 
         private void GVCombScen_KeyUp(object sender, KeyEventArgs e)
         {
-            //if (e.Key == Key.Space && (e.KeyboardDevice.Modifiers == ModifierKeys.Control))
-            //{
-            //    ViewModel.SaveScenario();
-            //    ViewModel.ShowScene();
-            //}
+
         }
 
         private void CopyGroupBtn3_Click(object sender, RoutedEventArgs e)
@@ -1070,6 +1060,13 @@ namespace EPCat
         private void AddGroup_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.AddGroup();
+        }
+
+        private void CopyGroupBtn4_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.CopyCombinedScene(true);
+            ViewModel.AddCombinedScene(false, true, 0, -1, true);
+            GVCombScen3.RefreshData();
         }
     }
 }

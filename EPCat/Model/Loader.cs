@@ -72,7 +72,7 @@ namespace EPCat.Model
 
 
             List<string> LogList = new List<string>(File.ReadAllLines(commandf));
-            foreach (var item in LogList)
+            foreach (var item  in LogList)
             {
                 if (item.TrimStart().StartsWith("//")) continue;
                 ParseLine(item);
@@ -718,7 +718,31 @@ namespace EPCat.Model
             }
         }
 
-        
+        //public static void SaveCatalog(ref List<EpItem> list, bool IsSynchPosterAllowed, string CurrentCatalog, List<string> folders, string BackupFolder)
+        //{
+        //    Console.WriteLine($"Reload JAV collection..");
+        //    JAV.ReloadCollection();
+        //    CatalogLoader.AddedTotal = 0;
+
+        //    foreach (var item in folders)
+        //    {
+        //        CatalogLoader.UpdateFolder(item, ref list, false, IsSynchPosterAllowed, BackupFolder, CurrentCatalog, false);
+        //    }
+        //    Console.WriteLine($"Added Total: {CatalogLoader.AddedTotal}");
+
+        //    Console.WriteLine($"Backup catalog..");
+        //    if (string.IsNullOrEmpty(CurrentCatalog)) return;
+        //    if (File.Exists(CurrentCatalog))
+        //        File.Copy(CurrentCatalog, Path.ChangeExtension(CurrentCatalog, "bak"), true);
+        //    System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<EpItem>));
+        //    Console.WriteLine($"Save catalog..");
+        //    using (var writer = new StreamWriter(CurrentCatalog))
+        //    {
+
+        //        serializer.Serialize(writer, list);
+        //    }
+        //}
+
         internal void ParseLine(string line)
         {
 
@@ -727,7 +751,18 @@ namespace EPCat.Model
             {
 
                 DoTempWork1(line);
-                //DoTempwork2(@"d:\!CATALOG\MOV\");
+                
+                CatalogLoader.UpdateFolder(@"e:\!CATALOG\PRS", ref Source, false, false, null, CurrentCatalog, false);
+                if (string.IsNullOrEmpty(CurrentCatalog)) return;
+                if (File.Exists(CurrentCatalog))
+                    File.Copy(CurrentCatalog, Path.ChangeExtension(CurrentCatalog, "bak"), true);
+                System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<EpItem>));
+                Console.WriteLine($"Save catalog..");
+                using (var writer = new StreamWriter(CurrentCatalog))
+                {
+
+                    serializer.Serialize(writer, Source);
+                }
                 Environment.Exit(0);
             }
             else if (line.StartsWith(c_PrepareFolder))

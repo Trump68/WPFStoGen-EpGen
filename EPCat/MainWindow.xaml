@@ -256,7 +256,7 @@
                                 >
                                             </dxg:TableView>
                                         </dxg:GridControl.View>
-                                        <dxg:GridColumn FieldName="Order" IsSmart="True" Width="30" />
+                                        <dxg:GridColumn FieldName="Order" IsSmart="True" Width="30" SortIndex="0"/>
                                         <dxg:GridColumn FieldName="Description" IsSmart="True" Width="400" AutoFilterCondition="Contains" />
                                     </dxg:GridControl>
                                 </dxlc:LayoutItem>
@@ -307,7 +307,7 @@
                                                 </dxg:TableView.FormatConditions>
                                             </dxg:TableView>
                                         </dxg:GridControl.View>
-                                        <dxg:GridColumn FieldName="Order" IsSmart="True" Width="30" />
+                                        <dxg:GridColumn FieldName="Order" IsSmart="True" Width="30" SortIndex="0"/>
                                         <dxg:GridColumn FieldName="KindName" IsSmart="True" Width="35" IsEnabled="False" />
                                         <dxg:GridColumn FieldName="Description" IsSmart="True" Width="400" AutoFilterCondition="Contains" />
                                         <dxg:GridColumn FieldName="Story" IsSmart="True" IsEnabled="False" Width="700" AutoFilterCondition="Contains" />
@@ -315,9 +315,16 @@
                                     </dxg:GridControl>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
+                                    
                                 <dxlc:LayoutItem HorizontalAlignment="Left">
-                                    <dx:SimpleButton x:Name="CopyCadre" Content="Copy Cadre" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn2_Click" />
+                                        <dx:SimpleButton x:Name="CopyCadre" Content="Copy Cadre" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn2_Click" />
                                 </dxlc:LayoutItem>
+
+                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                        <dx:SimpleButton x:Name="CopyPCadre" Content="CopyP Cadre" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn4_Click" />
+                                </dxlc:LayoutItem>
+
+
                                 <dxlc:LayoutItem HorizontalAlignment="Left">
                                     <dx:SimpleButton Content="Add Cadre" Width="80" Margin="5,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
                                 </dxlc:LayoutItem>
@@ -333,7 +340,7 @@
                                          AutoGenerateColumns="None"
                                          EnableSmartColumnsGeneration="True"
                                          ItemsSource="{Binding Scenes}" 
-                                         SelectedItem="{Binding CurrentElement}"
+                                         SelectedItem="{Binding CurrentInfo}"
                                          SelectionMode="Cell" AutoExpandAllGroups="True" IsRecursiveExpand="True" KeyUp="GVCombScen_KeyUp">
                                         <dxg:GridControl.View>
                                             <dxg:TableView Name="CombinedScenGV2"
@@ -373,7 +380,7 @@
                                                 </dxg:TableView.FormatConditions>
                                             </dxg:TableView>
                                         </dxg:GridControl.View>
-                                        <dxg:GridColumn FieldName="Order" IsSmart="True" Width="40" />
+                                        <dxg:GridColumn FieldName="Order" IsSmart="True" Width="40" SortIndex="0"/>
                                         <dxg:GridColumn FieldName="KindOrder" IsSmart="True" Width="50" MaxWidth="30" />
                                         <dxg:GridColumn FieldName="KindName" IsSmart="True" Width="35" IsEnabled="False" AutoFilterCondition="Contains" />
                                         <dxg:GridColumn FieldName="Template" IsSmart="True" Width="50" MaxWidth="50" AutoFilterCondition="Contains" />

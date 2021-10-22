@@ -133,7 +133,7 @@ namespace StoGen.Classes.Catalog
                     {
                         if (string.IsNullOrEmpty(item.Kind) || (!item.Kind.ToUpper().Contains("SKIP")))
                         {
-                            if (!string.IsNullOrEmpty(item.Star))
+                            if (item.Catalog != "JAV" || !string.IsNullOrEmpty(item.Star))
                             {
                                 if (string.IsNullOrEmpty(item.Name))
                                 {
@@ -312,29 +312,31 @@ namespace StoGen.Classes.Catalog
         {
             int result = 0;
             string itemPath = parameters.ToUpper();
-            if (!JAV.FoldersToUpdate.Contains("ALL") && !JAV.FoldersToUpdate.Contains("All"))
+            if (CurrentCatalog == "JAV")
             {
-                if (isCheck && !inner)
+                if (!JAV.FoldersToUpdate.Contains("ALL") && !JAV.FoldersToUpdate.Contains("All"))
                 {
-                    string dirname = Path.GetFileName(itemPath);
-
-                    if (JAV.FoldersToUpdate.Exists(x => itemPath.Contains(x)))
+                    if (isCheck && !inner)
                     {
-                        if (JAV.FoldersToUpdate.Exists(x => dirname == x))
+                        string dirname = Path.GetFileName(itemPath);
+
+                        if (JAV.FoldersToUpdate.Exists(x => itemPath.Contains(x)))
                         {
-                            inner = true;
+                            if (JAV.FoldersToUpdate.Exists(x => dirname == x))
+                            {
+                                inner = true;
+                            }
+                            else
+                            {
+                                return;
+                            }
                         }
                         else
                         {
                             return;
                         }
                     }
-                    else
-                    {
-                        return;
-                    }
-                }
-            }
+                } }
             isCheck = true;
 
 

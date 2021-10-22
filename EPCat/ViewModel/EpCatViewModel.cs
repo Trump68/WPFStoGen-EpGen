@@ -214,8 +214,10 @@ namespace EPCat
                 _CurrentCadre = value;
                 if (_CurrentCadre != null)
                     recalculatePoster(_CurrentCadre.Id);
+                //RaisePropertyChanged(() => this.Scenes);
+                //RaisePropertyChanged(() => this.CurrentCadre);
                 RaisePropertyChanged(() => this.Scenes);
-                RaisePropertyChanged(() => this.CurrentCadre);
+                RaisePropertyChanged(() => this.CurrentInfo);
             }
         }
         INFO_SceneGroup _CurrentGroup;
@@ -243,6 +245,9 @@ namespace EPCat
                 }
                 RaisePropertyChanged(() => this.Groups);
                 RaisePropertyChanged(() => this.GroupCadres);
+                RaisePropertyChanged(() => this.Scenes);
+                RaisePropertyChanged(() => this.CurrentCadre);
+                RaisePropertyChanged(() => this.CurrentInfo);
             }
         }
 
@@ -337,13 +342,16 @@ namespace EPCat
 
         public void RefreshFolder()
         {
-            RaisePropertyChanged(() => this.CurrentFolder);
-            RaisePropertyChanged(() => this.CurrentClip);
-            RaisePropertyChanged(() => this.Story);
-            RaisePropertyChanged(() => this.Scenes);
+            RaisePropertyChanged(() => this.Story);            
             RaisePropertyChanged(() => this.Groups);
             RaisePropertyChanged(() => this.GroupCadres);
+            RaisePropertyChanged(() => this.Scenes);
             RaisePropertyChanged(() => this.ClipToProcess);
+            RaisePropertyChanged(() => this.CurrentGroup);
+            RaisePropertyChanged(() => this.CurrentCadre);
+            RaisePropertyChanged(() => this.CurrentFolder);
+            RaisePropertyChanged(() => this.CurrentClip);
+            RaisePropertyChanged(() => this.CurrentInfo);
 
         }
 
@@ -564,13 +572,14 @@ namespace EPCat
             if (!incurrentgroup)
             {
                 cadre = new INFO_SceneCadre(null, this.Groups);
+                cadre.Order = this.CurrentCadre.Order + 1;
             }
             if (kind < 0 && TicTakToe.CopiedCombinedScene != null && TicTakToe.CopiedCombinedScene.Any())
             {
                 Info_Scene newclipinfo = new Info_Scene();
                 newclipinfo.LoadFromString(TicTakToe.CopiedCombinedScene.First());
 
-                
+
                 if (!incurrentgroup)
                 {
                     cadre.Group = this.CurrentCadre.Group;
@@ -627,7 +636,7 @@ namespace EPCat
                     cadre.Infos.Add(newclipinfo);
                 }
                 if (!incurrentgroup) addNewComb(cadre);
-                
+
             }
             else
             {
@@ -663,6 +672,17 @@ namespace EPCat
                 }
                 cadre.Infos.Add(newclipinfo);
                 addNewComb(cadre);
+            }
+
+            int ind = this.Groups.IndexOf(this.CurrentGroup);
+            if (ind > 0) 
+            {
+                this.CurrentGroup = this.Groups[ind - 0];
+                RaisePropertyChanged(() => this.GroupCadres);
+                this.CurrentGroup = this.Groups[ind];
+                RaisePropertyChanged(() => this.GroupCadres);
+                this.CurrentCadre = this.CurrentGroup.Cadres.Last();
+                RaisePropertyChanged(() => this.CurrentCadre);
             }
 
         }
