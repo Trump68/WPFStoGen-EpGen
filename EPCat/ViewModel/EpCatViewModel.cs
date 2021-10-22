@@ -583,11 +583,18 @@ namespace EPCat
                 if (!incurrentgroup)
                 {
                     cadre.Group = this.CurrentCadre.Group;
-                    string str;
-                    if (ask && frmInputBox.ShowInputBox(out str, this.CurrentCadre.Description) == System.Windows.Forms.DialogResult.OK)
-                        cadre.Description = str;
-                    else
-                        cadre.Description = this.CurrentCadre.Description;
+                    cadre.Description = this.CurrentCadre.Description;
+
+                    string str = cadre.Group.TrimStart('0');
+                    int gr;
+                    if (int.TryParse(str, out gr)) 
+                    {
+                        cadre.Group = $"{(gr + 1).ToString("D4")}";
+                    }
+                    //if (ask && frmInputBox.ShowInputBox(out str, this.CurrentCadre.Group) == System.Windows.Forms.DialogResult.OK)
+                    //    cadre.Group = str;
+                    //else
+                    //    cadre.Description = this.CurrentCadre.Description;
                 }
 
                 foreach (var item in TicTakToe.CopiedCombinedScene)
