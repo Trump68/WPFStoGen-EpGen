@@ -305,6 +305,8 @@ namespace EPCat
 
         public bool IsDeletingAllowed { get; set; } = false;
         public bool IsSavingAllowed { get; set; } = false;
+        public bool IsIncrementGroup { get; set; } = false;
+        public bool IsIncrementImage { get; set; } = false;
         public static bool IsSynchPosterAllowed { get; set; } = false;
 
         public int CapsViewMode = 0;
@@ -585,11 +587,14 @@ namespace EPCat
                     cadre.Group = this.CurrentCadre.Group;
                     cadre.Description = this.CurrentCadre.Description;
 
-                    string str = cadre.Group.TrimStart('0');
-                    int gr;
-                    if (int.TryParse(str, out gr)) 
+                    if (this.IsIncrementGroup)
                     {
-                        cadre.Group = $"{(gr + 1).ToString("D4")}";
+                        string str = cadre.Group.TrimStart('0');
+                        int gr;
+                        if (int.TryParse(str, out gr))
+                        {
+                            cadre.Group = $"{(gr + 1).ToString("D4")}";
+                        }
                     }
                     //if (ask && frmInputBox.ShowInputBox(out str, this.CurrentCadre.Group) == System.Windows.Forms.DialogResult.OK)
                     //    cadre.Group = str;
@@ -615,12 +620,15 @@ namespace EPCat
                         else
                         {
                             string file = Path.GetFileNameWithoutExtension(newclipinfo.File);
-                            int val;
-                            if (int.TryParse(file, out val))
+                            if (this.IsIncrementImage)
                             {
-                                val++;
-                                string newval = val.ToString("D" + file.Length);
-                                newclipinfo.File = newclipinfo.File.Replace(file, $"{newval}");
+                                int val;
+                                if (int.TryParse(file, out val))
+                                {
+                                    val++;
+                                    string newval = val.ToString("D" + file.Length);
+                                    newclipinfo.File = newclipinfo.File.Replace(file, $"{newval}");
+                                }
                             }
                         }
 

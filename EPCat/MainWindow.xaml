@@ -213,6 +213,13 @@
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="CompileScenarioBtn2" Content="Compile" Width="80" Margin="100,4,0,0" HorizontalAlignment="Left" Click="CompileScenarioBtn_Click" />
                             </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Margin="0,0,0,0" Width="150">
+                                <dxe:CheckEdit x:Name="ncrementGroup" Content="Increment Group" IsChecked="{Binding IsIncrementGroup}" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Margin="0,0,0,0" Width="150">
+                                <dxe:CheckEdit x:Name="ncrementImage" Content="Increment Image" IsChecked="{Binding IsIncrementImage}" />
+                            </dxlc:LayoutItem>
+
                             <dxlc:LayoutItem HorizontalAlignment="Left">
                                 <dx:SimpleButton x:Name="GoGenerateBtn22" Content="Compile One" Width="100" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnGoGenerate_Click" FontWeight="Bold" Foreground="#FF3F55B8" />
                             </dxlc:LayoutItem>
@@ -323,9 +330,11 @@
                                 <dxlc:LayoutItem HorizontalAlignment="Left">
                                         <dx:SimpleButton x:Name="CopyPCadre" Content="CopyP Cadre" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn4_Click" />
                                 </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                                        <dx:SimpleButton x:Name="CopyP30Cadre" Content="CopyP 30" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn5_Click" />
+                                    </dxlc:LayoutItem>
 
-
-                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                    <dxlc:LayoutItem HorizontalAlignment="Left">
                                     <dx:SimpleButton Content="Add Cadre" Width="80" Margin="5,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
                                 </dxlc:LayoutItem>
                                     <dxlc:LayoutItem HorizontalAlignment="Left">

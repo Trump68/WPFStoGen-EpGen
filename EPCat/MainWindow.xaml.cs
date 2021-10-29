@@ -1068,5 +1068,15 @@ namespace EPCat
             ViewModel.AddCombinedScene(false, true, 0, -1, true);
             GVCombScen3.RefreshData();
         }
+
+        private void CopyGroupBtn5_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                ViewModel.CopyCombinedScene(true);
+                ViewModel.AddCombinedScene(false, true, 0, -1, true);
+            }
+            GVCombScen3.RefreshData();
+        }
     }
 }
