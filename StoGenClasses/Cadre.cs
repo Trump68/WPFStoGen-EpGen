@@ -59,7 +59,7 @@ namespace StoGen.Classes
         // public FrameControl ControlFr = new FrameControl();
         //public CadreInfo CadreInfo;
 
-        public virtual Cadre Repaint(CadreInfo info, bool paint = true)
+        public virtual Cadre Repaint(CadreInfo info, bool isForward, bool paint)
         {
             Cadre result = this;
             Projector.TextVisible = true;
@@ -85,9 +85,11 @@ namespace StoGen.Classes
                 foreach (seSo data in info.SoundList)
                 {
                     var sds = data.ToSoundDataSource();
-                    sds.Position = info.SoundList.IndexOf(data);
+                    sds.Position = info.SoundList.IndexOf(data);         
                     this.SoundFr.SoundList.Add(sds);
                 }
+                if (!isForward)
+                    this.SoundFr.ClearPlayedCount();
                 this.TextFr.TextList.Clear();
                 foreach (seTe dataTe in info.TextList)
                 {

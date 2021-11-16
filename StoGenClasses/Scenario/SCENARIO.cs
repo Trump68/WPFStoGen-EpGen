@@ -19,6 +19,7 @@ namespace StoGen.Classes.Scene
             RawParameters = GetParameters();
             AssignRawParameters();
         }
+        public string CatalogPath;
         protected virtual string GetParameters()
         {
             return

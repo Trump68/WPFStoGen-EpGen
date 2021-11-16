@@ -167,7 +167,7 @@ namespace StoGen.Classes
                 //controller.MenuCreator = controller.OldMenuCreator;
                 //controller.ShowContextMenu(doShowMenu, null);
             }
-            else controller.RepaintCadre(controller.CurrentCadre);
+            else controller.RepaintCadre(controller.CurrentCadre,true, true);
         }
     }
 

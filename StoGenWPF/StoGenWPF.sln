@@ -1,17 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoGenWPF", "StoGenWPF\StoGenWPF.csproj", "{AD6DB9A5-7A96-4A41-BDA0-72D01E6E86AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoGenClasses", "..\StoGenClasses\StoGenClasses.csproj", "{16832A49-6465-4C63-8C20-F7DE36ADF10C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoGenMake", "..\StoGenMake\StoGenMake.csproj", "{77B13F47-9203-4C8A-9D6D-8C0716EAAA87}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPCat", "..\EPCat\EPCat.csproj", "{C2DEA8FF-42FE-425B-82AB-209138F3F8DF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoGenerator", "..\StoGen\StoGenerator.csproj", "{C0AA7B82-708F-4B98-9147-EFA87CCDB373}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JAVUpdater", "..\JAVUpdater\JAVUpdater.csproj", "{A0605C23-5F52-486E-A058-E1F096A128DB}"
 EndProject
@@ -29,18 +25,10 @@ Global
 		{16832A49-6465-4C63-8C20-F7DE36ADF10C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16832A49-6465-4C63-8C20-F7DE36ADF10C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16832A49-6465-4C63-8C20-F7DE36ADF10C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77B13F47-9203-4C8A-9D6D-8C0716EAAA87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77B13F47-9203-4C8A-9D6D-8C0716EAAA87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77B13F47-9203-4C8A-9D6D-8C0716EAAA87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77B13F47-9203-4C8A-9D6D-8C0716EAAA87}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C2DEA8FF-42FE-425B-82AB-209138F3F8DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C2DEA8FF-42FE-425B-82AB-209138F3F8DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2DEA8FF-42FE-425B-82AB-209138F3F8DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2DEA8FF-42FE-425B-82AB-209138F3F8DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0AA7B82-708F-4B98-9147-EFA87CCDB373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0AA7B82-708F-4B98-9147-EFA87CCDB373}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0AA7B82-708F-4B98-9147-EFA87CCDB373}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0AA7B82-708F-4B98-9147-EFA87CCDB373}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A0605C23-5F52-486E-A058-E1F096A128DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A0605C23-5F52-486E-A058-E1F096A128DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0605C23-5F52-486E-A058-E1F096A128DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,5 +36,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DE3A03FE-F5B4-41AF-84A8-7F013FD2A44D}
 	EndGlobalSection
 EndGlobal

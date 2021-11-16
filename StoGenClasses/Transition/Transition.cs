@@ -33,9 +33,13 @@ namespace StoGen.Classes.Transition
         public static string WaitR(int msecMin, int msecMax) { return $"W..{rnd.Next(msecMin, msecMax)}"; }
         public static string Turn(int ms) { return $"{Dissapearing(ms)}>F.A.0.1>{Appearing(ms)}"; }
         public static string Turn() { return $"F.A.0.1"; }
-        public static string MoveH(int time, int distance) { return $"{Wait(0)}>X.B.{time}.{distance}"; }
-        public static string MoveHs(int speed, int distance) { return $"{Wait(0)}>X.C20.{(Math.Abs(distance) * 100) / speed}.{distance}"; }
-        public static string MoveVs(int speed, int distance) { return $"{Wait(0)}>Y.C20.{(Math.Abs(distance) * 100) / speed}.{distance}"; }
+        public static string MoveH(int time, int distance) { return $"X.B.{time}.{distance}"; }
+        public static string MoveHs(int speed, int distance) { return $"X.C20.{(Math.Abs(distance) * 100) / speed}.{distance}"; }
+        public static string MoveVs(int speed, int distance) { return $"Y.C20.{(Math.Abs(distance) * 100) / speed}.{distance}"; }
+        
+        //W..2000>X.C20.25.100>W..0>X.C20.25.-100>W..0>X.C20.5.10>W..0>X.C20.5.-10>W..0>X.C20.1.2>W..0>X.C20.1.-2
+        public static string ImpactHs(int speed, int distance) { return $"{MoveHs(speed, distance)}>{MoveHs(speed, -distance)}>{MoveHs(speed, distance / 10)}>{MoveHs(speed, -distance / 10)}>{MoveHs(speed, distance / 50)}>{MoveHs(speed, -distance / 50)}>"; }
+        public static string ImpactVs(int speed, int distance) { return $"{MoveVs(speed, distance)}>{MoveVs(speed, -distance)}>{MoveVs(speed, distance / 10)}>{MoveVs(speed, -distance / 10)}>{MoveVs(speed, distance / 50)}>{MoveVs(speed, -distance / 50)}>"; }
         public static string SetInvisible { get; } = "O.A.0.-100";
         public static string SetVisible { get; } = "O.A.0.100";
         public static string Obzor()
@@ -134,6 +138,7 @@ namespace StoGen.Classes.Transition
             rez.Add($@"~");
             return string.Join(string.Empty,rez.ToArray());
         }
+        
 
         internal static string MouthSqueeze(int time, bool restore, bool permanent)
         {

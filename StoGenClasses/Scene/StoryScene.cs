@@ -24,10 +24,10 @@ namespace StoGen.Classes.Data.Games
             EngineHiVer = 1;
             EngineLoVer = 0;            
         }
-        public StoryBase Story = null;
+        public SCENARIO Story = null;
         private Info_Scene CurrentBackground;
         public List<INFO_SceneCadre> CadreList;
-        public void SetScenario(StoryBase story, List<INFO_SceneCadre> list)
+        public void SetScenario(SCENARIO story, List<INFO_SceneCadre> list)
         {
             Story = story;
             CadreList = list;
@@ -156,7 +156,7 @@ namespace StoGen.Classes.Data.Games
                 var lines = File.ReadAllLines(filepath);
                 foreach (string line in lines)
                 {
-                    if (!line.StartsWith("//"))
+                    if (!line.StartsWith("//") && !string.IsNullOrEmpty(line))
                     {
                         var vals = line.Split('=');
                         origin = origin.Replace(vals[0], vals[1]);
@@ -189,6 +189,10 @@ namespace StoGen.Classes.Data.Games
 
         private void CopyParams(Info_Scene info, Info_Scene infotemplate)
         {
+            if (string.IsNullOrEmpty(info.Description))
+                info.Description = infotemplate.Description;
+            if (string.IsNullOrEmpty(info.File))
+                info.File = infotemplate.File;
             if (string.IsNullOrEmpty(info.X))
                 info.X = infotemplate.X;
             if (string.IsNullOrEmpty(info.Y))
@@ -337,7 +341,18 @@ namespace StoGen.Classes.Data.Games
                 }
                 bool muted = (rez.Y == "1") || muteAll;
                 bool randomstart = (rez.F == "1");
-                this.AddMusic(rez.File, volume, muted, randomstart);
+                bool loop = (rez.LoopMode == "1") || (string.IsNullOrEmpty(rez.LoopMode));
+                int immediatelyStart = (rez.R == "1") ? 0 : 1; 
+/*                if (rez.Story == "EFFECT1")
+                {
+                    this.AddEffect1(rez.File, volume, loop, rez.T);
+                }
+                else if (rez.Story == "EFFECT1")
+                {
+                    this.AddEffect2(rez.File, volume, loop, rez.T);
+                }                        
+                else */
+                    this.AddMusic(rez.File, volume, muted, randomstart, loop, rez.T, immediatelyStart);
             }
 
             Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
@@ -361,7 +376,7 @@ namespace StoGen.Classes.Data.Games
                     copytitle.File = Story.DefTextBck;
                 if (copytitle.File == "$$WHITE$$") // white background
                 {
-                    AddToGlobalImage("$$WHITE$$", "$$WHITE$$", string.Empty);
+                    //AddToGlobalImage("$$WHITE$$", "$$WHITE$$", string.Empty);
                     Pictures.Add("$$WHITE$$", new DifData("$$WHITE$$") { });
                     ++i;
                 }
@@ -504,8 +519,8 @@ namespace StoGen.Classes.Data.Games
                 {
                     var it = GetVisualByDefaultAndCurrent(item);
                     visualsCopy.Add(it);
-                    if (!string.IsNullOrEmpty(it.File))
-                        AddToGlobalImage(it.File, it.File);
+/*                    if (!string.IsNullOrEmpty(it.File))
+                        AddToGlobalImage(it.File, it.File);*/
                 }               
                       
             }
@@ -520,9 +535,9 @@ namespace StoGen.Classes.Data.Games
                 //it.X = "0";
                 //it.Y = "0";
                 it.S = "-2";
-                visualsCopy.Add(it);
+/*                visualsCopy.Add(it);
                 if (!string.IsNullOrEmpty(it.File))
-                    AddToGlobalImage(it.File, it.File);
+                    AddToGlobalImage(it.File, it.File);*/
             }
 
 
@@ -582,7 +597,7 @@ namespace StoGen.Classes.Data.Games
                     {
                         int opacity = 100;
 
-                        string key = item.File;
+                        string key = $"{item.File}-{item.Z}";
                         Pictures.Add(key, new DifData(item.File) { });
                         if (!string.IsNullOrEmpty(item.X))
                             Pictures[key].X = Convert.ToInt32(item.X);
@@ -651,17 +666,10 @@ namespace StoGen.Classes.Data.Games
             return result;
         }
 
-        //internal override List<CadreData> GetNextCadreData(CadreController proc, int cadreId)
-        //{
-        //    List<Info_Scene> list = this.Story.GoForwardStory(proc, cadreId);
-        //    return Process(list, cadreId);
-        //}
-
-
-        public override MenuCreatorDelegate GetMenuCreator(bool live)
+/*        public override MenuCreatorDelegate GetMenuCreator(bool live)
         {
             return this.Story.GetMenuCreator(live);
-        }
+        }*/
 
     }
 }

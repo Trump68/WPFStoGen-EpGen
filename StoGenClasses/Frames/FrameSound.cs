@@ -17,6 +17,29 @@ namespace StoGen.Classes
         public Timer timer;
         public static TransitionManager tranManager = new TransitionManager();
 
+        public override Cadre Repaint()
+        {
+            timer.Change(Timeout.Infinite, Timeout.Infinite);
+            base.Stopped = false;
+
+            FrameSound.tranManager.Clear();
+            GroupItems.Clear();
+            foreach (SoundItem item in this.SoundList)
+            {
+                if (!string.IsNullOrEmpty(item.Group))
+                {
+                    GroupItems.Add(item);
+                    if (GroupItems.Where(x => x.Group == item.Group).ToList().Count > 1)
+                    {
+                        continue;
+                    }
+                }
+                SetSoundOneItem(item.Position, item);
+            }
+            timer.Change(500, 500);
+            return Owner;
+        }
+
         public static void ProcessLoopDelegate()
         {
             //Transition
@@ -35,8 +58,8 @@ namespace StoGen.Classes
 
         private void FrameSound_MediaEnded(object sender, EventArgs e)
         {
-            int index = Projector.Sound.IndexOf((sender as System.Windows.Media.MediaPlayer));
-            if (PlayingItems[index].isLoop)
+            int index = Projector.Sound.IndexOf((sender as System.Windows.Media.MediaPlayer));         
+            if (PlayingItems[index] != null && PlayingItems[index].isLoop)
             {
                 (sender as System.Windows.Media.MediaPlayer).Position = TimeSpan.Zero;
                 (sender as System.Windows.Media.MediaPlayer).Play();
@@ -44,7 +67,7 @@ namespace StoGen.Classes
             else
             {
                 // Set up next sound in the group
-                if (!string.IsNullOrEmpty(PlayingItems[index].Group))
+/*                if (!string.IsNullOrEmpty(PlayingItems[index].Group))
                 {
                     GroupItems.Remove(PlayingItems[index]);
                     if (GroupItems.Any(x => x.Group == PlayingItems[index].Group))
@@ -53,7 +76,12 @@ namespace StoGen.Classes
                         item.Position = PlayingItems[index].Position;
                         SetSoundOneItem(item.Position, item);
                     }
-                }                
+                }
+                else 
+                {
+*/                    StopPlayer(index, true);
+                    //this.SoundList.RemoveAt(index);
+                ///}
             }
         }
 
@@ -64,11 +92,28 @@ namespace StoGen.Classes
             timer = new Timer(new TimerCallback(TimerProc), null, 500, 500);
         }
 
+        internal void ClearPlayedCount()
+        {
+            for (int i = 0; i < PlayingItems.Length; i++)
+            {
+                if (PlayingItems[i] != null)
+                {
+                    var existing = SoundList.Where(x => x != null && x.FileName == PlayingItems[i].FileName).FirstOrDefault();
+                    if (existing == null)
+                    {
+                        StopPlayer(i,true);
+                        PlayingItems[i] = null;
+                    }
+                }
+            }
+        }
+
         private void StopPlayer(int Position, bool force)
         {
             
             if (PlayingItems[Position] != null && (force || (PlayingItems[Position].isLoop == false)))
             {
+               
                 Projector.Sound[Position].Dispatcher.Invoke(new Action(
                         () =>
                         {
@@ -78,28 +123,7 @@ namespace StoGen.Classes
                         }));
             }
         }
-        public override Cadre Repaint()
-        {
-            timer.Change(Timeout.Infinite, Timeout.Infinite);
-            base.Stopped = false;
-            
-            FrameSound.tranManager.Clear();
-            GroupItems.Clear();
-            foreach (SoundItem item in this.SoundList)
-            {
-                if (!string.IsNullOrEmpty(item.Group))
-                {
-                    GroupItems.Add(item);
-                    if (GroupItems.Where(x => x.Group == item.Group).ToList().Count > 1)
-                    {
-                        continue;
-                    }
-                }
-                SetSoundOneItem(item.Position, item);                    
-            }
-            timer.Change(500, 500);
-            return Owner;
-        }
+
 
         SoundItem CurrItem0;
         SoundItem CurrItem1;
@@ -127,50 +151,55 @@ namespace StoGen.Classes
         private void StartPlayer(int N, SoundItem item)
         {
             string soundfile = item.FileName;
+            if (item.PlayedCound > 0 && !item.isLoop)
+                return;
             Projector.Sound[N].Dispatcher.Invoke(new Action(
             () =>
             {
                 
                 Projector.Sound[N].MediaEnded -= FrameSound_MediaEnded;
-                Projector.Sound[N].Volume = (double)item.Volume / 1000;
+                Projector.Sound[N].Volume = (double)item.Volume / 100;
                 Projector.Sound[N].Open(new Uri(soundfile));
-
-
-                int pos = 0;
-                if (item.isRandom)
-                {
-                    while (!Projector.Sound[N].NaturalDuration.HasTimeSpan)
-                    {
-                        Thread.SpinWait(100);
-                    }
-                    double total =Math.Floor(Projector.Sound[N].NaturalDuration.TimeSpan.TotalSeconds);
-                    Random rnd = new Random();
-                    int val = rnd.Next(100);
-                    pos = Convert.ToInt32((total * val) / 100);
-                }
-
                 Projector.Sound[N].MediaEnded += FrameSound_MediaEnded;
                 if (item.Start)
-                {
-                    Projector.Sound[N].Position = new TimeSpan(0,0,pos);
-                    Projector.Sound[N].Play();
-                    Projector.Sound[N].Volume = (double)item.Volume / 1000;
-                }
+                    StartSound(N);
             }));          
         }
+        public static void StartSound(int N) 
+        {
+            int pos = 0;
+            if (PlayingItems[N].isRandom)
+            {
+                while (!Projector.Sound[N].NaturalDuration.HasTimeSpan)
+                {
+                    Thread.SpinWait(100);
+                }
+                double total = Math.Floor(Projector.Sound[N].NaturalDuration.TimeSpan.TotalSeconds);
+                Random rnd = new Random();
+                int val = rnd.Next(100);
+                pos = Convert.ToInt32((total * val) / 100);
+            }
+                Projector.Sound[N].Position = new TimeSpan(0, 0, pos);
+                Projector.Sound[N].Play();
+                Projector.Sound[N].Volume = (double)PlayingItems[N].Volume / 100;
+                PlayingItems[N].PlayedCound = PlayingItems[N].PlayedCound + 1;
+        }
+
         private void SetSoundOneItem(int position, SoundItem item)
         {
             
             Projector.Sound[position].IsMuted = item.isMute;
-            Projector.Sound[position].Volume = (double)item.Volume / 1000;
-            
-            PlayingItems[position] = item;
-            if (!string.IsNullOrEmpty(item.Transition))
+            Projector.Sound[position].Volume = (double)item.Volume / 100;
+            if (PlayingItems[position] == null || (PlayingItems[position].FileName != item.FileName))
+                PlayingItems[position] = item;
+            PlayingItems[position].Volume = item.Volume;
+            if (!string.IsNullOrEmpty(PlayingItems[position].Transition))
             {
                 TransitionData trandata = new TransitionData();
                 trandata.Level = item.Position;
                 trandata.Parse(item.Transition,1);
                 FrameSound.tranManager.Add(trandata);
+                PlayingItems[position].Transition = null;
             }
             if (item.FileName == "STOP")
             {
@@ -180,31 +209,31 @@ namespace StoGen.Classes
             {
                 if ((Projector.Sound[position].Source == null || (Projector.Sound[position].Source.LocalPath != item.FileName) || !item.isLoop))
                 {
-                    if (position == 0)      { CurrItem0 = item; StartPlayer(0, item); }
-                    else if (position == 1) { CurrItem1 = item; StartPlayer(1, item); }
-                    else if (position == 2) { CurrItem2 = item; StartPlayer(2, item); }
-                    else if (position == 3) { CurrItem3 = item; StartPlayer(3, item); }                
-                    else if (position == 4) { CurrItem4 = item; StartPlayer(4, item); }                   
-                    else if (position == 5) { CurrItem5 = item; StartPlayer(5, item); }
-                    else if (position == 6) { CurrItem6 = item; StartPlayer(6, item); }
-                    else if (position == 7) { CurrItem7 = item; StartPlayer(7, item); }
-                    else if (position == 8) { CurrItem8 = item; StartPlayer(8, item); }
-                    else if (position == 9) { CurrItem9 = item; StartPlayer(9, item); }
-                    else if (position == 10) { CurrItem10 = item; StartPlayer(10, item); }
-                    else if (position == 11) { CurrItem11 = item; StartPlayer(11, item); }
-                    else if (position == 12) { CurrItem12 = item; StartPlayer(12, item); }
-                    else if (position == 13) { CurrItem13 = item; StartPlayer(13, item); }
-                    else if (position == 14) { CurrItem14 = item; StartPlayer(14, item); }
-                    else if (position == 15) { CurrItem15 = item; StartPlayer(15, item); }
-                    else if (position == 16) { CurrItem16 = item; StartPlayer(16, item); }
-                    else if (position == 17) { CurrItem17 = item; StartPlayer(17, item); }
-                    else if (position == 18) { CurrItem18 = item; StartPlayer(18, item); }
-                    else if (position == 19) { CurrItem19 = item; StartPlayer(19, item); }
+                    if (position == 0)      { CurrItem0 = item; StartPlayer(0, PlayingItems[position]); }
+                    else if (position == 1) { CurrItem1 = item; StartPlayer(1, PlayingItems[position]); }
+                    else if (position == 2) { CurrItem2 = item; StartPlayer(2, PlayingItems[position]); }
+                    else if (position == 3) { CurrItem3 = item; StartPlayer(3, PlayingItems[position]); }                
+                    else if (position == 4) { CurrItem4 = item; StartPlayer(4, PlayingItems[position]); }                   
+                    else if (position == 5) { CurrItem5 = item; StartPlayer(5, PlayingItems[position]); }
+                    else if (position == 6) { CurrItem6 = item; StartPlayer(6, PlayingItems[position]); }
+                    else if (position == 7) { CurrItem7 = item; StartPlayer(7, PlayingItems[position]); }
+                    else if (position == 8) { CurrItem8 = item; StartPlayer(8, PlayingItems[position]); }
+                    else if (position == 9) { CurrItem9 = item; StartPlayer(9, PlayingItems[position]); }
+                    else if (position == 10) { CurrItem10 = item; StartPlayer(10, PlayingItems[position]); }
+                    else if (position == 11) { CurrItem11 = item; StartPlayer(11, PlayingItems[position]); }
+                    else if (position == 12) { CurrItem12 = item; StartPlayer(12, PlayingItems[position]); }
+                    else if (position == 13) { CurrItem13 = item; StartPlayer(13, PlayingItems[position]); }
+                    else if (position == 14) { CurrItem14 = item; StartPlayer(14, PlayingItems[position]); }
+                    else if (position == 15) { CurrItem15 = item; StartPlayer(15, PlayingItems[position]); }
+                    else if (position == 16) { CurrItem16 = item; StartPlayer(16, PlayingItems[position]); }
+                    else if (position == 17) { CurrItem17 = item; StartPlayer(17, PlayingItems[position]); }
+                    else if (position == 18) { CurrItem18 = item; StartPlayer(18, PlayingItems[position]); }
+                    else if (position == 19) { CurrItem19 = item; StartPlayer(19, PlayingItems[position]); }
 
                 }
                 else if (Projector.Sound[position].Source.LocalPath == item.FileName)
                 {
-                    Projector.Sound[position].Volume = (double)item.Volume / 1000;
+                    Projector.Sound[position].Volume = (double)item.Volume / 100;
                 }
             }
             else
@@ -221,11 +250,15 @@ namespace StoGen.Classes
         public override void Dispose()
         {
             base.Dispose();
-            foreach (SoundItem item in this.SoundList)
+            foreach (SoundItem item in PlayingItems)
             {
-                Projector.Sound[item.Position].Close();
-                StopPlayer(item.Position, true);
-            }
+                if (item != null)
+                {
+                    item.PlayedCound = 0;
+                    Projector.Sound[item.Position].Close();
+                    StopPlayer(item.Position, true);
+                }
+            }            
         }
     }
     [Serializable]
@@ -254,6 +287,7 @@ namespace StoGen.Classes
 
         internal bool Start { get; set; } = true;
         public string Group { get; internal set; }
+        public int PlayedCound = 0;
     }
 
   

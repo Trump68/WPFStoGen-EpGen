@@ -285,10 +285,12 @@ namespace StoGen.Classes
             
             if (Animated)
             {
-                TypewriteTextblock(txt, Projector.TextBlock1, new TimeSpan(0, 0, 0, 5));
-                TypewriteTextblock(txt, Projector.TextBlock2, new TimeSpan(0, 0, 0, 5));
-                TypewriteTextblock(txt, Projector.TextBlock3, new TimeSpan(0, 0, 0, 5));
-                TypewriteTextblock(txt, Projector.TextBlock4, new TimeSpan(0, 0, 0, 5));
+                int letters = txt.Count();
+                var ts = TimeSpan.FromSeconds(letters * 0.05);
+                TypewriteTextblock(txt, Projector.TextBlock1, ts);
+                TypewriteTextblock(txt, Projector.TextBlock2, ts);
+                TypewriteTextblock(txt, Projector.TextBlock3, ts);
+                TypewriteTextblock(txt, Projector.TextBlock4, ts);
             }
             else
             {
@@ -315,7 +317,7 @@ namespace StoGen.Classes
             this.Shift = data.Shift;
             this.Bottom = data.Bottom;
             //this.Animated = (data.Animated == 1);
-            this.Animated = false;
+            this.Animated = true;
             this.Width = data.Width;
             this.ClearBack = data.ClearBack;
             this.AutoShow = data.AutoShow;

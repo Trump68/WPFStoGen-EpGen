@@ -677,7 +677,8 @@ namespace StoGen.Classes.Transition
                      {
                          if (value > 0 && !Playng)
                          {
-                             Projector.Sound[Level].Play();
+                             //Projector.Sound[Level].Play();
+                             FrameSound.StartSound(Level);
                              Playng = true;
                          }
                          else if (value == 0 && Playng)
@@ -737,7 +738,7 @@ namespace StoGen.Classes.Transition
                     Projector.Sound[Level].Dispatcher.Invoke(new Action(
                      () =>
                      {
-                         Projector.Sound[Level].Volume = (value / 100.1);
+                         Projector.Sound[Level].Volume = (value / 100);
                      }));
                 }
             }

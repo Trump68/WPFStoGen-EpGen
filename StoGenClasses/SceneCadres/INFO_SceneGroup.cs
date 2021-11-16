@@ -44,7 +44,7 @@ namespace StoGen.Classes.SceneCadres
             return string.Join(";", rez.ToArray());
         }
 
-        internal static INFO_SceneGroup GenerateFromString(string line)
+        public static INFO_SceneGroup GenerateFromString(string line)
         {
             INFO_SceneGroup Rez = null;
             List<string> data = line.Split(';').ToList();

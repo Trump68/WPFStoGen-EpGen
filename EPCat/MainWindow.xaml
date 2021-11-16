@@ -322,21 +322,21 @@
                                     </dxg:GridControl>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
-                                    
-                                <dxlc:LayoutItem HorizontalAlignment="Left">
-                                        <dx:SimpleButton x:Name="CopyCadre" Content="Copy Cadre" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn2_Click" />
-                                </dxlc:LayoutItem>
 
-                                <dxlc:LayoutItem HorizontalAlignment="Left">
+                                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                                        <dx:SimpleButton x:Name="CopyCadre" Content="Copy Cadre" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn2_Click" />
+                                    </dxlc:LayoutItem>
+
+                                    <dxlc:LayoutItem HorizontalAlignment="Left">
                                         <dx:SimpleButton x:Name="CopyPCadre" Content="CopyP Cadre" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn4_Click" />
-                                </dxlc:LayoutItem>
+                                    </dxlc:LayoutItem>
                                     <dxlc:LayoutItem HorizontalAlignment="Left">
                                         <dx:SimpleButton x:Name="CopyP30Cadre" Content="CopyP 30" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="CopyGroupBtn5_Click" />
                                     </dxlc:LayoutItem>
 
                                     <dxlc:LayoutItem HorizontalAlignment="Left">
-                                    <dx:SimpleButton Content="Add Cadre" Width="80" Margin="5,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
-                                </dxlc:LayoutItem>
+                                        <dx:SimpleButton Content="Add Cadre" Width="80" Margin="5,4,0,0" HorizontalAlignment="Left" Click="AddClipBtn_Click" />
+                                    </dxlc:LayoutItem>
                                     <dxlc:LayoutItem HorizontalAlignment="Left">
                                         <dx:SimpleButton Content="Add Control" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneCtrlBtn_Click" />
                                     </dxlc:LayoutItem>
@@ -350,7 +350,7 @@
                                          EnableSmartColumnsGeneration="True"
                                          ItemsSource="{Binding Scenes}" 
                                          SelectedItem="{Binding CurrentInfo}"
-                                         SelectionMode="Cell" AutoExpandAllGroups="True" IsRecursiveExpand="True" KeyUp="GVCombScen_KeyUp">
+                                         SelectionMode="Row" AutoExpandAllGroups="True" IsRecursiveExpand="True" KeyUp="GVCombScen_KeyUp">
                                         <dxg:GridControl.View>
                                             <dxg:TableView Name="CombinedScenGV2"
                                 AllowPerPixelScrolling="True"
@@ -363,7 +363,7 @@
                                 DataNavigatorButtons="DeleteFocusedRow" 
                                 ShowGroupedColumns="True" AllowPartialGrouping="False" 
                                 ShowGroupFooters="False" 
-                                ShowFilterPanelMode="ShowAlways">
+                                ShowFilterPanelMode="ShowAlways" FadeSelectionOnLostFocus="False">
                                                 <dxg:TableView.FormatConditions>
                                                     <dxg:FormatCondition ApplyToRow="False" Expression="[KindName] = 'Tit'" FieldName="Description">
                                                         <dx:Format Background="#FFB6FAB6" FontWeight="Bold" TextDecorations="{x:Null}" />
@@ -501,8 +501,14 @@
                                 </dxlc:LayoutGroup>
                             </dxlc:LayoutGroup>
 
-                            <dxlc:LayoutGroup Name="Scenario2" Margin="0,0,0,0" Padding="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <dxlc:LayoutGroup Name="Scenario2Tab" Margin="0,0,0,0" Padding="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                                 <dxlc:LayoutGroup Header="LayoutGroup" View="Tabs" Margin="0,0,0,0" HorizontalAlignment="Stretch">
+
+                                    <dxlc:LayoutGroup Header="Scenario" Orientation="Vertical" Margin="0,0,0,0" Padding="0">
+                                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                                            <dx:SimpleButton x:Name="RunScenario" Content="Run" Width="80" Margin="0,4,0,0" HorizontalAlignment="Left" Click="RunScenario_Click" />
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
                                     <dxlc:LayoutGroup Header="Details" Orientation="Vertical" Margin="0,0,0,0" Padding="0" HorizontalAlignment="Stretch">
                                         <dxlc:LayoutItem Label="Name" FontWeight="ExtraBold">
                                             <TextBox FontWeight="Bold" TextWrapping="WrapWithOverflow" Foreground="Blue" Text="{Binding Story.Name}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" />
@@ -531,7 +537,7 @@
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           TextWrapping="NoWrap" AcceptsReturn="True" Text="{Binding Story.Description}" />
                                             </dxlc:LayoutItem>
-                                        </dxlc:LayoutGroup>
+                                        </dxlc:LayoutGroup>                                            
                                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                             <dxlc:LayoutItem Label="Control: F=1 (MuteAll)" LabelPosition="Top"></dxlc:LayoutItem>
                                         </dxlc:LayoutGroup>
@@ -539,16 +545,16 @@
                                             <dxlc:LayoutItem Label="Sound: X=Volume; Y=1 (Mute); F=1 (random position); FileName: STOP" LabelPosition="Top"></dxlc:LayoutItem>
                                         </dxlc:LayoutGroup>
                                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
-                                            <dxlc:LayoutItem Label="Video: Loop 0-go next, 1-loop, 2-stop, 3-no stop" LabelPosition="Top"></dxlc:LayoutItem>
-                                        </dxlc:LayoutGroup>
+                                        <dxlc:LayoutItem Label="Video: Loop 0-go next, 1-loop, 2-stop, 3-no stop" LabelPosition="Top"></dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
                                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                             <dxlc:LayoutItem Label="Raw Parameters" LabelPosition="Top">
-                                                <dxe:TextEdit MaxHeight="320"
+                                            <dxe:TextEdit MaxHeight="320"
                                           ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           TextWrapping="NoWrap" AcceptsReturn="True" Text="{Binding Story.RawParameters}" />
-                                            </dxlc:LayoutItem>
-                                        </dxlc:LayoutGroup>
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
 
                                     </dxlc:LayoutGroup>
                                     <dxlc:LayoutGroup Header="Caption" Orientation="Vertical" Margin="0,0,0,0" Padding="0">
@@ -565,6 +571,7 @@
                                             <Image Source="{Binding SelectedItem.Poster, ElementName=GVCombScen3}" Stretch="Uniform" Margin="0,0,0,0" />
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
+
                                 </dxlc:LayoutGroup>
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutGroup>

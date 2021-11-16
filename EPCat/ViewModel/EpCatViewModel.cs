@@ -29,6 +29,7 @@ using System.Linq.Expressions;
 using StoGen.Classes.SceneCadres;
 using StoGen.Classes.Catalog;
 using System.Globalization;
+using StoGen.Classes.Story;
 
 namespace EPCat
 {
@@ -66,22 +67,7 @@ namespace EPCat
         }
 
 
-        public List<Info_Scene> Scenes
-        {
-            get
-            {
-                if (CurrentCadre == null) return null;
-                return CurrentCadre.Infos;
-            }
-        }
-        public List<INFO_SceneCadre> GroupCadres
-        {
-            get
-            {
-                if (CurrentGroup == null) return null;
-                return CurrentGroup.Cadres;
-            }
-        }
+
 
         private ObservableCollection<INFO_SceneGroup> _Groups = new ObservableCollection<INFO_SceneGroup>();
         public ObservableCollection<INFO_SceneGroup> Groups
@@ -149,29 +135,24 @@ namespace EPCat
                 _CurrentClip = value;
             }
         }
-        //Info_Scene _CurrentScene;
 
-        //public Info_Scene CurrentScene
-        //{
-        //    get
-        //    {
-        //        if (this.Story != null)
-        //        {
-        //            if (_CurrentScene == null)
-        //            {
-        //                if (this.Story.SceneCadres.Any() && this.Story.SceneCadres.First().Infos.Any())
-        //                    _CurrentScene = this.Story.SceneCadres.First().Infos.First();
-        //            }
-        //        }
-        //        return _CurrentScene;
-        //    }
-        //    set
-        //    {
-        //        _CurrentScene = value;
 
-        //    }
-        //}
-
+        public List<Info_Scene> Scenes
+        {
+            get
+            {
+                if (CurrentCadre == null) return null;
+                return CurrentCadre.Infos;
+            }
+        }
+        public List<INFO_SceneCadre> GroupCadres
+        {
+            get
+            {
+                if (CurrentGroup == null) return null;
+                return CurrentGroup.Cadres;
+            }
+        }
 
         Info_Scene _CurrentInfo;
         public Info_Scene CurrentInfo
@@ -212,12 +193,12 @@ namespace EPCat
             set
             {
                 _CurrentCadre = value;
-                if (_CurrentCadre != null)
-                    recalculatePoster(_CurrentCadre.Id);
-                //RaisePropertyChanged(() => this.Scenes);
-                //RaisePropertyChanged(() => this.CurrentCadre);
+                MainWindow.Instance.ReloadDataScenes();
                 RaisePropertyChanged(() => this.Scenes);
                 RaisePropertyChanged(() => this.CurrentInfo);
+                if (_CurrentCadre != null)
+                    recalculatePoster(_CurrentCadre.Id);
+                
             }
         }
         INFO_SceneGroup _CurrentGroup;
@@ -281,8 +262,8 @@ namespace EPCat
             }
         }
 
-        StoryBase _Story;
-        public StoryBase Story
+        SCENARIO _Story;
+        public SCENARIO Story
         {
             get
             {
@@ -743,7 +724,7 @@ namespace EPCat
             int page = list.IndexOf(CurrentCadre);
             projector.Start(page);
         }
-
+        
         internal void Close(bool isSaving)
         {
             if (isSaving)
@@ -804,9 +785,9 @@ namespace EPCat
             LoadScenario(Path.Combine(dir, $"{this.Story.FileName}.epcatsi"), this.CurrentFolder);
         }
 
-        public static StoryBase LoadScenario(List<string> clipsinstr, EpItem item, string filename = null)
+        public static SCENARIO LoadScenario(List<string> clipsinstr, EpItem item, string filename = null)
         {
-            StoryBase story = new StoryBase();
+            SCENARIO story = new SCENARIO();
 
             story.LoadFrom(clipsinstr);
             if (!string.IsNullOrEmpty(filename))
@@ -1028,6 +1009,13 @@ namespace EPCat
             INFO_SceneGroup group = new INFO_SceneGroup(null);
             group.Description = "New Group";
             this.CurrentGroup = group;
+        }
+
+        internal void RunScenario()
+        {
+            if (this.CurrentFolder == null) return;
+            Story01 maker = new Story01();            
+            maker.Generate(this.CurrentFolder.ItemDirectory);
         }
     }
 

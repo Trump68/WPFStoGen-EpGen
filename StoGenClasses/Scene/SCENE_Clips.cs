@@ -39,7 +39,7 @@ namespace StoGen.Classes.Data.Movie
             {
                 foreach (var item in MoviewInfo)
                 {
-                    AddToGlobalImage(item.File, item.File);
+                    //AddToGlobalImage(item.File, item.File);
                     posStart = Convert.ToDouble(item.PositionStart);
                     posEnd = Convert.ToDouble(item.PositionEnd);
                     loopMode = item.LoopMode;
@@ -60,7 +60,7 @@ namespace StoGen.Classes.Data.Movie
             //    new List<AP>() { // shower 
             //    new AP(filter) { APS = posStart, APE = posEnd, ALM = loopMode, ALC = loopCount , AR=speed, AV=volume},
             //    } };
-            VideoFrame800(anims, music, text);
+            //VideoFrame800(anims, music, text);
             //this.AlignList.AddRange(AlignList);
         }
         //public void VideoFrame800(List<AP> anims, List<string> music)
@@ -73,10 +73,10 @@ namespace StoGen.Classes.Data.Movie
         //{
         //    VideoFrame800(anims, music, string.Empty, pics);
         //}
-        public void VideoFrame800(List<List<AP>> anims, List<string> music,string text, List<DifData> pics = null)
+      /*  public void VideoFrame800(List<List<AP>> anims, List<string> music,string text, List<DifData> pics = null)
         {
             if (music.Any())
-                AddMusic(music[0],100, false,false);
+                AddMusic(music[0],100, false,false,true,null);
             foreach (var item in anims)
             {
                 List<DifData> itl = new List<DifData>();
@@ -89,7 +89,7 @@ namespace StoGen.Classes.Data.Movie
                 //AddAnim(item[0].File, text, itl, item.ToArray());
                 Add(new string[] { item[0].File }, itl.ToArray(), null, null, false);
             }
-        }
+        }*/
 
     }
 }

@@ -39,7 +39,7 @@ namespace StoGenMake.Scenes.Base
         {
             CurrentSounds.RemoveAll(x => x.Name == "MUSIC");
         }
-        public void AddMusic(string file, int volume, bool muted, bool randomstart)
+        public void AddMusic(string file, int volume, bool muted, bool randomstart, bool loop, string transform, int immediatelyStart)
         {
             var exist = CurrentSounds.Where(x => x.File == file).FirstOrDefault();
             if (exist != null)
@@ -50,17 +50,18 @@ namespace StoGenMake.Scenes.Base
             {                
                 CurrentSounds.Add(new seSo()
                 {
-                    File = $"{PATH_M}{file}",
-                    Name = "MUSIC",
-                    StartPlay = 1,
-                    IsLoop = true,
+                    File = $"{file}",
+                    Name = "MUSIC",                    
+                    StartPlay = immediatelyStart,
+                    IsLoop = loop,
                     isRandom = randomstart,
                     V = volume,
-                    Muted = muted,
+                    Muted = muted,                    
+                    T = transform
                 });
             }
         }
-        public void ClearSound()
+/*        public void ClearSound()
         {
             ClearSound(true, true, true);
         }
@@ -89,43 +90,46 @@ namespace StoGenMake.Scenes.Base
                     T = $"W..{voicePause}>p.A.0.1"
                 });
             }
-        }
-        public void RemoveEffect2()
+        }*/
+/*        public void RemoveEffect2()
         {
             CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
         }
-        public void AddEffect1(string effect1, int effect1Pause, bool effect1Loop)
+        public void AddEffect1(string file, int volume, bool effect1Loop, string transform)
         {
-            if (!string.IsNullOrEmpty(effect1))
+            if (!string.IsNullOrEmpty(file))
             {
                 CurrentSounds.RemoveAll(x => x.Name == "EFFECT1");
                 CurrentSounds.Add(new seSo()
                 {
-                    File = $"{PATH_E}{effect1}",
+                    File = $"{file}",
                     Name = "EFFECT1",
-                    V = VOLUME_E,
+                    V = volume,
                     IsLoop = effect1Loop,
                     StartPlay = 0,
-                    T = $"W..{effect1Pause}>p.A.0.1"
+                    T = transform
+                    //T = $"W..{effect1Pause}>p.A.0.1"
                 });
             }
         }
-        public void AddEffect2(string effect, int effectPause, bool effectLoop)
+        public void AddEffect2(string file, int volume, bool effect1Loop, string transform)
         {
-            if (!string.IsNullOrEmpty(effect))
+            if (!string.IsNullOrEmpty(file))
             {
                 CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
                 CurrentSounds.Add(new seSo()
                 {
-                    File = $"{PATH_E}{effect}",
+                    File = $"{file}",
                     Name = "EFFECT2",
-                    V = VOLUME_E2,
-                    IsLoop = effectLoop,
+                    V = volume,
+                    IsLoop = effect1Loop,
                     StartPlay = 0,
-                    T = $"W..{effectPause}>p.A.0.1"
+                    T = transform
+                    //T = $"W..{effect1Pause}>p.A.0.1"
                 });
             }
-        }
+        }*/
+
 
         #endregion
 
@@ -141,7 +145,6 @@ namespace StoGenMake.Scenes.Base
                 ndd.AssingFrom(item);
                 cdata.Add(ndd);
             }
-            this.ClearSound(false, true, true);
             seTe textData = new seTe(this.DefaultSceneText);
             textData.Text = text;
             var result = Add(new string[] { currentGr }, cdata.ToArray(), textData, this.CurrentSounds, false, indexToInsert);
@@ -236,7 +239,7 @@ namespace StoGenMake.Scenes.Base
 
         #region Newest engine!!!
 
-        public void AddToGlobalImage(string name, string fn, string path)
+  /*      public void AddToGlobalImage(string name, string fn, string path)
         {
             if (!string.IsNullOrEmpty(path))
             {
@@ -247,14 +250,14 @@ namespace StoGenMake.Scenes.Base
                 AddToGlobalImage(name, fn);
             }
         }
-        public void AddToGlobalImage(string name, string fnpath)
+*//*        public void AddToGlobalImage(string name, string fnpath)
         {
             ImageAlignVec newIAV = new ImageAlignVec() { Name = name, File = fnpath };
             newIAV.DefaultAlign = new DifData();
             newIAV.DefaultAlign.Name = name;
             GameWorld.ImageStorage.Add(newIAV);
         }
-       
+*/       
         public void CadreData(string mark, DifData dif)
         {
 
@@ -285,11 +288,11 @@ namespace StoGenMake.Scenes.Base
             foreach (var dif in difsSortedByLevel)
             {
                 data.AlignList.Add(dif);
-                if (installtoglobal && !string.IsNullOrEmpty(dif.Parent))
+/*                if (installtoglobal && !string.IsNullOrEmpty(dif.Parent))
                 {
                     data.IsGlobalAlign = true;
                     AddToGlobalAlign(dif, difs.Where(x => x.Name == dif.Parent).FirstOrDefault());
-                }
+                }*/
             }
             if (indexToInsert.HasValue && indexToInsert.Value<= CadreDataList.Count())
             {
@@ -299,7 +302,7 @@ namespace StoGenMake.Scenes.Base
                 CadreDataList.Add(data);
             return data;
         }
-        private void AddToGlobalAlign(DifData dd, DifData pardelta)
+       /* private void AddToGlobalAlign(DifData dd, DifData pardelta)
         {
             if (!string.IsNullOrEmpty(dd.Parent))
             {
@@ -331,7 +334,7 @@ namespace StoGenMake.Scenes.Base
                 }
             }
 
-        }
+        }*/
 
 
         #endregion

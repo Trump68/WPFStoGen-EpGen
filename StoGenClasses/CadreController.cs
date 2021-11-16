@@ -146,7 +146,7 @@ namespace StoGen.Classes
             {
                 return null;
             }
-            if (result != null) RepaintCadre(result, paint);
+            if (result != null) RepaintCadre(result, paint, true);
             else
             {
                 SystemSounds.Beep.Play();
@@ -181,7 +181,7 @@ namespace StoGen.Classes
             }
             if (result != null)
             {
-                this.RepaintCadre(result);      
+                this.RepaintCadre(result,true,false);      
             }
             
             return result;
@@ -208,7 +208,7 @@ namespace StoGen.Classes
         }
 
         // Magic here (TO DO: recode this)
-        public CadreInfo MakeCadre(CadreData item)
+        public CadreInfo MakeCadre(CadreData item, bool isForward)
         {
 
             seTe te = null;
@@ -226,11 +226,11 @@ namespace StoGen.Classes
             {
                 te = item.TextData;
             }
-            return this.CreateCadre(item, isWhite, te);
+            return this.CreateCadre(item, isForward, isWhite, te);
         }
 
         // => Here the magic happens (TO DO: recode this)
-        public CadreInfo CreateCadre(CadreData item, bool isWhite = false, seTe text = null)
+        public CadreInfo CreateCadre(CadreData item, bool isForward, bool isWhite = false, seTe text = null)
         {
             var cadre = new CadreInfo();
             cadre.IsWhite = isWhite;
@@ -238,41 +238,15 @@ namespace StoGen.Classes
             cadre.DefClipPause1 = item.DefClipPause1;
             foreach (var ai in item.AlignList)
             {
-                //faind main image info in storage
-                var isi = GameWorld.ImageStorage.Where(x => x.Name == ai.Name).FirstOrDefault();
-                if (isi == null) continue;
                 // create image
                 seIm im = new seIm();
-                im.Name = isi.Name;
+                im.Name = ai.Name;
                 im.Parent = ai.Parent;
-                im.File = isi.File;
+                im.File = ai.Name;
                 if (ai.Z.HasValue)
                     im.Z = ai.Z.Value;              
-                // there is 2 alt: assign from parent-child align or from delta align, not combined!
-                if (!string.IsNullOrEmpty(ai.Parent)) //if has parent image
-                {
-                    // get parent-child proportion
-                    var parentproportion = isi.Parents.Where(x => x.Parent == ai.Parent && x.Tag == ai.Tag).FirstOrDefault();
-                    if (parentproportion != null)
-                    {
-                        // get real parent image from cadre
-                        var realpar = cadre.VisionList.Where(x => x.Name == ai.Parent).FirstOrDefault();
-                        if (realpar != null)
-                        {
-                            // assign to image parent-child proportion according with real parent 
-                            seIm realparent = realpar as seIm;
-                            parentproportion.ApplyTo(im, realparent, ai);
-                        }
-                    }
-                }
-                else // no parent image
-                {
-                    // assign default align to image
-                    //im.AssignFrom(isi.DefaultAlign);
-                    // assign delta align, if any
-                    im.AssignFrom(ai);
-
-                }
+               
+                im.AssignFrom(ai);              
                 // add image to cadre
                 cadre.AddImage(im);
             }
@@ -302,10 +276,10 @@ namespace StoGen.Classes
                 }
             }
         }
-        public void RepaintCadre(Cadre cadre, bool paint = true)
+        public void RepaintCadre(Cadre cadre, bool paint, bool isForward)
         {
-            var info = this.MakeCadre(Scene.CadreDataList[CadreId]);
-            cadre.Repaint(info, paint);
+            var info = this.MakeCadre(Scene.CadreDataList[CadreId], isForward);
+            cadre.Repaint(info, isForward, paint);
         }
 
         public void RefreshCurrentCadre()

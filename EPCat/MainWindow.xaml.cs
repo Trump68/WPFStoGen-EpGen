@@ -52,9 +52,9 @@ namespace EPCat
             }
             RestoreLayout(PathToGridSave);
             var CommandArgs = System.Environment.GetCommandLineArgs().ToList();
-            if (CommandArgs.Where(x=>x.ToUpper() == "LOAD").Any())
+            if (CommandArgs.Where(x => x.ToUpper() == "LOAD").Any())
             {
-                    ViewModel.ProcessScriptFile();
+                ViewModel.ProcessScriptFile();
             }
         }
         void SaveLayout()
@@ -63,7 +63,7 @@ namespace EPCat
             {
                 PathToGridSave = @"d:\temp\temp.xml";
             }
-            this.GV.SaveLayoutToXml(PathToGridSave);                        
+            this.GV.SaveLayoutToXml(PathToGridSave);
         }
         string PathToGridSave = null;
         public void RestoreLayout(string path)
@@ -109,7 +109,7 @@ namespace EPCat
             timerVideoTime = new DispatcherTimer();
             timerVideoTime.Interval = TimeSpan.FromSeconds(0.1);
             timerVideoTime.Tick += new EventHandler(timer_Tick);
-            
+
             if ((this.DataContext as EpCatViewModel).ClipToProcess != null)
             {
                 minionPlayer.Source = new Uri((this.DataContext as EpCatViewModel).ClipToProcess);
@@ -147,7 +147,7 @@ namespace EPCat
             minionPlayer.Width = minionPlayer.NaturalVideoWidth * (96.0 / dpiX);
             minionPlayer.Height = minionPlayer.NaturalVideoHeight * (96.0 / dpiY);
 
-            txtPosition.Text = ClipPosition.ToString();            
+            txtPosition.Text = ClipPosition.ToString();
             minionPlayer.Pause();
             RestoreVideoPosition();
         }
@@ -193,7 +193,7 @@ namespace EPCat
         }
 
         private void ShowVideoBtn_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             ViewModel.ShowClip();
         }
         private void ShowSceneBtn_Click(object sender, RoutedEventArgs e)
@@ -327,7 +327,7 @@ namespace EPCat
             {
                 //txtPositionStart.Text = TicTakToe.ClipTemplate.PositionStart.ToString();                
                 minionPlayer.Play();
-               
+
                 RestoreVideoPosition();
                 EnableButtons(true);
             }
@@ -352,14 +352,14 @@ namespace EPCat
         {
             RestoreVideoPosition();
         }
-               
+
         private void btnScreenshot_Click(object sender, RoutedEventArgs e)
         {
-            this.MadeShot(false,false,false);
+            this.MadeShot(false, false, false);
         }
         private void MadeShot(bool addGroup, bool Gray, bool simple)
         {
-            string path = 
+            string path =
                 System.IO.Path.GetDirectoryName(this.minionPlayer.Source.LocalPath)
                 + System.IO.Path.DirectorySeparatorChar.ToString() + "CLIPCAPS";
             string str3 = string.Empty;
@@ -402,10 +402,10 @@ namespace EPCat
                 }
             }
             TicTakToe.SetClipScreenShot(str3);
-            this.ImportMedia(str3,Gray);
+            this.ImportMedia(str3, Gray);
             if (addGroup)
             {
-                ViewModel.CopyGroup(true,false,0, true);
+                ViewModel.CopyGroup(true, false, 0, true);
             }
         }
         private void ImportMedia(string path, bool isGrayscale = false)
@@ -420,7 +420,7 @@ namespace EPCat
                 dpiY = 96.0 * src.CompositionTarget.TransformToDevice.M22;
             }
 
-            RenderTargetBitmap source = 
+            RenderTargetBitmap source =
                 new RenderTargetBitmap(
                     //Convert.ToInt32(this.minionPlayer.RenderSize.Width),
                     //Convert.ToInt32(this.minionPlayer.RenderSize.Height),
@@ -432,26 +432,26 @@ namespace EPCat
                     dpiY,
                     PixelFormats.Pbgra32);
             source.Render(this.minionPlayer);
-                using (MemoryStream stream = new MemoryStream())
+            using (MemoryStream stream = new MemoryStream())
+            {
+                BitmapEncoder encoder = new BmpBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(source));
+                encoder.Save(stream);
+                using (Bitmap bitmap = new Bitmap(stream))
                 {
-                    BitmapEncoder encoder = new BmpBitmapEncoder();
-                    encoder.Frames.Add(BitmapFrame.Create(source));
-                    encoder.Save(stream);
-                    using (Bitmap bitmap = new Bitmap(stream))
+                    if (isGrayscale)
                     {
-                        if (isGrayscale)
+                        using (Bitmap gray = ImageTools.GrayScaleFilter(bitmap))
                         {
-                            using (Bitmap gray = ImageTools.GrayScaleFilter(bitmap))
-                            {
-                                BitmapExtensions.SaveJPG100(gray, path);
-                            }                                                        
+                            BitmapExtensions.SaveJPG100(gray, path);
                         }
-                        else
-                            BitmapExtensions.SaveJPG100(bitmap, path);
-                    }                                        
+                    }
+                    else
+                        BitmapExtensions.SaveJPG100(bitmap, path);
                 }
+            }
 
-            
+
             source.Clear();
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -521,7 +521,7 @@ namespace EPCat
                 }
                 else if (e.Key == Key.M)
                 {
-                    this.MadeShot(false,false,false);
+                    this.MadeShot(false, false, false);
                 }
                 else if (e.Key == Key.N)
                 {
@@ -540,7 +540,7 @@ namespace EPCat
             }
         }
 
-       
+
 
         private void btnSetPositionStart_Click(object sender, RoutedEventArgs e)
         {
@@ -563,12 +563,12 @@ namespace EPCat
             txtPositionEnd.Text = TicTakToe.ClipTemplate.PositionEnd.ToString();
         }
 
-      
+
 
         private void EditVideoBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.NavTabGroup.SelectedContainer = this.EditTab;      
-            txtPosition.Text = (this.DataContext as EpCatViewModel).CurrentClip.PositionStart.ToString();     
+            this.NavTabGroup.SelectedContainer = this.EditTab;
+            txtPosition.Text = (this.DataContext as EpCatViewModel).CurrentClip.PositionStart.ToString();
         }
         private void EditEndVideoBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -579,22 +579,22 @@ namespace EPCat
 
         private void ProcessSpace()
         {
-           if (TicTakToe.ClipTemplate.PositionStart == 0)
+            if (TicTakToe.ClipTemplate.PositionStart == 0)
             {
-                btnSetPositionStart_Click(null,null);
+                btnSetPositionStart_Click(null, null);
             }
-           else if (TicTakToe.ClipTemplate.PositionEnd == 0)
+            else if (TicTakToe.ClipTemplate.PositionEnd == 0)
             {
                 btnSetPositionEnd_Click(null, null);
                 btnSetPositionSave_Click(null, null);
-                MadeShot(false,false,false);
+                MadeShot(false, false, false);
             }
         }
 
         private void AddSceneBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(true,true,0,-1, true);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(true, true, 0, -1, true);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
@@ -603,33 +603,33 @@ namespace EPCat
             //copy
             (this.DataContext as EpCatViewModel).CopyCombinedScene(false);
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(true,false,0,6, true);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(true, false, 0, 6, true);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
         private void AddSceneSoundPlusBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(true,false,0,7, true);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(true, false, 0, 7, true);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
         private void AddClipBtn_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.AddCombinedScene(false, true, 0, -1, true);
-            ViewModel.RefreshFolder();            
+            ViewModel.RefreshFolder();
         }
         private void AddSceneHeaderBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(false,false,0,1, true);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(false, false, 0, 1, true);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
         private void AddSceneCtrlBtn_Click(object sender, RoutedEventArgs e)
         {
             //save
-            (this.DataContext as EpCatViewModel).AddCombinedScene(false, false,0, 10, true);
+            (this.DataContext as EpCatViewModel).AddCombinedScene(false, false, 0, 10, true);
             // reset
             (this.DataContext as EpCatViewModel).RefreshFolder();
         }
@@ -643,9 +643,9 @@ namespace EPCat
         private void btnSetPositionSave_Click(object sender, RoutedEventArgs e)
         {
             //save
-            ViewModel.CopyGroup(false,false,0,true);
+            ViewModel.CopyGroup(false, false, 0, true);
             //save
-            ViewModel.SaveClipTemplate();            
+            ViewModel.SaveClipTemplate();
             // reset
             //btnSetPositionReset_Click(null, null);
             (this.DataContext as EpCatViewModel).RefreshFolder();
@@ -661,15 +661,15 @@ namespace EPCat
         {
             ViewModel.AddMedia();
         }
-     
+
 
         private void SaveCurrentClipBtn_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.SaveCurrentClipList();
-        }       
+        }
 
 
-      
+
         private void RestoreVideoPosition()
         {
             if (string.IsNullOrEmpty(txtPosition.Text))
@@ -682,9 +682,9 @@ namespace EPCat
             }
             catch (Exception)
             {
-                
+
             }
-            
+
             TimeSpan timespan = TimeSpan.FromSeconds(val);
             minionPlayer.Position = timespan;
             ShowPosition();
@@ -692,7 +692,7 @@ namespace EPCat
 
         private void btnScreenshotAddGroup_Click(object sender, RoutedEventArgs e)
         {
-            this.MadeShot(true,false,false);
+            this.MadeShot(true, false, false);
         }
 
 
@@ -727,7 +727,7 @@ namespace EPCat
             }
         }
 
-       
+
 
 
         public void SetGVCurrent(int ind)
@@ -737,7 +737,7 @@ namespace EPCat
 
         private void ReloadScenarioFromFileBtn_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.ReloadScenario();            
+            ViewModel.ReloadScenario();
         }
 
         private void CompileScenarioBtn_Click(object sender, RoutedEventArgs e)
@@ -746,21 +746,21 @@ namespace EPCat
         }
         private void CopyGroupBtn_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.CopyGroup(false, true,0, true);
+            ViewModel.CopyGroup(false, true, 0, true);
         }
 
         private void CopyGroupBtn1_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.CopyGroup(false, false,0,true);
+            ViewModel.CopyGroup(false, false, 0, true);
         }
 
-      
+
 
         private void btnGoGenerate_Click(object sender, RoutedEventArgs e)
         {
             //GenerateScenario(null);
             ViewModel.CompileOne();
-            
+
         }
 
         //private void GenerateScenario(EpItem item)
@@ -787,7 +787,7 @@ namespace EPCat
 
         private void CopyGroupBtn3_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.CopyGroup(false, false,1,true);
+            ViewModel.CopyGroup(false, false, 1, true);
         }
 
         //private void CopyDescrBtn1_Click(object sender, RoutedEventArgs e)
@@ -797,11 +797,11 @@ namespace EPCat
 
         private void btnSetPositionSaveSceneVideo_Click(object sender, RoutedEventArgs e)
         {
-            
+
             if (ViewModel.Story == null)
                 return;
             ViewModel.SaveClipTemplate();
-            ViewModel.CopyGroup(false, false, 0,true);
+            ViewModel.CopyGroup(false, false, 0, true);
             //var col = ViewModel.Story.SceneInfos.Where(x => x.Group == ViewModel.CurrentInfo.Group && x.Kind == 8);
             //if (col.Any())
             //{
@@ -811,50 +811,11 @@ namespace EPCat
             //}
             //else
             //{
-                ViewModel.AddCombinedScene(false, true, 0, 8, true);
+            ViewModel.AddCombinedScene(false, true, 0, 8, true);
             //}
             ViewModel.RefreshFolder();
 
         }
-        //private void btnSetPositionSaveScenePicture_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (ViewModel.Story == null)
-        //        return;
-
-        //    string path = System.IO.Path.Combine(ViewModel.Story.CatalogPath, "DATA");
-        //    if (!Directory.Exists(path))
-        //    {
-        //        Directory.CreateDirectory(path);
-        //    }
-        //    string str3 = string.Empty;
-        //    path = path + System.IO.Path.DirectorySeparatorChar.ToString() + "SC";
-
-        //    int num = 0;
-        //    string str2 = num.ToString("D4");
-        //    str3 = $"{path}-{str2}.jpg";
-        //    while (File.Exists(str3))
-        //    {
-        //          num++;
-        //          str2 = num.ToString("D4");
-        //          str3 = $"{path}-{str2}.jpg";
-        //     }
-
-        //    this.ImportMedia(str3);
-        //    TicTakToe.SetClipScreenShot(str3);
-        //    ViewModel.CopyGroup(true, true, 1, true);
-        //    var col = ViewModel.Story.SceneInfos.Where(x => x.Group == ViewModel.CurrentInfo.Group && x.Kind == 0);
-        //    if (col.Any())
-        //    {
-        //        col.First().File = str3;
-        //    }
-        //    else
-        //    {
-        //        ViewModel.AddCombinedScene(false, true, 0, 0, true);
-        //    }
-        //    ViewModel.RefreshFolder();
-
-        //}
-
         private void MainGridView_HiddenEditor(object sender, EditorEventArgs e)
         {
             if (ViewModel.CurrentFolder != null)
@@ -869,9 +830,9 @@ namespace EPCat
 
         private void CopyPoster_Click(object sender, RoutedEventArgs e)
         {
-            if (ViewModel.CurrentFolder==null) return;
+            if (ViewModel.CurrentFolder == null) return;
             string poster1 = ViewModel.CurrentFolder.PosterPath.ToLower();
-            string poster2 = poster1.Replace(".jpg","2.jpg");
+            string poster2 = poster1.Replace(".jpg", "2.jpg");
             if (!File.Exists(poster1)) return;
             BitmapSource bmpCopied = null;
             if (File.Exists(poster2))
@@ -885,7 +846,7 @@ namespace EPCat
                 {
                     // This must be executed on the calling dispatcher.
                     Clipboard.SetImage(bmpCopied);
-                  
+
                 }
                 catch (COMException)
                 {
@@ -898,7 +859,7 @@ namespace EPCat
         private void CopyPosterName_Click(object sender, RoutedEventArgs e)
         {
             if (ViewModel.CurrentFolder == null) return;
-                 Clipboard.SetText(ViewModel.CurrentFolder.PosterPath);
+            Clipboard.SetText(ViewModel.CurrentFolder.PosterPath);
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -908,7 +869,7 @@ namespace EPCat
             ViewModel.RefreshFolder();
         }
 
-       
+
         private void btnCameraPosition_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.CalculateCameraPosition();
@@ -930,7 +891,7 @@ namespace EPCat
         }
         private void btnUpdateJAV_Click(object sender, RoutedEventArgs e)
         {
-                JAV.JavUpdate();
+            JAV.JavUpdate();
         }
         private void btnGoRepeatText3_Click(object sender, RoutedEventArgs e)
         {
@@ -948,7 +909,7 @@ namespace EPCat
             StarRating.LoadJAVActress(@"n:\!CATALOG\JAV");
             var list = ViewModel.FolderListView.ToList();
             foreach (var item in list)
-            {           
+            {
                 StarRating.SetRating(item);
             }
             ViewModel._Loader.SaveCatalog(ref list);
@@ -978,7 +939,7 @@ namespace EPCat
             {
                 pos = double.Parse(txtPosition.Text);
             }
-            while (sbarPosition.Maximum>pos)
+            while (sbarPosition.Maximum > pos)
             {
                 TimeSpan timespan = TimeSpan.FromSeconds(pos);
                 minionPlayer.Position = timespan;
@@ -989,8 +950,8 @@ namespace EPCat
                 {
                     ischecked = cbGray.IsChecked.Value;
                 }
-                this.MadeShot(false, ischecked,false);
-                pos=pos+0.5;                
+                this.MadeShot(false, ischecked, false);
+                pos = pos + 0.5;
             }
         }
 
@@ -998,7 +959,7 @@ namespace EPCat
         {
             for (int i = 0; i < 10; i++)
             {
-                ViewModel.CopyGroup(false, false, 0,false);
+                ViewModel.CopyGroup(false, false, 0, false);
             }
         }
 
@@ -1015,7 +976,7 @@ namespace EPCat
                 cadre = ViewModel.CurrentGroup.Cadres.Where(x => x.KindName == "Mov").FirstOrDefault();
             }
             if (cadre == null) return;
-            
+
             var info = cadre.Infos.FirstOrDefault(x => x.KindName == "Mov");
 
             if (info == null) return;
@@ -1050,7 +1011,7 @@ namespace EPCat
                     if (string.IsNullOrEmpty(ClipFile.Text))
                     {
                         ClipFile.Text = clipfile;
-                        
+
                     }
                     LoadClip(val);
                 }
@@ -1077,6 +1038,28 @@ namespace EPCat
                 ViewModel.AddCombinedScene(false, true, 0, -1, true);
             }
             GVCombScen3.RefreshData();
+        }
+        
+        public void ReloadDataScenes()
+        {
+            //GVCombScen2.RefreshData();
+            //var si = GVCombScen2.SelectedItem;
+            if (GVCombScen2.SelectedItem != null)
+            {
+                var ddd = CombinedScenGV2.GetSelectedRows().FirstOrDefault();
+                if (ddd != null) 
+                {
+                    GVCombScen2.SelectItem(0);
+                    GVCombScen2.SelectItem(ddd.RowHandle);
+                }
+               
+            }
+
+        }
+
+        private void RunScenario_Click(object sender, RoutedEventArgs e)
+        {            
+            ViewModel.RunScenario();
         }
     }
 }

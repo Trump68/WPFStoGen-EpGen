@@ -37,7 +37,7 @@ namespace StoGenMake
     public class GameWorld : IMenuCreator
     {
         // !!! new engine
-        public static List<ImageAlignVec> ImageStorage = new List<ImageAlignVec>();
+        //public static List<ImageAlignVec> ImageStorage = new List<ImageAlignVec>();
         // !!! new engine
 
         
