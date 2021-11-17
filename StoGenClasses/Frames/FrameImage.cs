@@ -65,6 +65,7 @@ namespace StoGen.Classes
         public static int WaitStart = -1;
         public static int WaitEnd = -1;
         
+        public static bool Blocked = false;
         public static void ProcessLoopDelegate()
         {
             //Control data
@@ -81,7 +82,7 @@ namespace StoGen.Classes
             if (true) // - disabled for spped of animation - test!!!!!!!!!
             {
                 //Transition
-                FrameImage.tranManager.Process();
+                Blocked = !FrameImage.tranManager.Process();
                 if (FrameImage.Animations == null) return;
                 #region Other
                 if (Projector.TimerEnabled && (FrameImage.TimeToNext > 0))

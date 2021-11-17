@@ -100,7 +100,7 @@ namespace StoGen.Classes.Story
 
             person.SetVisibleExpression("calm smiling");
             CadreNum++; AddCadre(
-                person.GetData(template_figure, 5, $"{Trans.Wait(1000)}>{Trans.ImpactHs(200, 100)}"),
+                person.GetData(template_figure, 5, $"{Trans.ImpactHs(200, 100)}"),
                 AddTextByTemplate(template_text, $"[{Name_Girl}]~. . . А может, просто растянуться здесь и полежать. . ?''"),
                 AddImageByTemplate("Location background", 0, template_location, null, $"{Trans.ImpactHs(200, 100)}")
                 );

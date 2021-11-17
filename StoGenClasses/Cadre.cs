@@ -1,10 +1,12 @@
 ﻿using StoGen.ModelClasses;
 using System.Collections.Generic;
 using System.Windows.Input;
-using StoGenMake.Scenes.Base;
 using StoGenMake.Elements;
 using System.Linq;
-
+using System;
+using System.Windows;
+using System.Windows.Threading;
+using System.Threading;
 
 namespace StoGen.Classes
 {
@@ -17,11 +19,11 @@ namespace StoGen.Classes
 
 
         public List<Frame> Frames { set; get; }
-        public CadreController Owner{ get; set; }
+        public CadreController Owner { get; set; }
         public bool AllowedForward { get; set; }
         public bool AllowedBackward { get; set; }
-        
-        private Cadre() 
+
+        private Cadre()
         {
             Frames = new List<Frame>();
             Frames.Add(this.ProcFr);
@@ -64,11 +66,11 @@ namespace StoGen.Classes
             Cadre result = this;
             Projector.TextVisible = true;
             FrameImage.PausePeriod1 = info.DefClipPause1;
-            if (!this.AlignDataProcessed)
-            {
+            //if (!this.AlignDataProcessed)
+            //{
                 if (paint)
                 {
-                    //this.AlignDataProcessed = true;
+                    this.AlignDataProcessed = true;
                     FrameImage.Pics.Clear();
                     foreach (seIm data in info.VisionList)
                     {
@@ -85,7 +87,7 @@ namespace StoGen.Classes
                 foreach (seSo data in info.SoundList)
                 {
                     var sds = data.ToSoundDataSource();
-                    sds.Position = info.SoundList.IndexOf(data);         
+                    sds.Position = info.SoundList.IndexOf(data);
                     this.SoundFr.SoundList.Add(sds);
                 }
                 if (!isForward)
@@ -95,27 +97,28 @@ namespace StoGen.Classes
                 {
                     this.TextFr.SetData(dataTe);
                 }
-            }
+            //}
 
             //this.ControlFr.SetData(info.Control);
 
 
             if (paint)
-            {
+            {                                
+
                 var fi = Frames.FirstOrDefault(x => (x is FrameImage));
-                if (fi != null) 
+                if (fi != null)
                     fi.Repaint();
                 foreach (Frame item in Frames.Where(x => !(x is FrameImage)))
                 {
 
-                        Cadre temp = item.Repaint();
+                    Cadre temp = item.Repaint();
                 }
             }
             //FrameControl.SetData(info.Control);
             //FrameControl.Repaint();
             return result;
-        }         
-            
+        }
+
         internal void ProcessKey(Key keys)
         {
             for (int i = 0; i < Frames.Count; i++)

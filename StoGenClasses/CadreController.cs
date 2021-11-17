@@ -125,6 +125,8 @@ namespace StoGen.Classes
 
         public virtual Cadre GetNextCadre(bool paint = true)
         {
+            if (FrameImage.Blocked) 
+                return null;
             CreateNextCadres();
             CadreId++;
             Cadre result = null;
@@ -158,6 +160,8 @@ namespace StoGen.Classes
 
         public virtual Cadre GetPrevCadre()
         {
+            if (FrameImage.Blocked)
+                return null;
             Cadre result = null;
             if (CadreId == 0)
             {

@@ -25,7 +25,7 @@ namespace StoGen.Classes.Transition
 
         internal bool Process()
         {
-            bool repaintNeed = false;
+            bool completed = true;
             foreach (var TranSeriesForImage in TransitionList)
             {
                 foreach (var TranSeries in TranSeriesForImage.Transitions)
@@ -33,6 +33,7 @@ namespace StoGen.Classes.Transition
                     var tran = TranSeries.Where(x => x.Active).FirstOrDefault();
                     if (tran != null)
                     {
+                        completed = false;
                         bool rn;
                         if (tran.Execute(out rn))
                         {
@@ -41,12 +42,10 @@ namespace StoGen.Classes.Transition
                                 TranSeries.ForEach(x => x.Active = true);
                             }
                         }
-                        if (rn) repaintNeed = true;
                     }
                 }
-
             }
-            return repaintNeed;
+            return completed;
         }
     }
     public class TransitionData
@@ -380,7 +379,6 @@ namespace StoGen.Classes.Transition
                         Canvas.SetLeft(Projector.PicContainer.PicList[this.Level], _initVal + value);
                     else
                         Canvas.SetTop(Projector.PicContainer.PicList[this.Level], _initVal + value);
-
                 }
             }
 
