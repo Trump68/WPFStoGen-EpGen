@@ -144,6 +144,7 @@ PackStory=1; PackImage=1; PackSound=1; PackVideo=0";
         }
         protected virtual string GetFileBGM(string name)
         {
+            if (name == "STOP") return name;
             var val = bgmlist.Where(x => (x.Item1 == name) || (x.Item2 == name)).FirstOrDefault();
             if (val == null) return null;
             return Path.Combine(bgmroot, val.Item2, val.Item3);
@@ -321,26 +322,28 @@ PackStory=1; PackImage=1; PackSound=1; PackVideo=0";
         {
             Story = maker;
             Resources.Add(new Tuple<string, string, string, string>("Far", "Base", "Gown", "01_BASE.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Lip", "Pain", "01_BASE_LIP_01.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Lip", "Joy", "01_BASE_LIP_02.png"));
+            Resources.Add(new Tuple<string, string, string, string>("Far", "Lip", "Tiny smile", "01_BASE_LIP_01.png"));
+            Resources.Add(new Tuple<string, string, string, string>("Far", "Lip", "Sad", "01_BASE_LIP_02.png"));
+            Resources.Add(new Tuple<string, string, string, string>("Far", "Lip", "Smile", "01_BASE_LIP_04.png"));
             Resources.Add(new Tuple<string, string, string, string>("Far", "Lip", "Neitral", "01_BASE_LIP_03.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Eye", "01", "01_BASE_EYE_01.png"));
+            Resources.Add(new Tuple<string, string, string, string>("Far", "Eye", "Close", "01_BASE_EYE_01.png"));
             Resources.Add(new Tuple<string, string, string, string>("Far", "Eye", "02", "01_BASE_EYE_02.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Eye", "03", "01_BASE_EYE_03.png"));
+            Resources.Add(new Tuple<string, string, string, string>("Far", "Eye", "Wide open", "01_BASE_EYE_03.png"));
             Resources.Add(new Tuple<string, string, string, string>("Far", "Eye", "04", "01_BASE_EYE_04.png"));
             Resources.Add(new Tuple<string, string, string, string>("Far", "Eye", "05", "01_BASE_EYE_05.png"));
             Resources.Add(new Tuple<string, string, string, string>("Far", "Eye", "06", "01_BASE_EYE_06.png"));
             Resources.Add(new Tuple<string, string, string, string>("Far", "Wear", "Boa", "01_BASE_BOA.png"));
             Resources.Add(new Tuple<string, string, string, string>("Close", "Base", "Gown", "02_BASE_GOWN.png"));
             Resources.Add(new Tuple<string, string, string, string>("Close", "Base", "Naked", "02_BASE.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Eye", "01", "02_BASE_EYE_01.png"));
+            Resources.Add(new Tuple<string, string, string, string>("Close", "Eye", "Close", "02_BASE_EYE_01.png"));
             Resources.Add(new Tuple<string, string, string, string>("Close", "Eye", "02", "02_BASE_EYE_02.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Eye", "03", "02_BASE_EYE_03.png"));
+            Resources.Add(new Tuple<string, string, string, string>("Close", "Eye", "Wide open", "02_BASE_EYE_03.png"));
             Resources.Add(new Tuple<string, string, string, string>("Close", "Eye", "04", "02_BASE_EYE_04.png"));
             Resources.Add(new Tuple<string, string, string, string>("Close", "Eye", "05", "02_BASE_EYE_05.png"));
             Resources.Add(new Tuple<string, string, string, string>("Close", "Eye", "06", "02_BASE_EYE_06.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Lip", "Pain", "02_BASE_LIP_02.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Lip", "Joy", "02_BASE_LIP_03.png"));
+            Resources.Add(new Tuple<string, string, string, string>("Close", "Lip", "Sad", "02_BASE_LIP_02.png"));
+            Resources.Add(new Tuple<string, string, string, string>("Close", "Lip", "Tiny smile", "02_BASE_LIP_03.png"));
+            Resources.Add(new Tuple<string, string, string, string>("Close", "Lip", "Smile", "02_BASE_LIP_04.png"));
             Resources.Add(new Tuple<string, string, string, string>("Close", "Lip", "Neitral", "02_BASE_LIP_01.png"));
 
 
@@ -414,8 +417,33 @@ PackStory=1; PackImage=1; PackSound=1; PackVideo=0";
             }
             else if (expression == "calm smiling")
             {
-                visible_lip = "Joy";
+                visible_lip = "Tiny smile";
                 visible_eye = null;
+            }
+            else if (expression == "smiling")
+            {
+                visible_lip = "Smile";
+                visible_eye = null;
+            }
+            else if (expression == "agitated")
+            {
+                visible_lip = "Neitral";
+                visible_eye = "Wide open";
+            }
+            else if (expression == "agitated tiny smile")
+            {
+                visible_lip = "Tiny smile";
+                visible_eye = "Wide open";
+            }
+            else if (expression == "laughing")
+            {
+                visible_lip = "Smile";
+                visible_eye = "Close";
+            }
+            else if (expression == "amusing")
+            {
+                visible_lip = "Neitral";
+                visible_eye = "Wide open";
             }
             else if (expression == "cold looking")
             {

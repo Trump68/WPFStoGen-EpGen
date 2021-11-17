@@ -26,15 +26,35 @@ namespace StoGen.Classes
             GroupItems.Clear();
             foreach (SoundItem item in this.SoundList)
             {
-                if (!string.IsNullOrEmpty(item.Group))
+                int index = -1;
+                var exist = PlayingItems.Where(x => x != null && x.FileName == item.FileName).FirstOrDefault();
+                if (exist != null)
+                    index = PlayingItems.ToList().IndexOf(exist);                                    
+                if (item.isMute)
+                {               
+                    // forcibly stop and remove
+                    if (index > -1)
+                        StopPlayer(index);                        
+                }
+                else 
                 {
-                    GroupItems.Add(item);
-                    if (GroupItems.Where(x => x.Group == item.Group).ToList().Count > 1)
+                    if (index > -1)
                     {
-                        continue;
+                        // already have
+                        //SetSoundOneItem(index, item);
+                    }
+                    else 
+                    {
+                        for (int i = 0; i < PlayingItems.Length; i++)
+                        {
+                            if (PlayingItems[i] == null)
+                            {
+                                SetSoundOneItem(i, item);
+                                break;
+                            }
+                        }
                     }
                 }
-                SetSoundOneItem(item.Position, item);
             }
             timer.Change(500, 500);
             return Owner;
@@ -55,7 +75,6 @@ namespace StoGen.Classes
             if (!base.Stopped)
                 if (timer != null) timer.Change(500, 500);            
         }
-
         private void FrameSound_MediaEnded(object sender, EventArgs e)
         {
             int index = Projector.Sound.IndexOf((sender as System.Windows.Media.MediaPlayer));         
@@ -66,25 +85,9 @@ namespace StoGen.Classes
             }
             else
             {
-                // Set up next sound in the group
-/*                if (!string.IsNullOrEmpty(PlayingItems[index].Group))
-                {
-                    GroupItems.Remove(PlayingItems[index]);
-                    if (GroupItems.Any(x => x.Group == PlayingItems[index].Group))
-                    {
-                        var item = GroupItems.Where(x => x.Group == PlayingItems[index].Group).First();
-                        item.Position = PlayingItems[index].Position;
-                        SetSoundOneItem(item.Position, item);
-                    }
-                }
-                else 
-                {
-*/                    StopPlayer(index, true);
-                    //this.SoundList.RemoveAt(index);
-                ///}
+                 StopPlayer(index);                                            
             }
         }
-
         public FrameSound()
             : base()
         {
@@ -101,17 +104,16 @@ namespace StoGen.Classes
                     var existing = SoundList.Where(x => x != null && x.FileName == PlayingItems[i].FileName).FirstOrDefault();
                     if (existing == null)
                     {
-                        StopPlayer(i,true);
-                        PlayingItems[i] = null;
+                        PlayingItems[i].PlayedCound = 0;
                     }
                 }
             }
         }
 
-        private void StopPlayer(int Position, bool force)
+        private void StopPlayer(int Position)
         {
             
-            if (PlayingItems[Position] != null && (force || (PlayingItems[Position].isLoop == false)))
+            if (PlayingItems[Position] != null)
             {
                
                 Projector.Sound[Position].Dispatcher.Invoke(new Action(
@@ -121,35 +123,12 @@ namespace StoGen.Classes
                             Projector.Sound[Position].Stop();
                             Projector.Sound[Position].MediaEnded += FrameSound_MediaEnded;
                         }));
+                PlayingItems[Position] = null;
             }
         }
-
-
-        SoundItem CurrItem0;
-        SoundItem CurrItem1;
-        SoundItem CurrItem2;
-        SoundItem CurrItem3;
-        SoundItem CurrItem4;
-        SoundItem CurrItem5;
-        SoundItem CurrItem6;
-        SoundItem CurrItem7;
-        SoundItem CurrItem8;
-        SoundItem CurrItem9;
-        SoundItem CurrItem10;
-        SoundItem CurrItem11;
-        SoundItem CurrItem12;
-        SoundItem CurrItem13;
-        SoundItem CurrItem14;
-        SoundItem CurrItem15;
-        SoundItem CurrItem16;
-        SoundItem CurrItem17;
-        SoundItem CurrItem18;
-        SoundItem CurrItem19;
-
-        List<SoundItem> GroupItems = new List<SoundItem>();
-
         private void StartPlayer(int N, SoundItem item)
         {
+            if (PlayingItems[N] == null) return;
             string soundfile = item.FileName;
             if (item.PlayedCound > 0 && !item.isLoop)
                 return;
@@ -168,6 +147,7 @@ namespace StoGen.Classes
         public static void StartSound(int N) 
         {
             int pos = 0;
+            if (PlayingItems[N] == null) return;
             if (PlayingItems[N].isRandom)
             {
                 while (!Projector.Sound[N].NaturalDuration.HasTimeSpan)
@@ -179,15 +159,14 @@ namespace StoGen.Classes
                 int val = rnd.Next(100);
                 pos = Convert.ToInt32((total * val) / 100);
             }
-                Projector.Sound[N].Position = new TimeSpan(0, 0, pos);
-                Projector.Sound[N].Play();
-                Projector.Sound[N].Volume = (double)PlayingItems[N].Volume / 100;
-                PlayingItems[N].PlayedCound = PlayingItems[N].PlayedCound + 1;
+            Projector.Sound[N].Position = new TimeSpan(0, 0, pos);
+            Projector.Sound[N].Play();
+            Projector.Sound[N].Volume = (double)PlayingItems[N].Volume / 100;
+            PlayingItems[N].PlayedCound = PlayingItems[N].PlayedCound + 1;
         }
 
         private void SetSoundOneItem(int position, SoundItem item)
         {
-            
             Projector.Sound[position].IsMuted = item.isMute;
             Projector.Sound[position].Volume = (double)item.Volume / 100;
             if (PlayingItems[position] == null || (PlayingItems[position].FileName != item.FileName))
@@ -201,11 +180,8 @@ namespace StoGen.Classes
                 FrameSound.tranManager.Add(trandata);
                 PlayingItems[position].Transition = null;
             }
-            if (item.FileName == "STOP")
-            {
-                StopPlayer(position,true);
-            }          
-            else if (!string.IsNullOrWhiteSpace(item.FileName))
+        
+            if (!string.IsNullOrWhiteSpace(item.FileName))
             {
                 if ((Projector.Sound[position].Source == null || (Projector.Sound[position].Source.LocalPath != item.FileName) || !item.isLoop))
                 {
@@ -250,16 +226,40 @@ namespace StoGen.Classes
         public override void Dispose()
         {
             base.Dispose();
-            foreach (SoundItem item in PlayingItems)
+            for (int i = 0; i < PlayingItems.Length; i++)
             {
-                if (item != null)
-                {
-                    item.PlayedCound = 0;
-                    Projector.Sound[item.Position].Close();
-                    StopPlayer(item.Position, true);
+                if (PlayingItems[i] != null)
+                {                    
+                    Projector.Sound[PlayingItems[i].Position].Close();
+                    StopPlayer(PlayingItems[i].Position);
+                    PlayingItems[i] = null;
                 }
-            }            
+            }
         }
+
+
+        SoundItem CurrItem0;
+        SoundItem CurrItem1;
+        SoundItem CurrItem2;
+        SoundItem CurrItem3;
+        SoundItem CurrItem4;
+        SoundItem CurrItem5;
+        SoundItem CurrItem6;
+        SoundItem CurrItem7;
+        SoundItem CurrItem8;
+        SoundItem CurrItem9;
+        SoundItem CurrItem10;
+        SoundItem CurrItem11;
+        SoundItem CurrItem12;
+        SoundItem CurrItem13;
+        SoundItem CurrItem14;
+        SoundItem CurrItem15;
+        SoundItem CurrItem16;
+        SoundItem CurrItem17;
+        SoundItem CurrItem18;
+        SoundItem CurrItem19;
+
+        List<SoundItem> GroupItems = new List<SoundItem>();
     }
     [Serializable]
     public class SoundItem

@@ -41,13 +41,14 @@ namespace StoGenMake.Scenes.Base
         }
         public void AddMusic(string file, int volume, bool muted, bool randomstart, bool loop, string transform, int immediatelyStart)
         {
-            var exist = CurrentSounds.Where(x => x.File == file).FirstOrDefault();
+/*            var exist = CurrentSounds.Where(x => x.File == file).FirstOrDefault();
             if (exist != null)
             {
                 exist.V = volume;
+                exist.Muted = muted;
             }
             else
-            {                
+*/            {                
                 CurrentSounds.Add(new seSo()
                 {
                     File = $"{file}",
@@ -61,75 +62,6 @@ namespace StoGenMake.Scenes.Base
                 });
             }
         }
-/*        public void ClearSound()
-        {
-            ClearSound(true, true, true);
-        }
-        public void ClearSound(bool music, bool effect1, bool voice)
-        {
-            if (music)
-                CurrentSounds.RemoveAll(x => x.Name == "MUSIC");
-            if (effect1)
-                CurrentSounds.RemoveAll(x => x.Name == "EFFECT1");
-            if (voice)
-                CurrentSounds.RemoveAll(x => x.Name == "VOICE");
-        }
-        public void AddVoice(string voice, int voicePause, bool voiceLoop)
-        {
-            if (!string.IsNullOrEmpty(voice))
-            {
-                CurrentSounds.RemoveAll(x => x.Name == "VOICE");
-                CurrentSounds.Add(new seSo()
-                {
-                    File = $"{PATH_V}{voice}",
-                    Name = "VOICE",
-                    V = VOLUME_V,
-                    IsLoop = voiceLoop,
-                    StartPlay = 0,
-                    //T = $"W..{voicePause}>p"
-                    T = $"W..{voicePause}>p.A.0.1"
-                });
-            }
-        }*/
-/*        public void RemoveEffect2()
-        {
-            CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
-        }
-        public void AddEffect1(string file, int volume, bool effect1Loop, string transform)
-        {
-            if (!string.IsNullOrEmpty(file))
-            {
-                CurrentSounds.RemoveAll(x => x.Name == "EFFECT1");
-                CurrentSounds.Add(new seSo()
-                {
-                    File = $"{file}",
-                    Name = "EFFECT1",
-                    V = volume,
-                    IsLoop = effect1Loop,
-                    StartPlay = 0,
-                    T = transform
-                    //T = $"W..{effect1Pause}>p.A.0.1"
-                });
-            }
-        }
-        public void AddEffect2(string file, int volume, bool effect1Loop, string transform)
-        {
-            if (!string.IsNullOrEmpty(file))
-            {
-                CurrentSounds.RemoveAll(x => x.Name == "EFFECT2");
-                CurrentSounds.Add(new seSo()
-                {
-                    File = $"{file}",
-                    Name = "EFFECT2",
-                    V = volume,
-                    IsLoop = effect1Loop,
-                    StartPlay = 0,
-                    T = transform
-                    //T = $"W..{effect1Pause}>p.A.0.1"
-                });
-            }
-        }*/
-
 
         #endregion
 
@@ -150,6 +82,7 @@ namespace StoGenMake.Scenes.Base
             var result = Add(new string[] { currentGr }, cdata.ToArray(), textData, this.CurrentSounds, false, indexToInsert);
             // save it to futher modifications
             result.OriginalInfo.AddRange(infodata);
+            this.CurrentSounds.Clear();
             return result;
         }
 

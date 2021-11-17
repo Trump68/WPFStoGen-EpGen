@@ -242,6 +242,7 @@ namespace StoGen.Classes.Data.Games
             //this.RemoveMusic();
             this.VOLUME_M = 100;
             var sounds = group.Where(x => x.Kind == 6);
+
             foreach (var item in sounds)
             {
                 Info_Scene rez = Info_Scene.GenerateCopy(item);

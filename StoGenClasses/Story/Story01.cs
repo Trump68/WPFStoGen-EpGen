@@ -79,15 +79,170 @@ namespace StoGen.Classes.Story
                 AddImageByTemplate("Location background", 0, template_location, null, null)
                 );
 
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, $"{Trans.ImpactHs(200, 100)}"),
+                AddTextByTemplate(template_text, $". . . Это немного . . . тяжело . . .'"),
+                AddImageByTemplate("Location background", 0, template_location, null, $"{Trans.ImpactHs(200, 100)}")
+                );
 
-/*            person.SetVisibleView("Far", "Gown");
-            person.SetVisibleWear("Boa");
-            person.SetVisibleExpression("calm thinking");
-            AddCadre(person, ". . . . . . . . . . . . .", false, false, true, null);
+            person.SetVisibleExpression("smiling");
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, $"{Trans.ImpactHs(200, 100)}"),
+                AddTextByTemplate(template_text, $"[{Name_Girl}]~. . . Я наверно  позавтракаю прямо здесь. . .'"),
+                AddImageByTemplate("Location background", 0, template_location, null, $"{Trans.ImpactHs(200, 100)}")
+                );
 
-            person.SetVisibleExpression("cold looking");
-            AddCadre(person, ". . . . . . . . . . . . .", false, false, true, null);
-*/        }
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, $"{Trans.ImpactHs(200, 100)}"),
+                AddTextByTemplate(template_text, $". . . Ты не ела дома. . ?'"),
+                AddImageByTemplate("Location background", 0, template_location, null, $"{Trans.ImpactHs(200, 100)}")
+                );
+
+            person.SetVisibleExpression("calm smiling");
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, $"{Trans.Wait(1000)}>{Trans.ImpactHs(200, 100)}"),
+                AddTextByTemplate(template_text, $"[{Name_Girl}]~. . . А может, просто растянуться здесь и полежать. . ?''"),
+                AddImageByTemplate("Location background", 0, template_location, null, $"{Trans.ImpactHs(200, 100)}")
+                );
+
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $". . . Все, я понял, понял. . .  уже встаю. . .''"),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            person.SetVisibleView("Far", "Gown");
+            person.SetVisibleExpression("smiling");
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $"[{Name_Girl}]~. . . Ну, если так. . Тогда проснись и пой . .!"),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $". . . Мое покрывало тут же забрали . ."),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $". . . Я уже начинаю привыкать к этому . ."),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            person.SetVisibleExpression("agitated tiny smile");
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $"[{Name_Girl}]~Разве ты не говорил, что встаешь рано, потому что у тебя экзамен сегодня . . ?"),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $". . Ой . . "),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            person.SetVisibleExpression("laughing");
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $"[{Name_Girl}]~Хих . . . Ты забыл об этом . . !"),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $". . Нет . . Кстати, ты теперь каждый раз будешь приходить так рано и будить меня . . ?"),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            person.SetVisibleExpression("amusing");
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $"[{Name_Girl}]~Но я уже привыкла обычно будить тебя . . !"),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $". . Для того чтобы наслаждаться этим общением и ее красотой . ."),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                 );
+
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $". . признаюсь честно, я иногда специально просыпал . ."),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            person.SetVisibleExpression("tiny smile");
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $"[{Name_Girl}]~Кстати, ты собираешься завтракать? Пропускать завтрак вредно. . !"),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            // затухание музыки
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                GetBGM("ogg00052", 0 , null, false, true, false),
+                AddTextByTemplate(template_text, $". . Мы с ней друзья с детства . ."),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $". . И еще - я люблю ее . ."),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $"[{Name_Girl}]~Хмм. . Наверно мне самой надо приносить тебе завтрак . ."),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $"Возможно, она не совсем леди, но какая же она заботливая"),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            person.SetVisibleExpression("laughing");
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $"[{Name_Girl}]~Наверно как нибудь я об этом подумаю . ."),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $"Какая же у ней улыбка . ."),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $"Я просто постоянно думаю о ней . ."),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+
+            person.SetVisibleExpression("amusing");
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, $"{Trans.ImpactHs(200, 100)}"),
+                AddTextByTemplate(template_text, $"[{Name_Girl}]~Ой, посмотри сколько время . . Ты можешь опоздать . . !"),
+                AddImageByTemplate("Location background", 0, template_location, null, $"{Trans.ImpactHs(200, 100)}")
+                );
+
+            CadreNum++; AddCadre(
+                person.GetData(template_figure, 5, null),
+                AddTextByTemplate(template_text, $"[{Name_Girl}]~Давай быстрей собирайся . . !"),
+                AddImageByTemplate("Location background", 0, template_location, null, null)
+                );
+            
+            CadreNum++; AddCadre(AddTextByTemplate(template_text, ". . . ."));
+        }
         private void AddChapter(string chapter)
         {
             Chapter = chapter;
