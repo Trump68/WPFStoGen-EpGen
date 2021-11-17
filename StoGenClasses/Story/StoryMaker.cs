@@ -31,6 +31,7 @@ namespace StoGen.Classes.Story
             FillBGM();
             FillFrame();
             FillSoundEffest();
+            FillLocations();
         }
 
         protected virtual void GenerateScenario() 
@@ -138,7 +139,7 @@ PackStory=1; PackImage=1; PackSound=1; PackVideo=0";
 
             catalog = "Healing";
             bgmlist.Add(new Tuple<string, string, string>("To the earth someday", catalog, @"To_the_earth_someday.mp3"));
-
+            bgmlist.Add(new Tuple<string, string, string>("ogg00050", catalog, @"ogg00050.ogg"));
             catalog = "Active";
             bgmlist.Add(new Tuple<string, string, string>("ogg00052", catalog, @"ogg00052.ogg"));
         }
@@ -238,23 +239,18 @@ PackStory=1; PackImage=1; PackSound=1; PackVideo=0";
         }
         public string GetFrame(string group, string dsc, string name, int size,int x, int y, int z, int ord, string tran, string template, bool istemplate)
         {
-            string templatestr = null;
-            if (!string.IsNullOrEmpty(template)) 
-            {
-                templatestr = istemplate ? $"TEMPLATE=~{template};" : $"TEMPLATE={template};";
-            }
-            string transtr = string.IsNullOrEmpty(tran) ? string.Empty : $"T={tran};";
-            return $"GROUP={group};KIND=0;S={size};X={x};Y={y};Z={z};DSC={dsc};{templatestr}{transtr}ORD={ord};FILE={GetFileFrame(name)}";
+            return GetImage(group, dsc, GetFileFrame(name), size, x, y, z, ord, tran, template, istemplate);
         }
 
-        public string GetImage(string group, string dsc, string name, int size, int x, int y, int z, int ord, string template, bool istemplate)
+        public string GetImage(string group, string dsc, string name, int size, int x, int y, int z, int ord, string tran, string template, bool istemplate)
         {
             string templatestr = null;
             if (!string.IsNullOrEmpty(template))
             {
                 templatestr = istemplate ? $"TEMPLATE=~{template};" : $"TEMPLATE={template};";
             }
-            return $"GROUP={group};KIND=0;S={size};X={x};Y={y};Z={z};DSC={dsc};{templatestr}ORD={ord};FILE={name}";
+            string transtr = string.IsNullOrEmpty(tran) ? string.Empty : $"T={tran};";
+            return $"GROUP={group};KIND=0;S={size};X={x};Y={y};Z={z};DSC={dsc};{templatestr}{transtr}ORD={ord};FILE={name}";
         }
 
         public string GetText(string group, string text, int size, int x, int y, int o, int r, int ord, int valign, int halign, string template, bool istemplate)
@@ -267,7 +263,7 @@ PackStory=1; PackImage=1; PackSound=1; PackVideo=0";
             return $"GROUP={group};KIND=1;{templatestr}S={size};X={x};Y={y};O={o};R={r};VAlign={valign};HAlign={halign};STR={text};ORD={ord}";
         }
 
-        public string AddByTemplate(string dsc, int kind, int z, string template, string file, string trans)
+        public string AddByTemplate(string dsc, int kind, int z, int o, string template, string file, string trans)
         {
             string cadre = GetCadreNum();
             string str_z = (z < 0) ? string.Empty : $";Z={z}";
@@ -281,19 +277,78 @@ PackStory=1; PackImage=1; PackSound=1; PackVideo=0";
             {
                 str_file = string.IsNullOrEmpty(file) ? string.Empty : $";STR={file}";
             }
-            return $"GROUP={cadre};KIND={kind};DSC={dsc};TEMPLATE={template}{str_file}{str_transform}{str_z}";
+            return $"GROUP={cadre};KIND={kind};DSC={dsc};O={o};TEMPLATE={template}{str_file}{str_transform}{str_z}";
         }
+
         public string AddTextByTemplate(string template, string text, string dsc = null)
         {
             if (string.IsNullOrEmpty(dsc))
                 dsc = $"Cadre {CadreNum}";
-            return AddByTemplate(dsc, 1, 0, template, text, null);
+            return AddByTemplate(dsc, 1, 0, 100, template, text, null);
         }
         public string AddImageByTemplate(string dsc, int z, string template, string file, string trans)
         {
+            return AddImageByTemplate(dsc, z, template, file, 100, trans);
+        }
+        public string AddImageByTemplate(string dsc, int z, string template, string file, int o, string trans)
+        {
             if (string.IsNullOrEmpty(dsc))
                 dsc = $"Cadre {CadreNum}";
-            return AddByTemplate(dsc, 0, z, template, file, trans);
+            return AddByTemplate(dsc, 0, z, o, template, file, trans);
+        }
+
+        public string AddImageByTemplate(string dsc, int z, string template, string file)
+        {
+            return AddImageByTemplate(dsc, z, template, file, null);
+        }
+        // Location
+        List<Tuple<string, string, string>> locations = new List<Tuple<string, string, string>>();
+        string locationroot = @"e:\!EPCATALOG\LOCATION\";
+        private void FillLocations()
+        {
+            string catalog = "BEDROOM";
+            locations.Add(new Tuple<string, string, string>("Bedroom 001 morning", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\BEDROOM -morning.png"));
+            locations.Add(new Tuple<string, string, string>("Bedroom 001 day", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\BEDROOM -day.png"));
+            locations.Add(new Tuple<string, string, string>("Bedroom 001 evening", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\BEDROOM -evening.png"));
+            catalog = "GARDEN";
+            locations.Add(new Tuple<string, string, string>("Garden 001 morning", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Garden-morning.png"));
+            catalog = "HALL";
+            locations.Add(new Tuple<string, string, string>("Hall 001 morning", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Hall-morning.png"));
+            locations.Add(new Tuple<string, string, string>("Hall 001 day", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Hall-day.png"));
+            locations.Add(new Tuple<string, string, string>("Hall 001 evening", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Hall-evening.png"));
+            catalog = "KORRIDOR";
+            locations.Add(new Tuple<string, string, string>("Korridor 001 morning", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Korridor-morning.png"));
+            locations.Add(new Tuple<string, string, string>("Korridor 001 day", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Korridor-day.png"));
+            locations.Add(new Tuple<string, string, string>("Korridor 001 evening", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Korridor-evening.png"));
+            catalog = "BATHROOM";
+            locations.Add(new Tuple<string, string, string>("Bathroom 001 morning", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Bathroom-morning.png"));
+            locations.Add(new Tuple<string, string, string>("Bathroom 001 day", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Bathroom-day.png"));
+            locations.Add(new Tuple<string, string, string>("Bathroom 001 evening", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Bathroom-evening.png"));
+            catalog = "LIVINGROOM";
+            locations.Add(new Tuple<string, string, string>("Livingroom 001 morning", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Livingroom-morning.png"));
+            locations.Add(new Tuple<string, string, string>("Livingroom 001 day", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Livingroom-day.png"));
+            locations.Add(new Tuple<string, string, string>("Livingroom 001 evening", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Livingroom-evening.png"));
+            catalog = "MANOR";
+            locations.Add(new Tuple<string, string, string>("Manor 001 morning", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Manor-morning.png"));
+            locations.Add(new Tuple<string, string, string>("Manor 001 day", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Manor-day.png"));
+            locations.Add(new Tuple<string, string, string>("Manor 001 evening", catalog, @"Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\Manor-evening.png"));
+            catalog = "STREET";
+            locations.Add(new Tuple<string, string, string>("Street 001 morning", catalog, @"001\Street-morning.jpg"));
+            locations.Add(new Tuple<string, string, string>("Street 001 day", catalog, @"001\Street-day.jpg"));
+            locations.Add(new Tuple<string, string, string>("Street 001 evening", catalog, @"001\Street-evening.jpg"));
+            catalog = "CLASS";
+            locations.Add(new Tuple<string, string, string>("Class 001 day", catalog, @"001\Class-day.jpg"));
+        }
+        protected virtual string GetFileLocation(string name)
+        {
+            var val = locations.Where(x => (x.Item1 == name) || (x.Item3 == name)).FirstOrDefault();
+            if (val == null) return null;
+            return Path.Combine(locationroot, val.Item2, val.Item3);
+        }
+
+        public string GetLocation(string group, string dsc, string name, int size, int x, int y, int z, int ord, string tran, string template, bool istemplate)
+        {            
+            return GetImage(group, dsc, GetFileLocation(name), size, x, y, z, ord, tran, template, istemplate);
         }
     }
 
@@ -352,9 +407,9 @@ PackStory=1; PackImage=1; PackSound=1; PackVideo=0";
         private List<Tuple<string, string, string, string>> Resources = new List<Tuple<string, string, string, string>>();
         public List<string> GetData(string template, int z)
         {
-            return GetData(template, z, null);
+            return GetData(template, z, 100, null);
         }
-        public List<string> GetData(string template, int z, string transform)
+        public List<string> GetData(string template, int z, int o, string transform)
         {
             string file_base = string.Empty;
             string file_lips = string.Empty;
@@ -399,13 +454,13 @@ PackStory=1; PackImage=1; PackSound=1; PackVideo=0";
 
             List<string> r = new List<string>();
             if (!string.IsNullOrEmpty(file_base))
-                r.Add(Story.AddByTemplate("base", 0, z++, template, file_base, transform));
+                r.Add(Story.AddByTemplate("base", 0, z++, o, template, file_base, transform));
             if (!string.IsNullOrEmpty(file_wear1))
-                r.Add(Story.AddByTemplate("wear", 0, z++, template, file_wear1, transform));
+                r.Add(Story.AddByTemplate("wear", 0, z++, o, template, file_wear1, transform));
             if (!string.IsNullOrEmpty(file_lips))
-                r.Add(Story.AddByTemplate("lips", 0, z++, template, file_lips, transform));
+                r.Add(Story.AddByTemplate("lips", 0, z++, o, template, file_lips, transform));
             if (!string.IsNullOrEmpty(file_eyes))
-                r.Add(Story.AddByTemplate("eyes", 0, z++, template, file_eyes, transform));
+                r.Add(Story.AddByTemplate("eyes", 0, z++, o, template, file_eyes, transform));
             return r;
         }
         public void SetVisibleExpression(string expression)

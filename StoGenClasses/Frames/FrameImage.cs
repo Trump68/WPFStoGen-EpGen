@@ -1167,7 +1167,7 @@ namespace StoGen.Classes
 
         public override void Dispose()
         {
-
+            Blocked = false;
             if (timer != null)
             {
                 timer.Change(Timeout.Infinite, Timeout.Infinite);
@@ -1175,24 +1175,17 @@ namespace StoGen.Classes
                 timer = null;
             }
             foreach (PictureItem pic in Pics)
-            {
+            {                
                 if (pic.image != null)
                 {
                     pic.image.Dispose();
                     pic.image = null;
                 }
-
             }
-            /*
-            foreach (System.Windows.Controls.Image item in Projector.PicContainer.PicList)
+            for (int j = 0; j < Projector.PicContainer.PicList.Count; j++)
             {
-                if (item.Source != null)
-                {
-                    item.Image.Dispose();
-                    item.Image = null;
-                }
+               Projector.PicContainer.PicList[j].Visibility = Visibility.Hidden;
             }
-            */
             Pics.Clear();
             base.Dispose();
         }
