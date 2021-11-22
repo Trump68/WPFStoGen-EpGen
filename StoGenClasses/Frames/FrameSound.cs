@@ -16,6 +16,7 @@ namespace StoGen.Classes
         public List<SoundItem> SoundList { get; set; }
         public Timer timer;
         public static TransitionManager tranManager = new TransitionManager();
+        public static bool Blocked = false;
 
         public override Cadre Repaint()
         {
@@ -61,9 +62,9 @@ namespace StoGen.Classes
         }
 
         public static void ProcessLoopDelegate()
-        {
+        {            
             //Transition
-            FrameSound.tranManager.Process();
+            Blocked = !FrameSound.tranManager.Process();
         }
 
         private void TimerProc(object state)
@@ -225,6 +226,7 @@ namespace StoGen.Classes
         }
         public override void Dispose()
         {
+            Blocked = false;
             base.Dispose();
             for (int i = 0; i < PlayingItems.Length; i++)
             {

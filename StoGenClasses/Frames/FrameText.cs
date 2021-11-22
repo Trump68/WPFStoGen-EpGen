@@ -14,7 +14,8 @@ namespace StoGen.Classes
 {
     public class FrameText : Frame
     {
-        public List<string> TextList { get; set; }
+        public static bool Blocked = false;
+        public static List<string> TextList { get; set; }
         public string Text
         {
             set
@@ -36,14 +37,17 @@ namespace StoGen.Classes
         public int Shift { get; set; }
         public int HAlig { get; set; }
         public int VAlig { get; set; }
-        public bool Animated { get; set; } = false;
+        public static bool Animated { get; set; } = true;
         public bool ClearBack { get; set; } = false;
         public System.Threading.Timer timer;
+        public System.Threading.Timer timer2;
         public static TransitionManager tranManager = new TransitionManager();
+        public static int LetterPause = 40;
         public FrameText() : base()
         {
             TextList = new List<string>();
             timer = new System.Threading.Timer(new TimerCallback(TimerProc), null, 100, 100);
+            timer2 = new System.Threading.Timer(new TimerCallback(Timer2Proc), null, LetterPause, LetterPause);
         }
         private void TimerProc(object state)
         {
@@ -54,14 +58,48 @@ namespace StoGen.Classes
             if (!base.Stopped)
                 if (timer != null) timer.Change(100, 100);
         }
+        private void Timer2Proc(object state)
+        {
+            timer2.Change(Timeout.Infinite, Timeout.Infinite);
+
+            RunNext op1 = new RunNext(FrameText.ProcessLoopDelegate2);
+
+            Projector.PicContainer.Clip.Dispatcher.Invoke(op1, System.Windows.Threading.DispatcherPriority.Render);
+            if (!base.Stopped)
+                if (timer2 != null) timer2.Change(LetterPause, LetterPause);
+        }
         public static void ProcessLoopDelegate()
         {
             //Transition
             FrameText.tranManager.Process();
         }
+
+        public static string rest_text = string.Empty;
+        public static string show_text = string.Empty;
+        public static void ProcessLoopDelegate2()
+        {
+            if (!string.IsNullOrEmpty(rest_text)) 
+            {
+                show_text = show_text + rest_text[0];
+                rest_text = rest_text.Remove(0,1);
+                Projector.TextBlock1.Text = show_text;
+                Projector.TextBlock2.Text = show_text;
+                Projector.TextBlock3.Text = show_text;
+                Projector.TextBlock4.Text = show_text;
+
+                if (string.IsNullOrEmpty(rest_text)) 
+                {
+                    show_text = string.Empty;
+                    Blocked = false;
+                }
+            }
+
+        }
+
+
         public override Cadre Repaint()
         {
-            
+
             base.Repaint();
             FrameText.tranManager.Clear();
             Projector.TextBlock1.TextWrapping  = TextWrapping.Wrap;            
@@ -280,34 +318,37 @@ namespace StoGen.Classes
             //Projector.Text.Opacity = 0;
             Projector.TextVisible = true;
             
-            string txt = string.Join(Environment.NewLine, TextList.ToArray());
+            
 
             
             if (Animated)
             {
-                int letters = txt.Count();
-                var ts = TimeSpan.FromSeconds(letters * 0.05);
-                TypewriteTextblock(txt, Projector.TextBlock1, ts);
-                TypewriteTextblock(txt, Projector.TextBlock2, ts);
-                TypewriteTextblock(txt, Projector.TextBlock3, ts);
-                TypewriteTextblock(txt, Projector.TextBlock4, ts);
+                Blocked = true;
+                rest_text = string.Join(Environment.NewLine, TextList.ToArray());
+                /*                string txt = string.Join(Environment.NewLine, TextList.ToArray());
+                                int letters = txt.Count();
+                                var ts = TimeSpan.FromSeconds(letters * 0.05);
+                                TypewriteTextblock(txt, Projector.TextBlock1, ts, 0);
+                                TypewriteTextblock(txt, Projector.TextBlock2, ts, 1);
+                                TypewriteTextblock(txt, Projector.TextBlock3, ts, 2);
+                                TypewriteTextblock(txt, Projector.TextBlock4, ts, 3);
+                */
             }
             else
             {
-                Projector.TextBlock1.Text = txt;
-                Projector.TextBlock2.Text = txt;
-                Projector.TextBlock3.Text = txt;
-                Projector.TextBlock4.Text = txt;
+                ShowText();
             }
+            
 
             timer.Change(100, 100);
+            timer2.Change(LetterPause, LetterPause);
             return this.Owner;
         }
 
         internal void SetData(seTe data)
         {
             if (string.IsNullOrEmpty(data.Text)) return;
-            this.TextList.AddRange(data.Text.Split('~').ToList());
+            TextList.AddRange(data.Text.Split('~').ToList());
             //this.BackColor = data.BackColor;
             this.FontName = data.FontName;
             this.FontSize = data.FontSize;
@@ -317,7 +358,6 @@ namespace StoGen.Classes
             this.Shift = data.Shift;
             this.Bottom = data.Bottom;
             //this.Animated = (data.Animated == 1);
-            this.Animated = true;
             this.Width = data.Width;
             this.ClearBack = data.ClearBack;
             this.AutoShow = data.AutoShow;
@@ -329,14 +369,16 @@ namespace StoGen.Classes
 
         }
 
-  
-        private void TypewriteTextblock(string textToAnimate, TextBlock txt, TimeSpan timeSpan)
+        private static Storyboard[] storylist = new Storyboard[4];
+        private void TypewriteTextblock(string textToAnimate, TextBlock txt, TimeSpan timeSpan, int i)
         {
-            Storyboard story = new Storyboard();
-            story.FillBehavior = FillBehavior.HoldEnd;
-            //story.RepeatBehavior = RepeatBehavior.Forever;
-            story.RepeatBehavior = new RepeatBehavior(1);
 
+            Storyboard story = new Storyboard();
+            story.FillBehavior = FillBehavior.Stop;
+            //story.RepeatBehavior = RepeatBehavior.Forever;
+            story.RepeatBehavior = new RepeatBehavior(1); 
+            story.Completed -= Story_Completed;
+            story.Completed += Story_Completed;
             DiscreteStringKeyFrame discreteStringKeyFrame;
             StringAnimationUsingKeyFrames stringAnimationUsingKeyFrames = new StringAnimationUsingKeyFrames();
             stringAnimationUsingKeyFrames.Duration = new Duration(timeSpan);
@@ -354,6 +396,13 @@ namespace StoGen.Classes
             Storyboard.SetTargetProperty(stringAnimationUsingKeyFrames, new PropertyPath(TextBlock.TextProperty));
             story.Children.Add(stringAnimationUsingKeyFrames);
             story.Begin(txt);
+            storylist[i] = story;
+        }
+
+
+        private void Story_Completed(object sender, EventArgs e)
+        {
+            Blocked = false;
         }
 
         public bool AutoShow { get; set; }
@@ -366,9 +415,24 @@ namespace StoGen.Classes
         public bool Rtf { get; set; }
         public override void BeforeLeave()
         {
+
             base.Stopped = true;
             timer.Change(Timeout.Infinite, Timeout.Infinite);
+            timer2.Change(Timeout.Infinite, Timeout.Infinite);
+            rest_text = string.Empty;
+            show_text = string.Empty;
             FrameText.tranManager.Clear();
+        }
+        public static void ShowText() 
+        {
+            rest_text = string.Empty;
+            show_text = string.Empty;
+            string txt = string.Join(Environment.NewLine, TextList.ToArray());
+            Projector.TextBlock1.Text = txt;
+            Projector.TextBlock2.Text = txt;
+            Projector.TextBlock3.Text = txt;
+            Projector.TextBlock4.Text = txt;
+            Blocked = false;
         }
     }
  

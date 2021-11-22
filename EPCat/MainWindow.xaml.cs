@@ -1058,7 +1058,8 @@ namespace EPCat
         }
 
         private void RunScenario_Click(object sender, RoutedEventArgs e)
-        {            
+        {
+            if (ViewModel.CurrentFolder == null) return;
             ViewModel.RunScenario();
             ViewModel.LoadScenario(Path.Combine(ViewModel.CurrentFolder.ItemDirectory, $"Generated.epcatsi"), ViewModel.CurrentFolder);            
             

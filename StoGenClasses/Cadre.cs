@@ -92,7 +92,7 @@ namespace StoGen.Classes
                 }
                 if (!isForward)
                     this.SoundFr.ClearPlayedCount();
-                this.TextFr.TextList.Clear();
+                FrameText.TextList.Clear();
                 foreach (seTe dataTe in info.TextList)
                 {
                     this.TextFr.SetData(dataTe);

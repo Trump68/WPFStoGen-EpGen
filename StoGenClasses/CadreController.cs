@@ -12,6 +12,7 @@ using StoGenMake.Elements;
 using StoGenMake;
 using Menu.Classes;
 using StoGen.Classes.Data.Games;
+using System.Threading;
 
 namespace StoGen.Classes
 {
@@ -125,7 +126,12 @@ namespace StoGen.Classes
 
         public virtual Cadre GetNextCadre(bool paint = true)
         {
-            if (FrameImage.Blocked) 
+            if (FrameText.Blocked)
+            {                
+                FrameText.ShowText();
+                return null;
+            }
+            if (FrameImage.Blocked || FrameSound.Blocked ) 
                 return null;
             CreateNextCadres();
             CadreId++;
@@ -160,7 +166,7 @@ namespace StoGen.Classes
 
         public virtual Cadre GetPrevCadre()
         {
-            if (FrameImage.Blocked)
+            if (FrameImage.Blocked || FrameSound.Blocked)
                 return null;
             Cadre result = null;
             if (CadreId == 0)
