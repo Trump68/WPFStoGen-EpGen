@@ -143,8 +143,20 @@ namespace StoGen.Classes.Story
         }
         public void SmartFigure(string X, string Y, string transform)
         {
-             SmartGetData(Template, X, Y, O, transform);            
-        }        
+             SmartGetData(Template, X, Y, transform);            
+        }
+        public void SmartFigure(string X, string Y)
+        {
+            SmartGetData(Template, X, Y, null);
+        }
+        public void SmartFigureHide(string X, string Y)
+        {
+            SmartGetData(Template, X, Y, StoryMaker.TransitDissappear500, true);
+        }
+        public void SmartFigureHide()
+        {
+            SmartGetData(Template, null, null, StoryMaker.TransitDissappear500, true);
+        }
         private string SmartGetTransorm(string str, string transform, int lastIdx, string lastFile, string lastObj, out int Opacity)
         {            
             string transit = string.Empty;
@@ -171,7 +183,7 @@ namespace StoGen.Classes.Story
             }
             return transit;
         }
-        private void SmartGetData(string template, string X, string Y, int o, string transform)
+        private void SmartGetData(string template, string X, string Y, string transform, bool isDissaper = false)
         {            
             string file_base = string.Empty;
             string file_head = string.Empty;
@@ -226,11 +238,15 @@ namespace StoGen.Classes.Story
             {
                 Z = Story.NextFreeZ + 1;
                 int opacity;
-                string transit = SmartGetTransorm(file_base, transform, LastCadreBaseIdx, LastBaseFile, LastBase, out opacity);
+                string transit = transform;
+                if (!isDissaper)
+                    transit = SmartGetTransorm(file_base, transform, LastCadreBaseIdx, LastBaseFile, LastBase, out opacity);
+                else
+                    opacity = this.O;
                 string str = Story.AddByTemplate("base", X, Y, 0, Z, opacity, template, file_base, transit);
                 Story.Scenario.Add(str);
-                LastBaseFile = str;
-                LastBase = Story.Scenario.Last();                
+                LastBaseFile = file_base;
+                LastBase = str;                
                 LastCadreBaseIdx = Story.CurrCadreIdx;
                 Story.NextFreeZ = Z + 1;
             }                
@@ -238,11 +254,15 @@ namespace StoGen.Classes.Story
             {
                 Z = Story.NextFreeZ + 1;
                 int opacity;
-                string transit = SmartGetTransorm(file_head, transform, LastCadreHeadIdx, LastHeadFile, LastHead, out opacity);                
+                string transit = transform;
+                if (!isDissaper)
+                    transit = SmartGetTransorm(file_head, transform, LastCadreHeadIdx, LastHeadFile, LastHead, out opacity);
+                else
+                    opacity = this.O;
                 string str = Story.AddByTemplate("head", X, Y, 0, Z, opacity, template, file_head, transit);
                 Story.Scenario.Add(str);
-                LastHeadFile = str;
-                LastHead = Story.Scenario.Last();
+                LastHeadFile = file_head;
+                LastHead = str;
                 LastCadreHeadIdx = Story.CurrCadreIdx;
                 Story.NextFreeZ = Z + 1;
             }
@@ -250,11 +270,15 @@ namespace StoGen.Classes.Story
             {
                 Z = Story.NextFreeZ + 1;
                 int opacity;
-                string transit = SmartGetTransorm(file_lips, transform, LastCadreLipsIdx, LastLipsFile, LastLips, out opacity);                
+                string transit = transform;
+                if (!isDissaper)
+                    transit = SmartGetTransorm(file_lips, transform, LastCadreLipsIdx, LastLipsFile, LastLips, out opacity);
+                else
+                    opacity = this.O;
                 string str = Story.AddByTemplate("lips", X, Y, 0, Z, opacity, template, file_lips, transit);
                 Story.Scenario.Add(str);
-                LastLipsFile = str;
-                LastLips = Story.Scenario.Last();
+                LastLipsFile = file_lips;
+                LastLips = str;
                 LastCadreLipsIdx = Story.CurrCadreIdx;
                 Story.NextFreeZ = Z + 1;
             }
@@ -262,11 +286,15 @@ namespace StoGen.Classes.Story
             {
                 Z = Story.NextFreeZ + 1;
                 int opacity;
-                string transit = SmartGetTransorm(file_eyes, transform, LastCadreEyesIdx, LastEyesFile, LastEyes, out opacity);                
+                string transit = transform;
+                if (!isDissaper)
+                    transit = SmartGetTransorm(file_eyes, transform, LastCadreEyesIdx, LastEyesFile, LastEyes, out opacity);
+                else
+                    opacity = this.O;
                 string str = Story.AddByTemplate("eyes", X, Y, 0, Z, opacity, template, file_eyes, transit);
                 Story.Scenario.Add(str);
-                LastEyesFile = str;
-                LastEyes = Story.Scenario.Last();
+                LastEyesFile = file_eyes;
+                LastEyes = str;
                 LastCadreEyesIdx = Story.CurrCadreIdx;
                 Story.NextFreeZ = Z + 1;
             }
@@ -274,11 +302,15 @@ namespace StoGen.Classes.Story
             {
                 Z = Story.NextFreeZ + 1;
                 int opacity;
-                string transit = SmartGetTransorm(file_wear1, transform, LastCadreWearIdx, LastWearFile, LastWear, out opacity);
+                string transit = transform;
+                if (!isDissaper)
+                    transit = SmartGetTransorm(file_wear1, transform, LastCadreWearIdx, LastWearFile, LastWear, out opacity);
+                else
+                    opacity = this.O;
                 string str = Story.AddByTemplate("wear", X, Y, 0, Z, opacity, template, file_wear1, transit);
                 Story.Scenario.Add(str);
-                LastWearFile = str;
-                LastWear = Story.Scenario.Last();
+                LastWearFile = file_wear1;
+                LastWear = str;
                 LastCadreWearIdx = Story.CurrCadreIdx;
                 Story.NextFreeZ = Z + 1;
             }                                

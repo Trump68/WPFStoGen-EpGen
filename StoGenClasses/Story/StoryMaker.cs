@@ -59,6 +59,16 @@ namespace StoGen.Classes.Story
             }
             oldval = StoryMaker.GetValue(old, "GROUP=");
             old = old.Replace($"GROUP={oldval}", $"GROUP={GetCadreNum()}");
+
+            oldval = StoryMaker.GetValue(old, ";T=");
+            if (!string.IsNullOrEmpty(oldval))
+            {
+                old = old.Replace($";T={oldval}", $";T={StoryMaker.TransitDissappear500}>{oldval}");
+            }
+            else 
+            {
+                old = $"{lastframe};T={StoryMaker.TransitDissappear500}";
+            }            
             Scenario.Add(old);
         }
 

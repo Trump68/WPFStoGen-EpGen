@@ -3275,12 +3275,46 @@ namespace StoGen.Classes.Story
         }
         private void Chapter16()
         {
-            AddChapter("Chapter 16", "Chapter 16 - ");
+            AddChapter("Chapter 16", "Chapter 16 - Она осталась вечером у мерзавца");
 
             Place.Current = Locations["Сарай"];
             SetGirlWear_Shchool_Dress_Cleavage();
+            SetGirlExpression_AgitatedSmile();
+            string Bastard_X = "-350";
+            string Girl_X = "350";
 
-            AddCadre(); Text.Show($". . Хорошо . . Я все сделала на сегодня !"); Place.SmartShow(); Girl.SmartFigure(); Bastard.SmartFigure(); 
+            AddCadre(); Text.Show($"[{Name_Girl}]~. . Хорошо . . Я все сделала на сегодня !"); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Girl}]~[. . Неожиданно я поняла, что наулице уже темно . .]"); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Girl}]~[. . Вау. Просто ничего не видно. . .]"); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Girl}]~[. . Что ж. Его нога вроде в порядке. . .]"); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Girl}]~[. . Он не собирается идти домой. Похоже мне надо идти домой. . .]"); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Bastard}]~. . Слушай, {girl_title} !"); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+
+            SetGirlExpression_Surprised();
+
+            AddCadre(); Text.Show($"[{Name_Bastard}]~Давай ляжем здесь и поболтаем немного . . "); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Girl}]~Что ? . . Ну . . Уже слишком поздно . . "); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Bastard}]~Пожалуйста ! . . Мне одному грустно ! . ."); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($". . . ."); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Girl}]~[ Уже было поздно . . Я подумала о его семье . . ]"); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Girl}]~[ Но когда ты одинока, разумные доводы не работают . . ]"); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Girl}]~[ Когда один в своей комнате . . ]"); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Girl}]~[ Как мне это знакомо . . ]"); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($". . . ."); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+
+            SetGirlExpression_AgitatedSmile();
+
+            AddCadre(); Text.Show($"[{Name_Girl}]~Я понимаю тебя . . "); Place.SmartShow($"{Trans.ImpactHs(200, 100)}"); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Girl}]~Но уже темно, поэтому недолго, ладно ? . . "); Place.SmartShow(); Girl.SmartFigure(Girl_X, null, $"{Trans.ImpactHs(200, 100)}"); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Bastard}]~Правда ? . . ."); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Bastard}]~Хе-хе . . {girl_title} . . . ложись сюда . ."); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null, $"{Trans.ImpactHs(200, 100)}");
+
+            Sound.CurrentSE = Effects["Wear moving"];
+            SetGirlExpression_Surprised();
+
+            AddCadre(); Text.Show($"[{Name_Girl}]~. . Подожди . . Не тяни меня так . . "); Place.SmartShow(); Girl.SmartFigure(Girl_X, null); Bastard.SmartFigure(Bastard_X, null); Sound.SE();
+            AddCadre(); Text.Show($" . . . "); Place.SmartHide(); Girl.SmartFigureHide(Girl_X, null); Bastard.SmartFigureHide(Bastard_X, null);
+            AddCadre(); Text.Show($"[{Name_Girl}]~[ . . В итоге . . Я решила остаться с ним . .]"); 
         }
 
 
