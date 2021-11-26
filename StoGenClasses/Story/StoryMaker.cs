@@ -12,11 +12,56 @@ namespace StoGen.Classes.Story
     {
         public string Chapter = string.Empty;
         protected int CadreNum = 0;
-        protected List<string> Scenario = new List<string>();
+        public int CurrCadreIdx = -1;
+        public int PrevCadreIdx = -1;
+        public int NextFreeZ = 0;
+        public List<string> Scenario = new List<string>();
+        public static string TransitionAppear500 = $"O.B.500.100";
+        public static string TransitDissappear500 = "O.B.500.-100";
+
+
         public string GetCadreNum()
         {
             return CadreNum.ToString("D3");
         }
+        public static string GetValue(string input, string template)
+        {
+            string result = string.Empty;
+            int index = input.IndexOf(template);
+            if (index > -1)
+            {
+                index = index + template.Length;
+                string cr = input[index].ToString();
+                while (cr != ";")
+                {
+                    result = result + cr;
+                    index = index + 1;
+                    if (input.Length <= (index))
+                        break;
+                    cr = input[index].ToString();
+                }
+            }
+            return result;
+        }
+        public void AddOldFrame(string lastframe)
+        {
+            string test = ";Z=";
+            string old = lastframe;
+            string oldval = StoryMaker.GetValue(old, ";Z=");
+            if (!string.IsNullOrEmpty(oldval))
+            {
+                int newval = Convert.ToInt32(oldval);
+                old = old.Replace($";Z={oldval}", $";Z={(newval - 1)}");
+            }
+            else
+            {
+                old = $"{lastframe};Z={(Convert.ToInt32(oldval) - 1)}";
+            }
+            oldval = StoryMaker.GetValue(old, "GROUP=");
+            old = old.Replace($"GROUP={oldval}", $"GROUP={GetCadreNum()}");
+            Scenario.Add(old);
+        }
+
         public void Generate(string path)
         {
             SCENARIO newscenario = new SCENARIO();
@@ -29,6 +74,16 @@ namespace StoGen.Classes.Story
         public StoryMaker()
         {            
             FillFrame();            
+        }
+
+        protected void AddCadre()
+        {
+            CadreNum++;
+            string cadre = GetCadreNum();
+            Scenario.Add($"Id={cadre};GR={Chapter};ORD=1");
+            PrevCadreIdx = CurrCadreIdx;
+            CurrCadreIdx = Scenario.Count() - 1;
+            NextFreeZ = 0;
         }
 
         protected virtual void GenerateScenario()
@@ -124,6 +179,7 @@ PackStory=1; PackImage=1; PackSound=1; PackVideo=0";
             return $"GROUP={group};KIND=1;{templatestr}S={size};X={x};Y={y};O={o};R={r};VAlign={valign};HAlign={halign};STR={text};ORD={ord}";
         }
 
+
         public string AddByTemplate(string dsc, int kind, int z, int o, string template, string file, string trans)
         {
             return AddByTemplate(dsc, null, null, kind, z, o, template, file, trans);
@@ -191,10 +247,14 @@ PackStory=1; PackImage=1; PackSound=1; PackVideo=0";
         }
         public string Template = null;
         StoryMaker Story;
-        public string Show(string text) 
+        public string OldShow(string text) 
         {
             return Story.AddTextByTemplate(Template, text);
-        }        
+        }
+        public void Show(string text)
+        {
+            Story.Scenario.Add(Story.AddTextByTemplate(Template, text));
+        }
     }
 
 }

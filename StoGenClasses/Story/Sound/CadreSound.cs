@@ -20,18 +20,7 @@ namespace StoGen.Classes.Story
         public string CurrentSE;
         public int BGM_Volume = 100;
         public int SE_Volume = 100;
-        public string BgmMuted(string transform)
-        {
-            return GetBGM(CurrentBGM, transform, false, false, false);
-        }
-        public string Bgm()
-        {
-            return GetBGM(CurrentBGM, null, false, false, true);
-        }
-        public string BgmStop()
-        {
-            return GetBGM(CurrentBGM, null, false, true, false);
-        }
+
 
         //BGM
         List<Tuple<string, string, string>> bgmlist = new List<Tuple<string, string, string>>();
@@ -93,7 +82,9 @@ namespace StoGen.Classes.Story
             catalog = "Active";
             bgmlist.Add(new Tuple<string, string, string>("ogg00052", catalog, @"ogg00052.ogg"));
             catalog = "Saspence";
-            bgmlist.Add(new Tuple<string, string, string>("Runned into it", catalog, @"ogg00057.ogg"));
+            bgmlist.Add(new Tuple<string, string, string>("Runned into it", catalog, @"Runned into it.ogg"));
+            bgmlist.Add(new Tuple<string, string, string>("In the Barn", catalog, @"in the barn.ogg"));
+            
 
         }
         protected virtual string GetFileBGM(string name)
@@ -125,7 +116,7 @@ namespace StoGen.Classes.Story
             seffectlist.Add(new Tuple<string, string, string>("Бум 1", catalog, @"Бум 1.ogg"));
             seffectlist.Add(new Tuple<string, string, string>("Бег 1", catalog, @"Бег 1.ogg"));
             seffectlist.Add(new Tuple<string, string, string>("Бег 2", catalog, @"Бег 2.ogg"));
-            seffectlist.Add(new Tuple<string, string, string>("шаги в лесу 1", catalog, @"шаги в лесу 1.ogg"));
+            seffectlist.Add(new Tuple<string, string, string>("шаги в лесу 1", catalog, @"шаги в лесу 1.ogg"));            
         }
         private string GetFileSEffect(string name)
         {
@@ -180,22 +171,65 @@ namespace StoGen.Classes.Story
             if (val == null) return null;
             return Path.Combine(basecatalog, val.Item2);
         }
-        public string SE()
+
+
+        public void BgmMuted(string transform)
+        {
+            Story.Scenario.Add(GetBGM(CurrentBGM, transform, false, false, false));
+        }
+        public void Bgm()
+        {
+            Story.Scenario.Add(GetBGM(CurrentBGM, null, false, false, true));
+        }
+        public void BgmStop()
+        {
+            Story.Scenario.Add(GetBGM(CurrentBGM, null, false, true, false));
+        }
+
+        public void SE()
+        {
+            Story.Scenario.Add(GetSoundEffect(CurrentSE, 0, null, false, false, true));
+        }
+        public void SELoop()
+        {
+            Story.Scenario.Add(GetSoundEffect(CurrentSE, 1, null, false, false, true));
+        }
+        public void SEMuted(string transform)
+        {
+            Story.Scenario.Add(GetSoundEffect(CurrentSE, 0, transform, false, false, false));
+        }
+        public void SEStop()
+        {
+            Story.Scenario.Add(GetSoundEffect(CurrentSE, 0, null, false, true, true));
+        }
+        // old
+        public string oldSE()
         {
             return GetSoundEffect(CurrentSE, 0, null, false, false, true);
         }
-        public string SE(int loop)
+        public string oldSE(int loop)
         {
             return GetSoundEffect(CurrentSE, loop, null, false, false, true);
         }
-        public string SEStop()
+        public string oldSEStop()
         {
             return GetSoundEffect(CurrentSE, 0, null, false, true, true);
         }
-        public string SEMuted(string transform)
+        public string oldSEMuted(string transform)
         {
             return GetSoundEffect(CurrentSE, 0, transform, false, false, false);
         }
-
+        public string oldBgmMuted(string transform)
+        {
+            return GetBGM(CurrentBGM, transform, false, false, false);
+        }
+        public string oldBgm()
+        {
+            return GetBGM(CurrentBGM, null, false, false, true);
+        }
+        public string oldBgmStop()
+        {
+            return GetBGM(CurrentBGM, null, false, true, false);
+        }
     }
 }

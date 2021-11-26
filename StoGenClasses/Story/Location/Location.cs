@@ -19,20 +19,69 @@ namespace StoGen.Classes.Story
         public int Z = 0;
         public string Current;
         public string Description;
-        public string Show()
-        {
-            return Show(null);
-        }
-        public string Show(string transform)
-        {
+        private string LastFile = null;
+        private int LastCadreIdx = -1;
 
-            string file = GetFileLocation(Current);
-            return Story.AddImageByTemplate(Description, Z, Template, file, transform);
-        }
-        public string ShowHidden(string transform)
+        public void SmartShow(string transform)
         {
+            Z = Story.NextFreeZ + 1;
+            string transit = string.Empty;
             string file = GetFileLocation(Current);
-            return Story.AddImageByTemplate(Description, Z, Template, file, 0, transform);
+            int o = 0;
+            if (LastCadreIdx == Story.PrevCadreIdx) // location showed in prev cadre
+            {
+                if (file != LastFile) // different
+                {                   
+                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear500 : $"{StoryMaker.TransitionAppear500}>{transform}";                    
+                }
+                else // exact same
+                {
+                    transit = string.IsNullOrEmpty(transform) ? null : transform ;
+                    o = 100;
+                }
+            } 
+            else if (LastCadreIdx < Story.PrevCadreIdx) // last cadre was without location
+            {
+                transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear500 : $"{StoryMaker.TransitionAppear500}>{transform}";
+            }                        
+
+            Story.Scenario.Add(Story.AddImageByTemplate(Description, Z, Template, file, o, transit));
+
+            LastFile = file;
+            LastCadreIdx = Story.CurrCadreIdx;
+            Story.NextFreeZ = Z + 1;
+        }
+
+        public void SmartHide(string transform)
+        {
+            string transit = string.Empty;
+            string file = GetFileLocation(Current);
+            if (LastCadreIdx == Story.PrevCadreIdx) // location showed in prev cadre
+            {
+                if (file != LastFile) // different
+                {
+                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear500 : $"{StoryMaker.TransitionAppear500}>{transform}>{StoryMaker.TransitDissappear500}";
+                }
+                else // exact same
+                {
+                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear500 : $"{transform}>{StoryMaker.TransitDissappear500}";
+                }
+            }
+            else if (LastCadreIdx < Story.PrevCadreIdx) // last cadre was without location
+            {
+                transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear500 : $"{StoryMaker.TransitionAppear500}>{transform}>{StoryMaker.TransitDissappear500}";
+            }
+
+            Story.Scenario.Add(Story.AddImageByTemplate(Description, Z, Template, file, 100, transit));
+        }
+
+        public void SmartShow()
+        {
+            SmartShow(null);
+        }
+        public void SmartHide()
+        {
+            SmartHide(null);
         }
         // Location
         List<Tuple<string, string, string>> locations = new List<Tuple<string, string, string>>();
@@ -82,8 +131,10 @@ namespace StoGen.Classes.Story
             locations.Add(new Tuple<string, string, string>("Childroom 001 morning", catalog, @"001\001-morning.jpg"));
             locations.Add(new Tuple<string, string, string>("Childroom 001 evening", catalog, @"001\001-evening.jpg"));
             locations.Add(new Tuple<string, string, string>("Childroom 002 evening", catalog, @"002\002-evening.jpg"));
+            locations.Add(new Tuple<string, string, string>("Childroom 003 night", catalog, @"003\003-night.jpg"));
             catalog = "SCHOOL";
             locations.Add(new Tuple<string, string, string>("School hall 001 day", catalog, @"HOLL\She Falls to a Perverted Bastard\hall-day.jpg"));
+            locations.Add(new Tuple<string, string, string>("School dresser 001 day", catalog, @"DRESSER\001\001-day.jpg"));
             catalog = "FOREST";
             locations.Add(new Tuple<string, string, string>("Forest 001 day", catalog, @"001\001-day.jpg"));
         }
@@ -97,6 +148,23 @@ namespace StoGen.Classes.Story
         {
             return Story.GetImage(group, dsc, GetFileLocation(name), size, x, y, z, ord, tran, template, istemplate);
         }
+
+        // Old ==============================================
+        public string OldShow()
+        {
+            return OldShow(null);
+        }
+        public string OldShow(string transform)
+        {
+            string file = GetFileLocation(Current);
+            return Story.AddImageByTemplate(Description, Z, Template, file, transform);
+        }
+        public string OldShowHidden(string transform)
+        {
+            string file = GetFileLocation(Current);
+            return Story.AddImageByTemplate(Description, Z, Template, file, 0, transform);
+        }
+
 
     }
 }
