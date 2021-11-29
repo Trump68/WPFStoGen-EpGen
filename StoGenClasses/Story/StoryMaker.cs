@@ -1,4 +1,5 @@
 ﻿using StoGen.Classes.Scene;
+using StoGen.Classes.Transition;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,9 +17,10 @@ namespace StoGen.Classes.Story
         public int PrevCadreIdx = -1;
         public int NextFreeZ = 0;
         public List<string> Scenario = new List<string>();
-        public static string TransitionAppear500 = $"O.B.500.100";
-        public static string TransitDissappear500 = "O.B.500.-100";
-
+        public static string TransitionAppear750 = $"O.B.750.100";
+        public static string TransitDissappear1000 = "O.B.1000.-100";
+        public static string TransitDissappear250 = "O.B.250.-100";
+        public static string StoryPath;
 
         public string GetCadreNum()
         {
@@ -55,25 +57,37 @@ namespace StoGen.Classes.Story
             }
             else
             {
-                old = $"{lastframe};Z={(Convert.ToInt32(oldval) - 1)}";
+                old = $"{old};Z={(Convert.ToInt32(oldval) - 1)}";
             }
+            oldval = StoryMaker.GetValue(old, ";O=");
+            if (!string.IsNullOrEmpty(oldval))
+            {                
+                old = old.Replace($";O={oldval}", $";O={100}");
+            }
+            else
+            {
+                old = $"{old};O={100}";
+            }
+
             oldval = StoryMaker.GetValue(old, "GROUP=");
             old = old.Replace($"GROUP={oldval}", $"GROUP={GetCadreNum()}");
 
             oldval = StoryMaker.GetValue(old, ";T=");
             if (!string.IsNullOrEmpty(oldval))
             {
-                old = old.Replace($";T={oldval}", $";T={StoryMaker.TransitDissappear500}>{oldval}");
+                //old = old.Replace($";T={oldval}", $";T={StoryMaker.TransitDissappear2000}>{oldval}");
+                old = old.Replace($";T={oldval}", $";T={Trans.Wait(500)}>{StoryMaker.TransitDissappear250}");
             }
             else 
             {
-                old = $"{lastframe};T={StoryMaker.TransitDissappear500}";
+                old = $"{old};T={Trans.Wait(500)}>{StoryMaker.TransitDissappear250}";
             }            
             Scenario.Add(old);
         }
 
         public void Generate(string path)
         {
+            StoryMaker.StoryPath = path;
             SCENARIO newscenario = new SCENARIO();
             newscenario.FileName = "Generated";
             GenerateScenario();
@@ -84,6 +98,12 @@ namespace StoGen.Classes.Story
         public StoryMaker()
         {            
             FillFrame();            
+        }
+        protected void AddChapter(string chapter, string description = null)
+        {
+            Chapter = chapter;
+            string dsc = string.IsNullOrEmpty(description) ? chapter : description;
+            Scenario.Add($"GroupId={Chapter};DSC={dsc};ORD=1");
         }
 
         protected void AddCadre()

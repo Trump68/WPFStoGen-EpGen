@@ -30,6 +30,7 @@ using StoGen.Classes.SceneCadres;
 using StoGen.Classes.Catalog;
 using System.Globalization;
 using StoGen.Classes.Story;
+using StoGen.Classes.Story.Persons;
 
 namespace EPCat
 {
@@ -1011,12 +1012,40 @@ namespace EPCat
             this.CurrentGroup = group;
         }
 
-        internal void RunScenario()
+        internal void RunScenario(string scenarioName)
         {
+            StoryMaker maker = null;
             if (this.CurrentFolder == null) return;
-            Story01 maker = new Story01();            
+
+            if (Story01.Name == scenarioName)
+                maker = new Story01();
+            if (Story01_01.Name == scenarioName)
+                maker = new Story01_01();
+            if (Demonstrator_Person0001.Name == scenarioName)
+                maker = new Demonstrator_Person0001();
+
+            
             maker.Generate(this.CurrentFolder.ItemDirectory);
         }
+
+        private List<string> _Scenarious;
+        public List<string> Scenarious
+        {
+            get 
+            {
+                if (_Scenarious == null)
+                {
+                    _Scenarious = new List<string>();
+                    _Scenarious.Add(Story01.Name);
+                    _Scenarious.Add(Story01_01.Name);
+                    _Scenarious.Add(Demonstrator_Person0001.Name);
+                }
+                return _Scenarious; 
+            }
+            set { _Scenarious = value; }
+        }
+        public string SelectedScenario { set; get; }
     }
 
 }
+

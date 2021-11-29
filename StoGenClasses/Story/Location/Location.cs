@@ -32,7 +32,7 @@ namespace StoGen.Classes.Story
             {
                 if (file != LastFile) // different
                 {                   
-                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear500 : $"{StoryMaker.TransitionAppear500}>{transform}";                    
+                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear750 : $"{StoryMaker.TransitionAppear750}>{transform}";                    
                 }
                 else // exact same
                 {
@@ -42,7 +42,7 @@ namespace StoGen.Classes.Story
             } 
             else if (LastCadreIdx < Story.PrevCadreIdx) // last cadre was without location
             {
-                transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear500 : $"{StoryMaker.TransitionAppear500}>{transform}";
+                transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear750 : $"{StoryMaker.TransitionAppear750}>{transform}";
             }                        
 
             Story.Scenario.Add(Story.AddImageByTemplate(Description, Z, Template, file, o, transit));
@@ -60,16 +60,16 @@ namespace StoGen.Classes.Story
             {
                 if (file != LastFile) // different
                 {
-                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear500 : $"{StoryMaker.TransitionAppear500}>{transform}>{StoryMaker.TransitDissappear500}";
+                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear1000 : $"{StoryMaker.TransitionAppear750}>{transform}>{StoryMaker.TransitDissappear1000}";
                 }
                 else // exact same
                 {
-                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear500 : $"{transform}>{StoryMaker.TransitDissappear500}";
+                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear1000 : $"{transform}>{StoryMaker.TransitDissappear1000}";
                 }
             }
             else if (LastCadreIdx < Story.PrevCadreIdx) // last cadre was without location
             {
-                transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear500 : $"{StoryMaker.TransitionAppear500}>{transform}>{StoryMaker.TransitDissappear500}";
+                transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear1000 : $"{StoryMaker.TransitionAppear750}>{transform}>{StoryMaker.TransitDissappear1000}";
             }
 
             Story.Scenario.Add(Story.AddImageByTemplate(Description, Z, Template, file, 100, transit));

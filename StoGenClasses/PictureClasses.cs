@@ -393,7 +393,7 @@ namespace StoGen.Classes
                     System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(image);
 
                     //update the size of the final bitmap
-                    width += bitmap.Width;
+                    width = bitmap.Width > width ? bitmap.Width : width;
                     height = bitmap.Height > height ? bitmap.Height : height;
 
                     images.Add(bitmap);
@@ -413,7 +413,7 @@ namespace StoGen.Classes
                     foreach (System.Drawing.Bitmap image in images)
                     {
                         g.DrawImage(image,
-                          new System.Drawing.Rectangle(offset, 0, image.Width, image.Height));
+                          new System.Drawing.Rectangle(0, 0, image.Width, image.Height));
                        // offset += image.Width;
                     }
                 }

@@ -1,14 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StoGen.Classes.Story
+namespace StoGen.Classes.Story.Persons
 {
     public class Person
     {
+        public string Source;
+        public class FigureElement 
+        {
+            public string kind;
+            public string distance;
+            public string body;
+            public string head;
+            public string eyes;
+            public string lips;
+            public string wear;
+            public string file;
+            //"Far", "Lip", "Tiny smile", "01_BASE_LIP_01.png"
+            public FigureElement(string Distance, string Kind, string Body, string Head, string Eyes, string Lips, string Wear, string File) 
+            {
+                kind = Kind;  distance = Distance; body = Body; head = Head; eyes = Eyes; lips = Lips; wear = Wear; file = File;
+            }
+        }
+        public void AddBody(string distance, string name, string file)
+        {
+            Views.Add(new FigureElement(distance, "Base", name, null, null, null, null, file));
+        }
+        public void AddBody(string distance, string name, string Head, string Eyes, string Lips, string Wear, string file)
+        {
+            Views.Add(new FigureElement(distance, "Base", name, Head, Eyes, Lips, Wear, file));
+        }
+        public void AddEyes(string distance, string name, string file)
+        {
+            Views.Add(new FigureElement(distance, "Eye", null, null, name, null, null, file));
+        }
+        public void AddEyes(string distance, string name, string Body, string Head, string Lips, string Wear, string file)
+        {
+            Views.Add(new FigureElement(distance, "Eye", Body, Head, name, Lips, Wear, file));
+        }
+        public void AddLips(string distance, string name, string file)
+        {
+            Views.Add(new FigureElement(distance, "Lip", null, null, null, name, null, file));
+        }
+        public void AddLips(string distance, string name, string Body, string Head, string Eyes,string Wear, string file)
+        {
+            Views.Add(new FigureElement(distance, "Lip", Body, Head, Eyes, name, Wear, file));
+        }
+        public void AddHead(string distance, string name, string file)
+        {
+            Views.Add(new FigureElement(distance, "Head", null, name, null, null, null, file));
+        }
+        public void AddHead(string distance, string name, string Body, string Eyes, string Lips, string Wear, string file)
+        {
+            Views.Add(new FigureElement(distance, "Head", Body, name, Eyes, Lips, Wear, file));
+        }
+
+        public string Name;
+        public List<string> Titles = new List<string>();
+        public List<FigureElement> Views = new List<FigureElement>();
+        public List<Tuple<string, string>> Events = new List<Tuple<string, string>>();
+
+
         public string visible_distance = "Far";
         public string visible_base = null;
         public string visible_lip = null;
@@ -46,11 +103,18 @@ namespace StoGen.Classes.Story
         private string LastWearFile = null;
         private string LastWear = null;
 
-        public Person(StoryMaker maker)
+        private int LastCadreCombinedIdx = -1;
+        private string LastCombinedFile = null;
+        private string LastCombined = null;
+
+        private List<string> Keys = new List<string>();
+
+        public Person(StoryMaker maker, string name)
         {
             Story = maker;
+            Name = name;
         }
-        protected List<Tuple<string, string, string, string>> Resources = new List<Tuple<string, string, string, string>>();
+        
         private List<string> GetData(string template, int z)
         {
             return GetData(template, z, 100, null);
@@ -64,10 +128,10 @@ namespace StoGen.Classes.Story
         {            
             string str = string.Empty;
             string transit = string.Empty;
-            var item = Resources.FirstOrDefault(x => x.Item1 == CurrentEvent);
+            var item = Events.FirstOrDefault(x => x.Item1 == CurrentEvent);
             if (item != null)
             {
-                str = Path.Combine(Root, item.Item4);
+                str = Path.Combine(Root, item.Item2);
             }
             if (!string.IsNullOrEmpty(str))
             {
@@ -77,7 +141,7 @@ namespace StoGen.Classes.Story
                 {
                     if (str != LastEventFile) // different
                     {
-                        transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear500 : $"{StoryMaker.TransitionAppear500}>{transform}";
+                        transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear750 : $"{StoryMaker.TransitionAppear750}>{transform}";
                         Story.AddOldFrame(LastEvent);
                     }
                     else // exact same
@@ -88,7 +152,7 @@ namespace StoGen.Classes.Story
                 }
                 else if (LastCadreEventIdx < Story.PrevCadreIdx) // last cadre was without location
                 {
-                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear500 : $"{StoryMaker.TransitionAppear500}>{transform}";
+                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear750 : $"{StoryMaker.TransitionAppear750}>{transform}";
                 }
                 
                 Story.Scenario.Add(Story.AddByTemplate("base", 0, Z, opacity, Template, str, transit));
@@ -106,10 +170,10 @@ namespace StoGen.Classes.Story
         {
             string str = string.Empty;
             string transit = string.Empty;
-            var item = Resources.FirstOrDefault(x => x.Item1 == CurrentEvent);
+            var item = Events.FirstOrDefault(x => x.Item1 == CurrentEvent);
             if (item != null)
             {
-                str = Path.Combine(Root, item.Item4);
+                str = Path.Combine(Root, item.Item2);
             }
             if (!string.IsNullOrEmpty(str))
             {
@@ -117,16 +181,16 @@ namespace StoGen.Classes.Story
                 {
                     if (str != LastEventFile) // different
                     {
-                        transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear500 : $"{StoryMaker.TransitionAppear500}>{transform}>{StoryMaker.TransitDissappear500}";
+                        transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear1000 : $"{StoryMaker.TransitionAppear750}>{transform}>{StoryMaker.TransitDissappear1000}";
                     }
                     else // exact same
                     {
-                        transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear500 : $"{transform}>{StoryMaker.TransitDissappear500}";
+                        transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear1000 : $"{transform}>{StoryMaker.TransitDissappear1000}";
                     }
                 }
                 else if (LastCadreEventIdx < Story.PrevCadreIdx) // last cadre was without location
                 {
-                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear500 : $"{StoryMaker.TransitionAppear500}>{transform}>{StoryMaker.TransitDissappear500}";
+                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitDissappear1000 : $"{StoryMaker.TransitionAppear750}>{transform}>{StoryMaker.TransitDissappear1000}";
                 }
 
                 Story.Scenario.Add(Story.AddByTemplate("base", 0, Z, 100, Template, str, transit));
@@ -151,11 +215,11 @@ namespace StoGen.Classes.Story
         }
         public void SmartFigureHide(string X, string Y)
         {
-            SmartGetData(Template, X, Y, StoryMaker.TransitDissappear500, true);
+            SmartGetData(Template, X, Y, StoryMaker.TransitDissappear1000, true);
         }
         public void SmartFigureHide()
         {
-            SmartGetData(Template, null, null, StoryMaker.TransitDissappear500, true);
+            SmartGetData(Template, null, null, StoryMaker.TransitDissappear1000, true);
         }
         private string SmartGetTransorm(string str, string transform, int lastIdx, string lastFile, string lastObj, out int Opacity)
         {            
@@ -167,7 +231,7 @@ namespace StoGen.Classes.Story
                 {
                     if (str != lastFile) // different
                     {
-                        transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear500 : $"{StoryMaker.TransitionAppear500}>{transform}";
+                        transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear750 : $"{StoryMaker.TransitionAppear750}>{transform}";
                         Story.AddOldFrame(lastObj);
                     }
                     else // exact same
@@ -178,7 +242,7 @@ namespace StoGen.Classes.Story
                 }
                 else if (lastIdx < Story.PrevCadreIdx) // last cadre was without location
                 {
-                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear500 : $"{StoryMaker.TransitionAppear500}>{transform}";
+                    transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear750 : $"{StoryMaker.TransitionAppear750}>{transform}";
                 }
             }
             return transit;
@@ -191,49 +255,55 @@ namespace StoGen.Classes.Story
             string file_eyes = string.Empty;
             string file_wear1 = string.Empty;
 
-            Tuple<string, string, string, string> item = null;
+            List<string> images = new List<string>();
 
+            FigureElement item = null;            
             if (visible_base != null)
             {
-                item = Resources.FirstOrDefault(x => x.Item1 == visible_distance && x.Item2 == "Base" && x.Item3 == visible_base);
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Base" && x.body == visible_base);
                 if (item != null)
                 {
-                    file_base = Path.Combine(Root, item.Item4);
+                    file_base = Path.Combine(Root, item.file);
+                    images.Add(file_base);
                 }
             }
             if (visible_head != null)
             {
-                item = Resources.FirstOrDefault(x => x.Item1 == visible_distance && x.Item2 == "Head" && x.Item3 == visible_head);
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Head" && x.head == visible_head);
                 if (item != null)
                 {
-                    file_head = Path.Combine(Root, item.Item4);
+                    file_head = Path.Combine(Root, item.file);
+                    images.Add(file_head);
                 }
             }
             if (visible_lip != null)
             {
-                item = Resources.FirstOrDefault(x => x.Item1 == visible_distance && x.Item2 == "Lip" && x.Item3 == visible_lip);
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Lip" && x.lips == visible_lip);
                 if (item != null)
                 {
-                    file_lips = Path.Combine(Root, item.Item4);
+                    file_lips = Path.Combine(Root, item.file);
+                    images.Add(file_lips);
                 }
             }
             if (visible_eye != null)
             {
-                item = Resources.FirstOrDefault(x => x.Item1 == visible_distance && x.Item2 == "Eye" && x.Item3 == visible_eye);
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Eye" && x.eyes == visible_eye);
                 if (item != null)
                 {
-                    file_eyes = Path.Combine(Root, item.Item4);
+                    file_eyes = Path.Combine(Root, item.file);
+                    images.Add(file_eyes);
                 }
             }
             if (visible_wear != null)
             {
-                item = Resources.FirstOrDefault(x => x.Item1 == visible_distance && x.Item2 == "Wear" && x.Item3 == visible_wear);
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Wear" && x.wear == visible_wear);
                 if (item != null)
                 {
-                    file_wear1 = Path.Combine(Root, item.Item4);
+                    file_wear1 = Path.Combine(Root, item.file);
+                    images.Add(file_wear1);
                 }
-            }
-            List<string> r = new List<string>();
+            }            
+
             if (!string.IsNullOrEmpty(file_base)) 
             {
                 Z = Story.NextFreeZ + 1;
@@ -318,6 +388,122 @@ namespace StoGen.Classes.Story
 
 
 
+        public void CombineFigure()
+        {
+            CombineFigure(null);
+        }
+        public void CombineFigure(string transform)
+        {
+            CombineFigure("0", "0", transform);
+        }
+        public void CombineFigure(string X, string Y, string transform)
+        {
+            CombineFigure(Template, X, Y, transform);
+        }
+        public void CombineFigure(string X, string Y)
+        {
+            CombineFigure(Template, X, Y, null);
+        }
+        public void CombineFigure(string template, string X, string Y, string transform, bool isDissaper = false)
+        {
+            string file_base = string.Empty;
+            string file_head = string.Empty;
+            string file_lips = string.Empty;
+            string file_eyes = string.Empty;
+            string file_wear1 = string.Empty;
+
+            string key = string.Empty;
+            string CombinedFile = null;
+            List<string> images = new List<string>();
+
+            FigureElement item = null;
+            if (visible_base != null)
+            {
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Base" && x.body == visible_base);
+                if (item != null)
+                {
+                    file_base = Path.Combine(Root, item.file);
+                    images.Add(file_base);
+                    key = $"{key}_base_{visible_base}";
+                }
+            }
+            if (visible_head != null)
+            {
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Head" && x.head == visible_head);
+                if (item != null)
+                {
+                    file_head = Path.Combine(Root, item.file);
+                    images.Add(file_head);
+                    key = $"{key}_head_{visible_head}";
+                }
+            }
+            if (visible_eye != null)
+            {
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Eye" && x.eyes == visible_eye);
+                if (item != null)
+                {
+                    file_eyes = Path.Combine(Root, item.file);
+                    images.Add(file_eyes);
+                    key = $"{key}_eye_{visible_eye}";
+                }
+            }
+            if (visible_lip != null)
+            {
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Lip" && x.lips == visible_lip);
+                if (item != null)
+                {
+                    file_lips = Path.Combine(Root, item.file);
+                    images.Add(file_lips);
+                    key = $"{key}_lip_{visible_lip}";
+                }
+            }
+            if (visible_wear != null)
+            {
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Wear" && x.wear == visible_wear);
+                if (item != null)
+                {
+                    file_wear1 = Path.Combine(Root, item.file);
+                    images.Add(file_wear1);
+                    key = $"{key}_wear_{visible_wear}";
+                }
+            }
+
+            CombinedFile = Path.Combine(StoryMaker.StoryPath,"_TMP", $"{Name}_{visible_distance}_{key}.png");
+
+
+            if (!string.IsNullOrEmpty(CombinedFile) && images.Any())
+            {
+                if (!Keys.Contains(key))
+                {
+                    Bitmap result = ImageHelper.CombineBitmap(images.ToArray());
+                    result.SavePNG(CombinedFile);
+                    Keys.Add(key);
+                }
+
+                Z = Story.NextFreeZ + 1;
+                int opacity;
+                string transit = transform;
+                if (!isDissaper && (LastCombined != null))
+                    transit = SmartGetTransorm(CombinedFile, transform, LastCadreCombinedIdx, LastCombinedFile, LastCombined, out opacity);
+                else
+                    opacity = this.O;
+                string str = Story.AddByTemplate("combined figure", X, Y, 0, Z, opacity, template, CombinedFile, transit);
+                Story.Scenario.Add(str);
+                LastCombinedFile = CombinedFile;
+                LastCombined = str;
+                LastCadreCombinedIdx = Story.CurrCadreIdx;
+                Story.NextFreeZ = Z + 1;
+            }
+        }
+        public void CombineFigureHide(string X, string Y)
+        {
+            CombineFigure(Template, X, Y, StoryMaker.TransitDissappear1000, true);
+        }
+        public void CombineFigureHide()
+        {
+            CombineFigure(Template, null, null, StoryMaker.TransitDissappear1000, true);
+        }
+
         private List<string> GetData(string template, int z, int o, string transform)
         {
             return GetData(template, null, null, z, o, transform);
@@ -330,46 +516,45 @@ namespace StoGen.Classes.Story
             string file_eyes = string.Empty;
             string file_wear1 = string.Empty;
 
-            Tuple<string, string, string, string> item = null;
-
+            FigureElement item = null;
             if (visible_base != null)
             {
-                item = Resources.FirstOrDefault(x => x.Item1 == visible_distance && x.Item2 == "Base" && x.Item3 == visible_base);
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Base" && x.body == visible_base);
                 if (item != null)
                 {
-                    file_base = Path.Combine(Root, item.Item4);
+                    file_base = Path.Combine(Root, item.file);;
                 }
             }
             if (visible_head != null)
             {
-                item = Resources.FirstOrDefault(x => x.Item1 == visible_distance && x.Item2 == "Head" && x.Item3 == visible_head);
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Head" && x.head == visible_head);
                 if (item != null)
                 {
-                    file_head = Path.Combine(Root, item.Item4);
+                    file_head = Path.Combine(Root, item.file);
                 }
             }
             if (visible_lip != null)
             {
-                item = Resources.FirstOrDefault(x => x.Item1 == visible_distance && x.Item2 == "Lip" && x.Item3 == visible_lip);
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Lip" && x.lips == visible_lip);
                 if (item != null)
                 {
-                    file_lips = Path.Combine(Root, item.Item4);
+                    file_lips = Path.Combine(Root, item.file);
                 }
             }
             if (visible_eye != null)
             {
-                item = Resources.FirstOrDefault(x => x.Item1 == visible_distance && x.Item2 == "Eye" && x.Item3 == visible_eye);
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Eye" && x.eyes == visible_eye);
                 if (item != null)
                 {
-                    file_eyes = Path.Combine(Root, item.Item4);
+                    file_eyes = Path.Combine(Root, item.file);
                 }
             }
             if (visible_wear != null)
             {
-                item = Resources.FirstOrDefault(x => x.Item1 == visible_distance && x.Item2 == "Wear" && x.Item3 == visible_wear);
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Wear" && x.wear == visible_wear);
                 if (item != null)
                 {
-                    file_wear1 = Path.Combine(Root, item.Item4);
+                    file_wear1 = Path.Combine(Root, item.file);
                 }
             }
 
@@ -420,101 +605,44 @@ namespace StoGen.Classes.Story
             if (wear != null) visible_wear = wear;
         }
 
-        // old =====================================================
-        public List<string> oldFigureHidden(string X, string Y, string transform)
-        {
-            return GetData(Template, X, Y, Z, 0, transform);
-        }
-        public List<string> oldFigureHidden(string transform)
-        {
-            return oldFigureHidden(null, null, transform);
-        }
-        public List<string> oldFigure(string transform)
-        {
-            return GetData(Template, Z, O, transform);
-        }
-        public List<string> oldFigure(string X, string Y, string transform)
-        {
-            return GetData(Template, X, Y, Z, O, transform);
-        }
-        public List<string> oldFigure(string X, string Y)
-        {
-            return GetData(Template, X, Y, Z, O, null);
-        }
-        public List<string> oldFigure()
-        {
-            return GetData(Template, Z, O, null);
-        }
-        public string oldEvent()
-        {
-            return oldEvent(100, null);
-        }
-        public string oldEvent(string name, string transform)
-        {
-            string old = this.CurrentEvent;
-            this.CurrentEvent = name;
-            string rez = oldEvent(100, transform);
-            this.CurrentEvent = old;
-            return rez;
-        }
-        public string oldEvent(string transform)
-        {
-            return oldEvent(100, transform);
-        }
-        public string oldEventHidden(string transform)
-        {
-            return oldEvent(0, transform);
-        }
-        private string oldEvent(int o, string transform)
-        {
-            string str = string.Empty;
-            var item = Resources.FirstOrDefault(x => x.Item1 == CurrentEvent);
-            if (item != null)
-            {
-                str = Path.Combine(Root, item.Item4);
-            }
-            if (!string.IsNullOrEmpty(str))
-                str = Story.AddByTemplate("base", 0, Z, o, Template, str, transform);
-            return str;
-        }
-
-
     }
 
 
     // Child classes
     public class Ryoujoku_Celeb_Zuma : Person
     {
-        public Ryoujoku_Celeb_Zuma(StoryMaker maker) : base(maker)
+        public Ryoujoku_Celeb_Zuma(StoryMaker maker, string name) : base(maker, name)
         {
-            Root = @"e:\!EPCATALOG\PERSONS\Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\";
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Base", "Gown", "01_BASE.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Lip", "Tiny smile", "01_BASE_LIP_01.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Lip", "Sad", "01_BASE_LIP_02.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Lip", "Smile", "01_BASE_LIP_04.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Lip", "Neitral", "01_BASE_LIP_03.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Eye", "Close", "01_BASE_EYE_01.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Eye", "02", "01_BASE_EYE_02.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Eye", "Wide open", "01_BASE_EYE_03.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Eye", "04", "01_BASE_EYE_04.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Eye", "05", "01_BASE_EYE_05.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Eye", "06", "01_BASE_EYE_06.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Far", "Wear", "Boa", "01_BASE_BOA.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Base", "Gown", "02_BASE_GOWN.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Base", "Naked", "02_BASE.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Eye", "Close", "02_BASE_EYE_01.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Eye", "02", "02_BASE_EYE_02.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Eye", "Wide open", "02_BASE_EYE_03.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Eye", "04", "02_BASE_EYE_04.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Eye", "05", "02_BASE_EYE_05.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Eye", "06", "02_BASE_EYE_06.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Lip", "Sad", "02_BASE_LIP_02.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Lip", "Tiny smile", "02_BASE_LIP_03.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Lip", "Smile", "02_BASE_LIP_04.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Close", "Lip", "Neitral", "02_BASE_LIP_01.png"));
+/*            Root = @"e:\!EPCATALOG\PERSONS\Ryoujoku Celeb Zuma _ Kutsujoku!! Niku Dorei e no Daraku\";
+            Views.Add(new FigureElement("Far", "Base", "Gown", null, null, null, null, "01_BASE.png"));
 
-            Resources.Add(new Tuple<string, string, string, string>("Event 001", "Event 001", "Event 001", @"EVENTS\0001.jpg"));
+            Views.Add(new Tuple<string, string, string, string>("Close", "Base", "Gown", "02_BASE_GOWN.png"));
+            Views.Add(new Tuple<string, string, string, string>("Close", "Base", "Naked", "02_BASE.png"));
 
+            Views.Add(new Tuple<string, string, string, string>("Far", "Lip", "Tiny smile", "01_BASE_LIP_01.png"));
+            Views.Add(new Tuple<string, string, string, string>("Far", "Lip", "Sad", "01_BASE_LIP_02.png"));
+            Views.Add(new Tuple<string, string, string, string>("Far", "Lip", "Smile", "01_BASE_LIP_04.png"));
+            Views.Add(new Tuple<string, string, string, string>("Far", "Lip", "Neitral", "01_BASE_LIP_03.png"));
+            Views.Add(new Tuple<string, string, string, string>("Far", "Eye", "Close", "01_BASE_EYE_01.png"));
+            Views.Add(new Tuple<string, string, string, string>("Far", "Eye", "02", "01_BASE_EYE_02.png"));
+            Views.Add(new Tuple<string, string, string, string>("Far", "Eye", "Wide open", "01_BASE_EYE_03.png"));
+            Views.Add(new Tuple<string, string, string, string>("Far", "Eye", "04", "01_BASE_EYE_04.png"));
+            Views.Add(new Tuple<string, string, string, string>("Far", "Eye", "05", "01_BASE_EYE_05.png"));
+            Views.Add(new Tuple<string, string, string, string>("Far", "Eye", "06", "01_BASE_EYE_06.png"));
+            Views.Add(new Tuple<string, string, string, string>("Far", "Wear", "Boa", "01_BASE_BOA.png"));
+            Views.Add(new Tuple<string, string, string, string>("Close", "Eye", "Close", "02_BASE_EYE_01.png"));
+            Views.Add(new Tuple<string, string, string, string>("Close", "Eye", "02", "02_BASE_EYE_02.png"));
+            Views.Add(new Tuple<string, string, string, string>("Close", "Eye", "Wide open", "02_BASE_EYE_03.png"));
+            Views.Add(new Tuple<string, string, string, string>("Close", "Eye", "04", "02_BASE_EYE_04.png"));
+            Views.Add(new Tuple<string, string, string, string>("Close", "Eye", "05", "02_BASE_EYE_05.png"));
+            Views.Add(new Tuple<string, string, string, string>("Close", "Eye", "06", "02_BASE_EYE_06.png"));
+            Views.Add(new Tuple<string, string, string, string>("Close", "Lip", "Sad", "02_BASE_LIP_02.png"));
+            Views.Add(new Tuple<string, string, string, string>("Close", "Lip", "Tiny smile", "02_BASE_LIP_03.png"));
+            Views.Add(new Tuple<string, string, string, string>("Close", "Lip", "Smile", "02_BASE_LIP_04.png"));
+            Views.Add(new Tuple<string, string, string, string>("Close", "Lip", "Neitral", "02_BASE_LIP_01.png"));
+
+            Views.Add(new Tuple<string, string, string, string>("Event 001", "Event 001", "Event 001", @"EVENTS\0001.jpg"));
+*/
         }
         /* public override void SetVisibleExpression(string expression)
          {
@@ -562,47 +690,56 @@ namespace StoGen.Classes.Story
     }
     public class She_Falls_to_a_Perverted_Bastard : Person
     {
-        public She_Falls_to_a_Perverted_Bastard(StoryMaker maker) : base(maker)
+        public She_Falls_to_a_Perverted_Bastard(StoryMaker maker, string name) : base(maker, name)
         {
             Root = @"e:\!EPCATALOG\PERSONS\She Falls to a Perverted Bastard\";
-            Resources.Add(new Tuple<string, string, string, string>("Middle", "Base", "School Dress", "01_BASE_01.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Middle", "Base", "Sportwear wet", "01_BASE_02.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Middle", "Base", "Sportwear", "01_BASE_03.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Middle", "Base", "School Dress cleavage", "01_BASE_04.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Middle", "Eye", "Wide open stright", "01_BASE_EYES_01.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Middle", "Eye", "Up stright amused", "01_BASE_EYES_02.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Middle", "Eye", "Closed", "01_BASE_EYES_03.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Middle", "Eye", "Up stright troubled", "01_BASE_EYES_04.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Middle", "Lip", "Smile wide", "01_BASE_LIPS_01.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Middle", "Lip", "Open wide", "01_BASE_LIPS_02.png"));
+            
+            AddBody("Middle", "School Dress",               "01_BASE_01.png");
+            AddBody("Middle", "Sportwear wet",              "01_BASE_02.png");
+            AddBody("Middle", "Sportwear",                  "01_BASE_03.png");
+            AddBody("Middle", "School Dress cleavage",      "01_BASE_04.png");
 
-            Resources.Add(new Tuple<string, string, string, string>("Event 001", "Event 001", "Event 001", @"EVENTS\0001.jpg"));
-            Resources.Add(new Tuple<string, string, string, string>("Event 002", "Event 002", "Event 002", @"EVENTS\0002.jpg"));
-            Resources.Add(new Tuple<string, string, string, string>("Event 003", "Event 003", "Event 003", @"EVENTS\0003.jpg"));
-            Resources.Add(new Tuple<string, string, string, string>("Event 004", "Event 004", "Event 004", @"EVENTS\0004.jpg"));
-            Resources.Add(new Tuple<string, string, string, string>("Event 005", "Event 005", "Event 005", @"EVENTS\0005.jpg"));
-            Resources.Add(new Tuple<string, string, string, string>("Event 006", "Event 006", "Event 006", @"EVENTS\0006.jpg"));
-            Resources.Add(new Tuple<string, string, string, string>("Event 007", "Event 007", "Event 007", @"EVENTS\0007.jpg"));
-            Resources.Add(new Tuple<string, string, string, string>("Event 008", "Event 008", "Event 008", @"EVENTS\0008.jpg"));
+            AddEyes("Middle", "Wide open stright",          "01_BASE_EYES_01.png");
+            AddEyes("Middle", "Up stright amused",          "01_BASE_EYES_02.png");
+            AddEyes("Middle", "Closed",                     "01_BASE_EYES_03.png");
+            AddEyes("Middle", "Up stright troubled",        "01_BASE_EYES_04.png");
+
+            AddLips("Middle", "Smile wide",                 "01_BASE_LIPS_01.png");
+            AddLips("Middle", "Open wide",                  "01_BASE_LIPS_02.png");
+                        
+
+            Events.Add(new Tuple<string, string>("Event 001", @"EVENTS\0001.jpg"));
+            Events.Add(new Tuple<string, string>("Event 002", @"EVENTS\0002.jpg"));
+            Events.Add(new Tuple<string, string>("Event 003", @"EVENTS\0003.jpg"));
+            Events.Add(new Tuple<string, string>("Event 004", @"EVENTS\0004.jpg"));
+            Events.Add(new Tuple<string, string>("Event 005", @"EVENTS\0005.jpg"));
+            Events.Add(new Tuple<string, string>("Event 006", @"EVENTS\0006.jpg"));
+            Events.Add(new Tuple<string, string>("Event 007", @"EVENTS\0007.jpg"));
+            Events.Add(new Tuple<string, string>("Event 008", @"EVENTS\0008.jpg"));
+            Events.Add(new Tuple<string, string>("Event 009", @"EVENTS\0009.jpg"));
+            Events.Add(new Tuple<string, string>("Event 010", @"EVENTS\0010.jpg"));
+            Events.Add(new Tuple<string, string>("Event 011", @"EVENTS\0011.jpg"));
+            Events.Add(new Tuple<string, string>("Event 012", @"EVENTS\0012.jpg"));
+            Events.Add(new Tuple<string, string>("Event 013", @"EVENTS\0013.jpg"));
         }
     }
     public class Perverted_Bastard : Person
     {
-        public Perverted_Bastard(StoryMaker maker) : base(maker)
+        public Perverted_Bastard(StoryMaker maker, string name) : base(maker, name)
         {
             Root = @"e:\!EPCATALOG\PERSONS\She Falls to a Perverted Bastard - Bad Boy\";
-            Resources.Add(new Tuple<string, string, string, string>("Middle", "Base", "Default", "01_BASE_01.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Middle", "Head", "Default", "01_HEAD_01.png"));
+            AddBody("Middle", "Default",                    "01_BASE_01.png");
+            AddHead("Middle", "Default",                    "01_HEAD_01.png");
         }
     }
-
     public class Siluette : Person
     {
-        public Siluette(StoryMaker maker) : base(maker)
+        public Siluette(StoryMaker maker, string name) : base(maker, name)
         {
             Root = @"e:\!EPCATALOG\PERSONS\!Siluettes\Guys\";
-            Resources.Add(new Tuple<string, string, string, string>("Middle", "Base", "Guy 01", "0001.png"));
-            Resources.Add(new Tuple<string, string, string, string>("Middle", "Base", "Guy 02", "0002.png"));
+            AddBody("Middle", "Guy 01",                     "0001.png");
+            AddBody("Middle", "Guy 02",                     "0002.png");
         }
     }
+   
 }

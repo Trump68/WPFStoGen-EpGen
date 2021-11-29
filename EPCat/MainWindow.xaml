@@ -344,6 +344,7 @@
                                         <dx:SimpleButton Content="Add Header" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneHeaderBtn_Click" />
                                     </dxlc:LayoutItem>
                                 </dxlc:LayoutGroup>
+                                
                                 <dxlc:LayoutItem Name="Grid2" Margin="0,0,0,0" VerticalAlignment="Stretch" Height="250">
                                     <dxg:GridControl x:Name="GVCombScen2"
                                          AutoGenerateColumns="None"
@@ -507,6 +508,9 @@
                                     <dxlc:LayoutGroup Header="Scenario" Orientation="Vertical" Margin="0,0,0,0" Padding="0">
                                         <dxlc:LayoutItem HorizontalAlignment="Left">
                                             <dx:SimpleButton x:Name="RunScenario" Content="Run" Width="80" Margin="0,4,0,0" HorizontalAlignment="Left" Click="RunScenario_Click" />
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="">
+                                            <ListBox  x:Name="ScenarioList" MaxHeight="500" ItemsSource="{Binding Scenarious}" SelectedIndex="0" DisplayMemberPath="{x:Null}" SelectedItem="{Binding SelectedScenario, Mode=OneWayToSource}" />
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
                                     <dxlc:LayoutGroup Header="Details" Orientation="Vertical" Margin="0,0,0,0" Padding="0" HorizontalAlignment="Stretch">

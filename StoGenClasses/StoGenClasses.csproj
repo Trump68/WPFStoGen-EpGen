@@ -135,8 +135,10 @@
     <Compile Include="Scene\SceneMaker.cs" />
     <Compile Include="Sound.cs" />
     <Compile Include="Story\Location\Location.cs" />
+    <Compile Include="Story\Person\0001\Person_0001.cs" />
     <Compile Include="Story\Person\Person.cs" />
     <Compile Include="Story\Sound\CadreSound.cs" />
+    <Compile Include="Story\Story01-01.cs" />
     <Compile Include="Story\Story01.cs" />
     <Compile Include="Story\StoryMaker.cs" />
     <Compile Include="Transition\OpEf.cs" />
