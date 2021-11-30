@@ -173,23 +173,11 @@ namespace StoGen.Classes.Story
             CreateData();
             AddHeader();
 
-            
-            Girl.Z = 5;
-
-            
-            Bastard.Z = 8;
-
-            
-            GuyA.Z = 8;
             GuyA.O = 75;
-            
-            GuyB.Z = 9;
             GuyB.O = 75;
-
-
             Place.Description = "Location background";
             
-            Chapter1();
+            Chapter1("Chapter 1", "Chapter 1 - вступление, утром разбудить друга");
 /*            Chapter2();
             Chapter3();
             Chapter4();
@@ -208,9 +196,9 @@ namespace StoGen.Classes.Story
             Chapter17();
             Chapter18();
         }
-        private void Chapter1()
+        protected virtual void Chapter1(string chapter, string description = null)
         {
-            AddChapter("Chapter 1");           
+            AddChapter(chapter, description);           
 
             AddCadre(); Text.Show(". . . . . . . . . . . .");
             AddCadre(); Text.Show("Взглядов на жизнь на свете так же много, как много и людей.");
@@ -3423,10 +3411,6 @@ namespace StoGen.Classes.Story
                     Scenario.Add(item);
                 }
             }
-        }
-        private void OldAddCadre(params string[] frames)
-        {
-            OldAddCadre(null, frames);
         }
     }
 

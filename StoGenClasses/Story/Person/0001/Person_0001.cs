@@ -192,59 +192,41 @@ namespace StoGen.Classes.Story.Persons
 
             AddHead("Far", "Hear brown school", "School form 1", null , null, null,"FAR_HEAD_03.png");
             AddHead("Far", "Hear brown school", "School form 2", null, null, null, "FAR_HEAD_03.png");
-            AddHead("Far", "Hear brown school", "School form 3", null, null, null, "FAR_HEAD_03.png");
+            AddHead("Far", "Hear brown school", "School form 3", null, null, null, "FAR_HEAD_03.png");            
+            
+            AddEyes("Far", "Eye looking pretty",            null, "Hear red", null, null, "FAR_HEAD_01_EYE_01.png");
+            AddEyes("Far", "Eye looking pretty blush",      null, "Hear red", null, null, "FAR_HEAD_01_EYE_02.png");
+            AddEyes("Far", "Eye closed laughing",           null, "Hear red", null, null, "FAR_HEAD_01_EYE_03.png");
+            AddEyes("Far", "Eye closed laughing blush",     null, "Hear red", null, null, "FAR_HEAD_01_EYE_04.png");
+            AddEyes("Far", "Eye frown",                     null, "Hear red", null, null, "FAR_HEAD_01_EYE_05.png");
+            AddEyes("Far", "Eye frown blush",               null, "Hear red", null, null, "FAR_HEAD_01_EYE_06.png");
+            AddEyes("Far", "Eye troubled",                  null, "Hear red", null, null, "FAR_HEAD_01_EYE_07.png");
+            AddEyes("Far", "Eye troubled blush",            null, "Hear red", null, null, "FAR_HEAD_01_EYE_08.png");
+            AddEyes("Far", "Eye agitated",                  null, "Hear red", null, null, "FAR_HEAD_01_EYE_09.png");
+            AddEyes("Far", "Eye agitated blush",            null, "Hear red", null, null, "FAR_HEAD_01_EYE_10.png");
+            AddEyes("Far", "Eye scared",                    null, "Hear red", null, null, "FAR_HEAD_01_EYE_11.png");
+            AddEyes("Far", "Eye scared blush",              null, "Hear red", null, null, "FAR_HEAD_01_EYE_12.png");
+            AddEyes("Far", "Eye pain",                      null, "Hear red", null, null, "FAR_HEAD_01_EYE_13.png");
+            AddEyes("Far", "Eye pain blush",                null, "Hear red", null, null, "FAR_HEAD_01_EYE_14.png");
+            AddEyes("Far", "Eye attantion",                 null, "Hear red", null, null, "FAR_HEAD_01_EYE_15.png");
+            AddEyes("Far", "Eye attantion blush",           null, "Hear red", null, null, "FAR_HEAD_01_EYE_16.png");
 
-
-            AddEyes("Far", "[red] Eye looking pretty",            null, "Hear red", null, null, "FAR_HEAD_01_EYE_01.png");           
-            AddEyes("Far", "[red] Eye looking pretty blush",      null, "Hear red", null, null, "FAR_HEAD_01_EYE_02.png");
-            AddEyes("Far", "[red] Eye closed laughing",           null, "Hear red", null, null, "FAR_HEAD_01_EYE_03.png");
-            AddEyes("Far", "[red] Eye closed laughing blush",     null, "Hear red", null, null, "FAR_HEAD_01_EYE_04.png");
-            AddEyes("Far", "[red] Eye frown",                     null, "Hear red", null, null, "FAR_HEAD_01_EYE_05.png");
-            AddEyes("Far", "[red] Eye frown blush",               null, "Hear red", null, null, "FAR_HEAD_01_EYE_06.png");
-            AddEyes("Far", "[red] Eye troubled",                  null, "Hear red", null, null, "FAR_HEAD_01_EYE_07.png");
-            AddEyes("Far", "[red] Eye troubled blush",            null, "Hear red", null, null, "FAR_HEAD_01_EYE_08.png");
-            AddEyes("Far", "[red] Eye agitated",                  null, "Hear red", null, null, "FAR_HEAD_01_EYE_09.png");
-            AddEyes("Far", "[red] Eye agitated blush",            null, "Hear red", null, null, "FAR_HEAD_01_EYE_10.png");
-            AddEyes("Far", "[red] Eye scared",                    null, "Hear red", null, null, "FAR_HEAD_01_EYE_11.png");
-            AddEyes("Far", "[red] Eye scared blush",              null, "Hear red", null, null, "FAR_HEAD_01_EYE_12.png");
-            AddEyes("Far", "[red] Eye pain",                      null, "Hear red", null, null, "FAR_HEAD_01_EYE_13.png");
-            AddEyes("Far", "[red] Eye pain blush",                null, "Hear red", null, null, "FAR_HEAD_01_EYE_14.png");
-            AddEyes("Far", "[red] Eye attantion",                 null, "Hear red", null, null, "FAR_HEAD_01_EYE_15.png");
-            AddEyes("Far", "[red] Eye attantion blush",           null, "Hear red", null, null, "FAR_HEAD_01_EYE_16.png");
-
-            AddEyes("Far", "[brn] Eye looking pretty",            null, "Hear brown", null, null, "FAR_HEAD_01_EYE_17.png");
-            AddEyes("Far", "[brn] Eye looking pretty blush",      null, "Hear brown", null, null, "FAR_HEAD_01_EYE_18.png");
-            AddEyes("Far", "[brn] Eye closed laughing",           null, "Hear brown", null, null, "FAR_HEAD_01_EYE_19.png");
-            AddEyes("Far", "[brn] Eye closed laughing blush",     null, "Hear brown", null, null, "FAR_HEAD_01_EYE_20.png");
-            AddEyes("Far", "[brn] Eye frown",                     null, "Hear brown", null, null, "FAR_HEAD_01_EYE_21.png");
-            AddEyes("Far", "[brn] Eye frown blush",               null, "Hear brown", null, null, "FAR_HEAD_01_EYE_22.png");
-            AddEyes("Far", "[brn] Eye troubled",                  null, "Hear brown", null, null, "FAR_HEAD_01_EYE_23.png");
-            AddEyes("Far", "[brn] Eye troubled blush",            null, "Hear brown", null, null, "FAR_HEAD_01_EYE_24.png");
-            AddEyes("Far", "[brn] Eye agitated",                  null, "Hear brown", null, null, "FAR_HEAD_01_EYE_25.png");
-            AddEyes("Far", "[brn] Eye agitated blush",            null, "Hear brown", null, null, "FAR_HEAD_01_EYE_26.png");
-            AddEyes("Far", "[brn] Eye scared",                    null, "Hear brown", null, null, "FAR_HEAD_01_EYE_27.png");
-            AddEyes("Far", "[brn] Eye scared blush",              null, "Hear brown", null, null, "FAR_HEAD_01_EYE_28.png");
-            AddEyes("Far", "[brn] Eye pain",                      null, "Hear brown", null, null, "FAR_HEAD_01_EYE_29.png");
-            AddEyes("Far", "[brn] Eye pain blush",                null, "Hear brown", null, null, "FAR_HEAD_01_EYE_30.png");
-            AddEyes("Far", "[brn] Eye attantion",                 null, "Hear brown", null, null, "FAR_HEAD_01_EYE_31.png");
-            AddEyes("Far", "[brn] Eye attantion blush",           null, "Hear brown", null, null, "FAR_HEAD_01_EYE_32.png");
-
-            AddEyes("Far", "[brn-sch] Eye looking pretty",            null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_17.png");
-            AddEyes("Far", "[brn-sch] Eye looking pretty blush",      null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_18.png");
-            AddEyes("Far", "[brn-sch] Eye closed laughing",           null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_19.png");
-            AddEyes("Far", "[brn-sch] Eye closed laughing blush",     null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_20.png");
-            AddEyes("Far", "[brn-sch] Eye frown",                     null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_21.png");
-            AddEyes("Far", "[brn-sch] Eye frown blush",               null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_22.png");
-            AddEyes("Far", "[brn-sch] Eye troubled",                  null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_23.png");
-            AddEyes("Far", "[brn-sch] Eye troubled blush",            null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_24.png");
-            AddEyes("Far", "[brn-sch] Eye agitated",                  null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_25.png");
-            AddEyes("Far", "[brn-sch] Eye agitated blush",            null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_26.png");
-            AddEyes("Far", "[brn-sch] Eye scared",                    null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_27.png");
-            AddEyes("Far", "[brn-sch] Eye scared blush",              null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_28.png");
-            AddEyes("Far", "[brn-sch] Eye pain",                      null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_29.png");
-            AddEyes("Far", "[brn-sch] Eye pain blush",                null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_30.png");
-            AddEyes("Far", "[brn-sch] Eye attantion",                 null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_31.png");
-            AddEyes("Far", "[brn-sch] Eye attantion blush",           null, "Hear brown school", null, null, "FAR_HEAD_01_EYE_32.png");
+            AddEyesForHead("Far", "Eye looking pretty",                     new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_17.png");
+            AddEyesForHead("Far", "Eye looking pretty blush",               new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_18.png");
+            AddEyesForHead("Far", "Eye closed laughing",                    new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_19.png");
+            AddEyesForHead("Far", "Eye closed laughing blush",              new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_20.png");
+            AddEyesForHead("Far", "Eye frown",                              new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_21.png");
+            AddEyesForHead("Far", "Eye frown blush",                        new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_22.png");
+            AddEyesForHead("Far", "Eye troubled",                           new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_23.png");
+            AddEyesForHead("Far", "Eye troubled blush",                     new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_24.png");
+            AddEyesForHead("Far", "Eye agitated",                           new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_25.png");
+            AddEyesForHead("Far", "Eye agitated blush",                     new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_26.png");
+            AddEyesForHead("Far", "Eye scared",                             new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_27.png");
+            AddEyesForHead("Far", "Eye scared blush",                       new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_28.png");
+            AddEyesForHead("Far", "Eye pain",                               new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_29.png");
+            AddEyesForHead("Far", "Eye pain blush",                         new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_30.png");
+            AddEyesForHead("Far", "Eye attantion",                          new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_31.png");
+            AddEyesForHead("Far", "Eye attantion blush",                    new string[] { "Hear brown", "Hear brown school" }, "FAR_HEAD_01_EYE_32.png");
 
             AddLips("Far", "Lip laughing open anime",                                       "FAR_MOUTH_01.png");
             AddLips("Far", "Lip sad anime",                                                 "FAR_MOUTH_02.png");
@@ -257,6 +239,205 @@ namespace StoGen.Classes.Story.Persons
             AddLips("Far", "Lip smile comix",                                               "FAR_MOUTH_09.png");
             AddLips("Far", "Lip sad comix",                                                 "FAR_MOUTH_10.png");
 
+        }
+        public override void Face(EMO emo, EMO_STYLE stype, EMO_EFFECT effect, int ver = 0)
+        {
+            
+
+            List<Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>> result = new List<Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>>();
+            switch (emo)
+            {
+                case EMO.Laughing:
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye closed laughing",          "Lip laughing open anime",      EMO_STYLE.Anime, EMO_EFFECT.None, 1));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye closed laughing blush",    "Lip laughing open anime",      EMO_STYLE.Anime, EMO_EFFECT.Blush, 1));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip troubled anime",           EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing",          "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.None));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    break;
+                case EMO.Talk_Agitated:
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip laughing open anime",      EMO_STYLE.Anime, EMO_EFFECT.None));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip laughing open anime",      EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip laughing open anime",      EMO_STYLE.Anime, EMO_EFFECT.None));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip laughing open anime",      EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    break;
+                case EMO.Talk:
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.None));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip smile anime",              EMO_STYLE.Anime, EMO_EFFECT.None));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip smile anime",              EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip attention comix",          EMO_STYLE.Comix, EMO_EFFECT.None));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip attention comix",          EMO_STYLE.Comix, EMO_EFFECT.Blush));
+                    break;
+                case EMO.Listening:
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.None));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip attention comix",          EMO_STYLE.Comix, EMO_EFFECT.None));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip attention comix",          EMO_STYLE.Comix, EMO_EFFECT.Blush));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip attantion comix",          EMO_STYLE.Anime, EMO_EFFECT.None));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip attantion comix",          EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    break;
+                case EMO.Smile_fragile:
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip smile anime",              EMO_STYLE.Anime, EMO_EFFECT.None));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip smile anime",              EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip attention comix",          EMO_STYLE.Comix, EMO_EFFECT.None));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip attention comix",          EMO_STYLE.Comix, EMO_EFFECT.Blush));
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing",          "Lip smile comix",              EMO_STYLE.Anime, EMO_EFFECT.None));                    
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip smile comix",              EMO_STYLE.Anime, EMO_EFFECT.Blush));   
+                    break;
+                case EMO.Smile:
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye attantion",                   "Lip smile comix",              EMO_STYLE.Comix, EMO_EFFECT.None,    1));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye attantion blush ",            "Lip smile comix",              EMO_STYLE.Comix, EMO_EFFECT.Blush,   1));
+                    //                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing",          "Lip smile comix",              EMO_STYLE.Anime, EMO_EFFECT.None));                    
+                    //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip smile comix",              EMO_STYLE.Anime, EMO_EFFECT.Blush));                    
+                    break;
+                case EMO.Offended:
+                    /*result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip sad comix",                EMO_STYLE.Comix, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip sad comix",                EMO_STYLE.Comix, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing",          "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing",          "Lip sad comix",                EMO_STYLE.Comix, EMO_EFFECT.None));                    
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip sad comix",                EMO_STYLE.Comix, EMO_EFFECT.Blush));  
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.Blush));*/
+                    break;
+                case EMO.Sad:
+/*                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip sad comix",                EMO_STYLE.Comix, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip sad comix",                EMO_STYLE.Comix, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing",          "Lip sad comix",                EMO_STYLE.Comix, EMO_EFFECT.None));                    
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip sad comix",                EMO_STYLE.Comix, EMO_EFFECT.Blush));  */
+                    break;
+                case EMO.Wandering:
+/*                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip troubled anime",           EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip troubled anime",           EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.Blush));*/
+                    break;
+                case EMO.Suprised:
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye scared",                   "Lip laughing open anime",      EMO_STYLE.Anime, EMO_EFFECT.None, 1));
+/*                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip troubled anime",           EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.Blush));*/
+                    break;
+                case EMO.Angry:
+/*                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip laughing open anime",      EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip laughing open anime",      EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.Blush));*/
+                    break;
+                case EMO.Question:
+/*                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip troubled anime",           EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip troubled anime",           EMO_STYLE.Anime, EMO_EFFECT.Blush));*/
+                    break;
+                case EMO.Accusing:                    
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye frown",                    "Lip attention comix",          EMO_STYLE.Comix, EMO_EFFECT.None,  1));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye frown blush",              "Lip attention comix",          EMO_STYLE.Comix, EMO_EFFECT.Blush, 1));
+
+/*                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing",          "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip laughing open anime",      EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip laughing open anime",      EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip troubled anime",           EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip troubled anime",           EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.Blush));*/
+                    break;
+                case EMO.Scared:
+/*                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip sad comix",                EMO_STYLE.Comix, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip sad comix",                EMO_STYLE.Comix, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.Blush));*/
+                    break;
+                case EMO.Pain:
+/*                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing",          "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip scared anime",             EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing",          "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing",          "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing",          "Lip attention comix",          EMO_STYLE.Comix, EMO_EFFECT.None));                    
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip attention comix",          EMO_STYLE.Comix, EMO_EFFECT.Blush));   
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing",          "Lip sad comix",                EMO_STYLE.Comix, EMO_EFFECT.None));                    
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip sad comix",                EMO_STYLE.Comix, EMO_EFFECT.Blush));   
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.Blush));*/
+
+                    break;
+                case EMO.Troubled:                    
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye agitated", "Lip sad",               EMO_STYLE.Anime, EMO_EFFECT.None, 1));
+/*                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip sad comix",                EMO_STYLE.Comix, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip sad comix",                EMO_STYLE.Comix, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.Blush));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown",                    "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.None));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye frown blush",              "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.Blush));*/
+                    break;
+                case EMO.Pleasured:
+/*                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing",          "Lip attention comix",          EMO_STYLE.Comix, EMO_EFFECT.None));                    
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip attention comix",          EMO_STYLE.Comix, EMO_EFFECT.Blush));   */
+                    break;
+                default:
+                    break;
+            }
+            if (result.Any()) 
+            {
+                if (stype != EMO_STYLE.Any)
+                {
+                    var n = result.Where(x => x.Item3 == stype).ToList();
+                    if (n.Any()) result = n;
+                }
+                if (effect != EMO_EFFECT.Any)
+                {
+                    var n = result.Where(x => x.Item4 == effect).ToList();
+                    if (n.Any()) result = n;
+                }
+                if (ver != 0)
+                {
+                    var n = result.Where(x => x.Item5 == ver).ToList();
+                    if (n.Any()) result = n;
+                }
+                Random rnd = new Random();
+                int r = rnd.Next(result.Count());
+                this.visible_eye = result[r].Item1;
+                this.visible_lip = result[r].Item2;
+            }
         }
     }
 }

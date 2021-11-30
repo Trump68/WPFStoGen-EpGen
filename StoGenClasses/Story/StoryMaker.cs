@@ -99,7 +99,7 @@ namespace StoGen.Classes.Story
         {            
             FillFrame();            
         }
-        protected void AddChapter(string chapter, string description = null)
+        protected virtual void AddChapter(string chapter, string description = null)
         {
             Chapter = chapter;
             string dsc = string.IsNullOrEmpty(description) ? chapter : description;
@@ -166,7 +166,6 @@ PackStory=1; PackImage=1; PackSound=1; PackVideo=0";
             scenario.AssignRawParameters();
         }
 
-       
         // Frame
         List<Tuple<string, string, string>> framelist = new List<Tuple<string, string, string>>();
         string frameroot = @"e:\!EPCATALOG\FRAME\";

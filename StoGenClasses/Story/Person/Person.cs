@@ -8,6 +8,41 @@ using System.Threading.Tasks;
 
 namespace StoGen.Classes.Story.Persons
 {
+    public enum EMO 
+    {
+        Talk_Agitated,
+        Offended,
+        Sad,
+        Wandering,
+        Suprised,
+        Angry,
+        Question,
+        Accusing,
+        Scared,
+        Pain,
+        Troubled,
+        Talk,
+        Listening,
+        Smile_fragile,
+        Smile,
+        Laughing,
+        Pleasured,
+    }
+    public enum EMO_STYLE
+    {
+        Any,
+        Anime,
+        Comix        
+    }
+    public enum EMO_EFFECT
+    {
+        None,
+        Any,
+        Blush,
+        Tears,
+        Sweat
+    }
+
     public class Person
     {
         public string Source;
@@ -43,6 +78,13 @@ namespace StoGen.Classes.Story.Persons
         {
             Views.Add(new FigureElement(distance, "Eye", Body, Head, name, Lips, Wear, file));
         }
+        public void AddEyesForHead(string distance, string name, string[] Head, string file)
+        {
+            foreach (var head in Head)
+            {
+                Views.Add(new FigureElement(distance, "Eye", null, head, name, null, null, file));
+            }            
+        }
         public void AddLips(string distance, string name, string file)
         {
             Views.Add(new FigureElement(distance, "Lip", null, null, null, name, null, file));
@@ -58,6 +100,9 @@ namespace StoGen.Classes.Story.Persons
         public void AddHead(string distance, string name, string Body, string Eyes, string Lips, string Wear, string file)
         {
             Views.Add(new FigureElement(distance, "Head", Body, name, Eyes, Lips, Wear, file));
+        }
+        public virtual void Face(EMO emo, EMO_STYLE stype, EMO_EFFECT effect, int ver = 0) 
+        {            
         }
 
         public string Name;
@@ -131,13 +176,16 @@ namespace StoGen.Classes.Story.Persons
             var item = Events.FirstOrDefault(x => x.Item1 == CurrentEvent);
             if (item != null)
             {
-                str = Path.Combine(Root, item.Item2);
+                if (Path.IsPathRooted(item.Item2))
+                    str = item.Item2;
+                else 
+                    str = Path.Combine(Root, item.Item2);
             }
             if (!string.IsNullOrEmpty(str))
             {
                 Z = Story.NextFreeZ + 1;
                 int opacity = 0;
-                if (LastCadreEventIdx == Story.PrevCadreIdx) // location showed in prev cadre
+                if ((LastEvent != null) && (LastCadreEventIdx == Story.PrevCadreIdx)) // location showed in prev cadre
                 {
                     if (str != LastEventFile) // different
                     {
@@ -150,7 +198,7 @@ namespace StoGen.Classes.Story.Persons
                         opacity = 100;
                     }
                 }
-                else if (LastCadreEventIdx < Story.PrevCadreIdx) // last cadre was without location
+                else if (LastCadreEventIdx <= Story.PrevCadreIdx) // last cadre was without location
                 {
                     transit = string.IsNullOrEmpty(transform) ? StoryMaker.TransitionAppear750 : $"{StoryMaker.TransitionAppear750}>{transform}";
                 }
@@ -404,8 +452,9 @@ namespace StoGen.Classes.Story.Persons
         {
             CombineFigure(Template, X, Y, null);
         }
-        public void CombineFigure(string template, string X, string Y, string transform, bool isDissaper = false)
+        private string DoCombine(ref List<string> images) 
         {
+            if (images == null) return null;
             string file_base = string.Empty;
             string file_head = string.Empty;
             string file_lips = string.Empty;
@@ -413,8 +462,8 @@ namespace StoGen.Classes.Story.Persons
             string file_wear1 = string.Empty;
 
             string key = string.Empty;
-            string CombinedFile = null;
-            List<string> images = new List<string>();
+           
+           
 
             FigureElement item = null;
             if (visible_base != null)
@@ -439,7 +488,7 @@ namespace StoGen.Classes.Story.Persons
             }
             if (visible_eye != null)
             {
-                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Eye" && x.eyes == visible_eye);
+                item = Views.FirstOrDefault(x => x.distance == visible_distance && x.kind == "Eye" && x.eyes == visible_eye && ((x.head == visible_head) || (x.head == null)) );
                 if (item != null)
                 {
                     file_eyes = Path.Combine(Root, item.file);
@@ -467,12 +516,17 @@ namespace StoGen.Classes.Story.Persons
                     key = $"{key}_wear_{visible_wear}";
                 }
             }
+            return key;
+        }
+        public void CombineFigure(string template, string X, string Y, string transform, bool isDissaper = false)
+        {
+            List<string> images = new List<string>();
+            string key = DoCombine(ref images);
 
-            CombinedFile = Path.Combine(StoryMaker.StoryPath,"_TMP", $"{Name}_{visible_distance}_{key}.png");
-
-
-            if (!string.IsNullOrEmpty(CombinedFile) && images.Any())
+            if (!string.IsNullOrEmpty(key) && images.Any())
             {
+                string CombinedFile = null;
+                CombinedFile = Path.Combine(StoryMaker.StoryPath,"_TMP", $"{Name}_{visible_distance}_{key}.png");
                 if (!Keys.Contains(key))
                 {
                     Bitmap result = ImageHelper.CombineBitmap(images.ToArray());
@@ -495,6 +549,27 @@ namespace StoGen.Classes.Story.Persons
                 Story.NextFreeZ = Z + 1;
             }
         }
+
+        public string CombineEventByFigure(string eventName)
+        {
+            List<string> images = new List<string>();
+            string key = DoCombine(ref images);
+
+            if (!string.IsNullOrEmpty(key) && images.Any())
+            {
+                string CombinedFile = null;
+                CombinedFile = Path.Combine(StoryMaker.StoryPath, "_TMP", $"{Name}_{visible_distance}_{key}.png");
+                if (!Keys.Contains(key))
+                {
+                    Bitmap result = ImageHelper.CombineBitmap(images.ToArray());
+                    result.SavePNG(CombinedFile);
+                    Keys.Add(key);
+                }
+                Events.Add(new Tuple<string, string>(eventName, CombinedFile));
+            }
+            return eventName;
+        }
+
         public void CombineFigureHide(string X, string Y)
         {
             CombineFigure(Template, X, Y, StoryMaker.TransitDissappear1000, true);
