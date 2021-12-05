@@ -290,6 +290,12 @@ namespace StoGen.Classes.Story.Persons
                     //                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing",          "Lip smile comix",              EMO_STYLE.Anime, EMO_EFFECT.None));                    
                     //result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye closed laughing blush",    "Lip smile comix",              EMO_STYLE.Anime, EMO_EFFECT.Blush));                    
                     break;
+                case EMO.Sleep:
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye closed laughing", "Lip attention comix", EMO_STYLE.Comix, EMO_EFFECT.None, 1));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye closed laughing", "Lip attantion anime", EMO_STYLE.Anime, EMO_EFFECT.None, 1));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye closed laughing blush", "Lip attention comix", EMO_STYLE.Comix, EMO_EFFECT.Blush, 1));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye closed laughing blush", "Lip attantion anime", EMO_STYLE.Anime, EMO_EFFECT.Blush, 1));
+                    break;
                 case EMO.Offended:
                     /*result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.None));
                     result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip sad anime",                EMO_STYLE.Anime, EMO_EFFECT.Blush));
@@ -398,7 +404,8 @@ namespace StoGen.Classes.Story.Persons
 
                     break;
                 case EMO.Troubled:                    
-                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye agitated", "Lip sad",               EMO_STYLE.Anime, EMO_EFFECT.None, 1));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye agitated", "Lip sad anime",               EMO_STYLE.Anime, EMO_EFFECT.None, 1));
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Eye agitated", "Lip sad comix",               EMO_STYLE.Comix, EMO_EFFECT.None, 1));
 /*                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip pain anime",               EMO_STYLE.Anime, EMO_EFFECT.Blush));
                     result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty",           "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.None));
                     result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT>("Eye looking pretty blush",     "Lip attantion anime",          EMO_STYLE.Anime, EMO_EFFECT.Blush));
@@ -437,6 +444,53 @@ namespace StoGen.Classes.Story.Persons
                 int r = rnd.Next(result.Count());
                 this.visible_eye = result[r].Item1;
                 this.visible_lip = result[r].Item2;
+            }
+        }
+        public override void Body(DISTANCE dist, WEAR wear, EMO_EFFECT effect, int ver = 0)
+        {
+            List<Tuple<string, string, EMO_EFFECT, int>> result = new List<Tuple<string, string, EMO_EFFECT, int>>();
+            switch (wear)
+            {
+                case WEAR.Naked:
+                    break;
+                case WEAR.Swimware:
+                    break;
+                case WEAR.Schoolware:
+                    result.Add(new Tuple<string, string, EMO_EFFECT, int>("Far", "School form 1", EMO_EFFECT.None, 1));
+                    result.Add(new Tuple<string, string, EMO_EFFECT, int>("Far", "School form 2", EMO_EFFECT.None, 2));
+                    result.Add(new Tuple<string, string, EMO_EFFECT, int>("Far", "School form 3", EMO_EFFECT.None, 3));
+                    break;
+                case WEAR.Sportwear:
+                    result.Add(new Tuple<string, string, EMO_EFFECT, int>("Far", "School form 1", EMO_EFFECT.None, 1));
+                    result.Add(new Tuple<string, string, EMO_EFFECT, int>("Far", "School form 2", EMO_EFFECT.None, 2));
+                    result.Add(new Tuple<string, string, EMO_EFFECT, int>("Far", "School form 3", EMO_EFFECT.None, 3));
+                    break;
+                default:
+                    break;
+            }
+
+
+            if (result.Any())
+            {
+                /*                if (stype != EMO_STYLE.Any)
+                                {
+                                    var n = result.Where(x => x.Item3 == stype).ToList();
+                                    if (n.Any()) result = n;
+                                }*/
+                if (effect != EMO_EFFECT.Any)
+                {
+                    var n = result.Where(x => x.Item3 == effect).ToList();
+                    if (n.Any()) result = n;
+                }
+                if (ver != 0)
+                {
+                    var n = result.Where(x => x.Item4 == ver).ToList();
+                    if (n.Any()) result = n;
+                }
+                Random rnd = new Random();
+                int r = rnd.Next(result.Count());
+                this.visible_distance = result[r].Item1;
+                this.visible_base = result[r].Item2;
             }
         }
     }

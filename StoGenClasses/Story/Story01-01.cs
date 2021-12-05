@@ -74,12 +74,16 @@ namespace StoGen.Classes.Story
             Effects.Add("Бег девочка", "Бег 2");
             Effects.Add("Шаги в лесу 1", "шаги в лесу 1");
 
+            // Creating events from figure
 
             Girl.SetVisibleView("Far", "School form 1", "Hear brown school");
             Girl.Face(EMO.Smile, EMO_STYLE.Any, EMO_EFFECT.None, 1);
-            Events = new Dictionary<string, string>();                        
-            Events.Add("1", Girl.CombineEventByFigure("Event 001"));          
 
+            Events = new Dictionary<string, string>();                                    
+            Events.Add("1", Girl.CombineEventByFigure("Event 001"));
+
+            Girl.Face(EMO.Sleep, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+            Events.Add("2", Girl.CombineEventByFigure("Event 002"));
 
         }
         private void AddHeader()
@@ -119,96 +123,102 @@ namespace StoGen.Classes.Story
             CreateData();
             AddHeader();
             Chapter1("Chapter 1", "Chapter 1 - вступление, утром разбудить друга");
+            Chapter2("Chapter 2", "Chapter 2 - бежим в школу");
+            Chapter3("Chapter 3", "Chapter 3 - успели в школу");
+            Chapter4("Chapter 4", "Chapter 4 - на тренировке в потной майке");
+            Chapter5("Chapter 5", "Chapter 5 - Попытка скоротать грустный вечер с другом.");
+            Chapter6("Chapter 6", "Chapter 6 - Утренний стояк и неловкость");
         }
-        protected override void Chapter1(string chapter, string description = null)
-        {
-            AddChapter(chapter, description);
+        /*        protected override void Chapter1(string chapter, string description = null)
+                {
+                    AddChapter(chapter, description);
 
-            AddCadre(); Text.Show(". . . . . . . . . . . .");
-            AddCadre(); Text.Show("Взглядов на жизнь на свете так же много, как много и людей.");
-            AddCadre(); Text.Show(". . . Некоторые люди возможно заставят вас успешно сдать экзамен или найти работу.");
-            AddCadre(); Text.Show(". . . Некоторые люди возможно скажут вам не тратить время зря.");
-            AddCadre(); Text.Show(". . . Но дремать, наслаждаясь комфортом - это одна из разновидностей счастья.");
-            AddCadre(); Text.Show(". . . Что я и делаю сейчас . . .");
-            AddCadre(); Text.Show("[Голос]~'Эй ...'");
-            AddCadre(); Text.Show(". . . похоже это . . .");
-            AddCadre(); Text.Show("[Голос]~'Эй . . . Просыпайся . . .'");
-            AddCadre(); Text.Show(". . . похоже это . . .");
-            AddCadre(); Text.Show($"[{Girl.Name}]~'АХХ!!! . . . ДА ПРОСЫПАЙСЯ УЖЕ !!!'");
+                    AddCadre(); Text.Show(". . . . . . . . . . . .");
+                    AddCadre(); Text.Show("Взглядов на жизнь на свете так же много, как много и людей.");
+                    AddCadre(); Text.Show(". . . Некоторые люди возможно заставят вас успешно сдать экзамен или найти работу.");
+                    AddCadre(); Text.Show(". . . Некоторые люди возможно скажут вам не тратить время зря.");
+                    AddCadre(); Text.Show(". . . Но дремать, наслаждаясь комфортом - это одна из разновидностей счастья.");
+                    AddCadre(); Text.Show(". . . Что я и делаю сейчас . . .");
+                    AddCadre(); Text.Show("[Голос]~'Эй ...'");
+                    AddCadre(); Text.Show(". . . похоже это . . .");
+                    AddCadre(); Text.Show("[Голос]~'Эй . . . Просыпайся . . .'");
+                    AddCadre(); Text.Show(". . . похоже это . . .");
+                    AddCadre(); Text.Show($"[{Girl.Name}]~'АХХ!!! . . . ДА ПРОСЫПАЙСЯ УЖЕ !!!'");
 
-            Girl.CurrentEvent = Events["1"];
-            Sound.CurrentBGM = BGM["Good morning"];
-            Sound.CurrentSE = Effects["Wear moving"];
-            Place.Current = Locations["Hero room morning"];
-
-
-            AddCadre(); Girl.CombineFigure(); Text.Show(". . . Ох! Ну что еще? . . ."); Sound.Bgm(); Sound.SE();
-            AddCadre(); Girl.CombineFigure(); Text.Show($"[{Girl.Name}]~'О-о . . . Хорошо тут сидеть . . .'");
-            AddCadre(); Girl.CombineFigure(); Text.Show($". . . Я чувствую приятную мягкую тяжесть на себе . . .'");
-            AddCadre(); Girl.CombineFigure($"{Trans.MoveVs(20, -30)}>{Trans.Wait(500)}>{Trans.MoveVs(20, 30)}"); Text.Show($"[{Girl.Name}]~'*вздыхает* Может мне отохнуть здесь . . . ?'");
-            AddCadre(); Girl.CombineFigure($"{Trans.ImpactHs(200, 50)}"); Text.Show($". . . Это немного . . . тяжело . . .'");
-            AddCadre(); Girl.CombineFigure($"{Trans.ImpactHs(200, 50)}"); Text.Show($"[{Girl.Name}]~. . . Я наверно  позавтракаю прямо здесь. . .'");
-            AddCadre(); Girl.CombineFigure($"{Trans.ImpactHs(200, 50)}"); Text.Show($". . . Ты не ела дома. . ?'");
-            AddCadre(); Girl.CombineFigure($"{Trans.ImpactHs(200, 50)}"); Text.Show($"[{Girl.Name}]~. . . А может, просто растянуться здесь и полежать. . ?''");
-            AddCadre(); Girl.CombineFigure(); Text.Show($". . . Все, я понял, понял. . .  уже встаю. . .''");
+                    Girl.CurrentEvent = Events["1"];
+                    Sound.CurrentBGM = BGM["Good morning"];
+                    Sound.CurrentSE = Effects["Wear moving"];
+                    Place.Current = Locations["Hero room morning"];
 
 
-            Girl.Face(EMO.Smile, EMO_STYLE.Any, EMO_EFFECT.None, 1);
-            
+                    AddCadre(); Girl.CombineFigure(); Text.Show(". . . Ох! Ну что еще? . . ."); Sound.Bgm(); Sound.SE();
+                    AddCadre(); Girl.CombineFigure(); Text.Show($"[{Girl.Name}]~'О-о . . . Хорошо тут сидеть . . .'");
+                    AddCadre(); Girl.CombineFigure(); Text.Show($". . . Я чувствую приятную мягкую тяжесть на себе . . .'");
+                    AddCadre(); Girl.CombineFigure($"{Trans.MoveVs(20, -30)}>{Trans.Wait(500)}>{Trans.MoveVs(20, 30)}"); Text.Show($"[{Girl.Name}]~'*вздыхает* Может мне отохнуть здесь . . . ?'");
+                    AddCadre(); Girl.CombineFigure($"{Trans.ImpactHs(200, 50)}"); Text.Show($". . . Это немного . . . тяжело . . .'");
+                    AddCadre(); Girl.CombineFigure($"{Trans.ImpactHs(200, 50)}"); Text.Show($"[{Girl.Name}]~. . . Я наверно  позавтракаю прямо здесь. . .'");
+                    AddCadre(); Girl.CombineFigure($"{Trans.ImpactHs(200, 50)}"); Text.Show($". . . Ты не ела дома. . ?'");
+                    AddCadre(); Girl.CombineFigure($"{Trans.ImpactHs(200, 50)}"); Text.Show($"[{Girl.Name}]~. . . А может, просто растянуться здесь и полежать. . ?''");
+                    AddCadre(); Girl.CombineFigure(); Text.Show($". . . Все, я понял, понял. . .  уже встаю. . .''");
 
-            AddCadre(); Text.Show($"[{Girl.Name}]~. . . Ну, если так. . Тогда проснись и пой . .!"); Place.SmartShow(); Girl.CombineFigure(); 
-            AddCadre(); Text.Show($". . . Мое покрывало тут же забрали . ."); Place.SmartShow(); Girl.CombineFigure();
-            AddCadre(); Text.Show($". . . Я уже начинаю привыкать к этому . ."); Place.SmartShow(); Girl.CombineFigure();
 
-            //Expression
-            Girl.Face(EMO.Accusing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+                    Girl.Face(EMO.Smile, EMO_STYLE.Any, EMO_EFFECT.None, 1);
 
-            AddCadre(); Text.Show($"[{Girl.Name}]~Разве ты не говорил, что встаешь рано, потому что у тебя экзамен сегодня . . ?"); Place.SmartShow(); Girl.CombineFigure();
-            AddCadre(); Text.Show($". . Ой . . "); Place.SmartShow(); Girl.CombineFigure();
 
-            // Expression
-            Girl.Face(EMO.Laughing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+                    AddCadre(); Text.Show($"[{Girl.Name}]~. . . Ну, если так. . Тогда проснись и пой . .!"); Place.SmartShow(); Girl.CombineFigure(); 
+                    AddCadre(); Text.Show($". . . Мое покрывало тут же забрали . ."); Place.SmartShow(); Girl.CombineFigure();
+                    AddCadre(); Text.Show($". . . Я уже начинаю привыкать к этому . ."); Place.SmartShow(); Girl.CombineFigure();
 
-            AddCadre(); Text.Show($"[{Girl.Name}]~Хих . . . Ты забыл об этом . . !"); Place.SmartShow(); Girl.CombineFigure();
-            AddCadre(); Text.Show($". . Нет . . Кстати, ты теперь каждый раз будешь приходить так рано и будить меня . . ?"); Place.SmartShow(); Girl.CombineFigure();
+                    //Expression
+                    Girl.Face(EMO.Accusing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
 
-            //Expression
-            Girl.Face(EMO.Troubled, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+                    AddCadre(); Text.Show($"[{Girl.Name}]~Разве ты не говорил, что встаешь рано, потому что у тебя экзамен сегодня . . ?"); Place.SmartShow(); Girl.CombineFigure();
+                    AddCadre(); Text.Show($". . Ой . . "); Place.SmartShow(); Girl.CombineFigure();
 
-            AddCadre(); Text.Show($"[{Girl.Name}]~Но я уже привыкла обычно будить тебя . . !"); Place.SmartShow(); Girl.CombineFigure();
-            AddCadre(); Text.Show($". . Для того чтобы наслаждаться этим общением и ее красотой . ."); Place.SmartShow(); Girl.CombineFigure();
-            AddCadre(); Text.Show($". . признаюсь честно, я иногда специально просыпал . ."); Place.SmartShow(); Girl.CombineFigure();
+                    // Expression
+                    Girl.Face(EMO.Laughing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
 
-            //Expression
-            Girl.Face(EMO.Suprised, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+                    AddCadre(); Text.Show($"[{Girl.Name}]~Хих . . . Ты забыл об этом . . !"); Place.SmartShow(); Girl.CombineFigure();
+                    AddCadre(); Text.Show($". . Нет . . Кстати, ты теперь каждый раз будешь приходить так рано и будить меня . . ?"); Place.SmartShow(); Girl.CombineFigure();
 
-            AddCadre(); Text.Show($"[{Girl.Name}]~Кстати, ты собираешься завтракать? Пропускать завтрак вредно. . !"); Place.SmartShow(); Girl.CombineFigure();
-            AddCadre(); Text.Show($". . Мы с ней друзья с детства . ."); Place.SmartShow(); Girl.CombineFigure(); Sound.BgmStop();
-            AddCadre(); Text.Show($". . И еще - я люблю ее . ."); Place.SmartShow(); Girl.CombineFigure();
-            AddCadre(); Text.Show($"[{Girl.Name}]~Хмм. . Наверно мне самой надо приносить тебе завтрак . ."); Place.SmartShow(); Girl.CombineFigure();
-            AddCadre(); Text.Show($"Возможно, она еще не совсем женщина, но какая же она заботливая"); Place.SmartShow(); Girl.CombineFigure();
+                    //Expression
+                    Girl.Face(EMO.Troubled, EMO_STYLE.Any, EMO_EFFECT.None, 1);
 
-            //Expression
-            Girl.Face(EMO.Laughing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+                    AddCadre(); Text.Show($"[{Girl.Name}]~Но я уже привыкла обычно будить тебя . . !"); Place.SmartShow(); Girl.CombineFigure();
+                    AddCadre(); Text.Show($". . Для того чтобы наслаждаться этим общением и ее красотой . ."); Place.SmartShow(); Girl.CombineFigure();
+                    AddCadre(); Text.Show($". . признаюсь честно, я иногда специально просыпал . ."); Place.SmartShow(); Girl.CombineFigure();
 
-            AddCadre(); Text.Show($"[{Girl.Name}]~Наверно как нибудь я об этом подумаю . ."); Place.SmartShow(); Girl.CombineFigure();
-            AddCadre(); Text.Show($"Какая же у ней улыбка . ."); Place.SmartShow(); Girl.CombineFigure();
-            AddCadre(); Text.Show($"Я просто постоянно думаю о ней . ."); Place.SmartShow(); Girl.CombineFigure();
+                    //Expression
+                    Girl.Face(EMO.Suprised, EMO_STYLE.Any, EMO_EFFECT.None, 1);
 
-            //Expression
-            Girl.Face(EMO.Suprised, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+                    AddCadre(); Text.Show($"[{Girl.Name}]~Кстати, ты собираешься завтракать? Пропускать завтрак вредно. . !"); Place.SmartShow(); Girl.CombineFigure();
+                    AddCadre(); Text.Show($". . Мы с ней друзья с детства . ."); Place.SmartShow(); Girl.CombineFigure(); Sound.BgmStop();
+                    AddCadre(); Text.Show($". . И еще - я люблю ее . ."); Place.SmartShow(); Girl.CombineFigure();
+                    AddCadre(); Text.Show($"[{Girl.Name}]~Хмм. . Наверно мне самой надо приносить тебе завтрак . ."); Place.SmartShow(); Girl.CombineFigure();
+                    AddCadre(); Text.Show($"Возможно, она еще не совсем женщина, но какая же она заботливая"); Place.SmartShow(); Girl.CombineFigure();
 
-            AddCadre(); Text.Show($"[{Girl.Name}]~Ой, посмотри сколько время . . Ты можешь опоздать . . !"); Place.SmartShow($"{Trans.ImpactHs(200, 50)}"); Girl.CombineFigure($"{Trans.ImpactHs(200, 50)}");
-            AddCadre(); Text.Show($"[{Girl.Name}]~Давай быстрей собирайся . . !"); Place.SmartShow(); Girl.CombineFigure();
-            AddCadre(); Text.Show(". . . .");
-            AddCadre(); Text.Show(". . . . Мы были обычными соседями сначала, и не были близкими друзьями . . .");
-            AddCadre(); Text.Show(". . . . Ее родители развелись, когда мы еще были детьми . . .");
-            AddCadre(); Text.Show(". . . . И я довольно часто видел ее на улице одну . . .");
-            AddCadre(); Text.Show(". . . . Когда я позвал ее, она была счастлива . . .");
-            AddCadre(); Text.Show(". . . . И мы стали проводить время вместе . . .");
-            AddCadre(); Text.Show(". . . . Возможно . . . у нее нет романтических чувств ко мне . . .");
-            AddCadre(); Text.Show(". . . . Но у меня - есть . . . они возникли в общем-то недавно . . .");
+                    //Expression
+                    Girl.Face(EMO.Laughing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
 
-       }
+                    AddCadre(); Text.Show($"[{Girl.Name}]~Наверно как нибудь я об этом подумаю . ."); Place.SmartShow(); Girl.CombineFigure();
+                    AddCadre(); Text.Show($"Какая же у ней улыбка . ."); Place.SmartShow(); Girl.CombineFigure();
+                    AddCadre(); Text.Show($"Я просто постоянно думаю о ней . ."); Place.SmartShow(); Girl.CombineFigure();
+
+                    //Expression
+                    Girl.Face(EMO.Suprised, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+
+                    AddCadre(); Text.Show($"[{Girl.Name}]~Ой, посмотри сколько время . . Ты можешь опоздать . . !"); Place.SmartShow($"{Trans.ImpactHs(200, 50)}"); Girl.CombineFigure($"{Trans.ImpactHs(200, 50)}");
+                    AddCadre(); Text.Show($"[{Girl.Name}]~Давай быстрей собирайся . . !"); Place.SmartShow(); Girl.CombineFigure();
+                    AddCadre(); Text.Show(". . . .");
+                    AddCadre(); Text.Show(". . . . Мы были обычными соседями сначала, и не были близкими друзьями . . .");
+                    AddCadre(); Text.Show(". . . . Ее родители развелись, когда мы еще были детьми . . .");
+                    AddCadre(); Text.Show(". . . . И я довольно часто видел ее на улице одну . . .");
+                    AddCadre(); Text.Show(". . . . Когда я позвал ее, она была счастлива . . .");
+                    AddCadre(); Text.Show(". . . . И мы стали проводить время вместе . . .");
+                    AddCadre(); Text.Show(". . . . Возможно . . . у нее нет романтических чувств ко мне . . .");
+                    AddCadre(); Text.Show(". . . . Но у меня - есть . . . они возникли в общем-то недавно . . .");
+
+               }
+        */
     }
 }

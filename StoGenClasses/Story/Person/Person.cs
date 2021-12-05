@@ -27,6 +27,20 @@ namespace StoGen.Classes.Story.Persons
         Smile,
         Laughing,
         Pleasured,
+        Sleep,
+    }
+    public enum DISTANCE
+    {
+        Far,
+        Middle,
+        Close
+    }
+    public enum WEAR
+    {
+        Naked,
+        Swimware,
+        Schoolware,
+        Sportwear
     }
     public enum EMO_STYLE
     {
@@ -42,6 +56,7 @@ namespace StoGen.Classes.Story.Persons
         Tears,
         Sweat
     }
+
 
     public class Person
     {
@@ -104,7 +119,9 @@ namespace StoGen.Classes.Story.Persons
         public virtual void Face(EMO emo, EMO_STYLE stype, EMO_EFFECT effect, int ver = 0) 
         {            
         }
-
+        public virtual void Body(DISTANCE dist, WEAR wear, EMO_EFFECT effect, int ver = 0)
+        { 
+        }
         public string Name;
         public List<string> Titles = new List<string>();
         public List<FigureElement> Views = new List<FigureElement>();
@@ -216,6 +233,7 @@ namespace StoGen.Classes.Story.Persons
         }
         public void SmartHideEvent(string transform)
         {
+                            Z = Story.NextFreeZ + 1;
             string str = string.Empty;
             string transit = string.Empty;
             var item = Events.FirstOrDefault(x => x.Item1 == CurrentEvent);
@@ -225,6 +243,7 @@ namespace StoGen.Classes.Story.Persons
             }
             if (!string.IsNullOrEmpty(str))
             {
+                Z = Story.NextFreeZ + 1;
                 if (LastCadreEventIdx == Story.PrevCadreIdx) // location showed in prev cadre
                 {
                     if (str != LastEventFile) // different
@@ -242,6 +261,7 @@ namespace StoGen.Classes.Story.Persons
                 }
 
                 Story.Scenario.Add(Story.AddByTemplate("base", 0, Z, 100, Template, str, transit));
+                Story.NextFreeZ = Z + 1;
             }
         }
         //Figure
@@ -796,6 +816,123 @@ namespace StoGen.Classes.Story.Persons
             Events.Add(new Tuple<string, string>("Event 011", @"EVENTS\0011.jpg"));
             Events.Add(new Tuple<string, string>("Event 012", @"EVENTS\0012.jpg"));
             Events.Add(new Tuple<string, string>("Event 013", @"EVENTS\0013.jpg"));
+        }
+        public override void Body(DISTANCE dist, WEAR wear, EMO_EFFECT effect, int ver = 0)
+        {
+            List<Tuple<string, string, EMO_EFFECT, int>> result = new List<Tuple<string, string, EMO_EFFECT, int>>();
+            switch (wear)
+            {
+                case WEAR.Naked:
+                    break;
+                case WEAR.Swimware:
+                    break;
+                case WEAR.Schoolware:
+                    result.Add(new Tuple<string, string, EMO_EFFECT, int>("Middle", "School Dress", EMO_EFFECT.None, 1));
+                    result.Add(new Tuple<string, string, EMO_EFFECT, int>("Middle", "School Dress cleavage", EMO_EFFECT.None, 2));
+                    break;
+                case WEAR.Sportwear:
+                    result.Add(new Tuple<string, string, EMO_EFFECT, int>("Middle", "Sportwear", EMO_EFFECT.None, 1));
+                    result.Add(new Tuple<string, string, EMO_EFFECT, int>("Middle", "Sportwear wet", EMO_EFFECT.Sweat, 1));
+                    break;
+                default:
+                    break;
+            }
+
+
+            if (result.Any())
+            {
+                /*                if (stype != EMO_STYLE.Any)
+                                {
+                                    var n = result.Where(x => x.Item3 == stype).ToList();
+                                    if (n.Any()) result = n;
+                                }*/
+                if (effect != EMO_EFFECT.Any)
+                {
+                    var n = result.Where(x => x.Item3 == effect).ToList();
+                    if (n.Any()) result = n;
+                }
+                if (ver != 0)
+                {
+                    var n = result.Where(x => x.Item4 == ver).ToList();
+                    if (n.Any()) result = n;
+                }
+                Random rnd = new Random();
+                int r = rnd.Next(result.Count());
+                this.visible_distance = result[r].Item1;
+                this.visible_base = result[r].Item2;
+            }
+        }
+        public override void Face(EMO emo, EMO_STYLE stype, EMO_EFFECT effect, int ver = 0)
+        {
+
+
+            List<Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>> result = new List<Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>>();
+            switch (emo)
+            {
+                case EMO.Laughing:
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Wide open stright", "Smile wide", EMO_STYLE.Anime, EMO_EFFECT.None, 1));
+                    break;
+                case EMO.Talk_Agitated:
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Wide open stright", "Smile wide", EMO_STYLE.Anime, EMO_EFFECT.None, 1));
+                    break;
+                case EMO.Talk:
+                    break;
+                case EMO.Listening:
+                    break;
+                case EMO.Smile_fragile:
+                    break;
+                case EMO.Smile:
+                    break;
+                case EMO.Offended:
+                    break;
+                case EMO.Sad:
+                    break;
+                case EMO.Wandering:
+                    break;
+                case EMO.Suprised:
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Up stright amused", "Open wide", EMO_STYLE.Anime, EMO_EFFECT.None, 1));
+                    break;
+                case EMO.Angry:
+                    break;
+                case EMO.Question:
+                    break;
+                case EMO.Accusing:
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Up stright amused", "Open wide", EMO_STYLE.Anime, EMO_EFFECT.None, 1));
+                    break;
+                case EMO.Scared:
+                    break;
+                case EMO.Pain:
+                    break;
+                case EMO.Troubled:                    
+                    result.Add(new Tuple<string, string, EMO_STYLE, EMO_EFFECT, int>("Up stright troubled", "Open wide", EMO_STYLE.Anime, EMO_EFFECT.None, 1));
+                    break;
+                case EMO.Pleasured:
+                    break;
+                default:
+                    break;
+            }
+            if (result.Any())
+            {
+                if (stype != EMO_STYLE.Any)
+                {
+                    var n = result.Where(x => x.Item3 == stype).ToList();
+                    if (n.Any()) result = n;
+                }
+                if (effect != EMO_EFFECT.Any)
+                {
+                    var n = result.Where(x => x.Item4 == effect).ToList();
+                    if (n.Any()) result = n;
+                }
+                if (ver != 0)
+                {
+                    var n = result.Where(x => x.Item5 == ver).ToList();
+                    if (n.Any()) result = n;
+                }
+                Random rnd = new Random();
+                int r = rnd.Next(result.Count());
+                this.visible_eye = result[r].Item1;
+                this.visible_lip = result[r].Item2;
+            }
         }
     }
     public class Perverted_Bastard : Person
