@@ -178,10 +178,6 @@ namespace StoGen.Classes.Story
 
 
 
-        private void SetBastard()
-        {
-            Bastard.SetVisibleView("Middle", "Default", "Default");
-        }
 
 
         protected override void GenerateScenario()
@@ -199,7 +195,7 @@ namespace StoGen.Classes.Story
             Chapter4("Chapter 4", "Chapter 4 - на тренировке в потной майке");
             Chapter5("Chapter 5", "Chapter 5 - Попытка скоротать грустный вечер с другом.");
             Chapter6("Chapter 6", "Chapter 6 - Утренний стояк и неловкость");
-            //Chapter7();
+            Chapter7("Chapter 7", "Chapter 7 - Первая встреча с мерзавцем.", null);
             //Chapter8();
             //Chapter9();
             //Chapter10();
@@ -585,8 +581,8 @@ namespace StoGen.Classes.Story
             AddCadre(); Text.Show($"[{Hero.Name}]~[. . и я наконец сегодня посплю . .]"); Girl.SmartShowEvent();
             AddCadre(); Text.Show($"[{Hero.Name}]~. . накрываюсь одеялом с головой . ."); Girl.SmartShowEvent($"{Trans.ImpactHs(200, 50)}");
             AddCadre(); Text.Show($"[{Girl.Name}]~. . Эй ! Кончай прятаться и вылезай из под одеяла . . !"); Girl.SmartHideEvent();
-            AddCadre(); Text.Show($"[{Hero.Name}]~[. . Говори что хочешь - мне все равно, даже если опоздаю в школу . .]"); 
-            AddCadre(); Text.Show($"[{Girl.Name}]~(*вздыхает*). . Ну хорошо - вижу, что это не поможет . ."); 
+            AddCadre(); Text.Show($"[{Hero.Name}]~[. . Говори что хочешь - мне все равно, даже если опоздаю в школу . .]");
+            AddCadre(); Text.Show($"[{Girl.Name}]~(*вздыхает*). . Ну хорошо - вижу, что это не поможет . .");
             AddCadre(); Text.Show($"[{Hero.Name}]~. . . .");
             AddCadre(); Text.Show($"[{Hero.Name}]~. ."); Sound.BgmStop();
             AddCadre(); Text.Show($"[{Hero.Name}]~. . ?");
@@ -595,7 +591,7 @@ namespace StoGen.Classes.Story
             Girl.CurrentEvent = Events["2"];
 
             AddCadre(); Text.Show($"[{Girl.Name}]~(*посапывает*)"); Girl.SmartShowEvent(); Sound.Bgm();
-            AddCadre(); Text.Show(". . . . . ."); 
+            AddCadre(); Text.Show(". . . . . .");
             AddCadre(); Text.Show($"[{Hero.Name}]~так ты тоже спишь . ."); Girl.SmartShowEvent($"{Trans.ImpactHs(200, 50)}");
             AddCadre(); Text.Show($"[{Girl.Name}]~(*посапывает*)"); Girl.SmartShowEvent();
             AddCadre(); Text.Show($"[{Hero.Name}]~у нее должно быть много дел. ."); Girl.SmartShowEvent($"{Trans.ImpactHs(200, 50)}");
@@ -664,363 +660,118 @@ namespace StoGen.Classes.Story
             AddCadre(); Text.Show($"[{Hero.Name}]~[. . как она склоняется к незнакомцу . . ]");
             AddCadre(); Text.Show($"[{Hero.Name}]~[. . я чувствую ревность . . ]");
         }
+        protected void Chapter7(string chapter, string description, string girlXshift)
+        {
+            AddChapter(chapter, description);
+
+            Sound.CurrentBGM = BGM["Good morning"];
+            Place.Current = Locations["Street morning"];
+            // expression
+            Girl.Face(EMO.Troubled, EMO_STYLE.Any, EMO_EFFECT.None, 1); ;
+
+            AddCadre(); Text.Show(". . . . . ."); Place.SmartShow(); Girl.CombineFigure(); Sound.BgmMuted(transform_sound_delay_1);
+            AddCadre(); Text.Show("[. . . это немного странно. . .]"); Place.SmartShow(); Girl.CombineFigure();
+            AddCadre(); Text.Show("[. . . похоже мы оба не знаем что сказать . . .]"); Place.SmartShow(); Girl.CombineFigure();
+
+            Girl.Face(EMO.Troubled, EMO_STYLE.Any, EMO_EFFECT.None, 1); ;
+
+            AddCadre(); Text.Show($"[{Girl.Name}]~. . . ну ладно . . я пойду . . ."); Place.SmartShow(); Girl.CombineFigure();
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . . да . . ? . . ну . . ладно . . ."); Place.SmartShow(); Girl.CombineFigureHide();
+            AddCadre(); Text.Show($"[{Hero.Name}]~[. . . убежала . . .]"); Place.SmartShow();
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . . я ее уже еле вижу, бастрая как метеор . . ."); Place.SmartShow();
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . . хм . . ? кажется, я кого-то вижу . . ."); Place.SmartShow();
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . . хм . . ?"); Place.SmartShow(); Sound.BgmStop();
+
+            Bastard.SetVisibleView("Middle", "Default", "Default");
+
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . . берегись . . !"); Place.SmartShow(); Bastard.CombineFigure();
+
+            Sound.CurrentSE = Effects["Бум"];
+
+            AddCadre(); Text.Show($" . . Ааааааа . . "); Place.SmartShow(); Girl.CombineFigure(girlXshift,null, $"O.B.500.100>{Trans.ImpactHs(200, 50)}"); Bastard.CombineFigure($"{Trans.Wait(500)}>{Trans.ImpactHs(200, 50)}"); Sound.SE();
+            AddCadre(); Text.Show($"[{Girl.Name}]~ . . Ой, чуть не убились . . "); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure();
+
+            Sound.CurrentSE = Effects["Вжик"];
+
+            AddCadre(); Text.Show($" . . *Сжал* . . "); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure($"{Trans.MoveHs(200, 10)}>{Trans.MoveHs(200, -10)}"); Sound.SE();
+
+            Girl.Face(EMO.Accusing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+
+            AddCadre(); Text.Show($"[{Girl.Name}]~ . . ! ! ! . . "); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure();
+
+            Girl.Face(EMO.Troubled, EMO_STYLE.Any, EMO_EFFECT.None, 1); ;
+
+            AddCadre(); Text.Show($"[{Girl.Name}]~ . . прости ! ! ! . . прости ! ! ! . . . с тобой все в порядке . . ! ! ! ?"); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure();
+            AddCadre(); Text.Show($"[Незнакомый {Bastard.Titles[0]}]~ . . э-э-э . . Да, вроде . . "); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure();
+            AddCadre(); Text.Show($"[{Girl.Name}]~ . . я дико извиняюсь . . у тебя ничего не болит . . .?"); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure();
+            AddCadre(); Text.Show($"[Незнакомый {Bastard.Titles[0]}]~. . вроде нет . . ."); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure();
+            AddCadre(); Text.Show($"[{Girl.Name}]~ . . ты уверен . . . ?"); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure();
+
+            Sound.CurrentSE = Effects["Вжик"];
+
+            AddCadre(); Text.Show($"[Незнакомый {Bastard.Titles[0]}]~. . *Сжал* . . "); Place.SmartShow(); Girl.CombineFigure(girlXshift, null, $"{Trans.ImpactHs(200, 30)}"); Bastard.CombineFigure($"{Trans.MoveHs(200, 10)}>{Trans.MoveHs(200, -10)}"); Sound.SE();
+            AddCadre(); Text.Show($"[Незнакомый {Bastard.Titles[0]}]~ . . . . "); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure();
+            AddCadre(); Text.Show($"[Незнакомый {Bastard.Titles[0]}]~ . . еще немного, здесь. . *трогает*"); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure();
+            AddCadre(); Text.Show($"[{Girl.Name}]~ . . вот тут ? . . больно . . .?"); Place.SmartShow(); Girl.CombineFigure(girlXshift, null, $"{Trans.MoveHs(50, -20)}"); Bastard.CombineFigure(); Sound.SE();
+            AddCadre(); Text.Show($"[Незнакомый {Bastard.Titles[0]}]~ . . . . "); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure();
+            AddCadre(); Text.Show($"[Незнакомый {Bastard.Titles[0]}]~ . . все нормально. . "); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure();
+
+            Girl.Face(EMO.Laughing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+
+            AddCadre(); Text.Show($"[{Girl.Name}]~ . . слава богу . . .!"); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure();
+            AddCadre(); Text.Show($"[Незнакомый {Bastard.Titles[0]}]~ . . . . "); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure($"{Trans.MoveHs(10, 50)}");
+
+            Girl.Face(EMO.Accusing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+
+            AddCadre(); Text.Show($"[Незнакомый {Bastard.Titles[0]}]~. . *сжал*"); Place.SmartShow(); Girl.CombineFigure(girlXshift, null, $"{Trans.ImpactHs(200, 30)}"); Bastard.CombineFigure($"{Trans.MoveHs(200, 10)}>{Trans.MoveHs(200, -10)}"); Sound.SE();
+            AddCadre(); Text.Show($"[{Girl.Name}]~ . . еще раз извини, что налетела на тебя . . .!"); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure();
+            AddCadre(); Text.Show($"[Незнакомый {Bastard.Titles[0]}]~ . . хе хе . . "); Place.SmartShow(); Girl.CombineFigure(girlXshift, null); Bastard.CombineFigure();
+            AddCadre(); Text.Show($" . . "); Place.SmartHide(); Girl.CombineFigureHide(girlXshift, null); Bastard.CombineFigureHide();
+
+            Sound.CurrentSE = Effects["Бег мальчик"];
+
+            AddCadre(); Text.Show($"[{Hero.Name}]~ . . {Girl.Name}, ты в порядке . . ?"); Sound.SE();
+
+            Girl.Face(EMO.Smile, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+
+            AddCadre(); Text.Show($"[{Girl.Name}]~. . о , {Hero.Name}. . да . . все в порядке . . "); Place.SmartShow(); Girl.CombineFigure();
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . я плохо видел, что сдесь произошло . . ?"); Place.SmartShow(); Girl.CombineFigure();
+
+            Girl.Face(EMO.Accusing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+
+            AddCadre(); Text.Show($"[{Girl.Name}]~. . тут был вот этот {Bastard.Titles[0]}, и. . "); Place.SmartShow(); Girl.CombineFigure();
+
+            Girl.Face(EMO.Troubled, EMO_STYLE.Any, EMO_EFFECT.None, 1); ;
+
+            AddCadre(); Text.Show($"[{Girl.Name}]~. . ой, он только что был здесь . . ушел . . ."); Place.SmartShow(); Girl.CombineFigure();
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . ? ты все еще спишь . . .?"); Place.SmartShow(); Girl.CombineFigure();
+            AddCadre(); Text.Show($"[{Girl.Name}]~. . он определенно был еще недавно здесь . . "); Place.SmartShow(); Girl.CombineFigure();
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . тебе надо смотреть внимательно, куда бежишь . . ."); Place.SmartShow(); Girl.CombineFigure();
+
+            Girl.Face(EMO.Laughing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+
+            AddCadre(); Text.Show($"[{Girl.Name}]~. . ха ха . . это точно . . "); Place.SmartShow(); Girl.CombineFigure();
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . похоже ты не пострадала, так что пошли . . ."); Place.SmartShow(); Girl.CombineFigure();
+
+            Girl.Face(EMO.Smile, EMO_STYLE.Any, EMO_EFFECT.None, 1);
+
+            AddCadre(); Text.Show($"[{Girl.Name}]~. . да, пошли . . "); Place.SmartShow(); Girl.CombineFigure();
+
+            Sound.CurrentSE = Effects["Бег мальчик"];
+
+            AddCadre(); Text.Show($". . . . "); Place.SmartShow(); Girl.CombineFigureHide(); Sound.SE();
+            AddCadre(); Text.Show($". . . . "); Place.SmartHide();
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . В итоге мы так и не выяснили ничего . . ");
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . Наверно мне повезло просто . . ");
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . С {Girl.Name} все эти штуки насчет секса . . ");
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . Мы никогда не говорили об этом с ней. Для того чтобы не повредить нашим отношениям . . . ");
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . Думаю, у нас есть негласное правило . . . ");
+            AddCadre(); Text.Show($"[{Hero.Name}]~. . . *вздох* . . . ");
+            AddCadre(); Text.Show($". . . . ");Place.SmartShow(); Bastard.CombineFigure();
+            AddCadre(); Text.Show($". . . . "); Place.SmartHide(); Bastard.CombineFigureHide();
+
+        }
         /*
-                    private void Chapter7() 
-                    {
-                        AddChapter("Chapter 7", "Chapter 7 - Первая встреча с мерзавцем.");
-
-                        Sound.CurrentBGM = BGM["Good morning"];           
-                        Place.Current = Locations["Street morning"];
-                        // expression
-                         Girl.Face(EMO.Troubled, EMO_STYLE.Any, EMO_EFFECT.None, 1);;
-
-                        AddCadre(); OldAddCadre(      
-                            Girl.oldFigureHidden(transform_Appearing_4),
-                            Place.SmartShow(),
-                            Text.Show(". . . . . ."),
-                            Sound.BgmMuted(transform_sound_delay_1)
-                            );
-
-                        AddCadre(); OldAddCadre(
-                            Girl.CombineFigure(),
-                            Place.SmartShow(),
-                            Text.Show("[. . . это немного странно. . .]")
-                            );
-
-                        AddCadre(); OldAddCadre(
-                            Girl.CombineFigure(),
-                            Place.SmartShow(),
-                            Text.Show("[. . . похоже мы оба не знаем что сказать . . .]")
-                            );
-
-                         Girl.Face(EMO.Troubled, EMO_STYLE.Any, EMO_EFFECT.None, 1);;
-
-                        AddCadre(); OldAddCadre(
-                            Girl.CombineFigure(),
-                            Place.SmartShow(),
-                            Text.Show($"[{Girl.Name}]~. . . ну ладно . . я пойду . . .")
-                            );
-
-                        AddCadre(); OldAddCadre(
-                            Girl.CombineFigure(transform_Disapearing_4),
-                            Place.SmartShow(),
-                            Text.Show($"[{Hero.Name}]~. . . да . . ? . . ну . . ладно . . .")
-                            );
-
-                        AddCadre(); OldAddCadre(
-                            Place.SmartShow(),
-                            Text.Show($"[{Hero.Name}]~[. . . убежала . . .]")
-                            );
-
-                        AddCadre(); OldAddCadre(
-                            Place.SmartShow(),
-                            Text.Show($"[{Hero.Name}]~. . . я ее уже еле вижу, бастрая как метеор . . .")
-                            );
-
-                        AddCadre(); OldAddCadre(
-                            Place.SmartShow(),
-                            Text.Show($"[{Hero.Name}]~. . . хм . . ? кажется, я кого-то вижу . . .")
-                            );
-
-                        AddCadre(); OldAddCadre(
-                            Sound.oldBgmStop(),
-                            Place.SmartShow(),
-                            Text.Show($"[{Hero.Name}]~. . . хм . . ?")
-                            );
-
-                        SetBastard();
-
-                        AddCadre(); OldAddCadre(
-                            Bastard.oldFigureHidden(transform_Appearing_4),
-                            Place.SmartShow(),
-                            Text.Show($"[{Hero.Name}]~. . . берегись . . !")
-                            );
-
-                        Sound.CurrentSE = Effects["Бум"];
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure($"{Trans.Wait(500)}>{Trans.ImpactHs(200, 50)}"),
-                          Girl.oldFigureHidden($"O.B.500.100>{Trans.ImpactHs(200, 50)}"),
-                          Place.SmartShow(),
-                          Text.Show($" . . Ааааааа . . "),
-                          Sound.oldSE()
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure(),
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Girl.Name}]~ . . Ой, чуть не убились . . ")
-                          );
-
-                        Sound.CurrentSE = Effects["Вжик"];
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure($"{Trans.MoveHs(200, 10)}>{Trans.MoveHs(200, -10)}"),
-                          Girl.CombineFigure($"{Trans.ImpactHs(200, 30)}"),
-                          Place.SmartShow(),
-                          Text.Show($" . . *Сжал* . . "),
-                          Sound.oldSE()
-                          );
-
-                        Girl.Face(EMO.Accusing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
-
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure(),
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Girl.Name}]~ . . ! ! ! . . ")
-                          );
-
-                         Girl.Face(EMO.Troubled, EMO_STYLE.Any, EMO_EFFECT.None, 1);;
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure(),
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Girl.Name}]~ . . прости ! ! ! . . прости ! ! ! . . . с тобой все в порядке . . ! ! ! ?")
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure($""),
-                          Girl.CombineFigure($""),
-                          Place.SmartShow(),
-                          Text.Show($"[Незнакомый {Bastard.Titles[0]}]~ . . э-э-э . . Да, вроде . . ")
-                          );
-
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure(),
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Girl.Name}]~ . . я дико извиняюсь . . у тебя ничего не болит . . .?")
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure(),
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[Незнакомый {Bastard.Titles[0]}]~. . вроде нет . . .")
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure(),
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Girl.Name}]~ . . ты уверен . . . ?")
-                          );
-
-
-                        Sound.CurrentSE = Effects["Вжик"];
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure($"{Trans.MoveHs(200, 10)}>{Trans.MoveHs(200, -10)}"),
-                          Girl.CombineFigure($"{Trans.ImpactHs(200, 30)}"),
-                          Place.SmartShow(),
-                          Text.Show($"[Незнакомый {Bastard.Titles[0]}]~. . *Сжал* . . "),
-                          Sound.oldSE()
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure($""),
-                          Girl.CombineFigure($""),
-                          Place.SmartShow(),
-                          Text.Show($"[Незнакомый {Bastard.Titles[0]}]~ . . . . ")
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure($""),
-                          Girl.CombineFigure($""),
-                          Place.SmartShow(),
-                          Text.Show($"[Незнакомый {Bastard.Titles[0]}]~ . . еще немного, здесь. . *трогает*")
-                          );
-
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure(),
-                          Girl.CombineFigure($"{Trans.MoveHs(50, -20)}"),
-                          Place.SmartShow(),
-                          Text.Show($"[{Girl.Name}]~ . . вот тут ? . . больно . . .?"),
-                          Sound.oldSE()
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure($""),
-                          Girl.CombineFigure($""),
-                          Place.SmartShow(),
-                          Text.Show($"[Незнакомый {Bastard.Titles[0]}]~ . . . . ")
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure($""),
-                          Girl.CombineFigure($""),
-                          Place.SmartShow(),
-                          Text.Show($"[Незнакомый {Bastard.Titles[0]}]~ . . все нормально. . ")
-                          );
-
-                        Girl.Face(EMO.Laughing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure(),
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Girl.Name}]~ . . слава богу . . .!")
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure($"{Trans.MoveHs(10, 50)}"),
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[Незнакомый {Bastard.Titles[0]}]~ . . . . ")
-                          );
-
-                        Girl.Face(EMO.Accusing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure($"{Trans.MoveHs(200, 10)}>{Trans.MoveHs(200, -10)}"),
-                          Girl.CombineFigure($"{Trans.ImpactHs(200, 30)}"),
-                          Place.SmartShow(),
-                          Text.Show($"[Незнакомый {Bastard.Titles[0]}]~. . *сжал*"),
-                          Sound.oldSE()
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure(),
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Girl.Name}]~ . . еще раз извини, что налетела на тебя . . .!")
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure(),
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[Незнакомый {Bastard.Titles[0]}]~ . . хе хе . . ")
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure(transform_Disapearing_2),
-                          Girl.CombineFigure(transform_Disapearing_2),
-                          Place.SmartShow(transform_Disapearing_2),
-                          Text.Show($". . . . ")
-                          );
-
-                        Sound.CurrentSE = Effects["Бег мальчик"];
-
-                        AddCadre(); OldAddCadre(
-                            Text.Show($"[{Hero.Name}]~ . . {Girl.Name}, ты в порядке . . ?"),
-                            Sound.oldSE()
-                            );
-
-                        Girl.Face(EMO.Smile, EMO_STYLE.Any, EMO_EFFECT.None, 1); 
-
-                        AddCadre(); OldAddCadre(
-                          Girl.oldFigureHidden(transform_Appearing_4),
-                          Place.SmartShowHidden(transform_Appearing_4),
-                          Text.Show($"[{Girl.Name}]~. . о , {Hero.Name}. . да . . все в порядке . . ")
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Hero.Name}]~. . я плохо видел, что сдесь произошло . . ?")
-                          );
-
-                        Girl.Face(EMO.Accusing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
-
-                        AddCadre(); OldAddCadre(
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Girl.Name}]~. . тут был вот этот {Bastard.Titles[0]}, и. . ")
-                          );
-
-                         Girl.Face(EMO.Troubled, EMO_STYLE.Any, EMO_EFFECT.None, 1);;
-
-                        AddCadre(); OldAddCadre(
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Girl.Name}]~. . ой, он только что был здесь . . ушел . . .")
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Hero.Name}]~. . ? ты все еще спишь . . .?")
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Girl.CombineFigure(),
-                          Place.SmartShow($"{Trans.ImpactHs(200, 30)}"),
-                          Text.Show($"[{Girl.Name}]~. . он определенно был еще недавно здесь . . ")
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Hero.Name}]~. . тебе надо смотреть внимательно, куда бежишь . . .")
-                          );
-
-                        Girl.Face(EMO.Laughing, EMO_STYLE.Any, EMO_EFFECT.None, 1);
-
-                        AddCadre(); OldAddCadre(
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Girl.Name}]~. . ха ха . . это точно . . ")
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Hero.Name}]~. . похоже ты не пострадала, так что пошли . . .")
-                          );
-
-                        Girl.Face(EMO.Smile, EMO_STYLE.Any, EMO_EFFECT.None, 1); 
-
-                        AddCadre(); OldAddCadre(
-                          Girl.CombineFigure(),
-                          Place.SmartShow(),
-                          Text.Show($"[{Girl.Name}]~. . да, пошли . . ")
-                          );
-
-                        Sound.CurrentSE = Effects["Бег мальчик"];
-
-                        AddCadre(); OldAddCadre(
-                          Girl.CombineFigure(transform_Disapearing_2),
-                          Place.SmartShow(),
-                          Text.Show($". . . . "),
-                          Sound.oldSE()
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Place.SmartShow(transform_Disapearing_2),
-                          Text.Show($". . . . ")
-                          );
-
-                        AddCadre(); OldAddCadre(Text.Show($"[{Hero.Name}]~. . В итоге мы так и не выяснили ничего . . "));
-
-                        AddCadre(); OldAddCadre(Text.Show($"[{Hero.Name}]~. . Наверно мне повезло просто . . "));
-
-                        AddCadre(); OldAddCadre(Text.Show($"[{Hero.Name}]~. . С {Girl.Name} все эти штуки насчет секса . . "));
-
-                        AddCadre(); OldAddCadre(Text.Show($"[{Hero.Name}]~. . Мы никогда не говорили об этом с ней. Для того чтобы не повредить нашим отношениям . . . "));
-
-                        AddCadre(); OldAddCadre(Text.Show($"[{Hero.Name}]~. . Думаю, у нас есть негласное правило . . . "));
-
-                        AddCadre(); OldAddCadre(Text.Show($"[{Hero.Name}]~. . . *вздох* . . . "));
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigureHidden(transform_Appearing_5),
-                          Place.SmartShowHidden(transform_Appearing_4),
-                          Text.Show($". . . . ")
-                          );
-
-                        AddCadre(); OldAddCadre(
-                          Bastard.oldFigure(transform_Disapearing_2),
-                          Place.SmartShow(transform_Disapearing_2)
-                          );
-
-                    }
                     private void Chapter8()
                     {
                         AddChapter("Chapter 8", "Chapter 8 - Обсуждение сисек парнями");

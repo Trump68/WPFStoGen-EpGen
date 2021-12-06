@@ -281,7 +281,7 @@ namespace StoGen.Classes
         private void RecreateImage(int index)
         {
             var it = Projector.PicContainer.PicList[index];
-            it.RenderTransform = null;
+            it.RenderTransform = new TransformGroup();
         }
 
         //If you get 'dllimport unknown'-, then add 'using System.Runtime.InteropServices;'

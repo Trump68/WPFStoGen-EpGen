@@ -128,6 +128,7 @@ namespace StoGen.Classes.Story
             Chapter4("Chapter 4", "Chapter 4 - на тренировке в потной майке");
             Chapter5("Chapter 5", "Chapter 5 - Попытка скоротать грустный вечер с другом.");
             Chapter6("Chapter 6", "Chapter 6 - Утренний стояк и неловкость");
+            Chapter7("Chapter 7", "Chapter 7 - Первая встреча с мерзавцем.", "300");
         }
         /*        protected override void Chapter1(string chapter, string description = null)
                 {

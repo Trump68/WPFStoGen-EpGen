@@ -345,6 +345,11 @@ namespace StoGen.Classes.Transition
                 if (delta != 0)
                 {
                     CurrentVal = this.Begin + delta;
+                    if (CurrentVal == this.Begin) 
+                    {
+                        this.Close();
+                        return true;
+                    }                        
                 }
                 return false;
             }
