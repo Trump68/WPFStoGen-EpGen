@@ -135,6 +135,8 @@
     <Compile Include="Scene\SceneMaker.cs" />
     <Compile Include="Sound.cs" />
     <Compile Include="Story\Location\Location.cs" />
+    <Compile Include="Story\Person\0001\Demonstrator.cs" />
+    <Compile Include="Story\Person\0001\Person_0002.cs" />
     <Compile Include="Story\Person\0001\Person_0001.cs" />
     <Compile Include="Story\Person\Person.cs" />
     <Compile Include="Story\Sound\CadreSound.cs" />

@@ -134,7 +134,7 @@ namespace StoGen.Classes.Story.Persons
         public string visible_eye = null;
         public string visible_wear = null;
         public string visible_head = null;
-        StoryMaker Story;
+        public StoryMaker Story;
         public string Root;
         public string Template = null;
         public int Z = 0;

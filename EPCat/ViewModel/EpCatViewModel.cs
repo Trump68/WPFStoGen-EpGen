@@ -1021,10 +1021,11 @@ namespace EPCat
                 maker = new Story01();
             if (Story01_01.Name == scenarioName)
                 maker = new Story01_01();
-            if (Demonstrator_Person0001.Name == scenarioName)
-                maker = new Demonstrator_Person0001();
+            if ("Girl 0001" == scenarioName)
+                maker = new Demonstrator(new Girl_0001(null,"Girl 001"));
+            if ("Girl 0002" == scenarioName)
+                maker = new Demonstrator(new Girl_0002(null, "Girl 002"));
 
-            
             maker.Generate(this.CurrentFolder.ItemDirectory);
         }
 
@@ -1038,7 +1039,8 @@ namespace EPCat
                     _Scenarious = new List<string>();
                     _Scenarious.Add(Story01.Name);
                     _Scenarious.Add(Story01_01.Name);
-                    _Scenarious.Add(Demonstrator_Person0001.Name);
+                    _Scenarious.Add("Girl 0001");
+                    _Scenarious.Add("Girl 0002");
                 }
                 return _Scenarious; 
             }

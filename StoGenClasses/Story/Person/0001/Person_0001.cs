@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StoGen.Classes.Story.Persons
 {
-
+/*
     public class Demonstrator_Person0001 : StoryMaker
     {
         public static string Name = "Demonstrator for person 0001";
@@ -152,7 +152,7 @@ namespace StoGen.Classes.Story.Persons
             OldAddCadre(null, frames);
         }
     }
-
+*/
     public class Girl_0001 : Person
     {        
         public Girl_0001(StoryMaker maker, string name) : base(maker, name)
