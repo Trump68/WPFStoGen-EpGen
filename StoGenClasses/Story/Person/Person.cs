@@ -123,6 +123,7 @@ namespace StoGen.Classes.Story.Persons
         { 
         }
         public string Name;
+
         public List<string> Titles = new List<string>();
         public List<FigureElement> Views = new List<FigureElement>();
         public List<Tuple<string, string>> Events = new List<Tuple<string, string>>();

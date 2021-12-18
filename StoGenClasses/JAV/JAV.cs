@@ -13,6 +13,7 @@ namespace EPCat.Model
     {
         public static void JavLibraryDo(string serie, int startstr, string disc, int failureTreshold, int daysTreshold)
         {
+            int max = 10000;
             if (string.IsNullOrEmpty(serie))
                 serie = "GVG";
             DateTime today = DateTime.Now.Date;
@@ -51,7 +52,15 @@ namespace EPCat.Model
                                 Console.WriteLine($"{item} - too early");
                                 continue;
                             }
-                       }                           
+                       }            
+                       if (lines.Length > 1) 
+                       {
+                            if (lines[1].Contains("MAX=")) 
+                            {
+                                string val = lines[1].Replace("MAX=", string.Empty);
+                                max = int.Parse(val);
+                            }
+                       }
                     }
                 }
 
@@ -82,7 +91,7 @@ namespace EPCat.Model
                         Console.Write($" - skipped {failure}\n");
                     failure++;
                 }
-                while (failure < failureTreshold)
+                while (failure < failureTreshold && start<=max)
                 {
                     start++;
                     keyword = $"{item}-{start.ToString($"D3")}";

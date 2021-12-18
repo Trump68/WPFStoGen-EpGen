@@ -154,9 +154,11 @@ namespace StoGen.Classes.Story.Persons
     }
 */
     public class Girl_0001 : Person
-    {        
+    {
+        public static string ClassName = "Girl 0001";
         public Girl_0001(StoryMaker maker, string name) : base(maker, name)
         {
+            
             Root = @"e:\!EPCATALOG\PERSONS\0001\";
             Source = "Mahou Kishi Arika & Rin Shoujo ni Muragaru Otoko-tachi no Ma no Te _Soredemo Watashi-tachi wa Makenai!!";
 

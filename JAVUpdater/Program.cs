@@ -24,6 +24,7 @@ namespace JAVUpdater
         public static int INTERNETUPDATEAFTER = 0;
         public static int CATALOGUPDATE = 0;
         public static int DOBACKUP = 0;
+        public static string ACTRESS_FOLDER = @"d:\Work\WPFStoGen-EpGen\CATALOG\BAT\!JAV_ARTIST\";
         static void Main(string[] args)
         {
             try
@@ -46,7 +47,9 @@ namespace JAVUpdater
                     {
                         BACKUPFOLDER = null;
                     }
-                    JAV.SaveCatalog(ref list, (SYNCHPOSTER != 0), Catalog, FOLDERS, BACKUPFOLDER);                    
+                    JAV.SaveCatalog(ref list, (SYNCHPOSTER != 0), Catalog, FOLDERS, BACKUPFOLDER);
+                    // Refresh Actress Movies 
+                    CountActressMovies(list);
                     Console.WriteLine($"- done. Press key to exit");
                 }
         }
@@ -56,6 +59,54 @@ namespace JAVUpdater
             }
     Console.ReadKey();
         }
+
+        private static void CountActressMovies(List<EpItem> list)
+        {
+            Dictionary<String,Tuple<int, int, double>> actresses = new Dictionary<String, Tuple<int, int, double>>();
+            if (Directory.Exists(ACTRESS_FOLDER)) 
+            {
+                var files = Directory.GetFiles(ACTRESS_FOLDER,"*.bat");
+                foreach (var fn in files)
+                {
+                    string actress_name = Path.GetFileNameWithoutExtension(fn);
+                    actresses.Add(actress_name, new Tuple<int, int, double>(0, 0, 0.0));
+                }
+
+                foreach (var item in list)
+                {
+                    var stars = item.Star.Split(',');
+                    foreach (var star in stars)
+                    {
+                        if (actresses.ContainsKey(star)) 
+                        {
+                            var value = actresses[star];
+                            int total = value.Item1 + 1;
+                            int exists = value.Item2;
+                            double percent = value.Item3;
+                            if (item.M4V > 0) 
+                            {
+                                exists = exists + 1;
+                            }
+                            if (exists > 0) 
+                            {
+                                percent =  (exists * 100) / total;
+                            }
+                            actresses[star] = new Tuple<int, int, double>(total, exists, percent);
+                        }
+                    }
+                }
+
+                string filetowrite = Path.Combine(ACTRESS_FOLDER,"actresses.csv");
+                List<string> stlist = new List<string>();
+                foreach (var item in actresses)
+                {
+                    stlist.Add($"{item.Key};{item.Value.Item1};{item.Value.Item2};{item.Value.Item3}");
+                }
+                File.WriteAllLines(filetowrite,stlist);
+            }
+
+        }
+
         private static void ReadIni()
         {
             List<string> lines = File.ReadAllLines("..\\..\\JAVUpdater.ini").ToList();
@@ -78,6 +129,10 @@ namespace JAVUpdater
                 else if (line.StartsWith("DISC="))
                 {
                     DISC = line.Replace("DISC=", string.Empty);
+                }
+                else if (line.StartsWith("ACTRESS_FOLDER="))
+                {
+                    ACTRESS_FOLDER = line.Replace("ACTRESS_FOLDER=", string.Empty);
                 }
                 else if (line.StartsWith("DAYTHRESHOLD="))
                 {
