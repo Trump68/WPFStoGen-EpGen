@@ -53,14 +53,19 @@ namespace EPCat.Model
                                 continue;
                             }
                        }            
-                       if (lines.Length > 1) 
-                       {
-                            if (lines[1].Contains("MAX=")) 
-                            {
-                                string val = lines[1].Replace("MAX=", string.Empty);
-                                max = int.Parse(val);
-                            }
-                       }
+                    }
+                    foreach (var ln in lines)
+                    {
+                        if (ln.Contains("START="))
+                        {
+                            string val = ln.Replace("START=", string.Empty);
+                            startstr = int.Parse(val);
+                        }
+                        else if (ln.Contains("MAX="))
+                        {
+                            string val = ln.Replace("MAX=", string.Empty);
+                            max = int.Parse(val);
+                        }
                     }
                 }
 
@@ -117,9 +122,13 @@ namespace EPCat.Model
                 string str = $"{item} - complete {proc}\n";
                 Console.WriteLine(str);
                 Total.Add(str);
+
+                List<string> ddd = new List<string>();
                 if (Directory.Exists($@"{disc}:\!CATALOG\JAV\{item}\"))
                 {
-                    File.WriteAllText(check, $"{today}");
+                    ddd.Add($"{today}");
+                    ddd.Add($"START={startstr}");
+                    File.WriteAllLines(check, ddd.ToArray());
                 }
             }
 
@@ -525,113 +534,6 @@ namespace EPCat.Model
         private static int threshold_hours = 0;
         public static int ApdateAfter;
 
-        private static void LoadThreshold()
-        {
-
-            string file = Path.Combine(FoldersToUpdate.Last(), "updated.txt");
-            var strings = File.ReadAllLines(file);
-
-            _JAVupdated = new Dictionary<string, string>();
-            foreach (var item in strings)
-            {
-                if (item.Contains("threshold_days="))
-                {
-                    string td = item.Replace("threshold_days=", string.Empty);
-                    if (!string.IsNullOrEmpty(td))
-                    {
-                        threshold_days = Convert.ToInt32(td);
-                    }
-                }
-                else if (item.Contains("threshold_hours="))
-                {
-                    string td = item.Replace("threshold_hours=", string.Empty);
-                    if (!string.IsNullOrEmpty(td))
-                    {
-                        threshold_hours = Convert.ToInt32(td);
-                    }
-                }
-                else
-                {
-                    var vals = item.Split('=');
-                    string serie = vals[0];
-                    string updated = vals[1];
-                    if (!_JAVupdated.ContainsKey(serie))
-                    {
-                        _JAVupdated.Add(serie, updated);
-                    }
-                    else
-                    {
-                        _JAVupdated[serie] = updated;
-                    }
-                }
-            }
-        }
-        private static bool CheckThreshold(string serie)
-        {
-            bool result = false;
-            if (!_JAVupdated.ContainsKey(serie))
-            {
-                _JAVupdated.Add(serie, DateTime.Now.ToString());
-                return true;
-            }
-            else
-            {
-                DateTime dt = DateTime.Parse(_JAVupdated[serie]);
-                DateTime treshold = dt.AddDays(threshold_days).AddHours(threshold_hours);
-                if (DateTime.Now> treshold)
-                {
-                    _JAVupdated[serie] = DateTime.Now.ToString();
-                    return true;
-                }                
-            }
-            return result;
-        }
-        private static void SaveThreshold()
-        {
-            List<string> lines = new List<string>();
-            lines.Add($"threshold_days={threshold_days}");
-            lines.Add($"threshold_hours={threshold_hours}");
-            foreach (var item in _JAVupdated)
-            {
-                lines.Add($"{item.Key}={item.Value}");
-            }
-
-            string file = Path.Combine(FoldersToUpdate.Last(), "updated.txt");
-            File.WriteAllLines(file, lines);
-        }
-        private static void SaveUpdate()
-        {
-            List<string> lines = new List<string>();
-            foreach (var item in _JAVupdated)
-            {
-                lines.Add($"{item.Key}");
-            }
-            string file = Path.Combine(FoldersToUpdate.Last(), "update.txt");            
-            File.WriteAllLines(file, lines);
-        }
-        internal static void UpdateBySerieList(List<string> list)
-        {
-            LoadThreshold();
-            _JAVCollections = new Dictionary<string, bool>();
-            foreach (var serie in list)
-            {
-                _JAVCollections.Add(serie, true);
-                if (!CheckThreshold(serie))
-                    continue;
-                string disc = string.Empty;
-                foreach (var lpath in FoldersToUpdate)
-                {
-                    disc = lpath[0].ToString();
-                    string path = Path.Combine(lpath, serie);
-                    if (Directory.Exists(path))
-                        break;
-                }
-                JavUpdateSerie(serie, 0, disc);
-            }
-            SaveThreshold();
-            SaveUpdate();
-            System.Windows.Application.Current.Shutdown();
-        }
 
         public static string CalculateRating(List<EpItem> _FolderList)
         {

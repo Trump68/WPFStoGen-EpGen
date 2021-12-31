@@ -709,11 +709,11 @@
                         <StackPanel>
                             <MediaElement x:Name="minionPlayer" Margin="0"                         
                              ScrubbingEnabled="True"
-                             MinHeight="500"
+                             MinHeight="100"
                              SnapsToDevicePixels="True"
                              Stretch="Uniform"
                              Height="900"
-                             MaxHeight="900"
+                             MaxHeight="2000"
                              LoadedBehavior="Manual"
                              HorizontalAlignment="Left" />
 
