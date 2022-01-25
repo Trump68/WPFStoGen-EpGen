@@ -160,7 +160,15 @@
                             <dxlc:LayoutGroup x:Name="MainDetail" View="Group" Margin="0,0,0,0" Padding="0" Orientation="Horizontal">
                                 <dxlc:LayoutGroup Orientation="Vertical">
                                     <dxlc:LayoutGroup Header="LayoutGroup" View="Tabs" Margin="0,0,0,0">
-                                        <dxlc:LayoutGroup Header="Main" Margin="0,0,0,0" Padding="0">
+                                        <dxlc:LayoutGroup Header="Main" Orientation="Vertical" Margin="0,0,0,0" Padding="0">
+                                            <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0"
+                                                MinHeight="100"
+                                                MaxHeight="200"
+                                                VerticalAlignment="Stretch"
+                                                LabelHorizontalAlignment="Stretch"
+                                                LabelVerticalAlignment="Stretch">
+                                                <Image Source="{Binding SelectedItem.Partner, ElementName=GV}" Stretch="Uniform" />
+                                            </dxlc:LayoutItem>                                            
                                             <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0"
                                                 MinHeight="100"
                                                 VerticalAlignment="Stretch"

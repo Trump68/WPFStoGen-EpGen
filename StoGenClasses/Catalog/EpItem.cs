@@ -64,6 +64,26 @@ namespace EPCat.Model
                 return null;
             }
         }
+
+        public ImageSource Partner
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.PersonName))
+                    return null;
+                BitmapImage orig = null;
+                string image = Path.Combine(@"d:\Work\WPFStoGen-EpGen\CATALOG\BAT\!JAV_ARTIST\", $"{this.PersonName}.jpg");
+                // try to get from source dir
+                Uri path = new Uri(image, UriKind.Absolute);
+
+                if (File.Exists(path.LocalPath))
+                    orig = BitmapFromUri(path);              
+                if (orig != null)
+                    return orig;
+                return null;
+            }
+        }
+
         private static BitmapImage BitmapFromUri(Uri source)
         {
             var bitmap = new BitmapImage();
