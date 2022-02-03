@@ -97,6 +97,7 @@ namespace StoGen.Classes.Catalog
                 int d = 1000000;
                 bool isUncensored = false;
                 bool isUncensoredByMe = false;
+                bool isEnhanced = false;
                 bool isLeaked = false;
                 foreach (string fn in filesmp3)
                 {
@@ -113,6 +114,10 @@ namespace StoGen.Classes.Catalog
                     if (pf.Contains("LEAKED"))
                     {
                         isLeaked = true;
+                    }
+                    if (pf.Contains("ENHANCED"))
+                    {
+                        isEnhanced = true;
                     }
                     try
                     {
@@ -153,6 +158,9 @@ namespace StoGen.Classes.Catalog
                                     item.Kind = "UNC";
                                 if (isLeaked)
                                     item.Kind = "UNCL";
+                                if (isEnhanced)
+                                    item.Kind = $"{item.Kind}ENH";
+
 
                                 list.Add(item);
                                 Console.WriteLine($"{item.Name} - new! {AddedTotal}");
@@ -176,6 +184,11 @@ namespace StoGen.Classes.Catalog
                     if (isLeaked && (string.IsNullOrEmpty(existingItem.Kind) || existingItem.Kind != "UNCL"))
                     {
                         item.Kind = "UNCL";
+                        item.LastEdit++;
+                    }
+                    if (isEnhanced && (string.IsNullOrEmpty(existingItem.Kind) || (!existingItem.Kind.Contains("ENH"))))
+                    {
+                        item.Kind = $"{item.Kind}ENH";
                         item.LastEdit++;
                     }
                     if (existingItem.LastEdit < item.LastEdit)

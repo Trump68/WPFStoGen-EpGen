@@ -250,7 +250,22 @@ namespace EPCat.Model
         public string Studio { get; set; }
         public string IMDB { get; set; }
         // Virt Persons
-        public string PersonName { get; set; }
+        public string _PersonName;
+        public string PersonName 
+        {
+            get {
+                if (_PersonName == "Man_007") return "Bokki Sugiura 1972";
+                if (_PersonName == "Man_004") return "Ginji Sagawa 1965";
+                if (_PersonName == "Man_002") return "Toru Ozawa 1961";
+                return _PersonName; 
+            }
+            set {
+                if (value == "Man_007") value = "Bokki Sugiura 1972";
+                if (value == "Man_004") value = "Ginji Sagawa 1965";
+                if (value == "Man_002") value = "Toru Ozawa 1961";
+                _PersonName = value; 
+            } 
+        }
         public string PersonAge { get; set; }
         public string PersonSex { get; set; }
         public string PersonType { get; set; }

@@ -168,7 +168,7 @@
                                                 LabelHorizontalAlignment="Stretch"
                                                 LabelVerticalAlignment="Stretch">
                                                 <Image Source="{Binding SelectedItem.Partner, ElementName=GV}" Stretch="Uniform" />
-                                            </dxlc:LayoutItem>                                            
+                                            </dxlc:LayoutItem>
                                             <dxlc:LayoutItem Margin="0,0,0,0" Padding="0" ElementSpace="0"
                                                 MinHeight="100"
                                                 VerticalAlignment="Stretch"
@@ -352,7 +352,7 @@
                                         <dx:SimpleButton Content="Add Header" Width="90" Margin="10,4,0,0" HorizontalAlignment="Left" Click="AddSceneHeaderBtn_Click" />
                                     </dxlc:LayoutItem>
                                 </dxlc:LayoutGroup>
-                                
+
                                 <dxlc:LayoutItem Name="Grid2" Margin="0,0,0,0" VerticalAlignment="Stretch" Height="250">
                                     <dxg:GridControl x:Name="GVCombScen2"
                                          AutoGenerateColumns="None"
@@ -549,7 +549,7 @@
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           TextWrapping="NoWrap" AcceptsReturn="True" Text="{Binding Story.Description}" />
                                             </dxlc:LayoutItem>
-                                        </dxlc:LayoutGroup>                                            
+                                        </dxlc:LayoutGroup>
                                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                             <dxlc:LayoutItem Label="Control: F=1 (MuteAll)" LabelPosition="Top"></dxlc:LayoutItem>
                                         </dxlc:LayoutGroup>
@@ -557,16 +557,16 @@
                                             <dxlc:LayoutItem Label="Sound: X=Volume; Y=1 (Mute); F=1 (random position); FileName: STOP" LabelPosition="Top"></dxlc:LayoutItem>
                                         </dxlc:LayoutGroup>
                                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
-                                        <dxlc:LayoutItem Label="Video: Loop 0-go next, 1-loop, 2-stop, 3-no stop" LabelPosition="Top"></dxlc:LayoutItem>
-                                    </dxlc:LayoutGroup>
+                                            <dxlc:LayoutItem Label="Video: Loop 0-go next, 1-loop, 2-stop, 3-no stop" LabelPosition="Top"></dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
                                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                                             <dxlc:LayoutItem Label="Raw Parameters" LabelPosition="Top">
-                                            <dxe:TextEdit MaxHeight="320"
+                                                <dxe:TextEdit MaxHeight="320"
                                           ScrollViewer.HorizontalScrollBarVisibility="Auto"                                         
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           TextWrapping="NoWrap" AcceptsReturn="True" Text="{Binding Story.RawParameters}" />
-                                        </dxlc:LayoutItem>
-                                    </dxlc:LayoutGroup>
+                                            </dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
 
                                     </dxlc:LayoutGroup>
                                     <dxlc:LayoutGroup Header="Caption" Orientation="Vertical" Margin="0,0,0,0" Padding="0">
@@ -831,6 +831,9 @@
                         <dxlc:LayoutItem HorizontalAlignment="Left">
                             <dx:SimpleButton x:Name="MakeJAVbat" Content="JAV bat" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="btnJAVbat_Click" />
                         </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton x:Name="WebBtn" Content="Web" Width="80" Margin="10,4,0,0" HorizontalAlignment="Left" Click="Web_Click" />
+                        </dxlc:LayoutItem>                        
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0">
                         <dxlc:LayoutItem Label="Story" LabelPosition="Left">
@@ -862,6 +865,9 @@
                                           TextWrapping="NoWrap" AcceptsReturn="True" Text="JAV1- Story:serie, Start:1, Rating: disc letter" />
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Padding="0,0"/>
+
+
                 </dxlc:LayoutGroup>
             </dx:DXTabItem>
 

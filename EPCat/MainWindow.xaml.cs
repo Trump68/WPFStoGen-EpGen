@@ -1065,5 +1065,10 @@ namespace EPCat
             
         }
 
+        private void Web_Click(object sender, RoutedEventArgs e)
+        {
+            Form1 form = new Form1();
+            form.ShowDialog();
+        }
     }
 }

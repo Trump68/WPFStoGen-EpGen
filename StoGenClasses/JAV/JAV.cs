@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace EPCat.Model
 {
+
+
     public static class JAV
     {
         public static void JavLibraryDo(string serie, int startstr, string disc, int failureTreshold, int daysTreshold)
@@ -148,9 +150,13 @@ namespace EPCat.Model
                 return 50;
             }
 
+
+
             Console.Write($"    Get {keyword}");
-            WebRequest request = WebRequest.Create($"http://www.javlibrary.com/en/vl_searchbyid.php?keyword={keyword}");
+            HttpWebRequest request = WebRequest.Create($"http://www.javlibrary.com/en/vl_searchbyid.php?keyword={keyword}") as HttpWebRequest;
+
             request.Method = "GET";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko";
             string content = null;
             WebResponse response = null;
             StreamReader reader = null;
@@ -164,8 +170,9 @@ namespace EPCat.Model
                 reader.Close();
                 response.Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string mess = ex.Message;
                 return 0;
             }
 
@@ -176,8 +183,9 @@ namespace EPCat.Model
                 content = content.Substring(pos);
                 pos = content.IndexOf(@"<a href=");
                 content = content.Substring(pos + 10, 14);
-                request = WebRequest.Create($"http://www.javlibrary.com/en{content}");
+                request = WebRequest.Create($"http://www.javlibrary.com/en{content}") as HttpWebRequest;
                 request.Method = "GET";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko";
                 try
                 {
                     response = request.GetResponse();
@@ -328,7 +336,7 @@ namespace EPCat.Model
 
             }
             if (!File.Exists(posterpath))
-            {
+            {                
                 using (WebClient client = new WebClient())
                 {
                     try
@@ -342,6 +350,7 @@ namespace EPCat.Model
                     }
 
                 }
+                
             }
 
             return 100;
