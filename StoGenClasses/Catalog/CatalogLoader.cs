@@ -11,6 +11,60 @@ namespace StoGen.Classes.Catalog
 {
     public class CatalogLoader
     {
+        public static List<string> Actress_found = new List<string>();
+        private static List<string> _Actress_to_track;
+        private static List<string> Actress_to_track 
+        {
+            get 
+            {
+                if (_Actress_to_track == null)
+                {
+                    _Actress_to_track = new List<string>();
+                    _Actress_to_track.Add("Natsume Iroha");
+                    _Actress_to_track.Add("Kijima Airi");                    
+                    _Actress_to_track.Add("Tsukino Runa");
+                    _Actress_to_track.Add("Momonogi Kana");
+                    _Actress_to_track.Add("Aiga Mizuki");
+                    _Actress_to_track.Add("Aizawa Minami");
+                    _Actress_to_track.Add("Akari Tsumugi");
+                    _Actress_to_track.Add("Amami Tsubasa");
+                    _Actress_to_track.Add("Aoi Tsukasa");
+                    _Actress_to_track.Add("Aso Nozomi");
+                    _Actress_to_track.Add("Fukada Eimi");
+                    _Actress_to_track.Add("Futaba Ema");
+                    _Actress_to_track.Add("Hatano Yui");
+                    _Actress_to_track.Add("Iioka Kanako");
+                    _Actress_to_track.Add("Imai Kaho");
+                    _Actress_to_track.Add("Kaede Karen");
+                    _Actress_to_track.Add("Kawakami Nanami");
+                    _Actress_to_track.Add("Kawakita Saika");
+                    _Actress_to_track.Add("Kimijima Mio");
+                    _Actress_to_track.Add("Kujou Michiru");
+                    _Actress_to_track.Add("Matsumoto Ichika");
+                    _Actress_to_track.Add("Mikami Yua");
+                    _Actress_to_track.Add("Mino Suzume");
+                    _Actress_to_track.Add("Misaki Nanami");
+                    _Actress_to_track.Add("Mitsumi An");
+                    _Actress_to_track.Add("Mitani Akari");
+                    _Actress_to_track.Add("Narumi Konoha");
+                    _Actress_to_track.Add("Ogura Yuna");
+                    _Actress_to_track.Add("Ono Yuuko");
+                    _Actress_to_track.Add("Satou Hakune");
+                    _Actress_to_track.Add("Shinoda Yuu");
+                    _Actress_to_track.Add("Shirasaka Mian");
+                    _Actress_to_track.Add("Shirato Hana");
+                    _Actress_to_track.Add("Shiromine Miu");
+                    _Actress_to_track.Add("Suzumori Remu");
+                    _Actress_to_track.Add("Tsujii Honoka");
+                    _Actress_to_track.Add("Usui Saryuu");
+                    _Actress_to_track.Add("Utsunomiya Shion");
+                    _Actress_to_track.Add("Yamaguchi Haru");
+                    _Actress_to_track.Add("Yuzuriha Karen");
+
+                }
+                return _Actress_to_track;
+            }
+        }
         static string UppercaseWords(string value)
         {
             char[] array = value.ToCharArray();
@@ -162,8 +216,22 @@ namespace StoGen.Classes.Catalog
                                     item.Kind = $"{item.Kind}ENH";
 
 
+                                string found_actress = string.Empty;
                                 list.Add(item);
-                                Console.WriteLine($"{item.Name} - new! {AddedTotal}");
+                                foreach (var actress in Actress_to_track)
+                                {
+                                    if (item.Star.Contains(actress)) 
+                                    {
+                                        Actress_found.Add($"{item.Name}-{actress}");
+                                        found_actress = actress;
+                                        break;
+                                    }
+                                }
+                                
+                                if (string.IsNullOrEmpty(found_actress))
+                                    Console.WriteLine($"{item.Name} - new! {AddedTotal}");
+                                else
+                                    Console.WriteLine($"{item.Name} - new for tracked actress - {found_actress}! {AddedTotal}");
                                 result = 1;
                             }
                         }

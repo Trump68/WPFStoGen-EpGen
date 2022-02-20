@@ -58,12 +58,13 @@ namespace EPCat.Model
                     }
                     foreach (var ln in lines)
                     {
-                        if (ln.Contains("START="))
-                        {
-                            string val = ln.Replace("START=", string.Empty);
-                            startstr = int.Parse(val);
-                        }
-                        else if (ln.Contains("MAX="))
+                        //if (ln.Contains("START="))
+                        //{
+                        //    string val = ln.Replace("START=", string.Empty);
+                        //    startstr = int.Parse(val);
+                        //}
+                        //else 
+                        if (ln.Contains("MAX="))
                         {
                             string val = ln.Replace("MAX=", string.Empty);
                             max = int.Parse(val);

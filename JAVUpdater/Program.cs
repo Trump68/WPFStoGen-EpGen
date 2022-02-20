@@ -105,6 +105,17 @@ namespace JAVUpdater
                 File.WriteAllLines(filetowrite,stlist);
             }
 
+            if (CatalogLoader.Actress_found.Any()) 
+            {
+                string filetowrite = Path.Combine(ACTRESS_FOLDER, $"Actress_found_{DateTime.Today.ToShortDateString()}.txt");
+                File.WriteAllLines(filetowrite, CatalogLoader.Actress_found);
+                foreach (var item in CatalogLoader.Actress_found)
+                {
+                    JAV.JavLibraryMakeBat(item);
+                }
+                
+            }
+
         }
 
         private static void ReadIni()
