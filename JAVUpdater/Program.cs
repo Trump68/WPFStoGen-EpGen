@@ -74,24 +74,27 @@ namespace JAVUpdater
 
                 foreach (var item in list)
                 {
-                    var stars = item.Star.Split(',');
-                    foreach (var star in stars)
+                    if (!string.IsNullOrEmpty(item.Star))
                     {
-                        if (actresses.ContainsKey(star)) 
+                        var stars = item.Star.Split(',');
+                        foreach (var star in stars)
                         {
-                            var value = actresses[star];
-                            int total = value.Item1 + 1;
-                            int exists = value.Item2;
-                            double percent = value.Item3;
-                            if (item.M4V > 0) 
+                            if (actresses.ContainsKey(star))
                             {
-                                exists = exists + 1;
+                                var value = actresses[star];
+                                int total = value.Item1 + 1;
+                                int exists = value.Item2;
+                                double percent = value.Item3;
+                                if (item.M4V > 0)
+                                {
+                                    exists = exists + 1;
+                                }
+                                if (exists > 0)
+                                {
+                                    percent = (exists * 100) / total;
+                                }
+                                actresses[star] = new Tuple<int, int, double>(total, exists, percent);
                             }
-                            if (exists > 0) 
-                            {
-                                percent =  (exists * 100) / total;
-                            }
-                            actresses[star] = new Tuple<int, int, double>(total, exists, percent);
                         }
                     }
                 }
@@ -109,7 +112,7 @@ namespace JAVUpdater
             {
                 string filetowrite = Path.Combine(ACTRESS_FOLDER, $"Actress_found_{DateTime.Today.ToShortDateString()}.txt");
                 File.WriteAllLines(filetowrite, CatalogLoader.Actress_found);
-                foreach (var item in CatalogLoader.Actress_found)
+                foreach (var item in CatalogLoader.FoundActress)
                 {
                     JAV.JavLibraryMakeBat(item);
                 }
