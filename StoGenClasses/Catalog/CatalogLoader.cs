@@ -61,7 +61,15 @@ namespace StoGen.Classes.Catalog
                     _Actress_to_track.Add("Utsunomiya Shion");
                     _Actress_to_track.Add("Yamaguchi Haru");
                     _Actress_to_track.Add("Yuzuriha Karen");
-
+                    _Actress_to_track.Add("Hayashi Ryou");
+                    _Actress_to_track.Add("Nagashima Saori");
+                    _Actress_to_track.Add("Kuriyama Rio");
+                    _Actress_to_track.Add("Komatsu Azu");
+                    _Actress_to_track.Add("Yamagishi Aika");
+                    _Actress_to_track.Add("Yoshitaka Nene");
+                    _Actress_to_track.Add("Kotooka Miyuki");
+                    _Actress_to_track.Add("Natsuki Maron");
+                    
                 }
                 return _Actress_to_track;
             }
@@ -468,7 +476,7 @@ namespace StoGen.Classes.Catalog
                 else if (item == "Titose Yuki") result.Add("Saegusa Chitose");
                 else if (item == "Itika Matumoto") result.Add("Matsumoto Ichika");
                 else if (item == "Sara Aizawa") result.Add("Aizawa Sara");
-                else if (item == "Maron Natuki") result.Add("Natsuki Maron");
+                else if (item == "Maron Natuki") result.Add("Natsuki Maron");                
                 else if (item == "Honoka Tuzii") result.Add("Tsujii Honoka");
                 else if (item == "有岡みう") result.Add("Arioka Miu");
                 else if (item == "南いろは") result.Add("Minami Iroha");
@@ -670,11 +678,9 @@ namespace StoGen.Classes.Catalog
                 else if (item == "Rin Yuna") result.Add("Hayashi Yuna");
                 else if (item == "Be Fujii Ai") result.Add("Fujii Aisa");
                 else if (item == "Komatu An") result.Add("Komatsu Azu");
-                else if (item == "") result.Add("");
-                else if (item == "") result.Add("");
-                else if (item == "") result.Add("");
-                else if (item == "") result.Add("");
-                else if (item == "") result.Add("");
+                else if (item == "Ryou Ayumi") result.Add("Hayashi Ryou");
+                else if (item == "Miura Ayumi") result.Add("Hayashi Ryou");
+                else if (item == "sankishiaihana") result.Add("Yamagishi Aika");
                 else if (item == "") result.Add("");
                 else if (item == "") result.Add("");
                 else if (item == "") result.Add("");
