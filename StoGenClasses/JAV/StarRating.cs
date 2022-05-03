@@ -50,6 +50,7 @@ namespace EPCat.Model
             }
             return result;
         }
+        /*
         public static void SaveJAVActress()
         {
             List<string> lines = new List<string>();
@@ -87,5 +88,6 @@ namespace EPCat.Model
                 }
             }
         }
+        */
     }
 }

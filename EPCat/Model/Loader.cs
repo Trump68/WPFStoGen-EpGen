@@ -742,7 +742,21 @@ namespace EPCat.Model
         //        serializer.Serialize(writer, list);
         //    }
         //}
+        private void SortToCatalog(string folder) 
+        {
+            CatalogLoader.UpdateFolder(folder, ref Source, false, false, null, CurrentCatalog, false);
+            if (string.IsNullOrEmpty(CurrentCatalog)) return;
+            if (File.Exists(CurrentCatalog))
+                File.Copy(CurrentCatalog, Path.ChangeExtension(CurrentCatalog, "bak"), true);
+            System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<EpItem>));
+            Console.WriteLine($"Save catalog..");
+            using (var writer = new StreamWriter(CurrentCatalog))
+            {
 
+                serializer.Serialize(writer, Source);
+            }
+            Environment.Exit(0);
+        }
         internal void ParseLine(string line)
         {
 
@@ -751,19 +765,7 @@ namespace EPCat.Model
             {
 
                 DoTempWork1(line);
-                
-                CatalogLoader.UpdateFolder(@"e:\!CATALOG\PRS", ref Source, false, false, null, CurrentCatalog, false);
-                if (string.IsNullOrEmpty(CurrentCatalog)) return;
-                if (File.Exists(CurrentCatalog))
-                    File.Copy(CurrentCatalog, Path.ChangeExtension(CurrentCatalog, "bak"), true);
-                System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<EpItem>));
-                Console.WriteLine($"Save catalog..");
-                using (var writer = new StreamWriter(CurrentCatalog))
-                {
-
-                    serializer.Serialize(writer, Source);
-                }
-                Environment.Exit(0);
+                SortToCatalog(@"e:\!CATALOG\PRS");
             }
             else if (line.StartsWith(c_PrepareFolder))
             {
@@ -779,6 +781,10 @@ namespace EPCat.Model
                 string parameters = (line.Replace(c_LoadCatalog, string.Empty));
                 CurrentCatalog = parameters.ToLower();
                 Source = CatalogLoader.LoadCatalog(CurrentCatalog);
+                if (!Source.Any()) 
+                {
+                    SortToCatalog(@"e:\!CATALOG\HEN");
+                }
             }
             else if (line.StartsWith(c_MoveFiles))
             {

@@ -42,7 +42,7 @@ namespace JAVUpdater
                     if (list == null)
                         list = new List<EpItem>();
                     Console.WriteLine($"- done.");
-                    StarRating.LoadJAVActress(FOLDERS.First());
+                    //StarRating.LoadJAVActress(FOLDERS.First());
                     if (DOBACKUP == 0  || !Directory.Exists(BACKUPFOLDER))
                     {
                         BACKUPFOLDER = null;

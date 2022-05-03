@@ -366,8 +366,11 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                     {
                         cadre = new INFO_SceneCadre(info.Group, this.GroupList);
                         cadre.Group = info.Description;
-                        this.GroupList.First().Cadres.Add(cadre);
-                        cadre.Order = this.GroupList.First().Cadres.Count;
+                        if (this.GroupList.Any())
+                        {
+                            this.GroupList.First().Cadres.Add(cadre);
+                            cadre.Order = this.GroupList.First().Cadres.Count;
+                        }
                     }
                     if (info.Order < 0)
                         info.Order = cadre.Infos.Count;

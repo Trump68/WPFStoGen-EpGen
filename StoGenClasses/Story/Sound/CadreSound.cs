@@ -24,7 +24,7 @@ namespace StoGen.Classes.Story
 
         //BGM
         List<Tuple<string, string, string>> bgmlist = new List<Tuple<string, string, string>>();
-        string bgmroot = @"e:\!EPCATALOG\SOUND\BGM\";
+        string bgmroot = @"e:\!CATALOG\Audio\";
         private void FillBGM()
         {
             string catalog = "NTRPG2";
@@ -106,7 +106,7 @@ namespace StoGen.Classes.Story
 
         //Sound Effect
         List<Tuple<string, string, string>> seffectlist = new List<Tuple<string, string, string>>();
-        string seffectroot = @"e:\!EPCATALOG\SOUND\EFFECT\";
+        string seffectroot = @"e:\!CATALOG\Audio\";
         private void FillSoundEffest()
         {
             string catalog = "Other";

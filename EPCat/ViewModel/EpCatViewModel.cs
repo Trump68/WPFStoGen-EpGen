@@ -1019,6 +1019,8 @@ namespace EPCat
 
             if (Story01.Name == scenarioName)
                 maker = new Story01();
+            if (Story02.Name == scenarioName)
+                maker = new Story02();
             if (Story01_01.Name == scenarioName)
                 maker = new Story01_01();
             if ("Girl 0001" == scenarioName)
@@ -1039,6 +1041,7 @@ namespace EPCat
                     _Scenarious = new List<string>();
                     _Scenarious.Add(Story01.Name);
                     _Scenarious.Add(Story01_01.Name);
+                    _Scenarious.Add(Story02.Name);
                     _Scenarious.Add("Girl 0001");
                     _Scenarious.Add("Girl 0002");
                 }

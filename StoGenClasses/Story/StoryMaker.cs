@@ -85,6 +85,8 @@ namespace StoGen.Classes.Story
             Scenario.Add(old);
         }
 
+        public List<string> Story = new List<string>();
+
         public void Generate(string path)
         {
             StoryMaker.StoryPath = path;
@@ -93,6 +95,8 @@ namespace StoGen.Classes.Story
             GenerateScenario();
             newscenario.LoadFrom(Scenario);
             SetParameters(newscenario);
+            
+            newscenario.Story = string.Join("\n", this.Story);
             newscenario.SaveToFile(path, null);
         }
         public StoryMaker()

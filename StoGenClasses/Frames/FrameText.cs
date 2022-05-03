@@ -42,7 +42,7 @@ namespace StoGen.Classes
         public System.Threading.Timer timer;
         public System.Threading.Timer timer2;
         public static TransitionManager tranManager = new TransitionManager();
-        public static int LetterPause = 40;
+        public static int LetterPause = 5;
         public FrameText() : base()
         {
             TextList = new List<string>();

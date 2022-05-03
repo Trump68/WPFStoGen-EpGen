@@ -953,6 +953,5 @@ namespace StoGen.Classes.Story.Persons
             AddBody("Middle", "Guy 01",                     "0001.png");
             AddBody("Middle", "Guy 02",                     "0002.png");
         }
-    }
-   
+    }  
 }

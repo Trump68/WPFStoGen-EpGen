@@ -70,9 +70,12 @@ namespace StoGen.Classes
         }
         public void Destroy()
         {
-            foreach (var cadre in Cadres)
+            if (Cadres != null)
             {
-                cadre.Destroy();
+                foreach (var cadre in Cadres)
+                {
+                    cadre.Destroy();
+                }
             }
         }
         public int CadreId { get; set; } 

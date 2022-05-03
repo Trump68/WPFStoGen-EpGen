@@ -17,6 +17,10 @@ using System.Media;
 using StoGenerator;
 using StoGen.Classes.Data.Games;
 using StoGen.Classes;
+using System.Linq;
+using StoGen.Classes.Scene;
+using StoGen.Classes.SceneCadres;
+using StoGenMake;
 
 namespace StoGenWPF
 {
@@ -141,12 +145,41 @@ namespace StoGenWPF
             
         }
 
-        
-        
-    
 
+
+
+        private bool isAutonomus = false;
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            var CommandArgs = System.Environment.GetCommandLineArgs().ToList();
+            if (CommandArgs.Count > 1 && CommandArgs[1].Contains(".epcatsi")) 
+            {
+                
+                string fileToRun = CommandArgs[1];              
+                if (!string.IsNullOrEmpty(fileToRun))
+                {
+                    SCENARIO story = new SCENARIO();
+                    List<string> clipsinstr = new List<string>(File.ReadAllLines(fileToRun));
+                    story.LoadFrom(clipsinstr);
+                    story.FullFileName = fileToRun;
+                    story.FileName = Path.GetFileNameWithoutExtension(fileToRun);
+                    StoryScene scene = new StoryScene();
+
+                    scene.CatalogPath = Path.GetDirectoryName(fileToRun);
+                    List<INFO_SceneCadre> list = new List<INFO_SceneCadre>();
+                    foreach (var group in story.GroupList.OrderBy(x => x.Order))
+                    {
+                        list.AddRange(group.Cadres.OrderBy(x => x.Order));
+                    }
+                    scene.SetScenario(story, list);
+                    GlobalMenuCreator = GameWorldFactory.GameWorld;
+                    Scene = scene;
+                    StartPageNum = 1;
+                    StartOnLoad = true;
+                    isAutonomus = true;
+                }
+                
+            }
             if (StartOnLoad)
                 this.Start(StartPageNum);           
         }
@@ -245,7 +278,8 @@ namespace StoGenWPF
             else if (e.Key == Key.Escape)
             {
                 this.Hide();
-                Stop();             
+                Stop();
+                if (isAutonomus) this.Close();
             }
             else if (
                 e.Key == Key.NumPad1 || e.Key == Key.NumPad2 || e.Key == Key.NumPad3 || e.Key == Key.NumPad4 

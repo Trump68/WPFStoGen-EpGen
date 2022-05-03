@@ -69,6 +69,7 @@ namespace StoGen.Classes.Catalog
                     _Actress_to_track.Add("Yoshitaka Nene");
                     _Actress_to_track.Add("Kotooka Miyuki");
                     _Actress_to_track.Add("Natsuki Maron");
+                    _Actress_to_track.Add("Tsujii Honoka");
                     
                 }
                 return _Actress_to_track;
@@ -681,12 +682,12 @@ namespace StoGen.Classes.Catalog
                 else if (item == "Ryou Ayumi") result.Add("Hayashi Ryou");
                 else if (item == "Miura Ayumi") result.Add("Hayashi Ryou");
                 else if (item == "sankishiaihana") result.Add("Yamagishi Aika");
-                else if (item == "") result.Add("");
-                else if (item == "") result.Add("");
-                else if (item == "") result.Add("");
-                else if (item == "") result.Add("");
-                else if (item == "") result.Add("");
-                else if (item == "") result.Add("");
+                else if (item == "Sankishiaihana") result.Add("Yamagishi Aika");
+                else if (item == "Itika Hosimiya") result.Add("Hoshimiya Ichika");
+                else if (item == "Akari Neo") result.Add("Neo Akari");
+                else if (item == "Miru2") result.Add("Sakamichi Miru");
+                else if (item == "Kizaki Jieshika") result.Add("Kizaki Jessica");
+                else if (item == "Jieshika Kizaki") result.Add("Kizaki Jessica");
                 else if (item == "") result.Add("");
                 else if (item == "") result.Add("");
                 else if (item == "") result.Add("");

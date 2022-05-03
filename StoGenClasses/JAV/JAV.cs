@@ -42,6 +42,12 @@ namespace EPCat.Model
                     Console.WriteLine($"{item} - completed");
                     continue;
                 }
+                check = Path.Combine($@"{disc}:\!CATALOG\JAV\{item}\", "completed.txt");
+                if (File.Exists(check))
+                {
+                    Console.WriteLine($"{item} - completed");
+                    continue;
+                }
                 check = Path.Combine($@"{disc}:\!CATALOG\JAV\{item}\", "updated.txt");                
                 if (File.Exists(check))
                 {
