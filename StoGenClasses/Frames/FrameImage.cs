@@ -367,10 +367,14 @@ namespace StoGen.Classes
                     continue;
                 }
 
+                
+                
+
                 if (string.IsNullOrEmpty(Pics[i].Props.FileName) || string.IsNullOrEmpty((Path.GetFileName(Pics[i].Props.FileName))))
                 {
                     continue;
                 }
+                
                 else if (!Pics[i].Props.FileName.EndsWith("CANVAS") && !File.Exists(Pics[i].Props.FileName))
                 {
                     XtraMessageBox.Show(Pics[i].Props.FileName, "File not exists", System.Windows.Forms.MessageBoxButtons.OK, MessageBoxIcon.Error);

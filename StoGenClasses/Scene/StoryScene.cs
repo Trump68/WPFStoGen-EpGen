@@ -31,24 +31,25 @@ namespace StoGen.Classes.Data.Games
         {
             Story = story;
             CadreList = list;
+            Story.CatalogPath = this.CatalogPath;
             this.Process(null);
         }
 
         private string GetAbsolutePath(string path)
         {
-            if (!string.IsNullOrEmpty(path) && path.StartsWith(@".\"))
-            {
+            if (!string.IsNullOrEmpty(path) && !Path.IsPathRooted(path))
+            {                
                 if (!string.IsNullOrEmpty(Story.GamePath))
                 {
-                    return path.Replace(@".\", $@"{Story.GamePath}\");
+                    return Path.Combine(Story.GamePath,path);
                 }
                 else if (!string.IsNullOrEmpty(Story.DefVisFile))
                 {
-                    return path.Replace(@".\", $@"{Story.DefVisFile}\");
+                    return Path.Combine(Story.DefVisFile, path);
                 }
                 else 
                 {
-                    return path.Replace(@".\", $@"{Story.CatalogPath}\DATA\");
+                    return Path.Combine(Story.CatalogPath, path);
                 }
             }
             

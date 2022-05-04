@@ -52,9 +52,24 @@ namespace StoGen.Classes.Story
 
             // Creating events from figure
             Girl.Events.Add(new Tuple<string, string>("Event 1", @"e:\!CATALOG\PERSONS\!FEM\VAR\Azuki Kurenai\001\Event 001.jpg"));
+            Girl.Events.Add(new Tuple<string, string>("Event 2", @"e:\!CATALOG\PERSONS\!FEM\VAR\Azuki Kurenai\002\001.jpg"));
+            Girl.Events.Add(new Tuple<string, string>("Event 3", @"e:\!CATALOG\PERSONS\!FEM\VAR\Azuki Kurenai\003\002.jpg"));
+            Girl.Events.Add(new Tuple<string, string>("Event 4", @"e:\!CATALOG\PERSONS\!FEM\VAR\Azuki Kurenai\004\001.jpg"));
+
             Events = new Dictionary<string, string>();
-            this.Story.Add("@001\nЭто была фотка, сделанная Лысым, когда вчера они все вместе развлекались у него.~Ксения немного смущенно хихикнула:~'-Наш хозяин оказался не из скромных...'");
-            this.Story.Add("@002\nЭто была фотка, которую сделал наш вчерашний гость, когда вчера мы все вместе развлекались.~Ксения смущенно покраснела:~'-Он оказался совсем не из скромных...'");
+            this.Story.Add("@001\nЭто была фотка, сделанная Лысым, когда вчера они все вместе развлекались у него."
+                + "~~Ксения немного смущенно хихикнула:~'-Ну да, наш хозяин оказался не из скромных."                
+                + "~Как только ты ушел, он сразу взялся за меня.'"
+                + "~Я смогла ему сопротивляться, но в конце он ... чуть не добился своего..." 
+                + "~А все потому, что тебя слишком долго не было!'"
+                );
+            this.Story.Add("@002\nЭто была фотка, которую сделал наш вчерашний гость, когда вчера мы все вместе развлекались."
+                + "~~Ксения смущенно покраснела:~'-Он оказался совсем не из скромных..."
+                + "~Как только ты ушел, он сразу взялся за меня.'"
+                + "~Я ему сопротивлялась, но он ... чуть не вставил свой хуй..."
+                + "~Тебя слишком долго не было.."
+                + "~А в следующий раз он может выебать меня!'"
+                );            
 
         }
 
@@ -135,13 +150,17 @@ namespace StoGen.Classes.Story
             AddChapter(chapter, description);
 
             //AddCadre(); Text.Show(". . . . . . . . . . . .");
+            //Sound.CurrentSE = Effects["Wear moving"];
+            //Place.Current = Locations["Hero room morning"];
+
 
             Girl.CurrentEvent = "Event 1";
             Sound.CurrentBGM = "6";
-            //Sound.CurrentSE = Effects["Wear moving"];
-            //Place.Current = Locations["Hero room morning"];
             AddCadre(); Girl.SmartShowEvent(); Text.Show("@001"); Sound.Bgm(); Sound.SE();
-            AddCadre(); Girl.SmartShowEvent(); Text.Show("@002"); 
+            AddCadre(); Girl.SmartShowEvent(); Text.Show("@002");
+            Girl.CurrentEvent = "Event 2"; AddCadre(); Girl.SmartShowEvent(); Text.Show("@002");
+            Girl.CurrentEvent = "Event 3"; AddCadre(); Girl.SmartShowEvent(); Text.Show("@002");
+            Girl.CurrentEvent = "Event 4"; AddCadre(); Girl.SmartShowEvent(); Text.Show("@001");
             /*
 
             

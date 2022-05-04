@@ -58,6 +58,8 @@ namespace StoGen.Classes
         public FrameImage ImageFr = new FrameImage();
         public FrameProc ProcFr = new FrameProc();
         public FrameSound SoundFr = new FrameSound();
+        internal string Path;
+
         // public FrameControl ControlFr = new FrameControl();
         //public CadreInfo CadreInfo;
 
