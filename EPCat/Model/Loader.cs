@@ -781,7 +781,7 @@ namespace EPCat.Model
                 string parameters = (line.Replace(c_LoadCatalog, string.Empty));
                 CurrentCatalog = parameters.ToLower();
                 Source = CatalogLoader.LoadCatalog(CurrentCatalog);
-                if (!Source.Any()) 
+                if (!Source.Any() && line.Contains("hen.cat")) 
                 {
                     SortToCatalog(@"e:\!CATALOG\HEN");
                 }

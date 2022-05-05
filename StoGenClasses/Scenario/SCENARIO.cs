@@ -235,8 +235,11 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             List<string> description_lines = new List<string>();
             List<string> story_lines = new List<string>();
             List<string> rawdata_lines = new List<string>();
-            foreach (var line in clipsinstr)
+            foreach (var str in clipsinstr)
             {
+                string line = str.Trim();
+                if (string.IsNullOrEmpty(line))  continue;
+                if (line.StartsWith(@"//")) continue;
                 if (line.StartsWith("****METADATA START****"))
                 {
                     isMetadata = true;
@@ -319,38 +322,55 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                     }
                     else
                     {
-                        lines.Add(line);
+                        lines.Add(str);
                     }
                 }
             }
+
+
             this.Description = string.Join(Environment.NewLine, description_lines.ToArray());
             this.RawParameters = string.Join(Environment.NewLine, rawdata_lines.ToArray());
             this.Story = string.Join(Environment.NewLine, story_lines.ToArray());
             this.GroupList.Clear();
-            foreach (var line in lines)
+            string currentGroupID = null;
+            string currentID = null;
+            foreach (var str in lines)
             {
+                string line = str;
+                if (line.StartsWith(" ")) 
+                {
+                    int spacecount = 0;
+                    while (line.StartsWith(" "))
+                    {
+                        spacecount++;
+                        line = line.Substring(1);
+                    }
+                    if (spacecount == 2)
+                    {
+                        addGroup($"GroupId={line}");
+                        currentGroupID = line;
+                        continue;
+                    }
+                    else if (spacecount == 4)
+                    {
+                        line = $"Id={line};GR={currentGroupID}";
+                        addGroupId(line);
+                        currentID = line;
+                        continue;
+                    }
+                    else if (spacecount == 6)
+                    {
+                        line = $"GROUP={currentID};{line.Trim()}";                        
+                    }
+                }
+
                 if (line.StartsWith("GroupId="))
                 {
-                    INFO_SceneGroup group = INFO_SceneGroup.GenerateFromString(line);
-                    if (string.IsNullOrEmpty(group.Description))
-                    {
-                        group.Description = group.Id;
-                    }
-                    this.GroupList.Add(group);
+                    addGroup(line);
                 }
                 else if (line.StartsWith("Id="))
                 {
-                    INFO_SceneCadre cadre = INFO_SceneCadre.GenerateFromString(line, this.GroupList);
-                    var group = this.GroupList.FirstOrDefault(x => x.Id == cadre.Group);
-                    if (group == null)
-                    {
-                        group = new INFO_SceneGroup(cadre.Group);                       
-                        group.Description = cadre.Group;                        
-                        this.GroupList.Add(group);
-                        group.Order = this.GroupList.Count;
-                    }
-                    cadre.Owner = this.GroupList;
-                    group.Cadres.Add(cadre);
+                    addGroupId(line);
                 }
                 else
                 {
@@ -379,6 +399,29 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 }
             }
             AssignRawParameters();
+        }
+        private void addGroup(string line)
+        {
+            INFO_SceneGroup group = INFO_SceneGroup.GenerateFromString(line);
+            if (string.IsNullOrEmpty(group.Description))
+            {
+                group.Description = group.Id;
+            }
+            this.GroupList.Add(group);
+        }
+        private void addGroupId(string line)
+        {
+            INFO_SceneCadre cadre = INFO_SceneCadre.GenerateFromString(line, this.GroupList);
+            var group = this.GroupList.FirstOrDefault(x => x.Id == cadre.Group);
+            if (group == null)
+            {
+                group = new INFO_SceneGroup(cadre.Group);
+                group.Description = cadre.Group;
+                this.GroupList.Add(group);
+                group.Order = this.GroupList.Count;
+            }
+            cadre.Owner = this.GroupList;
+            group.Cadres.Add(cadre);
         }
         public void SaveToFile(string ScenDir, string tempDir)
         {

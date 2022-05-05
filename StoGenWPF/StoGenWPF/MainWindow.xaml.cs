@@ -192,10 +192,10 @@ namespace StoGenWPF
             {
                 SGManager.ProcessPrevCadre();
             }
-            else if (e.Key == Key.X)
+            else if (e.Key == Key.X || e.Key == Key.Enter)
             {
                 SGManager.ProcessNextCadre();
-                DoScreenShot(30, false);
+                //DoScreenShot(30, false);
             }
             else if (e.Key == Key.F12)
             {
@@ -221,7 +221,7 @@ namespace StoGenWPF
             {
                 //InfoLocation.Visibility = (InfoLocation.Visibility ==Visibility.Visible) ? Visibility.Hidden : Visibility.Visible;
                 //InfoDate.Visibility = (InfoDate.Visibility == Visibility.Visible) ? Visibility.Hidden : Visibility.Visible;
-                DoScreenShot(30, true);
+                //DoScreenShot(30, true);
             }
             else if (e.Key == Key.F6)
             {
@@ -270,10 +270,6 @@ namespace StoGenWPF
             else if (e.Key == Key.F3)
             {
                 SGManager.ChangeVisibleChoiceMenu(MenuType.Common); // full
-            }
-            else if (e.Key == Key.Enter)
-            {
-                SGManager.ApplayVisibleChoiceMenu(); 
             }
             else if (e.Key == Key.Escape)
             {

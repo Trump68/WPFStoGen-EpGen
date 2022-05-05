@@ -22,29 +22,42 @@ namespace StoGen.Classes.Transition
         {
             TransitionList.Add(trandata);
         }
-
+        public bool isStarted = false;
         internal bool Process()
-        {
+        {            
             bool completed = true;
-            foreach (var TranSeriesForImage in TransitionList)
+            foreach (var datalist in TransitionList)
             {
-                foreach (var TranSeries in TranSeriesForImage.Transitions)
+                foreach (var objectTransitionList in datalist.Transitions)
                 {
-                    var tran = TranSeries.Where(x => x.Active).FirstOrDefault();
-                    if (tran != null)
+                    if (!isStarted)
+                    {
+                        objectTransitionList.ForEach(x => x.Init());                        
+                    }
+                    var activeTransition = objectTransitionList.Where(x => x.Active).FirstOrDefault();
+                    if (activeTransition != null)
                     {
                         completed = false;
                         bool rn;
-                        if (tran.Execute(out rn))
+                        if (activeTransition.Execute(out rn))
                         {
-                            if (tran.IsEndless)
+                            if (activeTransition.ExecutionsCountRestricted) 
                             {
-                                TranSeries.ForEach(x => x.Active = true);
+                                activeTransition.ExecutionsLeft = activeTransition.ExecutionsLeft - 1;
+                            }
+                            if (activeTransition.IsEndless)
+                            {
+                                objectTransitionList.ForEach(x => 
+                                {
+                                    if (!x.ExecutionsCountRestricted || x.ExecutionsLeft>0)
+                                        x.Init(); 
+                                });                                
                             }
                         }
                     }
                 }
             }
+            isStarted = true;
             return completed;
         }
     }
@@ -151,24 +164,55 @@ namespace StoGen.Classes.Transition
                 {
                     this.Option = vals[1];
                 }
-                if (vals.Length > 2 && !string.IsNullOrEmpty(vals[2])) this.Span = long.Parse(vals[2]);
-                if (vals.Length > 3 && !string.IsNullOrEmpty(vals[3])) this.REnd = long.Parse(vals[3]);
+                if (vals.Length > 2 && !string.IsNullOrEmpty(vals[2]))
+                {
+                    if (vals[2].StartsWith("$")) // random run-time calculation
+                    {
+                        var items = vals[2].Split('-');
+                        if (items.Length == 1) 
+                        {
+                            this.SpanMax = long.Parse(items[0].Substring(1));
+                        }
+                        else if (items.Length > 1)
+                        {
+                            this.SpanMin = long.Parse(items[0].Substring(1));
+                            this.SpanMax = long.Parse(items[1]);
+                        }
+                    }
+                    else
+                    {
+                        this.Span = long.Parse(vals[2]);
+                    }
+                }
+                if (vals.Length > 3 && !string.IsNullOrEmpty(vals[3]) && !vals[3].StartsWith("c"))
+                {
+                    this.REnd = long.Parse(vals[3]);
+                }
+                if (vals.Last().StartsWith("c"))
+                {
+                    ExecutionsCountRestricted = true;
+                    ExecutionsLeft = int.Parse(vals.Last().Substring(1));
+                }
                 this.calculator = TransitionCalculator.GetCalculator(this);
             }
             internal double Counter = 0;
             internal double Started = 0;
+            public int ExecutionsLeft;
+            public bool ExecutionsCountRestricted = false;
             public long Span;
+            public long SpanMin;
+            public long SpanMax;
             public double Begin;
             public double End;
             public double REnd;
             public string Option;
-            public bool Active = true;
+            public bool Active = false;
             public int Level;
             public bool IsEndless = false;
             public bool IsRelative = false;
             public bool isReverse = false;
             public virtual bool Execute(out bool repaintNeed)
-            {
+            {                
                 repaintNeed = false;
                 return false;
             }
@@ -188,6 +232,15 @@ namespace StoGen.Classes.Transition
             public double CalcTran()
             {
                 return calculator.Calc();
+            }
+            public void Init() 
+            {
+                if (SpanMax > 0) 
+                {
+                    Random rnd = new Random();
+                    Span = rnd.Next(Convert.ToInt32(SpanMin), Convert.ToInt32(SpanMax));
+                }
+                Active = true;
             }
         }
         public class TransitionCalculator

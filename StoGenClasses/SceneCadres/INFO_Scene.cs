@@ -241,7 +241,22 @@ namespace StoGen.Classes
                 if (str.StartsWith("FILE="))
                 {
                     this.File = str.Replace("FILE=", string.Empty);
-                }              
+                }
+                if (str.StartsWith("TEXT~") || str.StartsWith("TEXT="))
+                {
+                    this.Kind = 1; 
+                    this.Template = str.Replace("TEXT=", string.Empty).Replace("TEXT", string.Empty);
+                }
+                if (str.StartsWith("IMAGE~") || str.StartsWith("IMAGE="))
+                {
+                    this.Kind = 0;
+                    this.Template = str.Replace("IMAGE=", string.Empty).Replace("IMAGE", string.Empty);
+                }
+                if (str.StartsWith("SOUND~") || str.StartsWith("SOUND="))
+                {
+                    this.Kind = 6;
+                    this.Template = str.Replace("SOUND=", string.Empty).Replace("SOUND", string.Empty);
+                }
                 else if (str.StartsWith("DSC="))
                 {
                     this.Description = str.Replace("DSC=", string.Empty);
