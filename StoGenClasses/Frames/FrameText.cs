@@ -9,13 +9,19 @@ using System.Windows;
 using StoGenMake.Elements;
 using System.Linq;
 using StoGen.Classes.Transition;
+using System.Windows.Media.Effects;
 
 namespace StoGen.Classes
 {
+
     public class FrameText : Frame
     {
+        private seTe textdata1;
+        private seTe textdata2;
+
         public static bool Blocked = false;
-        public static List<string> TextList { get; set; }
+        //public static List<string> TextList { get; set; }
+        /*
         public string Text
         {
             set
@@ -24,28 +30,31 @@ namespace StoGen.Classes
                 TextList.Add(value);
             }
         }
-        public string FontName { get; set; }
-        public int FontSize { get; set; }
-        public int FontStyle { get; set; }
-        public string FontColor { get; set; }
-        public Color BackColor { get; set; }
-        public int Size { get; set; }
-        public int Width { get; set; }
-        public int Bottom { get; set; }
-        public string Transition { get; set; }
-        public int Opacity { get; set; }
-        public int Shift { get; set; }
-        public int HAlig { get; set; }
-        public int VAlig { get; set; }
+        */
+        //public string FontName { get; set; }
+        //public int FontSize { get; set; }
+        //public int FontStyle { get; set; }
+        //public string FontColor { get; set; }
+        //public Color BackColor { get; set; }
+        //public int Size { get; set; }
+        //public int Width { get; set; }
+        //public int Bottom { get; set; }
+        //public string Transition { get; set; }
+        //public int Opacity { get; set; }
+        //public int Shift { get; set; }
+        //public int HAlig { get; set; }
+        //public int VAlig { get; set; }
         public static bool Animated { get; set; } = true;
         public bool ClearBack { get; set; } = false;
         public System.Threading.Timer timer;
         public System.Threading.Timer timer2;
         public static TransitionManager tranManager = new TransitionManager();
         public static int LetterPause = 5;
+
+
         public FrameText() : base()
         {
-            TextList = new List<string>();
+            //TextList = new List<string>();
             timer = new System.Threading.Timer(new TimerCallback(TimerProc), null, 100, 100);
             timer2 = new System.Threading.Timer(new TimerCallback(Timer2Proc), null, LetterPause, LetterPause);
         }
@@ -62,7 +71,7 @@ namespace StoGen.Classes
         {
             timer2.Change(Timeout.Infinite, Timeout.Infinite);
 
-            RunNext op1 = new RunNext(FrameText.ProcessLoopDelegate2);
+            RunNext op1 = new RunNext(ProcessLoopDelegate2);
 
             Projector.PicContainer.Clip.Dispatcher.Invoke(op1, System.Windows.Threading.DispatcherPriority.Render);
             if (!base.Stopped)
@@ -74,248 +83,275 @@ namespace StoGen.Classes
             FrameText.tranManager.Process();
         }
 
-        public static string rest_text = string.Empty;
-        public static string show_text = string.Empty;
-        public static void ProcessLoopDelegate2()
+        public static string rest_text1 = string.Empty;
+        public static string show_text1 = string.Empty;
+        public static string rest_text2 = string.Empty;
+        public static string show_text2 = string.Empty;
+        public void ProcessLoopDelegate2()
         {
-            if (!string.IsNullOrEmpty(rest_text)) 
+            if (!string.IsNullOrEmpty(rest_text1)) 
             {
-                show_text = show_text + rest_text[0];
-                rest_text = rest_text.Remove(0,1);
-                Projector.TextBlock1.Text = show_text;
-                Projector.TextBlock2.Text = show_text;
-                Projector.TextBlock3.Text = show_text;
-                Projector.TextBlock4.Text = show_text;
+                show_text1 = show_text1 + rest_text1[0];
+                rest_text1 = rest_text1.Remove(0,1);
+                Projector.TextBlock1.Text = show_text1;
+                Projector.TextBlock2.Text = show_text1;
+                Projector.TextBlock3.Text = show_text1;
+                Projector.TextBlock4.Text = show_text1;
 
-                if (string.IsNullOrEmpty(rest_text)) 
+                if (string.IsNullOrEmpty(rest_text1)) 
                 {
-                    show_text = string.Empty;
-                    Blocked = false;
+                    show_text1 = string.Empty;
                 }
             }
+            if (!string.IsNullOrEmpty(rest_text2))
+            {
+                show_text2 = show_text2 + rest_text2[0];
+                rest_text2 = rest_text2.Remove(0, 1);
+                Projector.TextBlock21.Text = show_text2;
+                Projector.TextBlock22.Text = show_text2;
+                Projector.TextBlock23.Text = show_text2;
+                Projector.TextBlock24.Text = show_text2;
 
+                if (string.IsNullOrEmpty(rest_text2))
+                {
+                    show_text2 = string.Empty;                   
+                }
+            }
+            
+            if (string.IsNullOrEmpty(rest_text1) && string.IsNullOrEmpty(rest_text2))
+                Blocked = false;
         }
 
+        private void SetTextData(int index, seTe data, Canvas canvas, Border brd1, Border brd2, Border brd3, Border brd4,
+            TextBlock tb1, TextBlock tb2, TextBlock tb3, TextBlock tb4,
+            DropShadowEffect dse1, DropShadowEffect dse2, DropShadowEffect dse3, DropShadowEffect dse4) 
+        {
+            if (data != null)
+            {
+                if (data.Size > 0)
+                {
+                    tb1.TextWrapping = TextWrapping.Wrap;
+                    tb2.TextWrapping = TextWrapping.Wrap;
+                    tb3.TextWrapping = TextWrapping.Wrap;
+                    tb4.TextWrapping = TextWrapping.Wrap;
 
+                    
+                    canvas.Height = data.Size;
+                    brd1.Height = data.Size;
+                    brd2.Height = data.Size;
+                    brd3.Height = data.Size;
+                    brd4.Height = data.Size;
+
+                    if (data.Width > 0) canvas.Width = data.Width;
+                    else canvas.Width = 800;
+
+                    brd1.Width = canvas.Width;
+                    brd2.Width = canvas.Width;
+                    brd3.Width = canvas.Width;
+                    brd4.Width = canvas.Width;
+
+                    double bm = data.Bottom;
+                    double tm = canvas.Margin.Top;
+                    canvas.Margin = new System.Windows.Thickness(data.Shift, tm, canvas.Margin.Right, bm);
+                    
+                }
+                if (!string.IsNullOrEmpty(data.T))
+                {
+                    TransitionData trandata = new TransitionData();
+                    trandata.Level = index;
+                    trandata.Parse(data.T, 2);
+                    FrameText.tranManager.Add(trandata);
+                }
+
+                if (!string.IsNullOrWhiteSpace(data.FontName))
+                {
+                    FontFamily font = new FontFamily(data.FontName);
+                    tb1.FontFamily = font;
+                    tb2.FontFamily = font;
+                    tb3.FontFamily = font;
+                    tb4.FontFamily = font;
+                }
+                if (data.FontSize > 0)
+                {
+                    tb1.FontSize = data.FontSize;
+                    tb2.FontSize = data.FontSize;
+                    tb3.FontSize = data.FontSize;
+                    tb4.FontSize = data.FontSize;
+                }
+                if (data.FontStyle == 0)
+                {
+                    tb1.FontStyle = FontStyles.Normal;
+                    tb2.FontStyle = FontStyles.Normal;
+                    tb3.FontStyle = FontStyles.Normal;
+                    tb4.FontStyle = FontStyles.Normal;
+                    tb1.FontWeight = FontWeights.Normal;
+                    tb2.FontWeight = FontWeights.Normal;
+                    tb3.FontWeight = FontWeights.Normal;
+                    tb4.FontWeight = FontWeights.Normal;
+                }
+                else if (data.FontStyle == 1)
+                {
+                    tb1.FontStyle = FontStyles.Italic;
+                    tb2.FontStyle = FontStyles.Italic;
+                    tb3.FontStyle = FontStyles.Italic;
+                    tb4.FontStyle = FontStyles.Italic;
+                    tb1.FontWeight = FontWeights.Normal;
+                    tb2.FontWeight = FontWeights.Normal;
+                    tb3.FontWeight = FontWeights.Normal;
+                    tb4.FontWeight = FontWeights.Normal;
+                }
+                else if (data.FontStyle == 2)
+                {
+                    tb1.FontStyle = FontStyles.Normal;
+                    tb2.FontStyle = FontStyles.Normal;
+                    tb3.FontStyle = FontStyles.Normal;
+                    tb4.FontStyle = FontStyles.Normal;
+                    tb1.FontWeight = FontWeights.Bold;
+                    tb2.FontWeight = FontWeights.Bold;
+                    tb3.FontWeight = FontWeights.Bold;
+                    tb4.FontWeight = FontWeights.Bold;
+                }
+                else if (data.FontStyle == 3)
+                {
+                    tb1.FontStyle = FontStyles.Italic;
+                    tb2.FontStyle = FontStyles.Italic;
+                    tb3.FontStyle = FontStyles.Italic;
+                    tb4.FontStyle = FontStyles.Italic;
+                    tb1.FontWeight = FontWeights.Bold;
+                    tb2.FontWeight = FontWeights.Bold;
+                    tb3.FontWeight = FontWeights.Bold;
+                    tb4.FontWeight = FontWeights.Bold;
+                }
+
+                if (data.Align == 1)
+                {
+                    tb1.TextAlignment = System.Windows.TextAlignment.Right;
+                    tb2.TextAlignment = System.Windows.TextAlignment.Right;
+                    tb3.TextAlignment = System.Windows.TextAlignment.Right;
+                    tb4.TextAlignment = System.Windows.TextAlignment.Right;
+                }
+                else if (data.Align == 0)
+                {
+                    tb1.TextAlignment = System.Windows.TextAlignment.Left;
+                    tb2.TextAlignment = System.Windows.TextAlignment.Left;
+                    tb3.TextAlignment = System.Windows.TextAlignment.Left;
+                    tb4.TextAlignment = System.Windows.TextAlignment.Left;
+                }
+                else if (data.Align == 2)
+                {
+                    tb1.TextAlignment = System.Windows.TextAlignment.Center;
+                    tb2.TextAlignment = System.Windows.TextAlignment.Center;
+                    tb3.TextAlignment = System.Windows.TextAlignment.Center;
+                    tb4.TextAlignment = System.Windows.TextAlignment.Center;
+                }
+                else if (data.Align == 3)
+                {
+                    tb1.TextAlignment = System.Windows.TextAlignment.Justify;
+                    tb2.TextAlignment = System.Windows.TextAlignment.Justify;
+                    tb3.TextAlignment = System.Windows.TextAlignment.Justify;
+                    tb4.TextAlignment = System.Windows.TextAlignment.Justify;
+                }
+
+                if (data.VAlign == 0)
+                {
+                    brd1.VerticalAlignment = VerticalAlignment.Top;
+                    brd2.VerticalAlignment = VerticalAlignment.Top;
+                    brd3.VerticalAlignment = VerticalAlignment.Top;
+                    brd4.VerticalAlignment = VerticalAlignment.Top;
+                    tb1.VerticalAlignment = VerticalAlignment.Top;
+                    tb2.VerticalAlignment = VerticalAlignment.Top;
+                    tb3.VerticalAlignment = VerticalAlignment.Top;
+                    tb4.VerticalAlignment = VerticalAlignment.Top;
+                }
+                else if (data.VAlign == 1)
+                {
+                    brd1.VerticalAlignment = VerticalAlignment.Stretch;
+                    brd2.VerticalAlignment = VerticalAlignment.Stretch;
+                    brd3.VerticalAlignment = VerticalAlignment.Stretch;
+                    brd4.VerticalAlignment = VerticalAlignment.Stretch;
+                    tb1.VerticalAlignment = VerticalAlignment.Center;
+                    tb2.VerticalAlignment = VerticalAlignment.Center;
+                    tb3.VerticalAlignment = VerticalAlignment.Center;
+                    tb4.VerticalAlignment = VerticalAlignment.Center;
+                }
+                else if (data.VAlign == 2)
+                {
+                    brd1.VerticalAlignment = VerticalAlignment.Bottom;
+                    brd2.VerticalAlignment = VerticalAlignment.Bottom;
+                    brd3.VerticalAlignment = VerticalAlignment.Bottom;
+                    brd4.VerticalAlignment = VerticalAlignment.Bottom;
+                    tb1.VerticalAlignment = VerticalAlignment.Bottom;
+                    tb2.VerticalAlignment = VerticalAlignment.Bottom;
+                    tb3.VerticalAlignment = VerticalAlignment.Bottom;
+                    tb4.VerticalAlignment = VerticalAlignment.Bottom;
+                }
+
+
+                if (!string.IsNullOrEmpty(data.FontColor))
+                {
+                    SolidColorBrush br = System.Windows.Media.Brushes.White;
+                    Projector.SetShadowEffect(true, dse1, dse2, dse3, dse4);
+                    tb2.Visibility = Visibility.Visible;
+                    tb3.Visibility = Visibility.Visible;
+                    tb4.Visibility = Visibility.Visible;
+                    if (data.FontColor.ToUpper() == "BLACK")
+                    {
+                        br = System.Windows.Media.Brushes.Black;
+                        Projector.SetShadowEffect(false, dse1, dse2, dse3, dse4);
+                        tb2.Visibility = Visibility.Hidden;
+                        tb3.Visibility = Visibility.Hidden;
+                        tb4.Visibility = Visibility.Hidden;
+                    }
+                    else if (data.FontColor.ToUpper() == "WHITE")
+                    {
+                        br = System.Windows.Media.Brushes.White;
+                    }
+                    else if (data.FontColor.ToUpper() == "RED")
+                        br = System.Windows.Media.Brushes.Red;
+                    else if (data.FontColor.ToUpper() == "BLUE")
+                        br = System.Windows.Media.Brushes.Blue;
+                    else if (data.FontColor.ToUpper() == "YELLOW")
+                        br = System.Windows.Media.Brushes.Yellow;
+                    else if (data.FontColor.ToUpper() == "CYAN")
+                        br = System.Windows.Media.Brushes.Cyan;
+                    else if (data.FontColor.ToUpper() == "CORAL")
+                        br = System.Windows.Media.Brushes.Coral;
+                    else
+                    {
+                        try
+                        {
+                            br = new System.Windows.Media.SolidColorBrush(
+                                                   (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(data.FontColor));
+                        }
+                        catch (Exception)
+                        {
+
+
+                        }
+                    }
+
+                    tb1.Foreground = br;
+                    tb2.Foreground = br;
+                    tb3.Foreground = br;
+                    tb4.Foreground = br;
+                }
+
+                canvas.Opacity = data.Opacity / 100;
+            }
+        }
         public override Cadre Repaint()
         {
 
             base.Repaint();
             FrameText.tranManager.Clear();
-            Projector.TextBlock1.TextWrapping  = TextWrapping.Wrap;            
-            Projector.TextBlock2.TextWrapping = TextWrapping.Wrap;
-            Projector.TextBlock3.TextWrapping = TextWrapping.Wrap;
-            Projector.TextBlock4.TextWrapping = TextWrapping.Wrap;
 
+            SetTextData(1, textdata1, Projector.TextCanvas, Projector.Border1, Projector.Border2, Projector.Border3, Projector.Border4,
+                Projector.TextBlock1, Projector.TextBlock2, Projector.TextBlock3, Projector.TextBlock4,
+                Projector.dropShadowEffect1, Projector.dropShadowEffect2, Projector.dropShadowEffect3, Projector.dropShadowEffect4);
+            SetTextData(2, textdata2, Projector.TextCanvas2, Projector.Border21, Projector.Border22, Projector.Border23, Projector.Border24,
+                Projector.TextBlock21, Projector.TextBlock22, Projector.TextBlock23, Projector.TextBlock24,
+                Projector.dropShadowEffect21, Projector.dropShadowEffect22, Projector.dropShadowEffect23, Projector.dropShadowEffect24);
 
-
-
-            if (Size > 0)
-            {
-                Projector.TextCanvas.Height = Size;
-                Projector.Border1.Height = Size;
-                Projector.Border2.Height = Size;
-                Projector.Border3.Height = Size;
-                Projector.Border4.Height = Size;
-
-                if (Width > 0) Projector.TextCanvas.Width = Width;
-                else Projector.TextCanvas.Width = 800;
-
-                Projector.Border1.Width = Projector.TextCanvas.Width;
-                Projector.Border2.Width = Projector.TextCanvas.Width;
-                Projector.Border3.Width = Projector.TextCanvas.Width;
-                Projector.Border4.Width = Projector.TextCanvas.Width;
-
-                double bm = Bottom;
-                double tm = Projector.TextCanvas.Margin.Top;
-                Projector.TextCanvas.Margin = new System.Windows.Thickness(Shift, tm, Projector.TextCanvas.Margin.Right, bm);
-            }
-            if (!string.IsNullOrEmpty(Transition))
-            {
-                TransitionData trandata = new TransitionData();
-                trandata.Parse(Transition,2);
-                FrameText.tranManager.Add(trandata);
-            }
-            //if (!ClearBack)
-            //    Projector.TextCanvas.Background = new SolidColorBrush(this.BackColor);
-            //else
-            //    Projector.TextCanvas.Background = null;
-
-            if (!string.IsNullOrWhiteSpace(FontName))
-            {
-                FontFamily font = new FontFamily(FontName);
-                Projector.TextBlock1.FontFamily = font;
-                Projector.TextBlock2.FontFamily = font;
-                Projector.TextBlock3.FontFamily = font;
-                Projector.TextBlock4.FontFamily = font;
-            }
-            if (FontSize > 0)
-            {
-                Projector.TextBlock1.FontSize = FontSize;
-                Projector.TextBlock2.FontSize = FontSize;
-                Projector.TextBlock3.FontSize = FontSize;
-                Projector.TextBlock4.FontSize = FontSize;
-            }
-            if (FontStyle == 0)
-            {
-                Projector.TextBlock1.FontStyle = FontStyles.Normal;
-                Projector.TextBlock2.FontStyle = FontStyles.Normal;
-                Projector.TextBlock3.FontStyle = FontStyles.Normal;
-                Projector.TextBlock4.FontStyle = FontStyles.Normal;
-                Projector.TextBlock1.FontWeight = FontWeights.Normal;
-                Projector.TextBlock2.FontWeight = FontWeights.Normal;
-                Projector.TextBlock3.FontWeight = FontWeights.Normal;
-                Projector.TextBlock4.FontWeight = FontWeights.Normal;
-            }
-            else if (FontStyle == 1)
-            {
-                Projector.TextBlock1.FontStyle = FontStyles.Italic;
-                Projector.TextBlock2.FontStyle = FontStyles.Italic;
-                Projector.TextBlock3.FontStyle = FontStyles.Italic;
-                Projector.TextBlock4.FontStyle = FontStyles.Italic;
-                Projector.TextBlock1.FontWeight = FontWeights.Normal;
-                Projector.TextBlock2.FontWeight = FontWeights.Normal;
-                Projector.TextBlock3.FontWeight = FontWeights.Normal;
-                Projector.TextBlock4.FontWeight = FontWeights.Normal;
-            }
-            else if (FontStyle == 2)
-            {
-                Projector.TextBlock1.FontStyle = FontStyles.Normal;
-                Projector.TextBlock2.FontStyle = FontStyles.Normal;
-                Projector.TextBlock3.FontStyle = FontStyles.Normal;
-                Projector.TextBlock4.FontStyle = FontStyles.Normal;
-                Projector.TextBlock1.FontWeight = FontWeights.Bold;
-                Projector.TextBlock2.FontWeight = FontWeights.Bold;
-                Projector.TextBlock3.FontWeight = FontWeights.Bold;
-                Projector.TextBlock4.FontWeight = FontWeights.Bold;
-            }
-            else if (FontStyle == 3)
-            {
-                Projector.TextBlock1.FontStyle = FontStyles.Italic;
-                Projector.TextBlock2.FontStyle = FontStyles.Italic;
-                Projector.TextBlock3.FontStyle = FontStyles.Italic;
-                Projector.TextBlock4.FontStyle = FontStyles.Italic;
-                Projector.TextBlock1.FontWeight = FontWeights.Bold;
-                Projector.TextBlock2.FontWeight = FontWeights.Bold;
-                Projector.TextBlock3.FontWeight = FontWeights.Bold;
-                Projector.TextBlock4.FontWeight = FontWeights.Bold;
-            }
-
-            if (HAlig == 1)
-            {
-                Projector.TextBlock1.TextAlignment = System.Windows.TextAlignment.Right;
-                Projector.TextBlock2.TextAlignment = System.Windows.TextAlignment.Right;
-                Projector.TextBlock3.TextAlignment = System.Windows.TextAlignment.Right;
-                Projector.TextBlock4.TextAlignment = System.Windows.TextAlignment.Right;
-            }
-            else if (HAlig == 0)
-            {
-                Projector.TextBlock1.TextAlignment = System.Windows.TextAlignment.Left;
-                Projector.TextBlock2.TextAlignment = System.Windows.TextAlignment.Left;
-                Projector.TextBlock3.TextAlignment = System.Windows.TextAlignment.Left;
-                Projector.TextBlock4.TextAlignment = System.Windows.TextAlignment.Left;
-            }
-            else if (HAlig == 2)
-            {
-                Projector.TextBlock1.TextAlignment = System.Windows.TextAlignment.Center;
-                Projector.TextBlock2.TextAlignment = System.Windows.TextAlignment.Center;
-                Projector.TextBlock3.TextAlignment = System.Windows.TextAlignment.Center;
-                Projector.TextBlock4.TextAlignment = System.Windows.TextAlignment.Center;
-            }
-            else if (HAlig == 3)
-            {
-                Projector.TextBlock1.TextAlignment = System.Windows.TextAlignment.Justify;
-                Projector.TextBlock2.TextAlignment = System.Windows.TextAlignment.Justify;
-                Projector.TextBlock3.TextAlignment = System.Windows.TextAlignment.Justify;
-                Projector.TextBlock4.TextAlignment = System.Windows.TextAlignment.Justify;
-            }
-
-            if (VAlig == 0)
-            {
-                Projector.Border1.VerticalAlignment = VerticalAlignment.Top;
-                Projector.Border2.VerticalAlignment = VerticalAlignment.Top;
-                Projector.Border3.VerticalAlignment = VerticalAlignment.Top;
-                Projector.Border4.VerticalAlignment = VerticalAlignment.Top;
-                Projector.TextBlock1.VerticalAlignment = VerticalAlignment.Top;
-                Projector.TextBlock2.VerticalAlignment = VerticalAlignment.Top;
-                Projector.TextBlock3.VerticalAlignment = VerticalAlignment.Top;
-                Projector.TextBlock4.VerticalAlignment = VerticalAlignment.Top;
-            }
-            else if (VAlig == 1)
-            {
-                Projector.Border1.VerticalAlignment = VerticalAlignment.Stretch;
-                Projector.Border2.VerticalAlignment = VerticalAlignment.Stretch;
-                Projector.Border3.VerticalAlignment = VerticalAlignment.Stretch;
-                Projector.Border4.VerticalAlignment = VerticalAlignment.Stretch;
-                Projector.TextBlock1.VerticalAlignment = VerticalAlignment.Center;
-                Projector.TextBlock2.VerticalAlignment = VerticalAlignment.Center;
-                Projector.TextBlock3.VerticalAlignment = VerticalAlignment.Center;
-                Projector.TextBlock4.VerticalAlignment = VerticalAlignment.Center;
-            }
-            else if (VAlig == 2)
-            {
-                Projector.Border1.VerticalAlignment = VerticalAlignment.Bottom;
-                Projector.Border2.VerticalAlignment = VerticalAlignment.Bottom;
-                Projector.Border3.VerticalAlignment = VerticalAlignment.Bottom;
-                Projector.Border4.VerticalAlignment = VerticalAlignment.Bottom;
-                Projector.TextBlock1.VerticalAlignment = VerticalAlignment.Bottom;
-                Projector.TextBlock2.VerticalAlignment = VerticalAlignment.Bottom;
-                Projector.TextBlock3.VerticalAlignment = VerticalAlignment.Bottom;
-                Projector.TextBlock4.VerticalAlignment = VerticalAlignment.Bottom;
-            }
-
-
-            if (!string.IsNullOrEmpty(FontColor))
-            {
-                SolidColorBrush br = System.Windows.Media.Brushes.White;
-                Projector.SetShadowEffect(true);
-                Projector.TextBlock2.Visibility = Visibility.Visible;
-                Projector.TextBlock3.Visibility = Visibility.Visible;
-                Projector.TextBlock4.Visibility = Visibility.Visible;
-                if (FontColor.ToUpper() == "BLACK")
-                {
-                    br = System.Windows.Media.Brushes.Black;
-                    Projector.SetShadowEffect(false);
-                    Projector.TextBlock2.Visibility = Visibility.Hidden;
-                    Projector.TextBlock3.Visibility = Visibility.Hidden;
-                    Projector.TextBlock4.Visibility = Visibility.Hidden;
-                }
-                else if (FontColor.ToUpper() == "WHITE")
-                {
-                    br = System.Windows.Media.Brushes.White;
-                }
-                else if (FontColor.ToUpper() == "RED")
-                    br = System.Windows.Media.Brushes.Red;
-                else if (FontColor.ToUpper() == "BLUE")
-                    br = System.Windows.Media.Brushes.Blue;
-                else if (FontColor.ToUpper() == "YELLOW")
-                    br = System.Windows.Media.Brushes.Yellow;
-                else if (FontColor.ToUpper() == "CYAN")
-                    br = System.Windows.Media.Brushes.Cyan;
-                else if (FontColor.ToUpper() == "CORAL")
-                    br = System.Windows.Media.Brushes.Coral;
-                else
-                {
-                    try
-                    {
-                        br = new System.Windows.Media.SolidColorBrush(
-                                               (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(FontColor));
-                    }
-                    catch (Exception)
-                    {
-
-
-                    }
-                }
-                   
-                Projector.TextBlock1.Foreground = br;
-                Projector.TextBlock2.Foreground = br;
-                Projector.TextBlock3.Foreground = br;
-                Projector.TextBlock4.Foreground = br;
-            }
-
-            Projector.TextCanvas.Opacity = this.Opacity / 100;
-            //Projector.Text.Opacity = 0;
             Projector.TextVisible = true;
             
             
@@ -324,7 +360,15 @@ namespace StoGen.Classes
             if (Animated)
             {
                 Blocked = true;
-                rest_text = string.Join(Environment.NewLine, TextList.ToArray());
+                if (textdata1 != null) 
+                {
+                    rest_text1 = string.Join(Environment.NewLine, textdata1.Text.Split('~'));
+                }
+                if (textdata2 != null)
+                {
+                    rest_text2 = string.Join(Environment.NewLine, textdata2.Text.Split('~'));
+                }
+
                 /*                string txt = string.Join(Environment.NewLine, TextList.ToArray());
                                 int letters = txt.Count();
                                 var ts = TimeSpan.FromSeconds(letters * 0.05);
@@ -345,9 +389,13 @@ namespace StoGen.Classes
             return this.Owner;
         }
 
-        internal void SetData(seTe data)
+        internal void SetData(List<seTe> data)
         {
-            if (string.IsNullOrEmpty(data.Text)) return;
+            if (!data.Any()) return;            
+            textdata1 = data[0];
+            if (data.Count>1) textdata2 = data[1];
+            
+            /*
             TextList.AddRange(data.Text.Split('~').ToList());
             //this.BackColor = data.BackColor;
             this.FontName = data.FontName;
@@ -366,10 +414,11 @@ namespace StoGen.Classes
             this.VAlig = data.VAlign;
             this.Opacity = data.Opacity;
             this.Transition = data.T;
-
+            */
         }
 
         private static Storyboard[] storylist = new Storyboard[4];
+        /*
         private void TypewriteTextblock(string textToAnimate, TextBlock txt, TimeSpan timeSpan, int i)
         {
 
@@ -398,7 +447,7 @@ namespace StoGen.Classes
             story.Begin(txt);
             storylist[i] = story;
         }
-
+        */
 
         private void Story_Completed(object sender, EventArgs e)
         {
@@ -419,19 +468,34 @@ namespace StoGen.Classes
             base.Stopped = true;
             timer.Change(Timeout.Infinite, Timeout.Infinite);
             timer2.Change(Timeout.Infinite, Timeout.Infinite);
-            rest_text = string.Empty;
-            show_text = string.Empty;
+            rest_text1 = string.Empty;
+            show_text1 = string.Empty;
+            rest_text2 = string.Empty;
+            show_text2 = string.Empty;
             FrameText.tranManager.Clear();
         }
-        public static void ShowText() 
+        public void ShowText() 
         {
-            rest_text = string.Empty;
-            show_text = string.Empty;
-            string txt = string.Join(Environment.NewLine, TextList.ToArray());
-            Projector.TextBlock1.Text = txt;
-            Projector.TextBlock2.Text = txt;
-            Projector.TextBlock3.Text = txt;
-            Projector.TextBlock4.Text = txt;
+            if (textdata1 != null)
+            {
+                rest_text1 = string.Empty;
+                show_text1 = string.Empty;
+                string txt1 = string.Join(Environment.NewLine, textdata1.Text.Split('~'));
+                Projector.TextBlock1.Text = txt1;
+                Projector.TextBlock2.Text = txt1;
+                Projector.TextBlock3.Text = txt1;
+                Projector.TextBlock4.Text = txt1;
+            }
+            if (textdata2 != null)
+            {
+                rest_text2 = string.Empty;
+                show_text2 = string.Empty;
+                string txt2 = string.Join(Environment.NewLine, textdata2.Text.Split('~'));
+                Projector.TextBlock21.Text = txt2;
+                Projector.TextBlock22.Text = txt2;
+                Projector.TextBlock23.Text = txt2;
+                Projector.TextBlock24.Text = txt2;
+            }
             Blocked = false;
         }
     }

@@ -66,18 +66,34 @@ namespace StoGenWPF
             Projector.Owner = this;
             Projector.PicContainer.Clip = this.Clip1;
             Projector.TextCanvas = this.TextCanvas;
+            Projector.TextCanvas2 = this.TextCanvas2;
             Projector.TextBlock1 = this.Tb1;
             Projector.TextBlock2 = this.Tb2;
             Projector.TextBlock3 = this.Tb3;
             Projector.TextBlock4 = this.Tb4;
+            Projector.TextBlock21 = this.Tb21;
+            Projector.TextBlock22 = this.Tb22;
+            Projector.TextBlock23 = this.Tb23;
+            Projector.TextBlock24 = this.Tb24;
+
             Projector.Border1 = this.Brd1;
             Projector.Border2 = this.Brd2;
             Projector.Border3 = this.Brd3;
             Projector.Border4 = this.Brd4;
+            Projector.Border21 = this.Brd21;
+            Projector.Border22 = this.Brd22;
+            Projector.Border23 = this.Brd23;
+            Projector.Border24 = this.Brd24;
+
             Projector.dropShadowEffect1 = (DropShadowEffect)this.Tb1.Effect;
             Projector.dropShadowEffect2 = (DropShadowEffect)this.Tb2.Effect;
             Projector.dropShadowEffect3 = (DropShadowEffect)this.Tb3.Effect;
             Projector.dropShadowEffect4 = (DropShadowEffect)this.Tb4.Effect;
+            Projector.dropShadowEffect21 = (DropShadowEffect)this.Tb21.Effect;
+            Projector.dropShadowEffect22 = (DropShadowEffect)this.Tb22.Effect;
+            Projector.dropShadowEffect23 = (DropShadowEffect)this.Tb23.Effect;
+            Projector.dropShadowEffect24 = (DropShadowEffect)this.Tb24.Effect;
+
             Projector.NumberText = this.NumberBox;
             Projector.ClipSound = new MediaPlayer();
             Projector.Sound.Add(this.Sound01);

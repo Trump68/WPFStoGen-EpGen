@@ -130,8 +130,9 @@ namespace StoGen.Classes
         public virtual Cadre GetNextCadre(bool paint = true)
         {
             if (FrameText.Blocked)
-            {                
-                FrameText.ShowText();
+            {
+                Cadres[CadreId].TextFr.ShowText();
+                //FrameText.ShowText();
                 return null;
             }
             if (FrameImage.Blocked || FrameSound.Blocked ) 
@@ -224,26 +225,28 @@ namespace StoGen.Classes
         public CadreInfo MakeCadre(CadreData item, bool isForward)
         {
 
-            seTe te = null;
+            List<seTe> telist = new List<seTe>();
             bool isWhite = false;
             if (item.IsGlobalAlign)
             {
-                te = new seTe();
+                /*
+                seTe te = new seTe();
                 te.FontSize = 60;
                 te.Size = 100;
                 te.Bottom = 0;
                 te.Shift = 700;
                 te.Text = "SETUP";
+                */
             }
             else
             {
-                te = item.TextData;
+                telist = item.TextData;
             }
-            return this.CreateCadre(item, isForward, isWhite, te);
+            return this.CreateCadre(item, isForward, isWhite, telist);
         }
 
         // => Here the magic happens (TO DO: recode this)
-        public CadreInfo CreateCadre(CadreData item, bool isForward, bool isWhite = false, seTe text = null)
+        public CadreInfo CreateCadre(CadreData item, bool isForward, bool isWhite, List<seTe> text)
         {
             var cadre = new CadreInfo();
             cadre.IsWhite = isWhite;
@@ -266,7 +269,10 @@ namespace StoGen.Classes
             cadre.SoundList.AddRange(item.SoundList);
             if (text != null)
             {
-                cadre.AddText(text);
+                foreach (var it in text)
+                {
+                    cadre.AddText(it);
+                }                
             }
             if (item.ControlData != null)
             {

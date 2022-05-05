@@ -68,7 +68,7 @@ namespace StoGenMake.Scenes.Base
         #region 'External' scene generations
         public string currentGr;
         //public List<OpEf> CurrTransitions = new List<OpEf>();
-        public CadreData CreateCadreData(string text, List<DifData> difdata, List<Info_Scene> infodata, int? indexToInsert = null)
+        public CadreData CreateCadreData(List<DifData> difdata, List<Info_Scene> infodata, List<seTe> textData, int? indexToInsert = null)
         {
             List<DifData> cdata = new List<DifData>();
             foreach (var item in difdata)
@@ -77,8 +77,6 @@ namespace StoGenMake.Scenes.Base
                 ndd.AssingFrom(item);
                 cdata.Add(ndd);
             }
-            seTe textData = new seTe(this.DefaultSceneText);
-            textData.Text = text;
             var result = Add(new string[] { currentGr }, cdata.ToArray(), textData, this.CurrentSounds, false, indexToInsert);
             // save it to futher modifications
             result.OriginalInfo.AddRange(infodata);
@@ -159,7 +157,7 @@ namespace StoGenMake.Scenes.Base
        
         #endregion
 
-        public seTe DefaultSceneText = new seTe()
+        protected seTe DefaultSceneText = new seTe()
         {
             Shift = 1000,
             FontSize = 26,
@@ -200,14 +198,14 @@ namespace StoGenMake.Scenes.Base
         public CadreData Add(
             string[] marks,
             DifData[] difs,
-            seTe text,
+            List<seTe> textData,
             List<seSo> sounds,
             bool installtoglobal = false, 
             int? indexToInsert = null
             )
         {
             CadreData data = new CadreData();
-            data.TextData = text;
+            data.TextData = textData;
             if (sounds != null && sounds.Any())
                 data.SoundList.AddRange(sounds);
             data.MarkList.AddRange(marks);
@@ -401,7 +399,7 @@ namespace StoGenMake.Scenes.Base
         public List<seSo> SoundList = new List<seSo>();
         public List<DifData> AlignList = new List<DifData>();
         public List<string> MarkList = new List<string>();
-        public seTe TextData;
+        public List<seTe> TextData;
         public seCtrl ControlData = new seCtrl();
         public List<Info_Scene> OriginalInfo = new List<Info_Scene>();
         public int DefClipPause1 = 40;

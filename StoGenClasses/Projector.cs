@@ -16,18 +16,32 @@ namespace StoGen.ModelClasses
         public static List<System.Windows.Media.MediaPlayer> Sound = new List<System.Windows.Media.MediaPlayer>();
         //public static Tuple<RadioGroup, LayoutControlItem> Choice;
         public static System.Windows.Controls.Canvas TextCanvas;
+        public static System.Windows.Controls.Canvas TextCanvas2;
         public static System.Windows.Controls.TextBlock TextBlock1;
         public static System.Windows.Controls.TextBlock TextBlock2;
         public static System.Windows.Controls.TextBlock TextBlock3;
         public static System.Windows.Controls.TextBlock TextBlock4;
+        public static System.Windows.Controls.TextBlock TextBlock21;
+        public static System.Windows.Controls.TextBlock TextBlock22;
+        public static System.Windows.Controls.TextBlock TextBlock23;
+        public static System.Windows.Controls.TextBlock TextBlock24;
         public static System.Windows.Controls.Border Border1;
         public static System.Windows.Controls.Border Border2;
         public static System.Windows.Controls.Border Border3;
         public static System.Windows.Controls.Border Border4;
+        public static System.Windows.Controls.Border Border21;
+        public static System.Windows.Controls.Border Border22;
+        public static System.Windows.Controls.Border Border23;
+        public static System.Windows.Controls.Border Border24;
         public static DropShadowEffect dropShadowEffect1;
         public static DropShadowEffect dropShadowEffect2;
         public static DropShadowEffect dropShadowEffect3;
         public static DropShadowEffect dropShadowEffect4;
+        public static DropShadowEffect dropShadowEffect21;
+        public static DropShadowEffect dropShadowEffect22;
+        public static DropShadowEffect dropShadowEffect23;
+        public static DropShadowEffect dropShadowEffect24;
+
         public static System.Windows.Controls.TextBox NumberText;
 
         private static bool textVisibleEnabled = true;
@@ -56,21 +70,23 @@ namespace StoGen.ModelClasses
                 if (value && textVisibleEnabled)
                 {
                     Projector.TextCanvas.Visibility = Visibility.Visible;
+                    //Projector.TextCanvas2.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     Projector.TextCanvas.Visibility = Visibility.Hidden;
+                    //Projector.TextCanvas2.Visibility = Visibility.Hidden;
                 }
             }
         }
-        public static void SetShadowEffect(bool enabled)
+        public static void SetShadowEffect(bool enabled, DropShadowEffect ef1, DropShadowEffect ef2, DropShadowEffect ef3, DropShadowEffect ef4)
         {
             int val = 0;
             if (enabled) val = 1;
-            dropShadowEffect1.Opacity = val;
-            dropShadowEffect2.Opacity = val;
-            dropShadowEffect3.Opacity = val;
-            dropShadowEffect4.Opacity = val;
+            ef1.Opacity = val;
+            ef2.Opacity = val;
+            ef3.Opacity = val;
+            ef4.Opacity = val;
         }
         public static bool TimerEnabled { get; set; } = true;
         public static bool EndlessVideo { get; set; } = false;

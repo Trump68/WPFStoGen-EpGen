@@ -359,29 +359,35 @@ namespace StoGen.Classes.Data.Games
 
             Dictionary<string, DifData> Pictures = new Dictionary<string, DifData>();
 
-
-            string story = string.Empty;
+            // Get TEXT
+            List<seTe> setelist = new List<seTe>();
             string path = string.Empty;
-            Info_Scene title = group.Where(x => x.Kind == 1).FirstOrDefault();
-            Info_Scene copytitle = null;
-            if (title != null)
+            var titles = group.Where(x => x.Kind == 1).ToList();
+            foreach (var title in titles)
             {
+                Info_Scene copytitle = null;
                 copytitle = Info_Scene.GenerateCopy(title);
+                string story = string.Empty;
                 // try to get text from kind 1
                 if (copytitle.Story == "$$DESCRIPTION$$")
                 {
                     story = copytitle.Description;
                 }
                 else
-                story = copytitle.Story;
+                    story = copytitle.Story;
                 if (string.IsNullOrEmpty(copytitle.File) && !string.IsNullOrEmpty(Story.DefTextBck))
                     copytitle.File = Story.DefTextBck;
+
+                seTe data = new seTe();
+                setelist.Add(data);
+                data.Text = story;
+
                 if (copytitle.File == "$$WHITE$$") // white background
                 {
-                    //AddToGlobalImage("$$WHITE$$", "$$WHITE$$", string.Empty);
                     Pictures.Add("$$WHITE$$", new DifData("$$WHITE$$") { });
                     ++i;
                 }
+
                 if (!string.IsNullOrEmpty(copytitle.T))
                     this.DefaultSceneText.T = copytitle.T;
                 if (!string.IsNullOrEmpty(copytitle.O))
@@ -400,9 +406,19 @@ namespace StoGen.Classes.Data.Games
                     this.DefaultSceneText.Size = int.Parse(copytitle.Y);
                 if (!string.IsNullOrEmpty(copytitle.Speed))
                     this.DefaultSceneText.FontName = copytitle.Speed;
-
+                
+                data.T = DefaultSceneText.T;
+                data.Opacity = DefaultSceneText.Opacity;
+                data.FontColor = DefaultSceneText.FontColor;
+                data.FontStyle = DefaultSceneText.FontStyle;
+                data.FontSize = DefaultSceneText.FontSize;
+                data.Shift = DefaultSceneText.Shift;
+                data.Width = DefaultSceneText.Width;
+                data.Size = DefaultSceneText.Size;
+                data.FontName = DefaultSceneText.FontName;
             }
 
+            /*
             // try to get text from kind 4
             if (string.IsNullOrEmpty(story))
             {
@@ -411,8 +427,7 @@ namespace StoGen.Classes.Data.Games
                 {
                     story = title.Story;
                 }
-            }
-
+            }            
             // try to get text from kind 0
             if (string.IsNullOrEmpty(story))
             {
@@ -431,58 +446,65 @@ namespace StoGen.Classes.Data.Games
                     story = title.Story;
                 }
             }
-            // try to get text from file
-            if (!string.IsNullOrEmpty(story))
+            */
+            foreach (var text in setelist)
             {
-                // text should have filename@section
-                if (story.Contains("@"))
+                string story = text.Text;
+                if (!string.IsNullOrEmpty(story))
                 {
-                    string[] vals = story.Split('@');
-                    List<string> storylines = new List<string>();
-                    List<string> textlist = null;
-                    string section = null;
-                    if (string.IsNullOrEmpty(vals[0]))
+                    // text should have filename@section
+                    if (story.Contains("@"))
                     {
-                        section = vals[1];
-                        textlist = this.Story.Story.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
-                    }
-                    else
-                    {
-                        string filename = vals[0];
-                        section = vals[1];
-                        story = string.Empty;
-                        if (File.Exists(filename))
+                        string[] vals = story.Split('@');
+                        List<string> storylines = new List<string>();
+                        List<string> textlist = null;
+                        string section = null;
+                        if (string.IsNullOrEmpty(vals[0]))
                         {
-                            textlist = new List<string>(File.ReadAllLines(filename));
+                            section = vals[1];
+                            textlist = this.Story.Story.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
                         }
-                    }
-                    if (!string.IsNullOrEmpty(section) && (textlist!=null))
-                    {
-                        bool gotcha = false;
-                        foreach (string line in textlist)
+                        else
                         {
+                            string filename = vals[0];
+                            section = vals[1];
+                            story = string.Empty;
+                            if (File.Exists(filename))
+                            {
+                                textlist = new List<string>(File.ReadAllLines(filename));
+                            }
+                        }
+                        if (!string.IsNullOrEmpty(section) && (textlist != null))
+                        {
+                            bool gotcha = false;
+                            foreach (string line in textlist)
+                            {
 
-                            // get text from section within a file
-                            if (line.StartsWith($"@{section}"))
-                            {
-                                gotcha = true;
-                                continue;
-                                //story = line.Replace($"@{section}", string.Empty).Trim();                                
+                                // get text from section within a file
+                                if (line.StartsWith($"@{section}"))
+                                {
+                                    gotcha = true;
+                                    continue;
+                                    //story = line.Replace($"@{section}", string.Empty).Trim();                                
+                                }
+                                else if (line.StartsWith($"@"))
+                                {
+                                    gotcha = false;
+                                }
+                                if (gotcha)
+                                {
+                                    storylines.Add(line);
+                                }
                             }
-                            else if (line.StartsWith($"@"))
-                            {
-                                gotcha = false;
-                            }
-                            if (gotcha)
-                            {
-                                storylines.Add(line);
-                            }
+                            story = string.Join("~", storylines.ToArray());
                         }
-                        story = string.Join("~", storylines.ToArray());
                     }
+                    text.Text = story;
                 }
             }
-
+            
+           
+            
 
             // PICTURES- kind 5 (transform)
             List<OpEf> trans = new List<OpEf>();
@@ -654,7 +676,7 @@ namespace StoGen.Classes.Data.Games
             }
             itl.AddRange(Pictures.Values.ToList());
 
-            var result = CreateCadreData($"{story}", itl, group, indexToInsert);
+            var result = CreateCadreData(itl, group, setelist, indexToInsert);
 
             //Control
             if (controldata != null)

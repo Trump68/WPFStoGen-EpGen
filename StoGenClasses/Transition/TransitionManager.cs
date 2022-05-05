@@ -82,7 +82,7 @@ namespace StoGen.Classes.Transition
                 List<TransitionItem> elementList = new List<TransitionItem>();
                 foreach (var element in elements)
                 {
-                    elementList.AddRange(CreateTransitionItem(element, this.Level, cadreType));
+                    elementList.AddRange(CreateTransitionItem(element, Level, cadreType));
                 }
                 elementList.Last().IsEndless = isEndless;
                 Transitions.Add(elementList);
@@ -807,11 +807,17 @@ namespace StoGen.Classes.Transition
             {
                 get
                 {
-                    return Projector.TextCanvas.Opacity * 100;
+                    if (this.Level == 1)
+                        return Projector.TextCanvas.Opacity * 100;
+                    else
+                        return Projector.TextCanvas2.Opacity * 100;
                 }
                 set
                 {
-                    Projector.TextCanvas.Opacity = value / 100;
+                    if (this.Level == 1)
+                        Projector.TextCanvas.Opacity = value / 100;
+                    else
+                        Projector.TextCanvas2.Opacity = value / 100;
                 }
             }
         }
