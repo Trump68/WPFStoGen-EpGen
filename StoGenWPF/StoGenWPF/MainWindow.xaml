@@ -58,7 +58,7 @@
         <TextBox x:Name="NumberBox" HorizontalAlignment="Right" Height="20" VerticalAlignment="Bottom" Width="50" Opacity="0.5" Background="White" BorderThickness="0"  AcceptsReturn="True" Margin="0,-3,0,0"/>
         <Canvas x:Name ="TextCanvas" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="100,0,0,1000">
             <Border x:Name="Brd1" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" >
-                <TextBlock  x:Name="Tb1"  Text="SDSDFSDFSDFSDF" FontSize="20" Foreground="White" TextWrapping="Wrap">
+                <TextBlock  x:Name="Tb1"  FontSize="20" Foreground="White" TextWrapping="Wrap" >
                     <TextBlock.Effect>
                         <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="0"/>
                     </TextBlock.Effect>
@@ -116,9 +116,70 @@
                     </TextBlock.Effect>
                 </TextBlock>
             </Border>
-        </Canvas>      
-        
-        
+        </Canvas>
+
+        <Canvas x:Name ="TextCanvas3" Width="300" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="139,0,0,65">
+            <Border x:Name="Brd31" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" >
+                <TextBlock  x:Name="Tb31"  Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="0"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Border>
+            <Border x:Name="Brd32" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" >
+                <TextBlock  x:Name="Tb32" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="90"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Border>
+            <Border x:Name="Brd33" BorderBrush="{x:Null}" HorizontalAlignment="Stretch">
+                <TextBlock  x:Name="Tb33" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="180"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Border>
+            <Border x:Name="Brd34" BorderBrush="{x:Null}"  HorizontalAlignment="Stretch">
+                <TextBlock  x:Name="Tb34" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="270"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Border>
+        </Canvas>
+
+        <Canvas x:Name ="TextCanvas4" Width="300" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="139,0,0,65">
+            <Border x:Name="Brd41" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" >
+                <TextBlock  x:Name="Tb41"  Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="0"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Border>
+            <Border x:Name="Brd42" BorderBrush="{x:Null}" HorizontalAlignment="Stretch" >
+                <TextBlock  x:Name="Tb42" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="90"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Border>
+            <Border x:Name="Brd43" BorderBrush="{x:Null}" HorizontalAlignment="Stretch">
+                <TextBlock  x:Name="Tb43" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="180"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Border>
+            <Border x:Name="Brd44" BorderBrush="{x:Null}"  HorizontalAlignment="Stretch">
+                <TextBlock  x:Name="Tb44" Text="" FontSize="20" Foreground="White" TextWrapping="Wrap">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Opacity="1" Direction="270"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Border>
+        </Canvas>
+
         <Rectangle x:Name="LmpAuto" Fill="#FF06069B" HorizontalAlignment="Left" Height="10" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>
         <Rectangle x:Name="LmpEndless" Fill="#FFB60B49" HorizontalAlignment="Left" Height="10" Margin="10,0,0,0" Stroke="Black" VerticalAlignment="Bottom" Width="10" Visibility="Hidden"/>
         <GroupBox x:Name="PictureCadreDS" HorizontalAlignment="Right" Height="78" Width="650" Background="#FFF9F9F9" BorderBrush="#FFF9FCFD" VerticalAlignment="Bottom" Margin="300,0,0,0" Visibility="Hidden">

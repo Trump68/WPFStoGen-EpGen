@@ -257,6 +257,11 @@ namespace StoGen.Classes
                     this.Kind = 6;
                     this.Template = str.Replace("SOUND=", string.Empty).Replace("SOUND", string.Empty);
                 }
+                if (str.StartsWith("CONTROL~") || str.StartsWith("CONTROL="))
+                {
+                    this.Kind = 10;
+                    this.Template = str.Replace("CONTROL=", string.Empty).Replace("CONTROL", string.Empty);
+                }
                 else if (str.StartsWith("DSC="))
                 {
                     this.Description = str.Replace("DSC=", string.Empty);

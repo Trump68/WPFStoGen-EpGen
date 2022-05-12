@@ -16,6 +16,7 @@ namespace StoGen.Classes.Transition
         internal void Clear()
         {
             TransitionList.Clear();
+            isStarted = false;
         }
 
         internal void Add(TransitionData trandata)
@@ -63,6 +64,7 @@ namespace StoGen.Classes.Transition
     }
     public class TransitionData
     {
+        static Random rnd = new Random();
         public List<List<TransitionItem>> Transitions;
         internal int Level = 0;
         public void Parse(string strdata, int cadreType)
@@ -236,8 +238,7 @@ namespace StoGen.Classes.Transition
             public void Init() 
             {
                 if (SpanMax > 0) 
-                {
-                    Random rnd = new Random();
+                {                    
                     Span = rnd.Next(Convert.ToInt32(SpanMin), Convert.ToInt32(SpanMax));
                 }
                 Active = true;
@@ -806,18 +807,26 @@ namespace StoGen.Classes.Transition
             public override double CurrentVal
             {
                 get
-                {
+                {                    
                     if (this.Level == 1)
                         return Projector.TextCanvas.Opacity * 100;
-                    else
+                    else if (this.Level == 2)
                         return Projector.TextCanvas2.Opacity * 100;
+                    else if (this.Level == 3)
+                        return Projector.TextCanvas3.Opacity * 100;
+                    else
+                        return Projector.TextCanvas4.Opacity * 100;
                 }
                 set
                 {
                     if (this.Level == 1)
                         Projector.TextCanvas.Opacity = value / 100;
-                    else
+                    else if (this.Level == 2)
                         Projector.TextCanvas2.Opacity = value / 100;
+                    else if (this.Level == 3)
+                        Projector.TextCanvas3.Opacity = value / 100;
+                    else if (this.Level == 4)
+                        Projector.TextCanvas4.Opacity = value / 100;
                 }
             }
         }

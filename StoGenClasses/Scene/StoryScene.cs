@@ -132,6 +132,11 @@ namespace StoGen.Classes.Data.Games
 
             foreach (var group in data)
             {
+                // skip if all templates (headre cadre)
+                if (group.All(x=>x.Template==null?false:x.Template.Contains("~")))
+                {
+                    continue;
+                }
                 var cadre = DoCadreByGroup(group, indexToInsert);
                 result.Add(cadre);
                 if (indexToInsert.HasValue)
@@ -208,6 +213,8 @@ namespace StoGen.Classes.Data.Games
                 info.R = infotemplate.R;
             if (string.IsNullOrEmpty(info.T))
                 info.T = infotemplate.T;
+            if (string.IsNullOrEmpty(info.F))
+                info.F = infotemplate.F;
             if (string.IsNullOrEmpty(info.LoopMode))
                 info.LoopMode = infotemplate.LoopMode;
             if (string.IsNullOrEmpty(info.LoopCount))
@@ -384,8 +391,11 @@ namespace StoGen.Classes.Data.Games
 
                 if (copytitle.File == "$$WHITE$$") // white background
                 {
-                    Pictures.Add("$$WHITE$$", new DifData("$$WHITE$$") { });
-                    ++i;
+                    //if (!Pictures.ContainsKey("$$WHITE$$"))
+                    //{
+                       Pictures.Add("$$WHITE$$", new DifData("$$WHITE$$") { });
+                       ++i;
+                    //}
                 }
 
                 if (!string.IsNullOrEmpty(copytitle.T))

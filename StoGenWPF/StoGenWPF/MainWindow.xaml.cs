@@ -65,34 +65,63 @@ namespace StoGenWPF
             InitializeComponent();
             Projector.Owner = this;
             Projector.PicContainer.Clip = this.Clip1;
+
             Projector.TextCanvas = this.TextCanvas;
-            Projector.TextCanvas2 = this.TextCanvas2;
             Projector.TextBlock1 = this.Tb1;
             Projector.TextBlock2 = this.Tb2;
             Projector.TextBlock3 = this.Tb3;
             Projector.TextBlock4 = this.Tb4;
-            Projector.TextBlock21 = this.Tb21;
-            Projector.TextBlock22 = this.Tb22;
-            Projector.TextBlock23 = this.Tb23;
-            Projector.TextBlock24 = this.Tb24;
-
             Projector.Border1 = this.Brd1;
             Projector.Border2 = this.Brd2;
             Projector.Border3 = this.Brd3;
             Projector.Border4 = this.Brd4;
-            Projector.Border21 = this.Brd21;
-            Projector.Border22 = this.Brd22;
-            Projector.Border23 = this.Brd23;
-            Projector.Border24 = this.Brd24;
-
             Projector.dropShadowEffect1 = (DropShadowEffect)this.Tb1.Effect;
             Projector.dropShadowEffect2 = (DropShadowEffect)this.Tb2.Effect;
             Projector.dropShadowEffect3 = (DropShadowEffect)this.Tb3.Effect;
             Projector.dropShadowEffect4 = (DropShadowEffect)this.Tb4.Effect;
+
+            Projector.TextCanvas2 = this.TextCanvas2;
+            Projector.Border21 = this.Brd21;
+            Projector.Border22 = this.Brd22;
+            Projector.Border23 = this.Brd23;
+            Projector.Border24 = this.Brd24;
+            Projector.TextBlock21 = this.Tb21;
+            Projector.TextBlock22 = this.Tb22;
+            Projector.TextBlock23 = this.Tb23;
+            Projector.TextBlock24 = this.Tb24;
             Projector.dropShadowEffect21 = (DropShadowEffect)this.Tb21.Effect;
             Projector.dropShadowEffect22 = (DropShadowEffect)this.Tb22.Effect;
             Projector.dropShadowEffect23 = (DropShadowEffect)this.Tb23.Effect;
             Projector.dropShadowEffect24 = (DropShadowEffect)this.Tb24.Effect;
+
+            Projector.TextCanvas3 = this.TextCanvas3;
+            Projector.Border31 = this.Brd31;
+            Projector.Border32 = this.Brd32;
+            Projector.Border33 = this.Brd33;
+            Projector.Border34 = this.Brd34;
+            Projector.TextBlock31 = this.Tb31;
+            Projector.TextBlock32 = this.Tb32;
+            Projector.TextBlock33 = this.Tb33;
+            Projector.TextBlock34 = this.Tb34;
+            Projector.dropShadowEffect31 = (DropShadowEffect)this.Tb31.Effect;
+            Projector.dropShadowEffect32 = (DropShadowEffect)this.Tb32.Effect;
+            Projector.dropShadowEffect33 = (DropShadowEffect)this.Tb33.Effect;
+            Projector.dropShadowEffect34 = (DropShadowEffect)this.Tb34.Effect;
+
+            Projector.TextCanvas4 = this.TextCanvas4;
+            Projector.Border41 = this.Brd41;
+            Projector.Border42 = this.Brd42;
+            Projector.Border43 = this.Brd43;
+            Projector.Border44 = this.Brd44;
+            Projector.TextBlock41 = this.Tb41;
+            Projector.TextBlock42 = this.Tb42;
+            Projector.TextBlock43 = this.Tb43;
+            Projector.TextBlock44 = this.Tb44;
+            Projector.dropShadowEffect41 = (DropShadowEffect)this.Tb41.Effect;
+            Projector.dropShadowEffect42 = (DropShadowEffect)this.Tb42.Effect;
+            Projector.dropShadowEffect43 = (DropShadowEffect)this.Tb43.Effect;
+            Projector.dropShadowEffect44 = (DropShadowEffect)this.Tb44.Effect;
+
 
             Projector.NumberText = this.NumberBox;
             Projector.ClipSound = new MediaPlayer();
@@ -176,9 +205,10 @@ namespace StoGenWPF
                 {
                     SCENARIO story = new SCENARIO();
                     List<string> clipsinstr = new List<string>(File.ReadAllLines(fileToRun));
-                    story.LoadFrom(clipsinstr);
                     story.FullFileName = fileToRun;
-                    story.FileName = Path.GetFileNameWithoutExtension(fileToRun);
+                    story.CatalogPath = Path.GetDirectoryName(story.FullFileName);
+                    story.FileName = Path.GetFileNameWithoutExtension(fileToRun);                    
+                    story.LoadFrom(clipsinstr);                    
                     StoryScene scene = new StoryScene();
 
                     scene.CatalogPath = Path.GetDirectoryName(fileToRun);
@@ -190,7 +220,7 @@ namespace StoGenWPF
                     scene.SetScenario(story, list);
                     GlobalMenuCreator = GameWorldFactory.GameWorld;
                     Scene = scene;
-                    StartPageNum = 1;
+                    StartPageNum = 0;
                     StartOnLoad = true;
                     isAutonomus = true;
                 }

@@ -18,6 +18,8 @@ namespace StoGen.Classes
     {
         private seTe textdata1;
         private seTe textdata2;
+        private seTe textdata3;
+        private seTe textdata4;
 
         public static bool Blocked = false;
         //public static List<string> TextList { get; set; }
@@ -87,6 +89,10 @@ namespace StoGen.Classes
         public static string show_text1 = string.Empty;
         public static string rest_text2 = string.Empty;
         public static string show_text2 = string.Empty;
+        public static string rest_text3 = string.Empty;
+        public static string show_text3 = string.Empty;
+        public static string rest_text4 = string.Empty;
+        public static string show_text4 = string.Empty;
         public void ProcessLoopDelegate2()
         {
             if (!string.IsNullOrEmpty(rest_text1)) 
@@ -97,7 +103,6 @@ namespace StoGen.Classes
                 Projector.TextBlock2.Text = show_text1;
                 Projector.TextBlock3.Text = show_text1;
                 Projector.TextBlock4.Text = show_text1;
-
                 if (string.IsNullOrEmpty(rest_text1)) 
                 {
                     show_text1 = string.Empty;
@@ -117,8 +122,36 @@ namespace StoGen.Classes
                     show_text2 = string.Empty;                   
                 }
             }
-            
-            if (string.IsNullOrEmpty(rest_text1) && string.IsNullOrEmpty(rest_text2))
+            if (!string.IsNullOrEmpty(rest_text3))
+            {
+                show_text3 = show_text3 + rest_text3[0];
+                rest_text3 = rest_text3.Remove(0, 1);
+                Projector.TextBlock31.Text = show_text3;
+                Projector.TextBlock32.Text = show_text3;
+                Projector.TextBlock33.Text = show_text3;
+                Projector.TextBlock34.Text = show_text3;
+
+                if (string.IsNullOrEmpty(rest_text3))
+                {
+                    show_text3 = string.Empty;
+                }
+            }
+            if (!string.IsNullOrEmpty(rest_text4))
+            {
+                show_text4 = show_text4 + rest_text4[0];
+                rest_text4 = rest_text4.Remove(0, 1);
+                Projector.TextBlock41.Text = show_text4;
+                Projector.TextBlock42.Text = show_text4;
+                Projector.TextBlock43.Text = show_text4;
+                Projector.TextBlock44.Text = show_text4;
+
+                if (string.IsNullOrEmpty(rest_text4))
+                {
+                    show_text4 = string.Empty;
+                }
+            }
+
+            if (string.IsNullOrEmpty(rest_text1) && string.IsNullOrEmpty(rest_text2) && string.IsNullOrEmpty(rest_text3) && string.IsNullOrEmpty(rest_text4))
                 Blocked = false;
         }
 
@@ -165,7 +198,7 @@ namespace StoGen.Classes
 
                 if (!string.IsNullOrWhiteSpace(data.FontName))
                 {
-                    FontFamily font = new FontFamily(data.FontName);
+                    FontFamily font = new FontFamily(data.FontName);                    
                     tb1.FontFamily = font;
                     tb2.FontFamily = font;
                     tb3.FontFamily = font;
@@ -351,6 +384,12 @@ namespace StoGen.Classes
             SetTextData(2, textdata2, Projector.TextCanvas2, Projector.Border21, Projector.Border22, Projector.Border23, Projector.Border24,
                 Projector.TextBlock21, Projector.TextBlock22, Projector.TextBlock23, Projector.TextBlock24,
                 Projector.dropShadowEffect21, Projector.dropShadowEffect22, Projector.dropShadowEffect23, Projector.dropShadowEffect24);
+            SetTextData(3, textdata3, Projector.TextCanvas3, Projector.Border31, Projector.Border32, Projector.Border33, Projector.Border34,
+                Projector.TextBlock31, Projector.TextBlock32, Projector.TextBlock33, Projector.TextBlock34,
+                Projector.dropShadowEffect31, Projector.dropShadowEffect32, Projector.dropShadowEffect33, Projector.dropShadowEffect34);
+            SetTextData(4, textdata4, Projector.TextCanvas4, Projector.Border41, Projector.Border42, Projector.Border43, Projector.Border44,
+                Projector.TextBlock41, Projector.TextBlock42, Projector.TextBlock43, Projector.TextBlock44,
+                Projector.dropShadowEffect41, Projector.dropShadowEffect42, Projector.dropShadowEffect43, Projector.dropShadowEffect44);
 
             Projector.TextVisible = true;
             
@@ -360,13 +399,21 @@ namespace StoGen.Classes
             if (Animated)
             {
                 Blocked = true;
-                if (textdata1 != null) 
+                if (textdata1 != null && textdata1.Text != null) 
                 {
                     rest_text1 = string.Join(Environment.NewLine, textdata1.Text.Split('~'));
                 }
-                if (textdata2 != null)
+                if (textdata2 != null && textdata2.Text != null)
                 {
                     rest_text2 = string.Join(Environment.NewLine, textdata2.Text.Split('~'));
+                }
+                if (textdata3 != null && textdata3.Text != null)
+                {
+                    rest_text3 = string.Join(Environment.NewLine, textdata3.Text.Split('~'));
+                }
+                if (textdata4 != null && textdata4.Text != null)
+                {
+                    rest_text4 = string.Join(Environment.NewLine, textdata4.Text.Split('~'));
                 }
 
                 /*                string txt = string.Join(Environment.NewLine, TextList.ToArray());
@@ -393,8 +440,10 @@ namespace StoGen.Classes
         {
             if (!data.Any()) return;            
             textdata1 = data[0];
-            if (data.Count>1) textdata2 = data[1];
-            
+            if (data.Count > 1) textdata2 = data[1];
+            if (data.Count > 2) textdata3 = data[2];
+            if (data.Count > 3) textdata4 = data[3];
+
             /*
             TextList.AddRange(data.Text.Split('~').ToList());
             //this.BackColor = data.BackColor;
@@ -417,7 +466,7 @@ namespace StoGen.Classes
             */
         }
 
-        private static Storyboard[] storylist = new Storyboard[4];
+        //private static Storyboard[] storylist = new Storyboard[4];
         /*
         private void TypewriteTextblock(string textToAnimate, TextBlock txt, TimeSpan timeSpan, int i)
         {
@@ -460,8 +509,8 @@ namespace StoGen.Classes
                 Projector.TextVisible = show;
         }
       
-        public bool Html { get; set; }
-        public bool Rtf { get; set; }
+        //public bool Html { get; set; }
+        //public bool Rtf { get; set; }
         public override void BeforeLeave()
         {
 
@@ -472,6 +521,10 @@ namespace StoGen.Classes
             show_text1 = string.Empty;
             rest_text2 = string.Empty;
             show_text2 = string.Empty;
+            rest_text3 = string.Empty;
+            show_text3 = string.Empty;
+            rest_text4 = string.Empty;
+            show_text4 = string.Empty;
             FrameText.tranManager.Clear();
         }
         public void ShowText() 
@@ -490,11 +543,31 @@ namespace StoGen.Classes
             {
                 rest_text2 = string.Empty;
                 show_text2 = string.Empty;
-                string txt2 = string.Join(Environment.NewLine, textdata2.Text.Split('~'));
-                Projector.TextBlock21.Text = txt2;
-                Projector.TextBlock22.Text = txt2;
-                Projector.TextBlock23.Text = txt2;
-                Projector.TextBlock24.Text = txt2;
+                string txt1 = string.Join(Environment.NewLine, textdata2.Text.Split('~'));
+                Projector.TextBlock21.Text = txt1;
+                Projector.TextBlock22.Text = txt1;
+                Projector.TextBlock23.Text = txt1;
+                Projector.TextBlock24.Text = txt1;
+            }
+            if (textdata3 != null)
+            {
+                rest_text3 = string.Empty;
+                show_text3 = string.Empty;
+                string txt1 = string.Join(Environment.NewLine, textdata3.Text.Split('~'));
+                Projector.TextBlock31.Text = txt1;
+                Projector.TextBlock32.Text = txt1;
+                Projector.TextBlock33.Text = txt1;
+                Projector.TextBlock34.Text = txt1;
+            }
+            if (textdata4 != null)
+            {
+                rest_text4 = string.Empty;
+                show_text4 = string.Empty;
+                string txt1 = string.Join(Environment.NewLine, textdata4.Text.Split('~'));
+                Projector.TextBlock41.Text = txt1;
+                Projector.TextBlock42.Text = txt1;
+                Projector.TextBlock43.Text = txt1;
+                Projector.TextBlock44.Text = txt1;
             }
             Blocked = false;
         }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace StoGen.Classes.Scene
@@ -225,21 +226,68 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 }
             }
         }
+        public List<string> IncludeFiles(List<string> clipsinstr)
+        {
+            List<string> result = new List<string>();
+            foreach (var str in clipsinstr)
+            {
+                if (str.Trim().StartsWith(@"//"))
+                    continue;
+                if (str.Trim().StartsWith(@"include ")) 
+                {
+                    string file = str.Trim().Replace("include ",string.Empty);
+                    string fullpath = Path.Combine(this.CatalogPath, file);
+                    try
+                    {
+                        var inner = File.ReadLines(fullpath);                        
+                        result.AddRange(inner);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show($"{fullpath} not found");
+                    }                    
+                }
+                if (str.Trim().StartsWith(@"next "))
+                {
+                    string file = str.Trim().Replace("next ", string.Empty);
+                    string fullpath = Path.Combine(this.CatalogPath, file);
+                    try
+                    {
+                        var cleanlines = File.ReadLines(fullpath).Where(x => !x.Trim().StartsWith("include ")).ToList();
+                        var inner = IncludeFiles(cleanlines);
+                        result.AddRange(inner);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show($"{fullpath} not found");
+                    }
+                }
+                else
+                {
+                    result.Add(str);
+                }
+            }
+            return result;
+        }
         public void LoadFrom(List<string> clipsinstr)
         {
+            clipsinstr = IncludeFiles(clipsinstr);
+
             bool isMetadata = false;
             bool isDescription = false;
             bool isRawData = false;
             bool isStory = false;
+            bool isVariables = false;
             List<string> lines = new List<string>();
             List<string> description_lines = new List<string>();
             List<string> story_lines = new List<string>();
+            Dictionary<string,string> variables = new Dictionary<string, string>();
             List<string> rawdata_lines = new List<string>();
             foreach (var str in clipsinstr)
             {
                 string line = str.Trim();
                 if (string.IsNullOrEmpty(line))  continue;
-                if (line.StartsWith(@"//")) continue;
+                if (line.StartsWith(@"//")) continue;                
                 if (line.StartsWith("****METADATA START****"))
                 {
                     isMetadata = true;
@@ -290,18 +338,28 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                     isDescription = true;
                     isRawData = false;
                     isStory = false;
+                    isVariables = false;
                 }
                 else if (line.StartsWith("STORY:"))
                 {
                     isDescription = false;
                     isRawData = false;
                     isStory = true;
+                    isVariables = false;
+                }
+                else if (line.StartsWith("VARIABLES:"))
+                {
+                    isDescription = false;
+                    isRawData = false;
+                    isStory = false;
+                    isVariables = true;
                 }
                 else if (line.StartsWith("RAWPARAMETERS:"))
                 {
                     isDescription = false;
                     isRawData = true;
                     isStory = false;
+                    isVariables = false;
                 }
                 else
                 {
@@ -317,7 +375,50 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                         }
                         else if (isStory)
                         {
-                            story_lines.Add(line);
+                            string rez = string.Empty;
+                            bool isvar = false;
+                            string curkey = string.Empty;
+                            foreach (var item in line)
+                            {
+                                if (item == '#') 
+                                {                                                                        
+                                    isvar = !isvar;
+                                    if (!isvar)                                     
+                                    {
+                                        if (variables.ContainsKey(curkey)) 
+                                        {
+                                            rez = rez + variables[curkey];
+                                        }
+                                        curkey = string.Empty;
+                                    }
+                                }
+                                else 
+                                {
+                                    if (isvar) 
+                                    {                                        
+                                        curkey = curkey + item;
+                                    }
+                                    else 
+                                    {
+                                        rez = rez + item;
+                                    }
+                                }
+                            }
+
+                            story_lines.Add(rez);
+                        }
+                        else if (isVariables)
+                        {                            
+                            string v = line.Trim();
+                            if (!string.IsNullOrEmpty(v) && !v.StartsWith("//")) 
+                            {
+                                var keyval = v.Split('=');
+                                if (!variables.ContainsKey(keyval[0])) 
+                                {
+                                    variables.Add(keyval[0], keyval[1]);
+                                }                                
+                            }
+                            
                         }
                     }
                     else
@@ -347,15 +448,15 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                     }
                     if (spacecount == 2)
                     {
-                        addGroup($"GroupId={line}");
-                        currentGroupID = line;
+                        var newgroupid =  addGroup($"GroupId={line}");
+                        currentGroupID = newgroupid;
                         continue;
                     }
                     else if (spacecount == 4)
-                    {
-                        line = $"Id={line};GR={currentGroupID}";
-                        addGroupId(line);
-                        currentID = line;
+                    {                        
+                        line = $"Id={line.Trim()};GR={currentGroupID}";
+                        string id = addGroupId(line);
+                        currentID = id;
                         continue;
                     }
                     else if (spacecount == 6)
@@ -371,6 +472,10 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
                 else if (line.StartsWith("Id="))
                 {
                     addGroupId(line);
+                }
+                else if (line.StartsWith("include "))
+                {
+                    
                 }
                 else
                 {
@@ -400,18 +505,36 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             }
             AssignRawParameters();
         }
-        private void addGroup(string line)
+        private string addGroup(string line)
         {
             INFO_SceneGroup group = INFO_SceneGroup.GenerateFromString(line);
+            string check = group.Id;
+            int increment = 0;
+            while (this.GroupList.FirstOrDefault(x => x.Id == check) != null)
+            {
+                increment++;
+                check = $"{group.Id}.{increment}";                
+            }
+            group.Id = check;
             if (string.IsNullOrEmpty(group.Description))
             {
                 group.Description = group.Id;
             }
             this.GroupList.Add(group);
+            return group.Id;
         }
-        private void addGroupId(string line)
+        private string addGroupId(string line)
         {
             INFO_SceneCadre cadre = INFO_SceneCadre.GenerateFromString(line, this.GroupList);
+            string check = cadre.Id;
+            int increment = 0;
+            while (this.GroupList.Any(x => x.Cadres.Any(y => y.Id == check)))
+            {
+                increment++;
+                check = $"{cadre.Id}.{increment}";
+            }
+            cadre.Id = check;
+
             var group = this.GroupList.FirstOrDefault(x => x.Id == cadre.Group);
             if (group == null)
             {
@@ -422,6 +545,7 @@ PackStory = 1; PackImage = 1; PackSound = 1; PackVideo = 0";
             }
             cadre.Owner = this.GroupList;
             group.Cadres.Add(cadre);
+            return cadre.Id;
         }
         public void SaveToFile(string ScenDir, string tempDir)
         {
