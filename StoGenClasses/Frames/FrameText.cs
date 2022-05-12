@@ -99,57 +99,43 @@ namespace StoGen.Classes
             {
                 show_text1 = show_text1 + rest_text1[0];
                 rest_text1 = rest_text1.Remove(0,1);
-                Projector.TextBlock1.Text = show_text1;
-                Projector.TextBlock2.Text = show_text1;
-                Projector.TextBlock3.Text = show_text1;
-                Projector.TextBlock4.Text = show_text1;
-                if (string.IsNullOrEmpty(rest_text1)) 
-                {
-                    show_text1 = string.Empty;
-                }
             }
+            Projector.TextBlock1.Text = show_text1;
+            Projector.TextBlock2.Text = show_text1;
+            Projector.TextBlock3.Text = show_text1;
+            Projector.TextBlock4.Text = show_text1;
+
             if (!string.IsNullOrEmpty(rest_text2))
             {
                 show_text2 = show_text2 + rest_text2[0];
                 rest_text2 = rest_text2.Remove(0, 1);
-                Projector.TextBlock21.Text = show_text2;
-                Projector.TextBlock22.Text = show_text2;
-                Projector.TextBlock23.Text = show_text2;
-                Projector.TextBlock24.Text = show_text2;
-
-                if (string.IsNullOrEmpty(rest_text2))
-                {
-                    show_text2 = string.Empty;                   
-                }
             }
+            Projector.TextBlock21.Text = show_text2;
+            Projector.TextBlock22.Text = show_text2;
+            Projector.TextBlock23.Text = show_text2;
+            Projector.TextBlock24.Text = show_text2;
+
             if (!string.IsNullOrEmpty(rest_text3))
             {
                 show_text3 = show_text3 + rest_text3[0];
                 rest_text3 = rest_text3.Remove(0, 1);
-                Projector.TextBlock31.Text = show_text3;
-                Projector.TextBlock32.Text = show_text3;
-                Projector.TextBlock33.Text = show_text3;
-                Projector.TextBlock34.Text = show_text3;
-
-                if (string.IsNullOrEmpty(rest_text3))
-                {
-                    show_text3 = string.Empty;
-                }
             }
+
+            Projector.TextBlock31.Text = show_text3;
+            Projector.TextBlock32.Text = show_text3;
+            Projector.TextBlock33.Text = show_text3;
+            Projector.TextBlock34.Text = show_text3;
+
             if (!string.IsNullOrEmpty(rest_text4))
             {
                 show_text4 = show_text4 + rest_text4[0];
                 rest_text4 = rest_text4.Remove(0, 1);
-                Projector.TextBlock41.Text = show_text4;
-                Projector.TextBlock42.Text = show_text4;
-                Projector.TextBlock43.Text = show_text4;
-                Projector.TextBlock44.Text = show_text4;
-
-                if (string.IsNullOrEmpty(rest_text4))
-                {
-                    show_text4 = string.Empty;
-                }
             }
+            Projector.TextBlock41.Text = show_text4;
+            Projector.TextBlock42.Text = show_text4;
+            Projector.TextBlock43.Text = show_text4;
+            Projector.TextBlock44.Text = show_text4;
+
 
             if (string.IsNullOrEmpty(rest_text1) && string.IsNullOrEmpty(rest_text2) && string.IsNullOrEmpty(rest_text3) && string.IsNullOrEmpty(rest_text4))
                 Blocked = false;
@@ -375,10 +361,17 @@ namespace StoGen.Classes
         public override Cadre Repaint()
         {
 
-            base.Repaint();
-            FrameText.tranManager.Clear();
-
-            SetTextData(1, textdata1, Projector.TextCanvas, Projector.Border1, Projector.Border2, Projector.Border3, Projector.Border4,
+          base.Repaint();
+          FrameText.tranManager.Clear();
+          rest_text1 = string.Empty;
+          show_text1 = string.Empty;
+          rest_text2 = string.Empty;
+          show_text2 = string.Empty;
+          rest_text3 = string.Empty;
+          show_text3 = string.Empty;
+          rest_text4 = string.Empty;
+          show_text4 = string.Empty;
+        SetTextData(1, textdata1, Projector.TextCanvas, Projector.Border1, Projector.Border2, Projector.Border3, Projector.Border4,
                 Projector.TextBlock1, Projector.TextBlock2, Projector.TextBlock3, Projector.TextBlock4,
                 Projector.dropShadowEffect1, Projector.dropShadowEffect2, Projector.dropShadowEffect3, Projector.dropShadowEffect4);
             SetTextData(2, textdata2, Projector.TextCanvas2, Projector.Border21, Projector.Border22, Projector.Border23, Projector.Border24,
@@ -392,10 +385,10 @@ namespace StoGen.Classes
                 Projector.dropShadowEffect41, Projector.dropShadowEffect42, Projector.dropShadowEffect43, Projector.dropShadowEffect44);
 
             Projector.TextVisible = true;
-            
-            
 
-            
+
+            rest_text1 = rest_text2 = rest_text3 = rest_text4 = null;
+
             if (Animated)
             {
                 Blocked = true;
@@ -438,6 +431,9 @@ namespace StoGen.Classes
 
         internal void SetData(List<seTe> data)
         {
+            textdata1 = textdata2 = textdata3 = textdata4 = null;
+            show_text1 = show_text2 = show_text3 = show_text4 = string.Empty;
+
             if (!data.Any()) return;            
             textdata1 = data[0];
             if (data.Count > 1) textdata2 = data[1];
@@ -529,21 +525,27 @@ namespace StoGen.Classes
         }
         public void ShowText() 
         {
-            if (textdata1 != null)
-            {
-                rest_text1 = string.Empty;
-                show_text1 = string.Empty;
+            timer2.Change(Timeout.Infinite, Timeout.Infinite);
+            timer.Change(Timeout.Infinite, Timeout.Infinite);
+            Projector.TextCanvas.Opacity = 1.0;
+            Projector.TextCanvas2.Opacity = 1.0;
+            Projector.TextCanvas3.Opacity = 1.0;
+            Projector.TextCanvas4.Opacity = 1.0;
+            if (textdata1 != null) {
                 string txt1 = string.Join(Environment.NewLine, textdata1.Text.Split('~'));
+                //rest_text1 = string.Empty;
+                //show_text1 = string.Empty;
                 Projector.TextBlock1.Text = txt1;
                 Projector.TextBlock2.Text = txt1;
                 Projector.TextBlock3.Text = txt1;
                 Projector.TextBlock4.Text = txt1;
             }
+
             if (textdata2 != null)
             {
-                rest_text2 = string.Empty;
-                show_text2 = string.Empty;
                 string txt1 = string.Join(Environment.NewLine, textdata2.Text.Split('~'));
+                //rest_text2 = string.Empty;
+                //show_text2 = string.Empty;
                 Projector.TextBlock21.Text = txt1;
                 Projector.TextBlock22.Text = txt1;
                 Projector.TextBlock23.Text = txt1;
@@ -551,24 +553,25 @@ namespace StoGen.Classes
             }
             if (textdata3 != null)
             {
-                rest_text3 = string.Empty;
-                show_text3 = string.Empty;
                 string txt1 = string.Join(Environment.NewLine, textdata3.Text.Split('~'));
+                //rest_text3 = string.Empty;
+                //show_text3 = string.Empty;
                 Projector.TextBlock31.Text = txt1;
                 Projector.TextBlock32.Text = txt1;
                 Projector.TextBlock33.Text = txt1;
-                Projector.TextBlock34.Text = txt1;
+                Projector.TextBlock34.Text = txt1; 
             }
             if (textdata4 != null)
             {
-                rest_text4 = string.Empty;
-                show_text4 = string.Empty;
                 string txt1 = string.Join(Environment.NewLine, textdata4.Text.Split('~'));
+                //rest_text4 = string.Empty;
+                //show_text4 = string.Empty;
                 Projector.TextBlock41.Text = txt1;
                 Projector.TextBlock42.Text = txt1;
                 Projector.TextBlock43.Text = txt1;
-                Projector.TextBlock44.Text = txt1;
+                Projector.TextBlock44.Text = txt1; 
             }
+            
             Blocked = false;
         }
     }

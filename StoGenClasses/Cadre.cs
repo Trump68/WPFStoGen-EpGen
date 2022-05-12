@@ -96,10 +96,11 @@ namespace StoGen.Classes
                     this.SoundFr.ClearPlayedCount();
                 //FrameText.TextList.Clear();
             List<seTe> setelist = new List<seTe>();
-                foreach (seTe dataTe in info.TextList)
-                {
+            foreach (seTe dataTe in info.TextList)
+            {
+                if (!string.IsNullOrEmpty(dataTe.Text))
                 setelist.Add(dataTe);                    
-                }
+            }
             this.TextFr.SetData(setelist);
             //}
 
