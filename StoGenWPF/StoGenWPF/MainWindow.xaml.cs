@@ -296,21 +296,28 @@ namespace StoGenWPF
            
             else if (e.Key == Key.Space)
             {
-                if (FrameImage.LoopProcessed)
+                if (Projector.PicContainer.Clip.HasVideo)
                 {
-                    Projector.PicContainer.Clip.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
-                    FrameImage.LoopProcessed = false;
-                    Projector.PicContainer.Clip.Play();
-                }
-                else
-                {
-
-                    if (paused)
+                    if (FrameImage.LoopProcessed)
+                    {
+                        Projector.PicContainer.Clip.Position = TimeSpan.FromSeconds(FrameImage.ClipStartPos);
+                        FrameImage.LoopProcessed = false;
                         Projector.PicContainer.Clip.Play();
-
+                    }
                     else
-                        Projector.PicContainer.Clip.Pause();
-                    paused = !paused;
+                    {
+
+                        if (paused)
+                            Projector.PicContainer.Clip.Play();
+
+                        else
+                            Projector.PicContainer.Clip.Pause();
+                        paused = !paused;
+                    }
+                }
+                else 
+                {
+                    SGManager.ProcessNextCadre();
                 }
             }
             else if (e.Key == Key.F3)

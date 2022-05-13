@@ -234,135 +234,159 @@ namespace StoGen.Classes
             List<string> data = item.Split(';').ToList();
             foreach (var str in data)
             {
-                if (str.StartsWith("A=1"))
-                {
-                    this.Active = true;                    
-                }
+
                 if (str.StartsWith("FILE="))
                 {
                     this.File = str.Replace("FILE=", string.Empty);
+                    continue;
                 }
                 if (str.StartsWith("TEXT~") || str.StartsWith("TEXT="))
                 {
                     this.Kind = 1; 
                     this.Template = str.Replace("TEXT=", string.Empty).Replace("TEXT", string.Empty);
+                    continue;
                 }
                 if (str.StartsWith("IMAGE~") || str.StartsWith("IMAGE="))
                 {
                     this.Kind = 0;
                     this.Template = str.Replace("IMAGE=", string.Empty).Replace("IMAGE", string.Empty);
+                    continue;
                 }
                 if (str.StartsWith("SOUND~") || str.StartsWith("SOUND="))
                 {
                     this.Kind = 6;
                     this.Template = str.Replace("SOUND=", string.Empty).Replace("SOUND", string.Empty);
+                    continue;
                 }
                 if (str.StartsWith("CONTROL~") || str.StartsWith("CONTROL="))
                 {
                     this.Kind = 10;
                     this.Template = str.Replace("CONTROL=", string.Empty).Replace("CONTROL", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("DSC="))
                 {
                     this.Description = str.Replace("DSC=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("KIND="))
                 {
                     this.Kind = Convert.ToInt32(str.Replace("KIND=", string.Empty));
+                    continue;
                 }
                 else if (str.StartsWith("Align="))
                 {
                     this.Align = str.Replace("Align=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("VAlign="))
                 {
                     this.VAlign = str.Replace("VAlign=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("STR="))
                 {
                     this.Story = str.Replace("STR=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("ORD="))
                 {
                     this.Order = int.Parse(str.Replace("ORD=", string.Empty));
-                }
-                else if (str.StartsWith("FIGURE="))
-                {
-                    this.FigureName = str.Replace("FIGURE=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("Direction="))
                 {
                     this.Direction = int.Parse(str.Replace("Direction=", string.Empty));
+                    continue;
+                }
+                else if (str.Trim() == "STOP")
+                {
+                    if (this.Kind == 6)
+                    {
+                        this.Y = "1";
+                        this.R = "0";
+                    }
+                    continue;
                 }
                 else if (str.StartsWith("X="))
                 {
                     this.X = str.Replace("X=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("Y="))
                 {
                     this.Y = str.Replace("Y=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("O="))
                 {
                     this.O = str.Replace("O=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("R="))
                 {
                     this.R = str.Replace("R=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("S="))
                 {
                     this.S = str.Replace("S=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("F="))
                 {
                     this.F = str.Replace("F=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("Z="))
                 {
                     this.Z = str.Replace("Z=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("T="))
                 {
                     this.T = str.Replace("T=", string.Empty);
-                }
-
-                else if (str.StartsWith("Tags="))
-                {
-                    if (!str.Contains("FigureGeneric"))
-                        this.Tags = str.Replace("Tags=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("GROUP="))
                 {
                     this.Group = str.Replace("GROUP=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("TEMPLATE="))
                 {
                     this.Template = str.Replace("TEMPLATE=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("PositionStart="))
                 {                    
                     this.PositionStart = str.Replace("PositionStart=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("PositionEnd="))
                 {
                     this.PositionEnd = str.Replace("PositionEnd=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("LoopMode="))
                 {
                     this.LoopMode = str.Replace("LoopMode=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("LoopCount="))
                 {
                     this.LoopCount = str.Replace("LoopCount=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("Speed="))
                 {
                     this.Speed = str.Replace("Speed=", string.Empty);
+                    continue;
                 }
                 else if (str.StartsWith("ShowMovieControl="))
                 {
                     this.ShowMovieControl = str.Replace("ShowMovieControl=", string.Empty);
+                    continue;
                 }
 
             }

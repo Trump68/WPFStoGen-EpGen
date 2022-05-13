@@ -249,7 +249,7 @@ namespace StoGen.Classes.Data.Games
             // sound
             //this.RemoveMusic();
             this.VOLUME_M = 100;
-            var sounds = group.Where(x => x.Kind == 6);
+            var sounds = group.Where(x => x.Kind == 6).ToList();
 
             foreach (var item in sounds)
             {

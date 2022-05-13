@@ -719,8 +719,16 @@ namespace StoGen.Classes.Transition
             {
                 get
                 {
-                    if (Playng) return 1;
-                    else return 0;
+                    if (FrameSound.PlayingItems[Level] != null)
+                    {
+                        Playng = true;
+                        return 1;
+                    }
+                    else
+                    {
+                        Playng = false;
+                        return 0;
+                    }
                     //double val = Projector.Sound[Level].Position.TotalMilliseconds;
                     //if (val > 0) return 1;
                     //return 0;
@@ -742,9 +750,9 @@ namespace StoGen.Classes.Transition
                          {
                              Projector.Sound[Level].Stop();
                              Playng = false;
-                         }
+                         }                         
                      }));
-
+                    this.Active = false;
                 }
             }
             public override bool Execute(out bool repaintNeed)
