@@ -129,14 +129,25 @@ namespace StoGen.Classes
 
         public virtual Cadre GetNextCadre(bool paint = true)
         {
-            if (FrameText.Blocked)
+            if (FrameText.Blocked || FrameImage.Blocked || FrameSound.Blocked)
             {
-                Cadres[CadreId].TextFr.ShowText();
-                //FrameText.ShowText();
+                if (FrameText.Blocked)
+                {
+                    Cadres[CadreId].TextFr.ShowText();
+                }
+                if (FrameImage.Blocked)
+                {
+                    FrameImage.tranManager.Stop();
+                }
+                if (FrameSound.Blocked)
+                {
+                    FrameSound.tranManager.Stop();
+                }
+
                 return null;
             }
-            if (FrameImage.Blocked || FrameSound.Blocked ) 
-                return null;
+
+
             CreateNextCadres();
             CadreId++;
             Cadre result = null;

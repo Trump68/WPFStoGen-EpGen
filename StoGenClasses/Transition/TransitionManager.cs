@@ -18,7 +18,16 @@ namespace StoGen.Classes.Transition
             TransitionList.Clear();
             isStarted = false;
         }
-
+        public void Stop() 
+        {
+            foreach (var datalist in TransitionList)
+            {
+                foreach (var objectTransitionList in datalist.Transitions)
+                {
+                        objectTransitionList.ForEach(x => x.ForceComplete = true);
+                }
+            }
+        }
         internal void Add(TransitionData trandata)
         {
             TransitionList.Add(trandata);
@@ -60,7 +69,7 @@ namespace StoGen.Classes.Transition
             }
             isStarted = true;
             return completed;
-        }
+        }        
     }
     public class TransitionData
     {
@@ -231,12 +240,16 @@ namespace StoGen.Classes.Transition
                 set
                 { }
             }
+
+            public bool ForceComplete { get; internal set; } = false;
+
             public double CalcTran()
             {
                 return calculator.Calc();
             }
             public void Init() 
             {
+                ForceComplete = false;
                 if (SpanMax > 0) 
                 {                    
                     Span = rnd.Next(Convert.ToInt32(SpanMin), Convert.ToInt32(SpanMax));
@@ -347,7 +360,7 @@ namespace StoGen.Classes.Transition
                 return result;
             }
         }
-        //Common transitions
+        //Basic transitions
         public class TransitionWait : TransitionItem
         {
             public TransitionWait(string[] vals, int level) : base(vals, level) { }
@@ -362,7 +375,7 @@ namespace StoGen.Classes.Transition
                     this.Started = now;
                     return false;
                 }
-                if (now >= this.Started + this.Span)
+                if (ForceComplete || now >= this.Started + this.Span)
                 {
                     this.Close();
                     return true;
@@ -387,7 +400,7 @@ namespace StoGen.Classes.Transition
                     this.isReverse = this.Begin > this.End;
                     return false;
                 }
-                if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
+                if (ForceComplete || ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End)))
                 {
                     CurrentVal = this.End;
                     this.Close();
@@ -399,8 +412,9 @@ namespace StoGen.Classes.Transition
                 if (delta != 0)
                 {
                     CurrentVal = this.Begin + delta;
-                    if (CurrentVal == this.Begin) 
+                    if (ForceComplete || CurrentVal == this.Begin) 
                     {
+                        CurrentVal = this.End;
                         this.Close();
                         return true;
                     }                        
@@ -460,7 +474,7 @@ namespace StoGen.Classes.Transition
                 repaintNeed = true;
                 if (isReverse)
                 {
-                    if (CurrentVal <= this.End)
+                    if (ForceComplete || CurrentVal <= this.End)
                     {
                         CurrentVal = this.End;
                         this.Close();
@@ -469,7 +483,7 @@ namespace StoGen.Classes.Transition
                 }
                 else
                 {
-                    if (CurrentVal >= this.End)
+                    if (ForceComplete || CurrentVal >= this.End)
                     {
                         CurrentVal = this.End;
                         this.Close();
@@ -485,7 +499,7 @@ namespace StoGen.Classes.Transition
                     var rez = this.Begin + delta;
                     if (this.isReverse)
                     {
-                        if (rez <= this.End)
+                        if (ForceComplete || rez <= this.End)
                         {
                             CurrentVal = this.End;
                             this.Close();
@@ -494,7 +508,7 @@ namespace StoGen.Classes.Transition
                     }
                     else
                     {
-                        if (rez >= this.End)
+                        if (ForceComplete || rez >= this.End)
                         {
                             CurrentVal = this.End;
                             this.Close();
@@ -582,7 +596,7 @@ namespace StoGen.Classes.Transition
                     return false;
                 }
                 repaintNeed = true;
-                if ((!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
+                if (ForceComplete || (!this.isReverse && cr >= this.End) || (this.isReverse && cr <= this.End))
                 {
                     CurrentVal = this.End;
                     this.Close();
@@ -636,7 +650,7 @@ namespace StoGen.Classes.Transition
                 repaintNeed = true;
                 if (isReverse)
                 {
-                    if (CurrentVal <= this.End)
+                    if (ForceComplete || CurrentVal <= this.End)
                     {
                         CurrentVal = this.End;
                         this.Close();
@@ -645,7 +659,7 @@ namespace StoGen.Classes.Transition
                 }
                 else
                 {
-                    if (CurrentVal >= this.End)
+                    if (ForceComplete || CurrentVal >= this.End)
                     {
                         CurrentVal = this.End;
                         this.Close();
@@ -661,7 +675,7 @@ namespace StoGen.Classes.Transition
                     var rez = this.Begin + delta;
                     if (this.isReverse)
                     {
-                        if (rez <= this.End)
+                        if (ForceComplete || rez <= this.End)
                         {
                             CurrentVal = this.End;
                             this.Close();
@@ -670,7 +684,7 @@ namespace StoGen.Classes.Transition
                     }
                     else
                     {
-                        if (rez >= this.End)
+                        if (ForceComplete || rez >= this.End)
                         {
                             CurrentVal = this.End;
                             this.Close();
@@ -740,13 +754,12 @@ namespace StoGen.Classes.Transition
                     Projector.Sound[Level].Dispatcher.Invoke(new Action(
                      () =>
                      {
-                         if (value > 0 && !Playng)
+                         if ((ForceComplete || value>0) && !Playng)
                          {
-                             //Projector.Sound[Level].Play();
                              FrameSound.StartSound(Level);
                              Playng = true;
                          }
-                         else if (value == 0 && Playng)
+                         else if ((ForceComplete || value > 0) && Playng)
                          {
                              Projector.Sound[Level].Stop();
                              Playng = false;
