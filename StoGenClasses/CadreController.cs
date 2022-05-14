@@ -181,8 +181,23 @@ namespace StoGen.Classes
 
         public virtual Cadre GetPrevCadre()
         {
-            if (FrameImage.Blocked || FrameSound.Blocked)
+            if (FrameText.Blocked || FrameImage.Blocked || FrameSound.Blocked)
+            {
+                if (FrameText.Blocked)
+                {
+                    Cadres[CadreId].TextFr.ShowText();
+                }
+                if (FrameImage.Blocked)
+                {
+                    FrameImage.tranManager.Stop();
+                }
+                if (FrameSound.Blocked)
+                {
+                    FrameSound.tranManager.Stop();
+                }
+
                 return null;
+            }
             Cadre result = null;
             if (CadreId == 0)
             {
