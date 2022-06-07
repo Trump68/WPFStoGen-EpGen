@@ -59,8 +59,7 @@ namespace StoGen.Classes.Catalog
                     _Actress_to_track.Add("Tsujii Honoka");
                     _Actress_to_track.Add("Usui Saryuu");
                     _Actress_to_track.Add("Utsunomiya Shion");
-                    _Actress_to_track.Add("Yamaguchi Haru");
-                    _Actress_to_track.Add("Yuzuriha Karen");
+                    _Actress_to_track.Add("Yamaguchi Haru");                    
                     _Actress_to_track.Add("Hayashi Ryou");
                     _Actress_to_track.Add("Nagashima Saori");
                     _Actress_to_track.Add("Kuriyama Rio");
@@ -564,6 +563,7 @@ namespace StoGen.Classes.Catalog
                 else if (item == "Hikari Azusa") result.Add("Azusa Hikari");
                 else if (item == "Anna Kami") result.Add("Kami Anna");
                 else if (item == "Karen Kaede") result.Add("Kaede Karen");
+                else if (item == "Yuzuriha Karen") result.Add("Kaede Karen");                
                 else if (item == "Sakura Sora Momo") result.Add("Sakura Momo");
                 else if (item == "Tsubasa Amami") result.Add("Amami Tsubasa");
                 else if (item == "Yume Nishinomiya") result.Add("Nishimiya Yume");
@@ -688,8 +688,8 @@ namespace StoGen.Classes.Catalog
                 else if (item == "Miru2") result.Add("Sakamichi Miru");
                 else if (item == "Kizaki Jieshika") result.Add("Kizaki Jessica");
                 else if (item == "Jieshika Kizaki") result.Add("Kizaki Jessica");
-                else if (item == "") result.Add("");
-                else if (item == "") result.Add("");
+                else if (item == "Kaede Huua") result.Add("Kaede Fuua");
+                else if (item == "Minami Aizawa") result.Add("Aizawa Minami");
                 else if (item == "") result.Add("");
                 else
                 {
