@@ -690,7 +690,13 @@ namespace StoGen.Classes.Catalog
                 else if (item == "Jieshika Kizaki") result.Add("Kizaki Jessica");
                 else if (item == "Kaede Huua") result.Add("Kaede Fuua");
                 else if (item == "Minami Aizawa") result.Add("Aizawa Minami");
-                else if (item == "") result.Add("");
+                else if (item == "桂木凛") result.Add("Katsuragi Rin");
+                else if (item == "流川夕") result.Add("Rukawa Yu");
+                else if (item == "Runa2 Tukino") result.Add("Tsukino Runa");
+                else if (item == "Takeuti Yuki2") result.Add("Takeuchi Yuuki");
+                else if (item == "Takeuti yuki2") result.Add("Takeuchi Yuuki");
+
+
                 else
                 {
                     converted = false;
