@@ -300,11 +300,12 @@ namespace StoGen.Classes.Catalog
                         existingItem.SourceFolderExist = item.SourceFolderExist;
                         existingItem.PersonKind = item.PersonKind;
                     }
+                    Console.WriteLine($"{item.Name}");
 
                 }
                 if (item.Edited)
                 {
-                    UpdateItem(item);
+                    UpdateItem(item);                    
                 }
 
                 //Backup
@@ -694,9 +695,12 @@ namespace StoGen.Classes.Catalog
                 else if (item == "流川夕") result.Add("Rukawa Yu");
                 else if (item == "Runa2 Tukino") result.Add("Tsukino Runa");
                 else if (item == "Takeuti Yuki2") result.Add("Takeuchi Yuuki");
-                else if (item == "Takeuti yuki2") result.Add("Takeuchi Yuuki");
-
-
+                else if (item == "Misaki Sakura2") result.Add("Misaki Sakura");
+                else if (item == "Takeuti Natuki") result.Add("Takeuchi Natsuki");
+                else if (item == "Nozomi Shima Airi") result.Add("Kijima Airi");
+                else if (item == "Huzimori riho") result.Add("Huzimori Riho");
+                else if (item == "Isikawa mio") result.Add("Ishikawa Mio");
+                else if (item == "Isikawa Mio") result.Add("Ishikawa Mio");
                 else
                 {
                     converted = false;
