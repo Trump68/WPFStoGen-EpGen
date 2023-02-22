@@ -138,20 +138,27 @@ namespace EPCat.Model
             }            
 
         }
-        private static int JavLibraryDoOneJavLibrary(string serie, string keyword, string disc)
+        private static int JavLibraryDoOneJavLibrary(string serie, string keyword, string disc, out string title, out string year, out List<string> stars, out List<string> genres, out string pic)
         {
 
+            title = null;
+            year = null;
+            pic = null;
+            stars = new List<string>();
+            genres = new List<string>();
             string check = Path.Combine($@"{disc}:\!CATALOG\JAV\{serie}\{keyword}", EpItem.p_PassportName);
             if (File.Exists(check))
             {
                 return 50;
             }
-            
+
 
 
             Console.Write($"    Get {keyword}");
-            HttpWebRequest request = WebRequest.Create($"https://www.javlibrary.com/en/vl_searchbyid.php?keyword={keyword}") as HttpWebRequest;          
-        
+            //HttpWebRequest request = WebRequest.Create($"https://www.javlibrary.com/en/vl_searchbyid.php?keyword={keyword}") as HttpWebRequest;
+            HttpWebRequest request = WebRequest.Create($"https://g64w.com/en/vl_searchbyid.php?keyword={keyword}") as HttpWebRequest;
+            
+
             //ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             //ServicePointManager.SecurityProtocol = SecurityProtocolType.tls;
             request.Method = "GET";
@@ -169,13 +176,17 @@ namespace EPCat.Model
             //request.Headers.Add("Sec-Fetch-User", "?1");
             //request.Headers.Add("Upgrade-Insecure-Requests", "1");
             //request.Headers.Add("Host", $"https://www.javlibrary.com/ja/vl_searchbyid.php?keyword={keyword}");
-            CookieContainer cookieContainer = new CookieContainer();
-            Cookie userNameCookie = new Cookie("over18", "1", "/", "www.javbus.com");
-            Cookie timezoneCookie = new Cookie("existmag", "mag", "/", "www.javbus.com");
-            Cookie unkCookie = new Cookie("PHPSESSID", "gontgfkvndqlsnmq87vqrjmp96", "/", "www.javbus.com");
-            cookieContainer.Add(timezoneCookie);
-            cookieContainer.Add(userNameCookie);
-            cookieContainer.Add(unkCookie);
+            
+
+
+           // CookieContainer cookieContainer = new CookieContainer();
+           // Cookie userNameCookie = new Cookie("over18", "1", "/", "www.javbus.com");
+           // Cookie timezoneCookie = new Cookie("existmag", "mag", "/", "www.javbus.com");
+           // Cookie unkCookie = new Cookie("PHPSESSID", "gontgfkvndqlsnmq87vqrjmp96", "/", "www.javbus.com");
+           // cookieContainer.Add(timezoneCookie);
+           // cookieContainer.Add(userNameCookie);
+           // cookieContainer.Add(unkCookie);
+            
             //request.CookieContainer = cookieContainer;
 
             string content = null;
@@ -208,7 +219,7 @@ namespace EPCat.Model
                 content = content.Substring(pos);
                 pos = content.IndexOf(@"<a href=");
                 content = content.Substring(pos + 10, 14);
-                request = WebRequest.Create($"http://www.javlibrary.com/en{content}") as HttpWebRequest;
+                request = WebRequest.Create($"http://g64w.com/en{content}") as HttpWebRequest;
                 request.Method = "GET";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko";
                 try
@@ -232,20 +243,20 @@ namespace EPCat.Model
 
             // 1. title
             pos = content.IndexOf(@"post-title text");
-            string title = content.Substring(pos + 30);
+            title = content.Substring(pos + 30);
             pos = title.IndexOf(@">");
             title = title.Substring(pos + 1);
             pos = title.IndexOf(@"<");
             title = title.Substring(0, pos);
             // 2. year
             pos = content.IndexOf(@"video_date");
-            string year = content.Substring(pos);
+            year = content.Substring(pos);
             pos = year.IndexOf(@"text");
             year = year.Substring(pos + 6, 4);
             // 3. star
             pos = content.IndexOf(@"video_cast");
             string starall = content.Substring(pos);
-            List<string> stars = new List<string>();
+            stars = new List<string>();
             pos = starall.IndexOf(@"rel=""tag"">");
             while (pos > 0)
             {
@@ -257,7 +268,7 @@ namespace EPCat.Model
             //4. Genre
             pos = content.IndexOf(@"video_genres");
             string genreall = content.Substring(pos);
-            List<string> genres = new List<string>();
+            genres = new List<string>();
             pos = genreall.IndexOf(@"rel=""category tag"">");
             while (pos > 0)
             {
@@ -282,101 +293,13 @@ namespace EPCat.Model
             }
             //6. Picture
             pos = content.IndexOf(@"video_jacket_img");
-            string pic = content.Substring(pos + 25);
+            pic = content.Substring(pos + 25);
             pos = pic.IndexOf(@".jpg");
             pic = $"http://{pic.Substring(0, pos + 4)}";
 
 
 
-            string path = $@"{disc}:\!CATALOG\JAV\{serie}";
-            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-            path = $@"{path}\{keyword}";
-            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-            string passortpath = Path.Combine(path, EpItem.p_PassportName);
-            string posterpath = Path.Combine(path, "POSTER.jpg");
-            if (!File.Exists(passortpath))
-            {
-                EpItem item = new EpItem(0);
-                item.Name = keyword;
-                item.AltTitle = title;
-                item.Catalog = "JAV";
-                item.Year = Convert.ToInt32(year);
-                item.Star = string.Join(",", stars.ToArray());
-                item.Serie = serie;
-                item.Type = string.Join(",", genres.ToArray());
-                item.Stage = "Stub";
-                item.Director = string.Join(",", directors.ToArray());
-                List<string> lines = EpItem.SetToPassport(item);
-                File.WriteAllLines(passortpath, lines);
-            }
-            else
-            {
-                List<string> passport = new List<string>(File.ReadAllLines(passortpath));
-                if (passport != null)
-                {
-                    EpItem item = EpItem.GetFromPassport(passport, passortpath);
-                    bool edited = false;
-                    if (item.Year < 1)
-                    {
-                        item.Year = Convert.ToInt32(year);
-                        edited = true;
-                    }
-                    if (string.IsNullOrEmpty(item.Star) && stars.Any())
-                    {
-                        item.Star = string.Join(",", stars.ToArray());
-                        edited = true;
-                    }
-                    if (string.IsNullOrEmpty(item.Director) && directors.Any())
-                    {
-                        item.Director = string.Join(",", directors.ToArray());
-                        edited = true;
-                    }
-                    if (string.IsNullOrEmpty(item.Serie))
-                    {
-                        item.Serie = serie;
-                        edited = true;
-                    }
-                    if (string.IsNullOrEmpty(item.AltTitle))
-                    {
-                        item.AltTitle = title;
-                        edited = true;
-                    }
-                    if (string.IsNullOrEmpty(item.Type) && genres.Any())
-                    {
-                        item.Type = string.Join(",", genres.ToArray());
-                        edited = true;
-                    }
-                    if (item.Catalog != "JAV")
-                    {
-                        item.Catalog = "JAV";
-                        edited = true;
-                    }
-                    if (edited)
-                    {
-                        ++item.LastEdit;
-                        List<string> lines = EpItem.SetToPassport(item);
-                        File.WriteAllLines(passortpath, lines);
-                    }
-                }
-
-            }
-            if (!File.Exists(posterpath))
-            {                
-                using (WebClient client = new WebClient())
-                {
-                    try
-                    {
-
-                        client.DownloadFile(pic, posterpath);
-                    }
-                    catch (Exception)
-                    {
-                                              
-                    }
-
-                }
-                
-            }
+           
 
             return 100;
         }
@@ -505,7 +428,9 @@ namespace EPCat.Model
             List<string> genres2;
             string pic2;
 
-            int rez = JavLibraryDoOneJavBus(serie, keyword, disc, out title1, out year1, out stars1, out genres1, out pic1);
+            //int rez = JavLibraryDoOneJavBus(serie, keyword, disc, out title1, out year1, out stars1, out genres1, out pic1);
+            int rez = JavLibraryDoOneJavLibrary(serie, keyword, disc, out title1, out year1, out stars1, out genres1, out pic1);
+            
             /*
             if (rez != 100) 
             {
