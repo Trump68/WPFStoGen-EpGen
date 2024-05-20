@@ -155,27 +155,15 @@ namespace EPCat.Model
 
 
             Console.Write($"    Get {keyword}");
-            //HttpWebRequest request = WebRequest.Create($"https://www.javlibrary.com/en/vl_searchbyid.php?keyword={keyword}") as HttpWebRequest;
             HttpWebRequest request = WebRequest.Create($"https://g64w.com/en/vl_searchbyid.php?keyword={keyword}") as HttpWebRequest;
             
 
-            //ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-            //ServicePointManager.SecurityProtocol = SecurityProtocolType.tls;
             request.Method = "GET";
 //            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko";
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0";
             request.Accept = "*/*";
             request.Headers.Add("Accept-Encoding:  gzip, deflate, br");
-            //request.Headers.Add("Accept-Language", "ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3");
-            //request.ContentType = "application/json;charset=UTF-8";
-            //request.Referer = $"https://www.javlibrary.com/ja/vl_searchbyid.php?keyword={keyword}";
-            //request.Host = "www.javlibrary.com";
-            //request.Headers.Add("Sec-Fetch-Dest", "document");
-            //request.Headers.Add("Sec-Fetch-Mode", "navigate");
-            //request.Headers.Add("Sec-Fetch-Site", "same-origin");
-            //request.Headers.Add("Sec-Fetch-User", "?1");
-            //request.Headers.Add("Upgrade-Insecure-Requests", "1");
-            //request.Headers.Add("Host", $"https://www.javlibrary.com/ja/vl_searchbyid.php?keyword={keyword}");
+
             
 
 
@@ -219,7 +207,7 @@ namespace EPCat.Model
                 content = content.Substring(pos);
                 pos = content.IndexOf(@"<a href=");
                 content = content.Substring(pos + 10, 14);
-                request = WebRequest.Create($"http://g64w.com/en{content}") as HttpWebRequest;
+                request = WebRequest.Create($"https://g64w.com/en{content}") as HttpWebRequest;
                 request.Method = "GET";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko";
                 try
@@ -314,6 +302,7 @@ namespace EPCat.Model
                 return string.Empty;
             return char.ToUpper(str[0]) + str.Substring(1).ToLower();
         }
+        
         private static int JavLibraryDoOneJavBus(string serie, string keyword, string disc, out string title, out string year, out List<string> stars, out List<string> genres, out string pic)
         {
             title = null;
@@ -415,6 +404,122 @@ namespace EPCat.Model
 
             return 100;
         }
+
+        private static int JavLibraryJavdatabase(string serie, string keyword, string disc, out string title, out string year, out List<string> stars, out List<string> genres, out string pic)
+        {
+            title = null;
+            year = null;
+            pic = null;
+            stars = new List<string>();
+            genres = new List<string>();
+            string check = Path.Combine($@"{disc}:\!CATALOG\JAV\{serie}\{keyword}", EpItem.p_PassportName);
+            if (File.Exists(check))
+            {
+                return 50;
+            }
+
+
+            Console.Write($"    Get {keyword}");
+            WebRequest request = WebRequest.Create($"https://www.javdatabase.com/movies/{keyword}") as WebRequest;
+            //WebRequest request = WebRequest.Create($"https://www.javdatabase.com/movies/AVSA-291") as WebRequest;
+            
+            //WebRequest request = WebRequest.Create($"https://www.javbus.com/en/OOMN-234") as WebRequest;
+
+
+            request.Method = "GET";
+            string content = null;
+            WebResponse response = null;
+            StreamReader reader = null;
+
+
+            Stream stream = null;
+            try
+            {
+
+                response = request.GetResponse();
+                stream = response.GetResponseStream();
+                reader = new StreamReader(stream);
+                content = reader.ReadToEnd();
+
+                reader.Close();
+                response.Close();
+            }
+            catch (WebException ex)
+            {
+                string mess = ex.Message;
+                if (mess.Contains("404"))
+                    return 1;
+                Console.Write($" {mess}\n");
+                return 0;
+            }
+
+            try
+            {
+                int pos = -1;
+            int pos1 = -1;
+            // 1. title
+            pos = content.IndexOf(@"<b>Translated Title:</b></td><td class=""tablevalue"" colspan=""2"">")+64;
+            pos1 = content.IndexOf(@"</td></tr><tr><td class=""tablelabel""><b>Genre(s):", pos);
+            title = content.Substring(pos, pos1 - pos);
+            // 2. year
+            pos = content.IndexOf(@"Release Date:</b></td><td class=""tablevalue"" colspan=""2"">")+57;
+            year = content.Substring(pos,4);
+            // 3. star
+            pos = content.IndexOf(@"Actress/Idols</h2><div class=""row"">");
+            if (pos > -1)
+            {
+                //</a></p><div class="idol-thumb">
+                string starall = content.Substring(pos);
+                while (pos > 0)
+                {
+                    //starall = starall.Substring(50);
+                    pos = starall.IndexOf(@"""cut-text"" href=""https://www.javdatabase.com/idols/")+50;
+                    starall = starall.Substring(pos);
+                    pos = starall.IndexOf(@"/"">")+3;
+                    pos1 = starall.IndexOf(@"</a></p><div class=""idol-thumb"">");
+                    string starname = starall.Substring(pos, pos1 - pos);
+                    if (!stars.Contains(starname))
+                        stars.Add(starname);
+                    pos = starall.IndexOf(@"""cut-text"" href=""https://www.javdatabase.com/idols/");
+                }
+            }
+
+            //4. Genre
+            pos = content.IndexOf(@"<b>Genre(s): </b></td>");
+            if (pos > -1)
+            {
+                string genreall = content.Substring(pos);
+                while (pos > 0)
+                {
+                    //genreall = genreall.Substring(30);
+                    pos = genreall.IndexOf(@"<a href=""https://www.javdatabase.com/genres")+30;
+                    genreall = genreall.Substring(pos);
+                    pos = genreall.IndexOf(@"rel=""tag"">")+10;
+                    pos1 = genreall.IndexOf(@"</a></span>");
+                    string starname = genreall.Substring(pos, pos1 - pos).Trim();
+                    if (!genres.Contains(starname) && !string.IsNullOrWhiteSpace(starname))
+                        genres.Add(starname);
+                    pos = genreall.IndexOf(@"<a href=""https://www.javdatabase.com/genres");
+                }
+            }
+
+            //6. Picture
+            pos = content.IndexOf(@"data-src=""https://www.javdatabase.com/covers/full")+10;
+            pos1 = content.IndexOf(@""" width=""", pos);
+            pic = content.Substring(pos, pos1 - pos).Trim();
+
+
+            return 100;
+            }
+            catch (Exception ex)
+            {
+                string mess = ex.Message;
+                Console.Write($" {mess}\n");
+                return 0;
+            }
+        }
+
+
         private static int GetFromLib(string serie, string keyword, string disc)
         {
             string title1;
@@ -429,8 +534,12 @@ namespace EPCat.Model
             string pic2;
 
             //int rez = JavLibraryDoOneJavBus(serie, keyword, disc, out title1, out year1, out stars1, out genres1, out pic1);
-            int rez = JavLibraryDoOneJavLibrary(serie, keyword, disc, out title1, out year1, out stars1, out genres1, out pic1);
+            int rez = JavLibraryJavdatabase(serie, keyword, disc, out title1, out year1, out stars1, out genres1, out pic1);
             
+
+
+            //int rez = JavLibraryDoOneJavLibrary(serie, keyword, disc, out title1, out year1, out stars1, out genres1, out pic1);
+
             /*
             if (rez != 100) 
             {
@@ -600,7 +709,7 @@ namespace EPCat.Model
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);
             path = $@"{path}\{keyword}";
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-            string passortpath = Path.Combine(path, EpItem.p_PassportName);
+            string passortpath = Path.Combine(path, EpItem.p_PassportName);            
             string posterpath = Path.Combine(path, "POSTER.jpg");
             if (!File.Exists(passortpath))
             {
@@ -670,8 +779,16 @@ namespace EPCat.Model
                 {
                     try
                     {
-
-                        client.DownloadFile(pic, posterpath);
+                        if (pic.Contains(".webp"))
+                        {
+                            posterpath = Path.Combine(path, "POSTER.webp");
+                            if (!File.Exists(posterpath)) 
+                            {
+                                client.DownloadFile(pic, posterpath);
+                            }
+                        }
+                        else
+                            client.DownloadFile(pic, posterpath);
                     }
                     catch (Exception)
                     {

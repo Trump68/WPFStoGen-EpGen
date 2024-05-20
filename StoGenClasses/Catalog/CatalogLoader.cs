@@ -570,6 +570,7 @@ namespace StoGen.Classes.Catalog
                 else if (item == "Yume Nishinomiya") result.Add("Nishimiya Yume");
                 else if (item == "Nanami Misaki") result.Add("Misaki Nanami");
                 else if (item == "Nozomi Shima Airi") result.Add("Kijima Airi");
+                else if (item == "Airi Kijima") result.Add("Kijima Airi");
                 else if (item == "Amiri Saitou") result.Add("Saitou Amiri");
                 else if (item == "Miyuu Inamori") result.Add("Inamori Miyuu");
                 else if (item == "Uta Iori") result.Add("Iori Hane");
@@ -701,6 +702,8 @@ namespace StoGen.Classes.Catalog
                 else if (item == "Huzimori riho") result.Add("Huzimori Riho");
                 else if (item == "Isikawa mio") result.Add("Ishikawa Mio");
                 else if (item == "Isikawa Mio") result.Add("Ishikawa Mio");
+                else if (item == "Hosimiya Itika") result.Add("Hoshimiya Ichika");
+                
                 else
                 {
                     converted = false;

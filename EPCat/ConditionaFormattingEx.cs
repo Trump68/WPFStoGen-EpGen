@@ -21,9 +21,9 @@ namespace EPCat
             formatInfo.FormatName = this.FormatName;
             formatInfo.Format = new StaticResourceExtension(key).ProvideValue(serviceProvider);
             //formatInfo.DisplayName = ConditionalFormattingLocalizer.GetString((ConditionalFormattingStringId)Enum.Parse(typeof(ConditionalFormattingStringId), (GetStringIdPrefix() + FormatName)));
-            formatInfo.DisplayName = "Custom Icons";
+            formatInfo.DisplayName = "AB Icons";
             formatInfo.Icon = GetIcon();
-            formatInfo.GroupName = "Custom";
+            formatInfo.GroupName = "AB";
                 //Description = GetDescription(),
                 //GroupName = GetGroupName(),
             
