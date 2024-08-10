@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -86,19 +87,19 @@ namespace EPCat.Model
                 }
 
                 Console.WriteLine($"{item} - start");
-                if (startstr == 0)
-                    startstr = 1;
+                //if (startstr == 0)
+                //    startstr = 1;
 
                 int start = startstr;
                 int proc = 0;
                 int failure = 0;
 
-                string keyword = $"{item}-{start.ToString($"D3")}";
+                //string keyword = $"{item}-{start.ToString($"D3")}";
                 int go = 0;
                 while (failure < failureTreshold && start<=max)
                 {
                     start++;
-                    keyword = $"{item}-{start.ToString($"D3")}";
+                    string keyword = $"{item}-{start.ToString($"D3")}";
                     go = GetFromLib(item, keyword, disc);
                     //go = GetFromLib("ZUKO", "ZUKO-001", disc);
                     if (go == 100)
@@ -117,7 +118,8 @@ namespace EPCat.Model
                         failure++;
                         if (failure > 0)                            
                             Console.Write($" - skipped {failure}\n");
-                    }                 
+                    }            
+                    Thread.Sleep(1000);
                 }
                 string str = $"{item} - complete {proc}\n";
                 Console.WriteLine(str);
