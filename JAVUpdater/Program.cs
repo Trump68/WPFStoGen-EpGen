@@ -24,6 +24,7 @@ namespace JAVUpdater
         public static int INTERNETUPDATEAFTER = 0;
         public static int CATALOGUPDATE = 0;
         public static int DOBACKUP = 0;
+        public static int SLEEP = 0;
         public static string ACTRESS_FOLDER = @"d:\Work\WPFStoGen-EpGen\CATALOG\BAT\!JAV_ARTIST\";
         static void Main(string[] args)
         {
@@ -196,6 +197,12 @@ namespace JAVUpdater
                     if (!string.IsNullOrEmpty(fromstr))
                         CATALOGUPDATE = int.Parse(fromstr);
                 }
+                else if (line.StartsWith("SLEEP="))
+                {
+                    string fromstr = line.Replace("SLEEP=", string.Empty);
+                    if (!string.IsNullOrEmpty(fromstr))
+                        SLEEP = int.Parse(fromstr);
+                }
                 else if (line.StartsWith("<=BACKUPACTRESS=>"))
                 {
                     isSectionBACKUPACTRESS = true;
@@ -212,6 +219,7 @@ namespace JAVUpdater
             var disks = DISC.Split(',');
             foreach (var item in disks)
             {
+                JAV.SLEEP = SLEEP;
                 JAV.JavLibraryDo(JavSerie, From, item, FAILURE, DAYTHRESHOLD);
             }
             

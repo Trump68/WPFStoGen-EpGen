@@ -18,6 +18,7 @@ namespace EPCat.Model
 
     public static class JAV
     {
+        public static int SLEEP = 0;
         public static void JavLibraryDo(string serie, int startstr, string disc, int failureTreshold, int daysTreshold)
         {
             //WebBrowserForm wbf = new WebBrowserForm();
@@ -421,7 +422,7 @@ namespace EPCat.Model
                 return 50;
             }
 
-            Thread.Sleep(1000);
+            Thread.Sleep(SLEEP);
             Console.Write($"    Get {keyword}");
             WebRequest request = WebRequest.Create($"https://www.javdatabase.com/movies/{keyword}") as WebRequest;
             //WebRequest request = WebRequest.Create($"https://www.javdatabase.com/movies/AVSA-291") as WebRequest;
