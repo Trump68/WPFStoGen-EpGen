@@ -100,6 +100,7 @@ namespace EPCat.Model
                     start++;
                     keyword = $"{item}-{start.ToString($"D3")}";
                     go = GetFromLib(item, keyword, disc);
+                    //go = GetFromLib("ZUKO", "ZUKO-001", disc);
                     if (go == 100)
                     {                        
                         proc++;
@@ -457,12 +458,20 @@ namespace EPCat.Model
             {
                 int pos = -1;
             int pos1 = -1;
-            // 1. title
-            pos = content.IndexOf(@"<b>Translated Title:</b></td><td class=""tablevalue"" colspan=""2"">")+64;
-            pos1 = content.IndexOf(@"</td></tr><tr><td class=""tablelabel""><b>Genre(s):", pos);
+                // 1. title
+            string ddd = @"<div class=""col-md-10 col-lg-10 col-xxl-10 col-8""><p class=""mb-1""><b>Title: </b>";
+                //@"<div class=""col-md-10 col-lg-10 col-xxl-10 col-8""><p class=""mb-1""><b>Title: </b>
+            pos1 = content.IndexOf(ddd);
+                if (pos1 == -1) 
+                {
+                    throw new Exception("Wrong format !!!!!!!!!!!!!!!!!!!!!!");
+                }
+            pos = pos1 + ddd.Length;
+            pos1 = content.IndexOf(@"</p><p class=""mb-1""><b>", pos);
             title = content.Substring(pos, pos1 - pos);
-            // 2. year
-            pos = content.IndexOf(@"Release Date:</b></td><td class=""tablevalue"" colspan=""2"">")+57;
+                // 2. year
+                ddd = @"<p class=""mb-1""><b>Release Date: </b>";
+            pos = content.IndexOf(ddd)+ddd.Length;
             year = content.Substring(pos,4);
             // 3. star
             pos = content.IndexOf(@"Actress/Idols</h2><div class=""row"">");
@@ -485,7 +494,7 @@ namespace EPCat.Model
             }
 
             //4. Genre
-            pos = content.IndexOf(@"<b>Genre(s): </b></td>");
+            pos = content.IndexOf(@"<p class=""mb-1""><b>Genre(s): </b><span class=""btn btn-primary btn-sm"">");
             if (pos > -1)
             {
                 string genreall = content.Substring(pos);
