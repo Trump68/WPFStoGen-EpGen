@@ -679,6 +679,7 @@ namespace StoGen.Classes.Catalog
                 else if (item == "Bi valley Akari") result.Add("Mitani Akari");
                 else if (item == "Isihara Rio") result.Add("");
                 else if (item == "Rin Yuna") result.Add("Hayashi Yuna");
+                else if (item == "Yuna Hayashi") result.Add("Hayashi Yuna");
                 else if (item == "Be Fujii Ai") result.Add("Fujii Aisa");
                 else if (item == "Komatu An") result.Add("Komatsu Azu");
                 else if (item == "Ryou Ayumi") result.Add("Hayashi Ryou");
