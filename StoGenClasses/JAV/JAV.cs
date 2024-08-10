@@ -119,7 +119,7 @@ namespace EPCat.Model
                         if (failure > 0)                            
                             Console.Write($" - skipped {failure}\n");
                     }            
-                    Thread.Sleep(1000);
+                    
                 }
                 string str = $"{item} - complete {proc}\n";
                 Console.WriteLine(str);
@@ -543,7 +543,7 @@ namespace EPCat.Model
             List<string> stars2;
             List<string> genres2;
             string pic2;
-
+            Thread.Sleep(1000);
             //int rez = JavLibraryDoOneJavBus(serie, keyword, disc, out title1, out year1, out stars1, out genres1, out pic1);
             int rez = JavLibraryJavdatabase(serie, keyword, disc, out title1, out year1, out stars1, out genres1, out pic1);
             
