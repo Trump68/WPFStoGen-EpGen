@@ -637,7 +637,8 @@ namespace StoGen.Classes.Catalog
                 else if (item == "野間あんな") result.Add("Noma Anna");
                 else if (item == "Hayashi Eri") result.Add("Kouduki Yaya");
                 else if (item == "Natsume Aya Haru") result.Add("Natsume Iroha");
-                else if (item == "Hara Sarasa") result.Add("Natsume Iroha");                                
+                else if (item == "Hara Sarasa") result.Add("Natsume Iroha");
+                else if (item == "Iroha Natsume") result.Add("Natsume Iroha");
                 else if (item == "God Hata Ichika") result.Add("Kamihata Ichika");
                 else if (item == "Asami Sena") result.Add("Sasamoto Yurara");
                 else if (item == "Masami Ichikawa") result.Add("Ichikawa Masami");
