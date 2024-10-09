@@ -38,6 +38,10 @@ namespace EPCat.Model
             int total = 0;
             foreach (var item in series)
             {
+                if (item.StartsWith("!")) 
+                {
+                    continue;
+                }
                 string check = Path.Combine($@"{disc}:\!CATALOG\JAV\{item}\", "completed");
                 if (File.Exists(check))
                 {
