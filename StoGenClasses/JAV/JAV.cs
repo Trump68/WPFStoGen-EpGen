@@ -42,6 +42,10 @@ namespace EPCat.Model
                 {
                     continue;
                 }
+                if (!Directory.Exists($@"{disc}:\!CATALOG\JAV\{item}\"))
+                {
+                    continue;
+                }
                 string check = Path.Combine($@"{disc}:\!CATALOG\JAV\{item}\", "completed");
                 if (File.Exists(check))
                 {
